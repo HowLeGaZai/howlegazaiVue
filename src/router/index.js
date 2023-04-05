@@ -9,6 +9,11 @@ const routes = [
     name: 'home',
     component: Home
   },
+  {
+    path: '/welcome',
+    name: 'welcome',
+    component: () => import(/* webpackChunkName: "about" */ '../views/welcome.vue')
+  },
   // {
   //   path: '/',
   //   name: 'home',
@@ -176,6 +181,7 @@ const routes = [
     name: 'backend_account_overview',
     component:() => import(/* webpackChunkName: "about" */ '../views/backend_account_overview.vue')
   },
+  
   
   
   

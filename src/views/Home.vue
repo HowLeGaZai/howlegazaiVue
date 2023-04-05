@@ -23,33 +23,42 @@
           <tbody>
             <tr>
               <td>
-                <div class="tag tag-pink">藝文
-                </div><a href="#">大湖里反詐騙宣導</a></td>
+                <div class="tag tag-pink">藝文</div>
+                <span>2022-01-01</span>
+                <a href="#">大湖里反詐騙宣導</a>
+              </td>
               <td>2022-01-01</td>
             </tr>
             <tr>
               <td>
-                <div class="tag tag-orange">公告
-                </div><a href="#">大湖里112年3月21日(二)實施病媒蚊消毒噴灑作業</a></td>
-              <td class="table_right">2022-01-01</td>
+                <div class="tag tag-orange">公告</div>
+                <span>2022-01-01</span>
+                <a href="#">大湖里112年3月21日(二)實施病媒蚊消毒噴灑作業</a>
+              </td>
+                <td class="table_right">2022-01-01</td>
             </tr>
             <tr>
               <td>
-                <div class="tag tag-blue">經費報告
-                </div><a href="#">大湖里睦鄰互助聯誼活動補助費計畫表</a></td>
-              <td class="table_right">2022-01-01</td>
+                <div class="tag tag-blue">經費報告</div>
+                <span>2022-01-01</span>
+                <a href="#">大湖里睦鄰互助聯誼活動補助費計畫表</a>
+              </td>
+                <td class="table_right">2022-01-01</td>
             </tr>
             <tr>
               <td>
-                <div class="tag tag-orange">公告
-                </div><a href="#">大湖里112年3月21日(二)實施病媒蚊消毒噴灑作業</a></td>
+                <div class="tag tag-orange">公告</div>
+                <span>2022-01-01</span>
+                <a href="#">大湖里112年3月21日(二)實施病媒蚊消毒噴灑作業</a>
+              </td>
               <td class="table_right">2022-01-01</td>
             </tr>
             <tr>
               <td>
                 <div class="tag tag-orange">公告</div>
-                <a href="#">大湖里112年3月21日(二)實施病媒蚊消毒噴灑作業</a></td>
-              
+                <span>2022-01-01</span>
+                <a href="#">大湖里112年3月21日(二)實施病媒蚊消毒噴灑作業</a>
+              </td>
               <td class="table_right">2022-01-01</td>
             </tr>
           </tbody>
@@ -71,7 +80,7 @@
                   <h3 class="card-title">新春書法體驗課</h3>
                   <!-- <div class="card-person">
                             <div class="image user_pic">
-                                <img src="./img/user_pic.png" alt="">
+                                <img src=".../assets/img/user_pic.png" alt="">
                             </div>
                             <p>Emma</p>
                         </div> -->
@@ -95,7 +104,7 @@
                   <h3 class="card-title">新春書法體驗課</h3>
                   <!-- <div class="card-person">
                             <div class="image user_pic">
-                                <img src="./img/user_pic.png" alt="">
+                                <img src=".../assets/img/user_pic.png" alt="">
                             </div>
                             <p>Emma</p>
                         </div> -->
@@ -119,7 +128,7 @@
                   <h3 class="card-title">新春書法體驗課</h3>
                   <!-- <div class="card-person">
                             <div class="image user_pic">
-                                <img src="./img/user_pic.png" alt="">
+                                <img src=".../assets/img/user_pic.png" alt="">
                             </div>
                             <p>Emma</p>
                         </div> -->
@@ -143,7 +152,7 @@
                   <h3 class="card-title">新春書法體驗課</h3>
                   <!-- <div class="card-person">
                             <div class="image user_pic">
-                                <img src="./img/user_pic.png" alt="">
+                                <img src=".../assets/img/user_pic.png" alt="">
                             </div>
                             <p>Emma</p>
                         </div> -->
@@ -167,7 +176,7 @@
                   <h3 class="card-title">新春書法體驗課</h3>
                   <!-- <div class="card-person">
                             <div class="image user_pic">
-                                <img src="./img/user_pic.png" alt="">
+                                <img src=".../assets/img/user_pic.png" alt="">
                             </div>
                             <p>Emma</p>
                         </div> -->
@@ -191,7 +200,7 @@
                   <h3 class="card-title">新春書法體驗課</h3>
                   <!-- <div class="card-person">
                             <div class="image user_pic">
-                                <img src="./img/user_pic.png" alt="">
+                                <img src=".../assets/img/user_pic.png" alt="">
                             </div>
                             <p>Emma</p>
                         </div> -->
@@ -219,43 +228,83 @@
           <!-- 討論區 -->
           <section class="home-chat">
             <h1 class="title_space">討論區</h1>
-            <article class="">
-              <section>
-                  <section class="chat_news ">
-                      <div>
-                          <div class="image user_pic">
-                              <img src="../assets/img/user_pic.png" alt="">
+            <div class="chat">
+              <article class="chat-article">
+                  <section>
+                      <section class="chat_news ">
+                          <div class="chat_info">
+                            <div class="tag tag-pink tag-mini">美食討論</div>
+                            <h5 class="post_d">5小時前</h5>
+                            <div class="poster">
+                              <div class="image user_pic">
+                                <img src="../assets/img/user_pic.png" alt="">
+                              </div>
+                              <h5 class="poster_name">櫻桃爺爺</h5>
+                            </div>
+                           
                           </div>
-                          <h5>櫻桃爺爺<span>5小時前</span></h5>
+                          
+                          <h2><a href="./chat_info.html">最近吃到大湖里超好吃飯糰</a></h2>
+                          <p>大湖里出產的飯糰米粒粒粒分明，調味也很好吃。超級好吃，100分的大湖里早餐</p>
+                          <!-- <div class="tag tag-pink">美食討論</div> -->
+                      </section>
+                      <div class="image list_pic">
+                          <img src="../assets/img/c_1_food.jpg" alt="">
                       </div>
-                      <h2>最近吃到大湖里超好吃飯糰</h2>
-                      <p>大湖里出產的飯糰米粒粒粒分明，調味也很好吃。超級好吃，100分的大湖里早餐</p>
-                      <div class="tag tag-pink">美食討論</div>
                   </section>
-                  <div class="image list_pic">
-                      <img src="../assets/img/c_1_food.jpg" alt="">
-                  </div>
-              </section>
-            </article>
-            <article class="">
-              <section>
-                  <section class="chat_news ">
-                      <div>
-                          <div class="image user_pic">
-                              <img src="../assets/img/user_pic.png" alt="">
+                </article>
+                <article class="chat-article">
+                  <section>
+                      <section class="chat_news ">
+                          <div class="chat_info">
+                            <div class="tag tag-pink tag-mini">美食討論</div>
+                            <h5 class="post_d">5小時前</h5>
+                            <div class="poster">
+                              <div class="image user_pic">
+                                <img src="../assets/img/user_pic.png" alt="">
+                              </div>
+                              <h5 class="poster_name">櫻桃爺爺</h5>
+                            </div>
+                           
                           </div>
-                          <h5>櫻桃爺爺<span>5小時前</span></h5>
+                          
+                          <h2><a href="./chat_info.html">最近吃到大湖里超好吃飯糰</a></h2>
+                          <p>大湖里出產的飯糰米粒粒粒分明，調味也很好吃。超級好吃，100分的大湖里早餐</p>
+                          <!-- <div class="tag tag-pink">美食討論</div> -->
+                      </section>
+                      <div class="image list_pic">
+                          <img src="../assets/img/c_1_food.jpg" alt="">
                       </div>
-                      <h2>最近吃到大湖里超好吃飯糰</h2>
-                      <p>大湖里出產的飯糰米粒粒粒分明，調味也很好吃。超級好吃，100分的大湖里早餐</p>
-                      <div class="tag tag-pink">美食討論</div>
                   </section>
-                  <div class="image list_pic">
-                      <img src="../assets/img/c_1_food.jpg" alt="">
-                  </div>
-              </section>
-            </article>
-
+                </article>
+                <article class="chat-article">
+                  <section>
+                      <section class="chat_news ">
+                          <div class="chat_info">
+                            <div class="tag tag-pink tag-mini">美食討論</div>
+                            <h5 class="post_d">5小時前</h5>
+                            <div class="poster">
+                              <div class="image user_pic">
+                                <img src="../assets/img/user_pic.png" alt="">
+                              </div>
+                              <h5 class="poster_name">櫻桃爺爺</h5>
+                            </div>
+                           
+                          </div>
+                          
+                          <h2><a href="./chat_info.html">最近吃到大湖里超好吃飯糰</a></h2>
+                          <p>大湖里出產的飯糰米粒粒粒分明，調味也很好吃。超級好吃，100分的大湖里早餐</p>
+                          <!-- <div class="tag tag-pink">美食討論</div> -->
+                      </section>
+                      <div class="image list_pic">
+                          <img src="../assets/img/c_1_food.jpg" alt="">
+                      </div>
+                  </section>
+                </article>
+            </div>
+            <div class="watch-more">
+              <button type="button" class="btn-m btn-color-greenborder">看更多</button>
+            </div>
           </section>
 
           <!-- 團購區 -->
@@ -413,27 +462,44 @@
         </div>
     </section>
 
-          <section class="home-smartChief">
+      <!-- 智慧里民 -->
+      <section class="home-smartChief">
             <h1 class="title_space">智慧里民</h1>
 
             <section>
               <div class="left">
-                <a class="btn-s btn-color-green">維修通報</a>
-                <a class="btn-s btn-color-green">活動報名</a>
-                <a class="btn-s btn-color-green">瓦斯錶回報</a>
+                <div class="">
+                  <a class="btn-s btn-color-green">活動報名</a>
+                </div>
+                <div>
+                  <a class="btn-s btn-color-green">公設預約</a>
+                </div>
+                <div>
+                  <a class="btn-s btn-color-green unopened">維修通報</a>
+                </div>
               </div>
-              <div class="out-circle">
+              <div class="galaxy">
+                <div class="orbit">
+                  <div class="planet"></div>
+                </div>
                 <div class="smart_center">里民服務</div>
               </div>
               <div class="right">
-                <a class="btn-s btn-color-green">團購區</a>
-                <a class="btn-s btn-color-green">公設預約</a>
-                <a class="btn-s btn-color-green">守望相助</a>
+                <div>
+                  <a class="btn-s btn-color-green unopened">瓦斯錶回報</a>
+                </div>
+                <div>
+                  <a class="btn-s btn-color-green unopened">團購區</a>
+                </div>
+                <div>
+                  <a class="btn-s btn-color-green unopened">守望相助</a>
+                </div>
               </div>
             </section>
-
           </section>
     </main>
+
+    <Footer></Footer>
 </template>
 
 
@@ -453,6 +519,7 @@ import { Swiper, SwiperSlide } from 'swiper/vue';
   import { Navigation } from 'swiper';
 
   import navbar from './navbar.vue';
+  import Footer from './Footer.vue';
 
   export default {
   
@@ -462,6 +529,7 @@ import { Swiper, SwiperSlide } from 'swiper/vue';
       Swiper,
       SwiperSlide,
       navbar,
+      Footer,
     },
     setup() {
       return {
