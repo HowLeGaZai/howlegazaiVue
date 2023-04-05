@@ -76,19 +76,27 @@
                 </tfoot>
         </table>
       <div class="confirm-btn">
-        <button type="button" class="btn-m btn-color-gray" onclick="location.href='./space_info.html'">返回上一步</button>
-        <button type="button" class="btn-m btn-color-green " onclick="location.href='./space_reserve_check.html'">填寫完成，下一步</button>
+          <router-link to="/space_info" custom v-slot="{ navigate }">
+                          <button class="btn-m btn-color-gray" @click="navigate" role="link">返回上一步</button>
+            </router-link>
+             <router-link to="/space_reserve_check" custom v-slot="{ navigate }">
+                          <button class="btn-m btn-color-green" @click="navigate" role="link">填寫完成，下一步</button>
+            </router-link>
+        <!-- <button type="button" class="btn-m btn-color-gray" onclick="location.href='/space_info'">返回上一步</button>
+        <button type="button" class="btn-m btn-color-green" onclick="location.href='/space_reserve_check'">填寫完成，下一步</button> -->
       </div>
     </main>
+    <Footer></Footer>
 </template>
 
 <script>
 
 import navbar from './navbar.vue';
+import Footer from './Footer.vue';
 
 export default {
   components: {
-      navbar,
+      navbar,Footer,
     },
 }
 </script>

@@ -37,6 +37,7 @@
 
        
     </main>
+      <Footer></Footer>
 </template>
 
 
@@ -44,9 +45,11 @@
  import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 import navbar from './navbar.vue';
+import Footer from './Footer.vue';
+
  export default {
     components: {
-      navbar,
+      navbar,Footer,
     },
    mounted(){
     ClassicEditor
