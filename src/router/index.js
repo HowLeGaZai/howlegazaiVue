@@ -181,6 +181,11 @@ const routes = [
     name: 'backend_account_overview',
     component:() => import(/* webpackChunkName: "about" */ '../views/backend_account_overview.vue')
   },
+  {
+    path: '/backend_account_new',
+    name: 'backend_account_new',
+    component:() => import(/* webpackChunkName: "about" */ '../views/backend_account_new.vue')
+  },
   
   
   
