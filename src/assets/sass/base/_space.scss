@@ -1,0 +1,44 @@
+@import "./breakpoint";
+@import "../component/grid";
+
+/* 撐出畫面 */
+html,body{
+  height: 100%;
+}
+
+/* body 最大 1440px 、置中*/
+main,.main {
+  max-width: 1440px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 0 75px;
+
+  @include breakpoint($grid-breakpoints, "md") {
+    padding: 0 20px;
+  }
+}
+main {
+  padding: 70PX 75px;
+
+  @include breakpoint($grid-breakpoints, "md") {
+    padding: 70PX 20px;
+  }
+}
+
+main{
+  padding: 70px 75px;
+  @include breakpoint($grid-breakpoints, "md") {
+    padding: 70px 20px;
+  }
+}
+
+/* page title*/
+.title_space {
+  padding-bottom: 45px;
+}
+
+/* page Bottom Btn*/
+/* more、page number、prev&next*/
+.pageBottom_btn_space {
+  padding: 24px 0;
+}

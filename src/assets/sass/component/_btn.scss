@@ -1,0 +1,582 @@
+/* Option 2: Import via CSS */
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css");
+
+@font-face {
+  font-family: "jfopen";
+  src: local("jfopen"),
+    url("../font/jf-openhuninn-2.0.ttf");
+}
+
+
+/* Option 2: Import via CSS */
+
+
+/* --------button Area------- */
+
+
+.btn-color {
+  &-green {
+    @include btnColor($green, $white, transparent, $green, $white);
+  }
+
+  &-white {
+    @include btnColor($white, $green, $green, $white, $green);
+  }
+
+  &-gray {
+    @include btnColor($gray, $white, transparent, darken($gray, 5%), $white);
+  }
+
+  &-greenborder {
+    @include btnColor($white, $green, $green, $white, $green);
+  }
+
+  &-darkgray {
+    @include btnColor($ghostwhite, $lightdark, transparent, $ghostwhite, $lightdark);
+    background-color: #cdd0d0 $ghostwhite;
+    color: #525456 $lightdark;
+  }
+
+}
+
+
+//各種按鈕字的顏色（只有字色不含背景）
+.btn-font-color {
+  &-green {
+    color: $green;
+
+    &:hover {
+      // color: darken($green, 5%);
+    }
+
+    // @include btnColor(transparent, $green, transparent, transparent, darken($green, 5%));
+  }
+
+  &-gray {
+    color: $gray;
+
+    &:hover {
+      // color: darken($gray, 15%);
+      color: $green;
+    }
+  }
+
+}
+
+
+
+
+
+//正常大小按鈕 圓角20px
+.btn-m {
+  line-height: 1.5;
+  @include btnSize(1rem, 20px, auto, 40px, 0px, 35px);
+
+  
+}
+
+//較小按紐 圓角20px
+.btn-s {
+  line-height: 1.5;
+  @include btnSize(1rem, 20px, 130px, 40px, 0px, 30px);
+
+}
+
+// .btn-s {
+//   display: inline-block;
+//   font-weight: 400;
+//   text-align: center;
+//   white-space: nowrap;
+//   vertical-align: middle;
+//   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
+
+//   border: 1px solid transparent;
+//   padding: 0.25rem 1.3rem;
+//   font-size: 1rem;
+//   line-height: 1.5;
+//   border-radius: 20px;
+//   white-space: nowrap;
+//   cursor: pointer;
+
+// }
+//正常大小按鈕 方圓角10px
+.btn-10-m {
+  line-height: 1.5;
+  @include btnSize(1rem, 10px, auto, 40px, 0px, 35px);
+
+}
+
+//較小小按鈕 方圓角10px
+.btn-10-s {
+  line-height: 1.5;
+  @include btnSize(1rem, 10px, 130px, 40px, 0px, auto);
+  text-align: center;
+
+  i {
+    font-size: 16px;
+    padding-right: 5px;
+  }
+
+}
+
+
+/* - circle button（輪播） 的總設定 - */
+.btn-cir-m {
+  @include btnSize(1rem, 50%, 45px, 45px, auto, auto);
+
+  i {
+    font-size: 25px;
+  }
+}
+
+.btn-cir-s {
+  @include btnSize(1rem, 50%, 30px, 30px, auto, auto);
+
+  i {
+    font-size: 15px;
+  }
+}
+
+
+
+// .circle-btn {
+//   display: inline-block;
+//   font-weight: 400;
+//   text-align: center;
+//   white-space: nowrap;
+//   vertical-align: middle;
+//   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
+
+//   border: 1px solid transparent;
+//   border-radius: 50%;
+//   /* padding: 0.2rem 0.2rem; */
+//   font-size: 1rem;
+//   line-height: 1.5;
+//   width: 45px;
+//   height: 45px;
+//   cursor: pointer;
+// }
+// .circle-btn-s {
+//   width: 30px;
+//   height: 30px;
+
+// }
+
+/* - icon-btn樣式 的總設定 - */
+
+.btn-icon {
+  display: inline-block;
+  background-color: transparent;
+  border: none;
+
+  font-weight: 700;
+  text-align: center;
+  @include btnSize(1.6rem, 50%, 45px, 45px, auto, auto);
+
+  i {
+    font-size: 25px;
+  }
+
+  box-shadow: none;
+
+}
+
+// .icon-btn {
+//   display: inline-block;
+//   background-color: transparent;
+//   font-weight: 700;
+//   text-align: center;
+
+//   border: 1px solid transparent;
+//   font-size: 1.6rem;
+
+//   cursor: pointer;
+
+// }
+
+
+/* - 輪播cur-button 的總設定 - */
+
+
+
+/* - 智慧里民 NAV 的總設定 -- */
+
+.btn-member-block {
+  display: inline-block;
+  cursor: pointer;
+  text-align: center;
+  background-color: none;
+
+  p {
+    display: block;
+    font-weight: 400;
+    font-size: 1.2rem;
+    margin-top: 10px;
+    font-family: "jfopen";
+  }
+
+
+    &:hover  {
+    .btn-member {
+      background-color: darken($green, 3%);
+    }
+    .btn-mem-p {
+      color: darken($green, 3%);
+    }
+  }
+
+}
+
+.btn-member {
+  line-height: 1.5;
+  @include btnSize(36px, 50%, auto, auto, 1rem, 1.6rem);
+  i {
+    font-size: 36px;
+  }
+}
+
+
+// .member-btn {
+//   display: inline-block;
+
+//   font-weight: 400;
+//   text-align: center;
+//   white-space: nowrap;
+//   vertical-align: middle;
+//   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
+
+//   border: 1px solid transparent;
+//   border-radius: 50%;
+//   padding: 1rem 1.5rem;
+//   font-size: 1rem;
+//   line-height: 1.5;
+//   cursor: pointer;
+// }
+
+/* .member-btn>div{
+  width: 50px;
+  height: 50px;
+} */
+
+
+// .member-btn i {
+//   font-size: 36px;
+// }
+
+
+// .member-btn-block p {
+//   display: block;
+//   font-weight: 400;
+//   font-size: 1.2rem;
+//   margin-top: 10px;
+
+// }
+
+
+// .member-btn img {
+//   position: absolute;
+//   left: 20px;
+//   /* display: flex; */
+//   text-align: center;
+//   /* width: auto; */
+
+// }
+
+/* -  後台be-nav 選單總設定 - */
+
+.be-nav {
+  line-height: 2.8;
+  @include btnSize(1rem, 10px, 160px, auto, auto, auto);
+
+  
+  margin-bottom: 5px;
+
+  div {
+    width: 120px;
+    // height: 40px;
+    line-height: 40px;
+    padding-left: 15px;
+  }
+}
+
+
+.be-nav-on {
+  line-height: 2;
+  text-align: center;
+  @include btnSize(1rem, 10px, 160px, auto, auto, auto);
+  background-color: $white;
+  margin-bottom: 5px;
+  
+
+  button {
+    background-color: $white;
+    border: none;
+    border-radius: 10px;
+    box-shadow: none;
+  }
+}
+
+/* -  後台 下拉縮放式 （文字置中）button - */
+
+
+.be-nav-center {
+  line-height: 1.5;
+  @include btnSize(1rem, 10px, 160px, 40px, auto, auto);
+  margin-bottom: 5px;
+
+  div {
+    width: 120px;
+    line-height: 40px;
+  }
+}
+
+/* -  後台 dash-board 方框button 選單總設定 - */
+
+
+.btn-be-dash {
+  line-height: 1.5;
+  @include btnSize(1rem, 10px, 200px, auto, 5px, 20px);
+
+}
+
+
+
+
+/* -  頁碼按鈕 btn-page 選單總設定 - */
+.btn-page {
+  line-height: 1.5;
+  @include btnSize(18px, 10%, 2rem, 2rem, auto, auto);
+  list-style: none;
+  margin: 2px;
+}
+
+.btn-page-block {
+  direction: none;
+  display: flex;
+  list-style: none;
+  border-radius: 10%;
+  /* flex-direction: column; */
+}
+
+// .btn-page {
+//   list-style: none;
+
+//   display: inline-block;
+//   border: 1px solid #cdd0d0;
+//   border-radius: 10%;
+
+//   width: 2rem;
+//   height: 2rem;
+
+//   font-size: 18px;
+
+//   cursor: pointer;
+// }
+
+
+/* -  頁碼按鈕 btn-news 選單總設定 - */
+
+
+.btn-news {
+  line-height: 1.5;
+  border: 2px solid $green;
+  @include btnSize(18px, 10px, 140px, 40px, auto, auto);
+  list-style: none;
+  margin: 2px;
+
+  i {
+
+    padding: 10px;
+  }
+
+}
+
+/* -  返回上一頁 選單總設定 - */
+
+.btn-prepage{
+  line-height: 1.5;
+  border: none;
+  background-color: transparent;
+  box-shadow:none !important;
+  @include btnSize(14px, 10px, auto, 40px, auto, auto);
+}
+
+
+
+
+
+
+
+
+// /* button 的顏色設定 -綠底白字 */
+// .color-green {
+//   color: white;
+//   background-color: #27b096;
+// }
+
+// /* button 的顏色設定 -灰底白字 */
+// .color-gray {
+//   background-color: #cdd0d0;
+//   color: white;
+// }
+
+// /* button 的顏色設定 -灰底黑字 */
+// .color-drak-gray {
+//   background-color: #cdd0d0;
+//   color: #525456;
+// }
+
+// /* button 的顏色設定 - 黑底白字 */
+// .color-white {
+//   background-color: white;
+//   color: #27b096;
+// }
+
+// /* button 的顏色設定 - 白底綠字綠框 */
+// .color-white-bord {
+//   background-color: white;
+//   color: #27b096;
+//   border: 1px solid #27b096;
+// }
+
+// /* button 的顏色設定 - 白底綠字無框 */
+// .color-white {
+//   background-color: white;
+//   color: #27b096;
+// }
+
+
+
+/* button 的字體顏色設定 - 綠字 */
+.font-green {
+  color:$green;
+}
+
+/* button 的字體顏色設定 -  灰字 */
+
+.font-gray {
+  // color: #808080;
+  color: $silver;
+
+}
+
+/* button 的字體顏色設定 -  黑灰字 */
+.font-dark-gray {
+  color: $gray;
+}
+
+/* button 的字體顏色設定 -  黑字 */
+
+
+
+/* 濾鏡效果 -  變暗 */
+.filter-gray {
+  filter: brightness(.7);
+}
+
+/* button 的顏色設定 - 半透明 */
+
+.opacity-0 {
+  opacity: 0;
+}
+
+.opacity-6 {
+  opacity: 0.6;
+}
+
+.opacity-4 {
+  opacity: 0.4;
+}
+
+/* -  button 內的文字的大小設定 - */
+
+.font-13 {
+  font-size: 1rem;
+  line-height: 2;
+}
+
+
+
+
+/* -  button 內的文字的寬設定 - */
+
+.width-2 {
+  display: inline-block;
+  width: 11.3rem;
+
+}
+
+
+.width-3 {
+  display: inline-block;
+  width: 120px;
+  padding-left: 0;
+  /* text-align: left; */
+}
+
+.width-1 {
+
+  width: 280px;
+}
+
+/* -  button 內 padding的設定 - */
+.padding-1 {
+  padding: 0.5rem 1rem;
+}
+
+.padding-2 {
+  padding: 0.6rem 1.8rem;
+
+}
+
+/* -  button 內的文字的置中設定 - */
+
+.text-ali {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+/* -  button 內的icon的padding設定 - */
+
+.btn-i {
+  padding: 0 10px;
+}
+
+/* -  button 內的display設定 - */
+
+.btn-nav {
+  border: 1px solid transparent;
+  background-color: transparent;
+  padding: 0;
+  font-size: 1rem;
+
+  display: block;
+  line-height: 2;
+  text-align: left;
+
+  cursor: pointer;
+}
+
+
+
+/* -  button 內的 hover 設定 - */
+
+// .btn:hover,
+
+// .icon-btn:hover,
+// .circle-btn:hover,
+// .member-btn:hover {
+//   filter: brightness(.8);
+// }
+
+// .btn-nav:hover {
+//   filter: brightness(.6);
+// }
+
+// .btn-page:hover {
+//   background-color: #27b096;
+//   color: white;
+// }

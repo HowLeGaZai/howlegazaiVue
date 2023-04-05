@@ -1,0 +1,435 @@
+.chat {
+  .title_space {
+    @include breakpoint($grid-breakpoints, "sm") {
+      padding-bottom: 35px;
+    }
+  }
+
+  .chat-article {
+    border-bottom: 1px solid $slategray;
+    margin-bottom: 20px;
+
+    &>section {
+      align-items: center;
+      margin-bottom: 15px;
+
+      @include breakpoint($grid-breakpoints, "sm") {
+        gap: 2px;
+      }
+
+      .chat_news {
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+
+        padding: 20px 0;
+        line-height: 1.6;
+
+        @include breakpoint($grid-breakpoints, "sm") {
+          padding: 0px 0;
+          flex-grow: 1;
+          // flex-direction: column-reverse;
+        }
+
+        .chat_info {
+          display: flex;
+          flex-wrap: wrap;
+          align-items: center;
+
+          @include breakpoint($grid-breakpoints, "sm") {
+            align-items: end;
+          }
+
+          .poster {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+            @include breakpoint($grid-breakpoints, "sm") {
+              margin-top: 2px;
+
+            }
+
+            .user_pic {
+              max-width: 50px;
+              max-width: 50px;
+              margin-right: 10px;
+
+              @include breakpoint($grid-breakpoints, "sm") {
+                width: 25px;
+                height: 25px;
+                margin: 0px 2px;
+              }
+            }
+
+            .poster_name {
+              width: 200px;
+              color: $black;
+              margin-left: 0;
+              margin-right: 20px;
+
+              @include breakpoint($grid-breakpoints, "sm") {
+                font-size: 1.1em;
+              }
+
+            }
+
+          }
+
+
+          .post_d {
+            width: 115px;
+            color: $gray;
+            margin-right: 20px;
+            text-align: center;
+
+            @include breakpoint($grid-breakpoints, "sm") {
+              font-size: 14px;
+              margin-right: 5px;
+            }
+          }
+
+          .tag-mini {
+            //
+            margin-right: 20px;
+            @include breakpoint($grid-breakpoints, "sm") {
+              height: 25px;
+              line-height: 25px;
+              font-size: 1.1em;
+              //
+              margin-right: 20px;
+
+            }
+
+          }
+
+          // @include breakpoint($grid-breakpoints, "sm") {
+          //   margin-left: 0px;
+          //   font-size: 10px;
+          //   //
+          //   margin-right: 5px;
+
+          // }
+        }
+
+
+        h2 {
+          margin-top: 5px;
+          font-size: 1.8em;
+          white-space: normal;
+          text-overflow: unset;
+
+          a {
+            color: $black;
+            &:hover{
+              color: $green;
+            }
+          }
+
+          @media screen and (max-width: 900px) {
+            margin-top: 10px;
+            font-size: 1.5em;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+          }
+
+          @include breakpoint($grid-breakpoints, "sm") {
+            font-size: 1.3em;
+            margin-top: 0px;
+            margin-left:5px;
+
+          }
+        }
+
+        p {
+          font-size: 1.3em;
+          color: $darkgray;
+          padding-bottom: 10px;
+          white-space: normal;
+          text-overflow: unset;
+
+          @media screen and (max-width: 900px) {
+            font-size: 1.2em;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+          }
+
+          @include breakpoint($grid-breakpoints, "sm") {
+            font-size: 1.1em;
+            display: none;
+          }
+        }
+      }
+
+      .list_pic {
+        @include breakpoint($grid-breakpoints, "sm") {
+          margin-right: 5px;
+        }
+
+      }
+
+
+    }
+  }
+
+  margin-top: 0px;
+  position: relative;
+
+  .add-chat {
+    margin: 50px auto;
+
+    @include breakpoint($grid-breakpoints, 'sm') {
+      margin: 20px auto;
+    }
+
+    &>button {
+      width: 150px;
+      height: 50px;
+      border-radius: 25px;
+      font-size: 1.2em;
+    }
+  }
+
+  .search-filter {
+    .search {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      @include breakpoint($grid-breakpoints, 'sm') {
+        width: 95%;
+        margin: 0 auto;
+      }
+
+      &>input {
+        max-width: 400px;
+        margin-right: 10px;
+
+        @include breakpoint($grid-breakpoints, 'md') {
+          width: 270px;
+        }
+
+        @include breakpoint($grid-breakpoints, 'sm') {
+          width: 70%
+        }
+      }
+
+      &>button {
+        @include breakpoint($grid-breakpoints, 'sm') {
+          height: 33px;
+          padding: 0 25px;
+        }
+
+      }
+
+    }
+
+    .desktop-filter {
+      margin-bottom: 100px;
+
+      &>button {
+        margin: 0 5px;
+      }
+
+      @media screen and (max-width: 1080px) {
+        display: none;
+      }
+    }
+
+    .mobile-filter {
+      text-align: left;
+      display: none;
+      width: 95%;
+      margin: 0 auto;
+      margin-bottom: 30px;
+
+      @media screen and (max-width: 1080px) {
+        display: block;
+      }
+    }
+  }
+
+}
+
+.new-chat {
+  .row {
+    text-align: left;
+  }
+
+  #container {
+    width: 100%;
+    min-width: 300px;
+    margin: 20px auto;
+  }
+
+  .ck-editor__editable[role="textbox"] {
+    /* editing area */
+    min-height: 400px;
+  }
+
+  .ck-content .image {
+    /* block images */
+    max-width: 80%;
+    margin: 20px auto;
+  }
+
+  .confirm-btn {
+    padding-bottom: 20px;
+  }
+}
+
+
+/*討論區貼文內文*/
+
+.chat_info {
+  color: $black;
+  text-align: left;
+
+  .btn-prepage {
+
+    @include breakpoint($grid-breakpoints, 'md') {
+      margin-left: 20px;
+    }
+
+    @include breakpoint($grid-breakpoints, 'sm') {
+      margin-left: 0px;
+    }
+  }
+
+  .confirm-btn {
+    width: 160px;
+    margin: 50px auto;
+  }
+}
+
+
+.chat_info_topic {
+  margin-bottom: 50px;
+
+  @include breakpoint($grid-breakpoints, 'md') {
+    margin: 0 20px;
+  }
+
+  @include breakpoint($grid-breakpoints, 'sm') {
+    margin: 0 10px;
+  }
+
+
+  h1 {
+    margin: 0 auto 20px;
+    overflow: unset;
+    white-space: normal;
+    line-height: 1.5;
+
+    @include breakpoint($grid-breakpoints, 'lg') {
+      font-size: 2rem;
+    }
+
+    @include breakpoint($grid-breakpoints, 'md') {
+      // font-size: 1.6rem;
+      width: auto;
+      margin: 0 auto 10px;
+    }
+
+    @include breakpoint($grid-breakpoints, 'sm') {
+      font-size: 1.8em;
+      margin: 0 auto 5px;
+    }
+
+  }
+
+  .add_inf {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+
+    .userbtn {
+      width: 50px;
+      margin-right: 10px;
+
+      @include breakpoint($grid-breakpoints, 'md') {
+        width: 40px;
+        margin-right: 5px;
+
+      }
+
+      @include breakpoint($grid-breakpoints, 'sm') {
+        width: 30px;
+      }
+
+    }
+
+    h4 {
+      margin: 0 10px;
+      color: $gray;
+      flex-wrap: wrap;
+
+      @include breakpoint($grid-breakpoints, 'lg') {
+        font-size: 22px;
+      }
+
+      @include breakpoint($grid-breakpoints, 'md') {
+        font-size: 20px;
+      }
+
+      @include breakpoint($grid-breakpoints, 'sm') {
+        font-size: 18px;
+        // flex-wrap: wrap;
+        overflow: unset;
+        white-space: normal;
+      }
+
+
+    }
+  }
+
+}
+
+.chat-img {
+  margin: 30px auto;
+  width: 70%;
+
+  @include breakpoint($grid-breakpoints, 'md') {
+    width: 70%
+  }
+
+  @include breakpoint($grid-breakpoints, 'sm') {
+    width: 70%
+  }
+}
+
+.comment {
+  margin: 30px 20px;
+
+  @include breakpoint($grid-breakpoints, 'sm') {
+    margin: 30px 10px;
+  }
+
+  &>button {
+    margin-left: calc(100% - 105px);
+  }
+}
+
+.chat-article {
+
+  @include breakpoint($grid-breakpoints, 'md') {
+    margin: 30px 20px;
+  }
+
+  @include breakpoint($grid-breakpoints, 'sm') {
+    margin: 30px 10px;
+  }
+
+  .chat-article-content {
+    overflow: unset;
+    white-space: normal;
+    line-height: 2;
+    font-size: 22px;
+    margin-top: 30px;
+
+    @include breakpoint($grid-breakpoints, 'sm') {
+      font-size: 18px;
+    }
+  }
+}

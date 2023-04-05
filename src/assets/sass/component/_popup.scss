@@ -1,0 +1,271 @@
+body{
+    background-color: rgb(255, 255, 255);
+    // opacity: .6;
+}
+.popup{
+    // background-color: #d31d1d;
+   
+    width: 100%;
+    // text-align: center;
+    border-radius: 15px;
+    // background-color: red;
+    h3{
+        color: $springgreen;
+    }
+
+    img {
+        margin: 0 auto;
+        // margin-left: 200px;
+        max-width: 500px;
+        width:100%;
+        max-height: 300px;
+        border-radius: 20px;
+        // margin-left: 20px;
+        // margin-top: 20px;
+        
+    } 
+
+    hr {
+        width: 80%;
+    }
+    .btn-m {
+        margin: 0 auto;
+        margin-bottom: 20px;
+    }
+    
+//返回按鈕 
+.btn-cir-m  {
+    float: left;
+    margin: 20px;
+}
+}
+
+
+// popup最外面那層 
+.popup_l {
+    margin: 0 auto;
+    width: 80%;
+    height: 100%;
+    border: 1px solid $lightgray;
+    border-radius: 30px;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    background-color: #fff;
+    padding: 10px;
+   
+
+    .btn-cir-s {
+    float: left;
+    width: 50px;
+    height: 50px;
+    margin: 20px 0 0 20px;
+   } 
+
+   h3 {
+    // margin-top: 20px;
+    white-space :normal;
+   }
+}
+
+.popup_l_s {
+    // display: flex;
+    // margin: 20px;
+    justify-content: center;
+    h3{
+        font-size: 2em;
+    }
+    h4{
+        font-size: 1.2em;
+    }
+}
+
+.popup-pad {
+    padding: 20px;
+}
+
+.popup_l_t {
+    padding: 20px;
+    // text-align: left;
+    // float: left;
+    h3{
+        color: $springgreen;
+        margin: 0 auto;
+        font-size: 30px;
+       
+    }
+    h4{
+        font-size: 20px;
+        margin-left: 10px;
+    }
+}
+
+
+
+.activity_pop {
+    display: flex;
+    // margin-left: auto;
+    justify-content: center;
+
+    h4{
+        font-size: 25px;
+        // align-items: center;
+        // justify-content: center;
+        // padding-top: 12px;
+    }
+    input{
+        // width: 200px;
+    input[type=number]::-webkit-outer-spin-button,
+    input[type=number]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        float: right;
+        
+}
+}
+}
+
+.activity_pop2 {
+    display: block;
+    color: #7F8A98;
+    h6 {
+        font-size: 20px;
+    }
+}
+
+
+.popup_l_space {
+    padding: 20px;
+    margin: 0 auto;
+    // background-color: red;
+    width: 80%;
+    height: 100%;
+    border: 1px solid $lightgray;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    text-align: center;
+
+    .btn-cir-s {
+    float: left;
+    // width: 500px;
+    margin: 20px 0 0 20px;
+    width: 50px;
+    height: 50px;
+}
+
+}
+
+.popup_option {
+    display: inline-block;
+    h4 {
+        font-size: 20px;
+    }
+}
+
+
+@media screen and (max-width:800px) {
+    .logo_center {
+        display: block;
+    }
+    // .btn-m {
+    //     // display: block;
+    // }
+    
+}
+
+@media screen and (max-width: 428px){
+
+    .popup {
+        img {
+            width: 100%;
+        }
+        .popup-pad h3 {
+            padding: 10px;
+        }
+        .popup-pad h4 {
+            font-size: 15px;
+        }
+        .popup-pad h5 {
+            color: red;
+        } 
+        
+    }
+    .popup-pad{
+        white-space :normal;
+       
+        h3 h4 h5 {
+            white-space :normal;
+        }
+  }
+  .popup_l {
+    // text-align: left;
+    h3 {
+        white-space :normal;
+    }
+    .btn-cir-s {
+        width: 30px;
+        height: 30px;
+  }
+
+  .popup_l_s  h4{
+
+    white-space :normal;
+}
+    .popup_l_t {
+        // white-space :normal;
+        // margin-left: 0;
+        text-align: left;
+        h4{
+        white-space :normal;
+        }
+    } 
+
+    .popup_l h3 {
+        white-space :normal;
+    }
+
+    .activity_pop input {
+        width: 50px;
+    }
+}
+
+    .popup_l_space {
+        .btn-cir-s {
+            width: 30px;
+            height: 30px;
+      }
+    }
+}
+
+
+.popup{
+    .popup_l{
+        h3{
+            white-space: normal;
+            text-overflow:unset;
+        }
+        h4{
+            white-space: normal;
+            text-overflow:unset;
+        }
+        h5{
+            white-space: normal;
+            text-overflow:unset;
+        }
+    }
+    
+}
+
+.g123 {
+    display: flexbox;
+    margin: 0 auto;
+    margin-right: 75px;
+}
+.g1234 {
+    display: flexbox;
+    margin: 0 auto;
+    margin-right: 110px;
+}
+.g12345 {
+    display: flexbox;
+    margin: 0 auto;
+    margin-right: 80px;
+}

@@ -1,0 +1,84 @@
+$gutter-width: 20px;
+$grid-sum: 12;
+$grid-breakpoints: (
+  '': false,
+  sm: 428px,
+  md: 992px,
+  ml: 1100px,
+  lg: 1440px,
+  xl: 1920px,
+);
+
+.container {
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: calc($gutter-width / 2);
+  padding-right: calc($gutter-width / 2);
+}
+
+.container-fluid {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: calc($gutter-width / 2);
+  padding-right: calc($gutter-width / 2);
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: calc($gutter-width / -2);
+  margin-right: calc($gutter-width / -2);
+}
+
+.no-gutters {
+  margin-left: 0px;
+  margin-right: 0px;
+
+  > [class*='col-'] {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+}
+
+%col {
+  position: relative;
+  width: 100%;
+  padding-left: calc($gutter-width / 2);
+  padding-right: calc($gutter-width / 2);
+}
+
+@each $key, $value in $grid-breakpoints {
+  @for $var from 1 through $grid-sum {
+    @if not $value {
+      .col-#{$var} {
+        @extend %col;
+      }
+    } @else {
+      .col-#{$key}-#{$var} {
+        @extend %col;
+      }
+    }
+  }
+}
+
+@each $key, $value in $grid-breakpoints {
+  @if not $value {
+    @for $var from 1 to $grid-sum {
+      .col-#{$var} {
+        max-width: 100% * calc($var / $grid-sum);
+        flex: 0 0 (100% * calc($var / $grid-sum));
+      }
+    }
+  } @else {
+    @media screen and (min-width: $value) {
+      @for $var from 1 to $grid-sum {
+        .col-#{$key}-#{$var} {
+          max-width: 100% * calc($var / $grid-sum);
+          flex: 0 0 (100% * calc($var / $grid-sum));
+        }
+      }
+    }
+  }
+}

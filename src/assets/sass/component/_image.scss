@@ -1,0 +1,127 @@
+@import "../base/breakpoint";
+@import "../component/grid";
+
+/* 圖片 */
+
+img {
+  display: block;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.image {
+  border: 1px solid $silver;
+  border-radius: 20px;
+  overflow: hidden;
+  text-align: center;
+
+  @include breakpoint($grid-breakpoints, "sm") {
+    border-radius: 10px;
+  }
+}
+
+// index.html
+/* 首頁 */
+/* user */
+.user_pic {
+  border: 1px solid $silver;
+  border-radius: 50%;
+
+  max-width: 240px;
+  max-height: 240px;
+}
+
+/* 首頁 cover */
+.home_banner{
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-top: 27.78%; /* 400 / 1440 = 0.2778 */
+}
+
+/* 首頁活動列表 */
+.event_pic {
+  max-width: 410px;
+  max-height: 410px;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0) 74%,
+    $background-white 88%
+  );
+}
+
+/* 首頁討論區列表 */
+.chat_pic {
+  max-width: 410px;
+  max-height: 410px;
+
+  min-width: 210px;
+  min-height: 210px;
+}
+
+/* 首頁商品列表 */
+.product_pic {
+  max-width: 410px;
+  max-height: 410px;
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0), #888);
+}
+
+// contact.html
+/* 聯絡里辦 */
+/* 里長照片 */
+
+.contact_pic_chief {
+  width: 25vw;
+  height: 25vw;
+  min-width:250px;
+  min-height: 250px;
+}
+
+/* 里介紹輪播圖 */
+
+.contact_pic_banner {
+  max-width: 1000px;
+  max-height: 560px;
+  margin: 0 auto;
+}
+
+// news.html
+/* 最新消息 */
+/* 最新消息列表 */
+
+.news_pic {
+  min-width: 188px;
+  min-height: auto;
+}
+
+// event.html
+/* 活動頁 */
+/* 報名表填寫頁 */
+.orderForm {
+  max-width: auto;
+  max-height: auto;
+
+  min-width: 155px;
+  min-height: 100px;
+}
+
+// product.html
+/* 商品頁 */
+/* 團購訂單填寫頁 */
+.orderForm {
+  max-width: auto;
+  max-height: auto;
+
+  min-width: 155px;
+  min-height: 100px;
+}
+
+//space.html
+/* 空間預約 */
+.space_pic {
+  min-width: 330px;
+  min-height: 195px;
+  max-width: 1445px;
+  max-height: 715px;
+}

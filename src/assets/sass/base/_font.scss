@@ -1,0 +1,120 @@
+@import "./breakpoint";
+@import "../component/grid";
+
+@font-face {
+    font-family: "jfopen";
+    src: local("jfopen"),
+      url("../font/jf-openhuninn-2.0.ttf");
+  }
+
+html{
+  font-size: 16px;
+  color: $black;
+  
+  @include breakpoint($grid-breakpoints, "sm") {
+    font-size: 14px;
+  }
+} 
+
+body{
+    font-family: "jfopen";
+} 
+
+
+h1 {
+  font-size: 32px;
+
+  // 超過空間文字變成...
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  @include breakpoint($grid-breakpoints, "sm") {
+    font-size: 28px;
+  }
+}
+
+h2 {
+  font-size: 28px;
+
+  
+  // 超過空間文字變成...
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  @include breakpoint($grid-breakpoints, "sm") {
+    font-size: 24px;
+  }
+}
+
+h3 {
+  font-size: 26px;
+
+  
+  // 超過空間文字變成...
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  @include breakpoint($grid-breakpoints, "sm") {
+    font-size: 20px;
+  }
+}
+
+h4 {
+  font-size: 22px;
+
+  
+  // 超過空間文字變成...
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  @include breakpoint($grid-breakpoints, "sm") {
+    font-size: 20px;
+  }
+}
+
+h5 {
+  font-size: 20px;
+
+  
+  // 超過空間文字變成...
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  @include breakpoint($grid-breakpoints, "sm") {
+    font-size: 18px;
+  }
+}
+
+p{
+  font-size: 16px;
+
+  
+  // 超過空間文字變成...
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+span{
+  
+  // 超過空間文字變成...
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+a{
+  text-decoration: none;
+  display: block;
+
+  
+  // 超過空間文字變成...
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

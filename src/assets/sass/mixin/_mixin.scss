@@ -1,0 +1,30 @@
+//btn golbal setting
+
+@mixin btnSize($fontSize, $borderRa, $width, $height , $paddingX, $paddingY) {
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
+  
+  font-size: $fontSize;
+  border-radius: $borderRa;
+  width:$width;
+  height: $height;
+  padding: $paddingX $paddingY;
+  cursor: pointer;
+  font-family: "jfopen";
+}
+
+@mixin btnColor($bgc,$color, $borderColor, $hoverbgc, $hoverColor){
+  background-color: $bgc;
+  color:$color;
+  border: 1px solid $borderColor;
+
+  &:hover{
+    background-color: darken($hoverbgc,5%);
+    color: $hoverColor;
+  }
+  
+
+  
+
+}
+
+

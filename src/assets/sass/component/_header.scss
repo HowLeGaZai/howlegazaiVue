@@ -1,0 +1,338 @@
+/* header------------------------------------------ */
+
+header {
+  width: 100%;
+  height: 75px;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  background: $white;
+
+  position:sticky;
+  // z-index: 10;
+  // left: 0;
+  // top: 0;
+
+  z-index: 20;
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transform: rotate(0deg);
+    transition: all 0.3s cubic-bezier(0.4, 0.01, 0.165, 0.99);
+
+    .leftnav {
+      display: flex;
+      flex-grow: 1;
+      .burger {
+        // width: 60px;
+        border: none;
+        color: $black;
+        background-color: $white;
+        font-size: 36px;
+        padding: 0;
+        display: none;
+        cursor: pointer;
+        @include breakpoint($grid-breakpoints, "md") {
+          display: block;
+        }
+        @include breakpoint($grid-breakpoints, "sm") {
+          // width: 30px;
+        }
+      }
+      /* logo */
+      .brand {
+        height: 100%;
+        img {
+          height: 75px;
+          object-fit: contain;
+        }
+        @include breakpoint($grid-breakpoints, "md") {
+          flex-grow: 1;
+        }
+      }
+      .nav-back {
+        @include breakpoint($grid-breakpoints, "md") {
+          width: 100%;
+          height: 900px;
+          background-color: rgba(0, 0, 0, 0.425);
+          position: absolute;
+          top: 0px;
+          left: 0;
+          z-index: 9;
+          display: none;
+          &.menushow {
+            display: block;
+            }
+        }
+      }
+
+      ul {
+        margin-left: 20px;
+        display: flex;
+        align-items: center;
+        @include breakpoint($grid-breakpoints, "md") {
+          margin: auto;
+          width: 68vw;
+          min-width: 250px;
+          height: 100%;
+          flex-direction: column;
+          position: absolute;
+          background-color: $white;
+          left: -68vw;
+          z-index: 10;
+          &.menushow {
+            transition: all ease-in-out 0.8s;
+            left: 0px;
+            }
+          
+        }
+        li{
+          padding-right: 15px;
+          @include breakpoint($grid-breakpoints, 'md') {
+            padding-right: 0px;
+            display: block;
+            text-align: center;
+          }
+          &.left-logo {
+            display: none;
+            @include breakpoint($grid-breakpoints, "md") {
+              width: 180px;
+              margin: 20px 0;
+              display: block;
+            }
+          }
+          /* 選單文字顏色 */
+          a {
+            display: block;
+            color: $black;
+            font-size: 28px;
+            line-height: 70px;
+            height: 75px;
+            @include breakpoint($grid-breakpoints, 'md') {
+              width: 68vw;
+              display: block;
+            }
+            span {
+              font-size: 22px;
+              padding-left: 5px;
+            }
+          }
+          a:hover {
+            color: $green;
+            @include breakpoint($grid-breakpoints, 'md') {
+              background-color: $green;
+              color: $white;
+            }
+           
+          }
+          a:active {
+            color: $white;
+          }
+
+          .dropdown-menu {
+            width: 200px;
+            padding: 0 0 0 15px;
+            flex-direction: column;
+            position: absolute;
+            top: 75px;
+            left: -25px;
+            background-color: $white;
+            z-index: 1;
+            max-height: 0px;
+            overflow: hidden;
+            transition: all ease-in-out 0.8s;
+            a {
+              width: 200px;
+              @include breakpoint($grid-breakpoints, "md") {
+                width: 68vw;
+                display: block;
+              }
+            }
+            &.show {
+              max-height: 500px;
+            }
+            @include breakpoint($grid-breakpoints, "md") {
+              position: static;
+              width: 68vw;
+              padding: 0;
+              margin: 0;
+            }
+          }
+        }
+        .smart-service {
+          position: relative;
+          a {
+            color: $black;
+            &.onoff {
+              color: $green;
+              .bi::before{
+                transform: rotate(180deg);
+              }
+              &:hover{
+                color: $green;
+                @include breakpoint($grid-breakpoints, 'md') {
+                  background-color: $green;
+                  color: $white;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .rightnav {
+      /* 登入前按鈕 */
+      .btn {
+        display: none;
+      }
+
+      /* 登入後選單 */
+      ul {
+        li {
+          display: flex;
+          align-items: center;
+
+          p,
+          span {
+            font-size: 26px;
+            color: $green;
+            padding-right: 10px;
+            overflow: visible;
+
+            /* < 1100px 不出現姓名文字 */
+            @media screen and (max-width: 1100px) {
+              display: none;
+            }
+          }
+          .userbtn {
+            max-width: 60px;
+            max-height: 60px;
+            overflow: visible;
+
+            img:hover,
+            img:active {
+              border: 2px solid $green;
+              // box-shadow: 0 0px 4px 1px lighten($green,30%);
+            }
+          }
+          .tooltip:hover:after {
+            content: "會員帳戶";
+          }
+          .account-menu {
+            display: none;
+            @media screen and (max-width: 1400px) {
+              display: none;
+              flex-direction: column;
+              z-index: 50;
+              position: absolute;
+              top: 0;
+              left: -100vw;
+              
+              width: 100vw;
+              height: 100vh;
+              background: $white;
+              padding: 10px 20px;
+              transition: all ease-in-out 0.8s;
+              &.accountshow {
+                display: flex;
+                left: 0vw;
+              }
+              li {
+                text-align: left;
+                a {
+                  width: 100%;
+                  line-height: 70px;
+                  font-size: 28px;
+                  padding: 0 10px;
+                  color: $green;
+                  .bi {
+                    color: $green;
+                  }
+                }
+                a:hover {
+                  color: $white;
+                  background: $green;
+                  .bi{
+                    color: $white;
+                  }
+                  .bi::before{
+                    transform: rotate(180deg);
+                  }
+                }
+                img:hover,
+                img:active {
+                  border: 1px solid $silver;
+                }
+                hr {
+                  width: 100%;
+                  color: $silver;
+                }
+              }
+              .user-record {
+                .dropdown-menu {
+                  display: none;
+                }
+              }
+              .user-record:hover {
+                display: flex;
+                flex-direction: column;
+
+                .dropdown-menu {
+                  width: 100%;
+                  display: flex;
+                  flex-direction: column;
+
+                  position: relative;
+                  left: 0;
+                  top: 0;
+                  .dropdown-item {
+                    display: block;
+                    width: 100%;
+                    line-height: 70px;
+                    font-size: 28px;
+                    color: $green;
+                    text-align: center;
+                  }
+                  .dropdown-item:hover {
+                    width: 100%;
+                    color: $white;
+                    background: $green;
+                  }
+                }
+              }
+              li:last-child {
+                a {
+                  color: $gray;
+                }
+                a:hover {
+                  color: $white;
+                }
+              }
+              .close {
+                padding: 10px;
+                font-size: 30px;
+                color: $black;
+              }
+              .user {
+                display: flex;
+                flex-direction: row-reverse;
+                justify-content: flex-end;
+                line-height: 100px;
+                a {
+                  margin-right: 20px;
+                }
+                a:hover {
+                  background: $white;
+                }
+                p,
+                span {
+                  display: block;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

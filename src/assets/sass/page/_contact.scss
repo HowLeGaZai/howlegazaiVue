@@ -1,0 +1,255 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css");
+
+.contact {
+  section {
+    margin-top: 120px;
+    &:first-child {
+      margin: 0px;
+    }
+    @include breakpoint($grid-breakpoints, "md") {
+      margin-top: 20%;
+    }
+  }
+  .office {
+    ul {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      @include breakpoint($grid-breakpoints, "md") {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        grid-auto-rows: auto;
+        grid-template-areas:
+          "telephone email"
+          "address address";
+        gap: 10px;
+      }
+      li {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 290px;
+        padding: 15px;
+        min-height: 165px;
+        border-radius: 20px;
+        border: 1px solid $silver;
+        line-height: 1.5;
+        justify-content: center;
+        @include breakpoint($grid-breakpoints, "md") {
+          width: auto;
+          padding: 5px;
+          min-height: 160px;
+        }
+
+        h2 {
+          line-height: 1.5;
+        }
+        i {
+          font-size: 1.8rem;
+          color: $green;
+        }
+        a {
+          color: $gray;
+          span {
+            color: $lightgray;
+            font-size: 14px;
+            @include breakpoint($grid-breakpoints, "md") {
+              font-size: 12px;
+            }
+          }
+        }
+      }
+      .telephone {
+        grid-area: telephone;
+      }
+      .email {
+        grid-area: email;
+      }
+      .address {
+        grid-area: address;
+      }
+    }
+  }
+  .chef {
+    section {
+      justify-content: space-between;
+      align-items: center;
+      .title_space {
+        padding-bottom: 0px;
+      }
+      margin-top: 0px;
+      display: flex;
+      @include breakpoint($grid-breakpoints, "md") {
+        flex-direction: column;
+      }
+      .content {
+        width: 50%;
+        text-align: left;
+        line-height: 2;
+        padding-right: 20px;
+        @include breakpoint($grid-breakpoints, "md") {
+          width: 100%;
+          padding-right: 0px;
+          padding-bottom: 20px;
+        }
+        h3 {
+          color: $green;
+          margin-bottom: 30px;
+        }
+        ul {
+          li {
+            font-size: 20px;
+          }
+        }
+        div {
+          padding-top: 5%;
+          color: $lightdark;
+          font-size: 18px;
+          width: auto;
+          word-wrap: break-word;
+          overflow-wrap: break-all;
+        }
+      }
+      .contact_pic_chief {
+        @include breakpoint($grid-breakpoints, "md") {
+          margin: 0 auto;
+        }
+      }
+    }
+  }
+
+  .village-introduce {
+    margin-bottom: 150px;
+    h2 {
+      color: $green;
+      line-height: 2;
+    }
+    .summary {
+      max-width: 600px;
+      margin: 0 auto;
+      color: $darkgray;
+    }
+
+    /* Swiper 輪播 */
+    .swiper-button {
+      width: 50px;
+      display: inline-flex;
+      position: relative;
+      left: 0;
+      right: 0;
+      top: 50px;
+    }
+    .swiper-button-prev {
+      left: -30px;
+      right: auto;
+    }
+    .swiper-button-next {
+      left: 30px;
+      right: auto;
+    }
+    .swiper-button-prev:after,
+    .swiper-button-next:after {
+      content: "";
+    }
+  }
+
+  .faq {
+    margin-top: 200px;
+
+    section {
+      max-width: 1000px;
+      margin: 0 auto;
+      input {
+        position: absolute;
+        opacity: 0;
+        z-index: -1;
+      }
+      h1 {
+        margin: 10px;
+      }
+      .collapsible {
+        &-accordion {
+          margin: 10px;
+          border-radius: 5px;
+          overflow: hidden;
+          border: solid 1px $silver;
+          border-radius: 20px;
+          @include breakpoint($grid-breakpoints, "md") {
+            margin: 10px 0;
+          }
+        }
+        &-item {
+          &-label {
+            display: flex;
+            justify-content: space-between;
+            padding: 30px;
+            font-size: 32px;
+            cursor: pointer;
+            text-align:left;
+            @include breakpoint($grid-breakpoints, "md") {
+              font-size: 24px;
+              padding: 25px;
+            }
+            i {
+              font-size: 30px;
+              color: $green;
+              float: right;
+              @include breakpoint($grid-breakpoints, "md") {
+                font-size: 25px;
+                margin-left: 5px;
+              }
+            }
+            &:hover{
+              color: $green;
+            }
+          }
+          &-content {
+            max-height: 0;
+            padding: 0px 80px 0px 30px;
+            background-color: $whitesmoke;
+            transition: all 0.35s;
+            text-align: left;
+            color: $gray;
+            font-size: 24px;
+            word-wrap: break-word;
+            line-height: 1.5;
+            @include breakpoint($grid-breakpoints, "md") {
+              padding: 0px 30px;
+              font-size: 20px;
+            }
+          }
+        }
+      }
+      /* input 開合 */
+      .open-item-label {
+        background-color: $whitesmoke;
+        i::before {
+          transform: rotate(180deg);
+        }
+      }
+
+      .open-item-content {
+        max-height: 100vh;
+        padding: 30px 80px 30px 30px;
+        @include breakpoint($grid-breakpoints, "md") {
+          padding: 30px;
+        }
+      }
+    }
+  }
+}
+
+// css 控制 checked
+// input:checked {
+//   + .collapsible-item-label {
+//       background-color: $whitesmoke;
+//     i::before {
+//       transform: rotate(180deg);
+//     }
+//   }
+//   ~ .collapsible-item-content {
+//     max-height: 100vh;
+//     padding: 30px;
+//   }
+// }

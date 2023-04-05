@@ -1,0 +1,183 @@
+.news_page {
+  padding-top: 70px;
+  color: $black;
+
+  h1 {
+    margin-bottom: 80px;
+
+    @include breakpoint($grid-breakpoints, 'md') {
+      font-size: 40px;
+    }
+
+  }
+
+  .desktop-filter {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 100px;
+
+    .tag {
+      margin: 10px;
+    }
+
+    @media screen and (max-width: 1080px) {
+      display: none;
+    }
+  }
+
+
+  .mobile-filter {
+    display: none;
+
+    // @media screen and (max-width: 640px){
+    // display: none;
+    //     }
+    @media screen and (max-width: 1080px) {
+      display: block;
+      text-align: left;
+      width: 100%;
+      margin-bottom: 50px;
+
+      .f-label {
+        margin-left: 6px;
+        color: $gray;
+        font-size: 18px;
+
+      }
+
+      .f-select {
+        font-size: 18px;
+      }
+
+    }
+
+
+  }
+
+
+
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 50px;
+
+
+  input {
+    width: 53%;
+    line-height: 28px;
+
+    @include breakpoint($grid-breakpoints, 'md') {
+      width: 70%;
+    }
+
+
+  }
+
+  button {
+    line-height: 47px;
+    height: 47px;
+    font-size: 20px;
+    border-radius: 25px;
+    margin-left: 15px;
+
+    @include breakpoint($grid-breakpoints, 'md') {
+      font-size: 16px;
+      height: 45px;
+      line-height: 45px;
+      padding: 0 25px;
+    }
+
+  }
+}
+
+.news_content {
+  a {
+    color: $black;
+    cursor: pointer;
+  }
+}
+
+
+.news_item {
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+
+  .article_news {
+    @include breakpoint($grid-breakpoints, 'sm') {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+
+    .tag{
+      @include breakpoint($grid-breakpoints, 'sm'){
+        width:20vw;
+      }
+    }
+
+  }
+
+
+
+  .article_news h2 {
+    @include breakpoint($grid-breakpoints, 'sm') {
+      font-size: 20px;
+      overflow: visible;
+      text-overflow: unset;
+      white-space: normal;
+      margin-top: 10px;
+    }
+  }
+
+  .article_news h5 {
+    @include breakpoint($grid-breakpoints, 'sm') {
+      display: none;
+    }
+  }
+
+  .rwd-newsdate {
+    display: none;
+
+    @include breakpoint($grid-breakpoints, 'sm') {
+      display: block;
+      font-size: 12px;
+      // width: 160px;
+      color: $gray;
+      align-items: center;
+      line-height: 28px;
+
+
+    }
+  }
+
+}
+
+.watch-more {
+  
+
+  button {
+    font-size: 1.5rem;
+    height: 55px;
+    border: 2px solid $green;
+    border-radius: 30px;
+    margin-bottom: 100px;
+
+    @include breakpoint($grid-breakpoints, 'sm') {
+      font-size: 18px;
+      height:45px;
+
+
+    }
+
+  }
+
+  button:hover {
+    background-color: $green;
+    color: $white;
+  }
+
+
+}

@@ -1,0 +1,91 @@
+.bk-chat {
+  .f-text {
+    width: 75%;
+    height: 40px;
+
+  }
+
+  .bk-chat-type {
+    width: 100px;
+  }
+
+
+
+  .bk-chat-date {
+    width: 110px;
+  }
+
+  // --調整原始設定的欄位限制--
+  .back-table-2 td:nth-child(5){
+    width: auto;
+  }
+
+  .back-table-2 td:nth-child(2){
+    padding-left: 5px;
+    width: auto;
+  }
+
+  .back-table-2 td:nth-child(3){
+    padding-left: 5px;
+    text-align: center;
+
+  }
+  .back-table-2 td:nth-child(4){
+    padding-left: 5px;
+    text-align: center;
+  }
+
+  .back-table-2 td:nth-child(5){
+    padding-left: 5px;
+    text-align: center;
+  }
+
+  .back-table-2 td:nth-child(6){
+    padding-left: 5px;
+    padding-right: 15px;
+    text-align: center;
+    width: 90px;
+  }
+
+
+
+
+
+
+  .bk-chat-account {
+    width: 90px;
+    // padding-left: 20px;
+
+  }
+
+
+
+  .bk-filter {
+    margin-bottom: 10px;
+  }
+
+
+  table {
+    button {
+      // line-height:56px ;
+      // height: 61px;
+      vertical-align: middle;
+      padding: 0;
+    }
+
+    label {
+      vertical-align: middle;
+      
+    }
+
+
+
+
+  }
+
+
+  tr>td:first-child {
+    text-align: left;
+    padding-left: 20px;
+  }
+}

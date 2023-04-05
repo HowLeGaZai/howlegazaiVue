@@ -1,0 +1,131 @@
+<template>
+    <div class="backend">
+        <navbar></navbar>
+    <div class="background_image">
+        <main>
+        <section class="account-border">
+            <div class="account">
+                <section class="account-menu-pc">
+                    <h1 >帳戶管理</h1>
+                    <div class="image user_pic"><img src="../assets/img/user_pic.png" alt=""></div>
+                    <ul>
+
+                        <li v-for="accountNav in accountNavs"><a :href="accountNav.con">{{accountNav.nav}}</a></li>
+                        <!-- <li><a href="#">個人資訊</a></li>
+                        <li><a href="#">成員管理</a></li>
+                        <li><a href="#">貼文刊登紀錄</a></li>
+                        
+                        <li><a href="#">空間預約紀錄</a></li>
+                        <li><a href="#">活動報名紀錄</a></li>
+                        
+                        <li><a href="#">變更密碼</a></li> -->
+                        
+
+                    </ul>
+                </section>
+                <section class="account-content">
+                    <h1 class="marginbottom30">空間預約紀錄</h1>
+                
+                  <!-- <div class="row"></div> -->
+                      <!-- <div class="col-md-6 col-12"></div> -->
+                      <!-- <div class="col-12"></div> -->
+                  
+                      <!-- <div class="row account_row">
+                        <div class="col-md-6 col-12">
+                            <h4>出生 年/月/日</h4>
+                            <input type="text" class="f-text nomargin" id="name" v-model="birthdate" placeholder="YYYY/MM/DD">
+                        </div>
+                      </div> -->
+                  
+                      <table class="account-table w90percentage marginbottom20 account-table_space">
+                        <tr>
+                            <th v-for="datasTr in datasTrs" >{{datasTr}}</th>
+                        </tr>
+                        <tr v-for="data in datas" >
+                            <td data-label="預約日期">{{data[0]}}</td>
+                            <td data-label="預約空間">{{data[1]}}</td>
+                            <td data-label="預約時間">{{data[2]}}</td>
+                            <td data-label="狀態">{{data[3]}}</td>
+                            <td data-label="取消"><button type="button" class="btn-m btn-color-green ">取消</button></td>
+                        </tr>
+                    
+                      </table>  
+
+                
+                     
+                      
+
+               
+
+                
+
+                      
+              
+                  
+
+
+
+
+
+                </section>
+            </div>
+        </section>
+    </main>
+    </div>
+    </div>
+</template>
+
+<script>
+import navbar from './navbar.vue';
+export default {
+            data(){
+                   return {
+                      
+
+                    
+
+                    accountNavs:[{nav:'個人資訊',con:'./account_user.html'},
+                    {nav:'成員管理',con:'./account_user_manage_3.html'},
+                    {nav:'貼文刊登紀錄',con:'./account_user_chat.html'},
+                    {nav:'瓦斯錶回報紀錄',con:'./account_user_gas.html'},
+                    {nav:'空間預約紀錄'},
+                    {nav:'活動報名紀錄'},
+                    {nav:'團購管理'},
+                    {nav:'變更密碼'}],
+
+
+                    mainMenus:[{nav:'聯絡里辦',con:'./contact.html'},
+                    {nav:'最新消息',con:'./news.html'},
+                    {nav:'討論區',con:'./chat.html'},
+                    // {nav:'智慧里民',con:'#'},
+                    ],
+
+                    datasTrs:[
+                        '預約日期', '預約空間', '預約時間', '狀態', '取消'
+                    ],
+
+                    datas:[
+                        {"0": '2023-03-17 (五)', "1": "A101空間", "2": "13:00 - 13:59","3": "審核中"},
+                        {"0": '2023-03-24 (二)', "1": "B101空間", "2": "13:00 - 13:59","3": "未通過"},
+                        {"0": '2023-02-04 (二)', "1": "A101空間", "2": "13:00 - 13:59","3": "審核通過"},
+                        {"0": '2023-01-16 (二)', "1": "B102空間", "2": "13:00 - 13:59","3": "審核中"},
+                        {"0": '2023-01-02 (二)', "1": "A103空間", "2": "13:00 - 13:59","3": "審核中"},
+                        {"0": '2022-12-27 (二)', "1": "A104空間", "2": "13:00 - 13:59","3": "審核中"},
+                        
+                    ],
+
+                    
+               
+                   }
+                   },
+ 
+              mounted(){
+                       
+                   },
+               methods: {
+
+               },   
+            components:{navbar,},
+               
+}
+</script>

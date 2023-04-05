@@ -1,0 +1,124 @@
+.back-table-2{
+    font-family: "jfopen";
+    
+    width: 100%;
+    // margin:0 auto;
+    text-align: left;
+    border: 1px solid #dcdcdc;
+    font-size: 1.2 rem;
+    // padding-left: 20px;
+    tr:first-child{
+        background-color: $lightcyan;
+    }
+    tr{
+        height: 55px;
+        line-height: 55px;
+
+    }
+    td:first-child{
+        text-align: center;
+    }
+
+    td{
+        border-bottom: 1px solid lightgray;
+    }
+    td:nth-child(5){
+        width: 160px;
+        // margin-top: 100px;
+    }
+    td:nth-child(7){
+        width: 30px;
+    }
+    td:nth-child(8){
+        width: 30px;
+    }
+
+}
+
+.w100percentage{
+    width: 100%;
+}
+
+.w90percentage{
+    width: 100%;
+    h1{
+        text-align: left;
+        margin-bottom: 30px;
+        font-size: 25px;
+    }
+}
+
+
+
+.displayflex{
+    display:flex;
+}
+
+.justifycontent{
+    justify-content: space-between;
+}
+
+
+
+.padding30{
+    padding:30px;
+}
+.textalignleft{
+    text-align:left;
+}
+.marginright20{
+    margin-right: 20px;
+}
+.margintop18{
+    margin-top: 18px;
+}
+
+
+// 最新消息的後台 
+
+.back-table-3{
+
+    .toggle_btn{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .switch {
+        vertical-align:middle;
+    }
+    font-family: "jfopen";
+    
+    width: 100%;
+    // margin:0 auto;
+    // text-align: left;
+    border: 1px solid #dcdcdc;
+    font-size: 1.2 rem;
+    // padding-left: 20px;
+    tr:first-child{
+        background-color: $lightcyan;
+        // width: 100%;
+    }
+    tr{
+        height: 55px;
+        line-height: 55px;
+
+    }
+    td:first-child{
+        text-align: center;
+    }
+
+    td{
+        border-bottom: 1px solid lightgray;
+ }
+ 
+
+}
+
+.btn-page-block{
+    justify-content: center;
+    margin-top: 20px;
+ }
+
+
+
+

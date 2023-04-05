@@ -1,0 +1,124 @@
+
+/* ---header與導覽列設定--- */
+
+
+
+.backend-header{
+  line-height: 75px;
+  font-size: 24px;
+  color: $green;
+
+  .midnav{
+    display:flex;
+    margin-left: 25px;
+  
+    i{
+      margin-right: 5px;
+    }
+
+   
+  }
+}
+
+
+.body-sec {
+  background-image: url(../img/bt_bg.svg);
+  // position: relative;
+  // z-index: -5;
+  min-width: auto;
+  padding-bottom: 50px;
+  padding-top: 10px;
+  /* 讓nav的陰影壓在上面 */
+}
+
+
+.admin-account{
+  display: flex;
+  // vertical-align: middle;
+  align-items: center;
+  p{
+    font-size: 20px;
+    margin-right: 20px;
+  }
+
+  .userbtn{
+    max-width: 60px;
+    max-height: 60px;
+  }
+}
+
+
+
+.container-date{
+  display: flex;
+  padding: 20px;
+  p{
+    margin: 0 20px;
+    color: $black;
+  }
+
+}
+
+
+.container-main {
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 20px;
+  display: flex;
+  padding: 40px 10px;
+}
+
+
+.backend-nav {
+  border-right: 2px solid #27b096;
+ 
+  ul {
+    margin: 0 30px;
+  }
+
+  .be-nav{
+    margin-bottom: 10px;
+  }
+
+  .be-nav-on{
+    margin-bottom: 10px;
+    z-index: 500;
+  }
+
+  //隱藏展開的後台側欄nav
+  .be-nav-off{
+    display: none;
+  }
+
+
+}
+
+.rest-inf{
+ display: none;   
+}
+
+
+.section_right{
+  //讓右邊區域自動擴展填滿
+
+  width: 100%;
+  padding: 10px 40px 10px 40px;
+}
+
+/* < 992px 內容欄位＋顯示不支援手機 */
+@media screen and (max-width: 992px){
+
+  .container-main,
+  .container-date,
+  .admin-account,
+  .backend-header .midnav
+  {
+    display: none;
+  }
+
+  .rest-inf{
+    display: block;
+    
+  }
+
+
+}

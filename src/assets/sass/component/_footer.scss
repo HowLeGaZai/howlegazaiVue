@@ -1,0 +1,47 @@
+footer{
+  // width: 100%;
+  background-color: $black;
+  min-width: 360px;
+
+  .footer-img{
+
+    width: 300px;
+    display: block;
+    margin: 0 auto;
+    padding-top: 50px;
+
+    h3{
+      margin-top: 15px ;
+      color:$white;
+    }
+    h5{
+      margin-top: 15px ;
+      color:$white;
+      font-size: 14px;
+    }
+  }
+
+  .statement{
+    @include breakpoint($grid-breakpoints, 'sm') {
+      width: 258px;
+      margin: 0 auto;
+      text-align: left;
+    }
+  }
+
+  p{
+    color:$white;
+    font-size: 16px;
+    line-height: 1.5;
+    margin-top: 80px;
+    padding-bottom: 35px;
+    overflow: visible;
+    text-overflow: unset;
+    white-space: normal;
+
+    @include breakpoint($grid-breakpoints, 'sm') {
+      margin-top: 30px;
+    }
+  }
+
+}

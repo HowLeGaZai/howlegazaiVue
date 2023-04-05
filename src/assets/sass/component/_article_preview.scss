@@ -1,0 +1,131 @@
+article {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 45px;
+  /* 下方分隔線 */
+  border-bottom: 1px solid $darkgray;
+
+  /* 圖文並排、對齊左右 */
+  section {
+    display: flex;
+    justify-content: space-between;
+
+    /* <= sm 圖文交換左右位置 */
+    @include breakpoint($grid-breakpoints, "sm") {
+      flex-direction: row-reverse;
+    }
+
+    /* 最新消息文字區塊 */
+    .article_news {
+      width: 70%;
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+
+      padding: 20px 0;
+      line-height: 2.5;
+
+      /* <= sm 取消上下 padding、line-height 變短 */
+      @include breakpoint($grid-breakpoints, "sm") {
+        padding: 0px 0;
+        line-height: 1.6;
+      }
+
+      .tag {
+        @include breakpoint($grid-breakpoints, "sm") {
+          width: 15vw;
+          height: 7vw;
+          line-height: 7vw;
+          font-size: 1em;
+        }
+      }
+      h2 {}
+    }
+
+    /* 討論區文字區塊 */
+    // .chat_news {
+      // width: 70%;
+      // display: flex;
+      // flex-direction: column;
+      // text-align: left;
+
+      // padding: 20px 0;
+      // line-height: 1.6;
+
+      // @include breakpoint($grid-breakpoints, "sm") {
+      //   padding: 0px 0;
+      // }
+
+      // div:first-child {
+      //   display: flex;
+      //   align-items: center;
+
+      //   .user_pic {
+      //     max-width: 60px;
+      //     max-width: 60px;
+      //     margin-right: 20px;
+
+      //     @include breakpoint($grid-breakpoints, "sm") {
+      //       width: 30px;
+      //       height: 30px;
+      //     }
+      //   }
+
+      //   h5 {
+      //   }
+
+      //   span {
+      //     margin-left: 20px;
+      //     @include breakpoint($grid-breakpoints, "sm") {
+      //       margin-left: 9px;
+      //       font-size: 10px;
+      //     }
+      //   }
+      //   .tag-m{
+          
+      //   }
+      // }
+
+      // h2 {
+      // }
+
+      /* 討論區摘要 */
+      // p {
+      //   font-size: 20px;
+      //   color: $darkgray;
+      //   padding-bottom: 10px;
+
+      //   /* <= md 隱藏摘要文字 */
+      //   // @include breakpoint($grid-breakpoints, "md") {
+      //   //   display: none;
+      //   // }
+      // }
+
+    //   .tag {
+    //     @include breakpoint($grid-breakpoints, "sm") {
+    //       width: 23vw;
+    //       height: 7vw;
+    //       line-height: 7vw;
+    //       font-size: 1em;
+    //     }
+    //   }
+    // }
+
+    /* 文章圖片 */
+    .list_pic {
+      max-width: 210px;
+      max-height: 210px;
+      width: 30vw;
+      height: 30vw;
+
+      /* <= md 圖片間距 */
+      @include breakpoint($grid-breakpoints, "sm") {
+        margin-right: 20px;
+
+        width: 20vw;
+        height: 20vw;
+        border-radius: 20%;
+      }
+    }
+  }
+}

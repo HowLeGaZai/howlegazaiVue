@@ -1,0 +1,198 @@
+//活動清單排版用 (待完整)
+// .cardlist{
+//     max-width: 1300px;
+//     display: flex;
+//     flex-wrap: wrap;
+//     margin: 0 auto;
+// }
+
+
+/*-----活動+團購卡-----*/
+
+.card {
+    text-align: left;
+    width: 400px;
+    min-height: 600px;
+    padding: 15px;
+    border-radius: 20px;
+    box-shadow: 0 -1px 6px 0 rgba(0, 0, 0, 0.25), 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+    background-color: $white;
+    position: relative;
+    margin: 10px auto;
+    @include breakpoint($grid-breakpoints, 'sm') {
+        width: 350px;
+        min-height: 500px;
+      }
+    .event_pic {
+            width: 370px;
+            height: 370px;
+            @include breakpoint($grid-breakpoints, 'sm') {
+                width: 320px;
+                height: 320px;
+                margin: 0 auto;
+              }
+    }
+    &-tag{
+        position: absolute;
+        top: 330px;
+        left: 30px;
+        @include breakpoint($grid-breakpoints, 'sm') {
+            top:280px;
+            left:30px;
+        }
+    }
+    &-line{
+        height: 2px;
+        margin-top:15px;
+        background-color: $silver;
+    }
+    &-title{
+        width: 260px;
+        margin: 15px 0;
+        color: $black;
+        overflow:hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        @include breakpoint($grid-breakpoints, 'sm') {
+           width: 220px;
+           font-size: 1.5em;
+        }
+    }
+    &-person{
+        position: absolute;
+        top: 410px;
+        right: 15px;
+        display: flex;
+        align-items: center;
+        &>div{
+            max-width: 36px;
+        }
+        &>p{
+            font-size: 20px;
+            color: $black;
+        }
+        @include breakpoint($grid-breakpoints, 'sm') {
+            top: 360px;
+            right: 15px;
+        }
+    }
+    &-price{
+        position: absolute;
+        bottom: 20px;
+        color: $green;
+        font-size: 2em;
+        @include breakpoint($grid-breakpoints, 'sm') {
+            font-size: 1.5em;
+         }
+    }
+    &-content{
+        margin-bottom: 10px;
+        color: $slategray;
+    }
+    &-link{
+        position: absolute;
+        right: 20px;
+        bottom: 20px;
+        text-decoration: none;
+        color: $black;
+        &:hover{
+            color:$green;
+        }
+    }
+    &-date{
+        margin-bottom: 55px;
+        color: $black;
+    }
+}
+
+
+
+    .space {
+        margin: 20px 0;
+        width: 100%;
+        height: 100%;
+        padding: 20px;
+        border-radius: 20px;
+        box-shadow: 0 -1px 6px 0 rgba(0, 0, 0, 0.25), 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+        background-color: $white;
+        display: flex;
+        // flex-wrap: wrap;
+        align-items: center;
+        gap: 30px;
+        @media screen and (max-width: 800px){
+         display: block;
+         width: 300px;
+         margin: 20px auto;
+         padding: 10px;
+        }
+        &-pic{
+            min-width: 200px;
+            max-width: 300px;
+        }
+        &-info{ 
+            // flex-grow: 1;
+            // border: 1px solid red;
+            width: 55%;
+            text-align: left;
+            @media screen and (max-width: 800px){
+                width: 100%;
+                text-align: center;
+               }
+           
+            h3{
+                margin: 10px 0;
+                color: $green;
+                // overflow: visible;
+                // white-space:pre-wrap;
+                // text-overflow: ellipsis;
+            }
+            h5{
+                overflow: visible;
+                white-space: normal;
+                text-overflow: clip;
+                line-height: 1.2;
+                margin-bottom: 10px;
+                // word-break: break-all;
+                // overflow: hidden;
+                // white-space:pre-wrap;
+                // text-overflow: ellipsis;
+            }
+            .space-btn{
+                margin: 10px 0;
+            }
+        }
+    }    
+
+.nobtn{
+    @media screen and (max-width: 800px){
+        display: flex;
+        width: 100%;
+    }
+    @media screen and (max-width: 650px){
+        display: block;
+        width:100%;
+        // max-width: 300px;
+    }
+    .space-pic{
+        @media screen and (max-width: 650px){
+            margin: 0 auto;
+            max-width: 550px;
+            max-height: 300px;
+        }
+    }
+    .space-info{ 
+        // flex-grow: 1;
+        // border: 1px solid red;
+        width: 55%;
+        text-align: left;
+        @media screen and (max-width: 800px){
+            width: 100%;
+            text-align: left;
+           }
+        @media screen and (max-width: 650px){
+            margin: 0 auto;
+            text-align: center;
+        }
+       
+    }
+}

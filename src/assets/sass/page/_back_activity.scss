@@ -1,0 +1,225 @@
+// =====  後台-活動總覽 =====
+
+
+.bk-activity-table{
+  
+  .btn-icon{
+    vertical-align: middle;
+  }
+
+  label{
+    vertical-align: middle;
+    // margin: 0;
+
+
+  }
+
+  td:nth-child(1){
+    // width: 60px;
+  }
+
+  td:nth-child(5){
+    width: 80px;
+    text-align: center;
+  }
+  
+  td:nth-child(6){
+    width: 60px;
+    text-align: center;
+  }
+
+  td:nth-child(7){
+    span{
+      margin: 0 20px;
+    }
+  }
+
+
+
+  td:nth-child(7),
+  td:nth-child(8),
+  td:nth-child(9)
+  {
+    width: 60px;
+    text-align: center;
+  }
+
+
+  td:nth-child(8){
+    button{
+      padding: 0;
+    }
+  }
+
+
+
+}
+
+// =====  後台-新增活動    =====
+
+
+
+.bk-activity-add {
+  h1 {
+    text-align: left;
+    margin-bottom: 30px;
+    font-size: 25px;
+  }
+
+  .f-label {
+    display: block;
+    text-align: left;
+    // margin: 0;
+  }
+
+  .f-select {
+    width: 100%;
+    margin-bottom: 30px;
+
+  }
+
+  input {
+    margin-bottom: 30px;
+  }
+
+  // 調整input兩欄式格式
+  .input-grid-2 {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+
+  }
+
+  .f-input-2 {
+    width: 450px;
+    margin-right: 40px;
+  }
+
+  // 兩欄式input的右邊
+  .f-input-2:nth-child(2) {
+    width: 450px;
+    margin-right: 0;
+  }
+
+  button {
+    margin: 30px 10px;
+  }
+}
+
+
+.activity-banner {
+  .f-file {
+    margin-left: -100px;
+  }
+}
+
+.activity-cost>input,
+.activity-membermax>input {
+  display: block;
+  width: 150px;
+
+}
+
+
+.activity-cost-block {
+  display: flex;
+  align-items: center;
+
+
+  .f-text {
+    display: block;
+    width: 150px;
+    margin-right: 15px;
+  }
+
+  label {
+    height: 34px;
+    font-size: 16px;
+    color: $gray;
+  }
+
+}
+
+
+// =====  後台-查看名單    ====
+
+.bk-activity-member {
+  h2 {
+    font-size: 20px;
+    text-align: left;
+    margin-bottom: 30px;
+  }
+
+  .btn-prepage{
+    display: block;
+    text-align: left;
+    padding-left: 0;
+    margin-bottom: 10px;
+  }
+
+  
+  
+  
+}
+
+
+.bk-activity-member-list{
+  height: 500px;
+  overflow: scroll;
+
+  // tbody{
+  //   // overflow-y: auto;
+  //   overflow: scroll;
+  // }
+
+
+
+
+  .back-table-2 td:first-child{
+    padding-left: 5px;
+    width: 130px;
+    text-align: center;
+
+  }
+
+ 
+  .back-table-2 td:nth-child(2){
+    width: 110px;
+    padding-right: 5px;
+    text-align: center;
+  }
+  .back-table-2 td:nth-child(3){
+    width: 180px;
+    padding-right: 5px;
+  }
+  .back-table-2 td:nth-child(4){
+    width: 120px;
+    padding-right: 5px;
+  }
+
+  .back-table-2 td:nth-child(5){
+    width: 160px;
+    padding-right: 5px;
+  }
+
+  .back-table-2 td:nth-child(6){
+    padding-left: 5px;
+    text-align: center;
+    width: 60px;
+  }
+
+
+  .btn-icon{
+    vertical-align: middle;
+    margin-left: -5px;
+  }
+
+  .back-table-2 tr:nth-child(6),
+  .back-table-2 tr:nth-child(7){
+    background-color: $silver;
+  }
+
+
+
+}

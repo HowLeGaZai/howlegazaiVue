@@ -1,0 +1,149 @@
+/*----------------- 客製化checkbox 可以用在type=checkbox, type=radio--------------------*/
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 18px;
+    width: 18px;
+    background-color: $white;
+    border: 1px solid $silver;
+    border-radius: 2px;
+    &:after{
+        content: "";
+        position: absolute;
+        display: none;
+    }
+}
+
+.f-checkbox {
+    display: block;
+    position: relative;
+    padding-left:25px;
+    line-height: 18px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    margin-right: 10px;
+    input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+        &:checked{
+            ~ .checkmark {
+                background-color: $green;
+                border: 1px solid $green;
+                &:after{
+                    display: block;
+                }
+            }
+        }
+        &:disabled{
+            cursor: default;
+        }
+    }
+
+    .checkmark{
+        &:after{
+            left: 4px;
+            top: 0px;
+            width: 5px;
+            height: 10px;
+            border: solid $white;
+            border-width: 0 3px 3px 0;
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+    }    
+}
+
+
+
+/* -------------------表單 input欄位 + label------------------------- */
+  .f-label{
+    margin-bottom: 5px;
+    margin-left: 5px;
+}
+  .f-text{
+    border: 1px solid $silver;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-family: "jfopen";
+    width: 100%;
+    padding: 8px 5px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    transition: border 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    &:focus{
+        outline: none;
+        box-shadow: 0 0 0 0.25rem $darkgreen;
+        border: 1px solid $green;
+    }
+    &::placeholder{
+        color: $lightdark;
+        opacity: .5;
+    }
+  
+  } 
+  .f-round{
+    border-radius: 20px;
+    padding: 8px 15px;
+  }
+  .label-left{
+    width: auto;
+  }
+
+
+
+
+.f-file{
+    border-radius: 5px;
+    font-size: 1rem;
+    font-family: "jfopen";
+    padding: 8px 0;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    cursor: pointer;
+    &::file-selector-button {
+        color: $white;
+        padding: 0.5em;
+        border: 1px solid $green;
+        border-radius: 20px;
+        font-family:"jfopen";
+        background-color: $green;
+        cursor: pointer;
+        width: 100px;
+    }
+
+}
+
+.f-select {
+    font-family: "jfopen";
+    width: 100%;
+    padding: 8px 10px;
+    font-size: 1rem;
+    color: $black;
+    background-color: $white;
+    background-image: url("../img/down_regular.png");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 16px 16px;
+    border: 1px solid $silver;
+    border-radius: 5px;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    appearance: none;
+    margin: 8px 0;
+    &:focus {
+        border-color: $green;
+        outline: 0;
+        box-shadow: 0 0 0 0.25rem $darkgreen;
+
+    }
+}

@@ -1,0 +1,100 @@
+ /* ---------------訂單表格的框(with綠底白字表頭)----------------- */
+
+    .green-table{
+        .row{
+            width: 95%;
+            margin: 0 auto;
+            
+        }
+        .right{
+            justify-content: flex-end;
+             td{
+                border-bottom: none;
+             }
+        }
+        .left{
+            td{
+                border-bottom: none;
+            }
+        }
+        font-family: 'jfopen';
+        width: 1140px;
+        height: 100%;
+        margin: 30px auto;
+        border-collapse: separate;
+        border-spacing: 0;
+        border-top-right-radius: 1.2rem;
+        border-top-left-radius: 1.2rem;
+        border-bottom-right-radius: 1rem;
+        border-bottom-left-radius: 1rem;
+        border: 1px solid $silver;
+        @include breakpoint($grid-breakpoints, 'lg') {
+            width: 900px;
+            }
+        @include breakpoint($grid-breakpoints, 'md') {
+            width: 90vw;
+            }    
+        @include breakpoint($grid-breakpoints, 'sm') {
+            width: 400px;
+            height: 100%;
+            }
+        thead{
+            tr{
+                th{
+                    height: 40px;
+                    line-height: 40px;
+                    text-align: left;
+                    font-size: 1.6em;
+                    background-color: $green;
+                    color: $white;
+                    border-top-right-radius: 1.2rem;
+                    border-top-left-radius: 1.2rem;
+                    padding: 10px 0 10px 20px;
+                }
+            }
+        }
+        tbody{
+            tr{
+                td{
+                padding: 10px 0;
+                font-size: 1em;
+                // text-align: center;
+                background-color: $white;
+                font-size: 18px;
+                line-height: 30px;
+                border-bottom: 1px solid $darkgreen;
+                &:nth-child(1){
+                    @include breakpoint($grid-breakpoints, 'sm') {
+                        // height: 100%;
+                        // padding: 0;
+                        // padding-left: 10px;
+                        // border-bottom: none;
+                        // text-align: left;
+                        color: $green;
+                        }
+                    }
+                &:nth-child(2){
+                    text-align: left;
+                    // @include breakpoint($grid-breakpoints, 'sm') {
+                    //     padding: 0;
+                    //     padding-left: 10px;
+                    //     height: 100%;
+                    //     }
+                    }
+                }
+            }
+            
+        }
+        tfoot{
+            tr{
+                td{
+                    height: 15px;
+                    background-color: $white;
+                    border-bottom-right-radius: 1rem;
+                    border-bottom-left-radius: 1rem;
+                    }
+                }
+            }
+        }
+
+

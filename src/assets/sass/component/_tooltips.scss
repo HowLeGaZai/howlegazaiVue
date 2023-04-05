@@ -1,0 +1,12 @@
+.tooltip:hover:after {
+    content: "";
+    position: relative;
+    display: inline-block;
+    color: gray;
+    z-index: 50;
+
+    background: $silver;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 9px;
+  }

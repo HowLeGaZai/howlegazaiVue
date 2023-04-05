@@ -1,0 +1,214 @@
+.activity_info {
+    color: $black;
+    text-align: left;
+
+    .info_topic {
+        margin: 50px 0;
+        text-align: center;
+      
+        // ????
+        @include breakpoint($grid-breakpoints, 'md') {
+          margin: 0 20px;
+        }
+        @include breakpoint($grid-breakpoints, 'sm') {
+            margin: 0 10px;
+        }
+    
+        h1 {
+            margin: 0 auto 20px;
+            overflow: unset;
+            white-space: normal;
+            line-height: 1.5;
+        
+            // ????
+            @include breakpoint($grid-breakpoints, 'lg') {
+                font-size: 2rem;
+            }
+        
+            @include breakpoint($grid-breakpoints, 'md') {
+                // font-size: 1.6rem;
+                width: auto;
+                margin: 0 auto 10px;
+            }
+      
+            @include breakpoint($grid-breakpoints, 'sm') {
+                font-size: 1.8em;
+                margin: 0 auto 5px;
+            }  
+            
+        }
+
+        h2 {
+            font-size: 22px;
+            color: #27B096;
+            margin: 0 auto 20px;
+            overflow: unset;
+            white-space: normal;
+            line-height: 1.5;
+        }
+    }
+
+    .threesteps {
+        justify-content: center;
+    }
+    
+    .info-article {
+
+        // ????
+        @include breakpoint($grid-breakpoints, 'md') {
+            margin: 30px 20px;
+        }
+        @include breakpoint($grid-breakpoints, 'sm') {
+            margin: 30px 10px;
+        }
+
+        .userTag {
+           display: flex;
+           align-items: center;
+           margin-top: 20px;
+            
+           //???
+            @include breakpoint($grid-breakpoints, 'md') {
+                width: 40px;
+                margin-right: 5px;
+    
+              }
+            @include breakpoint($grid-breakpoints, 'sm') {
+              width: 30px;
+            }
+
+            .userPic {
+                width: 50px;
+                margin-right: 10px;
+            }
+        }
+
+        .activityContent {
+
+            .actInfo {
+                display: flex;
+
+                p {
+                    font-size: 22px;
+                    margin-top: 20px;
+                    white-space: normal;
+                    line-height: 2;
+                    @include breakpoint($grid-breakpoints, 'sm') {
+                        font-size: 18px;
+                    }
+                }
+            }
+
+            .actPrice {
+                display: flex;
+                color: #27B096;
+
+                p {
+                    font-size: 22px;
+                    margin-top: 20px;
+                    white-space: normal;
+                    line-height: 2;
+                    @include breakpoint($grid-breakpoints, 'sm') {
+                        font-size: 18px;
+                    }
+                }
+            }
+        }
+
+        .regist {
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+
+            .peopleCount {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-right: 20px;
+
+                .f-label {
+                    width: 60px;
+                    font-size: 22px;
+                    margin-right: 10px;
+                }
+
+                input {
+                    width: 100px;
+                }
+
+            }
+
+        }
+
+
+
+    }
+
+    .info_discript {
+        margin: 50px 0;
+        text-align: center;
+      
+        // ????
+        @include breakpoint($grid-breakpoints, 'md') {
+          margin: 0 20px;
+        }
+        @include breakpoint($grid-breakpoints, 'sm') {
+            margin: 0 10px;
+        }
+    
+        h1 {
+            margin: 0 auto 20px;
+            overflow: unset;
+            white-space: normal;
+            line-height: 1.5;
+        
+            // ????
+            @include breakpoint($grid-breakpoints, 'lg') {
+                font-size: 2rem;
+            }
+        
+            @include breakpoint($grid-breakpoints, 'md') {
+                // font-size: 1.6rem;
+                width: auto;
+                margin: 0 auto 10px;
+            }
+      
+            @include breakpoint($grid-breakpoints, 'sm') {
+                font-size: 1.8em;
+                margin: 0 auto 5px;
+            }            
+        }
+      
+        .act-img{
+            margin: 30px auto;
+            width: 50%;
+        
+            @include breakpoint($grid-breakpoints, 'md') {
+                width: 70%
+              }
+        
+            @include breakpoint($grid-breakpoints, 'sm') {
+              width: 70%
+            }
+        }
+
+        .infoText {
+        
+            p {
+                margin: 0 auto;
+                font-size: 22px;
+                margin-top: 20px;
+                white-space: normal;
+                line-height: 2;
+            }
+        }
+    
+    }
+
+    .backBtn {
+        width: 100%;
+        text-align: center;
+        
+    }
+}
