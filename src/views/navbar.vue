@@ -14,6 +14,7 @@
             <ul id="main-Menu">
               <li class="left-logo"><img src="../assets/img/logo2.svg" alt="" /></li>
               <li>
+                
                 <router-link :to="{name:'contact'}">聯絡里辦</router-link>
               </li>
               <li>
@@ -97,7 +98,7 @@
                   <!-- <li><a class="dropdown-item" href="#">團購管理</a></li> -->
                   <li><hr class="dropdown-line" /></li>
                   <li>
-                    <a href="/account_user_change_pwd.html">變更密碼</a>
+                    <a href="#">變更密碼</a>
                   </li>
                 </ul>
               </div>
@@ -138,9 +139,6 @@ let burgerBtn = document.getElementById("burger");
 
       userBtn.onclick = function () {
         accountMenu.classList.add("accountshow");
-        if (window.innerWidth > 1400) {
-          userBtn.href = "/account_user.html"; // 修改 href 屬性值為 #
-        }
       };
 
       menuClose.onclick = function () {
