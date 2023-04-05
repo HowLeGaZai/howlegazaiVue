@@ -177,15 +177,21 @@ const routes = [
     component:() => import(/* webpackChunkName: "about" */ '../views/backend_activity_input.vue')
   },
   {
-    path: '/backend_account_overview',
+    path: '/backend/account/overview',
     name: 'backend_account_overview',
     component:() => import(/* webpackChunkName: "about" */ '../views/backend_account_overview.vue')
   },
   {
-    path: '/backend_account_new',
+    path: '/backend/account/new',
     name: 'backend_account_new',
     component:() => import(/* webpackChunkName: "about" */ '../views/backend_account_new.vue')
   },
+  {
+    path: '/backend/account/cancel',
+    name: 'backend_account_cancel',
+    component:() => import(/* webpackChunkName: "about" */ '../views/backend_account_cancel.vue')
+  },
+  
   
   
   

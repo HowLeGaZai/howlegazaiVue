@@ -127,6 +127,16 @@ header {
           a:active {
             color: $white;
           }
+          .a-gray{
+            color: $gray;
+            &:hover,&:active{
+              color: $gray;
+              @include breakpoint($grid-breakpoints, 'md') {
+                background-color: transparent;
+                color: $gray;
+              }
+            }
+          }
 
           .dropdown-menu {
             width: 200px;
@@ -173,6 +183,16 @@ header {
                   background-color: $green;
                   color: $white;
                 }
+              }
+            }
+          }
+          .a-gray{
+            color: $gray;
+            &:hover,&:active{
+              color: $gray;
+              @include breakpoint($grid-breakpoints, 'md') {
+                background-color: transparent;
+                color: $gray;
               }
             }
           }

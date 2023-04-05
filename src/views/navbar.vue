@@ -4,8 +4,8 @@
         <div class="leftnav">
           <!-- 登入後 -->
           <button class="burger" id="burger"><i class="bi bi-list"></i></button>
-          <!-- logo -->
           
+          <!-- logo -->
           <router-link :to="{name:'home'}" class="brand">
             <img src="../assets/img/logo.svg" alt="" />
           </router-link>
@@ -17,11 +17,9 @@
                 <router-link :to="{name:'contact'}">聯絡里辦</router-link>
               </li>
               <li>
-                
                 <router-link :to="{name:'news'}">最新消息</router-link>
               </li>
               <li>
-                
                 <router-link :to="{name:'chat'}">討論區</router-link>
               </li>
               <li class="smart-service">
@@ -30,19 +28,15 @@
                 </a>
                 <ul class="dropdown-menu" id="dropdown-menu">
                   <li>
-                    <a class="dropdown-item" href="/activity">活動報名</a>
+                    <router-link :to="{name:'activity'}" class="dropdown-item">活動報名</router-link>
                   </li>
                   <li>
-                    <a class="dropdown-item" href="/space">空間預約</a>
+                    <router-link :to="{name:'space'}" class="dropdown-item">空間預約</router-link>
                   </li>
-                  <!-- <li> -->
-                    <!-- <a class="dropdown-item" href="/space">空間預約</a> -->
-                    <!-- <router-link :to="{name:'space'}" class="dropdown-item">空間預約</router-link> -->
-                  <!-- </li> -->
-                  <li><a class="dropdown-item" href="#">里民團購</a></li>
-                  <li><a class="dropdown-item" href="#">守望相助</a></li>
-                  <li><a class="dropdown-item" href="#">維修通報</a></li>
-                  <li><a class="dropdown-item" href="#">瓦斯錶回報</a></li>
+                  <li><a class="dropdown-item a-gray" href="#">里民團購</a></li>
+                  <li><a class="dropdown-item a-gray" href="#">守望相助</a></li>
+                  <li><a class="dropdown-item a-gray" href="#">維修通報</a></li>
+                  <li><a class="dropdown-item a-gray" href="#">瓦斯錶回報</a></li>
                 </ul>
               </li>
             </ul>

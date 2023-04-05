@@ -2986,6 +2986,18 @@ header nav .leftnav ul li a:hover {
 header nav .leftnav ul li a:active {
   color: #fff;
 }
+header nav .leftnav ul li .a-gray {
+  color: #808080;
+}
+header nav .leftnav ul li .a-gray:hover, header nav .leftnav ul li .a-gray:active {
+  color: #808080;
+}
+@media (max-width: 992px) {
+  header nav .leftnav ul li .a-gray:hover, header nav .leftnav ul li .a-gray:active {
+    background-color: transparent;
+    color: #808080;
+  }
+}
 header nav .leftnav ul li .dropdown-menu {
   width: 200px;
   padding: 0 0 0 15px;
@@ -3038,6 +3050,18 @@ header nav .leftnav ul .smart-service a.onoff:hover {
   header nav .leftnav ul .smart-service a.onoff:hover {
     background-color: #27b096;
     color: #fff;
+  }
+}
+header nav .leftnav ul .smart-service .a-gray {
+  color: #808080;
+}
+header nav .leftnav ul .smart-service .a-gray:hover, header nav .leftnav ul .smart-service .a-gray:active {
+  color: #808080;
+}
+@media (max-width: 992px) {
+  header nav .leftnav ul .smart-service .a-gray:hover, header nav .leftnav ul .smart-service .a-gray:active {
+    background-color: transparent;
+    color: #808080;
   }
 }
 header nav .rightnav {
@@ -7390,6 +7414,29 @@ body {
 }
 .bk-account-new .show-row {
   display: table-row;
+}
+
+.maxheight {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 700px;
+}
+
+.bk-account-cancel .dropdown {
+  display: flex;
+  flex-direction: column;
+}
+.bk-account-cancel .f-label {
+  text-align: left;
+  margin-left: 0px;
+  width: 200px;
+}
+.bk-account-cancel td {
+  width: auto;
+}
+.bk-account-cancel td:nth-child(4) {
+  max-width: 200px;
 }
 
 .pt10 {
