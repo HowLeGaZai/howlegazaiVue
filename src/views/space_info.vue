@@ -62,8 +62,14 @@
         </div>
         
         <div class="confirm-btn">
-          <button type="button" class="btn-m btn-color-gray" onclick="location.href='./space.html'">返回空間總覽</button>
-          <button type="button" class="btn-m btn-color-green" onclick="location.href='./space_reserve.html'">確認，下一步填寫資訊</button>
+          <router-link to="/space" custom v-slot="{ navigate }">
+            <button class="btn-m btn-color-gray" @click="navigate" role="link">返回空間總覽</button>
+          </router-link>
+          <router-link to="/space_reserve" custom v-slot="{ navigate }">
+            <button class="btn-m btn-color-green" @click="navigate" role="link">確認，下一步填寫資訊</button>
+          </router-link>
+          <!-- <button type="button" class="btn-m btn-color-gray" onclick="location.href='/space'">返回空間總覽</button>
+          <button type="button" class="btn-m btn-color-green" onclick="location.href='/space_reserve'">確認，下一步填寫資訊</button> -->
         </div>
 
       </section>
@@ -107,6 +113,7 @@
       </section>
 
     </main>
+    <Footer></Footer>
 </template>
 
 <script>
@@ -116,6 +123,7 @@ import $ from 'jquery'
 import 'jquery-ui-dist/jquery-ui'
 import 'jquery-ui-dist/jquery-ui.min.css'
 import navbar from './navbar.vue';
+import Footer from './Footer.vue';
 
 export default {
   name: 'HelloWorld',
@@ -124,8 +132,9 @@ export default {
     }
   },
   components: {
-      navbar,
+      navbar,Footer,
     },
+  
   mounted: function () {
     $('#resizable').resizable({});
     $('#datepicker').datepicker({
@@ -136,13 +145,23 @@ export default {
           onSelect: function(){
             var selected = $(this).val();
             $('.selectedD').html(`日期:&nbsp` + selected);
-            // console.log(selected);
 
-            // let dayNamesMin = $(this).datepicker( "option", "dayNamesMin" );
-            // console.log(dayNamesMin);
         }
     });
-    
-  }
+    var btnContainer = document.getElementById("selected");
+    var btns = btnContainer.getElementsByClassName("timeslot");
+
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].addEventListener("click", function() {
+        var current = document.getElementsByClassName("active");
+
+        if (current.length > 0) {
+          current[0].className = current[0].className.replace(" active", "");
+        }
+        this.className += " active";
+      });
+    };
+  },
+  
 }
 </script>
