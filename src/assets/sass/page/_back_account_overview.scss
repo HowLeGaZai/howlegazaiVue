@@ -1,28 +1,55 @@
-.backend-account-overview{
-    .body-sec{
-        background-image: url();
-    }
-    .section_right{
-        .row{
-            justify-content:space-between;
-            align-items: flex-end;
-            .f-select{
-                margin: 8px 0 0 0;
-            }
-        }
-        .table-content{
-            margin-top: 20px;
-            .back-table-3 tr:first-child {
-                background-color: $darkgreen;
-            }
-            .guard{
-                justify-content: space-around;
-                width: 95px;
-                span{
-                    font-size: 16px;
-                }
-            }
-        }
+.pt10{
+    padding-top: 10px;
+}
+
+.bk-account-overview{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 700px;
+
+    .justifycontent{
+        align-items: flex-end;
     }
 
+    .dropdown{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .f-label{
+        text-align: left;
+        margin-left: 0px;
+        width: 200px;
+    }
+    .btn-10-s{
+        margin-bottom: 8px;
+    }
+    .guard{
+        height: auto;
+        width: auto;
+        line-height: 22px;
+        padding: 5px;
+        justify-content: space-around;
+        max-width:80px;
+        i{
+            font-size: 16px;
+        }
+        .bi-x{
+            display: none;
+        }
+        span{
+            font-size: 12px;
+        }
+    }
+    td:nth-child(5){
+        min-width: 300px;
+    }
+    td:nth-child(6),td:nth-child(7){
+        text-align: left;
+        width: 60px;
+        .btn-icon{
+            text-align: left;
+        }
+    }
 }
