@@ -68,8 +68,8 @@
                       <img src="../assets/img/user_pic.png" alt="" class="user_pic" />
                     </a>
                   </li>
-                  <li><a href="#">個人資訊</a></li>
-                  <li><a href="#">成員管理</a></li>
+                  <li><router-link :to="{name:'account_user'}">個人資訊</router-link></li>
+                  <li><router-link :to="{name:'account_user_manage'}">成員管理</router-link></li>
                   <li class="user-record">
                     <a href="#"
                       >管理紀錄
@@ -77,21 +77,21 @@
                     </a>
                     <ul class="dropdown-menu">
                       <li>
-                        <a class="dropdown-item" href="#">貼文刊登紀錄</a>
+                        <router-link :to="{name:'account_user_chat'}" class="dropdown-item">貼文刊登紀錄</router-link>
                       </li>
-                      <!-- <li><a class="dropdown-item" href="#">瓦斯錶回報紀錄</a></li> -->
+                      <!-- <li><router-link :to="{name:'account_user_gas'}" class="dropdown-item">瓦斯錶回報</router-link> -->
                       <li>
-                        <a class="dropdown-item" href="#">空間預約紀錄</a>
+                        <router-link :to="{name:'account_user_space'}" class="dropdown-item">空間預約紀錄</router-link>
                       </li>
                       <li>
-                        <a class="dropdown-item" href="#">活動報名紀錄</a>
+                        <router-link :to="{name:'account_user_activity'}" class="dropdown-item">活動報名紀錄</router-link>
                       </li>
                     </ul>
                   </li>
-                  <!-- <li><a class="dropdown-item" href="#">團購管理</a></li> -->
+                  <!-- <li><router-link :to="{name:'account_user_product'}" class="dropdown-item">團購管理</router-link></li> -->
                   <li><hr class="dropdown-line" /></li>
                   <li>
-                    <a href="/account_user_change_pwd.html">變更密碼</a>
+                    <router-link :to="{name:'account_user_change_pwd'}">活動報名紀錄</router-link>
                   </li>
                 </ul>
               </div>
