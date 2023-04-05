@@ -139,7 +139,7 @@ let burgerBtn = document.getElementById("burger");
       userBtn.onclick = function () {
         accountMenu.classList.add("accountshow");
         if (window.innerWidth > 1400) {
-          userBtn.href = "/account_user.html"; // 修改 href 屬性值為 #
+          userBtn.href = "/account_user"; // 修改 href 屬性值為 #
         }
       };
 
