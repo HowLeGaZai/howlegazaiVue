@@ -4,7 +4,7 @@
         <div class="front-space">
             <div class="smart-bar">
                 <div class="btn-member-block">
-                    <button type="button" class="btn-member btn-color-green">
+                    <button type="button" class="btn-member btn-color-green" onclick="location.href='#/activity'">
                         <i class="bi bi-calendar2-event-fill"></i>
                     </button>
                     <p class="btn-mem-p btn-font-color-green">活動總覽</p>
@@ -18,7 +18,7 @@
                 </div>
                 
                 <div class="btn-member-block">
-                    <button type="button" class="btn-member btn-color-gray">
+                    <button type="button" class="btn-member btn-color-gray" onclick="location.href='#/space'">
                     <i class="bi bi-door-open-fill"></i>
                     </button>
                     <p class="btn-mem-p btn-font-color-gray">空間預約</p>

@@ -159,15 +159,18 @@
               <!-- 開放報名時間與活動舉辦時間-->
               <div class="activity-area3 input-grid-2">
                 <div class="activity-reg f-input-2">
-                  <label for="activity-reg" class="f-label">開放報名時間</label>
+                  <label for="activity-reg" class="f-label activity-reg-1">開放報名時間</label>
                   <input type="text" class="f-text" id="activity-reg" placeholder="開放報名時間">
                   <p>至</p>
                   <input type="text" class="f-text" id="activity-reg" placeholder="截止報名時間">
                 </div>
 
                 <div class="activity-start f-input-2">
-                  <label for="activity-start" class="f-label">活動舉辦時間</label>
-                  <input type="text" class="f-text" id="activity-start" placeholder="2022-05-12">
+          
+                  <label for="activity-start" class="f-label activity-reg-1">活動舉辦時間</label>
+                  <input type="text" class="f-text" id="activity-reg" placeholder="活動開始時間">
+                  <p>至</p>
+                  <input type="text" class="f-text" id="activity-reg" placeholder="活動結束時間">
                 </div>
 
               </div>
