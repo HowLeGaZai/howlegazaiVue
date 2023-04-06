@@ -63,7 +63,7 @@
                   <h5 class="space-size">空間大小：<span>20</span>坪</h5>
                   <h5 class="space-add">地址：花蓮縣大湖里南京東路三段219號4樓</h5>
                   <div class="space-btn">
-                    <button type="button" class="btn-m btn-color-green" onclick="location.href='./space_info.html'">我要預約</button>
+                    <button type="button" class="btn-m btn-color-green" onclick="location.href='/space_info'">我要預約</button>
                 </div>
               </div>
             </div>
@@ -78,7 +78,7 @@
                   <h5 class="space-size">空間大小：<span>20</span>坪</h5>
                   <h5 class="space-add">地址：花蓮縣大湖里南京東路三段219號4樓</h5>
                   <div class="space-btn">
-                    <button type="button" class="btn-m btn-color-green" onclick="location.href='./space_info.html'">我要預約</button>
+                    <button type="button" class="btn-m btn-color-green" onclick="location.href='/space_info'">我要預約</button>
                 </div>
               </div>
             </div>      <div class="space">
@@ -91,7 +91,7 @@
                   <h5 class="space-size">空間大小：<span>20</span>坪</h5>
                   <h5 class="space-add">地址：花蓮縣大湖里南京東路三段219號4樓</h5>
                   <div class="space-btn">
-                    <button type="button" class="btn-m btn-color-green" onclick="location.href='./space_info.html'">我要預約</button>
+                    <button type="button" class="btn-m btn-color-green" onclick="location.href='/space_info'">我要預約</button>
                 </div>
               </div>
             </div>      <div class="space">
@@ -104,7 +104,7 @@
                   <h5 class="space-size">空間大小：<span>20</span>坪</h5>
                   <h5 class="space-add">地址：花蓮縣大湖里南京東路三段219號4樓</h5>
                   <div class="space-btn">
-                    <button type="button" class="btn-m btn-color-green" onclick="location.href='./space_info.html'">我要預約</button>
+                    <button type="button" class="btn-m btn-color-green" onclick="location.href='/space_info'">我要預約</button>
                 </div>
               </div>
             </div>      <div class="space">

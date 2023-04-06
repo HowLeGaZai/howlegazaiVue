@@ -31,16 +31,20 @@
                 </a>
                 <ul class="dropdown-menu" id="dropdown-menu">
                   <li>
-                    <a class="dropdown-item" href="/activity">活動報名</a>
+                    <!-- <a class="dropdown-item" href="/activity">活動報名</a> -->
+                    <router-link :to="{name:'activity'}" class="dropdown-item">活動報名</router-link>
+                  </li>
+                  <!-- <li>
+                    <a class="dropdown-item" href="/space">空間預約</a>
+                  </li> -->
+                  <li>
+                    <!-- <a class="dropdown-item" href="/space">空間預約</a> -->
+                    <router-link :to="{name:'space'}" class="dropdown-item">空間預約</router-link>
                   </li>
                   <li>
-                    <a class="dropdown-item" href="/space">空間預約</a>
+                    
+                    <a class="dropdown-item" href="#">里民團購</a>
                   </li>
-                  <!-- <li> -->
-                    <!-- <a class="dropdown-item" href="/space">空間預約</a> -->
-                    <!-- <router-link :to="{name:'space'}" class="dropdown-item">空間預約</router-link> -->
-                  <!-- </li> -->
-                  <li><a class="dropdown-item" href="#">里民團購</a></li>
                   <li><a class="dropdown-item" href="#">守望相助</a></li>
                   <li><a class="dropdown-item" href="#">維修通報</a></li>
                   <li><a class="dropdown-item" href="#">瓦斯錶回報</a></li>
