@@ -103,7 +103,7 @@
               <i class="bi bi-caret-down-fill i-s "></i>
             </a>
             <div class="be-nav-on be-nav-off be-menu">
-              <button class="be-nav btn-font-color-green">守望隊管理</button>
+              <button class="be-nav btn-font-color-gray">守望隊管理</button>
               <button class="be-nav be-nav btn-font-color-gray">簽到列表</button>
             </div>
           </li>
@@ -230,7 +230,7 @@
               <tr>
                 <td class="family">
                   <div class="family-num">
-                    <h1>2000</h1>
+                    <h1>127</h1>
                     <h2>大湖里戶數</h2>
                   </div>
                   <p>↑12%</p>
@@ -239,13 +239,21 @@
                   <h1>2000</h1>
                 </td> -->
 
-                <!-- <td class="family">
+                <td class="area-number">
                   <div class="family-num">
-                    <h1>2000</h1>
-                    <h2>大湖里戶數</h2>
+                    <h1>231</h1>
+                    <h2>大湖里人口數</h2>
                   </div>
-                  <p>↑12%</p>
-                </td> -->
+                  <p>↑2%</p>
+                </td>
+
+                <td class="area-number">
+                  <div class="family-num">
+                    <h1>147</h1>
+                    <h2>網站註冊人數</h2>
+                  </div>
+                  <p>↑6%</p>
+                </td>
               </tr>
 
               

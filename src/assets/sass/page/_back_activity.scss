@@ -55,7 +55,7 @@
 
 }
 
-// =====  後台-新增活動    =====
+// ============   後台-新增活動    ==========
 
 
 
@@ -64,6 +64,7 @@
     text-align: left;
     margin-bottom: 30px;
     font-size: 25px;
+    text-align: left;
   }
 
   .f-label {
@@ -107,6 +108,13 @@
   }
 }
 
+.activity-reg{
+  input{
+    width: 200px;
+    text-align: left;
+  }
+}
+
 
 .activity-banner {
   .f-file {
@@ -120,6 +128,7 @@
   width: 150px;
 
 }
+
 
 
 .activity-cost-block {
