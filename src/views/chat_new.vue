@@ -34,8 +34,8 @@
             
 
             <div class="confirm-btn">
-              <button type="button" class="btn-m btn-color-white" onclick="location.href='/chat'">取消</button>
-              <button type="button" class="btn-m btn-color-green" onclick="location.href='/chat_info'">發布</button>
+              <button type="button" class="btn-m btn-color-white" onclick="location.href='#/chat'">取消</button>
+              <button type="button" class="btn-m btn-color-green" onclick="location.href='#/chat_info'">發布</button>
             </div>
 
        
