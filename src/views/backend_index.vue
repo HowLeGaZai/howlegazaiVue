@@ -1,7 +1,8 @@
 <template>
     <backendNavbar></backendNavbar>
 
-    <main class="body-sec">
+    <div class="body-sec">
+      <main>
         <!-- <main> -->
     <div class="container-date">
       <!-- 需渲染資料區塊 -->
@@ -83,8 +84,8 @@
             </a>
 
             <div class="be-nav-on be-nav-off ">
-              <button class="be-nav btn-font-color-green"  onclick="window.location.href='space_list.html'">空間列表</button>
-              <button class="be-nav be-nav btn-font-color-gray"  onclick="window.location.href='space_management.html'">預約管理</button>
+              <button class="be-nav btn-font-color-green"  onclick="window.location.href='/space_list'">空間列表</button>
+              <button class="be-nav be-nav btn-font-color-gray"  onclick="window.location.href='space_management'">預約管理</button>
             </div>
           </li>
 
@@ -263,10 +264,10 @@
     </section>
 
 
-
-
-</main>
-
+    </main>
+  </div>
+  
+  <Footer></Footer>
     
   <!-- </main> -->
 </template>
@@ -277,10 +278,11 @@ import backendNavbar from './backendNavbar.vue';
 import $ from 'jquery'
 import 'jquery-ui-dist/jquery-ui'
 import 'jquery-ui-dist/jquery-ui.min.css'
+import Footer from './Footer.vue';
 
 export default {
   components: {
-      backendNavbar,
+      backendNavbar,Footer
     },
     mounted() {
     $('#resizable').resizable({});
