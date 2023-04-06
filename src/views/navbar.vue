@@ -131,7 +131,12 @@ export default {
         dropBtn.classList.toggle("onoff");
       };
 
+<<<<<<< HEAD
       userBtn.onclick = function (e) {
+=======
+      // 點選大頭貼按鈕嗅出側選單，但畫面大於 1400 則直接進入 account 頁 
+      userBtn.onclick = function () {
+>>>>>>> 6e70ad3a8d90ac4f45014df72b71eb65ee5aef4a
         accountMenu.classList.add("accountshow");
         if (window.innerWidth > 1400) {
           userBtn.href = "#/account_user"; // 修改 href 屬性值為 #

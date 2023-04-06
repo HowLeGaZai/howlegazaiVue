@@ -2,7 +2,7 @@
     <backendNavbar></backendNavbar>
 
     <div class="body-sec">
-      <main>
+      <main class="backpadding">
         <!-- <main> -->
     <div class="container-date">
       <!-- 需渲染資料區塊 -->
@@ -367,8 +367,8 @@ export default {
     });
    let beMenu = document.querySelectorAll(".be-menu");
    let beMenuOn = document.querySelectorAll(".be-nav-on");
-  // let beMenu = document.querySelectorAll("be-nav");
-  // console.log(beMenu);
+    // let beMenu = document.querySelectorAll("be-nav");
+    // console.log(beMenu);
 
   for(let i = 0; i < beMenu.length; i++){
     beMenu[i].addEventListener("click",function(){
