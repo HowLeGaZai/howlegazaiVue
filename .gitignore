@@ -1,5 +1,6 @@
-<<<<<<< HEAD
-node_modules
-=======
 node_modules/
->>>>>>> 42d9173f3f1b59eaf2cafa88ab0e84ab7c6ca805
+
+package-lock.json
+src/assets/css/style.css
+src/assets/css/style.css.map
+src/assets/css
