@@ -23,7 +23,7 @@
                 <router-link :to="{name:'chat'}" class="a-black">討論區</router-link>
               </li>
               <li class="smart-service">
-                <a href="#" id="navbarDropdown">
+                <a id="navbarDropdown">
                   智慧里民<span><i class="bi bi-chevron-down"></i></span>
                 </a>
                 <ul class="dropdown-menu" id="dropdown-menu">
