@@ -4,7 +4,7 @@
 
     <main class="front-space">
        <section>
-        <h2 class="title_space">預約空間</h2>
+        <h1 class="title_space">預約空間</h1>
       </section>
         <div class="popup">
           <div class="popup_l">
