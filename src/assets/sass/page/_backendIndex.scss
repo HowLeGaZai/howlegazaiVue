@@ -3,7 +3,7 @@ body {
   z-index: -1;
 }
 
-.section_right {}
+// .section_right {}
 
 .date-overview {
   display: flex;
@@ -99,7 +99,7 @@ body {
 
 .activity-list {
 
-  font-size: 18px;
+  font-size: 14px;
   color: $black;
   text-align: left;
   
@@ -161,7 +161,6 @@ body {
   .btn-be-dash {
     // padding: 0;
     border-radius: 5px;
-    margin-right: 10px;
     
   }
 }
