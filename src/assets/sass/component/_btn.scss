@@ -37,6 +37,11 @@
     color: #525456 $lightdark;
   }
 
+  // 未開放 button 
+  &-unopened{
+    background-color:yellow;
+  }
+
 }
 
 
