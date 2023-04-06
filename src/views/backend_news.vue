@@ -207,9 +207,12 @@
               </div>
           </div>
           <div class="displayflex margintop18">
-              <button type="button" class="btn-10-s btn-color-green marginright20 ">   
+            
+              <button type="button" class="btn-10-s btn-color-green" onclick="window.location.href='#/backend_news_add'">   
                 <i class="bi bi-plus-lg"></i> 新增消息       
               </button>
+            
+
               <!-- <button type="button" class="btn-10-s btn-color-green">
                 <i class="bi bi-cloud-arrow-down-fill"></i>匯出資料
               </button> -->

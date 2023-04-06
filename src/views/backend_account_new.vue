@@ -1,6 +1,7 @@
 <template>
   <backendNavbar></backendNavbar>
-  <main class="body-sec">
+  <div class="body-sec">
+    <main>
     <div class="container-date">
       <!-- 需渲染資料區塊 -->
       <p>西曆：2023 年 03 月 11 日</p>
@@ -120,166 +121,132 @@
           </li>
         </ul>
       </div>
-      <div class="nav_right w100percentage padding30">
-     <!--各頁資料放這裡 -->
-    
-     <!-- 我的sass寫在 _back_table_scss -->
-    <div class="w90percentage accounttable">
-        <h1>最新消息管理</h1>
-        <div class="displayflex justifycontent">
-            <div class="displayflex textalignleft ">
-                <div class="marginright20">
-                  <label for="selecte" class="f-label">類別</label>
-                  <select name="" id="selecte" class="f-select">
-                      <option value="1">-選擇-</option>
-                      <option value="2">公告</option>
-                      <option value="3">宣導</option>
-                      <option value="4">經費報告</option>
-                  </select>
-              </div>
-              <div>
-                  <label for="selecte" class="f-label">發布日期</label>
-                  <select name="" id="selecte" class="f-select">
-                      <option value="1">-選擇-</option>
-                      <option value="2">最新至最舊</option>
-                      <option value="3">最舊至最新 </option>
-                      <!-- <option value="4">審核通過 </option> -->
-                  </select>
-              </div>
+      <section class="section_right">
+        <!-- 帳戶總覽 -->
+        <div class="w90percentage accounttable bk-account-new">
+          <div>
+            <h1>待審核戶長</h1>
+
+            <div class="displayflex maxheight">
+              <table class="back-table-2">
+                <tbody>
+                  <tr>
+                    <td>通過審核</td>
+                    <td>編號</td>
+                    <td>姓名</td>
+                    <td>帳號</td>
+                    <td>地址</td>
+                    <!-- <td>展開</td> -->
+                  </tr>
+                  <tr>
+                    <td><i class="bi bi-check"> </i><i class="bi bi-x"></i></td>
+                    <td>001</td>
+                    <td>王小明</td>
+                    <td>myaccount123@gmail.com</td>
+                    <td>台北市內湖區大湖里碧山路255巷7號</td>
+                    <!-- <td><i class="bi bi-caret-down-fill" id="openBtn"></i></td> -->
+                  </tr>
+
+                  <tr class="hidden-row">
+                    <!-- <td>
+                      <ul>
+                        <li>aaa</li>
+                        <li>aaa</li>
+                        <li>aaa</li>
+                        <li>aaa</li>
+                      </ul>
+                    </td> -->
+                    <!-- <td>
+              <table>
+                <tbody>
+                  <tr>
+                    <td>出生年月日</td>
+                    <td>性別</td>
+                    <td>暱稱</td>
+                    <td>email</td>
+                    <td>電話號碼</td>
+                    <td>身分證影本</td>
+                  </tr>
+                  <tr>
+                    <td>1989/7/4</td>
+                    <td>男</td>
+                    <td>五星上將</td>
+                    <td>ismail123@mail.com</td>
+                    <td>0912345678</td>
+                    <td>
+                      <img src="" alt="">
+                      <img src="" alt="">
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </td> -->
+                  </tr>
+
+                  <tr>
+                    <td><i class="bi bi-check"> </i><i class="bi bi-x"></i></td>
+                    <td>001</td>
+                    <td>王小明</td>
+                    <td>myaccount123@gmail.com</td>
+                    <td>台北市內湖區大湖里碧山路255巷7號</td>
+                    <!-- <td><i class="bi bi-caret-down-fill"></i></td> -->
+                  </tr>
+                  <tr>
+                    <td><i class="bi bi-check"> </i><i class="bi bi-x"></i></td>
+                    <td>001</td>
+                    <td>王小明</td>
+                    <td>myaccount123@gmail.com</td>
+                    <td>台北市內湖區大湖里碧山路255巷7號</td>
+                    <!-- <td><i class="bi bi-caret-down-fill"></i></td> -->
+                  </tr>
+                  <tr>
+                    <td><i class="bi bi-check"> </i><i class="bi bi-x"></i></td>
+                    <td>001</td>
+                    <td>王小明</td>
+                    <td>myaccount123@gmail.com</td>
+                    <td>台北市內湖區大湖里碧山路255巷7號</td>
+                    <!-- <td><i class="bi bi-caret-down-fill"></i></td> -->
+                  </tr>
+                  <tr>
+                    <td><i class="bi bi-check"> </i><i class="bi bi-x"></i></td>
+                    <td>001</td>
+                    <td>王小明</td>
+                    <td>myaccount123@gmail.com</td>
+                    <td>台北市內湖區大湖里碧山路255巷7號</td>
+                    <!-- <td><i class="bi bi-caret-down-fill"></i></td> -->
+                  </tr>
+                </tbody>
+              </table>
+              <!-- 頁碼 -->
+              <ul class="btn-page-block">
+                <li>
+                  <button class="btn-page btn-color-white">
+                    <i class="bi bi-caret-left-fill"></i>
+                  </button>
+                </li>
+                <li><button class="btn-page btn-color-green">1</button></li>
+                <li><button class="btn-page btn-color-white">2</button></li>
+                <li><button class="btn-page btn-color-white">3</button></li>
+                <li>
+                  <button class="btn-page btn-color-white">
+                    <i class="bi bi-caret-right-fill"></i>
+                  </button>
+                </li>
+              </ul>
+            </div>
           </div>
-          <div class="displayflex margintop18">
-              <button type="button" class="btn-10-s btn-color-green marginright20 ">   
-                <a href=""></a><i class="bi bi-plus-lg"></i> 新增消息       
-              </button>
-              <!-- <button type="button" class="btn-10-s btn-color-green">
-                <i class="bi bi-cloud-arrow-down-fill"></i>匯出資料
-              </button> -->
-          </div>
-
-     </div>
-    <div class="">
-      
-        <table class=" back-table-3">
-          
-          <tbody>
-              <tr>
-                  <td>類別</td>
-                  <td>消息標題</td>
-                  <td>發布日期</td>
-                  <td>置頂</td>
-                  <td>編輯</td>
-                  <td>下架</td>
-                  <!-- <td>編輯</td>
-                  <td>刪除</td> -->
-              </tr>
-              <tr>
-                  <td>宣導</td>
-                  <td>大湖里反詐騙宣導</td>
-                  <td>2022-01-01</td>
-                  <td><label class="switch">
-                    <input type="checkbox">
-                    <span class="slider"></span>
-                </label></td>
-                  <td> <button type="button" class="btn-icon">
-                    <i class="bi bi-pencil-square btn-font-color-green"></i>
-                  </button></td>
-                  <td> <button type="button" class="btn-icon">
-                    <i class="bi bi-x-circle-fill btn-font-color-green"></i>
-                  </button></td>
-              </tr>
-              <tr>
-                  <td>宣導</td>
-                  <td>大湖里反詐騙宣導</td>
-                  <td>2022-01-01</td>
-                  <td><label class="switch">
-                    <input type="checkbox">
-                    <span class="slider"></span>
-                </label></td>
-                  <td> <button type="button" class="btn-icon">
-                    <i class="bi bi-pencil-square btn-font-color-green"></i>
-                  </button></td>
-                  <td> <button type="button" class="btn-icon">
-                    <i class="bi bi-x-circle-fill btn-font-color-green"></i>
-                  </button></td>
-              </tr>
-              <tr>
-                  <td>宣導</td>
-                  <td>大湖里反詐騙宣導</td>
-                  <td>2022-01-01</td>
-                  <td><label class="switch">
-                    <input type="checkbox">
-                    <span class="slider"></span>
-                </label></td>
-                  <td> <button type="button" class="btn-icon">
-                    <i class="bi bi-pencil-square btn-font-color-green"></i>
-                  </button></td>
-                  <td> <button type="button" class="btn-icon">
-                    <i class="bi bi-x-circle-fill btn-font-color-green"></i>
-                  </button></td>
-              </tr>
-              <tr>
-                <td>宣導</td>
-                <td>大湖里反詐騙宣導</td>
-                <td>2022-01-01</td>
-                <td><label class="switch">
-                  <input type="checkbox">
-                  <span class="slider"></span>
-              </label></td>
-                <td> <button type="button" class="btn-icon">
-                  <i class="bi bi-pencil-square btn-font-color-green"></i>
-                </button></td>
-                <td> <button type="button" class="btn-icon">
-                  <i class="bi bi-x-circle-fill btn-font-color-green"></i>
-                </button></td>
-            </tr>
-              <tr>
-                  <td>宣導</td>
-                  <td>大湖里反詐騙宣導</td>
-                  <td>2022-01-01</td>
-                  <td><label class="switch">
-                    <input type="checkbox">
-                    <span class="slider"></span>
-                </label></td>
-                  <td> <button type="button" class="btn-icon">
-                    <i class="bi bi-pencil-square btn-font-color-green"></i>
-                  </button></td>
-                  <td> <button type="button" class="btn-icon">
-                    <i class="bi bi-x-circle-fill btn-font-color-green"></i>
-                  </button></td>
-              </tr>
-           </tbody>
-          
-      </table> 
-      
-  </div>
-  <ul class="btn-page-block">
-    <li><button class="btn-page btn-color-white"><i class="bi bi-caret-left-fill"></i></button></li>
-    <li><button class="btn-page btn-color-white">1</button></li>
-    <li><button class="btn-page btn-color-green">2</button></li>
-    <li><button class="btn-page btn-color-white">3</button></li>
-    <li><button class="btn-page btn-color-white"><i class="bi bi-caret-right-fill"></i></button></li>
-  </ul>
-
-  <!-- 頁碼還沒寫完 -->
-
-      </div>
-   
-
-    </div>
-
-     <!-- 992以下顯示內容 -->
-     <div class="main rest-inf">
-        不支援手機喔 
-     </div>
+        </div>
+      </section>
     </section>
   </main>
+  </div>
+
   <Footer></Footer>  
 </template>
 
 <script>
 import backendNavbar from "./backendNavbar.vue";
 import Footer from './Footer.vue';
-
 export default {
   components: {
     backendNavbar,
@@ -288,7 +255,6 @@ export default {
   mounted() {
     let openBtn = document.getElementById('openBtn');
     let hiddenRow = document.querySelector('.hidden-row');
-
     openBtn.addEventListener('click', () => {
         hiddenRow.classList.toggle('show-row');
     });

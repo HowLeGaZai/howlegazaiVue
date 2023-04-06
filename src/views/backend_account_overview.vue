@@ -1,6 +1,7 @@
 <template>
   <backendNavbar></backendNavbar>
-  <main class="body-sec">
+  <div class="body-sec">
+    <main>
     <div class="container-date">
       <!-- 需渲染資料區塊 -->
       <p>西曆：2023 年 03 月 11 日</p>
@@ -136,7 +137,7 @@
               </div>
               <button
                 type="button"
-                class="btn-10-s btn-color-green col-sm-12 col-sm-2"
+                class="btn-10-s btn-color-green"
               >
                 <i class="bi bi-cloud-arrow-down-fill"></i>匯出資料
               </button>
@@ -317,14 +318,17 @@
       </section>
     </section>
   </main>
+  </div>
+  <Footer></Footer>
 </template>
 
 <script>
 import backendNavbar from "./backendNavbar.vue";
+import Footer from './Footer.vue';
 
 export default {
   components: {
-    backendNavbar,
+    backendNavbar,Footer
   },
   mounted() {
     // ======nav的收合======
