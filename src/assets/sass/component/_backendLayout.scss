@@ -102,6 +102,9 @@
 
   width: 100%;
   padding: 10px 40px 10px 40px;
+    @media screen and (max-width: 1100px) {
+      padding: 10px;
+    }
 }
 
 /* < 992px 內容欄位＋顯示不支援手機 */

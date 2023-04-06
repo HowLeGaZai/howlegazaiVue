@@ -161,6 +161,7 @@ body {
   .btn-be-dash {
     // padding: 0;
     border-radius: 5px;
+    margin-right: 10px;
     
   }
 }
@@ -184,6 +185,10 @@ body {
     border-radius: 5px;
 
   }
+
+  tr{
+    display: flex;
+  }
   
   p{
     font-size: 20px;
@@ -194,9 +199,16 @@ body {
   
   td{
     display: flex;
+    justify-content: center;
     align-items: center;
-    width: 200px;
-    padding: 30px;
+    width: 250px;
+    padding: 5px;
+    margin:  20px;
+    border-right:1px solid $green;
+  }
+
+  td:last-child{
+    border-right:none;
   }
   
   h1{

@@ -286,7 +286,7 @@
               <tr>
                 <td class="family">
                   <div class="family-num">
-                    <h1>2000</h1>
+                    <h1>127</h1>
                     <h2>大湖里戶數</h2>
                   </div>
                   <p>↑12%</p>
@@ -295,13 +295,21 @@
                   <h1>2000</h1>
                 </td> -->
 
-                <!-- <td class="family">
+                <td class="area-number">
                   <div class="family-num">
-                    <h1>2000</h1>
-                    <h2>大湖里戶數</h2>
+                    <h1>231</h1>
+                    <h2>大湖里人口數</h2>
                   </div>
-                  <p>↑12%</p>
-                </td> -->
+                  <p>↑2%</p>
+                </td>
+
+                <td class="area-number">
+                  <div class="family-num">
+                    <h1>147</h1>
+                    <h2>網站註冊人數</h2>
+                  </div>
+                  <p>↑6%</p>
+                </td>
               </tr>
 
               
