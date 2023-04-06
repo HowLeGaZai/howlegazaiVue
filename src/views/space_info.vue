@@ -6,32 +6,28 @@
       <section> 
         <h2 class="title_space">預約空間</h2>
         
-      <!-- Swiper -->
-        <div class="swiper spaceSwiper">
-          <!-- Additional required wrapper -->
-          <div class="swiper-wrapper">
-            <!-- Slides -->
-            <div class="swiper-slide">
+          <swiper  :navigation="{ nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }" :modules="modules" class="spaceSwiper" :slidesPerView="1">
+
+             <swiper-slide>
               <div class="image space_pic">
                 <img src="../assets/img/s_1.png" alt="">
               </div>
-            </div>
-            <div class="swiper-slide">
+           </swiper-slide>
+             <swiper-slide>
               <div class="image space_pic">
                 <img src="../assets/img/s_1.png" alt="">
               </div>
-            </div>
-            <div class="swiper-slide">
+              </swiper-slide>
+             <swiper-slide>
               <div class="image space_pic">
                 <img src="../assets/img/s_1.png" alt="">
               </div>
-            </div>
-        </div>
+              </swiper-slide>
+        </swiper>
          <div class="swiper-btn">
             <button type="button" class="btn-cir-m  btn-color-white swiper-button-prev"><i class="bi bi-caret-left-fill"></i></button>
             <button type="button" class="btn-cir-m btn-color-green swiper-button-next"><i class="bi bi-caret-right-fill "></i></button>
          </div>
-        </div>
 
       </section>
 
@@ -101,7 +97,7 @@
             
             <h3><i class="bi bi-dot"></i>空間地址<i class="bi bi-dot"></i></h3>
             <ul>
-                <li>臺北市中山區偉育里南京東路三段219號4樓</li>
+                <li>花蓮縣大湖里南京東路三段219號4樓</li>
                 <li>
                     <div class="space-map">
                         <img src="../assets/img/space-map.png" alt="">
@@ -117,6 +113,19 @@
 </template>
 
 <script>
+import { Swiper, SwiperSlide } from 'swiper/vue';
+
+  // Import Swiper styles
+  import 'swiper/css';
+
+  import 'swiper/css/navigation';
+
+  import '../assets/css/style.css';
+
+  // import required modules
+  import { Navigation } from 'swiper';
+
+
 // import VueDatePicker from '@vuepic/vue-datepicker';
 // import '@vuepic/vue-datepicker/dist/main.css'
 import $ from 'jquery'
@@ -132,7 +141,15 @@ export default {
     }
   },
   components: {
-      navbar,Footer,
+      Swiper,
+      SwiperSlide,
+      navbar,
+      Footer,
+    },
+    setup() {
+      return {
+        modules: [Navigation],
+      };
     },
   
   mounted: function () {
