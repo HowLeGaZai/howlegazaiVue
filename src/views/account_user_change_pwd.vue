@@ -10,15 +10,23 @@
                     <div class="image user_pic"><img src="../assets/img/user_pic.png" alt=""></div>
                     <ul>
 
-                        <li v-for="accountNav in accountNavs"><a :href="accountNav.con">{{accountNav.nav}}</a></li>
-                        <!-- <li><a href="#">個人資訊</a></li>
-                        <li><a href="#">成員管理</a></li>
-                        <li><a href="#">貼文刊登紀錄</a></li>
+                        <!-- <li v-for="accountNav in accountNavs"><a :href="accountNav.con">{{accountNav.nav}}</a></li> -->
+                       <li><router-link :to="{name:'account_user'}" class="">個人資訊</router-link></li>
+                        <!-- <li><a href="#" class="a-select">個人資訊</a></li> -->
+                        <li><router-link :to="{name:'account_user_manage'}" class="">成員管理</router-link></li>
                         
-                        <li><a href="#">空間預約紀錄</a></li>
-                        <li><a href="#">活動報名紀錄</a></li>
+                        <!-- <li><a href="#">成員管理</a></li> -->
+                        <!-- <li><a href="#">貼文刊登紀錄</a></li> -->
+                        <li><router-link :to="{name:'account_user_chat'}" class="">貼文刊登紀錄</router-link></li>
                         
-                        <li><a href="#">變更密碼</a></li> -->
+                        <!-- <li><a href="#">空間預約紀錄</a></li> -->
+                        <li><router-link :to="{name:'account_user_space'}" class="">空間預約紀錄</router-link></li>
+
+                        <!-- <li><a href="#">活動報名紀錄</a></li> -->
+                        <li><router-link :to="{name:'account_user_activity'}" class="">活動報名紀錄</router-link></li>
+                        
+                        <!-- <li><a href="#">變更密碼</a></li> -->
+                        <li><router-link :to="{name:'account_user_change_pwd'}" class="a-select">變更密碼</router-link></li>
                         
 
                     </ul>
