@@ -389,20 +389,11 @@ main, .main {
   max-width: 1440px;
   margin: 0 auto;
   text-align: center;
-  padding: 0 75px;
+  padding: 0px 75px;
 }
 @media (max-width: 992px) {
   main, .main {
-    padding: 0 20px;
-  }
-}
-
-main {
-  padding: 70PX 75px;
-}
-@media (max-width: 992px) {
-  main {
-    padding: 70PX 20px;
+    padding: 0px 20px;
   }
 }
 
@@ -6027,7 +6018,7 @@ footer p {
 }
 
 .home {
-  padding: 0px 75px 0px 75px;
+  padding: 70px 75px 0px 75px;
   /* 第一屏 */
   /* banner */
   /* 第二屏 */
@@ -6045,7 +6036,7 @@ footer p {
 }
 @media (max-width: 992px) {
   .home {
-    padding: 0 20px;
+    padding: 20px 20px;
   }
 }
 .home section {
