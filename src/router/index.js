@@ -186,6 +186,16 @@ const routes = [
     name: 'backend_account_overview',
     component:() => import(/* webpackChunkName: "about" */ '../views/backend_account_overview.vue')
   },
+  {
+    path: '/backend/account/cancel',
+    name: 'backend_account_cancel',
+    component:() => import(/* webpackChunkName: "about" */ '../views/backend_account_cancel.vue')
+  },
+  {
+    path: '/backend/account/new',
+    name: 'backend_account_new',
+    component:() => import(/* webpackChunkName: "about" */ '../views/backend_account_new.vue')
+  },
   
 
 
