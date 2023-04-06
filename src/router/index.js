@@ -133,15 +133,14 @@ const routes = [
     component:() => import(/* webpackChunkName: "about" */ '../views/account_user_change_pwd.vue')
   },
   {
-<<<<<<< HEAD
     path: '/privacy',
     name: 'privacy',
     component:() => import(/* webpackChunkName: "about" */ '../views/privacy.vue')
-=======
+  },
+  {
     path: '/news_info',
     name: 'news_info',
     component:() => import(/* webpackChunkName: "about" */ '../views/news_info.vue')
->>>>>>> 321d78ba60449ce6b3fb73fa609ca74ee31a9ba7
   },
   
   
