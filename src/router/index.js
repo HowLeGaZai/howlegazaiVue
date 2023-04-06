@@ -132,6 +132,11 @@ const routes = [
     name: 'account_user_change_pwd',
     component:() => import(/* webpackChunkName: "about" */ '../views/account_user_change_pwd.vue')
   },
+  {
+    path: '/privacy',
+    name: 'privacy',
+    component:() => import(/* webpackChunkName: "about" */ '../views/privacy.vue')
+  },
   
   
   /*--------------------------  backend --------------------------*/
