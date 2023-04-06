@@ -27,7 +27,7 @@
               <i class="bi bi-caret-down-fill i-s"></i>
             </a>
             <div class="be-nav-on be-nav-off">
-              <button class="be-nav btn-font-color-gray" onclick="window.location.href='backend_websiteinfo.html'">網站基本設定</button>
+              <button class="be-nav btn-font-color-gray" onclick="window.location.href='./backend_websiteinfo'">網站基本設定</button>
               <button class="be-nav be-nav btn-font-color-gray" onclick="window.location.href='backend_officeinfo.html'">聯絡里辦資訊</button>
               <button class="be-nav btn-font-color-gray" onclick="window.location.href='backend_faq.html'">常見問題設定</button>
             </div>
@@ -262,6 +262,7 @@
         <!--各頁資料放這裡 -->
       </section>
     </section>
+
 
 
     </main>
