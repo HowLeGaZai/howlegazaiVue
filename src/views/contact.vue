@@ -206,16 +206,22 @@
 <script>
 // import required modules
 import navbar from './navbar.vue';
-import Footer from './Footer.vue'
+import Footer from './Footer.vue';
+import { Swiper, SwiperSlide } from "swiper/vue";
+import "swiper/css";
+import "swiper/css/navigation";
+import { Navigation } from "swiper";
 
 export default {
   components: {
     Footer,
     navbar,
+    Swiper,
+      SwiperSlide,
   },
   setup() {
     return {
-
+ modules: [Navigation],
     };
   },
   mounted() {

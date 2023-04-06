@@ -134,7 +134,7 @@
                   <div class="space-btn">
                       <router-link to="/space_info" custom v-slot="{ navigate }">
                           <button class="btn-m btn-color-green" @click="navigate" role="link">我要預約</button>
-                        </router-link>
+                      </router-link>
                     <!-- <button type="button" class="btn-m btn-color-green" onclick="location.href='/space_info'">我要預約</button> -->
                 </div>
               </div>
