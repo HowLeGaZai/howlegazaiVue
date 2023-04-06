@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 // import HomeView from '../views/HomeView.vue'
 // import contact from '../views/contact.vue'
 import Home from '../views/Home.vue'
@@ -132,6 +132,11 @@ const routes = [
     name: 'account_user_change_pwd',
     component:() => import(/* webpackChunkName: "about" */ '../views/account_user_change_pwd.vue')
   },
+  {
+    path: '/news_info',
+    name: 'news_info',
+    component:() => import(/* webpackChunkName: "about" */ '../views/news_info.vue')
+  },
   
   
   /*--------------------------  backend --------------------------*/
@@ -193,7 +198,7 @@ const routes = [
 
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHashHistory(process.env.BASE_URL),
   routes
 })
 
