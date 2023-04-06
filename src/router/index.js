@@ -305,6 +305,12 @@ const routes = [
   
   // 空間管理
   // 新增空間
+  {
+    // 後台 手機不支援
+    path: '/backend_mobileNotSupport',
+    name: 'backend_mobileNotSupport',
+    component:() => import(/* webpackChunkName: "about" */ '../views/backend_mobileNotSupport.vue')
+  },
   
   
   

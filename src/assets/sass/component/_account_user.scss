@@ -264,8 +264,24 @@
 }
 
 
+.flexwrap_maxwidth{
+  width: 100%;
+  flex-wrap:wrap;
+}
 
+.max_width100percentage{
+  max-width: 100%;
+}
 
+.width100percentage{
+  max-width: 100%;
+}
+.displayblock{
+  display: block;
+}
+.changelineheight{
+  line-height: 1.5;
+}
 
 
 
