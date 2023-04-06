@@ -130,9 +130,10 @@
   
 
   //忘記密碼
-  .pass{
+  .pass a{
     color: #a6a6a6;
     cursor: pointer;
+    float: left;
   }
   .pass:hover{
     text-decoration: none;
@@ -198,6 +199,8 @@
 
 
 .center_2 {
+  z-index: 5;
+  height: 500px;
   .btn-m {
     margin: 0 30px;
   }
