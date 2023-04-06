@@ -7,8 +7,10 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "@ckeditor/ckeditor5-autoformat": "^37.0.1",
     "@ckeditor/ckeditor5-basic-styles": "^36.0.1",
     "@ckeditor/ckeditor5-build-classic": "^36.0.1",
+    "@ckeditor/ckeditor5-upload": "^37.0.1",
     "@ckeditor/ckeditor5-vue": "^4.0.1",
     "@vuepic/vue-datepicker": "^4.3.0",
     "ckeditor4-vue": "^2.3.0",

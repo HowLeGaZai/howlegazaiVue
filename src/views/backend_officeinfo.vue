@@ -367,7 +367,7 @@ export default {
            
             const uploadGroup = button.closest('.uploading');
     
-          
+            
             const picArea = uploadGroup.querySelector('.pic-area-box');
             const picImg = picArea.querySelector('img');
             const picName = picArea.querySelector('span');
