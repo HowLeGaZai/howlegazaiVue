@@ -2957,7 +2957,7 @@ header nav .leftnav ul li.left-logo {
     display: block;
   }
 }
-header nav .leftnav ul li a {
+header nav .leftnav ul li a, header nav .leftnav ul li .a-black {
   display: block;
   color: #2e3646;
   font-size: 28px;
@@ -2965,20 +2965,20 @@ header nav .leftnav ul li a {
   height: 75px;
 }
 @media (max-width: 992px) {
-  header nav .leftnav ul li a {
+  header nav .leftnav ul li a, header nav .leftnav ul li .a-black {
     width: 68vw;
     display: block;
   }
 }
-header nav .leftnav ul li a span {
+header nav .leftnav ul li a span, header nav .leftnav ul li .a-black span {
   font-size: 22px;
   padding-left: 5px;
 }
-header nav .leftnav ul li a:hover {
+header nav .leftnav ul li a:hover, header nav .leftnav ul li .active {
   color: #27b096;
 }
 @media (max-width: 992px) {
-  header nav .leftnav ul li a:hover {
+  header nav .leftnav ul li a:hover, header nav .leftnav ul li .active {
     background-color: #27b096;
     color: #fff;
   }
@@ -2989,11 +2989,11 @@ header nav .leftnav ul li a:active {
 header nav .leftnav ul li .a-gray {
   color: #808080;
 }
-header nav .leftnav ul li .a-gray:hover, header nav .leftnav ul li .a-gray:active {
+header nav .leftnav ul li .a-gray:hover, header nav .leftnav ul li .a-gray:active, header nav .leftnav ul li .a-gray .active {
   color: #808080;
 }
 @media (max-width: 992px) {
-  header nav .leftnav ul li .a-gray:hover, header nav .leftnav ul li .a-gray:active {
+  header nav .leftnav ul li .a-gray:hover, header nav .leftnav ul li .a-gray:active, header nav .leftnav ul li .a-gray .active {
     background-color: transparent;
     color: #808080;
   }
@@ -3055,11 +3055,11 @@ header nav .leftnav ul .smart-service a.onoff:hover {
 header nav .leftnav ul .smart-service .a-gray {
   color: #808080;
 }
-header nav .leftnav ul .smart-service .a-gray:hover, header nav .leftnav ul .smart-service .a-gray:active {
+header nav .leftnav ul .smart-service .a-gray:hover, header nav .leftnav ul .smart-service .a-gray:active, header nav .leftnav ul .smart-service .a-gray .active {
   color: #808080;
 }
 @media (max-width: 992px) {
-  header nav .leftnav ul .smart-service .a-gray:hover, header nav .leftnav ul .smart-service .a-gray:active {
+  header nav .leftnav ul .smart-service .a-gray:hover, header nav .leftnav ul .smart-service .a-gray:active, header nav .leftnav ul .smart-service .a-gray .active {
     background-color: transparent;
     color: #808080;
   }
@@ -5993,7 +5993,7 @@ footer p {
 }
 
 .home {
-  padding: 50px 20px 70px 20px;
+  padding: 70px 75px 5px 75px;
   /* 第一屏 */
   /* banner */
   /* 第二屏 */
@@ -6183,8 +6183,32 @@ footer p {
     margin-bottom: 50%;
   }
 }
+.home .home-event .card {
+  width: 360px;
+}
+.home .home-event .card .event_pic {
+  width: 100%;
+  height: 360px;
+}
+.home .home-event .card-tag {
+  position: absolute;
+  top: 315px;
+  left: 30px;
+}
 .home .home-product {
   margin-bottom: 20%;
+}
+.home .home-product .card {
+  width: 360px;
+}
+.home .home-product .card .event_pic {
+  width: 100%;
+  height: 360px;
+}
+.home .home-product .card-tag {
+  position: absolute;
+  top: 315px;
+  left: 30px;
 }
 @media screen and (max-width: 1100px) {
   .home .home-product {

@@ -192,11 +192,6 @@ const routes = [
     component:() => import(/* webpackChunkName: "about" */ '../views/backend_account_cancel.vue')
   },
   
-  
-  
-  
-  
-  
 ]
 
 
@@ -204,6 +199,10 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 })
+
+
+
+
 
 export default router
 
