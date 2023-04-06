@@ -49,7 +49,7 @@
                 <p class="btn-mem-p btn-font-color-gray">守望相助</p>
               </div>
         </div>
-        <h2 class="title_space">空間總覽</h2>
+        <h1 class="title_space">空間總覽</h1>
         <h4 class="second_title">擔心聚會的時候吹風淋雨嗎？ 我們聽到了</h4>
     
         <div class="space-list">
