@@ -237,7 +237,12 @@ const routes = [
     name: 'backend_account_new',
     component:() => import(/* webpackChunkName: "about" */ '../views/backend_account_new.vue')
   },
-  
+  {
+    // 後台 空間管理 空間列表
+    path: '/backend_space_list',
+    name: 'backend_space_list',
+    component:() => import(/* webpackChunkName: "about" */ '../views/backend_space_list.vue')
+  },
 
 
   //最新消息預留檔名（消息列表＋新增消息）
