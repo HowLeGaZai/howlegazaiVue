@@ -205,17 +205,17 @@ const routes = [
 
 
   //最新消息預留檔名（消息列表＋新增消息）
-  {
-    path: '/backend/news',
-    name: 'backend_news',
-    component:() => import(/* webpackChunkName: "about" */ '../views/backend_news.vue')
-  },
+  // {
+  //   path: '/backend/news',
+  //   name: 'backend_news',
+  //   component:() => import(/* webpackChunkName: "about" */ '../views/backend_news.vue')
+  // },
 
-  {
-    path: '/backend/news/add',
-    name: 'backend_news_add',
-    component:() => import(/* webpackChunkName: "about" */ '../views/backend_news_add.vue')
-  },
+  // {
+  //   path: '/backend/news/add',
+  //   name: 'backend_news_add',
+  //   component:() => import(/* webpackChunkName: "about" */ '../views/backend_news_add.vue')
+  // },
   
   
   

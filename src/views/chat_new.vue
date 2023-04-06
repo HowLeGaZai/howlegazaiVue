@@ -66,20 +66,20 @@ import Footer from './Footer.vue';
   },
    mounted(){
     
-this.init();
+// this.init();
 
     
    },
    methods: {
    
-    init() {
+    // init() {
       
-      const editorInstance = this.$refs.ckeditor.editorInstance;
+    //   const editorInstance = this.$refs.ckeditor.editorInstance;
       
-      editorInstance.plugins.get('FileRepository').createUploadAdapter = function (loader) {
-        return new ImageUploadAdapter(loader);
-      };
-    },
+    //   editorInstance.plugins.get('FileRepository').createUploadAdapter = function (loader) {
+    //     return new ImageUploadAdapter(loader);
+    //   };
+    // },
   },
    
 
