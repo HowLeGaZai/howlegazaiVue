@@ -1,0 +1,88 @@
+.noSupport {
+    max-height: 100vh;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding-top: 8%;
+
+    @include breakpoint($grid-breakpoints, "md") {
+        flex-direction: column;
+        padding-top: 110px;
+    }
+    a {
+        overflow: visible; 
+        color: $black;
+        &:hover{
+            color: $green;
+        }
+        @include breakpoint($grid-breakpoints, "md") {
+            margin-bottom: 105px;
+        }
+        div {
+        width: 400px;
+        height: 300px;
+        padding: 80px 20px;
+        box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+        background-color: $white;
+        border-radius: 10px 10px 10px 10px;
+        margin: 0 5px 0 5px;
+        @include breakpoint($grid-breakpoints, "md") {
+            margin: 0px 0px 5px 0px;
+            width: 350px;
+            height: 300px;
+            padding: 20px;
+        }
+        &::before {
+            content: "";
+            position: relative;
+            top: -193px;
+            left: -20px;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 200px 100px 200px;
+            border-color: transparent transparent $white transparent;
+            border-radius: 50px 50px 10px 10px;
+            @include breakpoint($grid-breakpoints, "md") {
+            border-width: 0 174px 80px 174px;
+            top: -113px;
+            left: -20px;
+            }
+        }
+
+            .LiIcon {
+                position: relative;
+                width: 36px;
+                height: 40px;
+                margin: 0 auto;
+                margin-top: -150px;
+                margin-bottom: 50px;
+                z-index: 10;
+
+                @include breakpoint($grid-breakpoints, "md") {
+                    margin: 0px 0px 5px 0px;
+                    width: 30px;
+                    height: 34px;
+                    margin: 0 auto;
+                    margin-top: -80px;
+                    margin-bottom: 50px;
+                    z-index: 10;
+                }
+                   
+            }
+
+            h1 {
+                font-size: 1.6em;
+                text-overflow: clip;
+                margin-bottom: 20px;
+            }
+
+            .cat {
+                width: 140px;
+                height: 150px;
+                margin: 0 auto;
+                margin-bottom: 20px;
+             }
+        }
+    }
+}

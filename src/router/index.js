@@ -303,7 +303,12 @@ const routes = [
     component:() => import(/* webpackChunkName: "about" */ '../views/backend_news_add.vue')
   },
   
-  
+  {
+    // 後台 手機不支援
+    path: '/backend_mobileNotSupport',
+    name: 'backend_mobileNotSupport',
+    component:() => import(/* webpackChunkName: "about" */ '../views/backend_mobileNotSupport.vue')
+  },
   
   
   
