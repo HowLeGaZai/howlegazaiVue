@@ -11,74 +11,73 @@
             <section class="container-main">
                 <div class="backend-nav">
                     <ul class="">
-                    <li>
-                        <a class="be-nav btn-color-white">
-                        <div class="width-3 text-left">後台管理首頁</div>
-                        <i class="bi bi-caret-down-fill i-s opacity-0"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="be-nav  opacity-6 btn-color-darkgray" id="beMenu">
-                        <div class="width-3 text-left">網站管理</div>
-                        <i class="bi bi-caret-down-fill i-s"></i>
-                        </a>
-                        <div class="be-nav-on be-nav-off" id="beMenuOn">
-                        <button class="be-nav btn-font-color-green">網站基本設定</button>
-                        <button class="be-nav be-nav btn-font-color-gray">聯絡里辦資訊</button>
-                        <button class="be-nav btn-font-color-gray">常見問題設定</button>
-                        </div>
-                    </li>
+                        <li>
+                            <a class="be-nav opacity-6 btn-color-darkgray be-menu" href="./backend/index.html">
+                            <div class="width-3 text-left">後台管理首頁</div>
+                            <i class="bi bi-caret-down-fill i-s opacity-0"></i>
+                            </a>
+                            <div class="be-nav-on be-nav-off"></div>
+                        </li>
+                        <li>
+                            <a class="be-nav  opacity-6 btn-color-darkgray" id="beMenu">
+                            <div class="width-3 text-left">網站管理</div>
+                            <i class="bi bi-caret-down-fill i-s"></i>
+                            </a>
+                            <div class="be-nav-on be-nav-off" id="beMenuOn">
+                            <button class="be-nav btn-font-color-green">網站基本設定</button>
+                            <button class="be-nav be-nav btn-font-color-gray">聯絡里辦資訊</button>
+                            <button class="be-nav btn-font-color-gray">常見問題設定</button>
+                            </div>
+                        </li>
+                        <li>
+                            <a class="be-nav opacity-6 btn-color-darkgray">
+                            <div class="width-3 text-left">帳戶管理</div>
+                            <i class="bi bi-caret-down-fill i-s"></i>
+                            <div class="be-nav-on be-nav-off" id="beMenuOn">
+                                <button class="be-nav btn-font-color-green">待審核清單</button>
+                                <button class="be-nav be-nav btn-font-color-gray">帳戶總列表</button>
+                                <button class="text-ali be-nav btn-font-color-gray">已刪除帳戶</button>
+                            </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="be-nav opacity-6 btn-color-darkgray">
+                            <div class="width-3 text-left">最新消息管理</div>
+                            <i class="bi bi-caret-down-fill i-s opacity-0"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="be-nav opacity-6 btn-color-darkgray">
+                            <div class="width-3 text-left">討論區列表</div>
+                            <i class="bi bi-caret-down-fill i-s opacity-0"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="be-nav opacity-6 btn-color-darkgray">
+                            <div class="width-3 text-left">團購網管理</div>
+                            <i class="bi bi-caret-down-fill i-s opacity-0"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="be-nav opacity-6 btn-color-darkgray">
+                            <div class="width-3 text-left">活動管理</div>
+                            <i class="bi bi-caret-down-fill i-s"></i>
+                            </a>
+                            <div class="be-nav-on be-nav-off" id="beMenuOn">
+                            <button class="be-nav btn-font-color-green">活動列表</button>
+                            <button class="be-nav be-nav btn-font-color-gray">新增活動</button>
+                            </div>
+                        </li>
 
                     <li>
-                        <a class="be-nav opacity-6 btn-color-darkgray">
-                        <div class="width-3 text-left">帳戶管理</div>
-                        <i class="bi bi-caret-down-fill i-s"></i>
-                        <div class="be-nav-on be-nav-off" id="beMenuOn">
-                            <button class="be-nav btn-font-color-green">待審核清單</button>
-                            <button class="be-nav be-nav btn-font-color-gray">帳戶總列表</button>
-                            <button class="text-ali be-nav btn-font-color-gray">已刪除帳戶</button>
-                        </div>
-                        </a>
-                    </li>
-
-                    <li>
-                        <a class="be-nav opacity-6 btn-color-darkgray">
-                        <div class="width-3 text-left">最新消息管理</div>
-                        <i class="bi bi-caret-down-fill i-s opacity-0"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="be-nav opacity-6 btn-color-darkgray">
-                        <div class="width-3 text-left">討論區列表</div>
-                        <i class="bi bi-caret-down-fill i-s opacity-0"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="be-nav opacity-6 btn-color-darkgray">
-                        <div class="width-3 text-left">團購網管理</div>
-                        <i class="bi bi-caret-down-fill i-s opacity-0"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="be-nav opacity-6 btn-color-darkgray">
-                        <div class="width-3 text-left">活動管理</div>
-                        <i class="bi bi-caret-down-fill i-s"></i>
-                        </a>
-                        <div class="be-nav-on be-nav-off" id="beMenuOn">
-                        <button class="be-nav btn-font-color-green">活動列表</button>
-                        <button class="be-nav be-nav btn-font-color-gray">新增活動</button>
-                        </div>
-                    </li>
-
-                    <li>
-                        <a class="be-nav opacity-6 btn-color-darkgray">
+                        <a class="be-nav btn-color-white be-menu">
                         <div class="width-3 text-left">空間管理</div>
                         <i class="bi bi-caret-down-fill i-s"></i>
                         </a>
 
-                        <div class="be-nav-on be-nav-off" id="beMenuOn">
-                        <button class="be-nav btn-font-color-green">空間列表</button>
-                        <button class="be-nav be-nav btn-font-color-gray">預約管理</button>
+                        <div class="be-nav-on" id="beMenuOn">
+                        <button class="be-nav btn-font-color-green" onclick="window.location.href='backend_space_list.html'">空間列表</button>
+                        <button class="be-nav be-nav btn-font-color-gray" onclick="window.location.href='backend_space_management.html'">預約管理</button>
                         </div>
                     </li>
 
