@@ -238,9 +238,9 @@
                         </div> <br>
                         <div class="row">
                             <div class="col-12">
-                                <label for="tarea" class="f-label">標題:</label>
+                                <label for="tarea" class="f-label">內容:</label>
                                 <textarea name="" id="tarea" cols="30" rows="5" class="f-text"
-                                    placeholder="回覆討論"></textarea>
+                                    placeholder="內容說明"></textarea>
                             </div>
                         </div>
                     </div>
@@ -275,9 +275,9 @@
                         </div> <br>
                         <div class="row">
                             <div class="col-12">
-                                <label for="tarea" class="f-label">標題:</label>
+                                <label for="tarea" class="f-label">內容:</label>
                                 <textarea name="" id="tarea" cols="30" rows="5" class="f-text"
-                                    placeholder="回覆討論"></textarea>
+                                    placeholder="內容說明"></textarea>
                             </div>
                         </div>
                     </div>
@@ -311,9 +311,9 @@
                         </div> <br>
                         <div class="row">
                             <div class="col-12">
-                                <label for="tarea" class="f-label">標題:</label>
+                                <label for="tarea" class="f-label">內容:</label>
                                 <textarea name="" id="tarea" cols="30" rows="5" class="f-text"
-                                    placeholder="回覆討論"></textarea>
+                                    placeholder="內容說明"></textarea>
                             </div>
                         </div>
                     </div>

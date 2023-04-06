@@ -275,18 +275,19 @@ const routes = [
 
   // 最新消息預留檔名（消息列表＋新增消息）
   {
-    path: '/backend/news',
+    path: '/backend_news',
     name: 'backend_news',
     component:() => import(/* webpackChunkName: "about" */ '../views/backend_news.vue')
   },
-// 最新消息 (增加消息)
+  // 最新消息 (增加消息)
   {
-    path: '/backend/news/add',
+    path: '/backend_news_add',
     name: 'backend_news_add',
     component:() => import(/* webpackChunkName: "about" */ '../views/backend_news_add.vue')
   },
   
-  
+  // 空間管理
+  // 新增空間
   
   
   
