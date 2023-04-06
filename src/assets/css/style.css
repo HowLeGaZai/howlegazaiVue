@@ -6027,7 +6027,7 @@ footer p {
 }
 
 .home {
-  padding: 70px 75px 5px 75px;
+  padding: 0px 75px 0px 75px;
   /* 第一屏 */
   /* banner */
   /* 第二屏 */
@@ -6042,6 +6042,11 @@ footer p {
   /* 團購輪播 */
   /* 第六屏 */
   /* 智慧里民 */
+}
+@media (max-width: 992px) {
+  .home {
+    padding: 0 20px;
+  }
 }
 .home section {
   margin-top: 10%;
