@@ -131,6 +131,7 @@ export default {
         dropBtn.classList.toggle("onoff");
       };
 
+      // 點選大頭貼按鈕嗅出側選單，但畫面大於 1400 則直接進入 account 頁 
       userBtn.onclick = function () {
         accountMenu.classList.add("accountshow");
         if (window.innerWidth > 1400) {
