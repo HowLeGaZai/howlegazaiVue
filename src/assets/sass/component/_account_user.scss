@@ -27,6 +27,26 @@
 .margintop35{
     margin-top:35px;
 }
+
+.margintop5{
+  margin-top:5px;
+}
+
+.marginleft5{
+  margin-left: 5px;
+}
+
+.col-md-6{
+  .uploading{
+    .pic-area{
+      .noborder{
+        border: none;
+      }
+    }
+  }
+}
+
+
 .marginbottom30{
   margin-bottom: 30px;
 }
@@ -235,6 +255,16 @@
     }
     
 }  
+
+.backend main .account-border .account .account-menu-pc ul li{
+  .a-select{
+    color: #27b096;
+    background: #fff;
+  }
+}
+
+
+
 
 
 

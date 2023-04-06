@@ -2,7 +2,7 @@
 <navbar></navbar>
     <main class="chat">
    
-        <h2 class="title_space">討論區</h2>
+        <h1 class="title_space">討論區</h1>
         <div class="search-filter">
           <div class="search">
             <input type="" class="f-text f-round" placeholder="&#xF52A" style="font-family:bootstrap-icons"/>
@@ -13,7 +13,7 @@
               <button class="btn-m btn-color-green" @click="navigate" role="link">發起討論</button>
             </router-link>
           </div>
-          <div class="desktop-filter">
+          <div class="desktop-filter" id="chat-desktop-filter">
             <button class="tag tag-main tag-btn tag-btn-selected">所有話題</button>
             <button class="tag tag-pink tag-btn">美食討論</button>
             <button class="tag tag-orange tag-btn">二手交易</button>
@@ -240,5 +240,20 @@ export default {
   components: {
       navbar,Footer,
     },
+  mounted(){
+    var desktopfilter = document.getElementById("chat-desktop-filter");
+    var btns = desktopfilter.getElementsByClassName("tag-btn");
+
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].addEventListener("click", function() {
+        var current = document.getElementsByClassName(" tag-btn-selected");
+
+        if (current.length > 0) {
+          current[0].className = current[0].className.replace(" tag-btn-selected", "");
+        }
+        this.className += " tag-btn-selected";
+      });
+    };
+  }
 }
 </script>

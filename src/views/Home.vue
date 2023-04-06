@@ -24,7 +24,7 @@
             <td>
               <div class="tag tag-pink">藝文</div>
               <span>2022-01-01</span>
-              <a href="#">大湖里反詐騙宣導</a>
+              <a href="#/news_info">大湖里反詐騙宣導</a>
             </td>
             <td>2022-01-01</td>
           </tr>
@@ -32,7 +32,7 @@
             <td>
               <div class="tag tag-orange">公告</div>
               <span>2022-01-01</span>
-              <a href="#">大湖里112年3月21日(二)實施病媒蚊消毒噴灑作業</a>
+              <a href="#/news_info">大湖里112年3月21日(二)實施病媒蚊消毒噴灑作業</a>
             </td>
             <td class="table_right">2022-01-01</td>
           </tr>
@@ -40,7 +40,7 @@
             <td>
               <div class="tag tag-blue">經費報告</div>
               <span>2022-01-01</span>
-              <a href="#">大湖里睦鄰互助聯誼活動補助費計畫表</a>
+              <a href="#/news_info">大湖里睦鄰互助聯誼活動補助費計畫表</a>
             </td>
             <td class="table_right">2022-01-01</td>
           </tr>
@@ -48,7 +48,7 @@
             <td>
               <div class="tag tag-orange">公告</div>
               <span>2022-01-01</span>
-              <a href="#">大湖里112年3月21日(二)實施病媒蚊消毒噴灑作業</a>
+              <a href="#/news_info">大湖里112年3月21日(二)實施病媒蚊消毒噴灑作業</a>
             </td>
             <td class="table_right">2022-01-01</td>
           </tr>
@@ -56,7 +56,7 @@
             <td>
               <div class="tag tag-orange">公告</div>
               <span>2022-01-01</span>
-              <a href="#">大湖里112年3月21日(二)實施病媒蚊消毒噴灑作業</a>
+              <a href="#/news_info">大湖里112年3月21日(二)實施病媒蚊消毒噴灑作業</a>
             </td>
             <td class="table_right">2022-01-01</td>
           </tr>
@@ -108,7 +108,7 @@
               <!-- <p class="card-content">櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺</p> -->
               <h5 class="card-date">活動日期：<span>2023-01-01</span></h5>
               <h3 class="card-price">免費</h3>
-              <a class="card-link" href="#"
+              <a class="card-link" href="#/activity_info"
                 ><h5>活動詳情<i class="bi bi-arrow-right"></i></h5
               ></a>
             </div>
@@ -137,7 +137,7 @@
               <!-- <p class="card-content">櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺</p> -->
               <h5 class="card-date">活動日期：<span>2023-01-01</span></h5>
               <h3 class="card-price">免費</h3>
-              <a class="card-link" href="#"
+              <a class="card-link" href="#/activity_info"
                 ><h5>活動詳情<i class="bi bi-arrow-right"></i></h5
               ></a>
             </div>
@@ -166,7 +166,7 @@
               <!-- <p class="card-content">櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺</p> -->
               <h5 class="card-date">活動日期：<span>2023-01-01</span></h5>
               <h3 class="card-price">免費</h3>
-              <a class="card-link" href="#"
+              <a class="card-link" href="#/activity_info"
                 ><h5>活動詳情<i class="bi bi-arrow-right"></i></h5
               ></a>
             </div>
@@ -298,7 +298,7 @@
                 </div>
               </div>
 
-              <h2><a href="./chat_info.html">最近吃到大湖里超好吃飯糰</a></h2>
+              <h2><a href="#/chat_info">最近吃到大湖里超好吃飯糰</a></h2>
               <p>
                 大湖里出產的飯糰米粒粒粒分明，調味也很好吃。超級好吃，100分的大湖里早餐
               </p>
@@ -323,7 +323,7 @@
                 </div>
               </div>
 
-              <h2><a href="./chat_info.html">最近吃到大湖里超好吃飯糰</a></h2>
+              <h2><a href="#/chat_info">最近吃到大湖里超好吃飯糰</a></h2>
               <p>
                 大湖里出產的飯糰米粒粒粒分明，調味也很好吃。超級好吃，100分的大湖里早餐
               </p>
@@ -348,7 +348,7 @@
                 </div>
               </div>
 
-              <h2><a href="./chat_info.html">最近吃到大湖里超好吃飯糰</a></h2>
+              <h2><a href="#/chat_info">最近吃到大湖里超好吃飯糰</a></h2>
               <p>
                 大湖里出產的飯糰米粒粒粒分明，調味也很好吃。超級好吃，100分的大湖里早餐
               </p>
@@ -602,10 +602,10 @@
       <section>
         <div class="left">
           <div class="">
-            <a class="btn-s btn-color-green">活動報名</a>
+            <a class="btn-s btn-color-green" href="#/activity">活動報名</a>
           </div>
           <div>
-            <a class="btn-s btn-color-green">公設預約</a>
+            <a class="btn-s btn-color-green" href="#/space">空間預約</a>
           </div>
           <div>
             <a class="btn-s btn-color-green unopened">維修通報</a>
