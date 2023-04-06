@@ -9,10 +9,12 @@
             <button type="button" class="btn-m btn-color-green">搜尋</button>
           </div>
           <div class="add-chat">
-            <button type="button" class="btn-m btn-color-green" onclick="location.href='/chat_new'">發起討論</button>
+            <router-link to="/chat_new" custom v-slot="{ navigate }">
+              <button class="btn-m btn-color-green" @click="navigate" role="link">發起討論</button>
+            </router-link>
           </div>
           <div class="desktop-filter">
-            <button class="tag tag-main tag-btn">所有話題</button>
+            <button class="tag tag-main tag-btn tag-btn-selected">所有話題</button>
             <button class="tag tag-pink tag-btn">美食討論</button>
             <button class="tag tag-orange tag-btn">二手交易</button>
             <button class="tag tag-blue tag-btn">里民閒聊</button>

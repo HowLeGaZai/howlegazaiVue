@@ -12,15 +12,15 @@
                     <div class="image user_pic"><img src="../assets/img/user_pic.png" alt=""></div>
                     <ul>
 
-                        <li v-for="accountNav in accountNavs"><a :href="accountNav.con">{{accountNav.nav}}</a></li>
-                        <!-- <li><a href="#">個人資訊</a></li>
+                        <!-- <li v-for="accountNav in accountNavs"><a :href="accountNav.con">{{accountNav.nav}}</a></li> -->
+                        <li><a href="#">個人資訊</a></li>
                         <li><a href="#">成員管理</a></li>
                         <li><a href="#">貼文刊登紀錄</a></li>
                         
                         <li><a href="#">空間預約紀錄</a></li>
                         <li><a href="#">活動報名紀錄</a></li>
                         
-                        <li><a href="#">變更密碼</a></li> -->
+                        <li><a href="#">變更密碼</a></li>
                         
 
                     </ul>
