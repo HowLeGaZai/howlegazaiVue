@@ -15,21 +15,32 @@
       <div class="backend-nav">
         <ul class="">
           <li>
-            <a class="be-nav btn-color-white be-menu" href="#/backend_index">
+            <router-link :to="{name:'backend_index'}" class="be-nav btn-color-white be-menu">
               <div class="width-3 text-left">後台管理首頁</div>
               <i class="bi bi-caret-down-fill i-s opacity-0"></i>
-            </a>
+            </router-link>
+            <!-- <a class="be-nav btn-color-white be-menu" href="#/backend_index">
+            </a> -->
             <div class="be-nav-on be-nav-off"></div>
           </li>
           <li>
-            <a class="be-nav  opacity-6 btn-color-darkgray be-menu" >
+            <a class="be-nav  opacity-6 btn-color-darkgray be-menu">
               <div class="width-3 text-left">網站管理</div>
               <i class="bi bi-caret-down-fill i-s"></i>
             </a>
             <div class="be-nav-on be-nav-off">
-              <button class="be-nav btn-font-color-gray" onclick="window.location.href='#/backend_websiteinfo'">網站基本設定</button>
-              <button class="be-nav be-nav btn-font-color-gray" onclick="window.location.href='#/backend_officeinfo'">聯絡里辦資訊</button>
-              <button class="be-nav btn-font-color-gray" onclick="window.location.href='#/backend_faq'">常見問題設定</button>
+              <!-- <button class="be-nav btn-font-color-gray" onclick="window.location.href='#/backend_websiteinfo'">網站基本設定</button> -->
+              <!-- <button class="be-nav be-nav btn-font-color-gray" onclick="window.location.href='#/backend_officeinfo'">聯絡里辦資訊</button> -->
+              <!-- <button class="be-nav btn-font-color-gray" onclick="window.location.href='#/backend_faq'">常見問題設定</button> -->
+              <router-link :to="{name:'backend_websiteinfo'}">
+                <button class="be-nav btn-font-color-gray">網站基本設定</button>
+              </router-link>
+              <router-link :to="{name:'backend_officeinfo'}">
+                <button class="be-nav btn-font-color-gray">聯絡里辦資訊</button>
+              </router-link>
+              <router-link :to="{name:'backend_faq'}">
+                <button class="be-nav btn-font-color-gray">常見問題設定</button>
+              </router-link>
             </div>
           </li>
 
@@ -39,31 +50,41 @@
               <i class="bi bi-caret-down-fill i-s"></i>
             </a>
             <div class="be-nav-on be-nav-off">
-              <button class="be-nav btn-font-color-gray " onclick="window.location.href='#/backend_websiteinfo'">帳戶總列表</button>
-              <button class="be-nav be-nav btn-font-color-gray" onclick="window.location.href='#/backend_account_new'">待審核清單</button>
-              <button class="be-nav btn-font-color-gray" onclick="window.location.href='#/backend_account_cancel'">已刪除帳戶</button>
+              <!-- <button class="be-nav btn-font-color-gray " onclick="window.location.href='#/backend_websiteinfo'">帳戶總列表</button>
+              <button class="be-nav btn-font-color-gray" onclick="window.location.href='#/backend_account_new'">待審核清單</button>
+              <button class="be-nav btn-font-color-gray" onclick="window.location.href='#/backend_account_cancel'">已刪除帳戶</button> -->
+              <router-link :to="{name:'backend_account_new'}">
+                <button class="be-nav btn-font-color-gray">待審核清單</button>
+              </router-link>
+              <router-link :to="{name:'backend_account_overview'}">
+                <button class="be-nav btn-font-color-gray">帳戶總列表</button>
+              </router-link>
+              <router-link :to="{name:'backend_account_cancel'}">
+                <button class="be-nav btn-font-color-gray">已刪除帳戶</button>
+              </router-link>
             </div>
           </li>
 
           <li>
-            <a class="be-nav opacity-6 btn-color-darkgray be-menu" href="#">
+            <router-link :to="{name:''}" class="be-nav opacity-6 btn-color-darkgray be-menu">
               <div class="width-3 text-left">最新消息管理</div>
               <i class="bi bi-caret-down-fill i-s opacity-0"></i>
-            </a>
+            </router-link>
+            <!-- <a class="be-nav opacity-6 btn-color-darkgray be-menu" href="#">
+              <div class="width-3 text-left">最新消息管理</div>
+              <i class="bi bi-caret-down-fill i-s opacity-0"></i>
+            </a> -->
             <div class="be-nav-on"></div>
           </li>
           <li>
-            <a class="be-nav opacity-6 btn-color-darkgray be-menu" href="#/backend_chat_list">
+            <router-link :to="{name:'backend_chat_list'}" class="be-nav opacity-6 btn-color-darkgray be-menu">
               <div class="width-3 text-left">討論區列表</div>
               <i class="bi bi-caret-down-fill i-s opacity-0"></i>
-            </a>
-            <div class="be-nav-on"></div>
-          </li>
-          <li>
-            <a class="be-nav opacity-6 btn-color-darkgray be-menu" href="">
-              <div class="width-3 text-left">團購網管理</div>
+            </router-link>
+            <!-- <a class="be-nav opacity-6 btn-color-darkgray be-menu" href="#/backend_chat_list">
+              <div class="width-3 text-left">討論區列表</div>
               <i class="bi bi-caret-down-fill i-s opacity-0"></i>
-            </a>
+            </a> -->
             <div class="be-nav-on"></div>
           </li>
           <li>
@@ -72,8 +93,14 @@
               <i class="bi bi-caret-down-fill i-s"></i>
             </a>
             <div class="be-nav-on be-nav-off" id="beMenuOn">
-              <button class="be-nav btn-font-color-gray "  onclick="window.location.href='#/backend_activity'">活動列表</button>
-              <button class="be-nav be-nav btn-font-color-gray" onclick="window.location.href='#/backend_activity_input'">新增活動</button>
+              <router-link :to="{name:'backend_activity'}">
+                <button class="be-nav btn-font-color-gray ">活動列表</button>
+            </router-link>
+            <router-link :to="{name:'backend_activity_input'}">
+              <button class="be-nav be-nav btn-font-color-gray">新增活動</button>
+            </router-link>
+              <!-- <button class="be-nav btn-font-color-gray "  onclick="window.location.href='#/backend_activity'">活動列表</button>
+              <button class="be-nav be-nav btn-font-color-gray" onclick="window.location.href='#/backend_activity_input'">新增活動</button> -->
             </div>
           </li>
 
@@ -82,46 +109,75 @@
               <div class="width-3 text-left">空間管理</div>
               <i class="bi bi-caret-down-fill i-s"></i>
             </a>
-
             <div class="be-nav-on be-nav-off ">
-              <button class="be-nav btn-font-color-gray"  onclick="window.location.href='''">空間列表</button>
-              <button class="be-nav be-nav btn-font-color-gray"  onclick="window.location.href=''">預約管理</button>
+              <router-link :to="{name:''}">
+                <button class="be-nav btn-font-color-gray">空間列表</button>
+            </router-link>
+            <router-link :to="{name:''}">
+              <button class="be-nav be-nav btn-font-color-gray">預約管理</button>
+            </router-link>
+              <!-- <button class="be-nav btn-font-color-gray"  onclick="window.location.href='''">空間列表</button>
+              <button class="be-nav be-nav btn-font-color-gray"  onclick="window.location.href=''">預約管理</button> -->
             </div>
           </li>
-
           <li>
-            <a class="be-nav opacity-6 btn-color-darkgray be-menu" href="">
+            <router-link :to="{name:''}" class="be-nav opacity-6 btn-color-darkgray be-menu">
+              <div class="width-3 text-left">團購網管理</div>
+              <i class="bi bi-caret-down-fill i-s opacity-0"></i>
+            </router-link>
+            <!-- <a class="be-nav opacity-6 btn-color-darkgray be-menu" href="">
+              <div class="width-3 text-left">團購網管理</div>
+              <i class="bi bi-caret-down-fill i-s opacity-0"></i>
+            </a> -->
+            <div class="be-nav-on"></div>
+          </li>
+          <li>
+            <router-link :to="{name:''}" class="be-nav opacity-6 btn-color-darkgray be-menu">
               <div class="width-3 text-left">維修通報</div>
               <i class="bi bi-caret-down-fill i-s opacity-0"></i>
-            </a>
+            </router-link>
+            <!-- <a class="be-nav opacity-6 btn-color-darkgray be-menu" href="#">
+              <div class="width-3 text-left">維修通報</div>
+              <i class="bi bi-caret-down-fill i-s opacity-0"></i>
+            </a> -->
             <div class="be-nav-on"></div>
           </li>
 
           <li>
-            <a class="be-nav opacity-6 btn-color-darkgray be-menu" href="">
+            <a class="be-nav opacity-6 btn-color-darkgray be-menu" href="#">
               <div class="width-3 text-left">守望相助</div>
               <i class="bi bi-caret-down-fill i-s "></i>
             </a>
             <div class="be-nav-on be-nav-off be-menu">
-              <button class="be-nav btn-font-color-green">守望隊管理</button>
-              <button class="be-nav be-nav btn-font-color-gray">簽到列表</button>
+              <router-link :to="{name:''}">
+                <button class="be-nav btn-font-color-green">守望隊管理</button>
+              </router-link>
+              <router-link :to="{name:''}">
+                <button class="be-nav btn-font-color-gray">簽到列表</button>
+              </router-link>
+              <!-- <button class="be-nav btn-font-color-green">守望隊管理</button>
+              <button class="be-nav be-nav btn-font-color-gray">簽到列表</button> -->
             </div>
           </li>
 
           <li>
-            <a class="be-nav opacity-6 btn-color-darkgray be-menu" href>
+            <router-link :to="{name:''}" class="be-nav opacity-6 btn-color-darkgray be-menu btn-unopened">
               <div class="width-3 text-left">瓦斯表數據</div>
               <i class="bi bi-caret-down-fill i-s opacity-0"></i>
-            </a>
+            </router-link>
+
+            <!-- <a class="be-nav opacity-6 btn-color-darkgray be-menu" href="#">
+              <div class="width-3 text-left">瓦斯表數據</div>
+              <i class="bi bi-caret-down-fill i-s opacity-0"></i>
+            </a> -->
             <div class="be-nav-on"></div>
           </li>
 
         </ul>
-
-
-
-
       </div>
+
+
+
       <section class="section_right">
         <!--近期活動總覽＆日曆 -->
         <div class="date-overview">
@@ -230,7 +286,7 @@
               <tr>
                 <td class="family">
                   <div class="family-num">
-                    <h1>2000</h1>
+                    <h1>127</h1>
                     <h2>大湖里戶數</h2>
                   </div>
                   <p>↑12%</p>
@@ -239,13 +295,21 @@
                   <h1>2000</h1>
                 </td> -->
 
-                <!-- <td class="family">
+                <td class="area-number">
                   <div class="family-num">
-                    <h1>2000</h1>
-                    <h2>大湖里戶數</h2>
+                    <h1>231</h1>
+                    <h2>大湖里人口數</h2>
                   </div>
-                  <p>↑12%</p>
-                </td> -->
+                  <p>↑2%</p>
+                </td>
+
+                <td class="area-number">
+                  <div class="family-num">
+                    <h1>147</h1>
+                    <h2>網站註冊人數</h2>
+                  </div>
+                  <p>↑6%</p>
+                </td>
               </tr>
 
               

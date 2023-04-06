@@ -1,7 +1,4 @@
-.section_right {
-    @media screen and (max-width: 1100px) {
-        padding: 5px;
-    }
+
     section {
         text-align: left;
         margin: 20px 0 30px 0;
@@ -211,7 +208,7 @@
       .active:after {
         content: "\f235";
       }
-}
+
 
 
 .gender {

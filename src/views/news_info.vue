@@ -2,7 +2,7 @@
   <navbar></navbar>
 
     <main class="news_info">
-    <button class="btn-prepage font-green" onclick="location.href='./news.html'">
+    <button class="btn-prepage font-green" onclick="location.href='#/news'">
       <i class=" bi bi-caret-left-fill font-green"></i>返回【上一頁】</button>
     <div class="news_info_topic">
       <h1>花蓮市長者暨成人免費健康檢查</h1>
