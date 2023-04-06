@@ -11,22 +11,15 @@ main,.main {
   max-width: 1440px;
   margin: 0 auto;
   text-align: center;
-  padding: 0 75px;
+  padding: 0px 75px;
 
   @include breakpoint($grid-breakpoints, "md") {
-    padding: 0 20px;
+    padding: 0px 20px;
   }
 }
 main {
-  padding: 70PX 75px;
-
-  @include breakpoint($grid-breakpoints, "md") {
-    padding: 70PX 20px;
-  }
-}
-
-main{
   padding: 70px 75px;
+
   @include breakpoint($grid-breakpoints, "md") {
     padding: 70px 20px;
   }
