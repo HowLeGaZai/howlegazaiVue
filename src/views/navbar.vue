@@ -14,13 +14,13 @@
             <ul id="main-Menu">
               <li class="left-logo"><img src="../assets/img/logo2.svg" alt="" /></li>
               <li>
-                <router-link :to="{name:'contact'}">聯絡里辦</router-link>
+                <router-link :to="{name:'contact'}" class="a-black">聯絡里辦</router-link>
               </li>
               <li>
-                <router-link :to="{name:'news'}">最新消息</router-link>
+                <router-link :to="{name:'news'}" class="a-black">最新消息</router-link>
               </li>
               <li>
-                <router-link :to="{name:'chat'}">討論區</router-link>
+                <router-link :to="{name:'chat'}" class="a-black">討論區</router-link>
               </li>
               <li class="smart-service">
                 <a href="#" id="navbarDropdown">
@@ -103,9 +103,10 @@
 </template>
 
 <script>
+
 export default {
     mounted(){
-let burgerBtn = document.getElementById("burger");
+      let burgerBtn = document.getElementById("burger");
       let mainMenu = document.getElementById("main-Menu");
       let dropList = document.getElementById("dropdown-menu");
       let dropBtn = document.getElementById("navbarDropdown");
@@ -140,6 +141,17 @@ let burgerBtn = document.getElementById("burger");
       menuClose.onclick = function () {
         accountMenu.classList.remove("accountshow");
       };
+
+      // 該頁面時 nav 文字為綠色
+      let navLinks = document.querySelectorAll('.a-black');
+
+      navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+          navLinks.forEach(link => link.classList.remove('active'));
+          this.classList.add('active');
+        });
+      });
+
     },
 }
 </script>
