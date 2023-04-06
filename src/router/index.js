@@ -132,6 +132,11 @@ const routes = [
     name: 'account_user_change_pwd',
     component:() => import(/* webpackChunkName: "about" */ '../views/account_user_change_pwd.vue')
   },
+  {
+    path: '/news_info',
+    name: 'news_info',
+    component:() => import(/* webpackChunkName: "about" */ '../views/news_info.vue')
+  },
   
   
   /*--------------------------  backend --------------------------*/
@@ -182,15 +187,22 @@ const routes = [
     component:() => import(/* webpackChunkName: "about" */ '../views/backend_account_overview.vue')
   },
   {
-    path: '/backend/account/new',
-    name: 'backend_account_new',
-    component:() => import(/* webpackChunkName: "about" */ '../views/backend_account_new.vue')
-  },
-  {
     path: '/backend/account/cancel',
     name: 'backend_account_cancel',
     component:() => import(/* webpackChunkName: "about" */ '../views/backend_account_cancel.vue')
   },
+  {
+    path: '/backend/account/new',
+    name: 'backend_account_new',
+    component:() => import(/* webpackChunkName: "about" */ '../views/backend_account_new.vue')
+  },
+  
+
+
+  
+  
+  
+  
   
 ]
 

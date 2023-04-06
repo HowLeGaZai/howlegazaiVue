@@ -53,11 +53,27 @@ import Footer from './Footer.vue';
     },
    mounted(){
     ClassicEditor
-		.create( document.querySelector( '#editor' ) ,{}
+		.create( document.querySelector( '#editor' ) ,{ckfinder: {
+        uploadUrl: '/api/upload' // 上傳圖片的接口路徑
+      },
+      // 配置uploadAdapter以實現圖片上傳
+      // 在uploadAdapter中使用XMLHttpRequest或fetch等技術實現圖片上傳
+      // 這裡僅提供一個示例uploadAdapter
+      // 該uploadAdapter只是將圖片Base64編碼後返回給CKEditor
+      // 實際上需要根據具體需求實現圖片上傳
+      // 更多細節可參考CKEditor官方文檔：https://ckeditor.com/docs/ckeditor5/latest/features/image-upload/simple-upload-adapter.html
+      simpleUpload: {
+        uploadUrl: '/api/upload',
+        headers: {
+          'X-CSRF-TOKEN': 'CSRF-Token',
+          Authorization: 'Bearer <JSON Web Token>'
+        }
+      }}
         // , {  toolbar: ['heading', '|', 'bold', 'italic', 'blockQuote', 'imageUpload', 'link', 'mediaEmbed', 'insterTable', 'undo', 'redo'] }
          )
 		.then( editor => {
 			window.editor = editor;
+      
 		} )
 		.catch( error => {
 			console.error( 'There was a problem initializing the editor.', error );

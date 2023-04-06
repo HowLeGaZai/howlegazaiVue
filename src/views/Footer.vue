@@ -15,7 +15,7 @@
                     <br>
                     若有抵觸有關著作權，或有第三人主張侵害智慧財產權等情事，均由學員負法律上責任，緯育公司概不負責。
                     <br>
-                    若有侵權疑慮，請私訊[緯育TibaMe]，後續會由專人協助處理。
+                    若有侵權疑慮，請私訊<a href="https://www.facebook.com/TibaMe" target="_blank">緯育 TibaMe</a>，後續會由專人協助處理。
                 </p>
             </section>
         </div>
