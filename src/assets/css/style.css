@@ -4901,6 +4901,9 @@ footer a {
   background-color: #fff;
   border-radius: 10px 10px 10px 10px;
   margin: 0 5px 0 5px;
+  background-image: url("/src/assets/img/face.svg");
+  background-position: 5% 93%;
+  background-repeat: no-repeat;
 }
 @media (max-width: 992px) {
   .welcome a div {

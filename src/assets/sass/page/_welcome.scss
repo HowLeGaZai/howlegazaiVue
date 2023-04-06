@@ -31,6 +31,9 @@
       background-color: $white;
       border-radius: 10px 10px 10px 10px;
       margin: 0 5px 0 5px;
+      background-image: url("/src/assets/img/face.svg");
+      background-position: 5% 93%;
+      background-repeat: no-repeat;
       @include breakpoint($grid-breakpoints, "md") {
         margin: 0px 0px 5px 0px;
         width: 350px;
