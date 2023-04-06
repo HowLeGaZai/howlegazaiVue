@@ -131,10 +131,12 @@ export default {
         dropBtn.classList.toggle("onoff");
       };
 
-      userBtn.onclick = function () {
+      userBtn.onclick = function (e) {
         accountMenu.classList.add("accountshow");
         if (window.innerWidth > 1400) {
-          userBtn.href = "/account_user"; // 修改 href 屬性值為 #
+          userBtn.href = "#/account_user"; // 修改 href 屬性值為 #
+        }else{
+          e.preventDefault();
         }
       };
 
