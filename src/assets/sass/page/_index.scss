@@ -66,6 +66,9 @@
         td {
           font-size: 30px;
           padding: 12px 0;
+          @include breakpoint($grid-breakpoints, "ml") {
+            font-size: 22px;
+          }
           @include breakpoint($grid-breakpoints, "sm") {
             font-size: 20px;
           }
@@ -197,6 +200,12 @@
   /* 第四屏 */
   /* 討論區 */
   .home-chat {
+    .watch-more button{
+      @include breakpoint($grid-breakpoints, "sm") {
+        margin-bottom: 20px;
+      }
+      
+    }
   }
 
   /* 第五屏 */
