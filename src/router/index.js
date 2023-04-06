@@ -167,10 +167,43 @@ const routes = [
     name: 'news_info',
     component:() => import(/* webpackChunkName: "about" */ '../views/news_info.vue')
   },
+  {
+    // 前台 登入介面 
+    path: '/login',
+    name: 'login',
+    component:() => import(/* webpackChunkName: "about" */ '../views/login.vue')
+  },
+  {  // 前台 忘記密碼介面 
+    path: '/forgetpassword',
+    name: 'forgetpassword',
+    component:() => import(/* webpackChunkName: "about" */ '../views/forgetpassword.vue')
+  },
+  {  // 前台 註冊第一頁介面 
+    path: '/signup1',
+    name: 'signup1',
+    component:() => import(/* webpackChunkName: "about" */ '../views/signup1.vue')
+  },
+  {  // 前台 註冊第二頁介面 
+    path: '/signup2',
+    name: 'signup2',
+    component:() => import(/* webpackChunkName: "about" */ '../views/signup2.vue')
+  },
+  {// 前台 修改密碼
+    path: '/updatepassword',
+    name: 'updatepassword',
+    component:() => import(/* webpackChunkName: "about" */ '../views/updatepassword.vue')
+  },
   
   
   /*--------------------------  backend --------------------------*/
 
+  
+  {
+    // 後台 登入頁
+    path: '/backend_login',
+    name: 'backend_login',
+    component:() => import(/* webpackChunkName: "about" */ '../views/backend_login.vue')
+  },
   {
     // 後台 首頁
     path: '/backend_index',
@@ -245,18 +278,18 @@ const routes = [
   },
 
 
-  //最新消息預留檔名（消息列表＋新增消息）
-  // {
-  //   path: '/backend/news',
-  //   name: 'backend_news',
-  //   component:() => import(/* webpackChunkName: "about" */ '../views/backend_news.vue')
-  // },
-
-  // {
-  //   path: '/backend/news/add',
-  //   name: 'backend_news_add',
-  //   component:() => import(/* webpackChunkName: "about" */ '../views/backend_news_add.vue')
-  // },
+  // 最新消息預留檔名（消息列表＋新增消息）
+  {
+    path: '/backend/news',
+    name: 'backend_news',
+    component:() => import(/* webpackChunkName: "about" */ '../views/backend_news.vue')
+  },
+// 最新消息 (增加消息)
+  {
+    path: '/backend/news/add',
+    name: 'backend_news_add',
+    component:() => import(/* webpackChunkName: "about" */ '../views/backend_news_add.vue')
+  },
   
   
   

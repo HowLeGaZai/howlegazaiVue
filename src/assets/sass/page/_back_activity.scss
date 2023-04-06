@@ -108,11 +108,24 @@
   }
 }
 
-.activity-reg{
+.activity-reg,
+.activity-start
+{
+  
+
   input{
     width: 200px;
     text-align: left;
   }
+
+  p{
+    display: inline-block;
+    margin: 0 15px;
+  }
+
+
+
+
 }
 
 

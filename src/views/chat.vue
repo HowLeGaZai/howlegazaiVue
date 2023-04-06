@@ -2,7 +2,7 @@
 <navbar></navbar>
     <main class="chat">
    
-        <h2 class="title_space">討論區</h2>
+        <h1 class="title_space">討論區</h1>
         <div class="search-filter">
           <div class="search">
             <input type="" class="f-text f-round" placeholder="&#xF52A" style="font-family:bootstrap-icons"/>
