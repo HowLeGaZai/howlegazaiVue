@@ -121,7 +121,7 @@
             </div>
           </li>
           <li>
-            <router-link :to="{name:''}" class="be-nav opacity-6 btn-color-darkgray be-menu">
+            <router-link :to="{name:''}" class="be-nav opacity-6 btn-color-unopened be-menu">
               <div class="width-3 text-left">團購網管理</div>
               <i class="bi bi-caret-down-fill i-s opacity-0"></i>
             </router-link>
@@ -132,7 +132,7 @@
             <div class="be-nav-on"></div>
           </li>
           <li>
-            <router-link :to="{name:''}" class="be-nav opacity-6 btn-color-darkgray be-menu">
+            <router-link :to="{name:''}" class="be-nav opacity-6 btn-color-unopened be-menu">
               <div class="width-3 text-left">維修通報</div>
               <i class="bi bi-caret-down-fill i-s opacity-0"></i>
             </router-link>
@@ -144,7 +144,7 @@
           </li>
 
           <li>
-            <a class="be-nav opacity-6 btn-color-darkgray be-menu" href="#">
+            <a class="be-nav opacity-6 btn-color-unopened be-menu " href="#">
               <div class="width-3 text-left">守望相助</div>
               <i class="bi bi-caret-down-fill i-s "></i>
             </a>
@@ -161,7 +161,7 @@
           </li>
 
           <li>
-            <router-link :to="{name:''}" class="be-nav opacity-6 btn-color-darkgray be-menu btn-unopened">
+            <router-link :to="{name:''}" class="be-nav opacity-6 be-menu btn-color-unopened">
               <div class="width-3 text-left">瓦斯表數據</div>
               <i class="bi bi-caret-down-fill i-s opacity-0"></i>
             </router-link>

@@ -39,7 +39,9 @@
 
   // 未開放 button 
   &-unopened{
-    background-color:yellow;
+    background-color: $silver;
+    color:$lightdark;
+
   }
 
 }
