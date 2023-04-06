@@ -43,7 +43,7 @@
                     </div>
                     <div class="account_row">
                         <h4>帳號</h4>
-                        <h4>myaccount123</h4>
+                        <h4 class="changelineheight">myaccount123</h4>
                     </div>
                     <div class="row account_row">
                         <div class="col-md-6 col-12">
@@ -87,7 +87,7 @@
                     <div class="row account_row">
                     <div class="col-md-6 col-12">
                         <h4>出生 年/月/日</h4>
-                        <h4>1994/6/8</h4>
+                        <h4>1994/9/4</h4>
                         <!-- <input type="text" class="f-text nomargin" id="name" v-model="birthdate" placeholder="YYYY/MM/DD"> -->
                     </div>
                     </div>
@@ -105,20 +105,20 @@
                     </div>
 
                     <div class="row account_row">
-                    <div class="col-md-6 col-12">
+                    <div class=" col-12">
                         <h4>變更頭像</h4>
                         <!-- <input type="text" class="f-text nomargin" id="name" placeholder="大頭照.jpg"> -->
-                    <div class="uploading upload_area displayflex">
+                    <div class="uploading upload_area displayflex flexwrap_maxwidth width100percentage">
                                     <label for="upload-file-4" class="uploadpic">
                                       <input type="file" id="upload-file-4" style="display:none">
                                       <div class="btn-10-s btn-color-green ">
                                         <i class="bi bi-arrow-bar-up"></i>上傳圖片
                                       </div>
                                     </label>
-                                    <div class="pic-area margintop5 ">
-                                      <div class="pic-area-box noborder">
+                                    <div class="pic-area margintop5 max_width100percentage">
+                                      <div class="pic-area-box noborder max_width100percentage">
                                         <!-- <img src="" alt=""> -->
-                                        <span></span>
+                                        <span class="max_width100percentage displayblock changelineheight"></span>
                                           <!-- <button class="trash"><i class="bi bi-trash3"></i></button> -->
                                       </div>
                                       <!-- <p>設計最佳建議：560 x 560 像素，且大小不得超過 100 KB 的圖檔</p> -->
