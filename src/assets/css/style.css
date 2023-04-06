@@ -4734,6 +4734,11 @@ footer p {
     margin-top: 30px;
   }
 }
+footer a {
+  color: #fff;
+  display: inline;
+  text-decoration: underline;
+}
 
 .backend_background {
   background-image: url("/src/assets/img/backend_background.jpg");
