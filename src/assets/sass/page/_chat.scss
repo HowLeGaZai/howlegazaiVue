@@ -274,7 +274,11 @@
   }
 
   .confirm-btn {
+    margin-top:50px;
     padding-bottom: 20px;
+    &>button{
+      margin: 0 10px;
+    }
   }
 }
 

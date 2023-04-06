@@ -133,6 +133,11 @@ const routes = [
     component:() => import(/* webpackChunkName: "about" */ '../views/account_user_change_pwd.vue')
   },
   {
+    path: '/privacy',
+    name: 'privacy',
+    component:() => import(/* webpackChunkName: "about" */ '../views/privacy.vue')
+  },
+  {
     path: '/news_info',
     name: 'news_info',
     component:() => import(/* webpackChunkName: "about" */ '../views/news_info.vue')

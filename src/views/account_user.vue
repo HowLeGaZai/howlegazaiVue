@@ -32,7 +32,7 @@
                   
                     <div class="account_row">
                         <h4>地址</h4>
-                        <h4>台北市松山區偉育里復興南路5樓</h4>
+                        <h4>花蓮縣大湖里偉育里復興南路5樓</h4>
                     </div>
                     <div class="account_row">
                         <h4>帳號</h4>
@@ -41,7 +41,7 @@
                     <div class="row account_row">
                         <div class="col-md-6 col-12">
                         <h4>姓名</h4>
-                        <input type="text" class="f-text nomargin" id="name" v-model="name" placeholder="姓名">
+                        <input type="text" class="f-text nomargin" id="name" v-model="name" placeholder="王大明">
                         </div>
 
                         <div class="col-md-6 col-12 input2">
