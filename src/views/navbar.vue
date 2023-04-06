@@ -4,8 +4,8 @@
         <div class="leftnav">
           <!-- 登入後 -->
           <button class="burger" id="burger"><i class="bi bi-list"></i></button>
-          <!-- logo -->
           
+          <!-- logo -->
           <router-link :to="{name:'home'}" class="brand">
             <img src="../assets/img/logo.svg" alt="" />
           </router-link>
@@ -14,16 +14,13 @@
             <ul id="main-Menu">
               <li class="left-logo"><img src="../assets/img/logo2.svg" alt="" /></li>
               <li>
-                
-                <router-link :to="{name:'contact'}">聯絡里辦</router-link>
+                <router-link :to="{name:'contact'}" class="a-black">聯絡里辦</router-link>
               </li>
               <li>
-                
-                <router-link :to="{name:'news'}">最新消息</router-link>
+                <router-link :to="{name:'news'}" class="a-black">最新消息</router-link>
               </li>
               <li>
-                
-                <router-link :to="{name:'chat'}">討論區</router-link>
+                <router-link :to="{name:'chat'}" class="a-black">討論區</router-link>
               </li>
               <li class="smart-service">
                 <a href="#" id="navbarDropdown">
@@ -31,23 +28,15 @@
                 </a>
                 <ul class="dropdown-menu" id="dropdown-menu">
                   <li>
-                    <!-- <a class="dropdown-item" href="/activity">活動報名</a> -->
                     <router-link :to="{name:'activity'}" class="dropdown-item">活動報名</router-link>
                   </li>
-                  <!-- <li>
-                    <a class="dropdown-item" href="/space">空間預約</a>
-                  </li> -->
                   <li>
-                    <!-- <a class="dropdown-item" href="/space">空間預約</a> -->
                     <router-link :to="{name:'space'}" class="dropdown-item">空間預約</router-link>
                   </li>
-                  <li>
-                    
-                    <a class="dropdown-item" href="#">里民團購</a>
-                  </li>
-                  <li><a class="dropdown-item" href="#">守望相助</a></li>
-                  <li><a class="dropdown-item" href="#">維修通報</a></li>
-                  <li><a class="dropdown-item" href="#">瓦斯錶回報</a></li>
+                  <li><a class="dropdown-item a-gray" href="#">里民團購</a></li>
+                  <li><a class="dropdown-item a-gray" href="#">守望相助</a></li>
+                  <li><a class="dropdown-item a-gray" href="#">維修通報</a></li>
+                  <li><a class="dropdown-item a-gray" href="#">瓦斯錶回報</a></li>
                 </ul>
               </li>
             </ul>
@@ -79,8 +68,8 @@
                       <img src="../assets/img/user_pic.png" alt="" class="user_pic" />
                     </a>
                   </li>
-                  <li><a href="#">個人資訊</a></li>
-                  <li><a href="#">成員管理</a></li>
+                  <li><router-link :to="{name:'account_user'}">個人資訊</router-link></li>
+                  <li><router-link :to="{name:'account_user_manage'}">成員管理</router-link></li>
                   <li class="user-record">
                     <a href="#"
                       >管理紀錄
@@ -88,21 +77,21 @@
                     </a>
                     <ul class="dropdown-menu">
                       <li>
-                        <a class="dropdown-item" href="#">貼文刊登紀錄</a>
+                        <router-link :to="{name:'account_user_chat'}" class="dropdown-item">貼文刊登紀錄</router-link>
                       </li>
-                      <!-- <li><a class="dropdown-item" href="#">瓦斯錶回報紀錄</a></li> -->
+                      <!-- <li><router-link :to="{name:'account_user_gas'}" class="dropdown-item">瓦斯錶回報</router-link> -->
                       <li>
-                        <a class="dropdown-item" href="#">空間預約紀錄</a>
+                        <router-link :to="{name:'account_user_space'}" class="dropdown-item">空間預約紀錄</router-link>
                       </li>
                       <li>
-                        <a class="dropdown-item" href="#">活動報名紀錄</a>
+                        <router-link :to="{name:'account_user_activity'}" class="dropdown-item">活動報名紀錄</router-link>
                       </li>
                     </ul>
                   </li>
-                  <!-- <li><a class="dropdown-item" href="#">團購管理</a></li> -->
+                  <!-- <li><router-link :to="{name:'account_user_product'}" class="dropdown-item">團購管理</router-link></li> -->
                   <li><hr class="dropdown-line" /></li>
                   <li>
-                    <a href="#">變更密碼</a>
+                    <router-link :to="{name:'account_user_change_pwd'}">活動報名紀錄</router-link>
                   </li>
                 </ul>
               </div>
@@ -114,9 +103,10 @@
 </template>
 
 <script>
+
 export default {
     mounted(){
-let burgerBtn = document.getElementById("burger");
+      let burgerBtn = document.getElementById("burger");
       let mainMenu = document.getElementById("main-Menu");
       let dropList = document.getElementById("dropdown-menu");
       let dropBtn = document.getElementById("navbarDropdown");
@@ -143,11 +133,25 @@ let burgerBtn = document.getElementById("burger");
 
       userBtn.onclick = function () {
         accountMenu.classList.add("accountshow");
+        if (window.innerWidth > 1400) {
+          userBtn.href = "/account_user"; // 修改 href 屬性值為 #
+        }
       };
 
       menuClose.onclick = function () {
         accountMenu.classList.remove("accountshow");
       };
+
+      // 該頁面時 nav 文字為綠色
+      let navLinks = document.querySelectorAll('.a-black');
+
+      navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+          navLinks.forEach(link => link.classList.remove('active'));
+          this.classList.add('active');
+        });
+      });
+
     },
 }
 </script>

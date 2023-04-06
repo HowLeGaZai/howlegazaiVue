@@ -1,18 +1,20 @@
 .backend_background{
-  background-image: url("../img/backend_background.jpg");
+  background-image: url("/src/assets/img/backend_background.jpg");
   background-size: cover;
   background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 .backend {
   #app{
-    background-image: url("../img/backend_background.jpg");
+    background-image: url("/src/assets/img/backend_background.jpg");
     background-size: cover;
     background-repeat: no-repeat;
   }
-    background-image: url("../img/backend_background.jpg");
+    background-image: url("/src/assets/img/backend_background.jpg");
     background-size: cover;
     background-repeat: no-repeat;
+    background-attachment: fixed;
 
   .tooltip:hover:after {
     content: "帳戶專區";

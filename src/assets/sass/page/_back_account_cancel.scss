@@ -1,0 +1,26 @@
+.maxheight {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 700px;
+  }
+  
+  .bk-account-cancel {
+    .dropdown {
+      display: flex;
+      flex-direction: column;
+    }
+  
+    .f-label {
+      text-align: left;
+      margin-left: 0px;
+      width: 200px;
+    }
+    td {
+      width: auto;
+      &:nth-child(4) {
+        max-width: 200px;
+      }
+    }
+  }
+  

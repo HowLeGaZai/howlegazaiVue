@@ -70,7 +70,7 @@
             <div class="image contact_pic_banner">
                 <img src="../assets/img/c_banner.png" alt="">
             </div>
-            <h2>文化</h2>
+            <h2>歷史</h2>
             <div class="summary">
                 大湖里風光明媚，從昔日國會山莊所在的山頭，逐漸往五指山系這一帶綿延發展，成為新興住宅與舊系紅磚老宅混搭的社區
             </div>                    
@@ -81,7 +81,7 @@
             <div class="image contact_pic_banner">
                 <img src="../assets/img/c_banner.png" alt="">
             </div>
-            <h2>文化</h2>
+            <h2>文化資產</h2>
             <div class="summary">
                 大湖里風光明媚，從昔日國會山莊所在的山頭，逐漸往五指山系這一帶綿延發展，成為新興住宅與舊系紅磚老宅混搭的社區
             </div>                    

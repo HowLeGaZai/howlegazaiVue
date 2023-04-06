@@ -8,7 +8,7 @@
       </section>
         <div class="popup">
           <div class="popup_l">
-            <button type="button" class="btn-cir-s btn-color-green"><i class="bi bi-caret-left-fill i-s"></i></button>
+            <!-- <button type="button" class="btn-cir-s btn-color-green"><i class="bi bi-caret-left-fill i-s"></i></button> -->
             <br>
             <h3 class="">預約單號 : 001</h3>
             <br>
@@ -23,7 +23,7 @@
                 <br>
                 <h4>空間大小：15坪</h4>
                 <br>
-                <h4>地址：台北市中山區南京東路三段219號4樓</h4>
+                <h4>地址：花蓮縣大湖里南京東路三段219號4樓</h4>
                 <h5 class="popup-pad">2023-03-05（日）
                   13:00 - 13:59</h5>
               </div>
@@ -48,20 +48,28 @@
           </div>
         </div>
       <div class="confirm-btn">
-        <button type="button" class="btn-m btn-color-gray" onclick="location.href='./space_reserve.html'">返回上一步</button>
-        <button type="button" class="btn-m btn-color-green" onclick="location.href='./space_reserve_confirm.html'">填寫完成，送出申請</button>
+         <router-link to="/space_reserve" custom v-slot="{ navigate }">
+                          <button class="btn-m btn-color-gray" @click="navigate" role="link">返回上一步</button>
+            </router-link>
+             <router-link to="/space_reserve_confirm" custom v-slot="{ navigate }">
+                          <button class="btn-m btn-color-green" @click="navigate" role="link">確認送出</button>
+            </router-link>
+        <!-- <button type="button" class="btn-m btn-color-gray" onclick="location.href='/space_reserve'">返回上一步</button>
+        <button type="button" class="btn-m btn-color-green" onclick="location.href='/space_reserve_confirm'">填寫完成，送出申請</button> -->
       </div>
 
     </main>
+    <Footer></Footer>
 </template>
 
 <script>
 
 import navbar from './navbar.vue';
+import Footer from './Footer.vue';
 
 export default {
   components: {
-      navbar,
+      navbar,Footer,
     },
 }
 </script>
