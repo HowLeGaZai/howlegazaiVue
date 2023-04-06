@@ -233,16 +233,19 @@
 
         </div>
     </main>
+    <Footer></Footer>
 </template>
 
 <script>
 
 import backendNavbar from './backendNavbar.vue';
+import Footer from './Footer.vue';
+
 
 
 export default {
   components: {
-      backendNavbar,
+      backendNavbar,Footer,
     },
     mounted() {
     // ======nav的收合======

@@ -9,6 +9,11 @@ const routes = [
     name: 'home',
     component: Home
   },
+  {
+    path: '/welcome',
+    name: 'welcome',
+    component: () => import(/* webpackChunkName: "about" */ '../views/welcome.vue')
+  },
   // {
   //   path: '/',
   //   name: 'home',
@@ -172,13 +177,20 @@ const routes = [
     component:() => import(/* webpackChunkName: "about" */ '../views/backend_activity_input.vue')
   },
   {
-    path: '/backend_account_overview',
+    path: '/backend/account/overview',
     name: 'backend_account_overview',
     component:() => import(/* webpackChunkName: "about" */ '../views/backend_account_overview.vue')
   },
-  
-  
-  
+  {
+    path: '/backend/account/new',
+    name: 'backend_account_new',
+    component:() => import(/* webpackChunkName: "about" */ '../views/backend_account_new.vue')
+  },
+  {
+    path: '/backend/account/cancel',
+    name: 'backend_account_cancel',
+    component:() => import(/* webpackChunkName: "about" */ '../views/backend_account_cancel.vue')
+  },
   
 ]
 
@@ -187,6 +199,10 @@ const router = createRouter({
   history: createWebHashHistory(process.env.BASE_URL),
   routes
 })
+
+
+
+
 
 export default router
 

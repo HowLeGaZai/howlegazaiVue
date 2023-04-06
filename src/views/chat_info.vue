@@ -1,8 +1,13 @@
 <template>
 <navbar></navbar>
      <main class="chat_info">
-    <button class="btn-prepage font-green" onclick="location.href='./chat.html'">
-      <i class=" bi bi-caret-left-fill font-green"></i>返回【上一頁】</button>
+        <router-link to="/chat" custom v-slot="{ navigate }">
+            <button class="btn-prepage font-green" @click="navigate" role="link">
+              <i class=" bi bi-caret-left-fill font-green"></i>返回【上一頁】
+            </button>
+        </router-link>
+    <!-- <button class="btn-prepage font-green" onclick="location.href='./chat.html'">
+      <i class=" bi bi-caret-left-fill font-green"></i>返回【上一頁】</button> -->
     <div class="chat_info_topic">
       <h1>最近吃到7-11超好吃飯糰</h1>
       <div class="add_inf">
@@ -105,21 +110,26 @@
     </div>
 
     <div class="confirm-btn">
-      <button type="button" class="btn-m btn-color-green" onclick="location.href='./chat.html'">返回上一頁</button>
+         <router-link to="/chat" custom v-slot="{ navigate }">
+                <button class="btn-m btn-color-green" @click="navigate" role="link">返回上一頁</button>
+        </router-link>
+      <!-- <button type="button" class="btn-m btn-color-green" onclick="location.href='./chat.html'">返回上一頁</button> -->
     </div>
 
 
 
   </main>
+  <Footer></Footer>
 </template>
 
 <script>
 
 import navbar from './navbar.vue';
+import Footer from './Footer.vue';
 
 export default {
   components: {
-      navbar,
+      navbar,Footer,
     },
 }
 </script>

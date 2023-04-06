@@ -101,7 +101,7 @@ header {
             }
           }
           /* 選單文字顏色 */
-          a {
+          a,.a-black {
             display: block;
             color: $black;
             font-size: 28px;
@@ -116,7 +116,7 @@ header {
               padding-left: 5px;
             }
           }
-          a:hover {
+          a:hover,.active {
             color: $green;
             @include breakpoint($grid-breakpoints, 'md') {
               background-color: $green;
@@ -126,6 +126,16 @@ header {
           }
           a:active {
             color: $white;
+          }
+          .a-gray{
+            color: $gray;
+            &:hover,&:active,.active{
+              color: $gray;
+              @include breakpoint($grid-breakpoints, 'md') {
+                background-color: transparent;
+                color: $gray;
+              }
+            }
           }
 
           .dropdown-menu {
@@ -173,6 +183,16 @@ header {
                   background-color: $green;
                   color: $white;
                 }
+              }
+            }
+          }
+          .a-gray{
+            color: $gray;
+            &:hover,&:active,.active{
+              color: $gray;
+              @include breakpoint($grid-breakpoints, 'md') {
+                background-color: transparent;
+                color: $gray;
               }
             }
           }

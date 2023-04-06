@@ -6,32 +6,28 @@
       <section> 
         <h2 class="title_space">預約空間</h2>
         
-      <!-- Swiper -->
-        <div class="swiper spaceSwiper">
-          <!-- Additional required wrapper -->
-          <div class="swiper-wrapper">
-            <!-- Slides -->
-            <div class="swiper-slide">
+          <swiper  :navigation="{ nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }" :modules="modules" class="spaceSwiper" :slidesPerView="1">
+
+             <swiper-slide>
               <div class="image space_pic">
                 <img src="../assets/img/s_1.png" alt="">
               </div>
-            </div>
-            <div class="swiper-slide">
+           </swiper-slide>
+             <swiper-slide>
               <div class="image space_pic">
                 <img src="../assets/img/s_1.png" alt="">
               </div>
-            </div>
-            <div class="swiper-slide">
+              </swiper-slide>
+             <swiper-slide>
               <div class="image space_pic">
                 <img src="../assets/img/s_1.png" alt="">
               </div>
-            </div>
-        </div>
+              </swiper-slide>
+        </swiper>
          <div class="swiper-btn">
             <button type="button" class="btn-cir-m  btn-color-white swiper-button-prev"><i class="bi bi-caret-left-fill"></i></button>
             <button type="button" class="btn-cir-m btn-color-green swiper-button-next"><i class="bi bi-caret-right-fill "></i></button>
          </div>
-        </div>
 
       </section>
 
@@ -62,8 +58,14 @@
         </div>
         
         <div class="confirm-btn">
-          <button type="button" class="btn-m btn-color-gray" onclick="location.href='./space.html'">返回空間總覽</button>
-          <button type="button" class="btn-m btn-color-green" onclick="location.href='./space_reserve.html'">確認，下一步填寫資訊</button>
+          <router-link to="/space" custom v-slot="{ navigate }">
+            <button class="btn-m btn-color-gray" @click="navigate" role="link">返回空間總覽</button>
+          </router-link>
+          <router-link to="/space_reserve" custom v-slot="{ navigate }">
+            <button class="btn-m btn-color-green" @click="navigate" role="link">確認，下一步填寫資訊</button>
+          </router-link>
+          <!-- <button type="button" class="btn-m btn-color-gray" onclick="location.href='/space'">返回空間總覽</button>
+          <button type="button" class="btn-m btn-color-green" onclick="location.href='/space_reserve'">確認，下一步填寫資訊</button> -->
         </div>
 
       </section>
@@ -95,7 +97,7 @@
             
             <h3><i class="bi bi-dot"></i>空間地址<i class="bi bi-dot"></i></h3>
             <ul>
-                <li>臺北市中山區偉育里南京東路三段219號4樓</li>
+                <li>花蓮縣大湖里南京東路三段219號4樓</li>
                 <li>
                     <div class="space-map">
                         <img src="../assets/img/space-map.png" alt="">
@@ -107,15 +109,30 @@
       </section>
 
     </main>
+    <Footer></Footer>
 </template>
 
 <script>
+import { Swiper, SwiperSlide } from 'swiper/vue';
+
+  // Import Swiper styles
+  import 'swiper/css';
+
+  import 'swiper/css/navigation';
+
+  import '../assets/css/style.css';
+
+  // import required modules
+  import { Navigation } from 'swiper';
+
+
 // import VueDatePicker from '@vuepic/vue-datepicker';
 // import '@vuepic/vue-datepicker/dist/main.css'
 import $ from 'jquery'
 import 'jquery-ui-dist/jquery-ui'
 import 'jquery-ui-dist/jquery-ui.min.css'
 import navbar from './navbar.vue';
+import Footer from './Footer.vue';
 
 export default {
   name: 'HelloWorld',
@@ -124,8 +141,17 @@ export default {
     }
   },
   components: {
+      Swiper,
+      SwiperSlide,
       navbar,
+      Footer,
     },
+    setup() {
+      return {
+        modules: [Navigation],
+      };
+    },
+  
   mounted: function () {
     $('#resizable').resizable({});
     $('#datepicker').datepicker({
@@ -136,13 +162,23 @@ export default {
           onSelect: function(){
             var selected = $(this).val();
             $('.selectedD').html(`日期:&nbsp` + selected);
-            // console.log(selected);
 
-            // let dayNamesMin = $(this).datepicker( "option", "dayNamesMin" );
-            // console.log(dayNamesMin);
         }
     });
-    
-  }
+    var btnContainer = document.getElementById("selected");
+    var btns = btnContainer.getElementsByClassName("timeslot");
+
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].addEventListener("click", function() {
+        var current = document.getElementsByClassName("active");
+
+        if (current.length > 0) {
+          current[0].className = current[0].className.replace(" active", "");
+        }
+        this.className += " active";
+      });
+    };
+  },
+  
 }
 </script>

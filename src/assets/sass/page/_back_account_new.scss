@@ -1,0 +1,94 @@
+.maxheight{
+    flex-direction: column;
+    justify-content: space-between;
+    height: 700px;
+}
+
+.bk-account-new{
+    tr:first-child{
+        td{
+            word-wrap: break-word;
+        }
+    }
+    td:first-child{
+        text-align: left;
+        width: 130px;
+        padding-left: 15px;
+        i{
+            font-size: 30px;
+            &:hover{
+                opacity: 0.6;
+            }
+        }
+        .bi-check{
+            color: $green;
+        }
+        .bi-x{
+            color: $black;
+        }
+    }
+    td:nth-child(2){
+        width: 70px;
+    }
+    td:nth-child(3){
+        width: 100px;
+    }
+    td:nth-child(4){
+        width: 150px;
+        word-wrap: break-word;
+        line-height: 1.5;
+        vertical-align:middle;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+    }
+    td:nth-child(5){
+        width: 300px;
+        min-width: 200px;
+        font-size: 16px;
+        word-wrap: break-word;
+        line-height: 1.5;
+        vertical-align:middle;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+    }
+    td:last-child{
+        width: 60px;
+        text-align: center;
+        i{
+            color: $green;
+            &:hover{
+                opacity: 0.6;
+            }
+        }
+    }
+    .memberProfile,.hidden-row{
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        +td{
+            width: auto;
+        }
+    }
+    .hidden-row{
+        display: none;
+        width: 100%;
+        td{
+            width: 100%;
+            &:first-child{
+                width: 100%;
+            }
+            &:last-child{
+                width: 100%;
+            }
+            table{
+                width: 100%;
+            }
+        }
+    }
+
+    .show-row {
+        display: table-row;
+    }
+}

@@ -1,5 +1,8 @@
 .home {
-  padding: 50px 20px 70px 20px;
+  padding: 0px 75px 0px 75px;
+  @include breakpoint($grid-breakpoints, "md") {
+    padding: 0 20px;
+  }
   section {
     margin-top: 10%;
     &:first-child {
@@ -80,14 +83,13 @@
               min-width: 85px;
             }
           }
-          span{
+          span {
             display: none;
             @include breakpoint($grid-breakpoints, "sm") {
               display: contents;
-              font-size: 0.1rem;
+              font-size: 16px;
               color: $gray;
             }
-
           }
           a {
             color: $black;
@@ -131,7 +133,7 @@
           max-width: 90vw;
           min-height: 90px;
           line-height: 1.2;
-          justify-content:space-between;
+          justify-content: space-between;
         }
       }
 
@@ -178,7 +180,17 @@
     @media screen and (max-width: 1100px) {
       margin-bottom: 50%;
     }
-    .card {
+    .card{
+      width: 360px;
+      .event_pic{
+        width: 100%;
+        height: 360px;
+      }
+    }
+    .card-tag {
+      position: absolute;
+      top: 315px;
+      left: 30px;
     }
   }
 
@@ -190,6 +202,18 @@
   /* 第五屏 */
   /* 團購輪播 */
   .home-product {
+    .card{
+      width: 360px;
+      .event_pic{
+        width: 100%;
+        height: 360px;
+      }
+    }
+    .card-tag {
+      position: absolute;
+      top: 315px;
+      left: 30px;
+    }
     margin-bottom: 20%;
     @media screen and (max-width: 1100px) {
       margin-bottom: 50%;
@@ -217,30 +241,112 @@
         align-items: center;
         @media screen and (max-width: 1100px) {
           order: 1;
-          z-index: 1;
+          z-index: 2;
         }
-      }
-      a {
-        width: 267px;
-        line-height: 113px;
-        font-size: 32px;
-        &:hover {
-          background-color: lighten($green, 12%);
+        div {
+          position: relative;
+          a {
+            width: 267px;
+            line-height: 113px;
+            font-size: 32px;
+            &:hover {
+              background-color: lighten($green, 12%);
+            }
+            @media screen and (max-width: 1100px) {
+              width: 250px;
+              line-height: 90px;
+              font-size: 24px;
+            }
+          }
         }
-        @media screen and (max-width: 1100px) {
-          width: 250px;
-          line-height: 90px;
-          font-size: 24px;
+        .unopened:hover{
+          background-color: lighten($lightgray, 0%);
         }
       }
       .left {
-        a:nth-child(2) {
-          margin-right: auto;
+        div {
+          &:before {
+            position: absolute;
+            content: " ";
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            left: 96%;
+            top: 43%;
+            display: block;
+            background: $springgreen;
+            @media screen and (max-width: 1100px) {
+              display: none;
+            }
+          }
+          &:after {
+            position: absolute;
+            content: " ";
+            width: calc(179px + 12vw);
+            height: 1px;
+            right: -232px;
+            top: 50%;
+            display: block;
+            background: $springgreen;
+            z-index: -1;
+            @media screen and (max-width: 1100px) {
+              display: none;
+            }
+          }
+
+          // &:after {
+          //   position: absolute;
+          //   content: " ";
+          //   width: 20px;
+          //   height: 20px;
+          //   border-radius: 50%;
+          //   left: 182%;
+          //   top: 43%;
+          //   display: block;
+          //   background: $springgreen;
+          //   @media screen and (max-width: 1439px) {
+          //     left: calc(100% + 218px);
+          //     top: 43%;
+          //   }
+          // }
+          &:nth-child(2) {
+            margin-right: auto;
+          }
         }
       }
       .right {
-        a:nth-child(2) {
-          margin-left: auto;
+        div {
+          &:before {
+            position: absolute;
+            content: " ";
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            right: 96%;
+            top: 43%;
+            display: block;
+            background: $springgreen;
+            @media screen and (max-width: 1100px) {
+              display: none;
+            }
+          }
+          &:after {
+            position: absolute;
+            content: " ";
+            width: calc(179px + 12vw);
+            height: 1px;
+            left: -232px;
+            top: 50%;
+            display: block;
+            background: $springgreen;
+            z-index: -1;
+            @media screen and (max-width: 1100px) {
+              display: none;
+            }
+          }
+          &:nth-child(2) {
+            margin-left: auto;
+          }
         }
       }
       .btn-s {
@@ -252,69 +358,121 @@
           width: 250px;
           height: 90px;
         }
-
-        &:after {
-          content: " ";
-          width: 20px;
-          height: 20px;
-          border-radius: 50%;
-          left: 0px;
-          top: 100%;
-          display: block;
-          background: $springgreen;
-        }
       }
-      /* 外圍圓圈 */
-      .out-circle {
+      .unopened{
+          background-color: $lightgray;
+          &:before,&:after{
+            background: $lightgray;
+          }
+      }
+
+              // div {
+        //   $bg-color: green;
+        
+        //   background-color: $bg-color;
+        
+        //   @if $bg-color == green {
+        //     &:after {
+        //       content: "";
+        //       display: block;
+        //       width: 10px;
+        //       height: 10px;
+        //       background-color: $bg-color;
+        //     }
+        //   }
+        // }
+
+      /* 圓圈圈 */
+      .galaxy {
+        position: relative;
+        width: auto;
         display: flex;
         justify-content: center;
         align-items: center;
-        flex-basis: 354px;
-        height: 354px;
-        border-radius: 50%;
-        border: 2px $springgreen solid;
-        padding: 38px;
+        height: auto;
 
         @media screen and (max-width: 1100px) {
-          width: 300px;
-          height: 300px;
-          flex-basis: 300px;
-          position: relative;
+          width: 100%;
+          height: 328px;
+          // overflow: hidden;
 
           /* 畫直線 */
-          &::after{
-            content:"";
+          &::after {
+            content: "";
             position: absolute;
             display: block;
             left: 0;
             right: 0;
             margin: 0 auto;
-            bottom: -602px;
+            bottom: -586px;
             width: 2px;
             height: 600px;
             background-color: $springgreen;
+            z-index: -2;
           }
         }
 
+        /* 外圍圓圈 */
+        .orbit {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 354px;
+          height: 354px;
+          border-radius: 50%;
+          border: 2px $springgreen solid;
+          padding: 34px;
+          background: $white;
+          z-index: 1;
+          animation: planet-rotate-1 infinite 15s linear;
+
+          @media screen and (max-width: 1100px) {
+            width: 300px;
+            height: 300px;
+          }
+
+          .planet {
+            position: relative;
+            top: -178px;
+            left: 0;
+            width: 20px;
+            height: 20px;
+            background-color: $springgreen;
+            border-radius: 50%;
+            margin-top: 4px;
+            margin-left: 4px;
+            border: 0;
+            @media screen and (max-width: 1100px) {
+              top: -150px;
+            }
+          }
+        }
+
+        /* 中心圓圈 */
         .smart_center {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          margin: auto auto;
+
           width: 278px;
           height: 278px;
           line-height: 278px;
           font-size: 40px;
           border-radius: 50%;
           color: $white;
-          &::after {
-            content: " ";
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            left: 0px;
-            top: 100%;
-            display: block;
-            background: $springgreen;
-          }
+          z-index: 1;
 
           @media screen and (max-width: 1100px) {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto auto;
+
             width: 200px;
             height: 200px;
             line-height: 200px;
@@ -344,6 +502,15 @@
         }
         100% {
           background-position: 0% 50%;
+        }
+      }
+      /* 動畫 球公轉*/
+      @keyframes planet-rotate-1 {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
         }
       }
     }

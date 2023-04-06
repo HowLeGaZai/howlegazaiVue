@@ -49,7 +49,7 @@
                    
                   </div>
                   
-                  <h2><a href="/chat_info">最近吃到大湖里超好吃飯糰</a></h2>
+                  <h2><router-link :to="{name:'chat_info'}">最近吃到大湖里超好吃飯糰</router-link></h2>
                   <p>大湖里出產的飯糰米粒粒粒分明，調味也很好吃。超級好吃，100分的大湖里早餐</p>
                   <!-- <div class="tag tag-pink">美食討論</div> -->
               </section>
@@ -74,7 +74,8 @@
                    
                   </div>
                   
-                  <h2><a href="./chat_info.html">想找桃太郎飯糰</a></h2>
+                  <!-- <h2><a href="./chat_info.html">想找桃太郎飯糰</a></h2> -->
+                  <h2><router-link :to="{name:'chat_info'}">想找桃太郎飯糰</router-link></h2>
                   <p>大湖里出產的飯糰米粒粒粒分明，調味也很好吃。超級好吃，100分的大湖里早餐</p>
                   <!-- <div class="tag tag-pink">美食討論</div> -->
               </section>
@@ -99,7 +100,9 @@
                    
                   </div>
                   
-                  <h2><a href="/chat_info">巷口有人亂丟飯糰</a></h2>
+                  <!-- <h2><a href="/chat_info">巷口有人亂丟飯糰</a></h2> -->
+                  <h2><router-link :to="{name:'chat_info'}">巷口有人亂丟飯糰</router-link></h2>
+
                   <p>大湖里出產的飯糰米粒粒粒分明，調味也很好吃。超級好吃，100分的大湖里早餐</p>
                   <!-- <div class="tag tag-pink">美食討論</div> -->
               </section>
@@ -124,7 +127,9 @@
                     
                   </div>
                   
-                  <h2><a href="./chat_info.html">為什麼大家一直在討論飯糰</a></h2>
+                  <!-- <h2><a href="./chat_info.html">為什麼大家一直在討論飯糰</a></h2> -->
+                  <h2><router-link :to="{name:'chat_info'}">為什麼大家一直在討論飯糰</router-link></h2>
+
                   <p>大湖里出產的飯糰米粒粒粒分明，調味也很好吃。超級好吃，100分的大湖里早餐</p>
                   <!-- <div class="tag tag-pink">美食討論</div> -->
               </section>
@@ -147,7 +152,9 @@
                       <h5 class="poster_name">桃姨</h5>
                     </div>
                   </div>
-                  <h2><a href="./chat_info.html">最近吃到大湖里超好吃飯糰飯糰飯糰飯糰飯糰飯糰飯糰飯糰</a></h2>
+                  <!-- <h2><a href="./chat_info.html">最近吃到大湖里超好吃飯糰飯糰飯糰飯糰飯糰飯糰飯糰飯糰</a></h2> -->
+                  <h2><router-link :to="{name:'chat_info'}">最近吃到大湖里超好吃飯糰飯糰飯糰飯糰飯糰飯糰飯糰飯糰</router-link></h2>
+
                   <p>大湖里出產的飯糰米粒粒粒分明，調味也很好吃。超級好吃，100分的大湖里早餐</p>
                   <!-- <div class="tag tag-pink">美食討論</div> -->
               </section>
@@ -173,7 +180,9 @@
                     
                   </div>
                   
-                  <h2><a href="./chat_info.html">想轉賣飯糰</a></h2>
+                  <!-- <h2><a href="./chat_info.html">想轉賣飯糰</a></h2> -->
+                  <h2><router-link :to="{name:'chat_info'}">想轉賣飯糰</router-link></h2>
+
                   <p>大湖里出產的飯糰米粒粒粒分明，調味也很好吃。超級好吃，100分的大湖里早餐</p>
                   <!-- <div class="tag tag-pink">美食討論</div> -->
               </section>
@@ -199,7 +208,9 @@
                     
                   </div>
                   
-                  <h2><a href="./chat_info.html">最近吃到大湖里超難吃飯糰</a></h2>
+                  <!-- <h2><a href="./chat_info.html">最近吃到大湖里超難吃飯糰</a></h2> -->
+                  <h2><router-link :to="{name:'chat_info'}">最近吃到大湖里超難吃飯糰</router-link></h2>
+
                   <p>大湖里出產的飯糰米粒粒粒分明，調味也很好吃。超級好吃，100分的大湖里早餐</p>
                   <!-- <div class="tag tag-pink">美食討論</div> -->
               </section>
@@ -214,16 +225,18 @@
         </div>
 
       </main>
+      <Footer></Footer>
 </template>
 
 
 <script>
 
 import navbar from './navbar.vue';
+import Footer from './Footer.vue';
 
 export default {
   components: {
-      navbar,
+      navbar,Footer,
     },
 }
 </script>

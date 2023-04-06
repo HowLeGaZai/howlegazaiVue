@@ -11,7 +11,7 @@
         <h6>查看進度請至個人帳戶>空間預約紀錄</h6>
         <div class="popup">
           <div class="popup_l">
-            <button type="button" class="btn-cir-s btn-color-green"><i class="bi bi-caret-left-fill i-s"></i></button>
+            <!-- <button type="button" class="btn-cir-s btn-color-green"><i class="bi bi-caret-left-fill i-s"></i></button> -->
             <br>
             <h3 class="">預約單號 : 001</h3>
             <br>
@@ -26,7 +26,7 @@
                 <br>
                 <h4>空間大小：15坪</h4>
                 <br>
-                <h4>地址：台北市中山區南京東路三段219號4樓</h4>
+                <h4>地址：花蓮縣大湖里南京東路三段219號4樓</h4>
                 <h5 class="popup-pad">2023-03-05（日）
                   13:00 - 13:59</h5>
               </div>
@@ -52,18 +52,23 @@
         </div>
        
       <div class="confirm-btn">
-        <button type="button" class="btn-m btn-color-green" onclick="location.href='./index.html'">返回首頁</button>
+        <router-link to="/" custom v-slot="{ navigate }">
+                <button class="btn-m btn-color-green" @click="navigate" role="link">返回首頁</button>
+        </router-link>
+        <!-- <button type="button" class="btn-m btn-color-green" onclick="location.href='/'">返回首頁</button> -->
       </div>
     </main>
+    <Footer></Footer>
 </template>
 
 <script>
 
 import navbar from './navbar.vue';
+import Footer from './Footer.vue';
 
 export default {
   components: {
-      navbar,
+      navbar,Footer,
     },
 }
 </script>
