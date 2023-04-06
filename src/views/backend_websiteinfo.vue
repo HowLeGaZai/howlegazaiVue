@@ -1,30 +1,19 @@
 <template>
 
 <backendNavbar></backendNavbar>
-     <main class="body-sec">
+<div class="body-sec">
+     <main>
     <div class="container-date">
       <!-- 需渲染資料區塊 -->
       <p>西曆：2023 年 03 月 11 日</p>
       <p>農曆：癸卯年 乙卯月 戊辰日 二月二十</p>
       <!-- 需渲染資料區塊 -->
     </div>
-
-
-      <!-- ----------後台nav------------ -->
-      <!-- 使用說明：此使用的後台nav的css 使用方式 -->
-      <!-- 想要綠框白底：class 加上 "btn-color-white" -->
-      <!-- 想要灰底：class 加上 "btn-color-darkgray＋ opacity-6" -->
-      <!-- 想要展開選單：在選單的div class 加上 "be-nav-on" -->
-      <!-- 想要縮起選單：在選單的div class 刪除 "be-nav-off" -->
-      <!-- 想要選單裡的字變綠色： 在該選單的字的class 加上 "btn-font-color-green" -->
-      <!-- 想要選單裡的字變灰色： 在該選單的字的class 加上 "btn-font-color-gray" -->
-      
-
     <div class="container-main">
       <div class="backend-nav">
         <ul class="">
           <li>
-            <a class="be-nav opacity-6 btn-color-darkgray be-menu" href="index.html">
+            <a class="be-nav opacity-6 btn-color-darkgray be-menu" href="backend_index">
               <div class="width-3 text-left">後台管理首頁</div>
               <i class="bi bi-caret-down-fill i-s opacity-0"></i>
             </a>
@@ -36,9 +25,9 @@
               <i class="bi bi-caret-down-fill i-s"></i>
             </a>
             <div class="be-nav-on">
-              <button class="be-nav btn-font-color-green" onclick="window.location.href='backend_websiteinfo.html'">網站基本設定</button>
-              <button class="be-nav be-nav btn-font-color-gray" onclick="window.location.href='backend_officeinfo.html'">聯絡里辦資訊</button>
-              <button class="be-nav btn-font-color-gray" onclick="window.location.href='backend_faq.html'">常見問題設定</button>
+              <button class="be-nav btn-font-color-green" onclick="window.location.href='backend_websiteinfo'">網站基本設定</button>
+              <button class="be-nav be-nav btn-font-color-gray" onclick="window.location.href='backend_officeinfo'">聯絡里辦資訊</button>
+              <button class="be-nav btn-font-color-gray" onclick="window.location.href='backend_faq'">常見問題設定</button>
             </div>
           </li>
 
@@ -48,21 +37,21 @@
               <i class="bi bi-caret-down-fill i-s"></i>
             </a>
             <div class="be-nav-on be-nav-off">
-              <button class="be-nav btn-font-color-gray " onclick="window.location.href='account_overview.html'">帳戶總列表</button>
-              <button class="be-nav be-nav btn-font-color-gray">待審核清單</button>
-              <button class="be-nav btn-font-color-gray">已刪除帳戶</button>
+              <button class="be-nav btn-font-color-gray " onclick="window.location.href='backend/account/overview'">帳戶總列表</button>
+              <button class="be-nav be-nav btn-font-color-gray" onclick="window.location.href='backend/account/new'">待審核清單</button>
+              <button class="be-nav btn-font-color-gray" onclick="window.location.href='backend/account/overview'">已刪除帳戶</button>
             </div>
           </li>
 
           <li>
-            <a class="be-nav opacity-6 btn-color-darkgray be-menu" href="news.html">
+            <a class="be-nav opacity-6 btn-color-darkgray be-menu" href="backend_news.html">
               <div class="width-3 text-left">最新消息管理</div>
               <i class="bi bi-caret-down-fill i-s opacity-0"></i>
             </a>
             <div class="be-nav-on"></div>
           </li>
           <li>
-            <a class="be-nav opacity-6 btn-color-darkgray be-menu" href="chat_list.html">
+            <a class="be-nav opacity-6 btn-color-darkgray be-menu" href="backend_chat_list">
               <div class="width-3 text-left">討論區列表</div>
               <i class="bi bi-caret-down-fill i-s opacity-0"></i>
             </a>
@@ -81,8 +70,8 @@
               <i class="bi bi-caret-down-fill i-s"></i>
             </a>
             <div class="be-nav-on be-nav-off" id="beMenuOn">
-              <button class="be-nav btn-font-color-gray "  onclick="window.location.href='activity.html'">活動列表</button>
-              <button class="be-nav be-nav btn-font-color-gray" onclick="window.location.href='activity_input.html'">新增活動</button>
+              <button class="be-nav btn-font-color-gray "  onclick="window.location.href='backend_activity'">活動列表</button>
+              <button class="be-nav be-nav btn-font-color-gray" onclick="window.location.href='backend_activity_input'">新增活動</button>
             </div>
           </li>
 
@@ -93,8 +82,8 @@
             </a>
 
             <div class="be-nav-on be-nav-off ">
-              <button class="be-nav btn-font-color-green"  onclick="window.location.href='space_list.html'">空間列表</button>
-              <button class="be-nav be-nav btn-font-color-gray"  onclick="window.location.href='space_management.html'">預約管理</button>
+              <button class="be-nav btn-font-color-green"  onclick="window.location.href='backend_space_list'">空間列表</button>
+              <button class="be-nav be-nav btn-font-color-gray"  onclick="window.location.href='backend_space_management'">預約管理</button>
             </div>
           </li>
 
@@ -193,6 +182,7 @@
 
      </div>
   </main>
+  </div>
    <Footer></Footer>
 </template>
 
