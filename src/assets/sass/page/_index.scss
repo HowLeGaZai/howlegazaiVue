@@ -1,5 +1,8 @@
 .home {
-  padding: 70px 75px 5px 75px;
+  padding: 0px 75px 0px 75px;
+  @include breakpoint($grid-breakpoints, "md") {
+    padding: 0 20px;
+  }
   section {
     margin-top: 10%;
     &:first-child {
