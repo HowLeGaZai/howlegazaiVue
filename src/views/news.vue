@@ -7,7 +7,7 @@
       <input type="" class="f-text f-round" placeholder="&#xF52A" style="font-family:bootstrap-icons"/>
       <button class="btn-m btn-color-green ">搜尋</button>
     </div>
-    <div class="desktop-filter">
+    <div class="desktop-filter" id="news-desktop-filter">
       <div class="tag tag-btn tag-main tag-btn-selected">全部消息</div>
       <div class="tag tag-orange tag-btn">公告</div>
       <div class="tag tag-pink tag-btn">宣導</div>
@@ -141,5 +141,20 @@ export default {
   components: {
       navbar,Footer,
     },
+    mounted(){
+    var desktopfilter = document.getElementById("news-desktop-filter");
+    var btns = desktopfilter.getElementsByClassName("tag-btn");
+
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].addEventListener("click", function() {
+        var current = document.getElementsByClassName(" tag-btn-selected");
+
+        if (current.length > 0) {
+          current[0].className = current[0].className.replace(" tag-btn-selected", "");
+        }
+        this.className += " tag-btn-selected";
+      });
+    };
+  }
 }
 </script>

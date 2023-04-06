@@ -41,12 +41,13 @@
                     <div class="row account_row">
                         <div class="col-md-6 col-12">
                         <h4>姓名</h4>
-                        <input type="text" class="f-text nomargin" id="name" v-model="name" placeholder="王大明">
+                        <h4>王三明</h4>
+                        <!-- <input type="text" class="f-text nomargin" id="name" v-model="name" placeholder="王大明"> -->
                         </div>
 
                         <div class="col-md-6 col-12 input2">
                         <h4>暱稱</h4>
-                        <input type="text" class="f-text nomargin" id="nickname" v-model="nickname" placeholder="暱稱">
+                        <input type="text" class="f-text nomargin" id="nickname" v-model="nickname" placeholder="阿水">
                         </div>
                     </div>
 
@@ -71,14 +72,16 @@
                     <div class="row account_row">
                     <div class="col-md-6 col-12">
                         <h4>身份證字號*</h4>
-                        <input type="text" class="f-text nomargin" id="name" v-model="IDnumber" placeholder="身份證字號">
+                        <h4>A112234567</h4>
+                        <!-- <input type="text" class="f-text nomargin" id="name" v-model="IDnumber" placeholder="身份證字號"> -->
                     </div>
                     </div>
 
                     <div class="row account_row">
                     <div class="col-md-6 col-12">
                         <h4>出生 年/月/日</h4>
-                        <input type="text" class="f-text nomargin" id="name" v-model="birthdate" placeholder="YYYY/MM/DD">
+                        <h4>1994/6/8</h4>
+                        <!-- <input type="text" class="f-text nomargin" id="name" v-model="birthdate" placeholder="YYYY/MM/DD"> -->
                     </div>
                     </div>
 
@@ -97,14 +100,30 @@
                     <div class="row account_row">
                     <div class="col-md-6 col-12">
                         <h4>變更頭像</h4>
-                        <input type="text" class="f-text nomargin" id="name" placeholder="大頭照.jpg">
+                        <!-- <input type="text" class="f-text nomargin" id="name" placeholder="大頭照.jpg"> -->
+                    <div class="uploading upload_area displayflex">
+                                    <label for="upload-file-4" class="uploadpic">
+                                      <input type="file" id="upload-file-4" style="display:none">
+                                      <div class="btn-10-s btn-color-green ">
+                                        <i class="bi bi-arrow-bar-up"></i>上傳圖片
+                                      </div>
+                                    </label>
+                                    <div class="pic-area margintop5 ">
+                                      <div class="pic-area-box noborder">
+                                        <!-- <img src="" alt=""> -->
+                                        <span></span>
+                                          <!-- <button class="trash"><i class="bi bi-trash3"></i></button> -->
+                                      </div>
+                                      <!-- <p>設計最佳建議：560 x 560 像素，且大小不得超過 100 KB 的圖檔</p> -->
+                                  </div>
+                                </div>
                     </div>
                     <div class="col-md-6 col-12">
                         
                         <!-- <label  class="btn-m btn-color-green"> -->
                         <!-- <input type="file" class="displaynone">選擇上傳圖片 -->
-                        <button type="button" class="btn-m btn-color-green margintop35">選擇上傳圖片</button>
-                    <!-- </label> -->
+                        <!-- <button type="button" class="btn-m btn-color-green margintop35">選擇上傳圖片</button> -->
+                    <!-- </label> --> 
                     </div>
                     </div>
 
@@ -176,7 +195,45 @@ export default {
                       
                    
               mounted(){
-                       
+                       const uploadButtons = document.querySelectorAll('input[type="file"]');
+    
+      
+        uploadButtons.forEach(button => {
+          button.addEventListener('change', event => {
+           
+            const uploadGroup = button.closest('.uploading');
+    
+            
+            const picArea = uploadGroup.querySelector('.pic-area-box');
+            // const picImg = picArea.querySelector('img');
+            const picName = picArea.querySelector('span');
+    
+            const file = event.target.files[0];
+    
+           
+            if (file.type.startsWith('image/')) {
+              const reader = new FileReader();
+    
+
+              reader.onload = () => {
+                // picImg.src = reader.result;
+                picName.textContent = file.name;
+    
+                // picImg.style.width = '100%'
+                // picImg.style.height = '100%'
+                // picImg.style.maxWidth = '300px'
+                // picImg.style.maxHeight = '100px'
+                // console.log(file.name);
+              }
+    
+              reader.readAsDataURL(file);
+            } else {
+           
+              picImg.src = '';
+              picName.textContent = file.name;
+            }
+          });
+        });
                    },
                methods: {
      
