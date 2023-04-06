@@ -52,7 +52,7 @@
                           <button class="btn-m btn-color-gray" @click="navigate" role="link">返回上一步</button>
             </router-link>
              <router-link to="/space_reserve_confirm" custom v-slot="{ navigate }">
-                          <button class="btn-m btn-color-green" @click="navigate" role="link">填寫完成，送出申請</button>
+                          <button class="btn-m btn-color-green" @click="navigate" role="link">確認送出</button>
             </router-link>
         <!-- <button type="button" class="btn-m btn-color-gray" onclick="location.href='/space_reserve'">返回上一步</button>
         <button type="button" class="btn-m btn-color-green" onclick="location.href='/space_reserve_confirm'">填寫完成，送出申請</button> -->
