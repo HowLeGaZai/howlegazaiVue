@@ -5350,12 +5350,43 @@ footer p {
   margin: 0 auto;
   justify-content: center;
   gap: 30px;
+  /* scrollbar 樣式 */
+  /* width */
+  /* Track */
+  /* Handle */
+  /* Handle on hover */
 }
 @media screen and (max-width: 850px) {
   .front-space .datetime {
     flex-direction: column;
     gap: 0px;
   }
+}
+.front-space .datetime ::-webkit-scrollbar {
+  width: 5px;
+}
+@media screen and (max-width: 850px) {
+  .front-space .datetime ::-webkit-scrollbar {
+    height: 8px;
+  }
+}
+.front-space .datetime ::-webkit-scrollbar-track {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  border-radius: 20px;
+  border: 1px solid #dcdcdc;
+}
+@media screen and (max-width: 850px) {
+  .front-space .datetime ::-webkit-scrollbar-track {
+    box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+    border: 0px solid #dcdcdc;
+  }
+}
+.front-space .datetime ::-webkit-scrollbar-thumb {
+  background: #27b096;
+  border-radius: 20px;
+}
+.front-space .datetime ::-webkit-scrollbar-thumb:hover {
+  background: #1e8672;
 }
 .front-space #datepicker {
   min-height: 400px;
