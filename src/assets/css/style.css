@@ -5226,6 +5226,9 @@ footer p {
 .front-space {
   /*日期時間選擇*/
 }
+.front-space img {
+  width: 101%;
+}
 .front-space .title_space {
   padding-bottom: 35px;
 }
