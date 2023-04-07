@@ -12,6 +12,7 @@
     </div>
 
     <section class="container-main">
+      <!------- 補這裡：後台側欄選單 ------->
       <div class="backend-nav">
         <ul class="">
           <li>
@@ -66,7 +67,7 @@
           </li>
 
           <li>
-            <router-link :to="{name:''}" class="be-nav opacity-6 btn-color-darkgray be-menu">
+            <router-link :to="{name:'backend_news'}" class="be-nav opacity-6 btn-color-darkgray be-menu">
             <!-- <router-link :to="{name:'backend_news'}" class="be-nav opacity-6 btn-color-darkgray be-menu"> --> 
               <div class="width-3 text-left">最新消息管理</div>
               <i class="bi bi-caret-down-fill i-s opacity-0"></i>
@@ -111,10 +112,10 @@
               <i class="bi bi-caret-down-fill i-s"></i>
             </a>
             <div class="be-nav-on be-nav-off ">
-              <router-link :to="{name:''}">
-                <button class="be-nav btn-font-color-gray">空間列表</button>
+              <router-link :to="{name:'backend_space_list'}">
+                <button class="be-nav btn-font-color-gray">空間總覽</button>
             </router-link>
-            <router-link :to="{name:''}">
+            <router-link :to="{name:'backend_space_management'}">
               <button class="be-nav be-nav btn-font-color-gray">預約管理</button>
             </router-link>
               <!-- <button class="be-nav btn-font-color-gray"  onclick="window.location.href='''">空間列表</button>
@@ -176,6 +177,7 @@
 
         </ul>
       </div>
+      <!------- 補這裡：後台側欄選單 ------->
 
 
 
@@ -331,8 +333,24 @@
 
 
     </main>
+    <!------ 補這裡：不支援手機畫面 ------>
+      <div :class="bodyClass" class="nosupport">
+            <main>
+                <section class="noSupport">
+                    <a href="#">
+                        <div>     
+                            <img class="LiIcon" src="../assets/img/LiIcon.png" alt="">
+                            <h1>歹勢！後台目前不支援手機</h1>
+                            <img class="cat" src="../assets/img/Cat.png" alt="">
+                            <p>下班請休息，我們明天再忙！</p>
+                        </div>
+                    </a>
+                </section>
+            </main>
+         
+      </div>
+    <!------ 補這裡：不支援手機畫面 ------>
   </div>
-  
   <Footer></Footer>
     
   <!-- </main> -->
@@ -366,7 +384,9 @@ export default {
             // console.log(dayNamesMin);
         }
     });
-   let beMenu = document.querySelectorAll(".be-menu");
+   
+  //  ＝＝＝＝＝＝側欄選單的JS＝＝＝＝＝＝
+  let beMenu = document.querySelectorAll(".be-menu");
    let beMenuOn = document.querySelectorAll(".be-nav-on");
     // let beMenu = document.querySelectorAll("be-nav");
     // console.log(beMenu);

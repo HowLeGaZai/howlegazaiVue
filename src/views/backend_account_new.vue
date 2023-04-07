@@ -2,121 +2,173 @@
   <backendNavbar></backendNavbar>
   <div class="body-sec">
     <main>
-    <div class="container-date">
-      <!-- 需渲染資料區塊 -->
-      <p>西曆：2023 年 03 月 11 日</p>
-      <p>農曆：癸卯年 乙卯月 戊辰日 二月二十</p>
-      <!-- 需渲染資料區塊 -->
-    </div>
+      <div class="container-date">
+        <!-- 需渲染資料區塊 -->
+        <p>西曆：2023 年 03 月 11 日</p>
+        <p>農曆：癸卯年 乙卯月 戊辰日 二月二十</p>
+        <!-- 需渲染資料區塊 -->
+      </div>
 
-    <section class="container-main">
-      <div class="backend-nav">
-        <ul class="">
-          <li>
-            <a class="be-nav btn-color-white">
-              <div class="width-3 text-left">後台管理首頁</div>
-              <i class="bi bi-caret-down-fill i-s opacity-0"></i>
-            </a>
-          </li>
-          <li>
-            <a class="be-nav opacity-6 btn-color-darkgray" id="beMenu">
-              <div class="width-3 text-left">網站管理</div>
-              <i class="bi bi-caret-down-fill i-s"></i>
-            </a>
-            <div class="be-nav-on be-nav-off" id="beMenuOn">
-              <button class="be-nav btn-font-color-green">網站基本設定</button>
-              <button class="be-nav be-nav btn-font-color-gray">
-                聯絡里辦資訊
-              </button>
-              <button class="be-nav btn-font-color-gray">常見問題設定</button>
-            </div>
-          </li>
-
-          <li>
-            <a class="be-nav opacity-6 btn-color-darkgray">
-              <div class="width-3 text-left">帳戶管理</div>
-              <i class="bi bi-caret-down-fill i-s"></i>
-              <div class="be-nav-on be-nav-off" id="beMenuOn">
-                <button class="be-nav btn-font-color-green">待審核清單</button>
-                <button class="be-nav be-nav btn-font-color-gray">
-                  帳戶總列表
-                </button>
-                <button class="text-ali be-nav btn-font-color-gray">
-                  已刪除帳戶
-                </button>
+      <section class="container-main">
+        <div class="backend-nav">
+          <ul class="">
+            <li>
+              <router-link :to="{ name: 'backend_index' }" class="be-nav btn-color-darkgray be-menu">
+                <div class="width-3 text-left">後台管理首頁</div>
+                <i class="bi bi-caret-down-fill i-s opacity-0"></i>
+              </router-link>
+              <!-- <a class="be-nav btn-color-white be-menu" href="#/backend_index">
+            </a> -->
+              <div class="be-nav-on be-nav-off"></div>
+            </li>
+            <li>
+              <a class="be-nav  opacity-6 btn-color-darkgray be-menu">
+                <div class="width-3 text-left">網站管理</div>
+                <i class="bi bi-caret-down-fill i-s"></i>
+              </a>
+              <div class="be-nav-on be-nav-off">
+                <!-- <button class="be-nav btn-font-color-gray" onclick="window.location.href='#/backend_websiteinfo'">網站基本設定</button> -->
+                <!-- <button class="be-nav be-nav btn-font-color-gray" onclick="window.location.href='#/backend_officeinfo'">聯絡里辦資訊</button> -->
+                <!-- <button class="be-nav btn-font-color-gray" onclick="window.location.href='#/backend_faq'">常見問題設定</button> -->
+                <router-link :to="{ name: 'backend_websiteinfo' }">
+                  <button class="be-nav btn-font-color-gray">網站基本設定</button>
+                </router-link>
+                <router-link :to="{ name: 'backend_officeinfo' }">
+                  <button class="be-nav btn-font-color-gray">聯絡里辦資訊</button>
+                </router-link>
+                <router-link :to="{ name: 'backend_faq' }">
+                  <button class="be-nav btn-font-color-gray">常見問題設定</button>
+                </router-link>
               </div>
-            </a>
-          </li>
+            </li>
 
-          <li>
-            <a class="be-nav opacity-6 btn-color-darkgray">
+            <li>
+              <a class="be-nav btn-color-white be-menu">
+                <div class="width-3 text-left">帳戶管理</div>
+                <i class="bi bi-caret-down-fill i-s"></i>
+              </a>
+              <div class="be-nav-on be-nav-off">
+                <!-- <button class="be-nav btn-font-color-gray " onclick="window.location.href='#/backend_websiteinfo'">帳戶總列表</button>
+              <button class="be-nav btn-font-color-gray" onclick="window.location.href='#/backend_account_new'">待審核清單</button>
+              <button class="be-nav btn-font-color-gray" onclick="window.location.href='#/backend_account_cancel'">已刪除帳戶</button> -->
+                <router-link :to="{ name: 'backend_account_new' }">
+                  <button class="be-nav btn-font-color-green">待審核清單</button>
+                </router-link>
+                <router-link :to="{ name: 'backend_account_overview' }">
+                  <button class="be-nav btn-font-color-gray">帳戶總列表</button>
+                </router-link>
+                <router-link :to="{ name: 'backend_account_cancel' }">
+                  <button class="be-nav btn-font-color-gray">已刪除帳戶</button>
+                </router-link>
+              </div>
+            </li>
+
+            <li>
+              <router-link :to="{ name: 'backend_news' }" class="be-nav opacity-6 btn-color-darkgray be-menu">
+                <!-- <router-link :to="{name:'backend_news'}" class="be-nav opacity-6 btn-color-darkgray be-menu"> -->
+                <div class="width-3 text-left">最新消息管理</div>
+                <i class="bi bi-caret-down-fill i-s opacity-0"></i>
+              </router-link>
+              <!-- <a class="be-nav opacity-6 btn-color-darkgray be-menu" href="#">
               <div class="width-3 text-left">最新消息管理</div>
               <i class="bi bi-caret-down-fill i-s opacity-0"></i>
-            </a>
-          </li>
-          <li>
-            <a class="be-nav opacity-6 btn-color-darkgray">
+            </a> -->
+              <div class="be-nav-on"></div>
+            </li>
+            <li>
+              <router-link :to="{ name: 'backend_chat_list' }" class="be-nav opacity-6 btn-color-darkgray be-menu">
+                <div class="width-3 text-left">討論區列表</div>
+                <i class="bi bi-caret-down-fill i-s opacity-0"></i>
+              </router-link>
+              <!-- <a class="be-nav opacity-6 btn-color-darkgray be-menu" href="#/backend_chat_list">
               <div class="width-3 text-left">討論區列表</div>
               <i class="bi bi-caret-down-fill i-s opacity-0"></i>
-            </a>
-          </li>
-          <li>
-            <a class="be-nav opacity-6 btn-color-darkgray">
+            </a> -->
+              <div class="be-nav-on"></div>
+            </li>
+            <li>
+              <a class="be-nav  opacity-6 btn-color-darkgray be-menu">
+                <div class="width-3 text-left">活動管理</div>
+                <i class="bi bi-caret-down-fill i-s"></i>
+              </a>
+              <div class="be-nav-on be-nav-off" id="beMenuOn">
+                <router-link :to="{ name: 'backend_activity' }">
+                  <button class="be-nav btn-font-color-gray ">活動列表</button>
+                </router-link>
+                <router-link :to="{ name: 'backend_activity_input' }">
+                  <button class="be-nav be-nav btn-font-color-gray">新增活動</button>
+                </router-link>
+                <!-- <button class="be-nav btn-font-color-gray "  onclick="window.location.href='#/backend_activity'">活動列表</button>
+              <button class="be-nav be-nav btn-font-color-gray" onclick="window.location.href='#/backend_activity_input'">新增活動</button> -->
+              </div>
+            </li>
+
+            <li>
+              <a class="be-nav opacity-6 btn-color-darkgray be-menu">
+                <div class="width-3 text-left">空間管理</div>
+                <i class="bi bi-caret-down-fill i-s"></i>
+              </a>
+              <div class="be-nav-on be-nav-off ">
+                <router-link :to="{ name: 'backend_space_list' }">
+                  <button class="be-nav btn-font-color-gray">空間總覽</button>
+                </router-link>
+                <router-link :to="{ name: 'backend_space_management' }">
+                  <button class="be-nav be-nav btn-font-color-gray">預約管理</button>
+                </router-link>
+                <!-- <button class="be-nav btn-font-color-gray"  onclick="window.location.href='''">空間列表</button>
+              <button class="be-nav be-nav btn-font-color-gray"  onclick="window.location.href=''">預約管理</button> -->
+              </div>
+            </li>
+            <li>
+              <router-link :to="{ name: '' }" class="be-nav opacity-6 btn-color-unopened be-menu">
+                <div class="width-3 text-left">團購網管理</div>
+                <i class="bi bi-caret-down-fill i-s opacity-0"></i>
+              </router-link>
+              <!-- <a class="be-nav opacity-6 btn-color-darkgray be-menu" href="">
               <div class="width-3 text-left">團購網管理</div>
               <i class="bi bi-caret-down-fill i-s opacity-0"></i>
-            </a>
-          </li>
-          <li>
-            <a class="be-nav opacity-6 btn-color-darkgray">
-              <div class="width-3 text-left">活動管理</div>
-              <i class="bi bi-caret-down-fill i-s"></i>
-            </a>
-            <div class="be-nav-on be-nav-off" id="beMenuOn">
-              <button class="be-nav btn-font-color-green">活動列表</button>
-              <button class="be-nav be-nav btn-font-color-gray">
-                新增活動
-              </button>
-            </div>
-          </li>
-
-          <li>
-            <a class="be-nav opacity-6 btn-color-darkgray">
-              <div class="width-3 text-left">空間管理</div>
-              <i class="bi bi-caret-down-fill i-s"></i>
-            </a>
-
-            <div class="be-nav-on be-nav-off" id="beMenuOn">
-              <button class="be-nav btn-font-color-green">空間列表</button>
-              <button class="be-nav be-nav btn-font-color-gray">
-                預約管理
-              </button>
-            </div>
-          </li>
-
-          <li>
-            <a class="be-nav opacity-6 btn-color-darkgray">
+            </a> -->
+              <div class="be-nav-on"></div>
+            </li>
+            <li>
+              <router-link :to="{ name: '' }" class="be-nav opacity-6 btn-color-unopened be-menu">
+                <div class="width-3 text-left">維修通報</div>
+                <i class="bi bi-caret-down-fill i-s opacity-0"></i>
+              </router-link>
+              <!-- <a class="be-nav opacity-6 btn-color-darkgray be-menu" href="#">
               <div class="width-3 text-left">維修通報</div>
               <i class="bi bi-caret-down-fill i-s opacity-0"></i>
-            </a>
-          </li>
+            </a> -->
+              <div class="be-nav-on"></div>
+            </li>
 
-          <li>
-            <a class="be-nav opacity-6 btn-color-darkgray">
-              <div class="width-3 text-left">守望相助</div>
-              <i class="bi bi-caret-down-fill i-s"></i>
-            </a>
-            <div class="be-nav-on be-nav-off" id="beMenuOn">
-              <button class="be-nav btn-font-color-green">守望隊管理</button>
-              <button class="be-nav be-nav btn-font-color-gray">
-                簽到列表
-              </button>
-            </div>
-          </li>
+            <li>
+              <a class="be-nav opacity-6 btn-color-unopened be-menu " href="#">
+                <div class="width-3 text-left">守望相助</div>
+                <i class="bi bi-caret-down-fill i-s "></i>
+              </a>
+              <div class="be-nav-on be-nav-off be-menu">
+                <router-link :to="{ name: '' }">
+                  <button class="be-nav btn-font-color-green">守望隊管理</button>
+                </router-link>
+                <router-link :to="{ name: '' }">
+                  <button class="be-nav btn-font-color-gray">簽到列表</button>
+                </router-link>
+                <!-- <button class="be-nav btn-font-color-green">守望隊管理</button>
+              <button class="be-nav be-nav btn-font-color-gray">簽到列表</button> -->
+              </div>
+            </li>
 
-          <li>
-            <a class="be-nav opacity-6 btn-color-darkgray">
+            <li>
+              <router-link :to="{ name: '' }" class="be-nav opacity-6 be-menu btn-color-unopened">
+                <div class="width-3 text-left">瓦斯表數據</div>
+                <i class="bi bi-caret-down-fill i-s opacity-0"></i>
+              </router-link>
+
+              <!-- <a class="be-nav opacity-6 btn-color-darkgray be-menu" href="#">
               <div class="width-3 text-left">瓦斯表數據</div>
               <i class="bi bi-caret-down-fill i-s opacity-0"></i>
+<<<<<<< HEAD
             </a>
           </li>
         </ul>
@@ -128,29 +180,43 @@
         <div class="w90percentage accounttable bk-account-new">
           <div>
             <h1>待審核戶長</h1>
+=======
+            </a> -->
+              <div class="be-nav-on"></div>
+            </li>
+>>>>>>> b3efd91169c23c4ad077b840749769fe2987b9bb
 
-            <div class="displayflex maxheight">
-              <table class="back-table-2">
-                <tbody>
-                  <tr>
-                    <td>通過審核</td>
-                    <td>編號</td>
-                    <td>姓名</td>
-                    <td>帳號</td>
-                    <td>地址</td>
-                    <!-- <td>展開</td> -->
-                  </tr>
-                  <tr>
-                    <td><i class="bi bi-check"> </i><i class="bi bi-x"></i></td>
-                    <td>001</td>
-                    <td>王小明</td>
-                    <td>myaccount123@gmail.com</td>
-                    <td>台北市內湖區大湖里碧山路255巷7號</td>
-                    <!-- <td><i class="bi bi-caret-down-fill" id="openBtn"></i></td> -->
-                  </tr>
+          </ul>
+        </div>
 
-                  <tr class="hidden-row">
-                    <!-- <td>
+        <section class="section_right">
+          <!-- 帳戶總覽 -->
+          <div class="w90percentage accounttable bk-account-new">
+            <div>
+              <h1>待審核戶長</h1>
+
+              <div class="displayflex maxheight">
+                <table class="back-table-2">
+                  <tbody>
+                    <tr>
+                      <td>通過審核</td>
+                      <td>編號</td>
+                      <td>姓名</td>
+                      <td>帳號</td>
+                      <td>地址</td>
+                      <!-- <td>展開</td> -->
+                    </tr>
+                    <tr>
+                      <td><i class="bi bi-check"> </i><i class="bi bi-x"></i></td>
+                      <td>001</td>
+                      <td>王小明</td>
+                      <td>myaccount123@gmail.com</td>
+                      <td>台北市內湖區大湖里碧山路255巷7號</td>
+                      <!-- <td><i class="bi bi-caret-down-fill" id="openBtn"></i></td> -->
+                    </tr>
+
+                    <tr class="hidden-row">
+                      <!-- <td>
                       <ul>
                         <li>aaa</li>
                         <li>aaa</li>
@@ -158,7 +224,7 @@
                         <li>aaa</li>
                       </ul>
                     </td> -->
-                    <!-- <td>
+                      <!-- <td>
               <table>
                 <tbody>
                   <tr>
@@ -183,67 +249,82 @@
                 </tbody>
               </table>
             </td> -->
-                  </tr>
+                    </tr>
 
-                  <tr>
-                    <td><i class="bi bi-check"> </i><i class="bi bi-x"></i></td>
-                    <td>001</td>
-                    <td>王小明</td>
-                    <td>myaccount123@gmail.com</td>
-                    <td>台北市內湖區大湖里碧山路255巷7號</td>
-                    <!-- <td><i class="bi bi-caret-down-fill"></i></td> -->
-                  </tr>
-                  <tr>
-                    <td><i class="bi bi-check"> </i><i class="bi bi-x"></i></td>
-                    <td>001</td>
-                    <td>王小明</td>
-                    <td>myaccount123@gmail.com</td>
-                    <td>台北市內湖區大湖里碧山路255巷7號</td>
-                    <!-- <td><i class="bi bi-caret-down-fill"></i></td> -->
-                  </tr>
-                  <tr>
-                    <td><i class="bi bi-check"> </i><i class="bi bi-x"></i></td>
-                    <td>001</td>
-                    <td>王小明</td>
-                    <td>myaccount123@gmail.com</td>
-                    <td>台北市內湖區大湖里碧山路255巷7號</td>
-                    <!-- <td><i class="bi bi-caret-down-fill"></i></td> -->
-                  </tr>
-                  <tr>
-                    <td><i class="bi bi-check"> </i><i class="bi bi-x"></i></td>
-                    <td>001</td>
-                    <td>王小明</td>
-                    <td>myaccount123@gmail.com</td>
-                    <td>台北市內湖區大湖里碧山路255巷7號</td>
-                    <!-- <td><i class="bi bi-caret-down-fill"></i></td> -->
-                  </tr>
-                </tbody>
-              </table>
-              <!-- 頁碼 -->
-              <ul class="btn-page-block">
-                <li>
-                  <button class="btn-page btn-color-white">
-                    <i class="bi bi-caret-left-fill"></i>
-                  </button>
-                </li>
-                <li><button class="btn-page btn-color-green">1</button></li>
-                <li><button class="btn-page btn-color-white">2</button></li>
-                <li><button class="btn-page btn-color-white">3</button></li>
-                <li>
-                  <button class="btn-page btn-color-white">
-                    <i class="bi bi-caret-right-fill"></i>
-                  </button>
-                </li>
-              </ul>
+                    <tr>
+                      <td><i class="bi bi-check"> </i><i class="bi bi-x"></i></td>
+                      <td>001</td>
+                      <td>王小明</td>
+                      <td>myaccount123@gmail.com</td>
+                      <td>台北市內湖區大湖里碧山路255巷7號</td>
+                      <!-- <td><i class="bi bi-caret-down-fill"></i></td> -->
+                    </tr>
+                    <tr>
+                      <td><i class="bi bi-check"> </i><i class="bi bi-x"></i></td>
+                      <td>001</td>
+                      <td>王小明</td>
+                      <td>myaccount123@gmail.com</td>
+                      <td>台北市內湖區大湖里碧山路255巷7號</td>
+                      <!-- <td><i class="bi bi-caret-down-fill"></i></td> -->
+                    </tr>
+                    <tr>
+                      <td><i class="bi bi-check"> </i><i class="bi bi-x"></i></td>
+                      <td>001</td>
+                      <td>王小明</td>
+                      <td>myaccount123@gmail.com</td>
+                      <td>台北市內湖區大湖里碧山路255巷7號</td>
+                      <!-- <td><i class="bi bi-caret-down-fill"></i></td> -->
+                    </tr>
+                    <tr>
+                      <td><i class="bi bi-check"> </i><i class="bi bi-x"></i></td>
+                      <td>001</td>
+                      <td>王小明</td>
+                      <td>myaccount123@gmail.com</td>
+                      <td>台北市內湖區大湖里碧山路255巷7號</td>
+                      <!-- <td><i class="bi bi-caret-down-fill"></i></td> -->
+                    </tr>
+                  </tbody>
+                </table>
+                <!-- 頁碼 -->
+                <ul class="btn-page-block">
+                  <li>
+                    <button class="btn-page btn-color-white">
+                      <i class="bi bi-caret-left-fill"></i>
+                    </button>
+                  </li>
+                  <li><button class="btn-page btn-color-green">1</button></li>
+                  <li><button class="btn-page btn-color-white">2</button></li>
+                  <li><button class="btn-page btn-color-white">3</button></li>
+                  <li>
+                    <button class="btn-page btn-color-white">
+                      <i class="bi bi-caret-right-fill"></i>
+                    </button>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
-        </div>
+        </section>
       </section>
-    </section>
-  </main>
+    </main>
+    <div :class="bodyClass" class="nosupport">
+      <main>
+        <section class="noSupport">
+          <a href="#">
+            <div>
+              <img class="LiIcon" src="../assets/img/LiIcon.png" alt="">
+              <h1>歹勢！後台目前不支援手機</h1>
+              <img class="cat" src="../assets/img/Cat.png" alt="">
+              <p>下班請休息，我們明天再忙！</p>
+            </div>
+          </a>
+        </section>
+      </main>
+
+    </div>
   </div>
 
-  <Footer></Footer>  
+  <Footer></Footer>
 </template>
 
 <script>
@@ -258,8 +339,10 @@ export default {
     let openBtn = document.getElementById('openBtn');
     let hiddenRow = document.querySelector('.hidden-row');
     openBtn.addEventListener('click', () => {
-        hiddenRow.classList.toggle('show-row');
+      hiddenRow.classList.toggle('show-row');
     });
+    
+    
   },
 };
 </script>
