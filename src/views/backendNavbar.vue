@@ -3,7 +3,7 @@
     <nav class="main">
       <div class="leftnav">
         <!-- logo -->
-        <a class="brand" href="./index.html">
+        <a class="brand" href="#/backend_index">
           <img src="../assets/img/logo_backend.svg" alt="" />
         </a>
         <div class="midnav">
