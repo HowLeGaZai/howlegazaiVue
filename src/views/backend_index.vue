@@ -12,7 +12,7 @@
     </div>
 
     <section class="container-main">
-      <!------- 後台NAV ------->
+      <!------- 補這裡：後台側欄選單 ------->
       <div class="backend-nav">
         <ul class="">
           <li>
@@ -177,7 +177,7 @@
 
         </ul>
       </div>
-      <!------- 後台NAV ------->
+      <!------- 補這裡：後台側欄選單 ------->
 
 
 
@@ -333,7 +333,7 @@
 
 
     </main>
-    <!------ 不支援手機畫面 ------>
+    <!------ 補這裡：不支援手機畫面 ------>
       <div :class="bodyClass" class="nosupport">
             <main>
                 <section class="noSupport">
@@ -349,7 +349,7 @@
             </main>
          
       </div>
-    <!------ 不支援手機畫面 ------>
+    <!------ 補這裡：不支援手機畫面 ------>
   </div>
   <Footer></Footer>
     
@@ -384,7 +384,9 @@ export default {
             // console.log(dayNamesMin);
         }
     });
-   let beMenu = document.querySelectorAll(".be-menu");
+   
+  //  ＝＝＝＝＝＝側欄選單的JS＝＝＝＝＝＝
+  let beMenu = document.querySelectorAll(".be-menu");
    let beMenuOn = document.querySelectorAll(".be-nav-on");
     // let beMenu = document.querySelectorAll("be-nav");
     // console.log(beMenu);
