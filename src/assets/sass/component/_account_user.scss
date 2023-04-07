@@ -640,6 +640,7 @@
   width: 100%;
   height: 100vh;
   background-color: hsla(0, 0%, 0%, .5);
+  
 }
 .none{
   display: none;
@@ -660,6 +661,85 @@
   // margin: 117px 202px 169px 193px;
   padding: 58px 50px 81px 51px;
   border-radius: 20px;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
   // box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
   // background-color: var(--white);
 }
+
+
+.popup_content{
+  position: relative;
+  .changeposition{
+    position: absolute;
+    left:0;
+  }
+  h6{
+    text-align: center;
+    max-width: 300px;
+    display: block;
+    margin: 0 auto;
+  }
+
+}
+
+.width70percentage{
+  width: 70%;
+}
+.justifycontentcenter{
+  justify-content: center;
+}
+.cancelreason{
+  margin-top: 30px;
+  display: flex;
+  justify-content: flex-end;
+  select{
+    @media screen and (max-width: 992px) {
+      width: 100%;
+    }
+   
+  }
+  h5{
+    margin-top: 10px;
+    margin-right: 15px;
+  }
+  @media screen and (max-width: 992px) {
+    flex-wrap: wrap;
+  }
+}
+
+.remark{
+  display: flex;
+  justify-content: flex-end;
+  // justify-content: center;
+  h5{
+    margin-right: 10px;
+    margin-top: 10px;
+    @media screen and (max-width: 992px) {
+      
+    }
+  }
+  @media screen and (max-width: 992px) {
+    flex-wrap: wrap;
+  }
+  textarea{
+    @media screen and (max-width: 992px) {
+      width: 100%;
+    }
+   
+  }
+}
+
+.popup_content{
+ .btn-m{
+    margin-top: 20px;
+  }
+  h3{
+    @media screen and (max-width: 992px) {
+      margin-top: 70px;
+    }
+  }
+  
+}
+
+
+
