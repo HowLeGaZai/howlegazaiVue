@@ -91,7 +91,7 @@
                   <!-- <li><router-link :to="{name:'account_user_product'}" class="dropdown-item">團購管理</router-link></li> -->
                   <li><hr class="dropdown-line" /></li>
                   <li>
-                    <router-link :to="{name:'account_user_change_pwd'}">活動報名紀錄</router-link>
+                    <router-link :to="{name:'account_user_change_pwd'}">變更密碼</router-link>
                   </li>
                 </ul>
               </div>

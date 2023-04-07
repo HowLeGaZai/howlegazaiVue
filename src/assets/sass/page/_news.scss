@@ -6,7 +6,8 @@
     margin-bottom: 80px;
 
     @include breakpoint($grid-breakpoints, 'md') {
-      font-size: 40px;
+      margin-bottom: 35px;
+
     }
 
   }
@@ -64,11 +65,16 @@
   justify-content: center;
   flex-wrap: wrap;
   margin-bottom: 50px;
+  @include breakpoint($grid-breakpoints, 'sm') {
+    width: 95%;
+    margin:0 auto 50px;
+
+  }
 
 
   input {
     width: 53%;
-    line-height: 28px;
+    // line-height: 28px;
 
     @include breakpoint($grid-breakpoints, 'md') {
       width: 70%;
@@ -88,6 +94,11 @@
       font-size: 16px;
       height: 45px;
       line-height: 45px;
+      padding: 0 25px;
+    }
+    @include breakpoint($grid-breakpoints, 'sm') {
+      height: 33px;
+      line-height: 33px;
       padding: 0 25px;
     }
 
@@ -167,7 +178,7 @@
 
     @include breakpoint($grid-breakpoints, 'sm') {
       font-size: 18px;
-      height:45px;
+      height:35px;
 
 
     }

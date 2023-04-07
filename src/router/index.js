@@ -270,24 +270,66 @@ const routes = [
     name: 'backend_account_new',
     component:() => import(/* webpackChunkName: "about" */ '../views/backend_account_new.vue')
   },
-  
+  {
+    // 後台 空間管理 空間列表
+    path: '/backend_space_list',
+    name: 'backend_space_list',
+    component:() => import(/* webpackChunkName: "about" */ '../views/backend_space_list.vue')
+  },
+  {
+    // 後台 空間管理 新增空間
+    path: '/backend_space_add',
+    name: 'backend_space_add',
+    component:() => import(/* webpackChunkName: "about" */ '../views/backend_space_add.vue')
+  },
+  {
+    // 後台 空間管理 空間管理
+    path: '/backend_space_management',
+    name: 'backend_space_management',
+    component:() => import(/* webpackChunkName: "about" */ '../views/backend_space_management.vue')
+  },
 
 
   // 最新消息預留檔名（消息列表＋新增消息）
   {
-    path: '/backend/news',
+    path: '/backend_news',
     name: 'backend_news',
     component:() => import(/* webpackChunkName: "about" */ '../views/backend_news.vue')
   },
-// 最新消息 (增加消息)
+  // 最新消息 (增加消息)
   {
-    path: '/backend/news/add',
+    path: '/backend_news_add',
     name: 'backend_news_add',
     component:() => import(/* webpackChunkName: "about" */ '../views/backend_news_add.vue')
   },
   
+  // 空間管理
+
+  {
+    path: '/backend_space_list',
+    name: 'backend_space_list',
+    component:() => import(/* webpackChunkName: "about" */ '../views/backend_space_list.vue')
+  },
+
+
+  // 新增空間
+  {
+    path: '/backend_space_add',
+    name: 'backend_space_add',
+    component:() => import(/* webpackChunkName: "about" */ '../views/backend_space_add.vue')
+  },
   
-  
+
+  // 空間預約管理
+
+  {
+    path: '/backend_space_management',
+    name: 'backend_space_management',
+    component:() => import(/* webpackChunkName: "about" */ '../views/backend_space_management.vue')
+  },
+
+
+  // 後台 手機不支援
   
   
 ]

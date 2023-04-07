@@ -1,7 +1,7 @@
 <template>
   <navbar></navbar>
   <main class="new-chat">
-    <h2 class="title_space">發起討論</h2>
+    <h1 class="title_space">發起討論</h1>
     <div class="row">
       <div class="col-md-9 col-12">
         <label for="name" class="f-label">討論標題</label>

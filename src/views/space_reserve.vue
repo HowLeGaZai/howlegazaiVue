@@ -4,7 +4,7 @@
 
     <main class="front-space">
        <section>
-        <h2 class="title_space">預約空間</h2>
+        <h1 class="title_space">預約空間</h1>
         <div class="reserve-time">
           <h4>預約時間/場地:</h4>
           <h5>2023-03-05（日）13:00 - 13:59</h5>
