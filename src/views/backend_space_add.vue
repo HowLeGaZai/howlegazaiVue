@@ -65,7 +65,7 @@
                         </li>
                         <!-- 最新消息管理 -->
                         <li>
-                            <router-link :to="{name:''}" class="be-nav opacity-6 btn-color-darkgray be-menu">
+                            <router-link :to="{name:'backend_news'}" class="be-nav opacity-6 btn-color-darkgray be-menu">
                             <!-- <router-link :to="{name:'backend_news'}" class="be-nav opacity-6 btn-color-darkgray be-menu"> --> 
                             <div class="width-3 text-left">最新消息管理</div>
                             <i class="bi bi-caret-down-fill i-s opacity-0"></i>
