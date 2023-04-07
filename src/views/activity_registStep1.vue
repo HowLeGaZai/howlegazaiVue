@@ -127,8 +127,10 @@
                 </td>
             </tr>
             <tr class="row right">
-                <td><button class="btn-m btn-color-white">取消</button></td>
-                <td><button class="btn-m btn-color-green">確認付款</button></td>
+                <td><button class="btn-m btn-color-white">取消</button></td> 
+                <td><router-link :to="{name:'activity_registStep3'}" ><button class="btn-m btn-color-green">確認付款</button></router-link></td>
+
+                       
             </tr>       
         </tbody>
         <tfoot>

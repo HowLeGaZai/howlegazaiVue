@@ -44,7 +44,7 @@
           </li>
 
           <li>
-            <a class="be-nav  opacity-6 btn-color-darkgray be-menu btn-color-white" >
+            <a class="be-nav  opacity-6 be-menu btn-color-white" >
               <div class="width-3 text-left">帳戶管理</div>
               <i class="bi bi-caret-down-fill i-s"></i>
             </a>

@@ -31,7 +31,7 @@
                 </tr>
                 <tr class="actInfo-2">
                     <td>地點：</td>
-                    <td>新北市三重區幸福路和平街66號 快樂公園教室Ｂ</td>
+                    <td>花蓮縣大湖里幸福路和平街66號 快樂公園教室Ｂ</td>
                 </tr>
                 <tr class="actInfo-2">
                     <td>報名人數限制：</td>
@@ -52,8 +52,8 @@
                     <label for="name" class="f-label">人數</label>
                     <input type="text" class="f-text" id="name" placeholder="">
                 </div>
-                <div class="confirm-btn">
-                    <button type="button" class="btn-m btn-color-green">點我報名</button>
+                <div class="confirm-btn"> 
+                    <a href="#/activity_registStep1"><button type="button" class="btn-m btn-color-green">點我報名</button></a>
                 </div>
             </div>
         </div>

@@ -1,6 +1,5 @@
 node_modules
 package-lock.json
-src/assets/css/style.css
-src/assets/css/style.css.map
+src\assets\css
 src/assets/css
 dist
