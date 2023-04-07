@@ -31,7 +31,7 @@
                 </tr>
                 <tr class="actInfo-2">
                     <td>地點：</td>
-                    <td>新北市三重區幸福路和平街66號 快樂公園教室Ｂ</td>
+                    <td>花蓮縣大湖里幸福路和平街66號 快樂公園教室Ｂ</td>
                 </tr>
                 <tr class="actInfo-2">
                     <td>報名人數限制：</td>
