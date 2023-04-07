@@ -1,7 +1,7 @@
 <template>
   <backendNavbar></backendNavbar>
   <div class="body-sec">
-    <main>
+    <main class="backpadding">
       <div class="container-date">
         <!-- 需渲染資料區塊 -->
         <p>西曆：2023 年 03 月 11 日</p>
@@ -10,16 +10,17 @@
       </div>
 
       <section class="container-main">
-        <div class="backend-nav">
+                 <!------- 補這裡：後台側欄選單 ------->
+      <div class="backend-nav">
         <ul class="">
           <li>
-            <router-link :to="{name:'backend_index'}" class="be-nav btn-color-darkgray be-menu">
+            <router-link :to="{name:'backend_index'}" class="be-nav opacity-6 btn-color-darkgray be-menu">
               <div class="width-3 text-left">後台管理首頁</div>
               <i class="bi bi-caret-down-fill i-s opacity-0"></i>
             </router-link>
             <!-- <a class="be-nav btn-color-white be-menu" href="#/backend_index">
             </a> -->
-            <div class="be-nav-on be-nav-off"></div>
+            <div class="be-nav-on"></div>
           </li>
           <li>
             <a class="be-nav  opacity-6 btn-color-darkgray be-menu">
@@ -43,11 +44,11 @@
           </li>
 
           <li>
-            <a class="be-nav  opacity-6 btn-color-darkgray be-menu" >
+            <a class="be-nav  opacity-6 be-menu btn-color-white" >
               <div class="width-3 text-left">帳戶管理</div>
               <i class="bi bi-caret-down-fill i-s"></i>
             </a>
-            <div class="be-nav-on be-nav-off">
+            <div class="be-nav-on">
               <!-- <button class="be-nav btn-font-color-gray " onclick="window.location.href='#/backend_websiteinfo'">帳戶總列表</button>
               <button class="be-nav btn-font-color-gray" onclick="window.location.href='#/backend_account_new'">待審核清單</button>
               <button class="be-nav btn-font-color-gray" onclick="window.location.href='#/backend_account_cancel'">已刪除帳戶</button> -->
@@ -174,6 +175,8 @@
 
         </ul>
       </div>
+      <!------- 補這裡：後台側欄選單 ------->
+
         <section class="section_right">
           <!-- 帳戶總覽 -->
           <div class="w90percentage accounttable bk-account-cancel maxheight">
@@ -272,8 +275,8 @@
         </section>
       </section>
     </main>
-        <!------ 補這裡：不支援手機畫面 ------>
-        <div :class="bodyClass" class="nosupport">
+         <!------ 補這裡：不支援手機畫面 ------>
+         <div :class="bodyClass" class="nosupport">
             <main>
                 <section class="noSupport">
                     <a href="#">
@@ -297,13 +300,47 @@
 import backendNavbar from "./backendNavbar.vue";
 import Footer from "./Footer.vue";
 
+// 測欄開合
+import $ from "jquery";
+import "jquery-ui-dist/jquery-ui";
+import "jquery-ui-dist/jquery-ui.min.css";
+
 export default {
   components: {
-    Footer,
     backendNavbar,
+    Footer,
   },
   mounted() {
-    // ======nav的收合======
+    $("#resizable").resizable({});
+    $("#datepicker").datepicker({
+      monthNames: [
+        "一月",
+        "二月",
+        "三月",
+        "四月",
+        "五月",
+        "六月",
+        "七月",
+        "八月",
+        "九月",
+        "十月",
+        "十一月",
+        "十二月",
+      ],
+      dayNamesMin: ["週日", "週一", "週二", "週三", "週四", "週五", "週六"],
+      dateFormat: "yy/mm/dd",
+
+      onSelect: function () {
+        var selected = $(this).val();
+        $(".selectedD").html(`日期:&nbsp` + selected);
+        // console.log(selected);
+
+        // let dayNamesMin = $(this).datepicker( "option", "dayNamesMin" );
+        // console.log(dayNamesMin);
+      },
+    });
+
+    //  ＝＝＝＝＝＝側欄選單的JS＝＝＝＝＝＝
     let beMenu = document.querySelectorAll(".be-menu");
     let beMenuOn = document.querySelectorAll(".be-nav-on");
     // let beMenu = document.querySelectorAll("be-nav");
@@ -316,19 +353,7 @@ export default {
       });
     }
 
-    var btnContainer = document.getElementById("selected");
-    var btns = btnContainer.getElementsByClassName("timeslot");
-
-    for (var i = 0; i < btns.length; i++) {
-      btns[i].addEventListener("click", function () {
-        var current = document.getElementsByClassName("active");
-
-        if (current.length > 0) {
-          current[0].className = current[0].className.replace(" active", "");
-        }
-        this.className += " active";
-      });
-    }
+    //  ＝＝＝＝＝＝側欄選單的JS end＝＝＝＝＝＝
   },
 };
 </script>
