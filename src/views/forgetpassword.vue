@@ -1,6 +1,7 @@
 <template>
 
 <navbar></navbar>
+<div class="bgc">
 <main>
         
         <div class="center">
@@ -21,20 +22,21 @@
               <!-- 驗證碼 -->
               <div class="aaa">
               <div class="verification">           
-                  <h1>8888</h1>
+                  <h1>{{ number }}</h1>
               </div>
-              <button type="button" class="btn-10-s btn-color-green">   
+              <button type="button" class="btn-10-s btn-color-green" @click="generateNumber()">   
                 <i class="bi bi-arrow-clockwise"></i> 變更     
               </button>      </div>
         </form>
           <!-- 最後送出的編號 -->
           <div class="bbb">
-           <a href="#/login.vue"><button type="button" class="btn-m btn-color-white">返回</button></a> 
-           <a href="#/login.vue"><button type="button" class="btn-m btn-color-green">修改</button></a>
+           <a href="#/login"><button type="button" class="btn-m btn-color-white">返回</button></a> 
+           <a href="#/login"><button type="button" class="btn-m btn-color-green">修改</button></a>
           </div>
           </div>
           
         </main>
+      </div>
     
 <Footer></Footer>
 </template>
@@ -45,14 +47,29 @@ import navbar from './navbar.vue';
 import Footer from './Footer.vue';
 
 export default {
+  data() {
+    return {
+      number : "0002"  //這個是驗證碼的預設值
+    }
+  },
     components: {
     Footer,
     navbar,
   },
   setup() {
-    return {
-
-    };
+   
+  },
+  methods: {
+    // 這個是驗證碼的函式
+    generateNumber() {
+      // 產生四位數的亂數
+      const randomNum = Math.floor(Math.random() * 10000);
+      // 補齊前面的零
+      const formattedNum = ("000" + randomNum).slice(-4);
+      // 將產生的亂數顯示在網頁上
+      this.number = formattedNum;
+    },
+  
   },
   mounted() {
       let labels = document.querySelectorAll('.collapsible-item-label');
@@ -77,7 +94,12 @@ export default {
               }
           });
       });
+
+
+   
   },
 };
+
+
 
 </script>
