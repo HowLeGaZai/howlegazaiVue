@@ -243,7 +243,7 @@
                         <input type="checkbox" name="multichoice" checked>
                         <span class="checkmark"></span>
                       </label></td>
-                    <td><button type="button" class="btn-icon" onclick="window.location.href='#/backend_activity_input'">
+                    <td><button type="button" class="btn-icon" onclick="window.location.href='#/backend_activity_memberlist'">
                         <i class="bi bi-file-earmark-bar-graph btn-font-color-green"></i>
                       </button>
                     </td>
