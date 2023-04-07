@@ -74,9 +74,9 @@
                 <i class="bi bi-caret-down-fill i-s"></i>
               </a>
               <div class="be-nav-on " id="beMenuOn">
-                <button class="be-nav btn-font-color-gray " onclick="window.location.href='activity.html'">活動列表</button>
+                <button class="be-nav btn-font-color-gray " onclick="window.location.href='backend_activity'">活動列表</button>
                 <button class="be-nav be-nav btn-font-color-green"
-                  onclick="window.location.href='activity_input.html'">新增活動</button>
+                  onclick="window.location.href='activity_input'">新增活動</button>
               </div>
             </li>
 

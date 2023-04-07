@@ -168,23 +168,9 @@
               <!-- <a class="be-nav opacity-6 btn-color-darkgray be-menu" href="#">
               <div class="width-3 text-left">瓦斯表數據</div>
               <i class="bi bi-caret-down-fill i-s opacity-0"></i>
-<<<<<<< HEAD
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      
-      <section class="section_right">
-        <!-- 帳戶總覽 -->
-        <div class="w90percentage accounttable bk-account-new">
-          <div>
-            <h1>待審核戶長</h1>
-=======
             </a> -->
               <div class="be-nav-on"></div>
             </li>
->>>>>>> b3efd91169c23c4ad077b840749769fe2987b9bb
 
           </ul>
         </div>
