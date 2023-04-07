@@ -5,6 +5,9 @@
 }
 
 .bk-account-new{
+    @media screen and (max-width: 1110px){
+        font-size: 14px;
+    }
     tr:first-child{
         td{
             word-wrap: break-word;
@@ -12,8 +15,10 @@
     }
     td:first-child{
         text-align: left;
-        width: 130px;
-        padding-left: 15px;
+        // width: 130px;
+        width:100px;
+        padding-left: 10px;
+        padding-right: 10px;
         i{
             font-size: 30px;
             &:hover{
@@ -28,10 +33,11 @@
         }
     }
     td:nth-child(2){
-        width: 70px;
+        width: 60px;
     }
     td:nth-child(3){
-        width: 100px;
+        // width: 100px;
+        width: 80px;
     }
     td:nth-child(4){
         width: 150px;
@@ -46,6 +52,7 @@
         width: 300px;
         min-width: 200px;
         font-size: 16px;
+        padding-right: 10px;
         word-wrap: break-word;
         line-height: 1.5;
         vertical-align:middle;
@@ -55,7 +62,7 @@
     }
     td:last-child{
         width: 60px;
-        text-align: center;
+        text-align: left;
         i{
             color: $green;
             &:hover{

@@ -195,7 +195,7 @@
               <!-- <p class="card-content">櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺</p> -->
               <h5 class="card-date">活動日期：<span>2023-01-01</span></h5>
               <h3 class="card-price">免費</h3>
-              <a class="card-link" href="#"
+              <a class="card-link" href="#/activity_info"
                 ><h5>活動詳情<i class="bi bi-arrow-right"></i></h5
               ></a>
             </div>
@@ -224,7 +224,7 @@
               <!-- <p class="card-content">櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺</p> -->
               <h5 class="card-date">活動日期：<span>2023-01-01</span></h5>
               <h3 class="card-price">免費</h3>
-              <a class="card-link" href="#"
+              <a class="card-link" href="#/activity_info"
                 ><h5>活動詳情<i class="bi bi-arrow-right"></i></h5
               ></a>
             </div>
@@ -253,7 +253,7 @@
               <!-- <p class="card-content">櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺</p> -->
               <h5 class="card-date">活動日期：<span>2023-01-01</span></h5>
               <h3 class="card-price">免費</h3>
-              <a class="card-link" href="#"
+              <a class="card-link" href="#/activity_info"
                 ><h5>活動詳情<i class="bi bi-arrow-right"></i></h5
               ></a>
             </div>

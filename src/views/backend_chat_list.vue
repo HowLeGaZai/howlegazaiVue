@@ -181,7 +181,7 @@
                     <td>最近吃到超好吃飯糰</td>
                     <td>2022-01-03</td>
                     <td>李小明</td>
-                    <td><button type="button" class="btn-icon">
+                    <td><button type="button" class="btn-icon" onclick="window.open('#/chat_info', '_blank')">
                         <i class="bi bi-link-45deg btn-font-color-green"></i>
                       </button>
                     </td>

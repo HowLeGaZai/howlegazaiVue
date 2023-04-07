@@ -10,10 +10,20 @@
 import backendNavbar from "./backendNavbar.vue";
 import Footer from './Footer.vue';
 
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import CKEditor from "@ckeditor/ckeditor5-vue";
+
 export default {
   components: {
     backendNavbar,
     Footer,
+    ckeditor: CKEditor.component,
+  },
+   data() {
+    return {
+      editor: ClassicEditor,
+      content: "<p></p>",
+    };
   },
   mounted() {
     let openBtn = document.getElementById('openBtn');

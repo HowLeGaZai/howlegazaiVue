@@ -4,7 +4,7 @@
 
     <main class="front-space front-space-confirm">
         <section>
-          <h2 class="title_space">預約空間</h2>
+          <h1 class="title_space">預約空間</h1>
         </section>
         <img src="../assets/img/CheckCircle.svg" alt="">
         <h6>預約成功，待二至三日工作天審核成功後，即完成預約。</h6>
