@@ -119,6 +119,8 @@ body {
     line-height: 50px;
   }
 
+ 
+
   .activity-label {
     width: 70px;
 
@@ -132,11 +134,21 @@ body {
   }
 
   .activity-name{
-    width: 300px;
+    width: 25vw;
+    @media screen and (max-width: 1300px){
+      width: 15vw;
+    }
+
+    @media screen and (max-width: 1200px){
+      width: 10vw;
+    }
   }
 
   .activity-num{
     width: 80px;
+    @media screen and (max-width: 1150px){
+     display: none;
+    }
   }
 
 
@@ -201,10 +213,10 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 250px;
-    padding: 5px;
+    // width: 250px;
+    padding: 10px;
     margin:  20px;
-    border-right:1px solid $green;
+    // border-right:1px solid $green;
   }
 
   td:last-child{
