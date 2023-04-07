@@ -13,6 +13,7 @@
     "@ckeditor/ckeditor5-upload": "^37.0.1",
     "@ckeditor/ckeditor5-vue": "^4.0.1",
     "@vuepic/vue-datepicker": "^4.3.0",
+    "bootstrap-icons-vue": "^1.10.3",
     "ckeditor4-vue": "^2.3.0",
     "core-js": "^3.8.3",
     "jquery": "^3.6.4",
