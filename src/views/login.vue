@@ -1,6 +1,7 @@
 <template>
 
 <navbar></navbar>
+<div class="bgc">
 <main>
     <div class="center">
         <h1>登入</h1>
@@ -35,6 +36,7 @@
       </div>
 
             </main>
+          </div>
 <Footer></Footer>
 </template>
 

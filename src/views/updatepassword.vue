@@ -1,6 +1,6 @@
 <template>
   <navbar></navbar>
-
+<div class="bgc">
   <main>
         <div class="center">
             <h1>修改密碼</h1>
@@ -23,6 +23,8 @@
         
      
         </main>
+
+      </div>
 
   <Footer></Footer>
 </template>

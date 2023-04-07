@@ -1,6 +1,7 @@
 <template>
 
 <navbar></navbar>
+<div class="bgc">
 <main>
         <div class="center">
           
@@ -46,6 +47,7 @@
           </div>
               </div>
             </main>
+          </div>
 <Footer></Footer>
 </template>
 
