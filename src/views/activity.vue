@@ -52,23 +52,33 @@
 
 
             </div>
-            <h2 class="title_space">活動總覽</h2>
+            <h1 class="title_space">活動總覽</h1>
             <h4>與里長 鬥陣氣頭</h4>
         </div>
 
-        <div class="searchTool">
-            <div class="col-3 activity-toolbar">
-                <label for="name2" class="f-label">截止日期</label>
-                <input type="date" class="f-text">
+        <div class="searchTool row">
+            <div class="col-6 col-md-3 activity-toolbar">
+                <label for="activity-dday" class="f-label">截止日期</label>
+                <input type="date" class="f-text" id="activity-dday" style:="background-color:white" value="">
             </div>
-            <div class="col-3 activity-toolbar">
-                <label for="name3" class="f-label">價格</label>
-                <input type="text" class="f-text" id="name3" placeholder="全部">
+            <div class="col-6 col-md-3 activity-toolbar">
+                <label for="activity-price" class="f-label">價格</label>
+                <!-- <input type="text" class="f-text" id="activity-price" placeholder="全部"> -->
+                <select name="" id="activity-price" class="f-select">
+                <option value="1">免費</option>
+                <option value="2">1000以下</option>
+                <option value="3">2000以下</option>
+                <option value="4">5000以下</option>
+            </select>
             </div>    
             
-            <div class="col-6 search-bar">
-                <input type="search" class="f-text f-round tag-round" placeholder="&#xf002" style="font-family:Arial, FontAwesome">
-                <button class="btn-s btn-color-green ">搜尋</button>
+            <div class="col-12 col-md-6 ac-search-bar">
+                <div class="search">
+                    <input type="" class="f-text f-round" placeholder="&#xF52A" style="font-family:bootstrap-icons"/>
+                    <button type="button" class="btn-m btn-color-green">搜尋</button>
+                </div>
+                <!-- <input type="" class="f-text f-round tag-round" placeholder="&#xF52A" style="font-family:bootstrap-icons">
+                <button class="btn-s btn-color-green ">搜尋</button> -->
             </div> 
         </div>
 
@@ -109,7 +119,7 @@
                 <!-- <p class="card-content">櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺</p> -->
                 <!-- <h5 class="card-date">活動日期：<span>{{event.startDate}}</span></h5>
                 <h3 class="card-price">{{event.price}}</h3>
-                <a class="card-link" href="#"><h5> 活動詳情<i class="bi bi-arrow-right"></i></h5></a>
+                <a class="card-link" href="#/activity_info"><h5> 活動詳情<i class="bi bi-arrow-right"></i></h5></a>
             </div>
         </div> -->
         
