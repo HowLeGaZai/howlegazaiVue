@@ -1,6 +1,7 @@
 <template>
 
 <navbar></navbar>
+<div class="bgc">
 <main>
       
       <div class="center_2">
@@ -123,8 +124,8 @@
                 <!-- 包住兩個按鈕 -->
                 <div class="submit">
                 <!-- <div class="button"> -->
-                  <a href="#/signup1.vue"><button type="button" class="btn-m btn-color-white">返回</button></a> 
-                  <a href="#/login.vue"><button type="button" class="btn-m btn-color-green">送出</button></a> 
+                  <a href="#/signup1"><button type="button" class="btn-m btn-color-white">返回</button></a> 
+                  <a href="#/login"><button type="button" class="btn-m btn-color-green">送出</button></a> 
                 <!-- </div> -->
               </div>
               <!-- --------------------------------------- -->
@@ -134,12 +135,12 @@
           </div>
    </main>
             
-        
+  </div>
   
           
      
              
-<!-- <Footer></Footer> -->
+<Footer></Footer>
 </template>
 
 <script>

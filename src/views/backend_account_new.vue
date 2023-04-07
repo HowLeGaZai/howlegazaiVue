@@ -386,11 +386,11 @@ export default {
     //  ＝＝＝＝＝＝側欄選單的JS end＝＝＝＝＝＝
 
     // 手風琴開合 //
-    let openBtn = document.getElementById("openBtn");
-    let hiddenRow = document.querySelector(".hidden-row");
-    openBtn.addEventListener("click", () => {
-      hiddenRow.classList.toggle("show-row");
-    });
+    // let openBtn = document.getElementById("openBtn");
+    // let hiddenRow = document.querySelector(".hidden-row");
+    // openBtn.addEventListener("click", () => {
+    //   hiddenRow.classList.toggle("show-row");
+    // });
   },
 };
 </script>

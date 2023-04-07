@@ -74,7 +74,7 @@
             
             <div class="col-12 col-md-6 ac-search-bar">
                 <div class="search">
-                    <input type="" class="f-text f-round" placeholder="&#xF52A" style="font-family:bootstrap-icons"/>
+                    <input type="" class="f-text f-round" placeholder="&#xF52A;" style="font-family:bootstrap-icons"/>
                     <button type="button" class="btn-m btn-color-green">搜尋</button>
                 </div>
                 <!-- <input type="" class="f-text f-round tag-round" placeholder="&#xF52A" style="font-family:bootstrap-icons">
@@ -160,6 +160,21 @@
 
 import EventCard from '../components/EventCard.vue';
 import navbar from './navbar.vue';
+
+const { onMounted } = Vue;
+const url = '../assets/activity.json' 
+const iThome_example = {
+        setup() {
+          onMounted(() => {
+            axios.get(url)
+              .then((res) => {
+                console.log(res.data);
+              });
+          });
+          return {};
+        },
+      };
+
 
 export default {
 

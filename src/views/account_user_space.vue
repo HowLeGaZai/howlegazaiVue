@@ -54,14 +54,50 @@
                             <td data-label="預約空間">{{data[1]}}</td>
                             <td data-label="預約時間">{{data[2]}}</td>
                             <td data-label="狀態">{{data[3]}}</td>
-                            <td data-label="取消"><button type="button" class="btn-m btn-color-green ">取消</button></td>
+                            <td data-label="取消"><button type="button" class="btn-m btn-color-green btn_cancel" >取消</button></td>
                         </tr>
                     
                       </table>  
 
                 
-                     
-                      
+                     <!-- popup -->
+    <div id="lightbox" class="none">
+      <article>
+    <div class="popup_content">
+      <button type="button" class="btn-cir-m  btn-color-white btn_modal_close changeposition"><i class="bi bi-caret-left-fill"></i></button>
+
+
+      
+      
+      <h3>申請取消</h3>
+      
+      <div class="apply_cancel">
+            <div class="cancelreason">
+                <h5>取消原因:</h5>
+                
+                <select name="" id="" class="f-select col1 width70percentage">
+                <option value="1">-選擇-</option>
+                <option value="2">其他</option>
+                <option value="3">交通</option>
+                <option value="3">設施</option>
+                </select>
+            </div>
+
+            
+            <div class="remark">
+            <h5>備註:</h5>
+            
+            <textarea name="" id="" cols="30" rows="10" style="resize:none" class="f-text width70percentage" placeholder="回覆討論" ></textarea>
+            </div>
+      </div>
+
+    <h6>空間預約取消須知：請於預約日三日前取消，若超過日期需取消，請聯繫里辦取消預約</h6>
+      <button type="button" class="btn-m btn-color-green">同意取消</button>
+     
+      
+    </div>
+  </article>
+</div>
 
                
 
@@ -128,6 +164,20 @@ export default {
                    },
  
               mounted(){
+                        let lightbox_el = document.getElementById("lightbox");
+                        let btnCancel = document.querySelectorAll(".btn_cancel") ;
+                        let btn_modal_close = document.getElementsByClassName("btn_modal_close")[0];
+                        //    console.log(btnCancel);
+                        for(let i = 0; i < btnCancel.length; i++){
+                            btnCancel[i].addEventListener("click",function(e){
+                            // console.log(e.target);
+                            lightbox_el.classList.remove("none");
+                        });
+
+                        btn_modal_close.addEventListener("click", function(){
+                        lightbox_el.classList.add("none");
+                        });
+                        }
                        
                    },
                methods: {
