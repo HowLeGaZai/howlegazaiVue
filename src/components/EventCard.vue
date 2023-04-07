@@ -16,19 +16,7 @@
 </template>
 
 <script>
-const { onMounted } = Vue;
-const url = '/data.json' 
-const iThome_example = {
-        setup() {
-          onMounted(() => {
-            axios.get(url)
-              .then((res) => {
-                console.log(res.data);
-              });
-          });
-          return {};
-        },
-      };
+
 
 
 export default {
