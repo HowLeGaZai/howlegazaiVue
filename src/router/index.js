@@ -304,14 +304,32 @@ const routes = [
   },
   
   // 空間管理
+
+  {
+    path: '/backend_space_list',
+    name: 'backend_space_list',
+    component:() => import(/* webpackChunkName: "about" */ '../views/backend_space_list.vue')
+  },
+
+
   // 新增空間
   {
-    // 後台 手機不支援
-    path: '/backend_mobileNotSupport',
-    name: 'backend_mobileNotSupport',
-    component:() => import(/* webpackChunkName: "about" */ '../views/backend_mobileNotSupport.vue')
+    path: '/backend_space_add',
+    name: 'backend_space_add',
+    component:() => import(/* webpackChunkName: "about" */ '../views/backend_space_add.vue')
   },
   
+
+  // 空間預約管理
+
+  {
+    path: '/backend_space_management',
+    name: 'backend_space_management',
+    component:() => import(/* webpackChunkName: "about" */ '../views/backend_space_management.vue')
+  },
+
+
+  // 後台 手機不支援
   
   
 ]
