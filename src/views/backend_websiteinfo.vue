@@ -2,7 +2,7 @@
 
 <backendNavbar></backendNavbar>
 <div class="body-sec">
-     <main>
+     <main class="backpadding">
     <div class="container-date">
       <!-- 需渲染資料區塊 -->
       <p>西曆：2023 年 03 月 11 日</p>
