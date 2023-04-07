@@ -15,7 +15,7 @@
       <div class="backend-nav">
         <ul class="">
           <li>
-            <router-link :to="{name:'backend_index'}" class="be-nav btn-color-white be-menu">
+            <router-link :to="{name:'backend_index'}" class="be-nav  opacity-6 btn-color-darkgray be-menu">
               <div class="width-3 text-left">後台管理首頁</div>
               <i class="bi bi-caret-down-fill i-s opacity-0"></i>
             </router-link>
@@ -66,7 +66,7 @@
           </li>
 
           <li>
-            <router-link :to="{name:''}" class="be-nav opacity-6 btn-color-darkgray be-menu">
+            <router-link :to="{name:''}" class="be-nav btn-color-white be-menu">
               <div class="width-3 text-left">最新消息管理</div>
               <i class="bi bi-caret-down-fill i-s opacity-0"></i>
             </router-link>
@@ -208,7 +208,7 @@
           </div>
           <div class="displayflex margintop18">
               <button type="button" class="btn-10-s btn-color-green marginright20 ">   
-                <i class="bi bi-plus-lg"></i> 新增消息       
+             <a href="#/backend/news/add">   <i class="bi bi-plus-lg"></i> 新增消息 </a>
               </button>
               <!-- <button type="button" class="btn-10-s btn-color-green">
                 <i class="bi bi-cloud-arrow-down-fill"></i>匯出資料
