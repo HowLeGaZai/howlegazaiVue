@@ -14,7 +14,7 @@
         <div class="backend-nav">
         <ul class="">
           <li>
-            <router-link :to="{name:'backend_index'}" class="be-nav btn-color-darkgray be-menu">
+            <router-link :to="{name:'backend_index'}" class="be-nav btn-color-darkgray opacity-6 be-menu">
               <div class="width-3 text-left">後台管理首頁</div>
               <i class="bi bi-caret-down-fill i-s opacity-0"></i>
             </router-link>
@@ -93,7 +93,7 @@
               <i class="bi bi-caret-down-fill i-s"></i>
             </a>
             <div class="be-nav-on" id="beMenuOn">
-              <router-link :to="{name:'backend_activity'}">
+             <router-link :to="{name:'backend_activity'}">
                 <button class="be-nav btn-font-color-green ">活動列表</button>
             </router-link>
             <router-link :to="{name:'backend_activity_input'}">
@@ -179,7 +179,7 @@
         <section class="section_right">
           <!-- 活動總覽 -->
           <div class="w90percentage accounttable bk-activity">
-            <h1>活動總覽</h1>
+            <h1>活動列表</h1>
             <div class="displayflex justifycontent">
 
               <div class="displayflex textalignleft">
@@ -243,7 +243,7 @@
                         <input type="checkbox" name="multichoice" checked>
                         <span class="checkmark"></span>
                       </label></td>
-                    <td><button type="button" class="btn-icon">
+                    <td><button type="button" class="btn-icon" onclick="window.location.href='#/backend_activity_input'">
                         <i class="bi bi-file-earmark-bar-graph btn-font-color-green"></i>
                       </button>
                     </td>
