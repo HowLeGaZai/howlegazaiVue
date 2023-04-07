@@ -1,6 +1,7 @@
 <template>
 
 <navbar></navbar>
+<div class="bgc">
 <main>
       
       <div class="center_2">
@@ -134,12 +135,12 @@
           </div>
    </main>
             
-        
+  </div>
   
           
      
              
-<!-- <Footer></Footer> -->
+<Footer></Footer>
 </template>
 
 <script>

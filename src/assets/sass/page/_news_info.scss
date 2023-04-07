@@ -13,19 +13,23 @@
   @include breakpoint($grid-breakpoints, 'md') {
     margin: 0 auto;
     width: auto;
+    padding: 75px 20px;
+
   }
 
   @include breakpoint($grid-breakpoints, 'sm') {
     width: auto;
     margin: 0 auto;
+    padding: 75px 20px;
+
   }
 
   .btn-prepage {
-    margin-top: 70px;
+    // margin-top: 70px;
     
 
     @include breakpoint($grid-breakpoints, 'md') {
-      margin-top: 30px;
+      // margin-top: 30px;
       margin-left: 30px;
     }
     @include breakpoint($grid-breakpoints, 'sm') {
@@ -66,7 +70,7 @@
     }
 
     @include breakpoint($grid-breakpoints, 'sm') {
-      font-size: 26px;
+      font-size: 1.8em;
       margin-bottom: 0;
 
 
@@ -142,7 +146,7 @@
     margin: 30px 30px;
   }
   @include breakpoint($grid-breakpoints, 'sm') {
-   margin: 30px 5px;
+   margin: 30px 10px;
     
   }
 
