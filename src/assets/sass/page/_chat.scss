@@ -179,7 +179,7 @@
     margin: 50px auto;
 
     @include breakpoint($grid-breakpoints, 'sm') {
-      margin: 20px auto;
+      margin: 25px auto;
     }
 
     &>button {

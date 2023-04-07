@@ -90,7 +90,7 @@
         </section>
       </article>
     </a>
-    <a href="#">
+    <a href="#/news_info">
       <article class="news_item">
         <section>
           <section class="article_news">
@@ -105,7 +105,7 @@
         </section>
       </article>
     </a>
-    <a href="#">
+    <a href="#/news_info">
       <article class="news_item">
         <section>
           <section class="article_news">
