@@ -186,9 +186,9 @@
                             
                             </div>
                             <div class="displayflex margintop18">
-                                <button type="button" class="btn-10-s btn-color-green marginright20 ">
+                                <router-link :to="{name:'backend_space_add'}" type="button" class="btn-10-s btn-color-green marginright20 bk_addSpace">
                                     <i class="bi bi-plus-lg"></i> 新增空間
-                                </button>
+                                </router-link>
                             </div>
                         </div>
                         <div class="">

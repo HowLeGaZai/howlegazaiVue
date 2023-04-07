@@ -8,9 +8,10 @@
 }
 
 .bk-space {
-    button {
+    .bk_addSpace {
         margin-top: -40px;
         margin-bottom: 15px;
+        line-height: 2.5em;
     }
 
     .bk-space-table{
@@ -44,7 +45,7 @@
             text-align: center;
             button{
                 padding: 0;
-                padding-top: 35px;
+                
               }
         }      
     }
