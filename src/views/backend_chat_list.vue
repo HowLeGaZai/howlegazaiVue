@@ -13,7 +13,7 @@
         <div class="backend-nav">
           <ul class="">
           <li>
-            <router-link :to="{name:'backend_index'}" class="be-nav btn-color-darkgray be-menu">
+            <router-link :to="{name:'backend_index'}" class="be-nav opacity-6 btn-color-darkgray be-menu">
               <div class="width-3 text-left">後台管理首頁</div>
               <i class="bi bi-caret-down-fill i-s opacity-0"></i>
             </router-link>
