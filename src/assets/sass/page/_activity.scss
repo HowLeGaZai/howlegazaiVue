@@ -6,38 +6,86 @@
     }
 
     .searchTool {
-        display: flex;
-        align-items: flex-end;
+        text-align: left;
+        align-items:end;
+        margin: 20px auto;
+        width: 90%;
+
     
         .activity-toolbar {
-            display: flex;
-            flex-direction: column;
-
+            @include breakpoint($grid-breakpoints, 'md') {
+                margin: 20px 0;
+              }
             .f-label {
-                display: flex;
-                justify-content: flex-start;     
+                // display: flex;
+                // justify-content: flex-start;     
             }
 
             .f-select {     
              
-                height: 47px;
+                height: 38px;
             }
         }
 
-        .search-bar {
+        .ac-search-bar {
             margin-bottom: 0px;
+            justify-content:left;
+            @include breakpoint($grid-breakpoints, 'md') {
+                order: -1;
+              }
+            .search {
+                display: flex;
+                align-items: center;
+                
+                @include breakpoint($grid-breakpoints, 'md') {
+                    justify-content: center;
+                  }
+          
+                @include breakpoint($grid-breakpoints, 'sm') {
+                  width: 95%;
+                  margin: 0 auto;
+                }
+          
+                &>input {
+                  max-width: 400px;
+                  margin-right: 10px;
+                height: 38px;
 
-            input {
-                flex-grow: 1;
-            }
+          
+                  @include breakpoint($grid-breakpoints, 'md') {
+                    width: 270px;
+                  }
+          
+                  @include breakpoint($grid-breakpoints, 'sm') {
+                    width: 70%;
+                height: 38px;
+               
+
+                  }
+                }
+          
+                &>button {
+                    min-width: 100px;
+                    padding: 0px;
+                    height: 38px;
+
+                  @include breakpoint($grid-breakpoints, 'sm') {
+                    height: 33px;
+                    padding: 0 25px;
+                  }
+          
+                }
+          
+              }
         }
 
         .f-label {
-            float: left;
+            // float: left;
+            text-align: left;
         }
 
         .f-text {
-            height: 47px;          
+            // height: 47px;          
         } 
     }
 
