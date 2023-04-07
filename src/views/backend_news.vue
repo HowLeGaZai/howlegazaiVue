@@ -1,21 +1,21 @@
 <template>
-    <backendNavbar></backendNavbar>
-
-    <div class="body-sec">
-      <main>
+  <backendNavbar></backendNavbar>
+  <div class="body-sec">
+    <main class="backpadding">
         <!-- <main> -->
-    <div class="container-date">
-      <!-- 需渲染資料區塊 -->
-      <p>西曆：2023 年 03 月 11 日</p>  
-      <p>農曆：癸卯年 乙卯月 戊辰日 二月二十</p>
-      <!-- 需渲染資料區塊 -->
-    </div>
+        <div class="container-date">
+          <!-- 需渲染資料區塊 -->
+          <p>西曆：2023 年 03 月 11 日</p>  
+          <p>農曆：癸卯年 乙卯月 戊辰日 二月二十</p>
+          <!-- 需渲染資料區塊 -->
+        </div>
 
     <section class="container-main">
+      <!------- 補這裡：後台側欄選單 ------->
       <div class="backend-nav">
         <ul class="">
           <li>
-            <router-link :to="{name:'backend_index'}" class="be-nav  opacity-6 btn-color-darkgray be-menu">
+            <router-link :to="{name:'backend_index'}" class="be-nav be-menu opacity-6 btn-color-darkgray">
               <div class="width-3 text-left">後台管理首頁</div>
               <i class="bi bi-caret-down-fill i-s opacity-0"></i>
             </router-link>
@@ -66,7 +66,8 @@
           </li>
 
           <li>
-            <router-link :to="{name:''}" class="be-nav btn-color-white be-menu">
+            <router-link :to="{name:'backend_news'}" class="be-nav be-menu btn-color-white">
+            <!-- <router-link :to="{name:'backend_news'}" class="be-nav opacity-6 btn-color-darkgray be-menu"> --> 
               <div class="width-3 text-left">最新消息管理</div>
               <i class="bi bi-caret-down-fill i-s opacity-0"></i>
             </router-link>
@@ -110,10 +111,10 @@
               <i class="bi bi-caret-down-fill i-s"></i>
             </a>
             <div class="be-nav-on be-nav-off ">
-              <router-link :to="{name:''}">
-                <button class="be-nav btn-font-color-gray">空間列表</button>
+              <router-link :to="{name:'backend_space_list'}">
+                <button class="be-nav btn-font-color-gray">空間總覽</button>
             </router-link>
-            <router-link :to="{name:''}">
+            <router-link :to="{name:'backend_space_management'}">
               <button class="be-nav be-nav btn-font-color-gray">預約管理</button>
             </router-link>
               <!-- <button class="be-nav btn-font-color-gray"  onclick="window.location.href='''">空間列表</button>
@@ -121,7 +122,7 @@
             </div>
           </li>
           <li>
-            <router-link :to="{name:''}" class="be-nav opacity-6 btn-color-darkgray be-menu">
+            <router-link :to="{name:''}" class="be-nav opacity-6 btn-color-unopened be-menu">
               <div class="width-3 text-left">團購網管理</div>
               <i class="bi bi-caret-down-fill i-s opacity-0"></i>
             </router-link>
@@ -132,7 +133,7 @@
             <div class="be-nav-on"></div>
           </li>
           <li>
-            <router-link :to="{name:''}" class="be-nav opacity-6 btn-color-darkgray be-menu">
+            <router-link :to="{name:''}" class="be-nav opacity-6 btn-color-unopened be-menu">
               <div class="width-3 text-left">維修通報</div>
               <i class="bi bi-caret-down-fill i-s opacity-0"></i>
             </router-link>
@@ -144,7 +145,7 @@
           </li>
 
           <li>
-            <a class="be-nav opacity-6 btn-color-darkgray be-menu" href="#">
+            <a class="be-nav opacity-6 btn-color-unopened be-menu " href="#">
               <div class="width-3 text-left">守望相助</div>
               <i class="bi bi-caret-down-fill i-s "></i>
             </a>
@@ -161,7 +162,7 @@
           </li>
 
           <li>
-            <router-link :to="{name:''}" class="be-nav opacity-6 btn-color-darkgray be-menu btn-unopened">
+            <router-link :to="{name:''}" class="be-nav opacity-6 be-menu btn-color-unopened">
               <div class="width-3 text-left">瓦斯表數據</div>
               <i class="bi bi-caret-down-fill i-s opacity-0"></i>
             </router-link>
@@ -175,8 +176,7 @@
 
         </ul>
       </div>
-
-
+      <!------- 補這裡：後台側欄選單 ------->
 
       <section class="section_right padding0">
         <div class="nav_right w100percentage padding30">
@@ -207,8 +207,8 @@
               </div>
           </div>
           <div class="displayflex margintop18">
-              <button type="button" class="btn-10-s btn-color-green marginright20 ">   
-             <a href="#/backend/news/add">   <i class="bi bi-plus-lg"></i> 新增消息 </a>
+              <button type="button" class="btn-10-s btn-color-green">   
+             <a href="#/backend_news_add"><i class="bi bi-plus-lg">新增消息</i>  </a>
               </button>
             
 
@@ -337,9 +337,24 @@
       </section>
     </section>
 
-
-
     </main>
+        <!------ 補這裡：不支援手機畫面 ------>
+        <div :class="bodyClass" class="nosupport">
+            <main>
+                <section class="noSupport">
+                    <a href="#">
+                        <div>     
+                            <img class="LiIcon" src="../assets/img/LiIcon.png" alt="">
+                            <h1>歹勢！後台目前不支援手機</h1>
+                            <img class="cat" src="../assets/img/Cat.png" alt="">
+                            <p>下班請休息，我們明天再忙！</p>
+                        </div>
+                    </a>
+                </section>
+            </main>
+         
+      </div>
+    <!------ 補這裡：不支援手機畫面 ------>
   </div>
   
   <Footer></Footer>
@@ -375,10 +390,12 @@ export default {
             // console.log(dayNamesMin);
         }
     });
-   let beMenu = document.querySelectorAll(".be-menu");
+   
+  //  ＝＝＝＝＝＝側欄選單的JS＝＝＝＝＝＝
+  let beMenu = document.querySelectorAll(".be-menu");
    let beMenuOn = document.querySelectorAll(".be-nav-on");
-  // let beMenu = document.querySelectorAll("be-nav");
-  // console.log(beMenu);
+    // let beMenu = document.querySelectorAll("be-nav");
+    // console.log(beMenu);
 
   for(let i = 0; i < beMenu.length; i++){
     beMenu[i].addEventListener("click",function(){
@@ -386,6 +403,9 @@ export default {
     //   console.log(beMenu[i]);
     })
   }
+
+  //  ＝＝＝＝＝＝側欄選單的JS end＝＝＝＝＝＝
+
     
   },
  
