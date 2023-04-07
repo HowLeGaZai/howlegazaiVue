@@ -235,12 +235,12 @@
 
 import navbar from './navbar.vue';
 import Footer from './Footer.vue';
-import { BootstrapIconsPlugin } from 'bootstrap-icons-vue';
+// import { BootstrapIconsPlugin } from 'bootstrap-icons-vue';
 
 
 export default {
   components: {
-      navbar,Footer,BootstrapIconsPlugin,
+      navbar,Footer,
     },
   mounted(){
     var desktopfilter = document.getElementById("chat-desktop-filter");

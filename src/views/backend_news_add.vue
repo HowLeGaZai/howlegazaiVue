@@ -225,11 +225,14 @@
                                 </div>
                             </div>
 
-                            <h5>文章縮圖</h5>
+                            <h5>文章內容</h5>
                         
                             <div id="container">
-                                <div id="editor">
-                                </div>
+                                <!-- <div id="editor">
+                                </div> -->
+                                <div>
+        <ckeditor :editor="editor" v-model="content" />
+      </div>
                             </div>
                 
                             <button type="button" class="savebtn btn-10-s btn-color-green">預覽</button>
@@ -269,10 +272,20 @@ import 'jquery-ui-dist/jquery-ui'
 import 'jquery-ui-dist/jquery-ui.min.css'
 import Footer from './Footer.vue';
 
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import CKEditor from "@ckeditor/ckeditor5-vue";
+
 export default {
   components: {
-      backendNavbar,Footer
+      backendNavbar,Footer,
+      ckeditor: CKEditor.component,
     },
+     data() {
+    return {
+      editor: ClassicEditor,
+      content: "<p></p>",
+    };
+  },
     mounted() {
     $('#resizable').resizable({});
     $('#datepicker').datepicker({
