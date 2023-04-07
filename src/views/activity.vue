@@ -161,19 +161,6 @@
 import EventCard from '../components/EventCard.vue';
 import navbar from './navbar.vue';
 
-const { onMounted } = Vue;
-const url = '../assets/activity.json' 
-const iThome_example = {
-        setup() {
-          onMounted(() => {
-            axios.get(url)
-              .then((res) => {
-                console.log(res.data);
-              });
-          });
-          return {};
-        },
-      };
 
 
 export default {
