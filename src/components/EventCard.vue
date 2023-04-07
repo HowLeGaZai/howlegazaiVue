@@ -9,8 +9,8 @@
                         <h3 class="card-title">{{event.TITLE}}</h3>
 
                         <h5 class="card-date">活動日期：<span>{{event.START_DATE}}</span></h5>
-                        <h3 class="card-price">{{event.PRICE}}</h3>
-                        <a class="card-link" href="#"><h5> 活動詳情<i class="bi bi-arrow-right"></i></h5></a>
+                        <h3 class="card-price">{{event.PRICE}}元</h3>
+                        <a class="card-link" href="#/activity_info"><h5> 活動詳情<i class="bi bi-arrow-right"></i></h5></a>
                     </div>
     </div>
 </template>

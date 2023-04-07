@@ -2,10 +2,18 @@
     width: 80%;
     color: $black;
     text-align: left;
+    @include breakpoint($grid-breakpoints, 'md') {
+        padding: 35px 15px;
+        width: 90%;
+    }
+    @include breakpoint($grid-breakpoints, 'sm') {
+        // width: 95%;
+        padding: 35px 10px;
+    }
 
     .info_topic {
-        margin: 50px 0;
-        text-align: center;
+        // margin: 40px 0;
+        // text-align: center;
       
         // ????
         @include breakpoint($grid-breakpoints, 'md') {
@@ -17,8 +25,7 @@
     
         h1 {
             margin: 0 auto 20px;
-            overflow: unset;
-            white-space: normal;
+           
             line-height: 1.5;
         
             // ????
@@ -41,8 +48,9 @@
         .activity_typeAndTime {
             width: 100%;
             display: flex;
-            margin-bottom: 20px;
+            margin: 20px 0;
             justify-content: space-between;
+            align-items:center;
       
             h4 {
                 margin: 0 10px;
@@ -67,7 +75,13 @@
     }
     
     .info-article {
-
+        
+        &>h2{
+            overflow: unset;
+            white-space: normal;
+            line-height: 1.5;
+        }
+           
         // ????
         @include breakpoint($grid-breakpoints, 'md') {
             margin: 30px 20px;
@@ -76,55 +90,80 @@
             margin: 30px 10px;
         }
 
-        .userTag {
-           display: flex;
+        .userTag-2 {
+           margin: 20px 0;
+           display: inline-flex;
            align-items: center;
-           margin-top: 20px;
-            
-           //???
             @include breakpoint($grid-breakpoints, 'md') {
-                width: 40px;
                 margin-right: 5px;
     
               }
             @include breakpoint($grid-breakpoints, 'sm') {
-              width: 30px;
+                // width: 100px;
+
             }
 
             .userPic {
                 width: 50px;
                 margin-right: 10px;
+                @include breakpoint($grid-breakpoints, 'sm') {
+                    width: 30px;
+                }
+            }
+            h6{
+                font-size: 1.4em;
+                color: $gray;
+                @include breakpoint($grid-breakpoints, 'sm') {
+                    font-size: 1.1em;
+
+                }
             }
         }
 
-        .activityContent {
+        .activityContent-2 {
+            margin: 30px 0;
+            @include breakpoint($grid-breakpoints, 'sm') {
+                margin: 20px 0;
 
-            .actInfo {
-                display: flex;
-
-                p {
-                    font-size: 22px;
-                    margin-top: 20px;
+            }
+            .actInfo-2 {
+                &>td {
+                    font-size: 1.4em;
+                    margin-top: 15px;
                     white-space: normal;
                     line-height: 2;
+                    text-align: center;
+                    @include breakpoint($grid-breakpoints, 'md') {
+                        font-size: 1.3em;
+
+                    }
                     @include breakpoint($grid-breakpoints, 'sm') {
-                        font-size: 18px;
+                        font-size: 1.2em;
+
+                    }
+                }
+                &>td:first-child{
+                    width: 180px;
+                    text-align: left;
+                    @include breakpoint($grid-breakpoints, 'md') {
+                        width: 150px;
+
+                    }
+                    @include breakpoint($grid-breakpoints, 'sm') {
+                        width: 120px;
+
                     }
                 }
             }
 
-            .actPrice {
-                display: flex;
+            .actPrice-2 {
+                // display: inline-block;
                 color: #27B096;
-
-                p {
-                    font-size: 22px;
-                    margin-top: 20px;
+                &>td {
+                    font-size: 1.4em;
+                    margin-top: 35px;
                     white-space: normal;
                     line-height: 2;
-                    @include breakpoint($grid-breakpoints, 'sm') {
-                        font-size: 18px;
-                    }
                 }
             }
         }
@@ -134,6 +173,11 @@
             display: flex;
             justify-content: flex-end;
             align-items: center;
+            margin: 20px 0;
+            @include breakpoint($grid-breakpoints, 'sm') {
+                justify-content: center;
+
+            }
 
             .peopleCount {
                 display: flex;
@@ -151,6 +195,9 @@
                     width: 100px;
                 }
 
+            }
+            .confirm-btn{
+                min-width: 130px
             }
 
         }
@@ -209,12 +256,16 @@
 
         .infoText {
         
-            p {
+            .infoText-p {
+                text-align: left;
                 margin: 0 auto;
-                font-size: 22px;
+                font-size: 1.3rem;
                 margin-top: 20px;
                 white-space: normal;
                 line-height: 2;
+                @include breakpoint($grid-breakpoints, 'sm') {
+                    font-size: 1.2rem;
+                  }
             }
         }
     

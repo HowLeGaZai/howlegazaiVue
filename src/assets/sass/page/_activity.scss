@@ -8,7 +8,7 @@
     .searchTool {
         text-align: left;
         align-items:end;
-        margin: 20px auto;
+        margin: 20px auto 10px;
         width: 90%;
 
     
@@ -16,6 +16,14 @@
             @include breakpoint($grid-breakpoints, 'md') {
                 margin: 20px 0;
               }
+            #activity-dday{
+              height: 38px;
+              background-color: $white;
+              padding: 8px 10px;
+              @include breakpoint($grid-breakpoints, 'sm') {
+                // height: 35.5px;
+              }
+            }
             .f-label {
                 // display: flex;
                 // justify-content: flex-start;     
@@ -70,7 +78,7 @@
                     height: 38px;
 
                   @include breakpoint($grid-breakpoints, 'sm') {
-                    height: 33px;
+                    height: 38px;
                     padding: 0 25px;
                   }
           
@@ -120,6 +128,9 @@
                 color: $gray;
                 font-size: 18px;
             }
+            .f-select {     
+              height: 38px;
+          }
         }
     }   
 
