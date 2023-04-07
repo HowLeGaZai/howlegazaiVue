@@ -10,11 +10,6 @@
           <!-- 需渲染資料區塊 -->
         </div>
 
-<<<<<<< HEAD
-  // 缺 html 原始碼
-
-  <Footer></Footer>  
-=======
     <section class="container-main">
       <!------- 補這裡：後台側欄選單 ------->
       <div class="backend-nav">
@@ -264,7 +259,6 @@
     <!------ 補這裡：不支援手機畫面 ------>
     </div>
     <Footer></Footer>
->>>>>>> proa
 </template>
 
 <script>

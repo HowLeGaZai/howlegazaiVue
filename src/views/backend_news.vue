@@ -207,13 +207,8 @@
               </div>
           </div>
           <div class="displayflex margintop18">
-<<<<<<< HEAD
-              <button type="button" class="btn-10-s btn-color-green marginright20 ">   
-             <a href="#/backend/news/add">   <i class="bi bi-plus-lg"></i> 新增消息 </a>
-=======
               <button type="button" class="btn-10-s btn-color-green">   
              <a href="#/backend_news_add"><i class="bi bi-plus-lg">新增消息</i>  </a>
->>>>>>> proa
               </button>
             
 
