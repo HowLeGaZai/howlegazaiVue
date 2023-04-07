@@ -159,11 +159,14 @@
                        
                     </div>
 
-                    <h5>文章縮圖</h5>
+                    <h5>文章內容</h5>
                 
-                    <div id="container">
+                    <!-- <div id="container">
                         <div id="editor">
                         </div>
+                    </div> -->
+                    <div id="container">
+                        <ckeditor :editor="editor" v-model="content" />
                     </div>
         
                     <button type="button" class="savebtn btn-10-s btn-color-green">預覽</button>
@@ -189,10 +192,20 @@
 import backendNavbar from "./backendNavbar.vue";
 import Footer from './Footer.vue';
 
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import CKEditor from "@ckeditor/ckeditor5-vue";
+
 export default {
   components: {
     backendNavbar,
     Footer,
+    ckeditor: CKEditor.component,
+  },
+   data() {
+    return {
+      editor: ClassicEditor,
+      content: "<p></p>",
+    };
   },
   mounted() {
     let openBtn = document.getElementById('openBtn');
