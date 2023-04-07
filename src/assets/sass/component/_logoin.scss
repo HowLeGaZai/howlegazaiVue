@@ -462,6 +462,15 @@
   .agree  span {
     font-size: 20px;
     margin-left: 10px;
+    a{
+      display: inline;
+      color: $black;
+      text-decoration: underline;
+      font-size: 20px;
+      &:hover{
+        color: $green;
+      }
+    }
   }
   
    form .button{

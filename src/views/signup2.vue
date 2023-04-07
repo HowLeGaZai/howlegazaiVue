@@ -119,7 +119,8 @@
                   </div> 
                 </div>
                 <div class="agree">
-                <input type="checkbox" name="gender" style="width: 20px; height: 20px;"><span>我已經詳閱並同意(隱私權保護政策)</span>
+                <input type="checkbox" name="gender" style="width: 20px; height: 20px;">
+                <span>我已經詳閱並同意<a href="#/privacy">隱私權保護政策</a></span>
                 </div>
                 <!-- 包住兩個按鈕 -->
                 <div class="submit">

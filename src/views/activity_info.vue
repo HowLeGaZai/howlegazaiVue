@@ -52,8 +52,8 @@
                     <label for="name" class="f-label">人數</label>
                     <input type="text" class="f-text" id="name" placeholder="">
                 </div>
-                <div class="confirm-btn">
-                    <button type="button" class="btn-m btn-color-green">點我報名</button>
+                <div class="confirm-btn"> 
+                    <a href="#/activity_registStep1"><button type="button" class="btn-m btn-color-green">點我報名</button></a>
                 </div>
             </div>
         </div>
