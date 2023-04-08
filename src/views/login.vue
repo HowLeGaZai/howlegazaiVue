@@ -4,7 +4,7 @@
 <div class="bgc">
 <main>
     <div class="center">
-        <h1>登入</h1>
+        <h2>里民 / 居民登入</h2>
         <form>
           <div class="txt_field">
             <h5>帳號</h5>
@@ -31,7 +31,7 @@
           <!-- </div> -->
         
         <div class="signup_link">
-          尚未加入大湖里??<a href="#/signup1">  馬上註冊</a>
+          尚未加入大湖里?<a href="#/signup1">  馬上註冊</a>
         </div>
       </div>
 
