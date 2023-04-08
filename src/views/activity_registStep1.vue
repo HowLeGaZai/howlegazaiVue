@@ -13,12 +13,12 @@
               <h5>填寫資料</h5>
           </div>
           <div class="line notyet"></div>
-          <div class="steps notyet">
+          <div class="steps">
               <div class="steps-circle">2</div>
               <h5>確認資料</h5>
           </div>
           <div class="line notyet"></div>
-          <div class="steps notyet">
+          <div class="steps">
               <div class="steps-circle">3</div>
               <h5>報名完成</h5>
           </div>
