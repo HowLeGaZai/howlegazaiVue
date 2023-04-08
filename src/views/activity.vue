@@ -125,8 +125,8 @@
         
         <!-- =========== Vue HTML card =========== -->
         <!-- <div id="app" class="activity_content"> -->
-         <div  class="activity_content">   
-                <event-card></event-card>
+        <div>   
+            <event-card></event-card>
         </div>
     </main>
 
