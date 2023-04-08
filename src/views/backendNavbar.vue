@@ -9,7 +9,7 @@
         <div class="midnav">
           <!-- 天氣＆里區問候 (渲染) -->
           <i class="bi bi-brightness-high"></i>
-          歡迎登入<div>大湖里</div>後台
+          歡迎登入<div>大湖里</div>
         </div>
       </div>
 
