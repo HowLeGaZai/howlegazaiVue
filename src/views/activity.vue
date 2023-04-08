@@ -127,7 +127,6 @@
         <!-- <div id="app" class="activity_content"> -->
          <div  class="activity_content">   
                 <event-card></event-card>
-            
         </div>
     </main>
 
@@ -153,15 +152,12 @@
             </section>
         </div>
     </footer>
-
 </template>
 
 <script>
 
 import EventCard from '../components/EventCard.vue';
 import navbar from './navbar.vue';
-
-
 
 export default {
 
