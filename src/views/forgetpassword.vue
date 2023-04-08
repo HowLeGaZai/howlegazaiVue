@@ -5,23 +5,23 @@
 <main>
         
         <div class="center">
-            <h1>忘記密碼</h1>
+            <h2>忘記密碼</h2>
             <form>
               <div class="txt_field">
-                <h5>身分證</h5>
+                <label>身分證</label>
                 <input type="text" class="f-text label-left" id="name5" placeholder="請輸入身分證">
               </div>
               <div class="txt_field">
-                <h5>電子郵件</h5>
+                <label>電子郵件</label>
                 <input type="text" class="f-text label-left" id="name5" placeholder="請輸入電子信箱">
               </div>
-              <div class="txt_field">
-                <h5>驗證碼</h5>
-                <input type="text" class="f-te0xt label-left" id="name5" placeholder="請輸入驗證碼">
+              <div class="txt_field verification">
+                <label>驗證碼</label>
+                <input type="text" class="f-text label-left" id="name5" placeholder="請輸入驗證碼">
               </div>
               <!-- 驗證碼 -->
               <div class="aaa">
-              <div class="verification">           
+              <div class="captcha f-text label-left">           
                   <h1>{{ number }}</h1>
               </div>
               <button type="button" class="btn-10-s btn-color-green" @click="generateNumber()">   
