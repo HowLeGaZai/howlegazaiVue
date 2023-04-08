@@ -300,7 +300,10 @@
   display: flex;
   align-items: center;
     .steps{
-        width: 90px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 65px;
         &-circle{
             width: 65px;
             height: 65px;
@@ -309,23 +312,32 @@
             color: $white;
             text-align: center;
             line-height: 65px;
-            font-size: 2em;
+            font-size: 32px;
             margin: 0 auto;
         }
         h5{
             color: $green;
             margin: 5px 0;
             text-align: center;
+            overflow:inherit;
         }
     }
     .line{
         width: 100px;
         height: 2px;
         background-color: $green;
-        margin-bottom:20px;  
+        margin-bottom:30px;  
     }
     .notyet{
-        filter: grayscale(100%);;
+        background: $silver;
+    }
+    .notyet + div{
+        .steps-circle{
+            background: $silver;
+        }
+        h5{
+            color: $silver;
+        }
     }
 }
 
