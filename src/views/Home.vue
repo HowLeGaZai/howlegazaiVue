@@ -360,11 +360,9 @@
           </section>
         </article>
       </div>
-      <div class="watch-more">
-        <router-link :to="{name:'chat'}" :scroll-behavior="{ x: 0, y: 0 }">
-          <button type="button" class="btn-m btn-color-greenborder">
-            看更多
-          </button>
+      <div class="more-text">
+        <router-link :to="{name:'chat'}">
+            <i class="bi bi-plus"></i>看更多<i class="bi bi-plus"></i>
         </router-link>
       </div>
     </section>
