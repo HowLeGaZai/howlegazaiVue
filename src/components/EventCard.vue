@@ -32,7 +32,7 @@ export default {
     },
     mounted() {
         axios
-        .get('/activity.json')
+        .get('../API/activity.php')
         .then(response => {
             this.jsonData = response.data;
             console.log(response.data);
