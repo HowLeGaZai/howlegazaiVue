@@ -9,7 +9,7 @@
             <h5>{{news.CREATE_TIME}}2022-01-01</h5>
           </section>
           <div class="image list_pic">
-            <!-- <img :src="require(`@/assets/img/${news.PIC}`)" alt=""> -->
+            <!-- <img :src="require(`../assets/img/${news.PIC}`)" alt=""> -->
           </div>
         </section>
       </article>
