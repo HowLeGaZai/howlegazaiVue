@@ -51,8 +51,9 @@
         </div>
         <h1 class="title_space">空間總覽</h1>
         <h4 class="second_title">擔心聚會的時候吹風淋雨嗎？ 我們聽到了</h4>
-    
+    <!--  舊的
         <div class="space-list">
+
             <div class="space">
               <div class="image space-pic">
                   <img src="../assets/img/s_1.png" alt="">
@@ -66,7 +67,6 @@
                         <router-link to="/space_info" custom v-slot="{ navigate }">
                           <button class="btn-m btn-color-green" @click="navigate" role="link">我要預約</button>
                         </router-link>
-                    <!-- <button type="button" class="btn-m btn-color-green" onclick="location.href='/space_info'">我要預約</button> -->
                 </div>
               </div>
             </div>
@@ -84,7 +84,6 @@
                       <router-link to="/space_info" custom v-slot="{ navigate }">
                           <button class="btn-m btn-color-green" @click="navigate" role="link">我要預約</button>
                         </router-link>
-                    <!-- <button type="button" class="btn-m btn-color-green" onclick="location.href='/space_info'">我要預約</button> -->
                 </div>
               </div>
             </div>      
@@ -101,7 +100,6 @@
                       <router-link to="/space_info" custom v-slot="{ navigate }">
                           <button class="btn-m btn-color-green" @click="navigate" role="link">我要預約</button>
                         </router-link>
-                    <!-- <button type="button" class="btn-m btn-color-green" onclick="location.href='/space_info'">我要預約</button> -->
                 </div>
               </div>
             </div>      
@@ -118,7 +116,6 @@
                       <router-link to="/space_info" custom v-slot="{ navigate }">
                           <button class="btn-m btn-color-green" @click="navigate" role="link">我要預約</button>
                         </router-link>
-                    <!-- <button type="button" class="btn-m btn-color-green" onclick="location.href='/space_info'">我要預約</button> -->
                 </div>
               </div>
             </div>      
@@ -135,7 +132,6 @@
                       <router-link to="/space_info" custom v-slot="{ navigate }">
                           <button class="btn-m btn-color-green" @click="navigate" role="link">我要預約</button>
                       </router-link>
-                    <!-- <button type="button" class="btn-m btn-color-green" onclick="location.href='/space_info'">我要預約</button> -->
                 </div>
               </div>
             </div>     
@@ -152,7 +148,6 @@
                       <router-link to="/space_info" custom v-slot="{ navigate }">
                           <button class="btn-m btn-color-green" @click="navigate" role="link">我要預約</button>
                         </router-link>
-                    <!-- <button type="button" class="btn-m btn-color-green" onclick="location.href='/space_info'">我要預約</button> -->
                 </div>
               </div>
             </div>     
@@ -169,7 +164,6 @@
                       <router-link to="/space_info" custom v-slot="{ navigate }">
                           <button class="btn-m btn-color-green" @click="navigate" role="link">我要預約</button>
                         </router-link>
-                    <!-- <button type="button" class="btn-m btn-color-green" onclick="location.href='/space_info'">我要預約</button> -->
                 </div>
               </div>
             </div>      
@@ -186,7 +180,6 @@
                       <router-link to="/space_info" custom v-slot="{ navigate }">
                           <button class="btn-m btn-color-green" @click="navigate" role="link">我要預約</button>
                         </router-link>
-                    <!-- <button type="button" class="btn-m btn-color-green" onclick="location.href='/space_info'">我要預約</button> -->
                 </div>
               </div>
             </div>     
@@ -203,25 +196,28 @@
                       <router-link to="/space_info" custom v-slot="{ navigate }">
                           <button class="btn-m btn-color-green" @click="navigate" role="link">我要預約</button>
                         </router-link>
-                    <!-- <button type="button" class="btn-m btn-color-green" onclick="location.href='/space_info'">我要預約</button> -->
                 </div>
               </div>
             </div>
 
            
         </div>
+ -->
+        <div class="space-list">
+          <space-card></space-card>
+        </div>
       </main>
       <Footer></Footer>
 </template>
 
 <script>
-
+import SpaceCard from '../components/SpaceCard.vue'
 import navbar from './navbar.vue';
 import Footer from './Footer.vue';
 
 export default {
   components: {
-      navbar,Footer,
+      navbar,Footer,SpaceCard,
     },
 }
 </script>
