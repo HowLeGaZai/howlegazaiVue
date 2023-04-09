@@ -127,7 +127,6 @@ body {
     .tag {
       line-height: 30px;
       font-size: 0.6rem;
-      width: 60px;
       height: 30px;
       
     }
@@ -135,12 +134,14 @@ body {
 
   .activity-name{
     width: 25vw;
+    line-height: 1.8;
     @media screen and (max-width: 1300px){
       width: 15vw;
     }
 
     @media screen and (max-width: 1200px){
       width: 10vw;
+      
     }
   }
 
@@ -171,9 +172,11 @@ body {
   }
 
   .btn-be-dash {
-    // padding: 0;
+    width: 170px;
     border-radius: 5px;
     margin-right: 10px;
+    margin-bottom: 10px;
+    
     
   }
 }
