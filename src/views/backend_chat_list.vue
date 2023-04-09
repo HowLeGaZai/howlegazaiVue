@@ -76,7 +76,7 @@
             <div class="be-nav-on"></div>
           </li>
           <li>
-            <router-link :to="{name:'backend_chat_list'}" class="be-nav opacity-6 btn-color-white be-menu">
+            <router-link :to="{name:'backend_chat_list'}" class="be-nav btn-color-white be-menu">
               <div class="width-3 text-left">討論區列表</div>
               <i class="bi bi-caret-down-fill i-s opacity-0"></i>
             </router-link>
