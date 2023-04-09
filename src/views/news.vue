@@ -4,7 +4,7 @@
     <main class="news_page">
     <h1>最新消息</h1>
     <div class="search-bar">
-      <input type="" class="f-text f-round" placeholder="&#xF52A" style="font-family:bootstrap-icons"/>
+      <input type="" class="f-text f-round" placeholder="" style="font-family:bootstrap-icons"/>
       <button class="btn-m btn-color-green ">搜尋</button>
     </div>
     <div class="desktop-filter" id="news-desktop-filter">
@@ -45,7 +45,13 @@
           </section>
         </article>
       </a>
-      <a href="#/news_info">
+
+    <news-list></news-list>
+    
+
+
+
+      <!-- <a href="#/news_info">
       <article class="news_item">
         <section>
           <section class="article_news">
@@ -119,9 +125,9 @@
           </div>
         </section>
       </article>
-    </a>
+    </a> -->
 
-    </div>
+    </div> 
 
     <div class="watch-more">
       <button type="button" class="btn-m btn-color-greenborder">看更多</button>
@@ -136,10 +142,11 @@
 
 import navbar from './navbar.vue';
 import Footer from './Footer.vue';
+import NewsList from '../components/NewsList.vue';
 
 export default {
   components: {
-      navbar,Footer,
+      navbar,Footer,NewsList
     },
     mounted(){
     var desktopfilter = document.getElementById("news-desktop-filter");

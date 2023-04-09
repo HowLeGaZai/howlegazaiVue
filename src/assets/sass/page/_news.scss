@@ -4,6 +4,8 @@
 
   h1 {
     margin-bottom: 80px;
+    // font-size: 100px;
+    
 
     @include breakpoint($grid-breakpoints, 'md') {
       margin-bottom: 35px;
