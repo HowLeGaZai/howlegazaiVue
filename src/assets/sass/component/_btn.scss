@@ -587,3 +587,12 @@
 //   background-color: #27b096;
 //   color: white;
 // }
+.more-text{
+  a{
+    line-height: 24px;
+    font-size: 24px;
+    color: $black;
+    background: transparent;
+    border: 1px solid transparent;
+  }
+}
