@@ -33,18 +33,12 @@
       </div>
     </div>
 
-    <div class="comment">
-      <label for="mail" class="f-label">
-        <h4>回覆貼文</h4>
-      </label>
-      <textarea name="" id="tarea" cols="30" rows="10" class="f-text" placeholder="回覆貼文"></textarea>
-      <button type="button" class="btn-m btn-color-green">回覆</button>
-    </div>
-
-    <div class="comment-list">
+    <chat-comment @message="addComment"></chat-comment>
+<!-- =========================================== -->
+    <!-- <div class="comment-list">
       <div class="chat-commit">
         <div class="chat-commit-title">
-          <!-- 會員大頭貼- image.scss -->
+          
           <div class="image user_pic">
             <img src="../assets/img/user_pic.png" alt="">
           </div>
@@ -55,9 +49,22 @@
           這款御飯糰看起來真的很好吃！我平常也很愛吃這種綜合了多種口味的美食，尤其是烤焦的牛肉片搭配米飯，讓人垂涎欲滴。謝謝你的分享，我會去7-11試試看這款美食！
         </div>
       </div>
+      <div class="chat-commit" v-for="(comment,index) in comments" :key="index">
+        <div class="chat-commit-title"> 
+            <div class="image user_pic"> 
+                <img class="image event_pic" :src="require(`@/assets/img/${comment.USER_PORTRAIT}`)" alt="">
+            </div>
+            <h5 class="commit-user">{{comment.USER_NICKNAME}}</h5>
+            <h5 class="commit-date">{{comment.CREATE_TIME}}</h5>
+        </div>
+        <div class="chat-commit-content">
+          {{comment.CONTENT}}
+        </div>
+
+      </div>
       <div class="chat-commit">
         <div class="chat-commit-title">
-          <!-- 會員大頭貼- image.scss -->
+          
           <div class="image user_pic">
             <img src="../assets/img/user_pic.png" alt="">
           </div>
@@ -68,9 +75,10 @@
           我一直覺得便利店的食物都是很不健康的選擇，但看完你的推薦文，我對7-11的炙燒雪花牛御飯糰產生了興趣。聽起來這款美食的口感和層次非常豐富，讓人忍不住想去嚐一口。謝謝你的分享，我會去買一個試試看！
         </div>
       </div>
+      
       <div class="chat-commit">
         <div class="chat-commit-title">
-          <!-- 會員大頭貼- image.scss -->
+          /* 會員大頭貼- image.scss */
           <div class="image user_pic">
             <img src="../assets/img/user_pic.png" alt="">
           </div>
@@ -81,9 +89,10 @@
           我之前吃過類似的御飯糰，但是口感並不是很好，還有些乾。不過看起來7-11的炙燒雪花牛御飯糰的口感非常不錯，也很新鮮。謝謝你的分享，我會去7-11試試看這款美食！
         </div>
       </div>
+      
       <div class="chat-commit">
         <div class="chat-commit-title">
-          <!-- 會員大頭貼- image.scss -->
+          /* 會員大頭貼- image.scss */
           <div class="image user_pic">
             <img src="../assets/img/user_pic.png" alt="">
           </div>
@@ -96,7 +105,7 @@
       </div>
       <div class="chat-commit">
         <div class="chat-commit-title">
-          <!-- 會員大頭貼- image.scss -->
+          /* 會員大頭貼- image.scss */
           <div class="image user_pic">
             <img src="../assets/img/user_pic.png" alt="">
           </div>
@@ -107,7 +116,24 @@
           我最近也在尋找新的便利店美食，看起來7-11的炙燒雪花牛御飯糰是個不錯的選擇。特別是因為它可以隨時購買，方便食用。謝謝你的分享，我會在下次去7-11的時候買一個嚐嚐看！
         </div>
       </div>
-    </div>
+    </div> -->
+<!-- <div class="comment-list">
+  <div class="chat-commit" v-for="(comment,index) in comments" :key="index">
+        <div class="chat-commit-title"> 
+            <div class="image user_pic"> 
+                <img class="image event_pic" :src="require(`@/assets/img/${comment.USER_PORTRAIT}`)" alt="">
+            </div>
+            <h5 class="commit-user">{{comment.USER_NICKNAME}}</h5>
+            <h5 class="commit-date">{{comment.CREATE_TIME}}</h5>
+        </div>
+        <div class="chat-commit-content">
+          {{comment.CONTENT}}
+        </div>
+
+      </div>
+</div> -->
+<!-- =========================================== -->
+  <chat-commentlist ></chat-commentlist>
 
     <div class="confirm-btn">
          <router-link to="/chat" custom v-slot="{ navigate }">
@@ -126,10 +152,28 @@
 
 import navbar from './navbar.vue';
 import Footer from './Footer.vue';
+import ChatComment from './ChatComment.vue';
+import ChatCommentlist from './ChatCommentlist.vue';
 
 export default {
   components: {
-      navbar,Footer,
+      navbar,Footer,ChatComment,ChatCommentlist,
     },
+
+    data(){
+      return{
+        message:'',
+      }
+    },
+    methods:{
+      addComment(message){
+          console.log(message);
+      }
+    }
+    
 }
 </script>
+
+
+
+
