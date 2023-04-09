@@ -4,12 +4,12 @@
 
   h1 {
     margin-bottom: 80px;
+    // font-size: 100px;
+    
 
-    @include breakpoint($grid-breakpoints, 'md') {
+    @include breakpoint($grid-breakpoints, "md") {
       margin-bottom: 35px;
-
     }
-
   }
 
   .desktop-filter {
@@ -25,7 +25,6 @@
       display: none;
     }
   }
-
 
   .mobile-filter {
     display: none;
@@ -43,20 +42,13 @@
         margin-left: 6px;
         color: $gray;
         font-size: 18px;
-
       }
 
       .f-select {
         font-size: 18px;
       }
-
     }
-
-
   }
-
-
-
 }
 
 .search-bar {
@@ -65,22 +57,18 @@
   justify-content: center;
   flex-wrap: wrap;
   margin-bottom: 50px;
-  @include breakpoint($grid-breakpoints, 'sm') {
+  @include breakpoint($grid-breakpoints, "sm") {
     width: 95%;
-    margin:0 auto 50px;
-
+    margin: 0 auto 50px;
   }
-
 
   input {
     width: 53%;
     // line-height: 28px;
 
-    @include breakpoint($grid-breakpoints, 'md') {
+    @include breakpoint($grid-breakpoints, "md") {
       width: 70%;
     }
-
-
   }
 
   button {
@@ -90,18 +78,17 @@
     border-radius: 25px;
     margin-left: 15px;
 
-    @include breakpoint($grid-breakpoints, 'md') {
+    @include breakpoint($grid-breakpoints, "md") {
       font-size: 16px;
       height: 45px;
       line-height: 45px;
       padding: 0 25px;
     }
-    @include breakpoint($grid-breakpoints, 'sm') {
+    @include breakpoint($grid-breakpoints, "sm") {
       height: 33px;
       line-height: 33px;
       padding: 0 25px;
     }
-
   }
 }
 
@@ -112,29 +99,25 @@
   }
 }
 
-
 .news_item {
   margin-bottom: 30px;
   padding-bottom: 30px;
 
   .article_news {
-    @include breakpoint($grid-breakpoints, 'sm') {
+    @include breakpoint($grid-breakpoints, "sm") {
       flex-direction: row;
       flex-wrap: wrap;
     }
 
-    .tag{
-      @include breakpoint($grid-breakpoints, 'sm'){
-        width:20vw;
+    .tag {
+      @include breakpoint($grid-breakpoints, "sm") {
+        width: 20vw;
       }
     }
-
   }
 
-
-
   .article_news h2 {
-    @include breakpoint($grid-breakpoints, 'sm') {
+    @include breakpoint($grid-breakpoints, "sm") {
       font-size: 20px;
       overflow: visible;
       text-overflow: unset;
@@ -144,7 +127,7 @@
   }
 
   .article_news h5 {
-    @include breakpoint($grid-breakpoints, 'sm') {
+    @include breakpoint($grid-breakpoints, "sm") {
       display: none;
     }
   }
@@ -152,23 +135,18 @@
   .rwd-newsdate {
     display: none;
 
-    @include breakpoint($grid-breakpoints, 'sm') {
+    @include breakpoint($grid-breakpoints, "sm") {
       display: block;
       font-size: 12px;
       // width: 160px;
       color: $gray;
       align-items: center;
       line-height: 28px;
-
-
     }
   }
-
 }
 
 .watch-more {
-  
-
   button {
     font-size: 1.5rem;
     height: 55px;
@@ -176,19 +154,14 @@
     border-radius: 30px;
     margin-bottom: 100px;
 
-    @include breakpoint($grid-breakpoints, 'sm') {
+    @include breakpoint($grid-breakpoints, "sm") {
       font-size: 18px;
-      height:35px;
-
-
+      height: 35px;
     }
-
   }
 
   button:hover {
     background-color: $green;
     color: $white;
   }
-
-
 }
