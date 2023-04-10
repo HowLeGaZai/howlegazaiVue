@@ -29,8 +29,8 @@
                   type="text"
                   class="f-text"
                   id="tad"
-                  placeholder="花蓮縣國安相大湖里立德路三段50號"
                   disabled
+                  v-model="outputValue"
                 />
               </div>
 
@@ -184,10 +184,17 @@ export default {
     Footer,
     navbar,
   },
+  data(){
+    return {
+      
+    };
+  },
   setup() {
     return {};
   },
   mounted() {
+
+    
     let labels = document.querySelectorAll(".collapsible-item-label");
     let contents = document.querySelectorAll(".collapsible-item-content");
 
@@ -213,4 +220,8 @@ export default {
     });
   },
 };
+
+// let myData = localStorage.getItem('myData');
+// document.getElementById('myInput').value = myData;
+
 </script>

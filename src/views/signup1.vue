@@ -84,7 +84,9 @@
               type="text"
               class="f-text label-left"
               id="name5"
-              placeholder="例如：忠孝路450巷6號7樓"
+              v-model="inputvalue"
+              required
+              onsubmit="return validateForm()"
             />
             <!-- <h6 style="color: red; text-align: center"> -->
             <h6 class="alert">
@@ -101,7 +103,7 @@
             </button></a
           >
           <a href="#/signup2"
-            ><button type="button" class="btn-m btn-color-green">
+            ><button type="button" class="btn-m btn-color-green" @click="submitForm">
               註冊
             </button></a
           >
@@ -116,14 +118,41 @@
 import navbar from "./navbar.vue";
 import Footer from "./Footer.vue";
 
+const mydata = {
+  name: 'John',
+  age: 30,
+  email: 'john@example.com'
+}
+
 export default {
   components: {
     Footer,
     navbar,
   },
+  data() {
+    return {
+      inputValue: ""
+    }
+  },
   setup() {
     return {};
   },
+  methods: {
+    validateForm() {
+			var inputField = document.getElementById("myInput");
+			var inputValue = inputField.value;
+			if (inputValue == "") {
+				document.getElementById("error").innerHTML = "This field cannot be empty.";
+				return false;
+			}
+			return true;
+		}
+    // submitForm() {
+    //   this.$router.push({ name: "page2", params: { inputValue: this.inputValue } });
+    // }
+  },
+
+  
   mounted() {
     let labels = document.querySelectorAll(".collapsible-item-label");
     let contents = document.querySelectorAll(".collapsible-item-content");
@@ -150,4 +179,6 @@ export default {
     });
   },
 };
+
+// localStorage.setItem('myData', this.myData);
 </script>
