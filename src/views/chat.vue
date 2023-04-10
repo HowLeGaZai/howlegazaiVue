@@ -74,7 +74,7 @@
           </div>
           <div class="mobile-filter">
             <label for="chattype" class="f-label">分類</label>
-            <select name="" id="chattype" class="f-select">
+            <select name="" id="chattype" class="f-select" v-model="selectedCategory">
                 <option value="所有話題">所有話題</option>
                 <option value="美食討論">美食討論</option>
                 <option value="二手交易">二手交易</option>
@@ -93,7 +93,7 @@
               <section class="chat_news ">
                   <div class="chat_info">
                     <div :class="['tag', 'tag-mini', addClass(chatTopic.CATEGORY)]">{{chatTopic.CATEGORY}}</div>
-                    <h5 class="post_d">{{chatTopic.CREATE_TIME}}</h5>
+                    <h5 class="post_d">{{getFormatDate(chatTopic.CREATE_TIME)}}</h5>
                     <div class="poster">
                       <div class="image user_pic">
                         <img :src="require(`@/assets/img/${chatTopic.PORTRAIT}`)" alt="">
@@ -113,7 +113,7 @@
         </article>     
 
         <div class="watch-more">
-          <button type="button" class="btn-m btn-color-greenborder" id="lookmore" v-if="num < displayedTopics.length" @click="showmore">{{txt}}</button>
+          <button type="button" class="btn-m btn-color-greenborder" id="lookmore" v-if="num < displayedTopics.length" @click="showmore">看更多</button>
         </div>
 
       </main>
@@ -127,7 +127,7 @@ import ChatTopic from '../components/ChatTopic.vue'
 import navbar from './navbar.vue';
 import Footer from './Footer.vue';
 // import { BootstrapIconsPlugin } from 'bootstrap-icons-vue';
-
+import { formatDate } from '../plugin/date';
 
 
 
@@ -135,7 +135,7 @@ export default {
    data(){
         return {
             // isShow: true,
-            txt: "看更多",
+            // txt: "看更多",
             num: 10,
             selectedCategory: "所有話題",
             categories: [
@@ -154,7 +154,7 @@ export default {
                 "TITLE": "最近吃到大湖里超好吃飯糰",
                 "CONTENT": "大湖里出產的飯糰米粒粒粒分明，調味也很好吃。超級好吃，100分的大湖里早餐",
                 "PIC": "c_1_food.jpg",
-                "CREATE_TIME": "2023-04-05",
+                "CREATE_TIME": "2023-04-10 09:11:22",
 
                 "USER_ID": 56677,
                 "PORTRAIT": "user_pic6.png",
@@ -170,7 +170,7 @@ export default {
                 "TITLE": "最近吃到大湖里超好吃飯糰",
                 "CONTENT": "大湖里出產的飯糰米粒粒粒分明，調味也很好吃。超級好吃，100分的大湖里早餐",
                 "PIC": "c_1_food.jpg",
-                "CREATE_TIME": "2023-04-05",
+                "CREATE_TIME": "2023-04-09 07:30:22 ",
 
                 "USER_ID": 56677,
                 "PORTRAIT": "user_pic6.png",
@@ -186,7 +186,7 @@ export default {
                 "TITLE": "想轉賣飯糰",
                 "CONTENT": "大湖里出產的飯糰米粒粒粒分明，調味也很好吃。超級好吃，100分的大湖里早餐",
                 "PIC": "c_1_food.jpg",
-                "CREATE_TIME": "2023-04-05",
+                "CREATE_TIME": "2023-04-05 01:22:44",
 
                 "USER_ID": 56677,
                 "PORTRAIT": "user_pic3.png",
@@ -202,7 +202,7 @@ export default {
                 "TITLE": "想找桃太郎飯糰",
                 "CONTENT": "最近，我突然對桃太郎飯糰產生了極大的興趣。我在網上看到一些照片和評論",
                 "PIC": "c_1_food.jpg",
-                "CREATE_TIME": "2023-04-01",
+                "CREATE_TIME": "2023-04-09 22:00:44",
 
                 "USER_ID": 56677,
                 "PORTRAIT": "user_pic.png",
@@ -218,7 +218,7 @@ export default {
                 "TITLE": "巷口有人亂丟飯糰",
                 "CONTENT": "最近，我突然對桃太郎飯糰產生了極大的興趣。我在網上看到一些照片和評論",
                 "PIC": "c_1_food.jpg",
-                "CREATE_TIME": "2023-04-01",
+                "CREATE_TIME": "2023-04-09 23:20:33",
 
                 "USER_ID": 56677,
                 "PORTRAIT": "user_pic5.png",
@@ -234,7 +234,7 @@ export default {
                 "TITLE": "最近吃到大湖里超好吃飯糰",
                 "CONTENT": "大湖里出產的飯糰米粒粒粒分明，調味也很好吃。超級好吃，100分的大湖里早餐",
                 "PIC": "c_1_food.jpg",
-                "CREATE_TIME": "2023-04-05",
+                "CREATE_TIME": "2023-04-01 12:35:55",
 
                 "USER_ID": 56677,
                 "PORTRAIT": "user_pic6.png",
@@ -250,7 +250,7 @@ export default {
                 "TITLE": "最近吃到大湖里超好吃飯糰",
                 "CONTENT": "大湖里出產的飯糰米粒粒粒分明，調味也很好吃。超級好吃，100分的大湖里早餐",
                 "PIC": "c_1_food.jpg",
-                "CREATE_TIME": "2023-04-05",
+                "CREATE_TIME": "2023-04-07 10:20:33",
 
                 "USER_ID": 56677,
                 "PORTRAIT": "user_pic6.png",
@@ -266,7 +266,7 @@ export default {
                 "TITLE": "最近吃到大湖里超好吃飯糰",
                 "CONTENT": "大湖里出產的飯糰米粒粒粒分明，調味也很好吃。超級好吃，100分的大湖里早餐",
                 "PIC": "c_1_food.jpg",
-                "CREATE_TIME": "2023-04-05",
+                "CREATE_TIME": "2023-03-31 13:30:30",
 
                 "USER_ID": 56677,
                 "PORTRAIT": "user_pic6.png",
@@ -282,7 +282,7 @@ export default {
                 "TITLE": "最近吃到大湖里超好吃飯糰",
                 "CONTENT": "大湖里出產的飯糰米粒粒粒分明，調味也很好吃。超級好吃，100分的大湖里早餐",
                 "PIC": "c_1_food.jpg",
-                "CREATE_TIME": "2023-04-05",
+                "CREATE_TIME": "2023-04-06 10:20:33",
 
                 "USER_ID": 56677,
                 "PORTRAIT": "user_pic6.png",
@@ -298,7 +298,7 @@ export default {
                 "TITLE": "最近吃到大湖里超好吃飯糰",
                 "CONTENT": "大湖里出產的飯糰米粒粒粒分明，調味也很好吃。超級好吃，100分的大湖里早餐",
                 "PIC": "c_1_food.jpg",
-                "CREATE_TIME": "2023-04-05",
+                "CREATE_TIME": "2023-04-08 16:20:33",
 
                 "USER_ID": 56677,
                 "PORTRAIT": "user_pic6.png",
@@ -314,7 +314,7 @@ export default {
                 "TITLE": "最近吃到大湖里超好吃飯糰",
                 "CONTENT": "大湖里出產的飯糰米粒粒粒分明，調味也很好吃。超級好吃，100分的大湖里早餐",
                 "PIC": "c_1_food.jpg",
-                "CREATE_TIME": "2023-04-05",
+                "CREATE_TIME": "2023-04-08 11:20:33",
 
                 "USER_ID": 56677,
                 "PORTRAIT": "user_pic6.png",
@@ -330,7 +330,7 @@ export default {
                 "TITLE": "最近吃到大湖里超好吃飯糰",
                 "CONTENT": "大湖里出產的飯糰米粒粒粒分明，調味也很好吃。超級好吃，100分的大湖里早餐",
                 "PIC": "c_1_food.jpg",
-                "CREATE_TIME": "2023-04-05",
+                "CREATE_TIME": "2023-04-05 18:30:50",
 
                 "USER_ID": 56677,
                 "PORTRAIT": "user_pic6.png",
@@ -346,7 +346,7 @@ export default {
                 "TITLE": "最近吃到大湖里超好吃飯糰",
                 "CONTENT": "大湖里出產的飯糰米粒粒粒分明，調味也很好吃。超級好吃，100分的大湖里早餐",
                 "PIC": "c_1_food.jpg",
-                "CREATE_TIME": "2023-04-05",
+                "CREATE_TIME": "2023-04-05 09:30:30",
 
                 "USER_ID": 56677,
                 "PORTRAIT": "user_pic6.png",
@@ -362,7 +362,7 @@ export default {
                 "TITLE": "最近吃到大湖里超好吃飯糰",
                 "CONTENT": "大湖里出產的飯糰米粒粒粒分明，調味也很好吃。超級好吃，100分的大湖里早餐",
                 "PIC": "c_1_food.jpg",
-                "CREATE_TIME": "2023-04-05",
+                "CREATE_TIME": "2023-04-05 12:30:21",
 
                 "USER_ID": 56677,
                 "PORTRAIT": "user_pic6.png",
@@ -378,7 +378,7 @@ export default {
                 "TITLE": "桃太郎飯糰根本就沒有用",
                 "CONTENT": "最近，我突然對桃太郎飯糰產生了極大的興趣。我在網上看到一些照片和評論",
                 "PIC": "c_1_food.jpg",
-                "CREATE_TIME": "2023-04-01",
+                "CREATE_TIME": "2023-04-01 09:30:30",
 
                 "USER_ID": 56677,
                 "PORTRAIT": "user_pic5.png",
@@ -394,7 +394,7 @@ export default {
                 "TITLE": "為什麼大家一直在討論飯糰",
                 "CONTENT": "最近，我突然對桃太郎飯糰產生了極大的興趣。我在網上看到一些照片和評論",
                 "PIC": "c_1_food.jpg",
-                "CREATE_TIME": "2023-04-24",
+                "CREATE_TIME": "2023-04-10 00:00:01",
 
                 "USER_ID": 56677,
                 "PORTRAIT": "user_pic3.png",
@@ -410,7 +410,7 @@ export default {
                 "TITLE": "為什麼為什麼為什麼為什麼為什麼",
                 "CONTENT": "最近，我突然對桃太郎飯糰產生了極大的興趣。我在網上看到一些照片和評論",
                 "PIC": "c_1_food.jpg",
-                "CREATE_TIME": "2023-04-24",
+                "CREATE_TIME": "2023-04-10 00:03:00",
 
                 "USER_ID": 56677,
                 "PORTRAIT": "user_pic3.png",
@@ -452,6 +452,9 @@ export default {
 
         };
         
+    },
+    getFormatDate(val){
+      return formatDate(val);
     },
     },
 
