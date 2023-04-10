@@ -44,15 +44,17 @@
           .poster {
             display: flex;
             align-items: center;
-            margin-top: 10px;
+            @media (max-width: 846px) {
+              margin-top: 10px;
+            }
             @include breakpoint($grid-breakpoints, "sm") {
               margin-top: 2px;
 
             }
 
             .user_pic {
-              max-width: 50px;
-              max-width: 50px;
+              max-width: 40px;
+              max-width: 40px;
               margin-right: 10px;
 
               @include breakpoint($grid-breakpoints, "sm") {
@@ -64,7 +66,7 @@
 
             .poster_name {
               width: 200px;
-              color: $black;
+              color: $darkgray;
               margin-left: 0;
               margin-right: 20px;
 
@@ -145,8 +147,8 @@
           font-size: 1.3em;
           color: $darkgray;
           padding-bottom: 10px;
-          white-space: normal;
-          text-overflow: unset;
+          white-space: nowrap;
+          text-overflow: ellipsis;
 
           @media screen and (max-width: 900px) {
             font-size: 1.2em;

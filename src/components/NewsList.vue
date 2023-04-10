@@ -22,12 +22,14 @@
 export default {
     data(){
         return {                 
-            news: [{
+            news: [
+            {
             "CATEGORY": "公告",
             "CREATE_TIME": "2023-03-02",
             "TITLE": "清明期間 大湖里第一公墓管制出入",
-            "PIC": "c_1_food.jpg"
-            }],
+            "PIC": "c_1_food.jpg",
+            },
+        ],
         }
             },
             methods: {
