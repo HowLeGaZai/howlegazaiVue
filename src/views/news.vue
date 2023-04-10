@@ -1,11 +1,14 @@
 <template>
   <navbar></navbar>
 
-    <main class="news_page">
+  <main class="news_page">
     <h1>最新消息</h1>
     <div class="search-bar">
-      <input type="" class="f-text f-round" placeholder="" style="font-family:bootstrap-icons"/>
-      <button class="btn-m btn-color-green ">搜尋</button>
+      <input type="text" v-model.lazy.trim="searchNews" class="f-text f-round" placeholder=""
+        style="font-family:bootstrap-icons"/>
+
+
+      <button class="btn-m btn-color-green">搜尋</button>
     </div>
     <div class="desktop-filter" id="news-desktop-filter">
       <div class="tag tag-btn tag-main tag-btn-selected">全部消息</div>
@@ -30,104 +33,35 @@
     </div>
 
     <div class="news_content">
-      <a href="#/news_info">
+
+      <!-- <news-list></news-list> -->
+      <!-- <news-list v-for="news in filterNews" :key="news.id"></news-list> -->
+      <!-- ===== newslist_components ===== -->
+
+      <a href="#" v-for="(news, index) in news" :key="index">
+        <!-- <a href="#" v-for="news in filterNews" :key="news"> -->
+      <!-- <a href="#" v-for="news in filterNews" :key="news.news"> -->
         <article class="news_item">
           <section>
             <section class="article_news">
-              <div class="tag tag-pink">最新宣導</div>
-              <p class="rwd-newsdate">2022-03-11</p>
-              <h2>大湖里反詐騙宣導：為避免輕易上當，請撥165反詐騙電話</h2>
-              <h5>2022-03-11</h5>
+              <div :class="['tag', addTagClass(news.CATEGORY)]">{{ news.CATEGORY }}</div>
+
+              <p class="rwd-newsdate">{{ news.CREATE_TIME }}</p>
+              <h2>{{ news.TITLE }}</h2>
+              <h5>{{ news.CREATE_TIME }}</h5>
             </section>
             <div class="image list_pic">
-              <img src="../assets/img/news_pic1.jpeg" alt="">
+              <img :src="require(`@/assets/img/${news.PIC}`)" alt="">
             </div>
           </section>
         </article>
       </a>
 
-    <news-list></news-list>
-    
 
 
 
-      <!-- <a href="#/news_info">
-      <article class="news_item">
-        <section>
-          <section class="article_news">
-            <div class="tag tag-orange">公告</div>
-            <p class="rwd-newsdate">2022-03-11</p>
-            <h2>清明期間 大湖里第一公墓管制出入</h2>
-            <h5>2022-01-01</h5>
-          </section>
-          <div class="image list_pic">
-            <img src="../assets/img/c_1_food.jpg" alt="">
-          </div>
-        </section>
-      </article>
-    </a>
-    <a href="#/news_info">
-      <article class="news_item">
-        <section>
-          <section class="article_news">
-            <div class="tag tag-pink">宣導</div>
-            <p class="rwd-newsdate">2022-03-11</p>
-            <h2>清明期間返鄉祭祖，消防局禁止於空地燃燒廢草</h2>
-            <h5>2022-03-11</h5>
-          </section>
-          <div class="image list_pic">
-            <img src="../assets/img/c_1_food.jpg" alt="">
-          </div>
-        </section>
-      </article>
-    </a>
-    <a href="#/news_info">
-      <article class="news_item">
-        <section>
-          <section class="article_news">
-            <div class="tag tag-orange">公告</div>
-            <p class="rwd-newsdate">2022-03-11</p>
-            <h2>清明期間 大湖里第二公墓管制出入</h2>
-            <h5>2022-01-01</h5>
-          </section>
-          <div class="image list_pic">
-            <img src="../assets/img/c_1_food.jpg" alt="">
-          </div>
-        </section>
-      </article>
-    </a>
-    <a href="#/news_info">
-      <article class="news_item">
-        <section>
-          <section class="article_news">
-            <div class="tag tag-pink">宣導</div>
-            <p class="rwd-newsdate">2022-03-11</p>
-            <h2>大湖里反詐騙宣導：為避免輕易上當，請撥165反詐騙電話</h2>
-            <h5>2022-03-11</h5>
-          </section>
-          <div class="image list_pic">
-            <img src="../assets/img/c_1_food.jpg" alt="">
-          </div>
-        </section>
-      </article>
-    </a>
-    <a href="#/news_info">
-      <article class="news_item">
-        <section>
-          <section class="article_news">
-            <div class="tag tag-orange">公告</div>
-            <p class="rwd-newsdate">2022-03-11</p>
-            <h2>清明期間 大湖里第二公墓管制出入</h2>
-            <h5>2022-01-01</h5>
-          </section>
-          <div class="image list_pic">
-            <img src="../assets/img/c_1_food.jpg" alt="">
-          </div>
-        </section>
-      </article>
-    </a> -->
 
-    </div> 
+    </div>
 
     <div class="watch-more">
       <button type="button" class="btn-m btn-color-greenborder">看更多</button>
@@ -145,15 +79,71 @@ import Footer from './Footer.vue';
 import NewsList from '../components/NewsList.vue';
 
 export default {
-  components: {
-      navbar,Footer,NewsList
+  data() {
+    return {
+      searchNews: '',
+      news: [
+        {
+          "CATEGORY": "公告",
+          "CREATE_TIME": "2023-03-02",
+          "TITLE": "清明期間 大湖里第一公墓管制出入",
+          "PIC": "c_1_food.jpg",
+        },
+        {
+          "CATEGORY": "宣導",
+          "CREATE_TIME": "2023-03-11",
+          "TITLE": "大湖里反詐騙宣導：為避免輕易上當，請撥165反詐騙電話",
+          "PIC": "c_1_food.jpg",
+        },
+        {
+          "CATEGORY": "里民服務",
+          "CREATE_TIME": "2023-03-11",
+          "TITLE": "清明期間 大湖里第二公墓管制出入",
+          "PIC": "c_1_food.jpg",
+        },
+        {
+          "CATEGORY": "新聞分享",
+          "CREATE_TIME": "2023-03-11",
+          "TITLE": "清明期間 大湖里第二公墓管制出入",
+          "PIC": "c_1_food.jpg",
+        },
+        {
+          "CATEGORY": "會議記錄",
+          "CREATE_TIME": "2023-03-11",
+          "TITLE": "清明期間 大湖里第二公墓管制出入",
+          "PIC": "c_1_food.jpg",
+        },
+      ]
+    }
+  },
+  methods: {
+    // 變換tag顏色與樣式
+    addTagClass(i) {
+      switch (i) {
+        case "公告": return "tag-orange";
+        case "宣導": return "tag-pink";
+        case "里民服務": return "tag-yellow";
+        case "新聞分享": return "tag-blue";
+        case "會議記錄": return "tag-green";
+      }
     },
-    mounted(){
+  },
+
+  computed:{
+    //搜尋函式
+    // filterNews(){
+    //   return this.news.filter(searchResult => searchResult.news.match(this.searchNews))
+    // }
+    
+  },
+
+
+  mounted() {
     var desktopfilter = document.getElementById("news-desktop-filter");
     var btns = desktopfilter.getElementsByClassName("tag-btn");
 
     for (var i = 0; i < btns.length; i++) {
-      btns[i].addEventListener("click", function() {
+      btns[i].addEventListener("click", function () {
         var current = document.getElementsByClassName(" tag-btn-selected");
 
         if (current.length > 0) {
@@ -163,5 +153,11 @@ export default {
       });
     };
   }
+
+
+
 }
+
+
+
 </script>
