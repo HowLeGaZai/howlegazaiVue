@@ -5,11 +5,9 @@
     <main class="backpadding">
       <backCalender></backCalender>
     
-        <!-- <div class="container-date">
-          
+        <!-- <div class="container-date">  
           <p>西曆：2023 年 03 月 11 日</p>  
-          <p>農曆：癸卯年 乙卯月 戊辰日 二月二十</p>
-          
+          <p>農曆：癸卯年 乙卯月 戊辰日 二月二十</p>    
         </div> -->
 
     <section class="container-main">
@@ -335,7 +333,7 @@
 
     </main>
     <!------ 補這裡：不支援手機畫面 ------>
-      <div :class="bodyClass" class="nosupport">
+      <div class="nosupport">
             <main>
                 <section class="noSupport">
                     <a href="#">
@@ -389,17 +387,17 @@ export default {
     });
    
   //  ＝＝＝＝＝＝側欄選單的JS＝＝＝＝＝＝
-  let beMenu = document.querySelectorAll(".be-menu");
-   let beMenuOn = document.querySelectorAll(".be-nav-on");
-    // let beMenu = document.querySelectorAll("be-nav");
-    // console.log(beMenu);
+  // let beMenu = document.querySelectorAll(".be-menu");
+  //  let beMenuOn = document.querySelectorAll(".be-nav-on");
+  //   // let beMenu = document.querySelectorAll("be-nav");
+  //   // console.log(beMenu);
 
-  for(let i = 0; i < beMenu.length; i++){
-    beMenu[i].addEventListener("click",function(){
-      beMenuOn[i].classList.toggle('be-nav-off');
-    //   console.log(beMenu[i]);
-    })
-  }
+  // for(let i = 0; i < beMenu.length; i++){
+  //   beMenu[i].addEventListener("click",function(){
+  //     beMenuOn[i].classList.toggle('be-nav-off');
+  //   //   console.log(beMenu[i]);
+  //   })
+  // }
 
   //  ＝＝＝＝＝＝側欄選單的JS end＝＝＝＝＝＝
 
