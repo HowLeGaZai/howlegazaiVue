@@ -3,13 +3,14 @@
 
     <div class="body-sec">
     <main class="backpadding">
-        <!-- <main> -->
-        <div class="container-date">
-          <!-- 需渲染資料區塊 -->
+      <backCalender></backCalender>
+    
+        <!-- <div class="container-date">
+          
           <p>西曆：2023 年 03 月 11 日</p>  
           <p>農曆：癸卯年 乙卯月 戊辰日 二月二十</p>
-          <!-- 需渲染資料區塊 -->
-        </div>
+          
+        </div> -->
 
     <section class="container-main">
       <!------- 補這裡：後台側欄選單 ------->
@@ -359,14 +360,16 @@
 <script>
 
 import backendNavbar from './backendNavbar.vue';
+import backCalender from '../components/BackCalender.vue';
 import $ from 'jquery'
 import 'jquery-ui-dist/jquery-ui'
 import 'jquery-ui-dist/jquery-ui.min.css'
 import Footer from './Footer.vue';
 
+
 export default {
   components: {
-      backendNavbar,Footer
+      backendNavbar,Footer,backCalender
     },
     mounted() {
     $('#resizable').resizable({});

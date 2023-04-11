@@ -3,6 +3,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 // import contact from '../views/contact.vue'
 import Home from '../views/Home.vue'
 
+
 const routes = [
   {
     // 前台 首頁
@@ -181,12 +182,14 @@ const routes = [
   {  // 前台 註冊第一頁介面 
     path: '/signup1',
     name: 'signup1',
-    component:() => import(/* webpackChunkName: "about" */ '../views/signup1.vue')
+    component:() => import(/* webpackChunkName: "about" */ '../views/signup1.vue') , 
+    
   },
   {  // 前台 註冊第二頁介面 
     path: '/signup2',
     name: 'signup2',
-    component:() => import(/* webpackChunkName: "about" */ '../views/signup2.vue')
+    component:() => import(/* webpackChunkName: "about" */ '../views/signup2.vue') , 
+    
   },
   {// 前台 修改密碼
     path: '/updatepassword',
@@ -320,6 +323,7 @@ const routes = [
   },
   
 
+  
   // 空間預約管理
 
   {
@@ -339,6 +343,7 @@ const router = createRouter({
   history: createWebHashHistory(process.env.BASE_URL),
   routes
 })
+
 
 
 

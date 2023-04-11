@@ -1,88 +1,66 @@
 .noSupport {
-    max-height: 100vh;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    padding-top: 8%;
+  max-height: 100vh;
+  display: flex;
+  justify-content: center;
 
+  @include breakpoint($grid-breakpoints, "md") {
+    max-height: 100%;
+    margin-top: -15px;
+  }
+  a {
+    overflow: visible;
+    color: $black;
+    &:hover {
+      color: $green;
+    }
     @include breakpoint($grid-breakpoints, "md") {
-        flex-direction: column;
-        padding-top: 110px;
+      margin-bottom: 105px;
     }
-    a {
-        overflow: visible; 
-        color: $black;
-        &:hover{
-            color: $green;
-        }
-        @include breakpoint($grid-breakpoints, "md") {
-            margin-bottom: 105px;
-        }
-        div {
-        width: 400px;
-        height: 300px;
-        padding: 80px 20px;
-        box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
-        background-color: $white;
-        border-radius: 10px 10px 10px 10px;
-        margin: 0 5px 0 5px;
-        @include breakpoint($grid-breakpoints, "md") {
-            margin: 0px 0px 5px 0px;
-            width: 350px;
-            height: 300px;
-            padding: 20px;
-        }
-        &::before {
-            content: "";
-            position: relative;
-            top: -193px;
-            left: -20px;
-            width: 0;
-            height: 0;
-            border-style: solid;
-            border-width: 0 200px 100px 200px;
-            border-color: transparent transparent $white transparent;
-            border-radius: 50px 50px 10px 10px;
-            @include breakpoint($grid-breakpoints, "md") {
-            border-width: 0 174px 80px 174px;
-            top: -113px;
-            left: -20px;
-            }
-        }
+    div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
 
-            .LiIcon {
-                position: relative;
-                width: 36px;
-                height: 40px;
-                margin: 0 auto;
-                margin-top: -150px;
-                margin-bottom: 50px;
-                z-index: 10;
+      width: 385px;
+      height: 370px;
+      padding: 20px;
+      background-image: url("/src/assets/img/notsupport.svg");
 
-                @include breakpoint($grid-breakpoints, "md") {
-                    margin: 0px 0px 5px 0px;
-                    width: 30px;
-                    height: 34px;
-                    margin: 0 auto;
-                    margin-top: -80px;
-                    margin-bottom: 50px;
-                    z-index: 10;
-                }
-                   
-            }
+      background-size: cover;
+      background-position: 0% 0%;
+      background-repeat: no-repeat;
+      @include breakpoint($grid-breakpoints, "sm") {
+        width: 95vw;
+        height: 380px;
+        background-size: cover;
+      }
 
-            h1 {
-                font-size: 1.6em;
-                text-overflow: clip;
-                margin-bottom: 20px;
-            }
+      .LiIcon {
+        width: 36px;
+        height: auto;
 
-            .cat {
-                width: 140px;
-                height: 150px;
-                margin: 0 auto;
-                margin-bottom: 20px;
-             }
+        @include breakpoint($grid-breakpoints, "sm") {
+            width: 20px;
+            height: auto;
         }
+      }
+
+      h1 {
+        font-size: 26px;
+        text-overflow: clip;
+        margin: 20px 0;
+        @include breakpoint($grid-breakpoints, "sm") {
+            font-size: 20px;
+        }
+      }
+
+      .cat {
+        width: 140px;
+        height: 150px;
+        margin: 0 auto;
+        margin-bottom: 20px;
+      }
     }
+  }
 }
