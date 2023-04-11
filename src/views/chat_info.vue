@@ -155,6 +155,7 @@ import Footer from './Footer.vue';
 import ChatComment from './ChatComment.vue';
 import ChatCommentlist from './ChatCommentlist.vue';
 
+
 export default {
   components: {
       navbar,Footer,ChatComment,ChatCommentlist,
@@ -163,13 +164,15 @@ export default {
     data(){
       return{
         message:'',
+        
       }
     },
     methods:{
       addComment(message){
           console.log(message);
       }
-    }
+    },
+
     
 }
 </script>
