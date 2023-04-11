@@ -217,7 +217,7 @@
                         <div><i class="bi bi-cloud-arrow-up"></i></div>
                     </label>
                     <h5>上傳圖片</h5>
-                    <h6>請點選圖片上傳，或直接拖曳圖片至此</h6>
+                    <!-- <h6>請點選圖片上傳，或直接拖曳圖片至此</h6> -->
                     <p>設計最佳建議：1440 x 400 像素，且大小不得超過 100 KB 的圖檔</p>
                     <img id = "bannerimg">
                 </div>
@@ -310,14 +310,6 @@ function doFirst(){
 
 
             fileName.innerText = file.name
-            // let message = ``
-            // message += `File Name: ${file.name}\n`
-            // message += `File Type: ${file.type}\n`
-            // message += `File size: ${file.size} byte\n`
-            // message += `Last modified: ${file.lastModifiedDate}\n`
-
-            // document.getElementById('fileInfo').value = message
-
             let readFile = new FileReader()
             readFile.readAsDataURL(file)
             readFile.addEventListener('load',function(){
