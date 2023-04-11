@@ -232,9 +232,9 @@ export default {
           label.addEventListener('click', () => {
 
               // 檢查是否已經打開
-              const isOpen = label.classList.contains('open-item-label');
-              const content = contents[index];
-              const isContentOpen = content.classList.contains('open-item-content');
+              let isOpen = label.classList.contains('open-item-label');
+              let content = contents[index];
+              let isContentOpen = content.classList.contains('open-item-content');
 
               // 移除所有元素上已經打開的樣式
               labels.forEach(label => label.classList.remove('open-item-label'));
@@ -242,8 +242,8 @@ export default {
 
               // 添加或移除打開的樣式
               if (!isOpen && !isContentOpen) {
-              label.classList.add('open-item-label');
-              content.classList.add('open-item-content');
+                label.classList.add('open-item-label');
+                content.classList.add('open-item-content');
               }
           });
       });

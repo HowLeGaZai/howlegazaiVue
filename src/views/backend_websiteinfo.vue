@@ -210,19 +210,22 @@
             <button type="button" class="savebtn btn-10-s btn-color-green">儲存 </button>
         </section>
         <section>
-            <div class="pic-upload">
+            <h5>首頁封面照片</h5>
+              <div class="up_banner">
+            <!-- <div class="pic-upload">
                 <div id = "dropzone"> 
                     <label class="uploadpic" for="customFileInput">
                         <input id="customFileInput" type="file"/>
                         <div><i class="bi bi-cloud-arrow-up"></i></div>
                     </label>
                     <h5>上傳圖片</h5>
-                    <h6>請點選圖片上傳，或直接拖曳圖片至此</h6>
                     <p>設計最佳建議：1440 x 400 像素，且大小不得超過 100 KB 的圖檔</p>
                     <img id = "bannerimg">
                 </div>
                 <h6><i class="bi bi-image"></i><span id = "fileName"></span></h6>
-            </div>
+            </div> -->
+                <picture-cropbanner></picture-cropbanner>
+              </div>
             <button type="button" class="savebtn btn-10-s btn-color-green">儲存 </button>
         </section>
       </div>
@@ -252,13 +255,14 @@
 </template>
 
 <script>
-
 import backendNavbar from './backendNavbar.vue';
 import Footer from './Footer.vue';
+import PictureCropbanner from '../components/PictureCropbanner.vue';
+
 
 export default {
   components: {
-      backendNavbar,Footer,
+      backendNavbar,Footer,PictureCropbanner,
     },
     mounted() {
     
@@ -274,70 +278,62 @@ export default {
     })
   }
     
-function doFirst(){
-            document.getElementById('dropzone').ondragover = dragOver
-            document.getElementById('dropzone').ondrop = dropped
+// function doFirst(){
+//             document.getElementById('dropzone').ondragover = dragOver
+//             document.getElementById('dropzone').ondrop = dropped
 
-            document.getElementById('customFileInput').onchange = fileChange
+//             document.getElementById('customFileInput').onchange = fileChange
 
-        }
-        function dragOver(e){
-            e.preventDefault()
-        }
-        function dropped(e){
-            e.preventDefault()
+//         }
+//         function dragOver(e){
+//             e.preventDefault()
+//         }
+//         function dropped(e){
+//             e.preventDefault()
             
-            let file = e.dataTransfer.files[0]
-            // console.log(file)
+//             let file = e.dataTransfer.files[0]
+//             // console.log(file)
 
-            fileName.innerText = file.name
+//             fileName.innerText = file.name
 
-            let readFile = new FileReader()
-            readFile.readAsDataURL(file)
-            readFile.addEventListener('load',function(){
-              let image = document.getElementById('bannerimg')
-                image.src = readFile.result
-                image.style.width = '100%'
-                image.style.height = '100%'
-                image.style.maxWidth = '1200px'
-                image.style.maxHeight = '400px'
+//             let readFile = new FileReader()
+//             readFile.readAsDataURL(file)
+//             readFile.addEventListener('load',function(){
+//               let image = document.getElementById('bannerimg')
+//                 image.src = readFile.result
+//                 image.style.width = '100%'
+//                 image.style.height = '100%'
+//                 image.style.maxWidth = '1200px'
+//                 image.style.maxHeight = '400px'
 
-            })    
-        }
+//             })    
+//         }
 
-        function fileChange(){
-            let file = document.getElementById('customFileInput').files[0]
-
-
-            fileName.innerText = file.name
-            // let message = ``
-            // message += `File Name: ${file.name}\n`
-            // message += `File Type: ${file.type}\n`
-            // message += `File size: ${file.size} byte\n`
-            // message += `Last modified: ${file.lastModifiedDate}\n`
-
-            // document.getElementById('fileInfo').value = message
-
-            let readFile = new FileReader()
-            readFile.readAsDataURL(file)
-            readFile.addEventListener('load',function(){
-                let image = document.getElementById('bannerimg')
-                image.src = readFile.result
-
-                image.style.width = '100%'
-                image.style.height = '100%'
-                image.style.maxWidth = '1200px'
-                image.style.maxHeight = '400px'
-            })
-        }
+//         function fileChange(){
+//             let file = document.getElementById('customFileInput').files[0]
 
 
-        window.addEventListener('load',doFirst)
+//             fileName.innerText = file.name
+//             let readFile = new FileReader()
+//             readFile.readAsDataURL(file)
+//             readFile.addEventListener('load',function(){
+//                 let image = document.getElementById('bannerimg')
+//                 image.src = readFile.result
+
+//                 image.style.width = '100%'
+//                 image.style.height = '100%'
+//                 image.style.maxWidth = '1200px'
+//                 image.style.maxHeight = '400px'
+//             })
+//         }
+
+
+//         window.addEventListener('load',doFirst)
 
 
 
 
-  },
+ },
  
   
 

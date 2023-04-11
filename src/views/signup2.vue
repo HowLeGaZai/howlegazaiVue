@@ -22,6 +22,7 @@
             </div>
 
             <div class="signup2">
+            <div class="signup2">
               <!-- 只有一個元素 -->
               <div>
                 <label>住址</label>
@@ -118,8 +119,7 @@
               </div>
 
                 <!-- 上傳圖片 -->
-               <!-- 上傳圖片 -->
-               <div>
+                <div>
                   <label>身分證影本</label>
                   <section class="section_right addflex">
                       <p>正面</p>
@@ -170,6 +170,7 @@
 import navbar from "./navbar.vue";
 import Footer from "./Footer.vue";
 import PictureCropid from '../components/PictureCropid.vue';
+
 
 export default {
   components: {
