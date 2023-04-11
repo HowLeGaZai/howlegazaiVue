@@ -21,7 +21,7 @@
               </div>
             </div>
 
-            <form action="#" class="signup2">
+            <div class="signup2">
               <!-- 只有一個元素 -->
               <div>
                 <label>住址</label>
@@ -114,34 +114,17 @@
 
                 <!-- 上傳圖片 -->
                 <div>
-                  <label>身分證正反面上傳</label>
-                  <section class="section_right">
+                  <label>身分證影本</label>
+                  <section class="section_right addflex">
+                      <p>正面</p>
+                      <picture-cropid></picture-cropid>
+                      <p>反面</p>
+                      <picture-cropid></picture-cropid>
 
-                      <!-- 身分證正面 -->
-                      <div class="pic-upload">
-                        <div id="dropzone">
-                          <input id="customFileInput" type="file" />
-                          <i class="bi bi-cloud-arrow-up"></i>
-                          <label class="uploadpic" for="customFileInput">上傳圖片</label>
-                          <p>點選上傳，或拖曳至此</p>
-                          <!-- <p>設計最佳建議：1440 x 400 像素，且大小不得超過 100 KB 的圖檔</p> -->
-                        </div>
-                      </div>
-              
-                      <!-- 身分證背面 -->
-                      <div class="pic-upload">
-                        <div id="dropzone">
-                          <input id="customFileInput" type="file" />
-                          <i class="bi bi-cloud-arrow-up"></i>
-                          <label class="uploadpic" for="customFileInput">上傳圖片</label>
-                          <p>點選上傳，或拖曳至此</p>
-                          <!-- <p>設計最佳建議：1440 x 400 像素，且大小不得超過 100 KB 的圖檔</p> -->
-                        </div>
-                      </div>
 
                     </section>
                 </div>
-              </form>
+              </div>
 
               <div class="agree">
                 <input
@@ -178,11 +161,14 @@
 <script>
 import navbar from "./navbar.vue";
 import Footer from "./Footer.vue";
+import PictureCropid from '../components/PictureCropid.vue';
+
 
 export default {
   components: {
     Footer,
     navbar,
+    PictureCropid,
   },
   data(){
     return {

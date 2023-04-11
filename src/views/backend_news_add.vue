@@ -203,9 +203,11 @@
                                 
                                 </div>
                                 <div class="col-10">
-                                    <label for="electionyear" class="f-label"><h5>文章縮圖</h5></label>
+                                    <label for="electionyear" class="f-label" ><h5 style="margin-bottom:5px">文章縮圖</h5></label>
                                     <div>
-                                        <div class="uploading">
+                                      <picture-crop></picture-crop>
+
+                                        <!-- <div class="uploading">
                                             <label class="uploadpic" for="vrep-pic">
                                                 <input id="vrep-pic" type="file" />
                                                 <div class="btn-10-s btn-color-green ">
@@ -220,7 +222,7 @@
                                                 </div>
                                                 <p>設計最佳建議：1000 x 1000 像素，且大小不得超過 100 KB 的圖檔</p>
                                             </div>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
                             </div>
@@ -274,10 +276,11 @@ import Footer from './Footer.vue';
 
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import CKEditor from "@ckeditor/ckeditor5-vue";
+import PictureCrop from '../components/PictureCrop.vue';
 
 export default {
   components: {
-      backendNavbar,Footer,
+      backendNavbar,Footer,PictureCrop,
       ckeditor: CKEditor.component,
     },
      data() {

@@ -18,6 +18,12 @@
             width: 90px;
         }
 
+        .up_banner{
+            margin: 20px 0;
+            // border: 1px dashed $silver;
+
+        }
+
         .pic-upload {
             #dropzone {
                 border: 4px dashed $silver;
@@ -231,24 +237,33 @@
     gap: 10px;
   
     .uploadbtn{
-        height: 40px;
+        margin: 3px 0 0;
+        height: 38px;
         position: relative;
         line-height: 38px;
         font-size: 14px;
-        color: $white;
-        background-color: $green;
+        color: $green;
+        background-color: $white;
         border-radius: 10px;
-        padding: 0 25px;
-        margin-bottom: 1em;
+        padding: 0 20px;
+        // margin-bottom: 1em;
         display: inline-block;
-        border: 1px solid transparent;
+        border: 1px solid $green;
         text-align: center;
         white-space: nowrap;
         transition: color .25s,border-color .25s,background-color .25s;
         cursor: pointer;
+        &:hover{
+            color: $green;
+            background-color: $darkgreen;
+            border: 1px solid $darkgreen;
+        }
         &>span{
             font-family: 'jfopen';
             font-size: 1.1em;
+            &>i{
+                margin-right: 5px;
+            }
         }
         &>input{
             position: absolute;
@@ -263,7 +278,8 @@
     }
     .pic-area {
         &-box {
-            width: 270px;
+            margin: 3px 0 10px;
+            width:60%;
             // min-height: 50px;
             // border: 1px solid $silver;
 
@@ -380,57 +396,81 @@
     }
     
 }
+.addflex{
+    display: flex;
+    flex-direction: column;
+    &>p{
+        color: $darkgray;
+    }
+}
 
-
-.newpic-upload {
-    #newdropzone {
-        border: 4px dashed $silver;
-        width: 100%;
-        min-height: 250px;
-        text-align: center;
+.iduploading {
+    display: flex;
+    gap: 10px;
+    // align-items: center;
+  
+    .uploadbtn{
+        margin: 3px 0 10px;
+        height: 40px;
         position: relative;
-
-
-        .uploadpic {
-            &>div {
-                color: $green;
-                font-size: 3em;
-                cursor: pointer;
-                margin-top: 40px;
+        line-height: 38px;
+        font-size: 14px;
+        color: $green;
+        background-color: $white;
+        border-radius: 10px;
+        padding: 0 20px;
+        margin-bottom: 1em;
+        display: inline-block;
+        border: 1px solid $green;
+        text-align: center;
+        white-space: nowrap;
+        transition: color .25s,border-color .25s,background-color .25s;
+        cursor: pointer;
+        &:hover{
+            color: $green;
+            background-color: $darkgreen;
+            border: 1px solid $darkgreen;
+        }
+        &>span{
+            font-family: 'jfopen';
+            font-size: 1.1em;
+            &>i{
+                margin-right: 5px;
             }
-
-            &>input {
-                display: none;
-            }
         }
-
-        &>h5 {
-            margin: 10px 0;
-        }
-
-        &>h6 {
-            margin: 10px 0;
-            color: $gray;
-        }
-
-        &>p {
-            margin: 10px 0;
-            color: $silver;
-        }
-
-        &>img {
-            object-fit: scale-down;
-            border: none;
-            outline: none;
+        &>input{
             position: absolute;
-            width: 0;
             top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            font-size: 0;
+            cursor: pointer;
+            opacity: 0;
         }
     }
+    .pic-area {
+        &-box {
+            margin: 3px 0 10px;
+            width:80%;
+            // min-height: 50px;
+            // border: 1px solid $silver;
 
-    &>h6 {
-        margin: 20px 0;
-        color: $green;
+            &>img {
+                object-fit:cover;
+                border: none;
+                outline: none;
+                // position: absolute;
+                width: 100%;
+                // height: 0;
+            }
+        }
+        &>p{
+            color: $slategray;
+            font-size: 14px;
+            margin: 25px 0 0;
+        }
+
     }
 
 }

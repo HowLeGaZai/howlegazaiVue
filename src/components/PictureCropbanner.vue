@@ -23,7 +23,7 @@
                 <img :src="result.blobURL"/>
 
                 </div> -->
-                <p>設計最佳建議：1180 x 770 像素，且大小不得超過 100 KB 的圖檔</p>
+                <p>設計最佳建議：1400 x 400 像素，且大小不得超過 100 KB 的圖檔</p>
             </div>
     </div>
 
@@ -57,13 +57,13 @@
               :options="{
                 viewMode: 1,
                 dragMode: 'move',
-                aspectRatio: 11/7.5,
-                cropBoxResizable:true,
+                aspectRatio: 14/4,
+                cropBoxResizable:false,
               }"
               :presetMode="{
                 mode:'fixedSize',
-                width:1100,
-                height:750,
+                width:1400,
+                height:400,
               }"
               @ready="ready"
             />
