@@ -335,7 +335,7 @@
 
     </main>
     <!------ 補這裡：不支援手機畫面 ------>
-      <div :class="bodyClass" class="nosupport">
+      <div class="nosupport">
             <main>
                 <section class="noSupport">
                     <a href="#">
