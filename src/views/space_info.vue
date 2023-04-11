@@ -39,20 +39,20 @@
           <div class="selected" id="selected">
             <h4><span class="selectedD">-請先選擇日期-</span></h4>
             <div class="timepick">
-                <button type="button" class="btn-m btn-color-white timeslot">08:00 - 08:59</button>
-                <button type="button" class="btn-m btn-color-white timeslot">09:00 - 09:59</button>
-                <button type="button" class="btn-m btn-color-white timeslot">10:00 - 10:59</button>
-                <button type="button" class="btn-m btn-color-white timeslot">11:00 - 11:59</button>
-                <button type="button" class="btn-m btn-color-white timeslot">12:00 - 12:59</button>
-                <button type="button" class="btn-m btn-color-white timeslot">13:00 - 13:59</button>
-                <button type="button" class="btn-m btn-color-white timeslot">14:00 - 14:59</button>
-                <button type="button" class="btn-m btn-color-white timeslot">15:00 - 15:59</button>
-                <button type="button" class="btn-m btn-color-white timeslot">16:00 - 16:59</button>
-                <button type="button" class="btn-m btn-color-white timeslot">17:00 - 17:59</button>
-                <button type="button" class="btn-m btn-color-white timeslot">18:00 - 18:59</button>
-                <button type="button" class="btn-m btn-color-white timeslot">19:00 - 19:59</button>
-                <button type="button" class="btn-m btn-color-white timeslot">20:00 - 20:59</button>
-                <button type="button" class="btn-m btn-color-white timeslot">21:00 - 21:59</button>
+                <button type="button" class="btn-m btn-color-white timeslot" value="08:00 - 08:59">08:00 - 08:59</button>
+                <button type="button" class="btn-m btn-color-white timeslot" value="09:00 - 09:59">09:00 - 09:59</button>
+                <button type="button" class="btn-m btn-color-white timeslot" value="10:00 - 10:59">10:00 - 10:59</button>
+                <button type="button" class="btn-m btn-color-white timeslot" value="11:00 - 11:59">11:00 - 11:59</button>
+                <button type="button" class="btn-m btn-color-white timeslot" value="12:00 - 12:59">12:00 - 12:59</button>
+                <button type="button" class="btn-m btn-color-white timeslot" value="13:00 - 13:59">13:00 - 13:59</button>
+                <button type="button" class="btn-m btn-color-white timeslot" value="14:00 - 14:59">14:00 - 14:59</button>
+                <button type="button" class="btn-m btn-color-white timeslot" value="15:00 - 15:59">15:00 - 15:59</button>
+                <button type="button" class="btn-m btn-color-white timeslot" value="16:00 - 16:59">16:00 - 16:59</button>
+                <button type="button" class="btn-m btn-color-white timeslot" value="17:00 - 17:59">17:00 - 17:59</button>
+                <button type="button" class="btn-m btn-color-white timeslot" value="18:00 - 18:59">18:00 - 18:59</button>
+                <button type="button" class="btn-m btn-color-white timeslot" value="19:00 - 19:59">19:00 - 19:59</button>
+                <button type="button" class="btn-m btn-color-white timeslot" value="20:00 - 20:59">20:00 - 20:59</button>
+                <button type="button" class="btn-m btn-color-white timeslot" value="21:00 - 21:59">21:00 - 21:59</button>
             </div>
           </div>
         </div>
@@ -155,27 +155,34 @@ export default {
   mounted() {
     $('#resizable').resizable({});
     $('#datepicker').datepicker({
-        monthNames: [ "一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月" ],
-          dayNamesMin: [ "週日", "週一", "週二", "週三", "週四", "週五", "週六" ], 
-          dateFormat: "yy/mm/dd",
-          
-          onSelect: function(){
-            var selected = $(this).val();
-            $('.selectedD').html(`日期:&nbsp` + selected);
-
-        }
+      monthNames: [ "一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月" ],
+      dayNamesMin: [ "週日", "週一", "週二", "週三", "週四", "週五", "週六" ], 
+      dateFormat: "yy/mm/dd",
+      
+      onSelect: function(dateText, inst){
+        var selected = $(this).val();
+        var dateObj = new Date(selected);
+        var dayOfWeek = dateObj.getDay();
+        var dayNamesMin = ["日", "一", "二", "三", "四", "五", "六"];
+        var dayOfWeekText = dayNamesMin[dayOfWeek];
+        
+        $('.selectedD').html(`日期:&nbsp;` + selected + `&nbsp;(` + dayOfWeekText + `)`);
+        sessionStorage.setItem("date", selected + `(` + dayOfWeekText + `)`);
+      }
     });
     var btnContainer = document.getElementById("selected");
     var btns = btnContainer.getElementsByClassName("timeslot");
 
     for (var i = 0; i < btns.length; i++) {
       btns[i].addEventListener("click", function() {
+        var selectedtime = this.value;
         var current = document.getElementsByClassName("active");
-
+        
         if (current.length > 0) {
           current[0].className = current[0].className.replace(" active", "");
         }
         this.className += " active";
+        sessionStorage.setItem("time", selectedtime);
       });
     };
   },
