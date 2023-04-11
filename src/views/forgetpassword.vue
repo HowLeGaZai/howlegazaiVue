@@ -6,14 +6,15 @@
         
         <div class="center">
             <h2>忘記密碼</h2>
-            <form>
+            <form  @submit.prevent="handleSubmit">
               <div class="txt_field">
                 <label>身分證</label>
                 <input type="text" class="f-text label-left"  placeholder="請輸入身分證" v-model="myId">
+                <p v-if="showError">{{ errorMessage }}</p>
               </div>
               <div class="txt_field">
                 <label>電子郵件</label>
-                <input type="text" class="f-text label-left" id="name5" placeholder="請輸入電子信箱">
+                <input type="text" class="f-text label-left" id="name5" placeholder="請輸入電子信箱" required>
               </div>
               <div class="txt_field verification">
                 <label>驗證碼</label>
@@ -32,11 +33,13 @@
           <!-- 最後送出的編號 -->
           <div class="bbb">
            <a href="#/login"><button type="button" class="btn-m btn-color-white">返回</button></a> 
-           <a href="#/login"><button type="button" class="btn-m btn-color-green" @click="checkNumber() ,check()">修改</button></a>
-           <div v-if="result">{{ result }}</div>
-          </div>
-          </div>
+           <a href="#/login"><button type="button" class="btn-m btn-color-green" @click="checkNumber() ,check()" @click.prevent="submitForm">修改</button></a>
+           
           
+          </div>
+          <div v-if="result" style="color: red;">{{ result }}</div>
+          </div>
+        
         </main>
       </div>
     
@@ -54,6 +57,8 @@ export default {
       //這個是驗證碼的預設值
       number : "1219",  
       inputNumber: "",
+      errorMessage: '不能空白',
+      showError: false,
       // ==================
       // 這個是身分證
       myId: '',
@@ -78,64 +83,66 @@ export default {
       }
       this.number = number;  //這個是 抓出data 裡面的number
     },
+    submitForm() {
+      if (this.inputValue === '') {
+        this.showError = true;
+      } else {
+        // 在這裡處理提交表單的邏輯
+        this.showError = false;
+        
+      }
+    },
+    handleSubmit() {
+      if (this.inputValue.trim() === '') {
+        this.showError = true;
+        return false; // 返回 false 來停止後續的程式碼執行
+      }
+      // 如果 input 不是空值，顯示下一頁連結
+      this.showError = false;
+    },
 
     // 這個是 驗證
     checkNumber() {
       //這個是 你輸入的input 如果等於上方產生亂數的4碼 或是你輸入空值
       if (this.inputNumber === this.number  || this.inputNumber === null) {  
         console.log("true");
-        alert("驗證碼正確 有料~")
+        // alert("驗證碼正確 有料~")
         // window.location.href = "#/login" 
       } else {
-        alert("驗證碼錯誤囉 還想皮阿")
+        alert("驗證碼錯誤囉")
         // window.location.href = "#/forgetpassword.vue"
        }
     },
     // 這裡是身分證驗證函式-------------------------------------------
     check() {
-      // 檢查輸入的長度
-      if (this.myId.length !== 10  && this.myId.length > 10) {
-        this.result = '輸入資料的長度要有 10 位';
-        alert("身分證就是只有10位 輸入清楚可以嗎?")
-      }
+  if (this.myId.length !== 10 && this.myId.length > 10) {
+    this.result = '身分證輸入資料的長度要有 10 位';
+  } else if (!this.letters.includes(this.myId.charAt(0).toUpperCase())) {
+    this.result = '身分證第一個應該是字母 A ~ Z';
+  } else if (this.myId.charAt(1) !== '1' && this.myId.charAt(1) !== '2') {
+    this.result = '身分證第二個字要是 1 或 2';
+  } else if (isNaN(parseInt(this.myId.substring(1, this.myId.length), 10)) || this.myId.substring(1, this.myId.length).length !== 9) {
+    this.result = '身分證後面九個字都要是數字';
+  } else {
+    // 所有的检查都通过
+    this.result = '通過';
+    this.$router.push('./login')
+  }
+}
 
-      // 檢查第一個字是否是 A ~ Z
-        const firstLetter = this.letters.includes(this.myId.charAt(0).toUpperCase());
-      if (!firstLetter) {
-        this.result = '第一個應該是字母 A ~ Z';
-        alert("大哥 第一個要是英文字母")
-      }
-        // 檢查後面九個字是否都是數字
-        const num9 = parseInt(this.myId.substring(1, this.myId.length), 10);
-      if (isNaN(num9) || num9.toString().length !== 9) {
-        this.result = '後面九個字都要是數字';
-        alert("後面都是要數字啦~姊")
-      }
-        // 檢查第二個字是否是 1 或 2
-        const secondLetter = this.myId.charAt(1);
-      if (secondLetter !== '1' && secondLetter !== '2') {
-        this.result = '第二個字要是 1 或 2';
-        alert("你不男不女喔 哪可能第二個數字 不是1 2?")
-        return;
-      }
         // 計算第一個英文字母的加權
-        const letter = this.myId[0];
-      const index = this.letters.indexOf(letter);
-      const areaCode = this.areaCodeAll[index];
-      let checkCode = areaCode[0] * 1 + areaCode[1] * 9;
+      //   const letter = this.myId[0];
+      // const index = this.letters.indexOf(letter);
+      // const areaCode = this.areaCodeAll[index];
+      // let checkCode = areaCode[0] * 1 + areaCode[1] * 9;
       
-      // 計算檢查碼
-      for (let i = 1; i <= 8; i++) {
-        checkCode += parseInt(this.myId.charAt(i)) * (9 - i);
-      }
-      checkCode %= 10;
+      // // 計算檢查碼
+      // for (let i = 1; i <= 8; i++) {
+      //   checkCode += parseInt(this.myId.charAt(i)) * (9 - i);
+      // }
+      // checkCode %= 10;
 
-      if (checkCode !== parseInt(this.myId.charAt(9))) {
-        this.result = '不是合法的身分證字號';
-      } else {
-        this.result = '合法的身分證字號';
-      }
-    }
+    
 
     
  }, 
