@@ -217,7 +217,9 @@
                     </div>
 
                     <h5>村里長照片</h5>
-                    <div class="uploading">
+                    <picture-crop></picture-crop>
+
+                    <!-- <div class="uploading">
                         <label for="upload-file-1" class="uploadpic">
                           <input type="file" id="upload-file-1" style="display:none">
                           <div class="btn-10-s btn-color-green ">
@@ -232,7 +234,7 @@
                           </div>
                           <p>設計最佳建議：560 x 560 像素，且大小不得超過 100 KB 的圖檔</p>
                       </div>
-                    </div>
+                    </div> -->
 
                     <button type="button" class="savebtn btn-10-s btn-color-green">儲存 </button>
                 </section>
@@ -271,7 +273,7 @@
                             <div class="uploading_2 col-12 col-ml-8">
                                 <h6 class="f-label">圖片</h6>
                                
-                                <div class="uploading upload_area">
+                                <!-- <div class="uploading upload_area">
                                     <label for="upload-file-2" class="uploadpic">
                                       <input type="file" id="upload-file-2" style="display:none">
                                       <div class="btn-10-s btn-color-green ">
@@ -286,8 +288,8 @@
                                       </div>
                                       <p>設計最佳建議：560 x 560 像素，且大小不得超過 100 KB 的圖檔</p>
                                   </div>
-                                </div>
-                               
+                                </div> -->
+                               <picture-crop></picture-crop>
                             </div>
                         </div> <br>
                         <div class="row">
@@ -308,7 +310,7 @@
                             <div class="uploading_2 col-12 col-ml-8">
                                 <h6 class="f-label">圖片</h6>
                            
-                                <div class="uploading upload_area">
+                                <!-- <div class="uploading upload_area">
                                     <label for="upload-file-3" class="uploadpic">
                                       <input type="file" id="upload-file-3" style="display:none">
                                       <div class="btn-10-s btn-color-green ">
@@ -323,8 +325,8 @@
                                       </div>
                                       <p>設計最佳建議：560 x 560 像素，且大小不得超過 100 KB 的圖檔</p>
                                   </div>
-                                </div>
-                               
+                                </div> -->
+                               <picture-crop></picture-crop>
                             </div>
                         </div> <br>
                         <div class="row">
@@ -344,7 +346,7 @@
                             </div>
                             <div class="uploading_2 col-12 col-ml-8">
                                 <h6 class="f-label">圖片</h6>
-                                <div class="uploading upload_area">
+                                <!-- <div class="uploading upload_area">
                                     <label for="upload-file-4" class="uploadpic">
                                       <input type="file" id="upload-file-4" style="display:none">
                                       <div class="btn-10-s btn-color-green ">
@@ -359,8 +361,8 @@
                                       </div>
                                       <p>設計最佳建議：560 x 560 像素，且大小不得超過 100 KB 的圖檔</p>
                                   </div>
-                                </div>
-                               
+                                </div> -->
+                               <picture-crop></picture-crop>
                             </div>
                         </div> <br>
                         <div class="row">
@@ -371,10 +373,11 @@
                             </div>
                         </div>
                     </div>
+                    
                     <button type="button" class="savebtn btn-10-s btn-color-green">儲存 </button>
                 </section>
             </div>
-
+          
 
         </div>
 
@@ -401,15 +404,15 @@
 </template>
 
 <script>
-
 import backendNavbar from './backendNavbar.vue';
 import Footer from './Footer.vue';
+import PictureCrop from '../components/PictureCrop.vue';
 
 
 
-export default {
+export default{
   components: {
-      backendNavbar,Footer,
+      backendNavbar,Footer,PictureCrop,
     },
     mounted() {
     // ======nav的收合======
@@ -425,44 +428,44 @@ export default {
     })
   }
  
- const uploadButtons = document.querySelectorAll('input[type="file"]');
+//  const uploadButtons = document.querySelectorAll('input[type="file"]');
     
       
-        uploadButtons.forEach(button => {
-          button.addEventListener('change', event => {
+//         uploadButtons.forEach(button => {
+//           button.addEventListener('change', event => {
            
-            const uploadGroup = button.closest('.uploading');
+//             const uploadGroup = button.closest('.uploading');
     
             
-            const picArea = uploadGroup.querySelector('.pic-area-box');
-            const picImg = picArea.querySelector('img');
-            const picName = picArea.querySelector('span');
+//             const picArea = uploadGroup.querySelector('.pic-area-box');
+//             const picImg = picArea.querySelector('img');
+//             const picName = picArea.querySelector('span');
     
-            const file = event.target.files[0];
+//             const file = event.target.files[0];
     
            
-            if (file.type.startsWith('image/')) {
-              const reader = new FileReader();
+//             if (file.type.startsWith('image/')) {
+//               const reader = new FileReader();
     
 
-              reader.onload = () => {
-                picImg.src = reader.result;
-                picName.textContent = file.name;
+//               reader.onload = () => {
+//                 picImg.src = reader.result;
+//                 picName.textContent = file.name;
     
-                picImg.style.width = '100%'
-                picImg.style.height = '100%'
-                // picImg.style.maxWidth = '300px'
-                picImg.style.maxHeight = '100px'
-              }
+//                 picImg.style.width = '100%'
+//                 picImg.style.height = '100%'
+//                 // picImg.style.maxWidth = '300px'
+//                 picImg.style.maxHeight = '100px'
+//               }
     
-              reader.readAsDataURL(file);
-            } else {
+//               reader.readAsDataURL(file);
+//             } else {
            
-              picImg.src = '';
-              picName.textContent = file.name;
-            }
-          });
-        });
+//               picImg.src = '';
+//               picName.textContent = file.name;
+//             }
+//           });
+//         });
 
 
 
