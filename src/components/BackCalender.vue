@@ -31,7 +31,7 @@ export default {
       const now = new Date();
       const year = now.getFullYear();
       const month = now.getMonth() + 1;
-      const day = now.getDate() +8;
+      const day = now.getDate() ;
       this.nowdate = `${year} 年 ${month.toString().padStart(2, '0')} 月 ${day.toString().padStart(2, '0')} 日`;
       // console.log(this.nowdate);
       //取得農曆與節氣
@@ -54,32 +54,38 @@ export default {
         this.solartermList = result.data;
         // console.log(this.solartermList);
       })
-      console.log(this.solartermList);
+      // console.log(this.solartermList);
  
       // 簡繁對照
       // this.solarTerm = lunordateOrigin.solarTerm ? (' — ' + lunordateOrigin.solarTerm) : ' ';    
+      const now = new Date();
+      const year = now.getFullYear();
+      const month = now.getMonth() + 1;
+      const day = now.getDate() ;
+      const lunordateOrigin = getLunar(year, month, day);
+      
+      const a = lunordateOrigin.solarTerm; //當下時間的節氣字串
+      
       const solarTermFilter = this.solartermList; 
-      const solarTermFilterKey = Object.key(solarTermFilter)
-      // const targetSolarTermKey = Object.values(solarTermFilter)
+      // const targetSolarTermKey = Object.values(solarTermFilter); //繁體array
+      // const solarTermFilterKey = Object.keys(solarTermFilter); //簡體array
+      const searchKey = Object.keys(solarTermFilter).find((key) => {
+        return key.includes(a);
+      });
+      // console.log(searchKey);
       
-      // return solarTermFilter[key] === lunordateOrigin.solarTerm[value] ;
-      // if(solarTermFilterkey === "穀雨") {
-      //   console.log('讚')
-      // }
 
+      if (searchKey) {
+        this.solarterm = solarTermFilter[searchKey];
+      } else {
+        this.searchResult = "";
+      }
       
-      // if (targetSolarTermKey) {
-      //   this.solarTerm = " — " + targetSolarTermKey;
-      // } else {
-      //   this.solarTerm = "";
-      //   }
-      console.log(solarTermFilterKey)
 }
 
 
       
   },
-
     //掛載前執行撈取資料
   created() {
 
@@ -89,98 +95,10 @@ export default {
     this.getDate(); 
     this.getSolarTerm() ;
 
-    // axios
-    //   .get('/solarTermsTrans.json')
-    //   .then((result) => {
-    //     this.solartermList = result.data;
-    //     // console.log(this.solartermList);
-    //   })
-    //   .catch((err) => {
-    //     console.log("error")
-    //   });
-    
-     
-
-    
-
-    //
-    // axios
-    //   .get('/lunar_calendar.json')
-    //   .then((result) => {
-    //       this.lunordate= result[0];
-    //         console.log(this.lunordate); 
-    //     })
-    //   .catch((err) => {
-    //         console.log("error")
-    //     });
-    // },
   }
 }
 
-// export default {
-//   data() {
-//     return {
-//       nowdate: '',
-//       // lunordate: '',
-//       // solarterm: '',
 
-
-
-//     }
-//   },
-//   methods: {
-//     getDate() {
-//       //取得西歷
-//       const now = new Date();
-//       const year = now.getFullYear();
-//       const month = now.getMonth() + 1;
-//       const day = now.getDate();
-//       this.nowdate = `${year} 年 ${month.toString().padStart(2, '0')} 月 ${day.toString().padStart(2, '0')} 日`;
-//       console.log(this.nowdate);
-//       //取得農曆
-//       // const lunordateOrigin = getLunar(year, month, day);
-//       // console.log(lunordateOrigin);
-
-//       // this.lunordate = (lunordateOrigin.lunarYear) + ' ' +
-//       //   ((lunordateOrigin.lunarMonth).toString().padStart(2, '0')) + ' 月 ' +
-//       //   ((lunordateOrigin.lunarDate).toString().padStart(2, '0')) + ' 日';
-//       // console.log(lunordate);
-
-//     },
-
-//     // 取得節氣&轉換簡繁
-//     // getSolarTerm() {
-//     //   this.solarTerm = lunordateOrigin.solarTerm ? (' — ' + lunordateOrigin.solarTerm) : ' ';
-      
-//     //   function solarTermTrans() {
-//     //     for (i = 0; i <= this.solarterm.lengnth; i++) {
-//     //       console.log("good")
-//     //     }
-
-//     //   }
-
-
-//     // },
-
-//     //掛載前執行撈取資料
-//     // created() {
-//     //   axios
-//     //     .get('/solarTermsTrans.json')
-//     //     .then((result) => {
-//     //       this.solarterm = result.data;
-//     //       console.log(this.solarterm);
-//     //     })
-//     //     .catch((err) => {
-//     //       console.log("error")
-//     //     });
-//     // },
-
-//     mounted() {
-//       this.getDate();
-//       // this.getSolarTerm();
-//       //
-//     }
-//    } }
 
 
 
