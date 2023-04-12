@@ -312,9 +312,10 @@
                         <!-- 空間照片 -->
                         <section>
                             <h5>空間照片</h5>
-                            <div class="row">
+                            <picture-crop></picture-crop>
+                            <!-- <div class="row">
                                 <input type="file" class="f-file">
-                            </div>
+                            </div> -->
                         </section>
 
                         <!-- 送出按鈕-->
@@ -351,10 +352,12 @@
 
     import backendNavbar from './backendNavbar.vue';
     import Footer from './Footer.vue';
+    import PictureCrop from '../components/PictureCrop.vue';
+
 
     export default {
         components: {
-            backendNavbar, Footer
+            backendNavbar, Footer, PictureCrop,
         },
         mounted() {
             // ======nav的收合======

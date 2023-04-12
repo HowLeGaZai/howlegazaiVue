@@ -6,6 +6,12 @@ import Home from '../views/Home.vue'
 
 const routes = [
   {
+    // 暫時用
+    path: '/ppppppppppppppppp',
+    name: 'ppppppppppppppppp',
+    component:() => import(/* webpackChunkName: "about" */ '../views/ppppppppppppppppp.vue')
+  },
+  {
     // 前台 首頁
     path: '/',
     name: 'home',
@@ -186,9 +192,9 @@ const routes = [
     
   },
   {  // 前台 註冊第二頁介面 
-    path: '/signup2',
-    name: 'signup2',
-    component:() => import(/* webpackChunkName: "about" */ '../views/signup2.vue') , 
+      path: '/signup2',
+      name: 'signup2',
+      component:() => import(/* webpackChunkName: "about" */ '../views/signup2.vue') , 
     
   },
   {// 前台 修改密碼

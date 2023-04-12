@@ -1,8 +1,8 @@
 
 <template>
-    <div class="newuploading">
+    <div class="iduploading">
          <button class="uploadbtn">
-                <span><i class="bi bi-arrow-bar-up"></i>上傳圖片</span>
+                <span><i class="bi bi-cloud-arrow-up"></i>點擊上傳</span>
                 <input
                 ref="uploadInput"
                 type="file"
@@ -10,21 +10,12 @@
                 @change="selectFile"
                 />
         </button>
-            <!-- <label for="upload-file-6" class="uploadpic" >
-            <input ref="uploadInput" type="file" id="upload-file-6" style="display:none" accept="image/jpg, image/jpeg, image/png, image/gif"
-          @change="selectFile">
-            <div class="btn-10-s btn-color-green "><i class="bi bi-arrow-bar-up"></i>上傳圖片</div>
-        </label> -->
-            <div class="pic-area" >
-                <div class="pic-area-box" v-if="result.dataURL">
+        <div class="pic-area" >
+            <div class="pic-area-box" v-if="result.dataURL">
                 <img :src="result.dataURL"/>
-                </div>
-                 <!-- <div class="pic-area-box" v-if="result.blobURL">
-                <img :src="result.blobURL"/>
-
-                </div> -->
-                <p>設計最佳建議：1180 x 770 像素，且大小不得超過 100 KB 的圖檔</p>
             </div>
+            <p>建議：450 x 285 像素，且大小不得超過 100 KB 的圖檔</p>
+        </div>
     </div>
 
 
@@ -57,13 +48,13 @@
               :options="{
                 viewMode: 1,
                 dragMode: 'move',
-                aspectRatio: 11/7.5,
+                aspectRatio: 45/28,
                 cropBoxResizable:true,
               }"
               :presetMode="{
                 mode:'fixedSize',
-                width:1100,
-                height:750,
+                width:450,
+                height:285,
               }"
               @ready="ready"
             />

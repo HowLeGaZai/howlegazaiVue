@@ -7,7 +7,7 @@
         <h1 class="title_space">預約空間</h1>
         <div class="reserve-time">
           <h4>預約時間/場地:</h4>
-          <h5>2023-03-05（日）13:00 - 13:59</h5>
+          <h5>{{date}} {{time}}</h5>
           <!-- <button type="button" class="btn-m btn-color-gray">修改</button> -->
         </div>
         
@@ -95,8 +95,18 @@ import navbar from './navbar.vue';
 import Footer from './Footer.vue';
 
 export default {
+  data () {
+    return {
+        date:'',
+        time:'',
+    }
+  },  
   components: {
       navbar,Footer,
     },
+    mounted(){
+         this.date = sessionStorage.getItem('date');
+         this.time = sessionStorage.getItem('time');
+    }
 }
 </script>

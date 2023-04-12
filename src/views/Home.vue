@@ -5,10 +5,7 @@
     <section class="home-cover">
       <div class="image home_banner">
         <img src="../assets/img/home_banner.jpg" alt="" />
-        <div class="villagename">
-          <!-- <h1>花蓮縣 大湖里</h1> -->
-          <h1>{{city}} {{town}}</h1>
-        </div>
+        <div class="villagename"><h1>花蓮縣 大湖里</h1></div>
       </div>
     </section>
 
@@ -23,46 +20,8 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>
-              <div class="tag tag-pink">藝文</div>
-              <span>2022-01-01</span>
-              <a href="#/news_info">大湖里反詐騙宣導</a>
-            </td>
-            <td>2022-01-01</td>
-          </tr>
-          <tr>
-            <td>
-              <div class="tag tag-orange">公告</div>
-              <span>2022-01-01</span>
-              <a href="#/news_info">大湖里112年3月21日(二)實施病媒蚊消毒噴灑作業</a>
-            </td>
-            <td class="table_right">2022-01-01</td>
-          </tr>
-          <tr>
-            <td>
-              <div class="tag tag-blue">經費報告</div>
-              <span>2022-01-01</span>
-              <a href="#/news_info">大湖里睦鄰互助聯誼活動補助費計畫表</a>
-            </td>
-            <td class="table_right">2022-01-01</td>
-          </tr>
-          <tr>
-            <td>
-              <div class="tag tag-orange">公告</div>
-              <span>2022-01-01</span>
-              <a href="#/news_info">大湖里112年3月21日(二)實施病媒蚊消毒噴灑作業</a>
-            </td>
-            <td class="table_right">2022-01-01</td>
-          </tr>
-          <tr>
-            <td>
-              <div class="tag tag-orange">公告</div>
-              <span>2022-01-01</span>
-              <a href="#/news_info">大湖里112年3月21日(二)實施病媒蚊消毒噴灑作業</a>
-            </td>
-            <td class="table_right">2022-01-01</td>
-          </tr>
+          <!-- 渲染 5 次 -->
+          <NewsListHome v-for="i in 5" :key="i"></NewsListHome>
         </tbody>
       </table>
     </section>
@@ -70,6 +29,7 @@
     <!-- 活動 -->
     <section class="home-event">
       <h1 class="title_space">活動資訊</h1>
+
       <swiper
         :navigation="{
           nextEl: '.swiper-button-next',
@@ -88,185 +48,37 @@
           1280: { slidesPerView: 3, spaceBetween: 10 },
         }"
       >
-        <swiper-slide
-          ><div class="card">
-            <a href="#">
-              <img
-                class="image event_pic"
-                src="../assets/img/e1_calligraphy.png"
-                alt=""
-              />
-            </a>
-            <div class="tag tag-pink card-tag">藝文</div>
-            <div class="card-line"></div>
-            <div class="">
-              <h3 class="card-title">新春書法體驗課</h3>
-              <!-- <div class="card-person">
-                            <div class="image user_pic">
-                                <img src=".../assets/img/user_pic.png" alt="">
-                            </div>
-                            <p>Emma</p>
-                        </div> -->
-
-              <!-- <p class="card-content">櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺</p> -->
-              <h5 class="card-date">活動日期：<span>2023-01-01</span></h5>
-              <h3 class="card-price">免費</h3>
-              <a class="card-link" href="#/activity_info"
-                ><h5>活動詳情<i class="bi bi-arrow-right"></i></h5
-              ></a>
+        <!-- 渲染 9 次 swiper-slide -->
+        <template v-for="i in 9" :key="i">
+          <swiper-slide v-for="eventCard in eventCards">
+            <div class="card">
+              <a href="#">
+                <img
+                  :src="require(`@/assets/img/${eventCard.CONTENT_PIC}`)"
+                  alt=""
+                  class="image event_pic"
+                />
+              </a>
+              <div
+                :class="['tag', 'card-tag', addTagClass(eventCard.CATEGORY)]"
+              ></div>
+              <div class="card-line"></div>
+              <div class="">
+                <h3 class="card-title">{{ eventCard.TITLE }}</h3>
+                <h5 class="card-date">
+                  活動日期：<span>{{ eventCard.START_DATE }}</span>
+                </h5>
+                <h3 class="card-price">NT{{ eventCard.PRICE }}</h3>
+                <a class="card-link" href="#"
+                  ><h5>活動詳情<i class="bi bi-arrow-right"></i></h5
+                ></a>
+              </div>
             </div>
-          </div>
-        </swiper-slide>
-        <swiper-slide
-          ><div class="card">
-            <a href="#">
-              <img
-                class="image event_pic"
-                src="../assets/img/e1_calligraphy.png"
-                alt=""
-              />
-            </a>
-            <div class="tag tag-pink card-tag">藝文</div>
-            <div class="card-line"></div>
-            <div class="">
-              <h3 class="card-title">新春書法體驗課</h3>
-              <!-- <div class="card-person">
-                            <div class="image user_pic">
-                                <img src=".../assets/img/user_pic.png" alt="">
-                            </div>
-                            <p>Emma</p>
-                        </div> -->
+          </swiper-slide>
+        </template>
 
-              <!-- <p class="card-content">櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺</p> -->
-              <h5 class="card-date">活動日期：<span>2023-01-01</span></h5>
-              <h3 class="card-price">免費</h3>
-              <a class="card-link" href="#/activity_info"
-                ><h5>活動詳情<i class="bi bi-arrow-right"></i></h5
-              ></a>
-            </div>
-          </div>
-        </swiper-slide>
-        <swiper-slide
-          ><div class="card">
-            <a href="#">
-              <img
-                class="image event_pic"
-                src="../assets/img/e1_calligraphy.png"
-                alt=""
-              />
-            </a>
-            <div class="tag tag-pink card-tag">藝文</div>
-            <div class="card-line"></div>
-            <div class="">
-              <h3 class="card-title">新春書法體驗課</h3>
-              <!-- <div class="card-person">
-                            <div class="image user_pic">
-                                <img src=".../assets/img/user_pic.png" alt="">
-                            </div>
-                            <p>Emma</p>
-                        </div> -->
-
-              <!-- <p class="card-content">櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺</p> -->
-              <h5 class="card-date">活動日期：<span>2023-01-01</span></h5>
-              <h3 class="card-price">免費</h3>
-              <a class="card-link" href="#/activity_info"
-                ><h5>活動詳情<i class="bi bi-arrow-right"></i></h5
-              ></a>
-            </div>
-          </div>
-        </swiper-slide>
-        <swiper-slide
-          ><div class="card">
-            <a href="#">
-              <img
-                class="image event_pic"
-                src="../assets/img/e1_calligraphy.png"
-                alt=""
-              />
-            </a>
-            <div class="tag tag-pink card-tag">藝文</div>
-            <div class="card-line"></div>
-            <div class="">
-              <h3 class="card-title">新春書法體驗課</h3>
-              <!-- <div class="card-person">
-                            <div class="image user_pic">
-                                <img src=".../assets/img/user_pic.png" alt="">
-                            </div>
-                            <p>Emma</p>
-                        </div> -->
-
-              <!-- <p class="card-content">櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺</p> -->
-              <h5 class="card-date">活動日期：<span>2023-01-01</span></h5>
-              <h3 class="card-price">免費</h3>
-              <a class="card-link" href="#/activity_info"
-                ><h5>活動詳情<i class="bi bi-arrow-right"></i></h5
-              ></a>
-            </div>
-          </div>
-        </swiper-slide>
-        <swiper-slide
-          ><div class="card">
-            <a href="#">
-              <img
-                class="image event_pic"
-                src="../assets/img/e1_calligraphy.png"
-                alt=""
-              />
-            </a>
-            <div class="tag tag-pink card-tag">藝文</div>
-            <div class="card-line"></div>
-            <div class="">
-              <h3 class="card-title">新春書法體驗課</h3>
-              <!-- <div class="card-person">
-                            <div class="image user_pic">
-                                <img src=".../assets/img/user_pic.png" alt="">
-                            </div>
-                            <p>Emma</p>
-                        </div> -->
-
-              <!-- <p class="card-content">櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺</p> -->
-              <h5 class="card-date">活動日期：<span>2023-01-01</span></h5>
-              <h3 class="card-price">免費</h3>
-              <a class="card-link" href="#/activity_info"
-                ><h5>活動詳情<i class="bi bi-arrow-right"></i></h5
-              ></a>
-            </div>
-          </div>
-        </swiper-slide>
-        <swiper-slide
-          ><div class="card">
-            <a href="#">
-              <img
-                class="image event_pic"
-                src="../assets/img/e1_calligraphy.png"
-                alt=""
-              />
-            </a>
-            <div class="tag tag-pink card-tag">藝文</div>
-            <div class="card-line"></div>
-            <div class="">
-              <h3 class="card-title">新春書法體驗課</h3>
-              <!-- <div class="card-person">
-                            <div class="image user_pic">
-                                <img src=".../assets/img/user_pic.png" alt="">
-                            </div>
-                            <p>Emma</p>
-                        </div> -->
-
-              <!-- <p class="card-content">櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺</p> -->
-              <h5 class="card-date">活動日期：<span>2023-01-01</span></h5>
-              <h3 class="card-price">免費</h3>
-              <a class="card-link" href="#/activity_info"
-                ><h5>活動詳情<i class="bi bi-arrow-right"></i></h5
-              ></a>
-            </div>
-          </div>
-        </swiper-slide>
-        <!-- <swiper-slide>Slide 2</swiper-slide><swiper-slide>Slide 3</swiper-slide>
-            <swiper-slide>Slide 4</swiper-slide><swiper-slide>Slide 5</swiper-slide>
-            <swiper-slide>Slide 6</swiper-slide><swiper-slide>Slide 7</swiper-slide>
-            <swiper-slide>Slide 8</swiper-slide><swiper-slide>Slide 9</swiper-slide> -->
       </swiper>
+
       <div class="swiper-button">
         <button
           type="button"
@@ -287,95 +99,22 @@
     <section class="home-chat">
       <h1 class="title_space">討論區</h1>
       <div class="chat">
-        <article class="chat-article">
-          <section>
-            <section class="chat_news">
-              <div class="chat_info">
-                <div class="tag tag-pink tag-mini">美食討論</div>
-                <h5 class="post_d">5小時前</h5>
-                <div class="poster">
-                  <div class="image user_pic">
-                    <img src="../assets/img/user_pic.png" alt="" />
-                  </div>
-                  <h5 class="poster_name">櫻桃爺爺</h5>
-                </div>
-              </div>
-
-              <h2><a href="#/chat_info">最近吃到大湖里超好吃飯糰</a></h2>
-              <p>
-                大湖里出產的飯糰米粒粒粒分明，調味也很好吃。超級好吃，100分的大湖里早餐
-              </p>
-              <!-- <div class="tag tag-pink">美食討論</div> -->
-            </section>
-            <div class="image list_pic">
-              <img src="../assets/img/c_1_food.jpg" alt="" />
-            </div>
-          </section>
-        </article>
-        <article class="chat-article">
-          <section>
-            <section class="chat_news">
-              <div class="chat_info">
-                <div class="tag tag-pink tag-mini">美食討論</div>
-                <h5 class="post_d">5小時前</h5>
-                <div class="poster">
-                  <div class="image user_pic">
-                    <img src="../assets/img/user_pic.png" alt="" />
-                  </div>
-                  <h5 class="poster_name">櫻桃爺爺</h5>
-                </div>
-              </div>
-
-              <h2><a href="#/chat_info">最近吃到大湖里超好吃飯糰</a></h2>
-              <p>
-                大湖里出產的飯糰米粒粒粒分明，調味也很好吃。超級好吃，100分的大湖里早餐
-              </p>
-              <!-- <div class="tag tag-pink">美食討論</div> -->
-            </section>
-            <div class="image list_pic">
-              <img src="../assets/img/c_1_food.jpg" alt="" />
-            </div>
-          </section>
-        </article>
-        <article class="chat-article">
-          <section>
-            <section class="chat_news">
-              <div class="chat_info">
-                <div class="tag tag-pink tag-mini">美食討論</div>
-                <h5 class="post_d">5小時前</h5>
-                <div class="poster">
-                  <div class="image user_pic">
-                    <img src="../assets/img/user_pic.png" alt="" />
-                  </div>
-                  <h5 class="poster_name">櫻桃爺爺</h5>
-                </div>
-              </div>
-
-              <h2><a href="#/chat_info">最近吃到大湖里超好吃飯糰</a></h2>
-              <p>
-                大湖里出產的飯糰米粒粒粒分明，調味也很好吃。超級好吃，100分的大湖里早餐
-              </p>
-              <!-- <div class="tag tag-pink">美食討論</div> -->
-            </section>
-            <div class="image list_pic">
-              <img src="../assets/img/c_1_food.jpg" alt="" />
-            </div>
-          </section>
-        </article>
+        <!-- 渲染 5 次-->
+        <ChatTopic v-for="i in 5" :key="i"></ChatTopic>
       </div>
       <div class="more-text">
-        <router-link :to="{name:'chat'}">
-            <i class="bi bi-plus"></i>看更多<i class="bi bi-plus"></i>
+        <router-link :to="{ name: 'chat' }">
+          <i class="bi bi-plus"></i>看更多<i class="bi bi-plus"></i>
         </router-link>
       </div>
     </section>
 
     <!-- 團購區 -->
-    <section class="home-product">
-      <h1 class="title_space">團購區</h1>
-      
-      <!-- Swiper -->
-      <swiper
+    <!-- <section class="home-product">
+      <h1 class="title_space">團購區</h1> -->
+
+    <!-- Swiper -->
+    <!-- <swiper
         :navigation="{
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev',
@@ -594,7 +333,7 @@
           <i class="bi bi-caret-right-fill"></i>
         </button>
       </div>
-    </section>
+    </section> -->
 
     <!-- 智慧里民 -->
     <section class="home-smartChief">
@@ -641,63 +380,89 @@ import { Swiper, SwiperSlide } from "swiper/vue";
 
 // Import Swiper styles
 import "swiper/css";
-
 import "swiper/css/navigation";
-
-import "../assets/css/style.css";
 
 // import required modules
 import { Navigation } from "swiper";
-
 import navbar from "./navbar.vue";
 import Footer from "./Footer.vue";
-import axios from 'axios';
+import NewsListHome from "../components/NewsListHome.vue";
+import ChatTopic from "@/components/ChatTopic.vue";
 
 export default {
-  data(){
-    return{
-      jsonData: [],
-      city:'',
-      district:'',
-      town:'',
-
-    }
-  },
   components: {
     Swiper,
     SwiperSlide,
     navbar,
     Footer,
+    NewsListHome,
+    ChatTopic,
   },
   setup() {
     return {
       modules: [Navigation],
     };
   },
-  mounted() {
-    axios
-        .post('https://tibamef2e.com/tgd104/g1/home.php',{})
-        .then(response => {
-            this.jsonData = response.data;
-            // alert(response.data)
-            console.log(this.jsonData[this.jsonData.length-1].CITY);
-            this.webInfo();
-            // console.log(this.jsonData.length);
-            // console.log(this.jsonData);
-        })
-        .catch(error => {
-            // console.log(error);
-        });
+  data() {
+    return {
+      eventCards: [
+        {
+          BANNER: 0,
+          CATEGORY: "藝文",
+          CONTENT: "跟里長一起看電影",
+          CONTENT_PIC: "e1_calligraphy.png",
+          END_DATE: "2023-06-30",
+          END_TIME: "23:59:59",
+          ID: 1,
+          LOCATION: "里長家",
+          MAX_PPL: 60,
+          PRICE: 300,
+          REG_END: "2023-02-20",
+          REG_START: "2023-02-01",
+          START_DATE: "2023-03-01",
+          START_TIME: "00:00:01",
+          TITLE: "新春書法體驗課",
+          URL: "#/activity_info",
+        },
+        {
+          BANNER: 0,
+          CATEGORY: "藝文",
+          CONTENT: "跟里長一起看電影",
+          CONTENT_PIC: "e1_calligraphy.png",
+          END_DATE: "2023-06-30",
+          END_TIME: "23:59:59",
+          ID: 1,
+          LOCATION: "里長家",
+          MAX_PPL: 60,
+          PRICE: 300,
+          REG_END: "2023-02-20",
+          REG_START: "2023-02-01",
+          START_DATE: "2023-03-01",
+          START_TIME: "00:00:01",
+          TITLE: "游泳課體驗課",
+          URL: "#/activity_info",
+        },
+      ],
+    };
   },
-   methods:{
-    webInfo(){
-      
-      this.city = this.jsonData[this.jsonData.length-1].CITY ;
-      this.district = this.jsonData[this.jsonData.length-1].DISTRICT ;
-      this.town = this.jsonData[this.jsonData.length-1].TOWN ;
-      console.log(this.city);
-
-    }
+  methods: {
+    addTagClass(i) {
+      switch (i) {
+        case "公告":
+          return "tag-orange";
+        case "宣導":
+          return "tag-pink";
+        case "里民服務":
+          return "tag-yellow";
+        case "新聞分享":
+          return "tag-blue";
+        case "會議記錄":
+          return "tag-green";
+        case "經費報告":
+          return "tag-cyan";
+      }
+    },
   },
+  mounted() {},
 };
 </script>
