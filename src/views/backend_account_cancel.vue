@@ -203,7 +203,15 @@
                       <td>等級</td>
                       <td>申請日期</td>
                     </tr>
-                    <tr>
+                    <tr v-for="account in jsonData">
+                      <td>{{account[0]}}</td>
+                      <td>{{account[1]}}</td>
+                      <td>{{account[2]}}</td>
+                      <td>{{account[3]}}</td>
+                      <td>{{account[4]}}</td>
+                      <td>{{account[5]}}</td>
+                    </tr>
+                    <!-- <tr>
                       <td>2023/04/04</td>
                       <td>001</td>
                       <td>王伯伯</td>
@@ -250,7 +258,7 @@
                       <td>daddylee</td>
                       <td>戶長</td>
                       <td>2023/01/01</td>
-                    </tr>
+                    </tr> -->
                   </tbody>
                 </table>
               </div>
@@ -304,11 +312,17 @@ import Footer from "./Footer.vue";
 import $ from "jquery";
 import "jquery-ui-dist/jquery-ui";
 import "jquery-ui-dist/jquery-ui.min.css";
+import axios from 'axios';
 
 export default {
   components: {
     backendNavbar,
     Footer,
+  },
+  data(){
+      return {
+              jsonData: null
+              }
   },
   mounted() {
     $("#resizable").resizable({});
@@ -354,6 +368,19 @@ export default {
     }
 
     //  ＝＝＝＝＝＝側欄選單的JS end＝＝＝＝＝＝
+     axios
+        .get('http://localhost/howlegazaiVue2/public/API/afterUpdateAccount.php')
+        // .get('https://tibamef2e.com/tgd104/g1/afterUpdateAccount.php')
+        .then(response => {
+            this.jsonData = response.data;
+            console.log(response.data);
+        })
+        .catch(error => {
+            console.log(error);
+        });
+
+
+
   },
 };
 </script>

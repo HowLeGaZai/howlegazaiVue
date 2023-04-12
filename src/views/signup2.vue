@@ -64,22 +64,22 @@
               <div class="row">
                 <div class="input-box col-sm-12 col-sm-4">
                   <label class="details">姓</label>
-                  <input type="text" class="f-text" id="tad" placeholder="王" required/>
+                  <input type="text" class="f-text" id="tad" placeholder="王" required v-model="firstName"/>
                 </div>
                 <div class="input-box col-sm-12 col-sm-4">
                   <label class="details">名</label>
-                  <input type="text" class="f-text" id="tad" placeholder="小明" required/>
+                  <input type="text" class="f-text" id="tad" placeholder="小明" required v-model="lastName"/>
                 </div>
                 <div class="input-box col-sm-12 col-sm-4">
                   <label class="details">暱稱</label>
-                  <input type="text" class="f-text" id="tad" placeholder="大軒哥" required/>
+                  <input type="text" class="f-text" id="tad" placeholder="大軒哥" required v-model="nickName"/>
                 </div>
               </div>
 
               <div class="row">
                 <div class="input-box col-sm-12 col-sm-6">
                   <label class="details">身分證字號</label>
-                  <input type="text" class="f-text" id="tad" placeholder="A123456" required/>
+                  <input type="text" class="f-text" id="tad" placeholder="A123456" required v-model="idNum"/>
                 </div>
                 <div class="gender-details col-sm-12 col-sm-6">
                   <!-- <input type="radio" name="gender" id="dot-1">
@@ -109,11 +109,11 @@
               <div class="row">
                 <div class="input-box col-sm-12 col-sm-6">
                   <label class="details">電子信箱</label>
-                  <input type="text" class="f-text" id="tad" placeholder="123@abc.com" required/>
+                  <input type="text" class="f-text" id="tad" placeholder="123@abc.com" required v-model="email"/>
                 </div>
                 <div class="input-box col-sm-12 col-sm-6">
                   <label class="details">手機號碼</label>
-                  <input type="number" class="f-text" id="tad" placeholder="0912345678" required />
+                  <input type="number" class="f-text" id="tad" placeholder="0912345678" maxlength="10" mixlength="10" required v-model="phoneNum" />
                 </div>
               </div>
 
@@ -137,22 +137,24 @@
                   name="gender"
                   style="width: 20px; height: 20px"
                   required
+                  v-model="agree"
                 /><p>我已經詳閱並同意<a href="#/privacy" target="_black">隱私權保護政策</a></p>
               </div>
               <!-- 包住兩個按鈕 -->
               <div class="submit">
                 <!-- <div class="button"> -->
-                <a href="#/signup1"
-                  ><button type="button" class="btn-m btn-color-white">
+                 
+                  <button type="button" class="btn-m btn-color-white" @click="retunForm">
                     返回
-                  </button></a
-                >
+                  </button>
+              
+                
                   
-                <a href="#/login"
-                  ><button type="button" class="btn-m btn-color-green" @submit.prevent="submitForm">
+               <!-- <router-link to="./login">  -->
+                  <button type="button" class="btn-m btn-color-green" @click="submitForm">
                     送出
-                  </button></a
-                >
+                  </button>
+                <!-- </router-link> -->
               </div>
               <!-- --------------------------------------- -->
           </section>
@@ -181,17 +183,32 @@ export default {
     return {
       account:'',
       password:'',
-
-    };
+      firstName: '',
+      lastName: '',
+      nickName: '',
+      idNum: '',
+      email: '',
+      phoneNum: '',
+      agree: '',
+     };
   },
   setup() {
     return {};
   },
   methods: {
+    //返回按鈕
+    retunForm(){
+      this.$router.push('./signup1')
+    },
+    //不能有空值的按鈕
     submitForm() {
-      if (this.account === null) {
-        alert('請填寫所有必填欄位');
+      if (this.account === '' || this.password === '' || this.lastName === '' || this.firstName === '' ||
+      this.nickName === '' ||  this.idNum === '' || this.email === '' || this.phoneNum === '' || this.agree === '') {
+        alert('你有少露填選資料 請全部慎重 重填');
+        this.$router.push('./signup2')
         return;
+      }else {
+        this.$router.push('./login')
       }
 
       // 在這裡編寫提交表單的程式碼

@@ -1,6 +1,4 @@
-
-
-  <template>
+<template>
     <navbar></navbar>
     <div class="bgc">
       <main>
@@ -53,9 +51,10 @@
               <input
                 type="text"
                 class="f-text label-left"
-                id="name5 myInput"
+                id="name5"
                 required
-                v-model="inputValue"
+                :value="inputValue"
+                 @input="inputValue = $event.target.value; add = $event.target.value"
               />
               <p v-if="showError" style="color: red;">{{ errorMessage }}</p>
               <!-- <h6 style="color: red; text-align: center"> -->
@@ -67,16 +66,19 @@
           </div>
           <!-- 最後送出的編號 -->
           <div class="bbb">
-            <a href="#/login"
-              ><button type="button" class="btn-m btn-color-white">
+         <router-link to="./login">
+              <button type="button" class="btn-m btn-color-white">
                 返回
-              </button></a
-            >
-            <a href="#/signup2"
-              ><button type="button" class="btn-m btn-color-green" @click.prevent="submitForm" @click="navigateToPage2 , submit">
-                註冊
-              </button></a
-            >
+              </button>
+            </router-link>   
+          <router-link to="./signup2">
+              <button type="button" 
+              class="btn-m btn-color-green" 
+              @click.prevent="submitForm">
+              註冊
+            </button>
+          </router-link>
+            
           </div>
         </div>
       </main>
@@ -99,8 +101,6 @@
         inputValue: '',
         showError: false,
         errorMessage: '不能空白',
-        add : '詞窮里詞窮',
-
         input1: '',
         input2: '',
         input3: '',
@@ -110,57 +110,26 @@
       return {};
     },
     methods: {
-
-      submit() {
-        const queryParams = {
-          input1: this.input1,
-          input2: this.input2,
-          input3: this.input3,
-          input4: this.inputValue,
-      };
-      console.log(this.input1);
-      console.log(queryParams);
-      // this.$router.push({ path: '/signup2', query: queryParams });
-    },
-      //不能輸入空值的函式
+   //不能輸入空值的函式
       submitForm() {
     if (this.inputValue.trim() === '') {
+      // console.log(this.showError);
       this.showError = true;
       return false; // 返回 false 來停止後續的程式碼執行
     } else {
       // 在這裡處理提交表單的邏輯
       this.showError = false;
-      // 跳轉到下一頁
-      // this.$router.push('/signup2');
-
+      
       const queryParams = {
         input1: this.input1,
         input2: this.input2,
         input3: this.input3,
         input4: this.inputValue,
       };
-      console.log(this.input1);
-      console.log(queryParams);
       this.$router.push({ path: '/signup2', query: queryParams });
     }
   },
-
-
-
-      //她要是沒輸入東西 不能跳轉到下一頁的函式
-      handleSubmit() {
-        if (this.inputValue.trim() === '') {
-          this.showError = true;
-          return false; // 返回 false 來停止後續的程式碼執行
-        }
-        // 如果 input 不是空值，顯示下一頁連結
-        this.showError = false;
-      }
-    
-    },
-    computed: {
-    },
-    
+},
     mounted() {
       let labels = document.querySelectorAll(".collapsible-item-label");
       let contents = document.querySelectorAll(".collapsible-item-content");
