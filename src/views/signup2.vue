@@ -1,7 +1,7 @@
 <template>
   <navbar></navbar>
+  
   <div class="bgc">
-
     <main>
 
       <div class="center">
@@ -158,7 +158,8 @@
               </div>
               <!-- --------------------------------------- -->
             </div>
-            </section>
+          </section>
+          
         </div>
       </div>
 
