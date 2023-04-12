@@ -26,6 +26,7 @@ export default {
                     
                     spaces: [
                     {
+                        "ID": "1",
                         "NAME": "A102教室",
                         "CATEGORY": "教室 / 靜態會議活動 / 讀書會",
                         "CAPACITY": 40,
@@ -38,11 +39,6 @@ export default {
                         "CLOSE_TIME": "21：00",
                         "ADDRESS": "花蓮縣大湖里南京東路三段219號4樓",
                         "REMARK": "",
-                        "CHAIR": "",
-                        "MIC": "",
-                        "TABLE": "",
-                        "AIRCON": 1,
-                        "EXTENSION": "",
                         "SPACE_PIC": "s_1.png",
                     },
                     {
@@ -58,11 +54,6 @@ export default {
                         "CLOSE_TIME": "21：00",
                         "ADDRESS": "花蓮縣大湖里南京東路三段219號5樓",
                         "REMARK": "",
-                        "CHAIR": "",
-                        "MIC": "",
-                        "TABLE": "",
-                        "AIRCON": 1,
-                        "EXTENSION": "",
                         "SPACE_PIC": "s_1.png",
                     },
                     {
@@ -78,11 +69,6 @@ export default {
                         "CLOSE_TIME": "21：00",
                         "ADDRESS": "花蓮縣大湖里大湖路2號1樓",
                         "REMARK": "",
-                        "CHAIR": "",
-                        "MIC": "",
-                        "TABLE": "",
-                        "AIRCON": 1,
-                        "EXTENSION": "",
                         "SPACE_PIC": "s_1.png",
                     },
                         {
@@ -98,11 +84,6 @@ export default {
                         "CLOSE_TIME": "21：00",
                         "ADDRESS": "花蓮縣大湖里大湖路2號1樓",
                         "REMARK": "",
-                        "CHAIR": "",
-                        "MIC": "",
-                        "TABLE": "",
-                        "AIRCON": 1,
-                        "EXTENSION": "",
                         "SPACE_PIC": "s_1.png",
                     },
                     ],

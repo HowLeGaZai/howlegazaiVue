@@ -8,13 +8,13 @@
         <form>
           <div class="txt_field">
             <h5>帳號</h5>
-            <input type="text" class="f-text label-left" id="name5" placeholder="請輸入帳號">
+            <input type="text" class="f-text label-left" id="name5" placeholder="請輸入帳號" required>
         
             <label></label>
           </div>
           <div class="txt_field">
             <h5>密碼</h5>
-            <input type="password" class="f-text label-left" id="name5" placeholder="請輸入密碼">
+            <input type="password" class="f-text label-left" id="name5" placeholder="請輸入密碼" required>
             <label>   <div class="pass"><a href="#/forgetpassword">忘記密碼</a> </div> </label>
           </div>
         

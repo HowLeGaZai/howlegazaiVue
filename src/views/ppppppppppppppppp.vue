@@ -1,9 +1,33 @@
 <template>
-    <div>
-      <p>Input 1: {{ $route.query.input1 }}{{ $route.query.input2 }}{{ $route.query.input3 }}{{ $route.query.input4 }}</p>
-      <p>Input 2: {{ $route.query.input2 }}</p>
-      <p>Input 3: {{ $route.query.input3 }}</p>
-      <p>Input 4: {{ $route.query.input4 }}</p>
-    </div>
-  </template>
-  
+  <div>
+    <input v-model="username" type="text" placeholder="Username">
+    <input v-model="password" type="password" placeholder="Password">
+    <button @click="login">Login</button>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      username: '',
+      password: '',
+      fakeUser: {
+        username: '勞改營',
+        password: 'testpass'
+      }
+    }
+  },
+  methods: {
+    login() {
+      // Check if the entered credentials match the fake user credentials
+      if (this.username === this.fakeUser.username) {
+        alert('Login successful!');
+        // Redirect to the home page or some other page
+      } else {
+        alert('Invalid username or password!');
+      }
+    }
+  }
+}
+</script>
