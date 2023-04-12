@@ -5,7 +5,10 @@
     <section class="home-cover">
       <div class="image home_banner">
         <img src="../assets/img/home_banner.jpg" alt="" />
-        <div class="villagename"><h1>花蓮縣 大湖里</h1></div>
+        <div class="villagename">
+          <!-- <h1>花蓮縣 大湖里</h1> -->
+          <h1>{{city}} {{town}}</h1>
+        </div>
       </div>
     </section>
 
@@ -648,8 +651,18 @@ import { Navigation } from "swiper";
 
 import navbar from "./navbar.vue";
 import Footer from "./Footer.vue";
+import axios from 'axios';
 
 export default {
+  data(){
+    return{
+      jsonData: [],
+      city:'',
+      district:'',
+      town:'',
+
+    }
+  },
   components: {
     Swiper,
     SwiperSlide,
@@ -661,6 +674,30 @@ export default {
       modules: [Navigation],
     };
   },
-  mounted() {},
+  mounted() {
+    axios
+        .post('https://tibamef2e.com/tgd104/g1/home.php',{})
+        .then(response => {
+            this.jsonData = response.data;
+            // alert(response.data)
+            console.log(this.jsonData[this.jsonData.length-1].CITY);
+            this.webInfo();
+            // console.log(this.jsonData.length);
+            // console.log(this.jsonData);
+        })
+        .catch(error => {
+            // console.log(error);
+        });
+  },
+   methods:{
+    webInfo(){
+      
+      this.city = this.jsonData[this.jsonData.length-1].CITY ;
+      this.district = this.jsonData[this.jsonData.length-1].DISTRICT ;
+      this.town = this.jsonData[this.jsonData.length-1].TOWN ;
+      console.log(this.city);
+
+    }
+  },
 };
 </script>

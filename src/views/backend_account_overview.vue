@@ -207,7 +207,28 @@
                       <!-- <td>編輯</td> -->
                       <td>刪除</td>
                     </tr>
-                    <tr>
+                    <tr v-for="(account,index) in jsonData" :key="index">
+                      <td>{{account[0]}}</td>
+                      <td>{{account[1]}}</td>
+                      <td>{{account[2]}}</td>
+                      <td>{{account[3]}}</td>
+                      <td>
+                        <div class="guard">
+                          <i class="bi bi-tag"></i>
+                          <span>{{account[4]}}</span>
+                          <i class="bi bi-x"></i>
+                        </div>
+                      </td>
+                      
+                      <td>
+                        <button type="button" class="btn-icon" @click="manage(index)">
+                          <i
+                            class="bi bi-x-circle-fill btn-font-color-green"
+                          ></i>
+                        </button>
+                      </td>
+                    </tr>
+                    <!-- <tr>
                       <td>001</td>
                       <td>王小明</td>
                       <td>myaccount123</td>
@@ -218,7 +239,7 @@
                           <span>守望隊</span>
                           <i class="bi bi-x"></i>
                         </div>
-                      </td>
+                      </td> -->
                       <!-- <td>
                         <button type="button" class="btn-icon">
                           <i
@@ -226,7 +247,34 @@
                           ></i>
                         </button>
                       </td> -->
+                      <!-- <td>
+                        <button type="button" class="btn-icon">
+                          <i
+                            class="bi bi-x-circle-fill btn-font-color-green"
+                          ></i>
+                        </button>
+                      </td>
+                    </tr> -->
+                    <!-- <tr>
+                      <td>001</td>
+                      <td>王小明</td>
+                      <td>myaccount123</td>
+                      <td>戶長</td>
                       <td>
+                        <div class="guard">
+                          <i class="bi bi-tag"></i>
+                          <span>守望隊</span>
+                          <i class="bi bi-x"></i>
+                        </div>
+                      </td> -->
+                      <!-- <td>
+                        <button type="button" class="btn-icon">
+                          <i
+                            class="bi bi-pencil-square btn-font-color-green"
+                          ></i>
+                        </button>
+                      </td> -->
+                      <!-- <td>
                         <button type="button" class="btn-icon">
                           <i
                             class="bi bi-x-circle-fill btn-font-color-green"
@@ -245,7 +293,7 @@
                           <span>守望隊</span>
                           <i class="bi bi-x"></i>
                         </div>
-                      </td>
+                      </td> -->
                       <!-- <td>
                         <button type="button" class="btn-icon">
                           <i
@@ -253,43 +301,16 @@
                           ></i>
                         </button>
                       </td> -->
-                      <td>
-                        <button type="button" class="btn-icon">
-                          <i
-                            class="bi bi-x-circle-fill btn-font-color-green"
-                          ></i>
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td>001</td>
-                      <td>王小明</td>
-                      <td>myaccount123</td>
-                      <td>戶長</td>
-                      <td>
-                        <div class="guard">
-                          <i class="bi bi-tag"></i>
-                          <span>守望隊</span>
-                          <i class="bi bi-x"></i>
-                        </div>
-                      </td>
                       <!-- <td>
                         <button type="button" class="btn-icon">
                           <i
-                            class="bi bi-pencil-square btn-font-color-green"
-                          ></i>
-                        </button>
-                      </td> -->
-                      <td>
-                        <button type="button" class="btn-icon">
-                          <i
                             class="bi bi-x-circle-fill btn-font-color-green"
                           ></i>
                         </button>
                       </td>
-                    </tr>
+                    </tr> -->
 
-                    <tr>
+                    <!-- <tr>
                       <td>001</td>
                       <td>王小明</td>
                       <td>myaccount123</td>
@@ -300,7 +321,7 @@
                           <span>守望隊</span>
                           <i class="bi bi-x"></i>
                         </div>
-                      </td>
+                      </td> -->
                       <!-- <td>
                         <button type="button" class="btn-icon">
                           <i
@@ -308,16 +329,16 @@
                           ></i>
                         </button>
                       </td> -->
-                      <td>
+                      <!-- <td>
                         <button type="button" class="btn-icon">
                           <i
                             class="bi bi-x-circle-fill btn-font-color-green"
                           ></i>
                         </button>
                       </td>
-                    </tr>
+                    </tr> -->
 
-                    <tr>
+                    <!-- <tr>
                       <td>001</td>
                       <td>王小明</td>
                       <td>myaccount123</td>
@@ -328,7 +349,7 @@
                           <span>守望隊</span>
                           <i class="bi bi-x"></i>
                         </div>
-                      </td>
+                      </td> -->
                       <!-- <td>
                         <button type="button" class="btn-icon">
                           <i
@@ -336,15 +357,15 @@
                           ></i>
                         </button>
                       </td> -->
-                      <td>
+                      <!-- <td>
                         <button type="button" class="btn-icon">
                           <i
                             class="bi bi-x-circle-fill btn-font-color-green"
                           ></i>
                         </button>
                       </td>
-                    </tr>
-                    <tr>
+                    </tr> -->
+                    <!-- <tr>
                       <td>001</td>
                       <td>王小明</td>
                       <td>myaccount123</td>
@@ -355,7 +376,7 @@
                           <span>守望隊</span>
                           <i class="bi bi-x"></i>
                         </div>
-                      </td>
+                      </td> -->
                       <!-- <td>
                         <button type="button" class="btn-icon">
                           <i
@@ -363,14 +384,14 @@
                           ></i>
                         </button>
                       </td> -->
-                      <td>
+                      <!-- <td>
                         <button type="button" class="btn-icon">
                           <i
                             class="bi bi-x-circle-fill btn-font-color-green"
                           ></i>
                         </button>
-                      </td>
-                    </tr>
+                      </td> -->
+                    <!-- </tr> -->
                   </tbody>
                 </table>
               </div>
@@ -418,6 +439,7 @@
 <script>
 import backendNavbar from "./backendNavbar.vue";
 import Footer from "./Footer.vue";
+import axios from 'axios';
 
 // 測欄開合
 import $ from "jquery";
@@ -428,6 +450,29 @@ export default {
   components: {
     backendNavbar,
     Footer,
+  },
+  data(){
+      return {
+              jsonData: null
+              }
+  },
+  methods:{
+    manage(index){
+      // console.log(index);
+      console.log(this.jsonData[index]);
+      console.log('ID是'+this.jsonData[index][0]);
+      axios
+        .post('https://tibamef2e.com/tgd104/g1/accountOverview.php', {index:this.jsonData[index][0]})
+        .then(response => {
+            // this.jsonData = response.data;
+            console.log(response.data);
+        })
+        .catch(error => {
+            console.log(error);
+        });
+
+        location.reload();
+    }
   },
   mounted() {
     $("#resizable").resizable({});
@@ -471,6 +516,18 @@ export default {
         //   console.log(beMenu[i]);
       });
     }
+
+     axios
+    //  htdocs的環境下測試
+    //  .get('http://localhost/howlegazaiVue2/src/api/accountOverview.php')
+        .get('https://tibamef2e.com/tgd104/g1/accountOverview.php')
+        .then(response => {
+            this.jsonData = response.data;
+            console.log(response.data);
+        })
+        .catch(error => {
+            console.log(error);
+        });
 
     //  ＝＝＝＝＝＝側欄選單的JS end＝＝＝＝＝＝
   },

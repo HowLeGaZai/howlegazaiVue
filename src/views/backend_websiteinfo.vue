@@ -255,8 +255,20 @@
 
 import backendNavbar from './backendNavbar.vue';
 import Footer from './Footer.vue';
+import axios from 'axios';
+import $ from 'jquery';
 
 export default {
+  data(){
+    return{
+        city:'',
+        district:'',
+        village:'',
+        population:'',
+        home_num:'',
+        file:'',
+    }
+  },
   components: {
       backendNavbar,Footer,
     },
@@ -329,6 +341,71 @@ function doFirst(){
 
 
 
+  },
+  methods:{
+    save1(){
+      const formData = new FormData()
+      formData.append('city', this.city)
+      formData.append('district', this.district)
+      formData.append('village', this.village)
+
+      axios
+        .post('https://tibamef2e.com/tgd104/g1/webinfo.php', formData)
+        .then(response => {
+            // this.jsonData = response.data;
+            console.log(response.data);
+        })
+        .catch(error => {
+            console.log(error);
+        });
+
+      this.city='';
+      this.district='';
+      this.village='';
+    },
+    save2(){
+
+      const formData2 = new FormData()
+      formData2.append('population', this.population)
+      formData2.append('home_num', this.home_num)
+
+      axios
+        .post('http://localhost/howlegazaiVue2/src/api/village.php', formData2)
+        .then(response => {
+            // this.jsonData = response.data;
+            console.log(response.data);
+        })
+        .catch(error => {
+            console.log(error);
+        });
+
+      this.population='';
+      this.home_num='';
+    },
+    onChangeFileUpload(){
+        this.file = this.$refs.file.files[0];
+        console.log(this.file);
+    },
+    save3(){
+      //  const formData3 = new FormData();
+            
+            // formData3.append('ProductImage', input_file.files[0]);
+
+            let formData3 = new FormData();
+            formData3.append('file', this.file);
+
+        axios
+        .post('http://localhost/howlegazaiVue2/src/api/uploadBanner.php', formData3)
+        .then(response => {
+            // this.jsonData = response.data;
+            console.log(response.data);
+        })
+        .catch(error => {
+            console.log(error);
+        });
+
+
+    }
   },
  
   

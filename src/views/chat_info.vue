@@ -33,7 +33,7 @@
       </div>
     </div>
 
-    <chat-comment @message="addComment"></chat-comment>
+    <chat-comment   @message="addComment"></chat-comment>
 <!-- =========================================== -->
     <!-- <div class="comment-list">
       <div class="chat-commit">
@@ -133,7 +133,7 @@
       </div>
 </div> -->
 <!-- =========================================== -->
-  <chat-commentlist ></chat-commentlist>
+  <chat-commentlist :sendToList="data"></chat-commentlist>
 
     <div class="confirm-btn">
          <router-link to="/chat" custom v-slot="{ navigate }">
@@ -163,14 +163,17 @@ export default {
 
     data(){
       return{
-        message:'',
-        
+        // message:'',
+        data:[],
+       
       }
     },
     methods:{
-      addComment(message){
-          console.log(message);
-      }
+      addComment(data){
+          // console.log(message);
+          this.data = data;
+      },
+     
     },
 
     
