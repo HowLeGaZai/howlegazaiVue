@@ -32,8 +32,9 @@
         </form>
           <!-- 最後送出的編號 -->
           <div class="bbb">
-           <a href="#/login"><button type="button" class="btn-m btn-color-white">返回</button></a> 
-           <a href="#/login"><button type="button" class="btn-m btn-color-green" @click="checkNumber() ,check()" @click.prevent="submitForm">修改</button></a>
+         <router-link to="./login"><button type="button" class="btn-m btn-color-white">返回</button></router-link>
+         <router-link to="./login"><button type="button" class="btn-m btn-color-green" @click="checkNumber() ,check()" @click.prevent="submitForm">修改</button>
+        </router-link>
            
           
           </div>
