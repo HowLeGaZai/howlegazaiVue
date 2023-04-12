@@ -21,9 +21,20 @@
 import axios from 'axios';
 
 export default {
-  props:['message1'],
+  props:["sendToList"],
     data(){
         return{
+          
+            // message:this.sendToList,
+            // propData:[
+            //     {
+            //       "USER_ID":1,
+            //       "USER_PORTRAIT":"user_pic.png",
+            //       "USER_NICKNAME":"李奧",
+            //       "CREATE_TIME":"2023-04-04",
+            //       "CONTENT":"這款御飯糰看起來真的很好吃！我平常也很愛吃這種綜合了多種口味的美食，尤其是烤焦的牛肉片搭配米飯，讓人垂涎欲滴。謝謝你的分享，我會去7-11試試看這款美食！",
+            //     },  
+            // ],
         //     comments:[
         //   {
         //   "USER_ID":1,
@@ -61,7 +72,8 @@ export default {
         //   "CONTENT":" 我最近也在尋找新的便利店美食，看起來7-11的炙燒雪花牛御飯糰是個不錯的選擇。特別是因為它可以隨時購買，方便食用。謝謝你的分享，我會在下次去7-11的時候買一個嚐嚐看！",
         //   },
         // ],
-        jsonData: null,
+        jsonData: [],
+        inputValFromChild: [{}],
         }
     },
     mounted(){
@@ -69,11 +81,40 @@ export default {
         .get('/commentlist.json')
         .then(response => {
             this.jsonData = response.data;
-            console.log(response.data);
+            // console.log(response.data);
         })
         .catch(error => {
             console.log(error);
         });
+
+        // this.propData =  this.sendToList;
+        // console.log('123456'+ this.propData);
+        // this.addToArray();
     },
+    watch:{
+        sendToList:{
+          // immediate: true,
+          handler(newVal) {
+            // 將新的list值添加到myList數組中
+          // dataSavetoObject(newVal);
+            // console.log("新輸入的留言為");
+            // console.log("abc"+newVal);
+            // console.log(newVal);
+            // this.inputValFromChild = JSON.parse(newVal);
+            let data2 = JSON.parse(newVal);
+            // let data3 = {"0":data2.USER_ID,"1": data2.USER_PORTRAIT,"2":data2.USER_NICKNAME,"3":data2.CREATE_TIME,"4":data2.CONTENT};
+            // console.log( data2);
+            this.jsonData.push(data2);
+            //  console.log(this.jsonData);
+          }
+        }
+    },
+    methods:{
+       
+      // addToArray(){
+      //   this.jsonData.push(this.propData);
+      //   // console.log(this.jsonData);
+      // }
+    }
 }
 </script>

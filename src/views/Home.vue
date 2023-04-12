@@ -5,7 +5,7 @@
     <section class="home-cover">
       <div class="image home_banner">
         <img src="../assets/img/home_banner.jpg" alt="" />
-        <div class="villagename"><h1>花蓮縣 大湖里</h1></div>
+        <div class="villagename"><h1>花蓮縣 緯育里</h1></div>
       </div>
     </section>
 

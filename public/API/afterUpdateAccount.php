@@ -1,6 +1,6 @@
 <?php
 
-
+    //先引入這支php
     include("conn.php");
 
 

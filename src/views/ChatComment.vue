@@ -14,16 +14,33 @@ export default {
     data(){
         return{
             message:'',
+             USER_ID:2,
+          USER_PORTRAIT:"user_pic.png",
+          USER_NICKNAME:"李奧",
+          CREATE_TIME:"2023-04-12",
+        
         }
 
     },
     methods:{
         sendComment(e){
-            this.$emit("message" , this.message)
+
+             const data = JSON.stringify({
+                USER_ID:this.USER_ID,
+                USER_PORTRAIT:this.USER_PORTRAIT,
+                USER_NICKNAME:this.USER_NICKNAME,
+                CREATE_TIME:this.CREATE_TIME,
+                CONTENT:this.message,
+
+                
+              })
+
+            this.$emit("message" , data)
             // console.log(this.message);
             this.message = ''
             
-        }
+        },
+        
     }
 }
 </script>
