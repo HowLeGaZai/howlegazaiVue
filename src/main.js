@@ -1,10 +1,14 @@
-import { createApp } from 'vue'
-import App from './App.vue'
-import router from './router'
-import '@/assets/sass/style.scss'
+console.log("Hello from main.js")
 
-router.afterEach((to, from, next) => {
+import { createApp } from 'vue';
+import App from './App.vue';
+import router from './router';
+import '@/assets/sass/style.scss';
+
+router.afterEach((to, from) => {
     window.scrollTo(0, 0);
-   });
+});
 
-createApp(App).use(router).mount('#app')
+createApp(App)
+  .use(router)
+  .mount('#app');
