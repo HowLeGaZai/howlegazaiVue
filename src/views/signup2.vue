@@ -22,7 +22,6 @@
             </div>
 
             <div class="signup2">
-            <div class="signup2">
               <!-- 只有一個元素 -->
               <div>
                 <label>住址</label>
