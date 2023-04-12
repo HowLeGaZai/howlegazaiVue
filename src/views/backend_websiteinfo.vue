@@ -193,7 +193,7 @@
                     <input type="text" class="f-text" id="village" placeholder="範例：大湖里">
                 </div>
             </div>
-            <button type="button" class="savebtn btn-10-s btn-color-green">儲存 </button>
+            <button type="button" class="savebtn btn-10-s btn-color-green" @click="save1">儲存 </button>
         </section>
         <section>
             <h5>村里人口數</h5>
@@ -207,7 +207,7 @@
                     <input type="text" class="f-text" id="population" placeholder="範例：3,200">
                 </div>
             </div>
-            <button type="button" class="savebtn btn-10-s btn-color-green">儲存 </button>
+            <button type="button" class="savebtn btn-10-s btn-color-green" @click="save2">儲存 </button>
         </section>
         <section>
             <h5>首頁封面照片</h5>
@@ -226,7 +226,7 @@
             </div> -->
                 <picture-cropbanner></picture-cropbanner>
               </div>
-            <button type="button" class="savebtn btn-10-s btn-color-green">儲存 </button>
+            <button type="button" class="savebtn btn-10-s btn-color-green" @click="save3">儲存 </button>
         </section>
       </div>
    
@@ -354,7 +354,8 @@ export default {
       formData.append('village', this.village)
 
       axios
-        .post('https://tibamef2e.com/tgd104/g1/webinfo.php', formData)
+        .post('http://localhost/howlegazaiVue2/public/API/webinfo.php', formData)
+        // .post('https://tibamef2e.com/tgd104/g1/webinfo.php', formData)
         .then(response => {
             // this.jsonData = response.data;
             console.log(response.data);
@@ -374,7 +375,7 @@ export default {
       formData2.append('home_num', this.home_num)
 
       axios
-        .post('http://localhost/howlegazaiVue2/src/api/village.php', formData2)
+        .post('http://localhost/howlegazaiVue2/public/API/village.php', formData2)
         .then(response => {
             // this.jsonData = response.data;
             console.log(response.data);
@@ -399,7 +400,7 @@ export default {
             formData3.append('file', this.file);
 
         axios
-        .post('http://localhost/howlegazaiVue2/src/api/uploadBanner.php', formData3)
+        .post('http://localhost/howlegazaiVue2/public/API/uploadBanner.php', formData3)
         .then(response => {
             // this.jsonData = response.data;
             console.log(response.data);

@@ -369,7 +369,8 @@ export default {
 
     //  ＝＝＝＝＝＝側欄選單的JS end＝＝＝＝＝＝
      axios
-        .get('https://tibamef2e.com/tgd104/g1/afterUpdateAccount.php')
+        .get('http://localhost/howlegazaiVue2/public/API/afterUpdateAccount.php')
+        // .get('https://tibamef2e.com/tgd104/g1/afterUpdateAccount.php')
         .then(response => {
             this.jsonData = response.data;
             console.log(response.data);
