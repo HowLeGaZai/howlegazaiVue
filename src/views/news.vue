@@ -4,7 +4,7 @@
   <main class="news_page">
     <h1>最新消息</h1>
     <div class="search-bar">
-      <input type="text" v-model.lazy.trim="searchNews" class="f-text f-round" placeholder=""
+      <input type="text" for="search" v-model.lazy.trim="searchNews" class="f-text f-round" placeholder=""
         style="font-family:bootstrap-icons"/>
 
 
@@ -127,6 +127,17 @@ export default {
         case "會議記錄": return "tag-green";
       }
     },
+
+    postsearch(){
+      const searchnews = new FormData();
+      FormData.append('search',this.searchNews)
+
+
+
+    }
+
+
+    
   },
 
   computed:{
