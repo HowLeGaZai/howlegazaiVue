@@ -1,7 +1,7 @@
 <template>
   <navbar></navbar>
+  
   <div class="bgc">
-
     <main>
 
       <div class="center">
@@ -157,7 +157,9 @@
                 <!-- </router-link> -->
               </div>
               <!-- --------------------------------------- -->
+            </div>
           </section>
+          
         </div>
       </div>
 

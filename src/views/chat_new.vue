@@ -22,15 +22,9 @@
         </select>
       </div>
     </div>
-
+    
     <div id="container">
-      <!-- <textarea id="editor">
-                        <p></p>
-                   </textarea> -->
-
-      <div>
-        <ckeditor :editor="editor" v-model="content" />
-      </div>
+      <Tinymce></Tinymce>      
     </div>
 
     <div class="confirm-btn">
@@ -41,7 +35,9 @@
                   <button class="btn-m btn-color-green" @click="navigate" role="link">發布</button>
               </router-link> -->
       <button type="button" class="btn-m btn-color-white" onclick="location.href='#/chat'">取消</button>
-      <button type="button" class="btn-m btn-color-green" onclick="location.href='#/chat_info'">發布</button>
+      <!-- <button type="button" class="btn-m btn-color-green" onclick="location.href='#/chat_info'">發布</button> -->
+      <button type="button" class="btn-m btn-color-green" @click="exportContent">預覽</button>
+
     </div>
   </main>
   <Footer></Footer>
@@ -49,38 +45,29 @@
 
 
 <script>
+console.log('ditorNew page');
 import navbar from "./navbar.vue";
 import Footer from "./Footer.vue";
-
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import CKEditor from "@ckeditor/ckeditor5-vue";
-
+import Tinymce from "@/components/Tinymce.vue";
 
 
 export default {
   components: {
     navbar,
     Footer,
-    ckeditor: CKEditor.component,
+    Tinymce,
+
   },
   data() {
     return {
-      editor: ClassicEditor,
-      content: "<p></p>",
+      editorValue: '',
     };
   },
   mounted() {
-    // this.init();
+    
   },
   methods: {
-    // init() {
-    //   const editorInstance = this.$refs.ckeditor.editorInstance;
 
-    //   editorInstance.plugins.get("FileRepository").createUploadAdapter =
-    //     function (loader) {
-    //       return new ImageUploadAdapter(loader);
-    //     };
-    // },
   },
 };
 </script>
