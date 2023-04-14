@@ -1,6 +1,4 @@
-
-
-  <template>
+<template>
     <navbar></navbar>
     <div class="bgc">
       <main>
@@ -26,22 +24,22 @@
             <!-- 選擇縣市 -->
             <div class="txt_field col-sm-12 col-sm-4">
               <label for="selecte" class="f-label">縣/市</label>
-              <select name="" id="selecte" class="f-select" v-model="input1">
-                  <option value="花蓮縣">花蓮縣</option>
+              <select name="" id="selecte" class="f-select" v-model="input1" >
+                  <option value="花蓮縣">{{ input1  }}  </option>
               </select>
             </div>
       
             <div class="txt_field col-sm-12 col-sm-4">
               <label for="selecte" class="f-label">鄉/鎮/市/區</label>
               <select name="" id="selecte" class="f-select" v-model="input2">
-                  <option value="國安鄉">國安鄉</option>
+                  <option value="國安鄉">{{ input2 }}</option>
               </select>
             </div>
           
             <div class="txt_field col-sm-12 col-sm-4">
               <label for="selecte" class="f-label">村里</label>
               <select name="" id="selecte" class="f-select" v-model="input3">
-                  <option value="大湖里">大湖里</option>
+                  <option value="大湖里">{{ input3 }}</option>
               </select>
             </div>
 
@@ -53,9 +51,10 @@
               <input
                 type="text"
                 class="f-text label-left"
-                id="name5 myInput"
+                id="name5"
                 required
-                v-model="inputValue"
+                :value="inputValue"
+                 @input="inputValue = $event.target.value; add = $event.target.value"
               />
               <p v-if="showError" style="color: red;">{{ errorMessage }}</p>
               <!-- <h6 style="color: red; text-align: center"> -->
@@ -67,16 +66,19 @@
           </div>
           <!-- 最後送出的編號 -->
           <div class="bbb">
-            <a href="#/login"
-              ><button type="button" class="btn-m btn-color-white">
+         <router-link to="./login">
+              <button type="button" class="btn-m btn-color-white">
                 返回
-              </button></a
-            >
-            <a href="#/signup2"
-              ><button type="button" class="btn-m btn-color-green" @click.prevent="submitForm" @click="navigateToPage2 , submit">
-                註冊
-              </button></a
-            >
+              </button>
+            </router-link>   
+          <router-link to="./signup2">
+              <button type="button" 
+              class="btn-m btn-color-green" 
+              @click.prevent="submitForm">
+              註冊
+            </button>
+          </router-link>
+            
           </div>
         </div>
       </main>
@@ -87,6 +89,7 @@
   <script>
   import navbar from "./navbar.vue";
   import Footer from "./Footer.vue";
+  import { ref } from 'vue';
 
 
   export default {
@@ -96,71 +99,52 @@
     },
     data() {
       return {
-        inputValue: '',
+       
         showError: false,
         errorMessage: '不能空白',
-        add : '詞窮里詞窮',
-
         input1: '',
         input2: '',
         input3: '',
+        inputValue: '',
       }
     },
     setup() {
       return {};
     },
     methods: {
+   //不能輸入空值的函式
+   submitForm() {
+  let formData = new FormData();
+  if (this.inputValue.trim() === '') {
+    this.showError = true;
+    return false;
+  } else {
+    this.showError = false;
+    formData.append('input1', this.input1);
+    formData.append('input2', this.input2);
+    formData.append('input3', this.input3);
+    formData.append('input4', this.inputValue);
+    this.$router.push({ name: 'signup2', state: formData });
+  }
+},
+},
 
-      submit() {
-        const queryParams = {
-          input1: this.input1,
-          input2: this.input2,
-          input3: this.input3,
-          input4: this.inputValue,
-      };
-      console.log(this.input1);
-      console.log(queryParams);
-      // this.$router.push({ path: '/signup2', query: queryParams });
+watch: {
+  // 可以使用 watch 來監聽數據的更改並將它們存儲在 localStorage中，
+    // 當 input1, input2, input3 或 inputValue 發生更改時
+    input1(val) {
+      localStorage.setItem('input1', val);
     },
-      //不能輸入空值的函式
-      submitForm() {
-    if (this.inputValue.trim() === '') {
-      this.showError = true;
-      return false; // 返回 false 來停止後續的程式碼執行
-    } else {
-      // 在這裡處理提交表單的邏輯
-      this.showError = false;
-      // 跳轉到下一頁
-      // this.$router.push('/signup2');
-
-      const queryParams = {
-        input1: this.input1,
-        input2: this.input2,
-        input3: this.input3,
-        input4: this.inputValue,
-      };
-      console.log(this.input1);
-      console.log(queryParams);
-      this.$router.push({ path: '/signup2', query: queryParams });
-    }
+    input2(val) {
+      localStorage.setItem('input2', val);
+    },
+    input3(val) {
+      localStorage.setItem('input3', val);
+    },
+    inputValue(val) {
+      localStorage.setItem('inputValue', val);
+    },
   },
-
-
-
-      //她要是沒輸入東西 不能跳轉到下一頁的函式
-      handleSubmit() {
-        if (this.inputValue.trim() === '') {
-          this.showError = true;
-          return false; // 返回 false 來停止後續的程式碼執行
-        }
-        // 如果 input 不是空值，顯示下一頁連結
-        this.showError = false;
-      }
-    
-    },
-    computed: {
-    },
-    
     mounted() {
       let labels = document.querySelectorAll(".collapsible-item-label");
       let contents = document.querySelectorAll(".collapsible-item-content");

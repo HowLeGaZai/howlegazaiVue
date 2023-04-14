@@ -232,6 +232,7 @@
                             <div id="container">
                                 <!-- <div id="editor">
                                 </div> -->
+                                <Tinymce></Tinymce>
                                 <div>
         <ckeditor :editor="editor" v-model="content" />
       </div>
@@ -273,20 +274,16 @@ import $ from 'jquery'
 import 'jquery-ui-dist/jquery-ui'
 import 'jquery-ui-dist/jquery-ui.min.css'
 import Footer from './Footer.vue';
+import Tinymce from "@/components/Tinymce.vue";
 
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import CKEditor from "@ckeditor/ckeditor5-vue";
 import PictureCrop from '../components/PictureCrop.vue';
 
 export default {
   components: {
-      backendNavbar,Footer,PictureCrop,
-      ckeditor: CKEditor.component,
+      backendNavbar,Footer,PictureCrop,Tinymce,
     },
      data() {
     return {
-      editor: ClassicEditor,
-      content: "<p></p>",
     };
   },
     mounted() {

@@ -130,7 +130,7 @@
         display: flex;
         margin: 0 auto;
         justify-content: center;
-        gap: 30px;
+        gap: 20px;
         @media screen and (max-width: 850px){
             flex-direction: column;
             gap: 0px;
@@ -171,7 +171,7 @@
 
     #datepicker{
         min-height: 400px;
-        width: 100%;
+        width: 85%;
         @media screen and (max-width: 850px){
             margin: 0 auto;
         }
@@ -185,7 +185,7 @@
     }
     
     .ui-widget-content {
-        width: 100%;
+        width: 85%;
         min-height: 400px;
         background-color: transparent;
         border: none;
@@ -327,7 +327,7 @@
    
     
     .selected{
-        &>h4{
+        &>h5{
             margin: 20px 0;
             @media screen and (max-width: 850px){
             margin: 20px auto;
