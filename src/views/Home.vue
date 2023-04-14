@@ -1,5 +1,5 @@
 <template>
-  <navbar></navbar>
+  <navbar :isLoggedIn="isLoggedIn"></navbar>
   <main class="home">
     <!-- 村里封面照片 -->
     <section class="home-cover">
@@ -383,6 +383,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 
 // import required modules
+import axios from 'axios';
 import { Navigation } from "swiper";
 import navbar from "./navbar.vue";
 import Footer from "./Footer.vue";
@@ -405,6 +406,7 @@ export default {
   },
   data() {
     return {
+      isLoggedIn: false,
       eventCards: [
         {
           BANNER: 0,
@@ -445,6 +447,17 @@ export default {
       ],
     };
   },
+  beforeCreate() {
+    axios.post('http://localhost/howlegazaiVue/public/API/checklogin.php')
+      .then(response => {
+        console.log(response.data);
+        // this.isLoggedIn = JSON.parse(response.data.isLoggedIn); // 根據後端回應更新isLoggedIn的值
+        // console.log(response.data);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+  },
   methods: {
     addTagClass(i) {
       switch (i) {
@@ -463,6 +476,7 @@ export default {
       }
     },
   },
+  
   mounted() {},
 };
 </script>

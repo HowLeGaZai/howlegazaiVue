@@ -23,22 +23,22 @@
           <div class="row">
             <!-- 選擇縣市 -->
             <div class="txt_field col-sm-12 col-sm-4">
-              <label for="selecte" class="f-label">縣/市</label>
-              <select name="" id="selecte" class="f-select" v-model="input1">
+              <label for="county" class="f-label">縣/市</label>
+              <select name="" id="county" class="f-select" v-model="input1">
                   <option value="花蓮縣">花蓮縣</option>
               </select>
             </div>
       
             <div class="txt_field col-sm-12 col-sm-4">
-              <label for="selecte" class="f-label">鄉/鎮/市/區</label>
-              <select name="" id="selecte" class="f-select" v-model="input2">
+              <label for="district" class="f-label">鄉/鎮/市/區</label>
+              <select name="" id="district" class="f-select" v-model="input2">
                   <option value="國安鄉">國安鄉</option>
               </select>
             </div>
           
             <div class="txt_field col-sm-12 col-sm-4">
-              <label for="selecte" class="f-label">村里</label>
-              <select name="" id="selecte" class="f-select" v-model="input3">
+              <label for="village" class="f-label">村里</label>
+              <select name="" id="village" class="f-select" v-model="input3">
                   <option value="大湖里">大湖里</option>
               </select>
             </div>
