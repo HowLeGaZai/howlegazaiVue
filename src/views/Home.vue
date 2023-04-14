@@ -394,7 +394,7 @@ import navbar from "./navbar.vue";
 import Footer from "./Footer.vue";
 import NewsListHome from "../components/NewsListHome.vue";
 import ChatTopic from "@/components/ChatTopic.vue";
-import axios from 'axios';
+// import axios from 'axios';
 
 export default {
   components: {
