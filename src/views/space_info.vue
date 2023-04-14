@@ -39,8 +39,15 @@
           <div class="selected" id="selected">
             <h4><span class="selectedD">-請先選擇日期-</span></h4>
             <div class="timepick">
-                <button type="button" class="btn-m btn-color-white timeslot" value="08:00 - 08:59">08:00 - 08:59</button>
-                <button type="button" class="btn-m btn-color-white timeslot" value="09:00 - 09:59">09:00 - 09:59</button>
+              <template v-for="(time,index) in data" :key="index">
+                
+              
+                <button type="button" class="btn-m btn-color-white timeslot "  :value="time.time" @click="clickActive" v-if="time.time === '10:00-10:59' " >{{time.time}}</button>
+                <button type="button" class="btn-m btn-color-white timeslot"  :value="time.time" @click="clickActive" v-else>{{time.time}}</button>
+<!-- <button type="button" class="btn-m btn-color-white timeslot" v-else :value="time.time" >{{time.time}}</button> -->
+              </template>
+              
+                <!-- <button type="button" class="btn-m btn-color-white timeslot" value="09:00 - 09:59">09:00 - 09:59</button>
                 <button type="button" class="btn-m btn-color-white timeslot" value="10:00 - 10:59">10:00 - 10:59</button>
                 <button type="button" class="btn-m btn-color-white timeslot" value="11:00 - 11:59">11:00 - 11:59</button>
                 <button type="button" class="btn-m btn-color-white timeslot" value="12:00 - 12:59">12:00 - 12:59</button>
@@ -52,7 +59,7 @@
                 <button type="button" class="btn-m btn-color-white timeslot" value="18:00 - 18:59">18:00 - 18:59</button>
                 <button type="button" class="btn-m btn-color-white timeslot" value="19:00 - 19:59">19:00 - 19:59</button>
                 <button type="button" class="btn-m btn-color-white timeslot" value="20:00 - 20:59">20:00 - 20:59</button>
-                <button type="button" class="btn-m btn-color-white timeslot" value="21:00 - 21:59">21:00 - 21:59</button>
+                <button type="button" class="btn-m btn-color-white timeslot" value="21:00 - 21:59">21:00 - 21:59</button> -->
             </div>
           </div>
         </div>
@@ -133,11 +140,15 @@ import 'jquery-ui-dist/jquery-ui'
 import 'jquery-ui-dist/jquery-ui.min.css'
 import navbar from './navbar.vue';
 import Footer from './Footer.vue';
+import axios from 'axios';
 
 export default {
   name: 'HelloWorld',
   data () {
     return {
+      jsonData:[],
+      timeRanges:[],
+      data:[],
     }
   },
   components: {
@@ -145,6 +156,7 @@ export default {
       SwiperSlide,
       navbar,
       Footer,
+      
     },
     setup() {
       return {
@@ -168,26 +180,122 @@ export default {
         
         $('.selectedD').html(`日期:&nbsp;` + selected + `&nbsp;(` + dayOfWeekText + `)`);
         sessionStorage.setItem("date", selected + `(` + dayOfWeekText + `)`);
+        sessionStorage.setItem("onlydate", selected );
       }
     });
-    var btnContainer = document.getElementById("selected");
-    var btns = btnContainer.getElementsByClassName("timeslot");
+    // var btnContainer = document.getElementById("selected");
+    // var btns = btnContainer.getElementsByClassName("timeslot");
 
-    for (var i = 0; i < btns.length; i++) {
-      btns[i].addEventListener("click", function() {
-        var selectedtime = this.value;
-        var current = document.getElementsByClassName("active");
+    // console.log(btns);
+
+    // for (var i = 0; i < btns.length; i++) {
+    //   btns[i].addEventListener("click", function() {
+    //     var selectedtime = this.value;
+    //     // console.log(this.value);
+    //     var current = document.getElementsByClassName("active");
         
-        if (current.length > 0) {
-          current[0].className = current[0].className.replace(" active", "");
-        }
-        this.className += " active";
-        sessionStorage.setItem("time", selectedtime);
-      });
-    };
+    //     if (current.length > 0) {
+    //       current[0].className = current[0].className.replace("active", "");
+    //     }
+    //     this.className += " active";
+    //     sessionStorage.setItem("time", selectedtime);
+
+    //     const timeStr = selectedtime;
+    //     const [start, end] = timeStr.split(' - ');
+    //     sessionStorage.setItem("start", start);
+    //     sessionStorage.setItem("end", end);
+
+
+        
+
+    //   });
+    // };
+   
+const timeRange = '8:00-21:59';
+  // console.log(timeRange);
+  const [startTime, endTime] = timeRange.split('-')
+  // console.log(startHour);
+  // console.log(endHour);
+
+  let startHour  = startTime.split(':')[0].trim();
+  let endHour = endTime.split(':')[0].trim();
+  // console.log(startHour);
+  const dataList= [];
+
+  for (let h = Number(startHour); h <= Number(endHour); h++) {
+    // console.log(h);
+    const time = `${h}:00-${h}:59` // 產生時間範圍字串，例如 '8:00-8:59'
+    // console.log(time);
+    dataList.push({ time });
+  }
+
+  // console.log(dataList);
+  this.data = dataList;
+
+ 
+
+
+
+
+// filteredData.forEach(data => {
+//   data.class = 'btn-color-gray'
+// })
+ 
+
+
+
+
+   axios
+    //  htdocs的環境下測試
+     .get('http://localhost/howlegazaiVue2/public/API/spaceAfterOrder.php')
+        
+        .then(response => {
+            this.jsonData = response.data;
+            console.log(response.data);
+        })
+        .catch(error => {
+            // console.log(error);
+        });
+
+
+
+
+    
+
+  
+
   },
+  methods:{
+
+    
+    clickActive(event){
+      const button = event.target;
+      var selectedtime = button.value;
+      console.log(selectedtime);
+      var current = document.getElementsByClassName("active");
+
+      if (current.length > 0) {
+          current[0].className = current[0].className.replace("active", "");
+        }
+
+      
+      
+      button.className += " active";
+
+      sessionStorage.setItem("time", selectedtime);
+
+        const timeStr = selectedtime;
+        const [start, end] = timeStr.split('-');
+        sessionStorage.setItem("start", start);
+        sessionStorage.setItem("end", end);
+
+      
+    }
+  }
+  
 
   
   
 }
 </script>
+

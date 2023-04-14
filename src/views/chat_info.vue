@@ -152,8 +152,8 @@
 
 import navbar from './navbar.vue';
 import Footer from './Footer.vue';
-import ChatComment from './ChatComment.vue';
-import ChatCommentlist from './ChatCommentlist.vue';
+import ChatComment from '../components/ChatComment.vue';
+import ChatCommentlist from '../components/ChatCommentlist.vue';
 
 
 export default {

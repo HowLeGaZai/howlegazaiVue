@@ -526,7 +526,7 @@ export default {
             console.log(response.data);
         })
         .catch(error => {
-            console.log(error);
+            // console.log(error);
         });
 
     //  ＝＝＝＝＝＝側欄選單的JS end＝＝＝＝＝＝
