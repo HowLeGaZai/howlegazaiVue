@@ -201,7 +201,6 @@ const routes = [
       path: '/signup2',
       name: 'signup2',
       component:() => import(/* webpackChunkName: "about" */ '../views/signup2.vue') , 
-    
   },
   {// 前台 修改密碼
     path: '/updatepassword',

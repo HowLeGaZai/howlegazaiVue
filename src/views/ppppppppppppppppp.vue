@@ -1,8 +1,7 @@
 <template>
   <div>
-    <input v-model="username" type="text" placeholder="Username">
-    <input v-model="password" type="password" placeholder="Password">
-    <button @click="login">Login</button>
+    <h1>{{ message }}</h1>
+    <button @click="changeMessage">Change message</button>
   </div>
 </template>
 
@@ -10,23 +9,12 @@
 export default {
   data() {
     return {
-      username: '',
-      password: '',
-      fakeUser: {
-        username: '勞改營',
-        password: 'testpass'
-      }
+      message: 'Hello, world!'
     }
   },
   methods: {
-    login() {
-      // Check if the entered credentials match the fake user credentials
-      if (this.username === this.fakeUser.username) {
-        alert('Login successful!');
-        // Redirect to the home page or some other page
-      } else {
-        alert('Invalid username or password!');
-      }
+    changeMessage() {
+      this.message = 'Bonjour, le monde!'
     }
   }
 }

@@ -8,13 +8,14 @@
         <form>
           <div class="txt_field">
             <h5>帳號</h5>
-            <input type="text" class="f-text label-left" id="name5" placeholder="請輸入帳號" required>
+            <input type="text" class="f-text label-left" id="name5" placeholder="請輸入帳號" required  v-model="username">
         
             <label></label>
           </div>
           <div class="txt_field">
             <h5>密碼</h5>
-            <input type="password" class="f-text label-left" id="name5" placeholder="請輸入密碼" required>
+            <input type="password" class="f-text label-left" id="name5" placeholder="請輸入密碼" required v-model="password
+">
             <label>   <div class="pass"><a href="#/forgetpassword">忘記密碼</a> </div> </label>
           </div>
         
@@ -25,7 +26,7 @@
           <!-- <div class="login_btn"> -->
         
           <div class="logo_center">
-            <a href="#/"> <button type="button" class="btn-m btn-color-green">登入</button></a>
+          <button type="button" class="btn-m btn-color-green" @click="login">登入</button>
           </div>
 
           <!-- </div> -->
@@ -50,10 +51,28 @@ export default {
     Footer,
     navbar,
   },
+  data() {
+    return {
+      username : '',
+      password : '',
+    }
+  },
   setup() {
     return {
 
     };
+  },
+  methods: {
+    login() {
+      if (this.username === '' || this.password === '') {
+        alert('帳號密碼不得為空');
+        this.$router.push('./login')
+        return;
+      }else{  
+        alert("登入成功")
+        this.$router.push('./#')
+      }
+    }
   },
   mounted() {
       let labels = document.querySelectorAll('.collapsible-item-label');
