@@ -1,7 +1,7 @@
 <template>
   <navbar></navbar>
-  
   <div class="bgc">
+
     <main>
 
       <div class="center">
@@ -31,7 +31,7 @@
                   id="tad"
                   disabled
                   required
-                  :placeholder = "`${$route.query.input1}${$route.query.input2}${$route.query.input3}${$route.query.input4}`"
+                  v-model="localStorageValue"
                 />
               </div>
 
@@ -143,23 +143,21 @@
               <!-- 包住兩個按鈕 -->
               <div class="submit">
                 <!-- <div class="button"> -->
-                 
+                
                   <button type="button" class="btn-m btn-color-white" @click="retunForm">
                     返回
                   </button>
               
                 
                   
-               <!-- <router-link to="./login">  -->
+              <!-- <router-link to="./login">  -->
                   <button type="button" class="btn-m btn-color-green" @click="submitForm">
                     送出
                   </button>
                 <!-- </router-link> -->
               </div>
               <!-- --------------------------------------- -->
-            </div>
           </section>
-          
         </div>
       </div>
 
@@ -180,6 +178,7 @@ export default {
     Footer,
     navbar,
     PictureCropid,
+    
   },
   data(){
     return {
@@ -192,7 +191,11 @@ export default {
       email: '',
       phoneNum: '',
       agree: '',
-     };
+      input1 : '' ,
+      input2 : '' ,
+      input3 : '' ,
+      localStorageValue: "",
+    };
   },
   setup() {
     return {};
@@ -214,12 +217,17 @@ export default {
       }
 
       // 在這裡編寫提交表單的程式碼
-      console.log('表單提交成功');
+      console.log('表單提交成功');  
     }
   },
   mounted() {
-
+    //抓取signup1 的 localStorage data 資料
     
+    this.input1 = localStorage.getItem("input1");
+    this.input2 = localStorage.getItem("input2");
+    this.input3 = localStorage.getItem("input3");
+    this.localStorageValue = this.input1 +  this.input2 + this.input3  + localStorage.getItem("inputValue");
+// ----------------------------------- navbar----------------------------------------------------------
     let labels = document.querySelectorAll(".collapsible-item-label");
     let contents = document.querySelectorAll(".collapsible-item-content");
 
@@ -243,6 +251,7 @@ export default {
         }
       });
     });
+    
   },
 };
 
