@@ -182,15 +182,15 @@
             <div class="row">
                 <div class="col-4">
                     <label for="city" class="f-label">縣市</label>
-                    <input type="text" class="f-text" id="city" placeholder="範例：花蓮縣">
+                    <input type="text" class="f-text" id="city" placeholder="範例：花蓮縣" v-model="city">
                 </div>
                 <div class="col-4">
                     <label for="district" class="f-label">鄉鎮市區</label>
-                    <input type="text" class="f-text" id="district" placeholder="範例：花蓮市">
+                    <input type="text" class="f-text" id="district" placeholder="範例：花蓮市" v-model="district">
                 </div>
                 <div class="col-4">
                     <label for="village" class="f-label">村里</label>
-                    <input type="text" class="f-text" id="village" placeholder="範例：大湖里">
+                    <input type="text" class="f-text" id="village" placeholder="範例：大湖里" v-model="village">
                 </div>
             </div>
             <button type="button" class="savebtn btn-10-s btn-color-green" @click="save1">儲存 </button>
@@ -200,11 +200,11 @@
             <div class="row">
                 <div class="col-6">
                     <label for="household" class="f-label">戶數</label>
-                    <input type="text" class="f-text" id="household" placeholder="範例：1,500">
+                    <input type="text" class="f-text" id="household" placeholder="範例：1,500" v-model="population">
                 </div>
                 <div class="col-6">
                     <label for="population" class="f-label">人口數</label>
-                    <input type="text" class="f-text" id="population" placeholder="範例：3,200">
+                    <input type="text" class="f-text" id="population" placeholder="範例：3,200" v-model="home_num">
                 </div>
             </div>
             <button type="button" class="savebtn btn-10-s btn-color-green" @click="save2">儲存 </button>
@@ -224,7 +224,7 @@
                 </div>
                 <h6><i class="bi bi-image"></i><span id = "fileName"></span></h6>
             </div> -->
-                <picture-cropbanner></picture-cropbanner>
+                <picture-cropbanner @pic="sendpic"></picture-cropbanner>
               </div>
             <button type="button" class="savebtn btn-10-s btn-color-green" @click="save3">儲存 </button>
         </section>
@@ -271,6 +271,7 @@ export default {
         population:'',
         home_num:'',
         file:'',
+        pic:'',
     }
   },
   components: {
@@ -396,20 +397,35 @@ export default {
             
             // formData3.append('ProductImage', input_file.files[0]);
 
-            let formData3 = new FormData();
-            formData3.append('file', this.file);
+        //     let formData3 = new FormData();
+        //     formData3.append('file', this.file);
 
-        axios
-        .post('http://localhost/howlegazaiVue2/public/API/uploadBanner.php', formData3)
+        // axios
+        // .post('http://localhost/howlegazaiVue2/public/API/uploadBanner.php', formData3)
+        // .then(response => {
+        //     // this.jsonData = response.data;
+        //     console.log(response.data);
+        // })
+        // .catch(error => {
+        //     console.log(error);
+        // });
+
+        
+      let formData = new FormData()
+      formData.append('image', this.pic)
+      axios.post('http://localhost/howlegazaiVue2/public/API/uploadBanner.php', formData)
         .then(response => {
-            // this.jsonData = response.data;
-            console.log(response.data);
+          console.log(response.data)
         })
         .catch(error => {
-            console.log(error);
-        });
+          console.log(error)
+        })
 
 
+    },
+    sendpic(data){
+        this.pic = data;
+        
     }
   },
  

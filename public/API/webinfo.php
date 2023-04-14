@@ -16,7 +16,9 @@
     $district = $_POST['district'];
     $village = $_POST['village'];
 
-
+    // echo $city;
+    // echo $district;
+    // echo $village;
     //執行
     $statement = $pdo -> prepare($sql);
 
@@ -25,6 +27,7 @@
     $statement->bindValue(2, $district);
     $statement->bindValue(3, $village);
     $statement->execute();
+
 
     
 ?>

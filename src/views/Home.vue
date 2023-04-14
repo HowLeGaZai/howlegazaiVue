@@ -4,8 +4,13 @@
     <!-- 村里封面照片 -->
     <section class="home-cover">
       <div class="image home_banner">
-        <img src="../assets/img/home_banner.jpg" alt="" />
-        <div class="villagename"><h1>花蓮縣 緯育里</h1></div>
+        <!-- <img src="../assets/img/home_banner.jpg" alt="" /> -->
+        <img :src="homeBanner" alt="" />
+
+        <div class="villagename">
+          <!-- <h1>花蓮縣 緯育里</h1> -->
+          <h1>{{city}} {{town}}</h1>
+          </div>
       </div>
     </section>
 
@@ -389,6 +394,7 @@ import navbar from "./navbar.vue";
 import Footer from "./Footer.vue";
 import NewsListHome from "../components/NewsListHome.vue";
 import ChatTopic from "@/components/ChatTopic.vue";
+// import axios from 'axios';
 
 export default {
   components: {
@@ -445,6 +451,12 @@ export default {
           URL: "#/activity_info",
         },
       ],
+      jsonData: [],
+      jsonDataBanner: [],
+      city:'',
+      district:'',
+      town:'',
+      homeBanner:'',
     };
   },
 
@@ -465,11 +477,56 @@ export default {
           return "tag-cyan";
       }
     },
-   
+    webInfo(){
+      
+      this.city = this.jsonData[this.jsonData.length-1].CITY ;
+      this.district = this.jsonData[this.jsonData.length-1].DISTRICT ;
+      this.town = this.jsonData[this.jsonData.length-1].TOWN ;
+      console.log(this.city);
+
+    },
+    banner(){
+        this.homeBanner = this.jsonDataBanner[this.jsonDataBanner.length-1].BANNER;
+        // console.log('123',this.jsonDataBanner);
+        // console.log('123', this.jsonDataBanner);
+    },
   },
-  
-  mounted(){
-   
+  mounted() {
+     axios
+        .post('http://localhost/howlegazaiVue2/public/API/home.php',{})
+        .then(response => {
+            this.jsonData = response.data;
+            // alert(response.data)
+            console.log(this.jsonData[this.jsonData.length-1].CITY);
+            this.webInfo();
+            // console.log(this.jsonData.length);
+            // console.log(this.jsonData);
+        })
+        .catch(error => {
+            // console.log(error);
+        });
+
+
+      axios
+        .post('http://localhost/howlegazaiVue2/public/API/homeBanner.php',{})
+        .then(response => {
+            this.jsonDataBanner = response.data;
+            // alert(response.data)
+            // console.log(this.jsonDataBanner[this.jsonDataBanner.length-1].BANNER);
+            
+            // console.log(this.jsonData.length);
+            // console.log(this.jsonData);
+        })
+        .catch(error => {
+            // console.log(error);
+        });
+
+        
   },
+  watch:{
+    jsonDataBanner(){
+        this.banner();
+    }
+  }
 };
 </script>

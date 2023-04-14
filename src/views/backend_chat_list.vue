@@ -183,20 +183,25 @@
               <div class="displayflex textalignleft">
                 <div class="marginright20">
                   <label for="selecte" class="f-label">分類</label>
-                  <select name="" id="selecte" class="f-select">
-                    <option value="1">所有話題</option>
-                    <option value="2">美食討論</option>
-                    <option value="3">二手交易</option>
-                    <option value="4">里民閒聊</option>
-                    <option value="5">團購討論</option>
-                    <option value="5">我要抱怨</option>
-                    <option value="5">其他</option>
+                  <select name="" id="selecte" class="f-select" v-model="selectedCategory">
+                    <option value="">所有話題</option>
+                    <option value="美食討論">美食討論</option>
+                    <option value="二手交易">二手交易</option>
+                    <option value="里民閒聊">里民閒聊</option>
+                    <option value="團購討論">團購討論</option>
+                    <option value="我要抱怨">我要抱怨</option>
+                    <option value="其他">其他</option>
                   </select>
                 </div>
-                <div class="marginright20 push-date">
-                  <label for="selecte" class="f-label">發布日期</label>
-                  <input type="text" class="f-text" id="name4" placeholder="">
-                </div>
+                <div>
+                  <label for="date" class="f-label">發布日期</label>
+                  <select name="" id="date" class="f-select" v-model="selectedDate">
+                      <option value="">-選擇-</option>
+                      <option value="new">最新至最舊</option>
+                      <option value="old">最舊至最新 </option>
+                      <!-- <option value="4">審核通過 </option> -->
+                  </select>
+              </div>
                 <!-- <div>
               <label for="selecte" class="f-label">上架狀態</label>
               <select name="" id="selecte" class="f-select">
@@ -223,23 +228,26 @@
                     <td class="bk-chat-state">上架狀態</td>
 
                   </tr>
-                  <tr>
-                    <td>美食</td>
-                    <td>最近吃到超好吃飯糰</td>
-                    <td>2022-01-03</td>
-                    <td>李小明</td>
+                  <tr v-for="item in filteredItems" :key="item.id">
+                    <td>{{ item.category }}</td> <!-- 發布類別 -->
+                    <td>{{ item.title }}</td>   <!-- 標題 -->
+                    <td>{{ item.date }}</td> <!-- 時間 -->
+                    <td>{{ item.user }}</td> <!-- 用戶名稱 -->
+                
+                   
                     <td><button type="button" class="btn-icon" onclick="window.open('#/chat_info', '_blank')">
                         <i class="bi bi-link-45deg btn-font-color-green"></i>
                       </button>
                     </td>
-                    <td><label class="switch">
+                    <td id="togle">
+                      <label class="switch">
                         <input type="checkbox" checked>
                         <span class="slider"></span>
                       </label>
                     </td>
                   </tr>
 
-                  <tr>
+                  <!-- <tr>
                     <td>二手交易</td>
                     <td>小孩已長大，售幼兒可愛包屁衣多款</td>
                     <td>2022-01-03</td>
@@ -352,7 +360,7 @@
                         <span class="slider"></span>
                       </label>
                     </td>
-                  </tr>
+                  </tr> -->
 
 
 
@@ -413,8 +421,38 @@ import Footer from './Footer.vue';
 
 
 export default {
+  data() {
+    return {
+      items: [
+        { id: 1, category: '美食討論',title: '潘家牛肉麵只有2.2星', date: '2022-01-01' , user : '生哥' },
+        { id: 2, category: '二手交易',title: 'JS犀牛書跳樓大拍賣', date: '2022-01-02' , user : '阿薛' },
+        { id: 3, category: '二手交易',title: 'JS犀牛書跳樓亂賣一通', date: '2022-01-02' , user : '阿米'},
+        { id: 4, category: '里民閒聊',title: '明天緯育教室沒開放',  date: '2022-01-03' , user : '阿媛' },
+        { id: 5, category: '團購討論',title: '高雄櫻桃鴨徵人團購',   date: '2022-01-04' ,user : '阿慧'},
+        { id: 6, category: '我要抱怨',title: '後端PHP AJAX 好難',   date: '2022-01-07' , user : '阿妤' },
+        { id: 7, category: '其他',title: '好想幫第一組做團專',   date: '2022-04-14' , user : '實習生阿恩' },
+        // { id: 4, category: '公告',title: '其他網站的新功能正在努力開發中qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq',   date: '2022-01-04' },
+      ],
+      selectedCategory: '',
+      selectedDate: '',
+    }
+  },
   components: {
     backendNavbar, Footer
+  },
+  computed :{
+    filteredItems() {
+      let filteredItems = this.items;
+      if (this.selectedCategory) {
+        filteredItems = filteredItems.filter((item) => item.category === this.selectedCategory);
+      }
+      if (this.selectedDate === 'new') {
+        filteredItems = filteredItems.sort((a, b) => new Date(b.date) - new Date(a.date));
+      } else if (this.selectedDate === 'old') {
+        filteredItems = filteredItems.sort((a, b) => new Date(a.date) - new Date(b.date));
+      }
+      return filteredItems;
+    },
   },
   mounted() {
 

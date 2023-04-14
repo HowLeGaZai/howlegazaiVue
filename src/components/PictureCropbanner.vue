@@ -75,7 +75,8 @@
 </template>
 
 <script>
-import VuePictureCropper, { cropper } from 'vue-picture-cropper'
+import VuePictureCropper, { cropper } from 'vue-picture-cropper';
+import axios from 'axios';
 
 export default{
   components: {
@@ -116,13 +117,20 @@ export default{
       reader.onload = () => {
         // Update the picture source of the `img` prop
         this.pic = String(reader.result)
+        
         // Show the modal
         this.isShowModal = true
         // Clear selected files of input element
         if (!this.$refs.uploadInput) return
         this.$refs.uploadInput.value = ''
       }
+      
+      // this.sendData();
     }
+
+    
+    
+
     },
 
     
@@ -133,11 +141,18 @@ export default{
         if (!cropper) return;
         const base64 = cropper.getDataURL();
         const blob = await cropper.getBlob();
+        console.log(base64);
+        console.log('分隔線');
+        console.log(blob);
         if (!blob) return;
         console.log({ base64, blob });
         this.result.dataURL = base64;
+        
         this.result.blobURL = URL.createObjectURL(blob);;
         this.isShowModal = false;
+        // console.log(this.result.dataURL);
+        // alert(this.result.dataURL);
+        this.sendData();
         },
     
     /**
@@ -160,6 +175,11 @@ export default{
     ready() {
       console.log('Cropper is ready.')
     },
+
+    sendData(){
+        this.$emit('pic',this.pic)
+    },
+    
   },
 }
 </script>
