@@ -66,8 +66,32 @@ export default {
         toolbar: this.toolbar,
         quickbars_insert_toolbar: false,
         branding: false,
-        images_upload_url: '/demo/upimg.php',
-        images_upload_base_path: '/demo',
+        images_upload_url: 'https://tibamef2e.com/tgd104/g1/tinymce_uploadimg.php',
+        images_upload_base_path: 'https://tibamef2e.com/tgd104/g1/dist/img/userupload',
+        images_upload_credentials : true,
+    //     images_upload_handler: function (blobInfo, succFun, failFun) {
+    //     var xhr, formData;
+    //     var file = blobInfo.blob();//转化为易于理解的file对象
+    //     xhr = new XMLHttpRequest();
+    //     xhr.withCredentials = false;
+    //     xhr.open('POST', 'https://tibamef2e.com/tgd104/g1/tinymce_uploadimg.php');
+    //     xhr.onload = function() {
+    //         var json;
+    //         if (xhr.status != 200) {
+    //             failFun('HTTP Error: ' + xhr.status);
+    //             return;
+    //         }
+    //         json = JSON.parse(xhr.responseText);
+    //         if (!json || typeof json.location != 'string') {
+    //             failFun('Invalid JSON: ' + xhr.responseText);
+    //             return;
+    //         }
+    //         succFun(json.location);
+    //     };
+    //     formData = new FormData();
+    //     formData.append('file', file, file.name );//此处与源文档不一样
+    //     xhr.send(formData);
+    // }
       },
       editorValue: this.modelValue,
     };
@@ -104,3 +128,24 @@ export default {
 },
 };
 </script>
+
+<style>
+
+.tox .tox-button{
+  background-color: #27b096;
+  border-color: #27b096;
+}
+.tox .tox-button--secondary{
+  background-color: #f0f0f0;
+  border-color: #f0f0f0;
+}
+.tox .tox-button--naked{
+  background-color: transparent;
+  border-color: transparent;
+}
+.tox .tox-dialog__body-nav-item--active{
+  color: #27b096;
+  border-color: #27b096;
+}
+
+</style>
