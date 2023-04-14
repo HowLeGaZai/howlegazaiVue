@@ -1,5 +1,5 @@
 <template>
-  <navbar :isLoggedIn="isLoggedIn"></navbar>
+  <navbar></navbar>
   <main class="home">
     <!-- 村里封面照片 -->
     <section class="home-cover">
@@ -406,7 +406,7 @@ export default {
   },
   data() {
     return {
-      isLoggedIn: false,
+      // isLoggedIn: false,
       eventCards: [
         {
           BANNER: 0,
@@ -447,17 +447,7 @@ export default {
       ],
     };
   },
-  beforeCreate() {
-    axios.post('http://localhost/howlegazaiVue/public/API/checklogin.php')
-      .then(response => {
-        console.log(response.data);
-        // this.isLoggedIn = JSON.parse(response.data.isLoggedIn); // 根據後端回應更新isLoggedIn的值
-        // console.log(response.data);
-      })
-      .catch(error => {
-        console.error(error);
-      });
-  },
+
   methods: {
     addTagClass(i) {
       switch (i) {
@@ -475,8 +465,11 @@ export default {
           return "tag-cyan";
       }
     },
+   
   },
   
-  mounted() {},
+  mounted(){
+   
+  },
 };
 </script>

@@ -47,7 +47,7 @@
           <ul v-if="isLoggedIn">
             <li>
               <!-- 會員姓名 -->
-              <p>歡迎 <span>Edison Chang</span></p>
+              <p>歡迎 <span>{{userName}}</span></p>
               <!-- 會員大頭貼 -->
               <a href="#" class="userbtn tooltip" id="userBtn">
                 <img src="../assets/img/user_pic.png" alt="" class="user_pic" />
@@ -107,21 +107,52 @@
 export default {
     data () {
       return {
-        userName: "Edison Chang",
+        isLoggedIn: false,
+        userName: "",
         }
     },
-    props: {
-      isLoggedIn: { 
-        type: Boolean,
-        required: true,
-      }
-    },
+    // props: {
+    //   isLoggedIn: { 
+    //     type: Boolean,
+    //     required: true,
+    //   }
+    // },
    methods: {
       goToLogin() {
         this.$router.push('login');
-      }
+      },
+       getCookieValue(cookieName) {
+        // 讀取指定名稱的 Cookie 值
+        const cookieStr = decodeURIComponent(document.cookie);
+        const cookies = cookieStr.split('; ');
+        for (let i = 0; i < cookies.length; i++) {
+          const cookie = cookies[i].split('=');
+          if (cookie[0] === cookieName) {
+            return cookie[1] || null;
+          }
+        }
+        return null;
+      },
     },
     mounted(){
+      const cookieValue = this.getCookieValue('帳號');
+      const uusername = this.getCookieValue('姓名')
+    
+        // 判斷 Cookie 是否存在
+        if (cookieValue !== null) {
+          this.isLoggedIn = true;
+          this.userName = uusername;
+          // Cookie 存在，執行相應的處理
+          // console.log('Cookie 存在，值為: ' + cookieValue);
+          // 在這裡執行 home.vue 中的相應函式或處理
+        } else {
+          // Cookie 不存在，執行相應的處理
+          // console.log('Cookie 不存在');
+          this.isLoggedIn = false;
+          // 在這裡執行 home.vue 中的相應函式或處理
+        };
+
+
       let burgerBtn = document.getElementById("burger");
       let mainMenu = document.getElementById("main-Menu");
       let dropList = document.getElementById("dropdown-menu");

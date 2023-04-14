@@ -45,6 +45,7 @@ import axios from 'axios';
 import navbar from './navbar.vue';
 import Footer from './Footer.vue';
 
+
 export default {
     components: {
     Footer,
@@ -53,10 +54,16 @@ export default {
   data() {
     return {
       isLoggedIn: false,
+      jsonData: null,
     };
   },
+  
   methods:{
     doSubmit() {
+
+        // let account = this.$refs.account.value;
+        // let pwd = this.$refs.pwd.value;
+
         if (this.$refs.account.value == '') {
           
             alert("請填寫[帳號]");
@@ -73,23 +80,31 @@ export default {
             account: this.$refs.account.value,
             pwd: this.$refs.pwd.value
         })
-        .then(function (response) {
-          // console.log(response.data)
-            if (response.data === 'Y') {
-                alert('登入成功');
-                // console.log(response.data);
-                location.href = '#/';
-            } else {
-                alert('帳號或密碼錯誤');
-                // console.log('錯誤',response.data);
-            }
+        .then((response) => {
+          if (response.data === 'N') {
+            alert('帳號或密碼錯誤');
+          } else {
+            alert('登入成功');
+            location.href = '#/';
+            // this.jsonData = response.data;
+            let login_name = response.data[0][3]; 
+            let login_account = response.data[0][6]; 
+            let login_nickname = response.data[0][11]; 
+            let login_pic = response.data[0][4]; 
+            document.cookie="姓名=" + login_name;
+            document.cookie="帳號=" + login_account;
+            document.cookie="綽號=" + login_nickname;
+            document.cookie="圖檔=" + login_pic;
+          }
         })
-        .catch(function (error) {
-            alert("發生錯誤: " + error.response.status);
+         .catch(error => {
+            console.log(error);
         });
-    }
+    },
+
   },
   mounted() {
+
       let labels = document.querySelectorAll('.collapsible-item-label');
       let contents = document.querySelectorAll('.collapsible-item-content');
 
