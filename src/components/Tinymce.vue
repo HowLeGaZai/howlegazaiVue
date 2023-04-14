@@ -3,6 +3,7 @@
 </template>
 
 <script>
+
 import { defineProps, defineEmits } from 'vue';
 import Editor from '@tinymce/tinymce-vue';
 import tinymce from 'tinymce/tinymce';
@@ -21,6 +22,7 @@ import 'tinymce/plugins/emoticons/js/emojis.js';
 import 'tinymce/plugins/table';
 import 'tinymce/plugins/quickbars';
 import 'tinymce/plugins/image';
+import 'tinymce/plugins/code';
 
 // 語言包
 import 'tinymce-i18n/langs5/zh_TW.js';
@@ -34,21 +36,22 @@ export default {
     },
     plugins: {
       type: [String, Array],
-      default: 'quickbars emoticons table image',
+      default: 'quickbars emoticons table image code',
     },
     toolbar: {
       type: [String, Array],
       default:
-        ' bold italic underline strikethrough | fontsizeselect | forecolor backcolor | alignleft aligncenter alignright alignjustify|bullist numlist |outdent indent blockquote | undo redo | axupimgs | table | image | emoticons | removeformat',
+        ' bold italic underline strikethrough | fontsizeselect | forecolor backcolor | alignleft aligncenter alignright alignjustify|bullist numlist |outdent indent blockquote | undo redo | axupimgs | table | image | emoticons | code | removeformat',
     },
   },
-  emits: ['update:modelValue'],
+  emits: ['update:modelValue',],
   components: {
     Editor,
   },
   data() {
     return {
       init: {
+        selector: '#textarea',
         language: 'zh_TW',
         height: 500,
         menubar: false,
@@ -77,8 +80,27 @@ export default {
       this.$emit('update:modelValue', newValue);
     },
   },
-  methods:{
+  methods: {
+    // click(){
+    //   console.log('click')
+    //   this.$emit('tovalue')
+    // }
+    updateEditorValue(editorValue) {
+    },
 
-  }
+    sendEditorValue() {
+      this.$emit("getEditorValue", this.$refs.editorValue);
+    },
+
+  
+  // logEditorValue() {
+  //   this.editorValue.getContent();
+  //   console.log(this.editorValue);
+  // },
+  // emit(){
+  //   console.log('emit-text');
+  //   this.$emit('emit-text', this.text);
+  // }
+},
 };
 </script>

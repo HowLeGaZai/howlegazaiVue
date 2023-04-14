@@ -44,10 +44,7 @@
         </div>
 
         <div class="rightnav">
-          <button type="button" class="btn rad-2 font-1 color-green">
-            登入 / 註冊
-          </button>
-          <ul>
+          <ul v-if="isLoggedIn">
             <li>
               <!-- 會員姓名 -->
               <p>歡迎 <span>Edison Chang</span></p>
@@ -62,7 +59,7 @@
                   </li>
                   <li class="user">
                     <!-- 會員姓名 -->
-                    <p><span>Edison Chang</span></p>
+                    <p><span>{{userName}}</span></p>
                     <!-- 會員大頭貼 -->
                     <a href="#" class="userbtn">
                       <img src="../assets/img/user_pic.png" alt="" class="user_pic" />
@@ -97,6 +94,9 @@
               </div>
             </li>
           </ul>
+           <button v-else type="button" @click="goToLogin" class="btn rad-2 font-1 color-green">
+            登入 / 註冊
+          </button>
         </div>
       </nav>
     </header>
@@ -105,6 +105,22 @@
 <script>
 
 export default {
+    data () {
+      return {
+        userName: "Edison Chang",
+        }
+    },
+    props: {
+      isLoggedIn: { 
+        type: Boolean,
+        required: true,
+      }
+    },
+   methods: {
+      goToLogin() {
+        this.$router.push('login');
+      }
+    },
     mounted(){
       let burgerBtn = document.getElementById("burger");
       let mainMenu = document.getElementById("main-Menu");
@@ -131,6 +147,38 @@ export default {
         dropBtn.classList.toggle("onoff");
       };
 
+      // userBtn.onclick = function (e) {
+      //   accountMenu.classList.add("accountshow");
+      //   if (window.innerWidth > 1400) {
+      //     userBtn.href = "#/account_user"; // 修改 href 屬性值為 #
+      //   }else{
+      //     e.preventDefault();
+      //   }
+      // };
+
+      // menuClose.onclick = function () {
+      //   accountMenu.classList.remove("accountshow");
+      // };
+
+      // 該頁面時 nav 文字為綠色
+      let navLinks = document.querySelectorAll('.a-black');
+
+      navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+          navLinks.forEach(link => link.classList.remove('active'));
+          this.classList.add('active');
+        });
+      });
+
+    },
+
+    updated(){
+    
+      let userBtn = document.getElementById("userBtn");
+    
+      let accountMenu = document.getElementById("accountMenu");
+      let menuClose = document.getElementById("menuClose");
+
       userBtn.onclick = function (e) {
         accountMenu.classList.add("accountshow");
         if (window.innerWidth > 1400) {
@@ -153,7 +201,6 @@ export default {
           this.classList.add('active');
         });
       });
-
     },
 }
 </script>

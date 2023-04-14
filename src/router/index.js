@@ -68,6 +68,12 @@ const routes = [
     component:() => import(/* webpackChunkName: "about" */ '../views/chat_info.vue')
   },
   {
+    // 前台 討論區 文章預覽頁
+    path: '/chat_info/preview',
+    name: 'chat_preview',
+    component:() => import(/* webpackChunkName: "about" */ '../views/chat_info_preview.vue')
+  },
+  {
     // 前台 活動總覽頁
     path: '/activity',
     name: 'activity',

@@ -19,8 +19,9 @@
       </div>
       <div class="tag tag-orange">美食</div>
     </div>
-    <div class="chat-article">
-      <!-- img的容器設定為原大小的95% -->
+    <!-- <TinymceContent ref="TinymceContent"></TinymceContent> -->
+    <!-- <div class="chat-article"> -->
+      <!-- img的容器設定為原大小的95%
       <p class="chat-article-content">
         如果你喜歡吃方便又美味的食物，那麼7-11的炙燒雪花牛御飯糰絕對是一個值得推薦的選擇。這款美食融合了經典的日式御飯糰和台灣炙燒牛肉的口味，簡單便捷卻又不失美味。炙燒雪花牛御飯糰的製作非常獨特。先用炭火烤焦牛肉的外層，再切成薄片。然後把軟糯的米飯和醬汁混合後，包裹著烤好的牛肉片，讓每一口都充滿了口感和層次。
         <br>
@@ -30,8 +31,10 @@
       </p>
       <div class="image chat-img">
         <img src="../assets/img/chat-pic.png" alt="">
-      </div>
-    </div>
+      </div> -->
+
+      
+    <!-- </div> -->
 
     <chat-comment   @message="addComment"></chat-comment>
 <!-- =========================================== -->
@@ -173,8 +176,13 @@ export default {
           // console.log(message);
           this.data = data;
       },
-     
     },
+
+    mounted() {
+    // if (this.$route.query.content) {
+    //   this.$refs.tinymcecontent.setContent(this.$route.query.content)
+    // }
+  },
 
     
 }
