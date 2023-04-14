@@ -42,8 +42,8 @@
               <template v-for="(time,index) in data" :key="index">
                 
               
-                <button type="button" class="btn-m btn-color-white timeslot "  :value="time.time" @click="clickActive" v-if="time.time === '10:00-10:59' " >{{time.time}}</button>
-                <button type="button" class="btn-m btn-color-white timeslot"  :value="time.time" @click="clickActive" v-else>{{time.time}}</button>
+                <!-- <button type="button" :class="time.value"  :value="time.time" @click="clickActive" v-if="time.time === '10:00-10:59' " >{{time.time}}</button> -->
+                <button type="button" :class="time.value"  :value="time.time" @click="clickActive" >{{time.time}}</button>
 <!-- <button type="button" class="btn-m btn-color-white timeslot" v-else :value="time.time" >{{time.time}}</button> -->
               </template>
               
@@ -183,8 +183,14 @@ export default {
         modules: [Navigation],
       };
     },
+    created(){
+      
+
+    },
   
   mounted() {
+this.getData();
+    // console.log('abcdef',this.jsonData);
     $('#resizable').resizable({});
     $('#datepicker').datepicker({
       monthNames: [ "一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月" ],
@@ -226,34 +232,19 @@ export default {
     //     sessionStorage.setItem("end", end);
 
 
-        
+   
+        console.log('123',this.jsonData);
 
     //   });
     // };
-   
-const timeRange = '8:00-21:59';
-  // console.log(timeRange);
-  const [startTime, endTime] = timeRange.split('-')
-  // console.log(startHour);
-  // console.log(endHour);
+ 
+// console.log('預約的時段有', orderData);
+  
 
-  let startHour  = startTime.split(':')[0].trim();
-  let endHour = endTime.split(':')[0].trim();
-  // console.log(startHour);
-  const dataList= [];
-
-  for (let h = Number(startHour); h <= Number(endHour); h++) {
-    // console.log(h);
-    const time = `${h}:00-${h}:59` // 產生時間範圍字串，例如 '8:00-8:59'
-    // console.log(time);
-    dataList.push({ time });
-  }
-
-  // console.log(dataList);
-  this.data = dataList;
+  
 
  
-
+  // console.log(this.jsonData);
 
 
 
@@ -265,18 +256,6 @@ const timeRange = '8:00-21:59';
 
 
 
-   axios
-    //  htdocs的環境下測試
-     .get('http://localhost/howlegazaiVue2/public/API/spaceAfterOrder.php')
-        
-        .then(response => {
-            this.jsonData = response.data;
-            console.log(response.data);
-        })
-        .catch(error => {
-            // console.log(error);
-        });
-
 
 
 
@@ -286,7 +265,63 @@ const timeRange = '8:00-21:59';
 
   },
   methods:{
+async getData() {
+    await axios
+          //  htdocs的環境下測試
+          .get('http://localhost/howlegazaiVue2/public/API/spaceAfterOrder.php')
+              
+              .then(response => {
+                  this.jsonData = response.data;
+                  
+                  // console.log(this.jsonData);
+              })
+              .catch(error => {
+                  // console.log(error);
+              });
+    // console.log('abc',this.jsonData);
 
+    const timeRange = '8:00-21:59';
+    // console.log(timeRange);
+    const [startTime, endTime] = timeRange.split('-')
+    // console.log(startHour);
+    // console.log(endHour);
+
+    let startHour  = startTime.split(':')[0].trim();
+    let endHour = endTime.split(':')[0].trim();
+    // console.log(startHour);
+    const dataList= [];
+    const dataList_about =[];
+    for (let h = Number(startHour); h <= Number(endHour); h++) {
+      // console.log(h);
+      const time = `${h}:00-${h}:59` // 產生時間範圍字串，例如 '8:00-8:59'
+      const time_about = `${h}:00:00-${h}:59:00`
+      // console.log(time);
+      const value ='btn-m btn-color-white timeslot'
+      dataList.push({ time,value });
+      dataList_about.push(time_about);
+    }
+
+    console.log('123456',dataList_about);
+
+    for(let i=0;i<this.jsonData.length;i++){
+      // console.log('i',this.jsonData[i]);
+        for(let j =0; j<dataList_about.length;j++){
+          // console.log('j',dataList_about[j])
+          // if(this.jsonData[i] == dataList_about[j]){
+          //     console.log('有預約時段',dataList_about[j]);
+          // }else{
+
+          // }
+        }
+        
+
+    }
+
+    // console.log(dataList);
+    this.data = dataList;
+
+
+},
     
     clickActive(event){
       const button = event.target;
@@ -309,10 +344,19 @@ const timeRange = '8:00-21:59';
         sessionStorage.setItem("start", start);
         sessionStorage.setItem("end", end);
 
+
       
     }
-  }
-  
+  },
+   computed: {
+    isInOrder(item) {
+      return this.data.time.includes(item);
+    }
+  },
+
+   updated(){
+  },
+
 
   
   
