@@ -207,7 +207,7 @@
                       <!-- <td>編輯</td> -->
                       <td>刪除</td>
                     </tr>
-                    <tr v-for="(account,index) in jsonData" :key="index">
+                    <tr v-for="(account,index) in jsonDatax" :key="index">
                       <td>{{account[0]}}</td>
                       <td>{{account[1]}}</td>
                       <td>{{account[2]}}</td>
@@ -526,7 +526,7 @@ export default {
             console.log(response.data);
         })
         .catch(error => {
-            console.log(error);
+            // console.log(error);
         });
 
     //  ＝＝＝＝＝＝側欄選單的JS end＝＝＝＝＝＝

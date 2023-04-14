@@ -182,17 +182,17 @@
                     <div class="row">
                         <div class="col-12 col-ml-6">
                             <label for="lastname" class="f-label">姓</label>
-                            <input type="text" class="f-text" id="lastname" placeholder="範例：王">
+                            <input type="text" class="f-text" id="lastname" placeholder="範例：王" v-model="lastname">
                         </div>
                         <div class="col-12 col-ml-6">
                             <label for="firstname" class="f-label">名字</label>
-                            <input type="text" class="f-text" id="firstname" placeholder="範例：小明">
+                            <input type="text" class="f-text" id="firstname" placeholder="範例：小明" v-model="firstname">
                         </div>
                         <div class="col-12 col-ml-6">
                             <label for="singlechoice" class="f-label">性別</label>
                             <div class="gender">
                                 <label class="f-checkbox">男
-                                    <input type="radio" name="singlechoice">
+                                    <input type="radio" name="singlechoice" v-model="gender">
                                     <span class="checkmark"></span>
                                 </label>
                                 <label class="f-checkbox">女

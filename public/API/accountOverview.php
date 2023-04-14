@@ -19,7 +19,7 @@
     //抓出全部且依照順序封裝成一個二維陣列
     $data = $statement->fetchAll();
 
-    echo json_encode($data)
+    echo json_encode($data);
 
 
 ?>

@@ -46,26 +46,26 @@
                     <tr class="row">
                         <td class="col-12">
                             <label for="name" class="f-label">姓名</label>
-                            <input type="text" class="f-text" id="name">
+                            <input type="text" class="f-text" id="name" v-model="name">
                         </td>
                         <td class="col-12">
                             <label for="inputState" class="f-label">稱謂</label>
-                            <select id="inputState" class="f-select">
+                            <select id="inputState" class="f-select" v-model="inputState">
                             <option selected>先生</option>
                             <option>女士</option>
                             </select>
                         </td>
                         <td class="col-12">
                             <label for="phone" class="f-label">電話</label>
-                            <input type="text" class="f-text" id="phone">
+                            <input type="text" class="f-text" id="phone" v-model="phone">
                         </td>
                         <td class="col-12">
                             <label for="mail" class="f-label"> Email</label>
-                            <input type="email" class="f-text" id="mail">
+                            <input type="email" class="f-text" id="mail" v-model="mail">
                         </td>
                         <td class="col-12">
                             <label for="mail" class="f-label"> 申請用途</label>
-                            <textarea name="" id="tarea" cols="30" rows="10" class="f-text" placeholder="請填寫申請用途"></textarea>
+                            <textarea v-model="apply" name="" id="tarea" cols="30" rows="10" class="f-text" placeholder="請填寫申請用途" ></textarea>
                         </td>
                     </tr>
                 </tbody>
@@ -79,9 +79,9 @@
           <router-link to="/space_info" custom v-slot="{ navigate }">
                           <button class="btn-m btn-color-gray" @click="navigate" role="link">返回上一步</button>
             </router-link>
-             <router-link to="/space_reserve_check" custom v-slot="{ navigate }">
-                          <button class="btn-m btn-color-green" @click="navigate" role="link">填寫完成，下一步</button>
-            </router-link>
+             <!-- <router-link to="/space_reserve_check" custom v-slot="{ navigate }"> -->
+                          <button class="btn-m btn-color-green" @click="navigate2" >填寫完成，下一步</button>
+            <!-- </router-link> -->
         <!-- <button type="button" class="btn-m btn-color-gray" onclick="location.href='/space_info'">返回上一步</button>
         <button type="button" class="btn-m btn-color-green" onclick="location.href='/space_reserve_check'">填寫完成，下一步</button> -->
       </div>
@@ -93,12 +93,24 @@
 
 import navbar from './navbar.vue';
 import Footer from './Footer.vue';
+import axios from 'axios';
 
 export default {
   data () {
     return {
         date:'',
         time:'',
+        onlydate:'',
+        start:'',
+        end:'',
+
+        // 申請資料
+        name:'',
+        inputState:'', //稱謂
+        phone:'',
+        mail:'',
+        apply:'',
+        
     }
   },  
   components: {
@@ -107,6 +119,37 @@ export default {
     mounted(){
          this.date = sessionStorage.getItem('date');
          this.time = sessionStorage.getItem('time');
+         this.start = sessionStorage.getItem('start');
+         this.end = sessionStorage.getItem('end');
+         this.onlydate = sessionStorage.getItem('onlydate');
+
+         
+    },
+    methods:{
+        navigate2(){
+
+            const formData = new FormData()
+            formData.append('date', this.onlydate)
+            formData.append('start', this.start)
+            formData.append('end', this.end)
+            formData.append('APPLY_NAME', this.name)
+            formData.append('APPLY_TITLE', this.inputState)
+            formData.append('APPLY_MAIL', this.mail)
+            formData.append('APPLY_PHONE', this.phone)
+            formData.append('PURPOSE', this.apply)
+
+            axios
+            .post('http://localhost/howlegazaiVue2/public/API/spaceInfo.php', formData)
+            .then(response => {
+                // this.jsonData = response.data;
+                console.log(response.data);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+            this.$router.push('/space_reserve_check')
+        },
+        
     }
 }
 </script>

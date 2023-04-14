@@ -39,8 +39,15 @@
           <div class="selected" id="selected">
             <h5><span class="selectedD">-請先選擇日期-</span></h5>
             <div class="timepick">
-                <button type="button" class="btn-m btn-color-white timeslot" value="08:00 - 08:59">08:00 - 08:59</button>
-                <button type="button" class="btn-m btn-color-white timeslot" value="09:00 - 09:59">09:00 - 09:59</button>
+              <template v-for="(time,index) in data" :key="index">
+                
+              
+                <!-- <button type="button" :class="time.value"  :value="time.time" @click="clickActive" v-if="time.time === '10:00-10:59' " >{{time.time}}</button> -->
+                <button type="button" :class="time.value"  :value="time.time" @click="clickActive" >{{time.time}}</button>
+<!-- <button type="button" class="btn-m btn-color-white timeslot" v-else :value="time.time" >{{time.time}}</button> -->
+              </template>
+              
+                <!-- <button type="button" class="btn-m btn-color-white timeslot" value="09:00 - 09:59">09:00 - 09:59</button>
                 <button type="button" class="btn-m btn-color-white timeslot" value="10:00 - 10:59">10:00 - 10:59</button>
                 <button type="button" class="btn-m btn-color-white timeslot" value="11:00 - 11:59">11:00 - 11:59</button>
                 <button type="button" class="btn-m btn-color-white timeslot" value="12:00 - 12:59">12:00 - 12:59</button>
@@ -52,7 +59,7 @@
                 <button type="button" class="btn-m btn-color-white timeslot" value="18:00 - 18:59">18:00 - 18:59</button>
                 <button type="button" class="btn-m btn-color-white timeslot" value="19:00 - 19:59">19:00 - 19:59</button>
                 <button type="button" class="btn-m btn-color-white timeslot" value="20:00 - 20:59">20:00 - 20:59</button>
-                <button type="button" class="btn-m btn-color-white timeslot" value="21:00 - 21:59">21:00 - 21:59</button>
+                <button type="button" class="btn-m btn-color-white timeslot" value="21:00 - 21:59">21:00 - 21:59</button> -->
             </div>
           </div>
         </div>
@@ -134,11 +141,15 @@ import 'jquery-ui-dist/jquery-ui'
 import 'jquery-ui-dist/jquery-ui.min.css'
 import navbar from './navbar.vue';
 import Footer from './Footer.vue';
+import axios from 'axios';
 
 export default {
   name: 'HelloWorld',
   data () {
     return {
+      jsonData:[],
+      timeRanges:[],
+      data:[],
       spaces: 
               {
               "ID": "1",
@@ -165,14 +176,21 @@ export default {
       SwiperSlide,
       navbar,
       Footer,
+      
     },
     setup() {
       return {
         modules: [Navigation],
       };
     },
+    created(){
+      
+
+    },
   
   mounted() {
+this.getData();
+    // console.log('abcdef',this.jsonData);
     $('#resizable').resizable({});
     $('#datepicker').datepicker({
       monthNames: [ "一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月" ],
@@ -188,23 +206,161 @@ export default {
         
         $('.selectedD').html(`日期:&nbsp;` + selected + `&nbsp;(` + dayOfWeekText + `)`);
         sessionStorage.setItem("date", selected + `(` + dayOfWeekText + `)`);
+        sessionStorage.setItem("onlydate", selected );
       }
     });
-    var btnContainer = document.getElementById("selected");
-    var btns = btnContainer.getElementsByClassName("timeslot");
+    // var btnContainer = document.getElementById("selected");
+    // var btns = btnContainer.getElementsByClassName("timeslot");
 
-    for (var i = 0; i < btns.length; i++) {
-      btns[i].addEventListener("click", function() {
-        var selectedtime = this.value;
-        var current = document.getElementsByClassName("active");
+    // console.log(btns);
+
+    // for (var i = 0; i < btns.length; i++) {
+    //   btns[i].addEventListener("click", function() {
+    //     var selectedtime = this.value;
+    //     // console.log(this.value);
+    //     var current = document.getElementsByClassName("active");
         
-        if (current.length > 0) {
-          current[0].className = current[0].className.replace(" active", "");
+    //     if (current.length > 0) {
+    //       current[0].className = current[0].className.replace("active", "");
+    //     }
+    //     this.className += " active";
+    //     sessionStorage.setItem("time", selectedtime);
+
+    //     const timeStr = selectedtime;
+    //     const [start, end] = timeStr.split(' - ');
+    //     sessionStorage.setItem("start", start);
+    //     sessionStorage.setItem("end", end);
+
+
+   
+        console.log('123',this.jsonData);
+
+    //   });
+    // };
+ 
+// console.log('預約的時段有', orderData);
+  
+
+  
+
+ 
+  // console.log(this.jsonData);
+
+
+
+// filteredData.forEach(data => {
+//   data.class = 'btn-color-gray'
+// })
+ 
+
+
+
+
+
+
+
+    
+
+  
+
+  },
+  methods:{
+async getData() {
+    await axios
+          //  htdocs的環境下測試
+          .get('http://localhost/howlegazaiVue2/public/API/spaceAfterOrder.php')
+              
+              .then(response => {
+                  this.jsonData = response.data;
+                  
+                  // console.log(this.jsonData);
+              })
+              .catch(error => {
+                  // console.log(error);
+              });
+    // console.log('abc',this.jsonData);
+
+    const timeRange = '8:00-21:59';
+    // console.log(timeRange);
+    const [startTime, endTime] = timeRange.split('-')
+    // console.log(startHour);
+    // console.log(endHour);
+
+    let startHour  = startTime.split(':')[0].trim();
+    let endHour = endTime.split(':')[0].trim();
+    // console.log(startHour);
+    const dataList= [];
+    const dataList_about =[];
+    for (let h = Number(startHour); h <= Number(endHour); h++) {
+      // console.log(h);
+      const time = `${h}:00-${h}:59` // 產生時間範圍字串，例如 '8:00-8:59'
+      
+     
+      // console.log(time);
+      const value ='btn-m btn-color-white timeslot'
+      dataList.push({ time,value });
+      
+    }
+// dataList_about.push(time_about);
+    console.log('123456',dataList_about);
+
+    for(let i=0;i<this.jsonData.length;i++){
+      console.log('i',this.jsonData[i][0]);
+        for(let j =0; j<dataList_about.length;j++){
+          console.log('j',dataList_about[j])
+          // if(this.jsonData[i] == dataList_about[j]){
+          //     console.log('有預約時段',dataList_about[j]);
+          // }else{
+
+          // }
         }
-        this.className += " active";
-        sessionStorage.setItem("time", selectedtime);
-      });
-    };  
- } 
+        
+
+    }
+
+    // console.log(dataList);
+    this.data = dataList;
+
+
+},
+    
+    clickActive(event){
+      const button = event.target;
+      var selectedtime = button.value;
+      console.log(selectedtime);
+      var current = document.getElementsByClassName("active");
+
+      if (current.length > 0) {
+          current[0].className = current[0].className.replace("active", "");
+        }
+
+      
+      
+      button.className += " active";
+
+      sessionStorage.setItem("time", selectedtime);
+
+        const timeStr = selectedtime;
+        const [start, end] = timeStr.split('-');
+        sessionStorage.setItem("start", start);
+        sessionStorage.setItem("end", end);
+
+
+      
+    }
+  },
+   computed: {
+    isInOrder(item) {
+      return this.data.time.includes(item);
+    }
+  },
+
+   updated(){
+  },
+
+
+  
+  
 }
 </script>
+
