@@ -4,11 +4,10 @@
   <main class="news_page">
     <h1>最新消息</h1>
     <div class="search-bar">
-      <input type="text" for="search" v-model.lazy.trim="searchNews" class="f-text f-round" placeholder=""
+      <input type="text"  v-model.lazy.trim="searchNews" class="f-text f-round" placeholder=""
         style="font-family:bootstrap-icons"/>
 
-
-      <button class="btn-m btn-color-green">搜尋</button>
+      <button class="btn-m btn-color-green" @click="postsearch">搜尋</button>
     </div>
     <div class="desktop-filter" id="news-desktop-filter">
       <div class="tag tag-btn tag-main tag-btn-selected">全部消息</div>
@@ -79,9 +78,17 @@ import Footer from './Footer.vue';
 import NewsList from '../components/NewsList.vue';
 
 export default {
+  components: {
+    navbar,
+    Footer,
+    NewsList
+
+  },
+
   data() {
     return {
-      searchNews: '',
+      searchNews: '', // input的搜尋輸入內容
+      NewsData:[],// 搜尋結果
       news: [
         {
           "CATEGORY": "公告",
@@ -128,9 +135,21 @@ export default {
       }
     },
 
+    //搜尋最新消息
     postsearch(){
-      const searchnews = new FormData();
-      FormData.append('search',this.searchNews)
+
+      const formdata = new FormData()
+      formdata.append('searchNews',this.searchNew) 
+      axios.post('http://localhost/howlegazaiVue2/public/API/search_news.php', formdata
+        // searchNews:this.searchNews
+      )
+      .then(response => {
+        console.log(response.data);
+        // console.log('123');
+       })
+       .catch(error => {
+         console.log(error);
+       });
 
 
 
@@ -163,6 +182,8 @@ export default {
         this.className += " tag-btn-selected";
       });
     };
+
+    this.postsearch();
   }
 
 
