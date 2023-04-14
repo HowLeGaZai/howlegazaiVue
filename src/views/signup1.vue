@@ -25,21 +25,21 @@
             <div class="txt_field col-sm-12 col-sm-4">
               <label for="selecte" class="f-label">縣/市</label>
               <select name="" id="selecte" class="f-select" v-model="input1" >
-                  <option value="花蓮縣">{{ input1  }}  </option>
+                  <option value="">{{ input1  }}花蓮縣</option>
               </select>
             </div>
       
             <div class="txt_field col-sm-12 col-sm-4">
               <label for="selecte" class="f-label">鄉/鎮/市/區</label>
               <select name="" id="selecte" class="f-select" v-model="input2">
-                  <option value="國安鄉">{{ input2 }}</option>
+                  <option value="">{{ input2 }}國安鄉</option>
               </select>
             </div>
           
             <div class="txt_field col-sm-12 col-sm-4">
               <label for="selecte" class="f-label">村里</label>
               <select name="" id="selecte" class="f-select" v-model="input3">
-                  <option value="大湖里">{{ input3 }}</option>
+                  <option value="">{{ input3 }}大湖里</option>
               </select>
             </div>
 
@@ -89,7 +89,7 @@
   <script>
   import navbar from "./navbar.vue";
   import Footer from "./Footer.vue";
-  import { ref } from 'vue';
+  // import { ref } from 'vue';
 
 
   export default {

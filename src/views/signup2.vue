@@ -45,6 +45,9 @@
                       placeholder="請輸入帳號"
                       required
                       v-model="account"
+                      onpaste="return false" ondragenter="return false"
+                      style="ime-mode:disabled"
+                      
                     />
                   </div>
 
@@ -151,7 +154,7 @@
                   
                     
                 <!-- <router-link to="./login">  -->
-                    <button type="button" class="btn-m btn-color-green" @click="submitForm">
+                    <button type="button" class="btn-m btn-color-green" @click="submitForm" >
                       送出
                     </button>
                   <!-- </router-link> -->
