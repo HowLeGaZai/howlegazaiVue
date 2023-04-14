@@ -1,6 +1,6 @@
 <template>
 
-<navbar></navbar>
+<navbar :isLoggedIn="isLoggedIn"></navbar>
 <div class="bgc">
 <main>
     <div class="center">
@@ -8,14 +8,13 @@
         <form>
           <div class="txt_field">
             <h5>帳號</h5>
-            <input type="text" class="f-text label-left" id="name5" placeholder="請輸入帳號" required  v-model="username">
+            <input ref="account" type="text" class="f-text label-left" id="account" placeholder="請輸入帳號" required>
         
             <label></label>
           </div>
           <div class="txt_field">
             <h5>密碼</h5>
-            <input type="password" class="f-text label-left" id="name5" placeholder="請輸入密碼" required v-model="password
-">
+            <input ref="pwd" type="password" class="f-text label-left" id="pwd" placeholder="請輸入密碼" required>
             <label>   <div class="pass"><a href="#/forgetpassword">忘記密碼</a> </div> </label>
           </div>
         
@@ -26,7 +25,7 @@
           <!-- <div class="login_btn"> -->
         
           <div class="logo_center">
-          <button type="button" class="btn-m btn-color-green" @click="login">登入</button>
+            <button type="button" class="btn-m btn-color-green" @click="doSubmit">登入</button>
           </div>
 
           <!-- </div> -->
@@ -42,9 +41,10 @@
 </template>
 
 <script>
-
+import axios from 'axios';
 import navbar from './navbar.vue';
 import Footer from './Footer.vue';
+
 
 export default {
     components: {
@@ -53,28 +53,58 @@ export default {
   },
   data() {
     return {
-      username : '',
-      password : '',
-    }
-  },
-  setup() {
-    return {
-
+      isLoggedIn: false,
+      jsonData: null,
     };
   },
-  methods: {
-    login() {
-      if (this.username === '' || this.password === '') {
-        alert('帳號密碼不得為空');
-        this.$router.push('./login')
-        return;
-      }else{  
-        alert("登入成功")
-        this.$router.push('./#')
-      }
-    }
+  
+  methods:{
+    doSubmit() {
+
+        // let account = this.$refs.account.value;
+        // let pwd = this.$refs.pwd.value;
+
+        if (this.$refs.account.value == '') {
+          
+            alert("請填寫[帳號]");
+            return false;
+        }
+        if (this.$refs.pwd.value == '') {
+            alert("請填寫[密碼]");
+            return false;
+        }
+
+        
+        axios
+        .post('http://localhost/howlegazaiVue/public/API/login.php', {
+            account: this.$refs.account.value,
+            pwd: this.$refs.pwd.value
+        })
+        .then((response) => {
+          if (response.data === 'N') {
+            alert('帳號或密碼錯誤');
+          } else {
+            alert('登入成功');
+            location.href = '#/';
+            // this.jsonData = response.data;
+            let login_name = response.data[0][3]; 
+            let login_account = response.data[0][6]; 
+            let login_nickname = response.data[0][11]; 
+            let login_pic = response.data[0][4]; 
+            document.cookie="姓名=" + login_name;
+            document.cookie="帳號=" + login_account;
+            document.cookie="綽號=" + login_nickname;
+            document.cookie="圖檔=" + login_pic;
+          }
+        })
+         .catch(error => {
+            console.log(error);
+        });
+    },
+
   },
   mounted() {
+
       let labels = document.querySelectorAll('.collapsible-item-label');
       let contents = document.querySelectorAll('.collapsible-item-content');
 

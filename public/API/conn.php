@@ -23,6 +23,9 @@
        header("Access-Control-Allow-Methods: GET, POST");
        header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
-       
+<<<<<<< HEAD
+
+=======
+>>>>>>> 18f89385cd55524f8b2b3a0e8a5d0cf71a6a0a94
 
 ?>

@@ -32,7 +32,7 @@ export default {
     },
     mounted() {
         axios
-        .get('/API/activity.php')
+        .get('http://localhost/howlegazaiVue2/public/API/activity.php')
         .then(response => {
             this.jsonData = response.data;
             console.log(response.data);
