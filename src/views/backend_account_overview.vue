@@ -207,7 +207,7 @@
                       <!-- <td>編輯</td> -->
                       <td>刪除</td>
                     </tr>
-                    <tr v-for="(account,index) in jsonData" :key="index">
+                    <tr v-for="(account,index) in jsonDatax" :key="index">
                       <td>{{account[0]}}</td>
                       <td>{{account[1]}}</td>
                       <td>{{account[2]}}</td>
@@ -519,7 +519,7 @@ export default {
 
      axios
     //  htdocs的環境下測試
-     .get('http://localhost/howlegazaiVue/public/API/accountOverview.php')
+     .get('http://localhost/howlegazaiVue2/public/API/accountOverview.php')
         // .get('https://tibamef2e.com/tgd104/g1/accountOverview.php')
         .then(response => {
             this.jsonData = response.data;
