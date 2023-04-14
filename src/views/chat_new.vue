@@ -10,27 +10,27 @@
           class="f-text"
           id="name"
           placeholder="請輸入討論標題"
+          v-model="title"
+          v-model-save="title"
         />
       </div>
       <div class="col-md-3 col-12">
         <label for="chat-type" class="f-label">討論分類</label>
-        <select name="" id="chat-type" class="f-select">
-          <option value="1">-選擇-</option>
-          <option value="2">藝文</option>
-          <option value="3">旅遊</option>
-          <option value="4">美食</option>
+        <select name="" id="chat-type" class="f-select" v-model="type"
+          v-model-save="type">
+          <option value="">-選擇-</option>
+          <option value="美食討論">美食討論</option>
+          <option value="二手交易">二手交易</option>
+          <option value="里民閒聊">里民閒聊</option>
+          <option value="團購討論">團購討論</option>
+          <option value="我要抱怨">我要抱怨</option>
+          <option value="其他">其他</option>
         </select>
       </div>
     </div>
-
+    
     <div id="container">
-      <!-- <textarea id="editor">
-                        <p></p>
-                   </textarea> -->
-
-      <div>
-        <ckeditor :editor="editor" v-model="content" />
-      </div>
+      <Tinymce ref="Tinymce" v-model="tinymceContent" v-model-save="tinymceContent"></Tinymce>      
     </div>
 
     <div class="confirm-btn">
@@ -41,8 +41,11 @@
                   <button class="btn-m btn-color-green" @click="navigate" role="link">發布</button>
               </router-link> -->
       <button type="button" class="btn-m btn-color-white" onclick="location.href='#/chat'">取消</button>
-      <button type="button" class="btn-m btn-color-green" onclick="location.href='#/chat_info'">發布</button>
+      <!-- <button type="button" class="btn-m btn-color-green" onclick="location.href='#/chat_info'">發布</button> -->
+      <button type="button" class="btn-m btn-color-green" @click="gotoPreview">預覽</button>
+        
     </div>
+    <div v-html="editorHtml"></div>
   </main>
   <Footer></Footer>
 </template>
@@ -51,36 +54,94 @@
 <script>
 import navbar from "./navbar.vue";
 import Footer from "./Footer.vue";
-
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import CKEditor from "@ckeditor/ckeditor5-vue";
-
+import Tinymce from "@/components/Tinymce.vue";
+import { ref } from "vue";
 
 
 export default {
   components: {
     navbar,
     Footer,
-    ckeditor: CKEditor.component,
+    Tinymce,
+
   },
   data() {
     return {
-      editor: ClassicEditor,
-      content: "<p></p>",
+      editorHtml: '',
+      tinymceContent:'',
+      title: "",
+      type: "",
     };
   },
   mounted() {
-    // this.init();
-  },
-  methods: {
-    // init() {
-    //   const editorInstance = this.$refs.ckeditor.editorInstance;
 
-    //   editorInstance.plugins.get("FileRepository").createUploadAdapter =
-    //     function (loader) {
-    //       return new ImageUploadAdapter(loader);
-    //     };
+    // 將已儲存的表單資料填入 input / select 欄位
+    for (const el of document.querySelectorAll("[v-model-save]")) {
+      const key = `form-${el.className}`;
+      if (!sessionStorage[key]) {
+        sessionStorage[key] = el.value;
+      }
+      el.value = sessionStorage[key];
+      el.addEventListener("input", () => {
+        sessionStorage[key] = el.value;
+        this[el.className] = el.value;
+      });
+      el.addEventListener("SELECT", () => {
+        sessionStorage[key] = el.tagName === "SELECT" ? el.selectedOptions[0].value : el.value;
+        this[el.className] = el.tagName === "SELECT" ? el.selectedOptions[0].value : el.value;
+      });
+      el.addEventListener("change", () => {
+        sessionStorage[key] = el.value;
+        this[el.className] = el.value;
+      });
+  }
+},
+  methods: {
+      gotoPreview() {
+      // 儲存表單資料至 localStorage
+      sessionStorage.setItem('form-title', this.title);
+      sessionStorage.setItem('form-type', this.type);
+      sessionStorage.setItem('form-tinymceContent', this.tinymceContent);
+      // 導向預覽頁面
+      this.$router.push('/chat_info/preview');
+    },
+  
+      // previewChatinfo(){
+      //   // 使用 $router.push 將路由導向預覽頁面，並傳遞編輯器頁面的資料到預覽頁面
+      //   this.$router.push({
+      //     path: '/tinymcecontent',
+      //     query: {
+      //       content: this.tinymceContent
+      //   }
+      // })}
+
+    // handleButtonClick(){
+    //   const result = this.$refs.Tinymce.sendEditorValue();
+    //   this.editorHtml = result;
     // },
+    // saveContent(){
+    //   const content = {
+    //     content: this.$refs.Tinymce.sendEditorValue().getContent()
+    //   }
+    },
+
+    watch: {
+      editorValue(newValue) {
+      this.result = this.$refs.Tinymce.updateEditorValue();
+      this.result = tinymceContent;
+    }
   },
-};
+    // callChildMethod() {
+    //   this.$refs.Tinymce.logEditorValue();
+    //   console.log('news');
+    // },
+    // editorValueData(){
+    //   // console.log('editorValueData')
+    //   console.log('news');
+    //   function getdata(text){
+    //     console.log('getData');
+    //     this.text = text;
+    //   };
+      // console.log(editorValue)
+    };
 </script>

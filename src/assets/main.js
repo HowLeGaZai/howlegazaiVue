@@ -19,6 +19,3 @@ export default {
 
 createApp(App).use(router).mount('#app')
 
-
-
-

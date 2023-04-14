@@ -24,22 +24,22 @@
             <!-- 選擇縣市 -->
             <div class="txt_field col-sm-12 col-sm-4">
               <label for="county" class="f-label">縣/市</label>
-              <select name="" id="county" class="f-select" v-model="input1">
-                  <option value="花蓮縣">花蓮縣</option>
+              <select name="" id="county" class="f-select" v-model="input1" >
+                  <option value="花蓮縣">{{ input1  }}  </option>
               </select>
             </div>
       
             <div class="txt_field col-sm-12 col-sm-4">
               <label for="district" class="f-label">鄉/鎮/市/區</label>
               <select name="" id="district" class="f-select" v-model="input2">
-                  <option value="國安鄉">國安鄉</option>
+                  <option value="國安鄉">{{ input2 }}</option>
               </select>
             </div>
           
             <div class="txt_field col-sm-12 col-sm-4">
               <label for="village" class="f-label">村里</label>
               <select name="" id="village" class="f-select" v-model="input3">
-                  <option value="大湖里">大湖里</option>
+                  <option value="大湖里">{{ input3 }}</option>
               </select>
             </div>
 
@@ -89,6 +89,7 @@
   <script>
   import navbar from "./navbar.vue";
   import Footer from "./Footer.vue";
+  import { ref } from 'vue';
 
 
   export default {
@@ -98,12 +99,13 @@
     },
     data() {
       return {
-        inputValue: '',
+       
         showError: false,
         errorMessage: '不能空白',
         input1: '',
         input2: '',
         input3: '',
+        inputValue: '',
       }
     },
     setup() {
@@ -111,25 +113,38 @@
     },
     methods: {
    //不能輸入空值的函式
-      submitForm() {
-    if (this.inputValue.trim() === '') {
-      // console.log(this.showError);
-      this.showError = true;
-      return false; // 返回 false 來停止後續的程式碼執行
-    } else {
-      // 在這裡處理提交表單的邏輯
-      this.showError = false;
-      
-      const queryParams = {
-        input1: this.input1,
-        input2: this.input2,
-        input3: this.input3,
-        input4: this.inputValue,
-      };
-      this.$router.push({ path: '/signup2', query: queryParams });
-    }
-  },
+   submitForm() {
+  let formData = new FormData();
+  if (this.inputValue.trim() === '') {
+    this.showError = true;
+    return false;
+  } else {
+    this.showError = false;
+    formData.append('input1', this.input1);
+    formData.append('input2', this.input2);
+    formData.append('input3', this.input3);
+    formData.append('input4', this.inputValue);
+    this.$router.push({ name: 'signup2', state: formData });
+  }
 },
+},
+
+watch: {
+  // 可以使用 watch 來監聽數據的更改並將它們存儲在 localStorage中，
+    // 當 input1, input2, input3 或 inputValue 發生更改時
+    input1(val) {
+      localStorage.setItem('input1', val);
+    },
+    input2(val) {
+      localStorage.setItem('input2', val);
+    },
+    input3(val) {
+      localStorage.setItem('input3', val);
+    },
+    inputValue(val) {
+      localStorage.setItem('inputValue', val);
+    },
+  },
     mounted() {
       let labels = document.querySelectorAll(".collapsible-item-label");
       let contents = document.querySelectorAll(".collapsible-item-content");
