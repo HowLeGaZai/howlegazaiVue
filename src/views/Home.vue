@@ -459,17 +459,7 @@ export default {
       homeBanner:'',
     };
   },
-  beforeCreate() {
-    axios.post('http://localhost/howlegazaiVue/public/API/checklogin.php')
-      .then(response => {
-        console.log(response.data);
-        // this.isLoggedIn = JSON.parse(response.data.isLoggedIn); // 根據後端回應更新isLoggedIn的值
-        // console.log(response.data);
-      })
-      .catch(error => {
-        console.error(error);
-      });
-  },
+
   methods: {
     addTagClass(i) {
       switch (i) {
