@@ -67,7 +67,10 @@
 </template>
 
 <script>
-import VuePictureCropper, { cropper } from 'vue-picture-cropper'
+// import required modules
+import axios from 'axios';
+
+import VuePictureCropper, { cropper } from 'vue-picture-cropper';
 
 export default{
 components: {
@@ -75,6 +78,9 @@ components: {
 },
 data() {
   return {
+    jsonData: [],
+    city:'',
+    town:'',
     isShowModal: false,
     pic: '',
     watermarkpic:'',
@@ -85,6 +91,11 @@ data() {
   }
 },
 methods: {
+  webInfo(){
+      this.city = this.jsonData[this.jsonData.length-1].CITY ;
+      this.district = this.jsonData[this.jsonData.length-1].DISTRICT ;
+      this.town = this.jsonData[this.jsonData.length-1].TOWN ;
+    },
   /**
    * Select the picture to be cropped
    */
@@ -146,11 +157,11 @@ methods: {
     img.onload = () => {
       const canvas = document.createElement('canvas');
       const ctx = canvas.getContext('2d');
-      const watermark = '花蓮縣大湖里辦公室';
+      const watermark = this.city + this.town + '辦公室';
       const x = -50; // x coordinate of the watermark
       const y = 10; // y coordinate of the watermark
       const size = 20; // font size of the watermark
-      const color = 'rgba(200, 200, 200, 0.40)'; // color of the watermark
+      const color = 'rgba(200, 200, 200, 0.6)'; // color of the watermark
 
       // canvas 畫布大小 = 上傳圖片大小
       canvas.width = img.width;
@@ -167,20 +178,13 @@ methods: {
       // 畫出多個浮水印
       const numWatermarks = 50;
       const spacing = 50;
-      for (let i = 0; i < numWatermarks; i++) {
-        const xPos = x;
-        const yPos = y + i * spacing;
-        ctx.fillText(watermark, xPos, yPos);
-      }
-      for (let j = 0; j < numWatermarks; j++) {
-        const xPos2 = x + 200;
-        const yPos2 = y + j * spacing;
-        ctx.fillText(watermark, xPos2, yPos2);
-      }
-      for (let n = 0; n < numWatermarks; n++) {
-        const xPos3 = x + 400;
-        const yPos3 = y + n * spacing;
-        ctx.fillText(watermark, xPos3, yPos3);
+      for (let i = 0; i < 3; i++) {
+        const xPos = x + i * 200;
+
+        for (let j = 0; j < numWatermarks; j++) {
+          const yPos = y + j * spacing;
+          ctx.fillText(watermark, xPos, yPos);
+        }
       }
       this.$refs.watermarkedImg.src = canvas.toDataURL();
       // // 增加浮水印
@@ -188,16 +192,6 @@ methods: {
       // ctx.fillText(watermark, canvas.width / 8, canvas.height / 1.7);
       // ctx.fillText(watermark, canvas.width / 8, canvas.height / 1.4);
       // ctx.fillText(watermark, canvas.width / 8, canvas.height / 1.1);
-
-      // 移除原先上傳圖片
-      // const parent = document.querySelector('.pic-area-box');
-      // const originalImg = parent.querySelector('img');
-      // parent.removeChild(originalImg);
-
-      // 建立新 canvas 圖片
-      // const watermarkedImg = new Image();
-      // watermarkedImg.src = canvas.toDataURL();
-      // parent.insertBefore(watermarkedImg, parent.firstChild);
     };
 
     // canvas 圖片 = 上傳裁切後的圖片網址
@@ -227,6 +221,21 @@ methods: {
     console.log('Cropper is ready.')
   },
 },
+mounted() {
+     axios
+        .post('http://localhost/TGD104G1/public/API/home.php',{})
+        .then(response => {
+            this.jsonData = response.data;
+            // alert(response.data)
+            console.log(this.jsonData[this.jsonData.length-1].CITY);
+            this.webInfo();
+            // console.log(this.jsonData.length);
+            // console.log(this.jsonData);
+        })
+        .catch(error => {
+            // console.log(error);
+        });
+  },
 }
 
 // 利用 canvas 印上浮水印的功能
