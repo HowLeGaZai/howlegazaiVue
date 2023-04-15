@@ -177,7 +177,7 @@ export default{
     },
 
     sendData(){
-        this.$emit('pic',this.pic)
+        this.$emit('pic',this.result.dataURL)
     },
     
   },

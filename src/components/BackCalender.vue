@@ -67,6 +67,7 @@ export default {
       const a = lunordateOrigin.solarTerm; //當下時間的節氣字串
       
       const solarTermFilter = this.solartermList; 
+      // console.log(solarTermFilter);
       // const targetSolarTermKey = Object.values(solarTermFilter); //繁體array
       // const solarTermFilterKey = Object.keys(solarTermFilter); //簡體array
       const searchKey = Object.keys(solarTermFilter).find((key) => {
