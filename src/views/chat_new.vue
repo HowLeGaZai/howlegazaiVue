@@ -12,13 +12,14 @@
           placeholder="請輸入討論標題"
           v-model="title"
           v-model-save="title"
+          required
         />
       </div>
       <div class="col-md-3 col-12">
         <label for="chat-type" class="f-label">討論分類</label>
         <select name="" id="chat-type" class="f-select" v-model="type"
-          v-model-save="type">
-          <option value="">-選擇-</option>
+          v-model-save="type" required>
+          <option value="" disabled selected>-請選擇-</option>
           <option value="美食討論">美食討論</option>
           <option value="二手交易">二手交易</option>
           <option value="里民閒聊">里民閒聊</option>
@@ -30,6 +31,7 @@
     </div>
     
     <div id="container">
+      <label for="content" class="f-label">討論內容</label>
       <Tinymce ref="Tinymce" v-model="tinymceContent" v-model-save="tinymceContent"></Tinymce>      
     </div>
 
@@ -49,6 +51,31 @@
   </main>
   <Footer></Footer>
 </template>
+
+
+<!-- checkForm() {
+  // 取得表單元素
+  const form = document.querySelector('#my-form');
+
+  // 檢查必填欄位是否已經填寫
+  const requiredFields = form.querySelectorAll('[required]');
+  for (const field of requiredFields) {
+    if (!field.value) {
+      alert('請填寫必填欄位');
+      return false;
+    }
+  }
+
+  // 將表單資料儲存到 sessionStorage
+  for (const field of form.elements) {
+    if (field.name) {
+      sessionStorage.setItem(field.name, field.value);
+    }
+  }
+
+  // 提交表單
+  form.submit();
+} -->
 
 
 <script>
@@ -98,10 +125,66 @@ export default {
 },
   methods: {
       gotoPreview() {
+      
+      // 檢查必填欄位是否已經填寫
+      const requiredFields = document.querySelectorAll('[required]');
+      for (const field of requiredFields) {
+        if (field.tagName === 'SELECT' && field.selectedIndex === 0) {
+            field.style.outline = '1px solid $red';
+            const label = field.parentNode.querySelector('label');
+            const asterisk = label.querySelector('.asterisk');
+            if (!asterisk) {
+              label.insertAdjacentHTML('beforeend', '<span class="asterisk" style="color:red">*</span>');
+            }
+            return false;
+          }else {
+            const label = field.parentNode.querySelector('label');
+            const asterisk = label.querySelector('.asterisk');
+            if (asterisk) {
+            asterisk.remove();
+            }
+          }
+          if (!field.value) {
+            field.style.outline = '1px solid $red';
+            const label = field.parentNode.querySelector('label');
+            const asterisk = label.querySelector('.asterisk');
+            if (!asterisk) {
+              label.insertAdjacentHTML('beforeend', '<span class="asterisk" style="color:red">*</span>');
+            }
+            return false;
+            // input{outline:$red};
+            // required
+          }else {
+            const label = field.parentNode.querySelector('label');
+            const asterisk = label.querySelector('.asterisk');
+            if (asterisk) {
+            asterisk.remove();
+            }
+          }
+        }
+        // if (tinymceContent = ''){
+        //     const label = field.parentNode.querySelector('label');
+        //     const asterisk = label.querySelector('.asterisk');
+        //     if (!asterisk) {
+        //       label.insertAdjacentHTML('beforeend', '<span class="asterisk" style="color:red">*</span>');
+        //     }
+        //     return false;
+        //   }else {
+        //     const label = field.parentNode.querySelector('label');
+        //     const asterisk = label.querySelector('.asterisk');
+        //     if (asterisk) {
+        //     asterisk.remove();
+        //     }
+        //   }
+          
+        // }
+
+      
       // 儲存表單資料至 localStorage
       sessionStorage.setItem('form-title', this.title);
       sessionStorage.setItem('form-type', this.type);
       sessionStorage.setItem('form-tinymceContent', this.tinymceContent);
+
       // 導向預覽頁面
       this.$router.push('/chat_info/preview');
     },

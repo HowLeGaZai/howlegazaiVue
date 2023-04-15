@@ -76,7 +76,7 @@ export default {
 
         
         axios
-        .post('http://localhost/howlegazaiVue/public/API/login.php', {
+        .post('http://localhost/TGD104G1/public/API/login.php', {
             account: this.$refs.account.value,
             pwd: this.$refs.pwd.value
         })
@@ -101,6 +101,7 @@ export default {
             console.log(error);
         });
     },
+    
 
   },
   mounted() {

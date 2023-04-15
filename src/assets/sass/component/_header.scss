@@ -152,6 +152,13 @@ header {
             transition: all ease-in-out 0.8s;
             a {
               width: 200px;
+              &.active{
+                color: $green;
+                @include breakpoint($grid-breakpoints, 'md') {
+                 color: $white;
+
+                }
+              }
               @include breakpoint($grid-breakpoints, "md") {
                 width: 68vw;
                 display: block;
@@ -172,8 +179,17 @@ header {
           position: relative;
           a {
             color: $black;
-            &.onoff {
+            &.active{
               color: $green;
+                @include breakpoint($grid-breakpoints, 'md') {
+                  color: $white;
+                }
+            }
+            &.onoff{
+              color: $green;
+                @include breakpoint($grid-breakpoints, 'md') {
+                color: $white;
+              }
               .bi::before{
                 transform: rotate(180deg);
               }
@@ -182,6 +198,7 @@ header {
                 @include breakpoint($grid-breakpoints, 'md') {
                   background-color: $green;
                   color: $white;
+
                 }
               }
             }
@@ -274,6 +291,10 @@ header {
                   .bi {
                     color: $green;
                   }
+                  &.active{
+                    color: $white;
+                    background: $green;
+                  }
                 }
                 a:hover {
                   color: $white;
@@ -319,7 +340,7 @@ header {
                     color: $green;
                     text-align: center;
                   }
-                  .dropdown-item:hover {
+                  .dropdown-item:hover,.dropdown-item.active {
                     width: 100%;
                     color: $white;
                     background: $green;

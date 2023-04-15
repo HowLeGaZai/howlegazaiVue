@@ -1,7 +1,9 @@
 <template>
-     <div class="space" v-for="(space,index) in spaces" :key="index">
+     <div class="space" v-for="(space,index) in jsonData" :key="index">
               <div class="image space-pic">
-                  <img :src="require(`@/assets/img/${space.SPACE_PIC}`)" alt="">
+                  <!-- <img :src="require(`@/assets/img/${space.SPACE_PIC}`)" alt=""> -->
+                   <!-- <img :src= "(space.PIC && space.PIC !== 'null') ? require(`@/assets/img/${space.PIC }`) : require(`@/assets/img/c_2_family.jpg`)" alt=""> -->
+                     <img :src= "`${space.SPACE_PIC}`" alt="">
               </div>
               <div class="space-info">
                   <h3 class="space-title">{{space.NAME}}</h3>
@@ -23,70 +25,70 @@
 export default {
     data(){
                 return {
-                    
-                    spaces: [
-                    {
-                        "ID": "1",
-                        "NAME": "A102教室",
-                        "CATEGORY": "教室 / 靜態會議活動 / 讀書會",
-                        "CAPACITY": 40,
-                        "SPACE_SIZE": 20,
-                        "NOTE": "",
-                        "MANAGER": "李上巴",
-                        "MANAGER_PHONE": "0919426289",
-                        "OPEN_DATE": "2023-06-30",
-                        "OPEN_TIME": "08：00",
-                        "CLOSE_TIME": "21：00",
-                        "ADDRESS": "花蓮縣大湖里南京東路三段219號4樓",
-                        "REMARK": "",
-                        "SPACE_PIC": "s_1.png",
-                    },
-                    {
-                        "NAME": "B102教室",
-                        "CATEGORY": "教室 / 靜態會議活動 / 讀書會",
-                        "CAPACITY": 40,
-                        "SPACE_SIZE": 20,
-                        "NOTE": "",
-                        "MANAGER": "李中巴",
-                        "MANAGER_PHONE": "0911223344",
-                        "OPEN_DATE": "2023-06-30",
-                        "OPEN_TIME": "08：00",
-                        "CLOSE_TIME": "21：00",
-                        "ADDRESS": "花蓮縣大湖里南京東路三段219號5樓",
-                        "REMARK": "",
-                        "SPACE_PIC": "s_1.png",
-                    },
-                    {
-                        "NAME": "活動中心",
-                        "CATEGORY": "藝文/表演",
-                        "CAPACITY": 2000,
-                        "SPACE_SIZE": 100,
-                        "NOTE": "",
-                        "MANAGER": "李下巴",
-                        "MANAGER_PHONE": "0912345678",
-                        "OPEN_DATE": "2023-06-30",
-                        "OPEN_TIME": "08：00",
-                        "CLOSE_TIME": "21：00",
-                        "ADDRESS": "花蓮縣大湖里大湖路2號1樓",
-                        "REMARK": "",
-                        "SPACE_PIC": "s_1.png",
-                    },
-                        {
-                        "NAME": "C202教室",
-                        "CATEGORY": "教室 / 靜態會議活動 / 讀書會",
-                        "CAPACITY": 50,
-                        "SPACE_SIZE": 33,
-                        "NOTE": "",
-                        "MANAGER": "李下巴",
-                        "MANAGER_PHONE": "0912345678",
-                        "OPEN_DATE": "2023-06-30",
-                        "OPEN_TIME": "08：00",
-                        "CLOSE_TIME": "21：00",
-                        "ADDRESS": "花蓮縣大湖里大湖路2號1樓",
-                        "REMARK": "",
-                        "SPACE_PIC": "s_1.png",
-                    },
-                    ],
+                    jsonData:[],
+                    // spaces: [
+                    // {
+                    //     "ID": "1",
+                    //     "NAME": "A102教室",
+                    //     "CATEGORY": "教室 / 靜態會議活動 / 讀書會",
+                    //     "CAPACITY": 40,
+                    //     "SPACE_SIZE": 20,
+                    //     "NOTE": "",
+                    //     "MANAGER": "李上巴",
+                    //     "MANAGER_PHONE": "0919426289",
+                    //     "OPEN_DATE": "2023-06-30",
+                    //     "OPEN_TIME": "08：00",
+                    //     "CLOSE_TIME": "21：00",
+                    //     "ADDRESS": "花蓮縣大湖里南京東路三段219號4樓",
+                    //     "REMARK": "",
+                    //     "SPACE_PIC": "s_1.png",
+                    // },
+                    // {
+                    //     "NAME": "B102教室",
+                    //     "CATEGORY": "教室 / 靜態會議活動 / 讀書會",
+                    //     "CAPACITY": 40,
+                    //     "SPACE_SIZE": 20,
+                    //     "NOTE": "",
+                    //     "MANAGER": "李中巴",
+                    //     "MANAGER_PHONE": "0911223344",
+                    //     "OPEN_DATE": "2023-06-30",
+                    //     "OPEN_TIME": "08：00",
+                    //     "CLOSE_TIME": "21：00",
+                    //     "ADDRESS": "花蓮縣大湖里南京東路三段219號5樓",
+                    //     "REMARK": "",
+                    //     "SPACE_PIC": "s_1.png",
+                    // },
+                    // {
+                    //     "NAME": "活動中心",
+                    //     "CATEGORY": "藝文/表演",
+                    //     "CAPACITY": 2000,
+                    //     "SPACE_SIZE": 100,
+                    //     "NOTE": "",
+                    //     "MANAGER": "李下巴",
+                    //     "MANAGER_PHONE": "0912345678",
+                    //     "OPEN_DATE": "2023-06-30",
+                    //     "OPEN_TIME": "08：00",
+                    //     "CLOSE_TIME": "21：00",
+                    //     "ADDRESS": "花蓮縣大湖里大湖路2號1樓",
+                    //     "REMARK": "",
+                    //     "SPACE_PIC": "s_1.png",
+                    // },
+                    //     {
+                    //     "NAME": "C202教室",
+                    //     "CATEGORY": "教室 / 靜態會議活動 / 讀書會",
+                    //     "CAPACITY": 50,
+                    //     "SPACE_SIZE": 33,
+                    //     "NOTE": "",
+                    //     "MANAGER": "李下巴",
+                    //     "MANAGER_PHONE": "0912345678",
+                    //     "OPEN_DATE": "2023-06-30",
+                    //     "OPEN_TIME": "08：00",
+                    //     "CLOSE_TIME": "21：00",
+                    //     "ADDRESS": "花蓮縣大湖里大湖路2號1樓",
+                    //     "REMARK": "",
+                    //     "SPACE_PIC": "s_1.png",
+                    // },
+                    // ],
                 }
             },
             methods: {
@@ -99,7 +101,19 @@ export default {
                 // axios.get('PHP/activity.json').then((res) => {
                 //     console.log(res.data)
                 // })
+                axios
+                //  htdocs的環境下測試
+                    .get('http://localhost/TGD104G1/public/API/space.php')
+                        // .get('https://tibamef2e.com/tgd104/g1/accountOverview.php')
+                    .then(response => {
+                        this.jsonData = response.data;
+                        console.log(response.data);
+                    })
+                    .catch(error => {
+                        // console.log(error);
+                    });
 
-            },
+
+                },
 }
 </script>
