@@ -13,7 +13,7 @@
       </button>
       <div class="pic-area" >
           <div class="pic-area-box" v-if="result.dataURL">
-              <img :src="result.dataURL"/>
+              <img :src="result.dataURL" ref="watermarkedImg"/>
           </div>
           <p>建議：450 x 285 像素，且大小不得超過 100 KB 的圖檔</p>
       </div>
@@ -77,6 +77,7 @@ data() {
   return {
     isShowModal: false,
     pic: '',
+    watermarkpic:'',
     result: {
       dataURL: '',
       blobURL: '',
@@ -181,7 +182,7 @@ methods: {
         const yPos3 = y + n * spacing;
         ctx.fillText(watermark, xPos3, yPos3);
       }
-
+      this.$refs.watermarkedImg.src = canvas.toDataURL();
       // // 增加浮水印
       // ctx.fillText(watermark, canvas.width / 8, canvas.height / 2);
       // ctx.fillText(watermark, canvas.width / 8, canvas.height / 1.7);
@@ -189,14 +190,14 @@ methods: {
       // ctx.fillText(watermark, canvas.width / 8, canvas.height / 1.1);
 
       // 移除原先上傳圖片
-      const parent = document.querySelector('.pic-area-box');
-      const originalImg = parent.querySelector('img');
-      parent.removeChild(originalImg);
+      // const parent = document.querySelector('.pic-area-box');
+      // const originalImg = parent.querySelector('img');
+      // parent.removeChild(originalImg);
 
       // 建立新 canvas 圖片
-      const watermarkedImg = new Image();
-      watermarkedImg.src = canvas.toDataURL();
-      parent.insertBefore(watermarkedImg, parent.firstChild);
+      // const watermarkedImg = new Image();
+      // watermarkedImg.src = canvas.toDataURL();
+      // parent.insertBefore(watermarkedImg, parent.firstChild);
     };
 
     // canvas 圖片 = 上傳裁切後的圖片網址
