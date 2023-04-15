@@ -2,8 +2,8 @@
      <div class="space" v-for="(space,index) in jsonData" :key="index">
               <div class="image space-pic">
                   <!-- <img :src="require(`@/assets/img/${space.SPACE_PIC}`)" alt=""> -->
-                   <img :src= "(space.PIC && space.PIC !== 'null') ? require(`@/assets/img/${space.PIC }`) : require(`@/assets/img/c_2_family.jpg`)" alt="">
-                    
+                   <!-- <img :src= "(space.PIC && space.PIC !== 'null') ? require(`@/assets/img/${space.PIC }`) : require(`@/assets/img/c_2_family.jpg`)" alt=""> -->
+                     <img :src= "`${space.SPACE_PIC}`" alt="">
               </div>
               <div class="space-info">
                   <h3 class="space-title">{{space.NAME}}</h3>
