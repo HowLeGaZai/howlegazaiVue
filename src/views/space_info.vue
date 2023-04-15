@@ -388,21 +388,6 @@ async getData(date) {
     }
 
 
-    // for(let i=0;i<this.jsonData.length;i++){
-    //   // console.log(i,this.jsonData[i][1]);
-    //     for(let j =0; j<dataList_about.length;j++){
-    //       // console.log(j,dataList_about[j].time_about)
-    //       if(this.jsonData[i][1] == dataList_about[j].time_about){
-    //           console.log('有預約時段',dataList_about[j].time_about);
-    //           dataList_about[j].value_about = 'btn-m btn-color-white timeslot btn-color-gray';
-    //           // console.log(dataList_about[j].value_about);
-    //       }else{
-
-    //       }
-    //     }
-        
-
-    // }
 
     console.log('dataList',dataList);
     this.data = dataList_about;

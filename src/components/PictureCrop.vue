@@ -138,6 +138,8 @@ export default{
         this.result.dataURL = base64;
         this.result.blobURL = URL.createObjectURL(blob);;
         this.isShowModal = false;
+
+        this.sendData();
         },
     
     /**
@@ -159,6 +161,10 @@ export default{
      */
     ready() {
       console.log('Cropper is ready.')
+    },
+
+    sendData(){
+        this.$emit('pic',this.result.dataURL)
     },
   },
 }
