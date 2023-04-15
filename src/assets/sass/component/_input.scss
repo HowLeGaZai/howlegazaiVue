@@ -90,6 +90,14 @@
         color: $lightdark;
         opacity: .5;
     }
+    .required{
+        &:focus {
+            border-color: $red;
+            outline: 0;
+            box-shadow: 0 0 0 0.25rem $darkgreen;
+    
+        }
+    }
   
   } 
   .f-round{
@@ -145,5 +153,13 @@
         outline: 0;
         box-shadow: 0 0 0 0.25rem $darkgreen;
 
+    }
+    .required{
+        &:focus {
+            border-color: $red;
+            outline: 0;
+            box-shadow: 0 0 0 0.25rem $darkgreen;
+    
+        }
     }
 }

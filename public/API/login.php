@@ -20,49 +20,20 @@
         $statement->execute();
         $data = $statement->fetchAll();
 
-        $userAccount = "";
-        $userNick ="";
-        $userPic ="";
-        foreach($data as $index => $row){
-            $userAccount = $row["ACCOUNT"];
-            $userNick =$row["NICKNAME"];
-            $userPic = $row["PORTRAIT"];
-        }
+        if(COUNT($data) > 0){
+            echo json_encode($data);
 
-        // 判斷是否有會員資料
-        if($userAccount != "" && $userNick != ""){
-        // include("Member.php");
-
-        if(!isset($_SESSION)){
-            session_start(); 
-        }
-
-        //Table 'USER'裡的Account欄位值
-        $_SESSION["userAccount"] = $userAccount; 
-        // echo $_SESSION["userAccount"];
-        //Table 'USER'裡的NICKNAME欄位值
-        $_SESSION["userNickname"] = $userNick; 
-        // echo $_SESSION["userNickname"];
-		 //Table 'USER'裡的NICKNAME欄位值
-		$_SESSION["userPic"] = $userPic; 
-
-		$_SESSION["loginStatus"] = true; 
-
-        // setMemberInfo($userAccount, $userNick, $userPic);
-
-            // 登入成功
-            echo "Y"; 
-            // echo print_r($_SESSION); 
+            // session_start();
+            // $_SESSION["memberID"] = $name;
+            // header("Location: Welcome.php");
         }else{
-            // 登入失敗
-            echo "N"; 
+            echo "N";
         }
 
     } else {
         // 資料格式錯誤，回傳錯誤訊息
         echo "資料格式錯誤";
     }
-
 
     
 ?>

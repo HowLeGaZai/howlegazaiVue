@@ -259,9 +259,14 @@
   }
 
   #container {
+    display: flex;
+    flex-direction: column;
     width: 100%;
     min-width: 300px;
     margin: 20px auto;
+    label{
+      text-align: left;
+    }
   }
 
   .ck-editor__editable[role="textbox"] {
