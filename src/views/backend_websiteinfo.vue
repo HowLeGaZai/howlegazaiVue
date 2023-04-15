@@ -290,61 +290,6 @@ export default {
     //   console.log(beMenu[i]);
     })
   }
-    
-// function doFirst(){
-//             document.getElementById('dropzone').ondragover = dragOver
-//             document.getElementById('dropzone').ondrop = dropped
-
-//             document.getElementById('customFileInput').onchange = fileChange
-
-//         }
-//         function dragOver(e){
-//             e.preventDefault()
-//         }
-//         function dropped(e){
-//             e.preventDefault()
-            
-//             let file = e.dataTransfer.files[0]
-//             // console.log(file)
-
-//             fileName.innerText = file.name
-
-//             let readFile = new FileReader()
-//             readFile.readAsDataURL(file)
-//             readFile.addEventListener('load',function(){
-//               let image = document.getElementById('bannerimg')
-//                 image.src = readFile.result
-//                 image.style.width = '100%'
-//                 image.style.height = '100%'
-//                 image.style.maxWidth = '1200px'
-//                 image.style.maxHeight = '400px'
-
-//             })    
-//         }
-
-//         function fileChange(){
-//             let file = document.getElementById('customFileInput').files[0]
-
-
-//             fileName.innerText = file.name
-//             let readFile = new FileReader()
-//             readFile.readAsDataURL(file)
-//             readFile.addEventListener('load',function(){
-//                 let image = document.getElementById('bannerimg')
-//                 image.src = readFile.result
-
-//                 image.style.width = '100%'
-//                 image.style.height = '100%'
-//                 image.style.maxWidth = '1200px'
-//                 image.style.maxHeight = '400px'
-//             })
-//         }
-
-
-//         window.addEventListener('load',doFirst)
-
-
-
 
   },
   methods:{
@@ -355,7 +300,7 @@ export default {
       formData.append('village', this.village)
 
       axios
-        .post('http://localhost/howlegazaiVue2/public/API/webinfo.php', formData)
+        .post('http://localhost/TGD104G1/public/API/webinfo.php', formData)
         // .post('https://tibamef2e.com/tgd104/g1/webinfo.php', formData)
         .then(response => {
             // this.jsonData = response.data;
@@ -376,7 +321,7 @@ export default {
       formData2.append('home_num', this.home_num)
 
       axios
-        .post('http://localhost/howlegazaiVue2/public/API/village.php', formData2)
+        .post('http://localhost/TGD104G1/public/API/village.php', formData2)
         .then(response => {
             // this.jsonData = response.data;
             console.log(response.data);
@@ -413,7 +358,7 @@ export default {
         
       let formData = new FormData()
       formData.append('image', this.pic)
-      axios.post('http://localhost/howlegazaiVue2/public/API/uploadBanner.php', formData)
+      axios.post('http://localhost/TGD104G1/public/API/uploadBanner.php', formData)
         .then(response => {
           console.log(response.data)
         })
