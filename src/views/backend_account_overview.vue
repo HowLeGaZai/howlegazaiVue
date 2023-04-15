@@ -475,6 +475,9 @@ export default {
         location.reload();
     }
   },
+  computed:{
+      
+  },
   mounted() {
     $("#resizable").resizable({});
     $("#datepicker").datepicker({
@@ -530,6 +533,9 @@ export default {
             // console.log(error);
         });
 
+
+  
+  
     //  ＝＝＝＝＝＝側欄選單的JS end＝＝＝＝＝＝
   },
 };
