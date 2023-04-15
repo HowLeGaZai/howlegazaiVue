@@ -14,24 +14,24 @@
             <ul id="main-Menu">
               <li class="left-logo"><img src="../assets/img/logo2.svg" alt="" /></li>
               <li>
-                <router-link :to="{name:'contact'}" class="a-black">聯絡里辦</router-link>
+                <router-link :to="{name:'contact'}" class="a-black" :class="{active: $route.name === 'contact'}">聯絡里辦</router-link>
               </li>
               <li>
-                <router-link :to="{name:'news'}" class="a-black">最新消息</router-link>
+                <router-link :to="{name:'news'}" class="a-black" :class="{active: $route.name === 'news'}">最新消息</router-link>
               </li>
               <li>
-                <router-link :to="{name:'chat'}" class="a-black">討論區</router-link>
+                <router-link :to="{name:'chat'}" class="a-black" :class="{active: $route.name === 'chat'}">討論區</router-link>
               </li>
               <li class="smart-service">
-                <a id="navbarDropdown">
+                <a id="navbarDropdown" :class="{active: $route.name === 'activity' || $route.name === 'space'}">
                   智慧里民<span><i class="bi bi-chevron-down"></i></span>
                 </a>
                 <ul class="dropdown-menu" id="dropdown-menu">
                   <li>
-                    <router-link :to="{name:'activity'}" class="dropdown-item">活動報名</router-link>
+                    <router-link :to="{name:'activity'}" class="dropdown-item" :class="{active: $route.name === 'activity'}">活動報名</router-link>
                   </li>
                   <li>
-                    <router-link :to="{name:'space'}" class="dropdown-item">空間預約</router-link>
+                    <router-link :to="{name:'space'}" class="dropdown-item" :class="{active: $route.name === 'space'}">空間預約</router-link>
                   </li>
                   <li><a class="dropdown-item a-gray" href="#">里民團購</a></li>
                   <li><a class="dropdown-item a-gray" href="#">守望相助</a></li>
@@ -65,23 +65,23 @@
                       <img src="../assets/img/user_pic.png" alt="" class="user_pic" />
                     </a>
                   </li>
-                  <li><router-link :to="{name:'account_user'}">個人資訊</router-link></li>
-                  <li><router-link :to="{name:'account_user_manage'}">成員管理</router-link></li>
+                  <li><router-link :to="{name:'account_user'}" :class="{active: $route.name === 'account_user'}">個人資訊</router-link></li>
+                  <li><router-link :to="{name:'account_user_manage'}" :class="{active: $route.name === 'account_user_manage'}">成員管理</router-link></li>
                   <li class="user-record">
-                    <a href="#"
+                    <a href="#" :class="{active: $route.name === 'account_user_chat' || $route.name === 'account_user_space' || $route.name === 'account_user_activity'}"
                       >管理紀錄
                       <i class="bi bi-chevron-down bi-rotate"></i>
                     </a>
                     <ul class="dropdown-menu">
                       <li>
-                        <router-link :to="{name:'account_user_chat'}" class="dropdown-item">貼文刊登紀錄</router-link>
+                        <router-link :to="{name:'account_user_chat'}" class="dropdown-item" :class="{active: $route.name === 'account_user_chat'}">貼文刊登紀錄</router-link>
                       </li>
                       <!-- <li><router-link :to="{name:'account_user_gas'}" class="dropdown-item">瓦斯錶回報</router-link> -->
                       <li>
-                        <router-link :to="{name:'account_user_space'}" class="dropdown-item">空間預約紀錄</router-link>
+                        <router-link :to="{name:'account_user_space'}" class="dropdown-item" :class="{active: $route.name === 'account_user_space'}">空間預約紀錄</router-link>
                       </li>
                       <li>
-                        <router-link :to="{name:'account_user_activity'}" class="dropdown-item">活動報名紀錄</router-link>
+                        <router-link :to="{name:'account_user_activity'}" class="dropdown-item" :class="{active: $route.name === 'account_user_activity'}">活動報名紀錄</router-link>
                       </li>
                     </ul>
                   </li>
@@ -89,6 +89,9 @@
                   <li><hr class="dropdown-line" /></li>
                   <li>
                     <router-link :to="{name:'account_user_change_pwd'}">變更密碼</router-link>
+                  </li>
+                  <li>
+                    <router-link :to="{name:'home'}">登出</router-link>
                   </li>
                 </ul>
               </div>
@@ -192,14 +195,14 @@ export default {
       // };
 
       // 該頁面時 nav 文字為綠色
-      let navLinks = document.querySelectorAll('.a-black');
+      // let navLinks = document.querySelectorAll('.a-black');
 
-      navLinks.forEach(link => {
-        link.addEventListener('click', function() {
-          navLinks.forEach(link => link.classList.remove('active'));
-          this.classList.add('active');
-        });
-      });
+      // navLinks.forEach(link => {
+      //   link.addEventListener('click', function() {
+      //     navLinks.forEach(link => link.classList.remove('active'));
+      //     this.classList.add('active');
+      //   });
+      // });
 
     },
 
@@ -224,14 +227,14 @@ export default {
       };
 
       // 該頁面時 nav 文字為綠色
-      let navLinks = document.querySelectorAll('.a-black');
+      // let navLinks = document.querySelectorAll('.a-black');
 
-      navLinks.forEach(link => {
-        link.addEventListener('click', function() {
-          navLinks.forEach(link => link.classList.remove('active'));
-          this.classList.add('active');
-        });
-      });
+      // navLinks.forEach(link => {
+      //   link.addEventListener('click', function() {
+      //     navLinks.forEach(link => link.classList.remove('active'));
+      //     this.classList.add('active');
+      //   });
+      // });
     },
 }
 </script>
