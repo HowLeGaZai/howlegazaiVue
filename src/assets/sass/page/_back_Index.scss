@@ -240,7 +240,12 @@ body {
   
   p{
     font-size: 12px;
+  }
+  .positive{
     color: $green;
+  }
+  .negative{
+    color: $red;
   }
 }
 

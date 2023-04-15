@@ -183,14 +183,14 @@
                         <div class="content">
                             <div class="row">
                                 <div class="col-12">
-                                    <label for="tarea" class="f-label">問題</label>
+                                    <label for="tarea" class="f-label qalabel">問題</label>
                                     <textarea name="" id="tarea" cols="30" class="f-text"
                                         placeholder="">大湖里為什麼叫大湖里</textarea>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-12">
-                                    <label for="tarea" class="f-label">答案</label>
+                                    <label for="tarea" class="f-label qalabel">答案</label>
                                     <textarea name="" id="tarea" cols="30" rows="5" class="f-text"
                                         placeholder="">因為民國57年7月1日，改隸院轄花蓮縣後，大湖村改名為「大湖里」， 沿用至今；於91年9月1日起，因區域內人口眾多而劃出秀湖里</textarea>
                                 </div>
@@ -202,14 +202,14 @@
                         <div class="content">
                             <div class="row">
                                 <div class="col-12">
-                                    <label for="tarea" class="f-label">問題</label>
+                                    <label for="tarea" class="f-label qalabel">問題</label>
                                     <textarea name="" id="tarea" cols="30" class="f-text"
                                         placeholder="">大湖里為什麼叫大湖里</textarea>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-12">
-                                    <label for="tarea" class="f-label">答案</label>
+                                    <label for="tarea" class="f-label qalabel">答案</label>
                                     <textarea name="" id="tarea" cols="30" rows="5" class="f-text"
                                         placeholder="">因為民國57年7月1日，改隸院轄花蓮縣後，大湖村改名為「大湖里」， 沿用至今；於91年9月1日起，因區域內人口眾多而劃出秀湖里</textarea>
                                 </div>
@@ -221,14 +221,14 @@
                         <div class="content">
                             <div class="row">
                                 <div class="col-12">
-                                    <label for="tarea" class="f-label">問題</label>
+                                    <label for="tarea" class="f-label qalabel">問題</label>
                                     <textarea name="" id="tarea" cols="30" class="f-text"
                                         placeholder="">大湖里為什麼叫大湖里</textarea>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-12">
-                                    <label for="tarea" class="f-label">答案</label>
+                                    <label for="tarea" class="f-label qalabel">答案</label>
                                     <textarea name="" id="tarea" cols="30" rows="5" class="f-text"
                                         placeholder="">因為民國57年7月1日，改隸院轄花蓮縣後，大湖村改名為「大湖里」， 沿用至今；於91年9月1日起，因區域內人口眾多而劃出秀湖里</textarea>
                                 </div>
@@ -240,14 +240,14 @@
                         <div class="content">
                             <div class="row">
                                 <div class="col-12">
-                                    <label for="tarea" class="f-label">問題</label>
+                                    <label for="tarea" class="f-label qalabel">問題</label>
                                     <textarea name="" id="tarea" cols="30" class="f-text"
                                         placeholder="">大湖里為什麼叫大湖里</textarea>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-12">
-                                    <label for="tarea" class="f-label">答案</label>
+                                    <label for="tarea" class="f-label qalabel">答案</label>
                                     <textarea name="" id="tarea" cols="30" rows="5" class="f-text"
                                         placeholder="">因為民國57年7月1日，改隸院轄花蓮縣後，大湖村改名為「大湖里」， 沿用至今；於91年9月1日起，因區域內人口眾多而劃出秀湖里</textarea>
                                 </div>
@@ -259,14 +259,14 @@
                         <div class="content">
                             <div class="row">
                                 <div class="col-12">
-                                    <label for="tarea" class="f-label">問題</label>
+                                    <label for="tarea" class="f-label qalabel">問題</label>
                                     <textarea name="" id="tarea" cols="30" class="f-text"
                                         placeholder="">大湖里為什麼叫大湖里</textarea>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-12">
-                                    <label for="tarea" class="f-label">答案</label>
+                                    <label for="tarea" class="f-label qalabel">答案</label>
                                     <textarea name="" id="tarea" cols="30" rows="5" class="f-text"
                                         placeholder="">因為民國57年7月1日，改隸院轄花蓮縣後，大湖村改名為「大湖里」， 沿用至今；於91年9月1日起，因區域內人口眾多而劃出秀湖里</textarea>
                                 </div>

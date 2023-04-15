@@ -100,15 +100,21 @@
         <!------ 待辦事項 ------>
         <div class="admin-todolist">
           <p>待辦事項</p>
-          <button type="button" class="btn-be-dash btn-color-green">
-            <div class=" text-ali font-13">新申請<br>戶長帳號 (2)<i class="bi bi-arrow-right-circle-fill btn-i"></i></div>
-          </button>
-          <button type="button" class="btn-be-dash btn-color-green opacity-4">
-            <div class=" text-ali font-13">待批准<br>空間預約 (0)</div>
-          </button>
-          <button type="button" class="btn-be-dash btn-color-green opacity-4">
-            <div class=" text-ali font-13">待追蹤<br>維修通報 (0)</div>
-          </button>
+          <router-link :to="{name:'backend_account_new'}">
+            <button type="button" class="btn-be-dash btn-color-green">
+              <div class=" text-ali font-13">新申請<br>戶長帳號 (2)<i class="bi bi-arrow-right-circle-fill btn-i"></i></div>
+            </button>
+          </router-link>
+          <router-link :to="{name:'backend_space_reservation'}">
+            <button type="button" class="btn-be-dash btn-color-green opacity-4">
+              <div class=" text-ali font-13">待批准<br>空間預約 (0)</div>
+            </button>          
+          </router-link>
+          <router-link :to="{}">
+            <button type="button" class="btn-be-dash btn-color-green opacity-4">
+              <div class=" text-ali font-13">待追蹤<br>維修通報 (0)</div>
+            </button>          
+          </router-link>
 
         </div>
 
@@ -129,7 +135,7 @@
                     <h1>127</h1>
                     <h2>大湖里戶數</h2>
                   </div>
-                  <p>↑12%</p>
+                  <p class="positive">↑12%</p>
                 </td>
                 <!-- <td>
                   <h1>2000</h1>
@@ -140,17 +146,25 @@
                     <h1>231</h1>
                     <h2>大湖里人口數</h2>
                   </div>
-                  <p>↑2%</p>
+                  <p class="positive">↑2%</p>
                 </td>
 
                 <td class="area-number">
                   <div class="family-num">
                     <h1>147</h1>
+                    <h2>網站註冊戶數</h2>
+                  </div>
+                  <p class="positive">↑6%</p>
+                </td>
+                <td class="area-number">
+                  <div class="family-num">
+                    <h1>147</h1>
                     <h2>網站註冊人數</h2>
                   </div>
-                  <p>↑6%</p>
+                  <p class="negative">↓2%</p>
                 </td>
               </tr>
+              
 
               
 

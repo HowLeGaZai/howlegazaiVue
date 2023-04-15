@@ -110,17 +110,17 @@
                             <i class="bi bi-caret-down-fill i-s"></i>
                             </a>
                             <div class="be-nav-on">
-                            <router-link :to="{name:'backend_space_reservation'}">
-                            <button class="be-nav be-nav btn-font-color-gray">待審核預約</button>
-                            </router-link>
-                            <router-link :to="{name:'backend_space_management'}">
-                            <button class="be-nav be-nav btn-font-color-gray">預約列表</button>
-                            </router-link>
-                            <router-link :to="{name:'backend_space_list'}">
-                                <button class="be-nav btn-font-color-green">空間總覽</button>
-                            </router-link>
-                            <!-- <button class="be-nav btn-font-color-gray"  onclick="window.location.href='''">空間列表</button>
-                            <button class="be-nav be-nav btn-font-color-gray"  onclick="window.location.href=''">預約管理</button> -->
+                                <router-link :to="{name:'backend_space_reservation'}">
+                                <button class="be-nav be-nav btn-font-color-green">待審核預約</button>
+                                </router-link>
+                                <router-link :to="{name:'backend_space_management'}">
+                                <button class="be-nav be-nav btn-font-color-gray">預約列表</button>
+                                </router-link>
+                                <router-link :to="{name:'backend_space_list'}">
+                                    <button class="be-nav btn-font-color-gray">空間總覽</button>
+                                </router-link>
+                                <!-- <button class="be-nav btn-font-color-gray"  onclick="window.location.href='''">空間列表</button>
+                                <button class="be-nav be-nav btn-font-color-gray"  onclick="window.location.href=''">預約管理</button> -->
                             </div>
                         </li>
                         <!-- 團購網管理 -->
@@ -180,73 +180,51 @@
                     </ul>
                 </div>
                 <section class="section_right">
-                    <!-- 空間總覽 -->
-                    <div class="w90percentage accounttable bk-space">
-                        <h1>空間總覽</h1>
-                        <div class="displayflex justifycontent">
+                    <!-- 待審核預約 -->
+                    <div class="w90percentage accounttable bk-space-reservation">
+                    <h1>待審核預約</h1>
 
-                            <div class="displayflex textalignleft">
+                    <div class="">
+                        <table class=" back-table-2">
+                            <tbody>
+                            <tr>
+                                <td>待審核</td>
+                                <td>訂單號碼</td>
+                                <td>申請單位</td>
+                                <td>預約人</td>
+                                <td>預約空間</td>
+                                <td>預約原因</td>
+                            </tr>
+                            <tr>
+                                <td><i class="bi bi-check"> </i><i class="bi bi-x"></i></td>
+                                <!-- 按下 X <i class="bi bi-x"></i> 會跳出彈跳視窗強制填寫取消原因，這個頁面不知道在哪裡 -->
+                                <td>001</td>
+                                <td>美安</td>
+                                <td>張迪生</td>
+                                <td>大湖里A102室</td>
+                                <td>辦理直銷活動</td>                            
+                            </tr>
                             
-                            </div>
-                            <div class="displayflex margintop18">
-                                <router-link :to="{name:'backend_space_add'}" type="button" class="btn-10-s btn-color-green marginright20 bk_addSpace">
-                                    <i class="bi bi-plus-lg"></i> 新增空間
-                                </router-link>
-                            </div>
-                        </div>
-                        <div class="">
+                        </tbody>
 
-                            <table class="back-table-2 bk-space-table">
+                        </table>
 
-                                <tbody>
-                                    <tr>
-                                    <td>空間編號</td>
-                                    <td>空間名稱</td>
-                                    <td>預約數</td>
-                                    <td>連結</td>
-                                    <td>編輯</td>
-                                    <td>刪除</td>
-                                    
-                                    </tr>
-                                    <tr>
-                                    <td>001</td>
-                                    <td>大湖里A102室</td>
-                                    <td>0筆</td>
-                                    <td><button type="button" class="btn-icon" onclick="window.open('#/space_info', '_blank')">
-                                        <i class="bi bi-link-45deg btn-font-color-green"></i>
-                                    </button>
-                                    </td>
-                                    
-                                    <td><button type="button" class="btn-icon">
-                                        <i class="bi bi-pencil-square btn-font-color-green"></i>
-                                    </button>
-                                    </td>
-
-                                    <td><button type="button" class="btn-icon">
-                                        <i class="bi bi-x-circle-fill btn-font-color-green"></i>
-                                        </button>
-                                    </td>
-                                    
-                                    </tr>
-                                    
-
-
-
-
-                                </tbody>
-
-                            </table>
-                        </div>
-
-                        <!-- 頁碼 -->
-                        <ul class="btn-page-block">
-                            <li><button class="btn-page btn-color-white"><i class="bi bi-caret-left-fill"></i></button></li>
-                            <li><button class="btn-page btn-color-green">1</button></li>
-                            <li><button class="btn-page btn-color-white">2</button></li>
-                            <li><button class="btn-page btn-color-white">3</button></li>
-                            <li><button class="btn-page btn-color-white"><i class="bi bi-caret-right-fill"></i></button></li>
-                        </ul>
                     </div>
+
+                    <!-- 頁碼還沒寫完 -->
+
+                    <ul class="btn-page-block">
+                        <li><button class="btn-page btn-color-white"><i class="bi bi-caret-left-fill"></i></button></li>
+                        <li><button class="btn-page btn-color-green">1</button></li>
+                        <li><button class="btn-page btn-color-white">2</button></li>
+                        <li><button class="btn-page btn-color-white">3</button></li>
+                        <li><button class="btn-page btn-color-white"><i class="bi bi-caret-right-fill"></i></button></li>
+                    </ul>
+
+                    </div>
+
+
+
                 </section>
             </section>
         </main>
