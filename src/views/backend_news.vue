@@ -189,19 +189,20 @@
             <div class="displayflex textalignleft ">
                 <div class="marginright20">
                   <label for="selecte" class="f-label">類別</label>
-                  <select name="" id="selecte" class="f-select">
-                      <option value="1">-選擇-</option>
-                      <option value="2">公告</option>
-                      <option value="3">宣導</option>
-                      <option value="4">經費報告</option>
+                  <select name="" id="selecte" class="f-select" v-model="selectedCategory">  
+                    <!-- 設一個v-modele= selectedCategory  -->
+                      <option value="">-全部-</option>
+                      <option value="公告">公告</option>
+                      <option value="宣導">宣導</option>
+                      <option value="經費報告">經費報告</option>
                   </select>
               </div>
               <div>
-                  <label for="selecte" class="f-label">發布日期</label>
-                  <select name="" id="selecte" class="f-select">
-                      <option value="1">-選擇-</option>
-                      <option value="2">最新至最舊</option>
-                      <option value="3">最舊至最新 </option>
+                  <label for="date" class="f-label">發布日期</label>
+                  <select name="" id="date" class="f-select" v-model="selectedDate">
+                      <option value="">-選擇-</option>
+                      <option value="new">最新至最舊</option>
+                      <option value="old">最舊至最新 </option>
                       <!-- <option value="4">審核通過 </option> -->
                   </select>
               </div>
@@ -233,70 +234,11 @@
                   <!-- <td>編輯</td>
                   <td>刪除</td> -->
               </tr>
-              <tr>
-                  <td>宣導</td>
-                  <td>大湖里反詐騙宣導</td>
-                  <td>2022-01-01</td>
-                  <td><label class="switch">
-                    <input type="checkbox">
-                    <span class="slider"></span>
-                </label></td>
-                  <td> <button type="button" class="btn-icon">
-                    <i class="bi bi-pencil-square btn-font-color-green"></i>
-                  </button></td>
-                  <td> <button type="button" class="btn-icon">
-                    <i class="bi bi-x-circle-fill btn-font-color-green"></i>
-                  </button></td>
-              </tr>
-              <tr>
-                  <td>宣導</td>
-                  <td>大湖里反詐騙宣導</td>
-                  <td>2022-01-01</td>
-                  <td><label class="switch">
-                    <input type="checkbox">
-                    <span class="slider"></span>
-                </label></td>
-                  <td> <button type="button" class="btn-icon">
-                    <i class="bi bi-pencil-square btn-font-color-green"></i>
-                  </button></td>
-                  <td> <button type="button" class="btn-icon">
-                    <i class="bi bi-x-circle-fill btn-font-color-green"></i>
-                  </button></td>
-              </tr>
-              <tr>
-                  <td>宣導</td>
-                  <td>大湖里反詐騙宣導</td>
-                  <td>2022-01-01</td>
-                  <td><label class="switch">
-                    <input type="checkbox">
-                    <span class="slider"></span>
-                </label></td>
-                  <td> <button type="button" class="btn-icon">
-                    <i class="bi bi-pencil-square btn-font-color-green"></i>
-                  </button></td>
-                  <td> <button type="button" class="btn-icon">
-                    <i class="bi bi-x-circle-fill btn-font-color-green"></i>
-                  </button></td>
-              </tr>
-              <tr>
-                <td>宣導</td>
-                <td>大湖里反詐騙宣導</td>
-                <td>2022-01-01</td>
-                <td><label class="switch">
-                  <input type="checkbox">
-                  <span class="slider"></span>
-              </label></td>
-                <td> <button type="button" class="btn-icon">
-                  <i class="bi bi-pencil-square btn-font-color-green"></i>
-                </button></td>
-                <td> <button type="button" class="btn-icon">
-                  <i class="bi bi-x-circle-fill btn-font-color-green"></i>
-                </button></td>
-            </tr>
-              <tr>
-                  <td>宣導</td>
-                  <td>大湖里反詐騙宣導</td>
-                  <td>2022-01-01</td>
+              <tr v-for="item in filteredItems" :key="item.id">
+                  <td>{{ item.category }}</td> <!-- 發布類別 -->
+                  <td>{{ item.title }}</td>   <!-- 標題 -->
+                  <td>{{ item.date }}</td> <!-- 時間 -->
+                
                   <td><label class="switch">
                     <input type="checkbox">
                     <span class="slider"></span>
@@ -371,6 +313,33 @@ import 'jquery-ui-dist/jquery-ui.min.css'
 import Footer from './Footer.vue';
 
 export default {
+  data() {
+    return {
+      items: [
+        { id: 1, category: '公告',title: '緯育里上課打8折', date: '2022-01-01' },
+        { id: 2, category: '宣導',title: '偷米CEO創造出php新語法', date: '2022-01-02' },
+        { id: 3, category: '經費報告',title: '里長女兒偷用公款買奶嘴',  date: '2022-01-03' },
+        { id: 4, category: '公告',title: '其他網站的新功能正在努力開發中',   date: '2022-01-04' },
+        // { id: 4, category: '公告',title: '其他網站的新功能正在努力開發中qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq',   date: '2022-01-04' },
+      ],
+      selectedCategory: '',
+      selectedDate: '',
+    }
+  },
+  computed: {
+    filteredItems() {
+      let filteredItems = this.items;
+      if (this.selectedCategory) {
+        filteredItems = filteredItems.filter((item) => item.category === this.selectedCategory);
+      }
+      if (this.selectedDate === 'new') {
+        filteredItems = filteredItems.sort((a, b) => new Date(b.date) - new Date(a.date));
+      } else if (this.selectedDate === 'old') {
+        filteredItems = filteredItems.sort((a, b) => new Date(a.date) - new Date(b.date));
+      }
+      return filteredItems;
+    },
+  },
   components: {
       backendNavbar,Footer
     },

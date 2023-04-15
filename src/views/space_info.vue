@@ -294,19 +294,20 @@ async getData() {
     for (let h = Number(startHour); h <= Number(endHour); h++) {
       // console.log(h);
       const time = `${h}:00-${h}:59` // 產生時間範圍字串，例如 '8:00-8:59'
-      const time_about = `${h}:00:00-${h}:59:00`
+      
+     
       // console.log(time);
       const value ='btn-m btn-color-white timeslot'
       dataList.push({ time,value });
-      dataList_about.push(time_about);
+      
     }
-
+// dataList_about.push(time_about);
     console.log('123456',dataList_about);
 
     for(let i=0;i<this.jsonData.length;i++){
-      // console.log('i',this.jsonData[i]);
+      console.log('i',this.jsonData[i][0]);
         for(let j =0; j<dataList_about.length;j++){
-          // console.log('j',dataList_about[j])
+          console.log('j',dataList_about[j])
           // if(this.jsonData[i] == dataList_about[j]){
           //     console.log('有預約時段',dataList_about[j]);
           // }else{
