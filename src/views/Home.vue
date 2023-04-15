@@ -460,7 +460,7 @@ export default {
     };
   },
   beforeCreate() {
-    axios.post('http://localhost/howlegazaiVue/public/API/checklogin.php')
+    axios.post('http://localhost/TGD104G1/public/API/checklogin.php')
       .then(response => {
         console.log(response.data);
         // this.isLoggedIn = JSON.parse(response.data.isLoggedIn); // 根據後端回應更新isLoggedIn的值
@@ -503,7 +503,7 @@ export default {
   },
   mounted() {
      axios
-        .post('http://localhost/howlegazaiVue2/public/API/home.php',{})
+        .post('http://localhost/TGD104G1/public/API/home.php',{})
         .then(response => {
             this.jsonData = response.data;
             // alert(response.data)
@@ -518,7 +518,7 @@ export default {
 
 
       axios
-        .post('http://localhost/howlegazaiVue2/public/API/homeBanner.php',{})
+        .post('http://localhost/TGD104G1/public/API/homeBanner.php',{})
         .then(response => {
             this.jsonDataBanner = response.data;
             // alert(response.data)

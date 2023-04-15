@@ -43,7 +43,7 @@
                 
               
                 <!-- <button type="button" :class="time.value"  :value="time.time" @click="clickActive" v-if="time.time === '10:00-10:59' " >{{time.time}}</button> -->
-                <button type="button" :class="time.value"  :value="time.time" @click="clickActive" >{{time.time}}</button>
+                <button type="button" :class="time.value_about"  :value="time.time_about" @click="clickActive" :disabled="time.value_about === 'btn-m btn-color-white timeslot btn-color-gray'">{{time.time_about}}</button>
 <!-- <button type="button" class="btn-m btn-color-white timeslot" v-else :value="time.time" >{{time.time}}</button> -->
               </template>
               
@@ -150,6 +150,7 @@ export default {
       jsonData:[],
       timeRanges:[],
       data:[],
+      selectDate:'',
       spaces: 
               {
               "ID": "1",
@@ -183,13 +184,11 @@ export default {
         modules: [Navigation],
       };
     },
-    created(){
-      
 
-    },
   
   mounted() {
-this.getData();
+    const self = this
+    this.showData();
     // console.log('abcdef',this.jsonData);
     $('#resizable').resizable({});
     $('#datepicker').datepicker({
@@ -207,6 +206,10 @@ this.getData();
         $('.selectedD').html(`日期:&nbsp;` + selected + `&nbsp;(` + dayOfWeekText + `)`);
         sessionStorage.setItem("date", selected + `(` + dayOfWeekText + `)`);
         sessionStorage.setItem("onlydate", selected );
+        this.selectDate = selected;
+        self.getData(selected);
+        // alert("確定預約這一天嗎");
+        // alert(selected);
       }
     });
     // var btnContainer = document.getElementById("selected");
@@ -233,7 +236,7 @@ this.getData();
 
 
    
-        console.log('123',this.jsonData);
+        
 
     //   });
     // };
@@ -265,19 +268,8 @@ this.getData();
 
   },
   methods:{
-async getData() {
-    await axios
-          //  htdocs的環境下測試
-          .get('http://localhost/howlegazaiVue2/public/API/spaceAfterOrder.php')
-              
-              .then(response => {
-                  this.jsonData = response.data;
-                  
-                  // console.log(this.jsonData);
-              })
-              .catch(error => {
-                  // console.log(error);
-              });
+ showData() {
+    
     // console.log('abc',this.jsonData);
 
     const timeRange = '8:00-21:59';
@@ -294,35 +286,131 @@ async getData() {
     for (let h = Number(startHour); h <= Number(endHour); h++) {
       // console.log(h);
       const time = `${h}:00-${h}:59` // 產生時間範圍字串，例如 '8:00-8:59'
-      
-     
+      if(h<10){
+        const time_about = `0${h}:00:00-0${h}:59:00`;
+        const value_about = 'btn-m btn-color-white timeslot';
+        dataList_about.push({ time_about,value_about});
+      }else{
+        const time_about = `${h}:00:00-${h}:59:00`;
+        const value_about = 'btn-m btn-color-white timeslot';
+        dataList_about.push({ time_about,value_about});
+      }
+      console.log('dataList_about',dataList_about);
       // console.log(time);
       const value ='btn-m btn-color-white timeslot'
       dataList.push({ time,value });
       
     }
 // dataList_about.push(time_about);
-    console.log('123456',dataList_about);
+    // console.log('調整格式',dataList_about);
 
-    for(let i=0;i<this.jsonData.length;i++){
-      console.log('i',this.jsonData[i][0]);
-        for(let j =0; j<dataList_about.length;j++){
-          console.log('j',dataList_about[j])
-          // if(this.jsonData[i] == dataList_about[j]){
-          //     console.log('有預約時段',dataList_about[j]);
-          // }else{
-
-          // }
-        }
-        
-
-    }
-
-    // console.log(dataList);
-    this.data = dataList;
+    console.log('確定預約的',this.jsonData);
+    this.data = dataList_about;
 
 
 },
+
+async getData(date) {
+    await axios
+          //  htdocs的環境下測試
+          .get('http://localhost/TGD104G1/public/API/spaceAfterOrder.php')
+              
+              .then(response => {
+                  this.jsonData = response.data;
+                  
+                  // console.log(this.jsonData);
+              })
+              .catch(error => {
+                  // console.log(error);
+              });
+    // console.log('abc',this.jsonData);
+    // alert(date);
+    console.log('選擇的日期是',date);
+    const timeRange = '8:00-21:59';
+    // console.log(timeRange);
+    const [startTime, endTime] = timeRange.split('-')
+    // console.log(startHour);
+    // console.log(endHour);
+
+    let startHour  = startTime.split(':')[0].trim();
+    let endHour = endTime.split(':')[0].trim();
+    // console.log(startHour);
+    const dataList= [];
+    const dataList_about =[];
+    for (let h = Number(startHour); h <= Number(endHour); h++) {
+      // console.log(h);
+      const time = `${h}:00-${h}:59` // 產生時間範圍字串，例如 '8:00-8:59'
+      if(h<10){
+        const time_about = `0${h}:00:00-0${h}:59:00`;
+        const value_about = 'btn-m btn-color-white timeslot';
+        dataList_about.push({ time_about,value_about});
+      }else{
+        const time_about = `${h}:00:00-${h}:59:00`;
+        const value_about = 'btn-m btn-color-white timeslot';
+        dataList_about.push({ time_about,value_about});
+      }
+      console.log('dataList_about',dataList_about);
+      // console.log(time);
+      const value ='btn-m btn-color-white timeslot'
+      dataList.push({ time,value });
+      
+    }
+// dataList_about.push(time_about);
+    // console.log('調整格式',dataList_about);
+
+    console.log('確定預約的',this.jsonData);
+    
+
+    const formattedDate = date.replace(/\//g, '-');
+
+    // alert(formattedDate);
+
+    for(let i=0;i<this.jsonData.length;i++){
+        console.log('預約日期',this.jsonData[i][0]);
+        if(formattedDate == this.jsonData[i][0] ){
+          console.log('abc',formattedDate);
+            //加入日期判斷
+              // console.log(i,this.jsonData[i][1]);
+                for(let j =0; j<dataList_about.length;j++){
+                  // console.log(j,dataList_about[j].time_about)
+                  if(this.jsonData[i][1] == dataList_about[j].time_about){
+                      console.log('有預約時段',dataList_about[j].time_about);
+                      dataList_about[j].value_about = 'btn-m btn-color-white timeslot btn-color-gray';
+                      // console.log(dataList_about[j].value_about);
+                  }else{
+
+                  }
+                }
+                
+
+            
+        }
+    }
+
+
+    // for(let i=0;i<this.jsonData.length;i++){
+    //   // console.log(i,this.jsonData[i][1]);
+    //     for(let j =0; j<dataList_about.length;j++){
+    //       // console.log(j,dataList_about[j].time_about)
+    //       if(this.jsonData[i][1] == dataList_about[j].time_about){
+    //           console.log('有預約時段',dataList_about[j].time_about);
+    //           dataList_about[j].value_about = 'btn-m btn-color-white timeslot btn-color-gray';
+    //           // console.log(dataList_about[j].value_about);
+    //       }else{
+
+    //       }
+    //     }
+        
+
+    // }
+
+    console.log('dataList',dataList);
+    this.data = dataList_about;
+
+
+},
+
+
     
     clickActive(event){
       const button = event.target;
