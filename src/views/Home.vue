@@ -493,7 +493,7 @@ export default {
   },
   mounted() {
      axios
-        .post('http://localhost/howlegazaiVue2/public/API/home.php',{})
+        .post('http://localhost/TGD104G1/public/API/home.php',{})
         .then(response => {
             this.jsonData = response.data;
             // alert(response.data)
@@ -508,7 +508,7 @@ export default {
 
 
       axios
-        .post('http://localhost/howlegazaiVue2/public/API/homeBanner.php',{})
+        .post('http://localhost/TGD104G1/public/API/homeBanner.php',{})
         .then(response => {
             this.jsonDataBanner = response.data;
             // alert(response.data)
