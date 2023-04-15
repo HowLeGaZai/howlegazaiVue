@@ -51,11 +51,13 @@ export default {
   data() {
     return {
       init: {
-        selector: '#textarea',
+        selector: 'textarea',
+        placeholder: '請輸入內容...',
         language: 'zh_TW',
         height: 500,
         menubar: false,
         content_css: false,
+        statusbar: false,
         mobile: {
           menubar: true,
         },
