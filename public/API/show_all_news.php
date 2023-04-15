@@ -1,13 +1,11 @@
 <?php
 
 include("conn.php");
+ ;// searchNews為最新消息的搜尋input內容
 
-$searchNews = $_POST['searchNews'] ;// searchNews為最新消息的搜尋input內容
-
-// echo $searchNews;
     //建立SQL語法
     // 查找符合的新聞標題 
-    $sql = "SELECT * FROM NEWS where TITLE LIKE '%$searchNews%' ";
+    $sql = "SELECT * FROM NEWS";
     
     // echo $sql;
     // $statement = $pdo->prepare($sql);

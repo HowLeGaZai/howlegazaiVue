@@ -37,7 +37,7 @@
       <!-- <news-list v-for="news in filterNews" :key="news.id"></news-list> -->
       <!-- ===== newslist_components ===== -->
 
-      <a href="#" v-for="(news, index) in news" :key="index">
+      <a href="#" v-for="(news,index) in newsdata" :key="index">
         <!-- <a href="#" v-for="news in filterNews" :key="news"> -->
       <!-- <a href="#" v-for="news in filterNews" :key="news.news"> -->
         <article class="news_item">
@@ -50,11 +50,13 @@
               <h5>{{ news.CREATE_TIME }}</h5>
             </section>
             <div class="image list_pic">
-              <img :src="require(`@/assets/img/${news.PIC}`)" alt="">
+              <!-- Vue無法抓取null的屬性做判斷，這裡直接將找不到的值轉換成字串null再做更替預設圖片 -->
+              <img :src= "(news.PIC && news.PIC !== 'null') ? require(`@/assets/img/${news.PIC }`) : require(`@/assets/img/news_default.jpg`)" alt="">
             </div>
           </section>
         </article>
       </a>
+ 
 
 
 
@@ -77,6 +79,7 @@ import navbar from './navbar.vue';
 import Footer from './Footer.vue';
 import NewsList from '../components/NewsList.vue';
 
+
 export default {
   components: {
     navbar,
@@ -88,39 +91,9 @@ export default {
   data() {
     return {
       searchNews: '', // input的搜尋輸入內容
-      NewsData:[],// 搜尋結果
-      news: [
-        {
-          "CATEGORY": "公告",
-          "CREATE_TIME": "2023-03-02",
-          "TITLE": "清明期間 大湖里第一公墓管制出入",
-          "PIC": "c_1_food.jpg",
-        },
-        {
-          "CATEGORY": "宣導",
-          "CREATE_TIME": "2023-03-11",
-          "TITLE": "大湖里反詐騙宣導：為避免輕易上當，請撥165反詐騙電話",
-          "PIC": "c_1_food.jpg",
-        },
-        {
-          "CATEGORY": "里民服務",
-          "CREATE_TIME": "2023-03-11",
-          "TITLE": "清明期間 大湖里第二公墓管制出入",
-          "PIC": "c_1_food.jpg",
-        },
-        {
-          "CATEGORY": "新聞分享",
-          "CREATE_TIME": "2023-03-11",
-          "TITLE": "清明期間 大湖里第二公墓管制出入",
-          "PIC": "c_1_food.jpg",
-        },
-        {
-          "CATEGORY": "會議記錄",
-          "CREATE_TIME": "2023-03-11",
-          "TITLE": "清明期間 大湖里第二公墓管制出入",
-          "PIC": "c_1_food.jpg",
-        },
-      ]
+      // newsData:[],// 搜尋結果
+      newsdata: [],
+      // news2:[],
     }
   },
   methods: {
@@ -135,15 +108,32 @@ export default {
       }
     },
 
+    // 自動撈取最新消息
+     getnews(){
+       axios.post('http://localhost/howlegazaiVue2/public/API/show_all_news.php')
+      .then(response => {
+        this.newsdata= response.data;
+        console.log(this.newsdata);
+        // console.log('123');
+       })
+       .catch(error => {
+         console.log(error);
+       });
+
+
+    },
+
     //搜尋最新消息
     postsearch(){
 
       const formdata = new FormData()
       formdata.append('searchNews',this.searchNews) 
       console.log(this.searchNews);
-      axios.post('http://localhost/howlegazaiVue2/public/API/search_news.php', formdata )// searchNews:this.searchNews
+      axios.post('http://localhost/howlegazaiVue2/public/API/search_news.php', formdata)
+      // searchNews:this.searchNews
       .then(response => {
-        console.log(response.data);
+        this.newsdata=response.data;
+        // console.log('123',response.data);
         // console.log('123');
        })
        .catch(error => {
@@ -182,7 +172,7 @@ export default {
       });
     };
 
-    // this.postsearch();
+    this.getnews();//撈取所有的新聞內容
   }
 
 
