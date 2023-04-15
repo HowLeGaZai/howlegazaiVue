@@ -100,21 +100,23 @@
         <!------ 待辦事項 ------>
         <div class="admin-todolist">
           <p>待辦事項</p>
-          <router-link :to="{name:'backend_account_new'}">
-            <button type="button" class="btn-be-dash btn-color-green">
-              <div class=" text-ali font-13">新申請<br>戶長帳號 (2)<i class="bi bi-arrow-right-circle-fill btn-i"></i></div>
-            </button>
-          </router-link>
-          <router-link :to="{name:'backend_space_reservation'}">
-            <button type="button" class="btn-be-dash btn-color-green opacity-4">
-              <div class=" text-ali font-13">待批准<br>空間預約 (0)</div>
-            </button>          
-          </router-link>
-          <router-link :to="{}">
-            <button type="button" class="btn-be-dash btn-color-green opacity-4">
-              <div class=" text-ali font-13">待追蹤<br>維修通報 (0)</div>
-            </button>          
-          </router-link>
+          <div class="displayflex">
+            <router-link :to="{name:'backend_account_new'}">
+              <button type="button" class="btn-be-dash btn-color-green">
+                <div class=" text-ali font-13">新申請<br>戶長帳號 (2)<i class="bi bi-arrow-right-circle-fill btn-i"></i></div>
+              </button>
+            </router-link>
+            <router-link :to="{name:'backend_space_reservation'}">
+              <button type="button" class="btn-be-dash btn-color-green opacity-4">
+                <div class=" text-ali font-13">待批准<br>空間預約 (0)</div>
+              </button>          
+            </router-link>
+            <router-link :to="{}">
+              <button type="button" class="btn-be-dash btn-color-green opacity-4 btn-color-unopened">
+                <div class=" text-ali font-13">待追蹤<br>維修通報 (0)</div>
+              </button>          
+            </router-link>
+          </div>
 
         </div>
 

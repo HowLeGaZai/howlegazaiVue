@@ -177,8 +177,13 @@ body {
     border-radius: 5px;
     margin-right: 10px;
     margin-bottom: 10px;
-    
-    
+  }
+
+  .btn-color-unopened{
+    &:hover{
+      background-color: $silver;
+      color: $lightdark;
+    }
   }
 }
 
@@ -245,7 +250,7 @@ body {
     color: $green;
   }
   .negative{
-    color: $red;
+    color: $darkorange;
   }
 }
 
