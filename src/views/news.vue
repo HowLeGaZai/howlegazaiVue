@@ -80,6 +80,7 @@ import Footer from './Footer.vue';
 import NewsList from '../components/NewsList.vue';
 
 
+
 export default {
   components: {
     navbar,
@@ -114,7 +115,7 @@ export default {
       .then(response => {
         this.newsdata= response.data;
         console.log(this.newsdata);
-        // console.log('123');
+        console.log('123');
        })
        .catch(error => {
          console.log(error);
@@ -158,6 +159,8 @@ export default {
 
 
   mounted() {
+    this.postsearch();
+
     var desktopfilter = document.getElementById("news-desktop-filter");
     var btns = desktopfilter.getElementsByClassName("tag-btn");
 
@@ -172,7 +175,6 @@ export default {
       });
     };
 
-    this.postsearch();
   }
 
 
