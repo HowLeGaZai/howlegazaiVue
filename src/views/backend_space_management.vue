@@ -110,11 +110,14 @@
                             <i class="bi bi-caret-down-fill i-s"></i>
                             </a>
                             <div class="be-nav-on">
-                            <router-link :to="{name:'backend_space_list'}">
-                                <button class="be-nav btn-font-color-gray">空間列表</button>
+                            <router-link :to="{name:'backend_space_reservation'}">
+                            <button class="be-nav be-nav btn-font-color-gray">待審核預約</button>
                             </router-link>
                             <router-link :to="{name:'backend_space_management'}">
-                            <button class="be-nav be-nav btn-font-color-green">預約管理</button>
+                            <button class="be-nav be-nav btn-font-color-green">預約列表</button>
+                            </router-link>
+                            <router-link :to="{name:'backend_space_list'}">
+                                <button class="be-nav btn-font-color-gray">空間總覽</button>
                             </router-link>
                             <!-- <button class="be-nav btn-font-color-gray"  onclick="window.location.href='''">空間列表</button>
                             <button class="be-nav be-nav btn-font-color-gray"  onclick="window.location.href=''">預約管理</button> -->
@@ -179,7 +182,7 @@
                 <section class="section_right">
                     <!-- 空間總覽 -->
                     <div class="w90percentage accounttable bk-space-management">
-                    <h1>預約管理</h1>
+                    <h1>預約列表</h1>
                     <div class="displayflex justifycontent">
 
                         <div class="displayflex textalignleft">
@@ -211,29 +214,20 @@
 
                         <tbody>
                             <tr>
-                            <td>單號</td>
-                            <td>預約人</td>
-                            <td>預約空間</td>
-                            <td>狀態</td>
-                            <td>查看</td>
-                            <td>刪除</td>
-                            
+                                <td>單號</td>
+                                <td>預約人</td>
+                                <td>申請人電話</td>
+                                <td>預約空間</td>
+                                <td>預約時段</td>
+                                <td>用途</td>                            
                             </tr>
                             <tr>
-                            <td>001</td>
-                            <td>張迪生</td>
-                            <td>大湖里A102室</td>
-                            <td>等待審核</td>
-                            <td><button type="button" class="btn-icon">
-                                <i class="bi bi-eye btn-font-color-green"></i>
-                            </button>
-                            </td>
-
-                            <td><button type="button" class="btn-icon">
-                                <i class="bi bi-x-circle-fill btn-font-color-green"></i>
-                                </button>
-                            </td>
-                            
+                                <td>001</td>
+                                <td>張迪生</td>
+                                <td>0912345678</td>
+                                <td>大湖里A102室</td>
+                                <td>2023-01-01 <br> 10:00-11:00</td>
+                                <td>美安直銷活動</td>
                             </tr>
                             
                         </tbody>

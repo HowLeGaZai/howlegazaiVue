@@ -285,10 +285,16 @@ const routes = [
     component:() => import(/* webpackChunkName: "about" */ '../views/backend_account_new.vue')
   },
   {
-    // 後台 空間管理 空間列表
+    // 後台 空間管理 待審核訂單
     path: '/backend_space_list',
     name: 'backend_space_list',
     component:() => import(/* webpackChunkName: "about" */ '../views/backend_space_list.vue')
+  },
+  {
+    // 後台 空間管理 預約列表
+    path: '/backend_space_reservation',
+    name: 'backend_space_reservation',
+    component:() => import(/* webpackChunkName: "about" */ '../views/backend_space_reservation.vue')
   },
   {
     // 後台 空間管理 新增空間
@@ -297,7 +303,7 @@ const routes = [
     component:() => import(/* webpackChunkName: "about" */ '../views/backend_space_add.vue')
   },
   {
-    // 後台 空間管理 空間管理
+    // 後台 空間管理 空間總覽
     path: '/backend_space_management',
     name: 'backend_space_management',
     component:() => import(/* webpackChunkName: "about" */ '../views/backend_space_management.vue')

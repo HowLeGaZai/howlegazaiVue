@@ -199,11 +199,6 @@
                                     <input type="radio" name="singlechoice">
                                     <span class="checkmark"></span>
                                 </label>
-                                <label class="f-checkbox">自行填寫:
-                                    <input type="radio" name="singlechoice">
-                                    <span class="checkmark"></span>
-                                </label>
-                                <input type="text" class="g-others f-text">
                             </div>
                         </div>
                         <div class="col-12 col-ml-2">
