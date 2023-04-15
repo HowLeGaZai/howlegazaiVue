@@ -128,10 +128,9 @@ export default {
     postsearch(){
 
       const formdata = new FormData()
-      formdata.append('searchNews',this.searchNew) 
-      axios.post('http://localhost/howlegazaiVue2/public/API/search_news.php', formdata
-        // searchNews:this.searchNews
-      )
+      formdata.append('searchNews',this.searchNews) 
+      console.log(this.searchNews);
+      axios.post('http://localhost/howlegazaiVue2/public/API/search_news.php', formdata )// searchNews:this.searchNews
       .then(response => {
         this.newsdata=response.data;
         // console.log('123',response.data);
@@ -175,6 +174,7 @@ export default {
       });
     };
 
+    // this.postsearch();
   }
 
 

@@ -139,7 +139,7 @@ export default {
             formData.append('PURPOSE', this.apply)
 
             axios
-            .post('http://localhost/howlegazaiVue2/public/API/spaceInfo.php', formData)
+            .post('http://localhost/TGD104G1/public/API/spaceInfo.php', formData)
             .then(response => {
                 // this.jsonData = response.data;
                 console.log(response.data);

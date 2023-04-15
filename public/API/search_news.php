@@ -7,7 +7,7 @@ $searchNews = $_POST['searchNews'] ;// searchNews為最新消息的搜尋input�
 // echo $searchNews;
     //建立SQL語法
     // 查找符合的新聞標題 
-    $sql = "SELECT * FROM NEWS WHERE TITLE LIKE '%$searchNews%' ";
+    $sql = "SELECT * FROM NEWS where TITLE LIKE '%$searchNews%' ";
     
     // echo $sql;
     // $statement = $pdo->prepare($sql);
