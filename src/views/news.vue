@@ -110,19 +110,19 @@ export default {
     },
 
     // 自動撈取最新消息
-     getnews(){
-       axios.post('http://localhost/TGD104G1/public/API/show_all_news.php')
-      .then(response => {
-        this.newsdata= response.data;
-        console.log(this.newsdata);
-        console.log('123');
-       })
-       .catch(error => {
-         console.log(error);
-       });
+    //  getnews(){
+    //    axios.post('http://localhost/TGD104G1/public/API/show_all_news.php')
+    //   .then(response => {
+    //     this.newsdata= response.data;
+    //     console.log(this.newsdata);
+    //     console.log('123');
+    //    })
+    //    .catch(error => {
+    //      console.log(error);
+    //    });
 
-
-    },
+    //   },
+    // },
 
     //搜尋最新消息
     postsearch(){
@@ -158,6 +158,7 @@ export default {
 
 
   mounted() {
+    // this.getnews();
     this.postsearch();
 
     var desktopfilter = document.getElementById("news-desktop-filter");

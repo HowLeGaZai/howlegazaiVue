@@ -5,7 +5,7 @@ include("conn.php");
 
     //建立SQL語法
     // 查找符合的新聞標題 
-    $sql = "SELECT * FROM NEWS";
+    $sql = "SELECT * FROM NEWS ORDER BY CREATE_TIME desc";
     
     // echo $sql;
     // $statement = $pdo->prepare($sql);
@@ -21,3 +21,6 @@ include("conn.php");
     
 
 ?>
+
+
+<?php?>
