@@ -151,14 +151,14 @@ export default {
               "其他",
             ],
             chatTopics: [],
-            // displayedTopics:[],
+            displayedTopics:[],
         }
     },
     mounted(){
       axios.get('http://localhost/TGD104G1/public/API/chatlist.php').then(response => {
         
         const data = response.data; 
-        // console.log(response.data);
+        console.log(response.data);
        
         this.chatTopics = data; 
       }).catch(error => {

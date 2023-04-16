@@ -110,7 +110,7 @@
                 <i class="bi bi-caret-down-fill i-s"></i>
               </a>
               <div class="be-nav-on be-nav-off">
-                <router-link :to="{name:'backend_space_reservationlist'}">
+                <router-link :to="{name:'backend_space_reservation'}">
                 <button class="be-nav be-nav btn-font-color-gray">待審核預約</button>
                 </router-link>
                 <router-link :to="{name:'backend_space_management'}">
