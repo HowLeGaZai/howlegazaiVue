@@ -57,7 +57,8 @@ const routes = [
   },
   {
     // 前台 討論區發布消息（文字編輯器）
-    path: '/chat_new',
+    path: '/chat_new/:Id',
+    // path: '/chat_new/',
     name: 'chat_new',
     component:() => import(/* webpackChunkName: "about" */ '../views/chat_new.vue')
   },
@@ -69,7 +70,7 @@ const routes = [
   },
   {
     // 前台 討論區 文章預覽頁
-    path: '/chat_info/preview',
+    path: '/chat_info/preview/:Id',
     name: 'chat_preview',
     component:() => import(/* webpackChunkName: "about" */ '../views/chat_info_preview.vue')
   },
