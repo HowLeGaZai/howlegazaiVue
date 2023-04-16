@@ -121,8 +121,8 @@ export default {
          console.log(error);
        });
 
-
-    },
+    //   },
+    // },
 
     //搜尋最新消息
     postsearch(){
@@ -158,6 +158,7 @@ export default {
 
 
   mounted() {
+    // this.getnews();
     this.postsearch();
     this.getnews();
 
