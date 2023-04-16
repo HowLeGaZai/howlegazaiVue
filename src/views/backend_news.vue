@@ -239,10 +239,10 @@
                   <td>{{ item.title }}</td>   <!-- 標題 -->
                   <td>{{ item.date }}</td> <!-- 時間 -->
                 
-                  <td><label class="switch">
-                    <input type="checkbox">
-                    <span class="slider"></span>
-                </label></td>
+                  <td><label class="f-checkbox">
+                        <input type="checkbox" name="multichoice" checked>
+                        <span class="checkmark newscheck"></span>
+                      </label></td>
                   <td> <button type="button" class="btn-icon">
                     <i class="bi bi-pencil-square btn-font-color-green"></i>
                   </button></td>

@@ -86,20 +86,19 @@
             <div class="be-nav-on"></div>
           </li>
           <li>
-            <a class="be-nav   btn-color-white be-menu" >
+            <router-link :to="{name:'backend_activity'}" class="be-nav btn-color-white be-menu">
               <div class="width-3 text-left">活動管理</div>
-              <i class="bi bi-caret-down-fill i-s"></i>
-            </a>
-            <div class="be-nav-on" id="beMenuOn">
-              <router-link :to="{name:'backend_activity'}">
+            </router-link>
+            <!-- <div class="be-nav-on" id="beMenuOn">
+             <router-link :to="{name:'backend_activity'}">
                 <button class="be-nav btn-font-color-green ">活動列表</button>
             </router-link>
             <router-link :to="{name:'backend_activity_input'}">
               <button class="be-nav be-nav btn-font-color-gray">新增活動</button>
             </router-link>
-              <!-- <button class="be-nav btn-font-color-gray "  onclick="window.location.href='#/backend_activity'">活動列表</button>
-              <button class="be-nav be-nav btn-font-color-gray" onclick="window.location.href='#/backend_activity_input'">新增活動</button> -->
-            </div>
+             <button class="be-nav btn-font-color-gray "  onclick="window.location.href='#/backend_activity'">活動列表</button>
+              <button class="be-nav be-nav btn-font-color-gray" onclick="window.location.href='#/backend_activity_input'">新增活動</button>
+            </div> -->
           </li>
 
           <li>
@@ -107,13 +106,16 @@
               <div class="width-3 text-left">空間管理</div>
               <i class="bi bi-caret-down-fill i-s"></i>
             </a>
-            <div class="be-nav-on be-nav-off ">
+            <div class="be-nav-on">
+              <router-link :to="{name:'backend_space_management'}">
+              <button class="be-nav be-nav btn-font-color-gray">待審核預約</button>
+              </router-link>
+              <router-link :to="{name:'backend_space_management'}">
+              <button class="be-nav be-nav btn-font-color-gray">預約列表</button>
+              </router-link>
               <router-link :to="{name:'backend_space_list'}">
-                <button class="be-nav btn-font-color-gray">空間總覽</button>
-            </router-link>
-            <router-link :to="{name:'backend_space_management'}">
-              <button class="be-nav be-nav btn-font-color-gray">預約管理</button>
-            </router-link>
+                  <button class="be-nav btn-font-color-green">空間總覽</button>
+              </router-link>
               <!-- <button class="be-nav btn-font-color-gray"  onclick="window.location.href='''">空間列表</button>
               <button class="be-nav be-nav btn-font-color-gray"  onclick="window.location.href=''">預約管理</button> -->
             </div>
@@ -176,33 +178,13 @@
         <section class="section_right">
           <!-- 活動總覽 -->
           <div class="w90percentage accounttable bk-activity-member">
-            <button class="btn-prepage font-green">
-              <i class=" bi bi-caret-left-fill font-green"></i>返回【活動總覽】</button>
+            <router-link :to="{name:'backend_activity'}">
+              <button class="btn-prepage font-green">
+                <i class=" bi bi-caret-left-fill font-green"></i>返回【活動總覽】</button>
+            </router-link>
             <h1>樂採櫻桃 參加名單</h1>
 
-            <div class="displayflex justifycontent">
-
-              <div class="displayflex textalignleft">
-                <div class="marginright20">
-                  <label for="selecte" class="f-label">分類</label>
-                  <select name="" id="selecte" class="f-select">
-                    <option value="1">全部</option>
-                    <option value="2">旅遊</option>
-                    <option value="3">健康</option>
-                    <option value="4">藝文</option>
-                    <option value="5">其他</option>
-                  </select>
-                </div>
-                <div>
-                  <label for="selecte" class="f-label">上架狀態</label>
-                  <select name="" id="selecte" class="f-select">
-                    <option value="1">全部</option>
-                    <option value="2">上架中</option>
-                    <option value="3">已下架 </option>
-
-                  </select>
-                </div>
-              </div>
+            <div class="displayflex">
               <div class="displayflex margintop18">
                 <button type="button" class="btn-10-s btn-color-green">
                   <i class="bi bi-cloud-arrow-down-fill"></i> 匯出資料

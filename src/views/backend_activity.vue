@@ -23,7 +23,7 @@
             <div class="be-nav-on be-nav-off"></div>
           </li>
           <li>
-            <a class="be-nav  opacity-6 btn-color-darkgray be-menu">
+            <a class="be-nav opacity-6 btn-color-darkgray be-menu">
               <div class="width-3 text-left">網站管理</div>
               <i class="bi bi-caret-down-fill i-s"></i>
             </a>
@@ -88,37 +88,40 @@
             <div class="be-nav-on"></div>
           </li>
           <li>
-            <a class="be-nav   btn-color-white be-menu" >
+            <router-link :to="{name:'backend_activity'}" class="be-nav btn-color-white be-menu">
               <div class="width-3 text-left">活動管理</div>
-              <i class="bi bi-caret-down-fill i-s"></i>
-            </a>
-            <div class="be-nav-on" id="beMenuOn">
+            </router-link>
+            <!-- <div class="be-nav-on" id="beMenuOn">
              <router-link :to="{name:'backend_activity'}">
                 <button class="be-nav btn-font-color-green ">活動列表</button>
             </router-link>
             <router-link :to="{name:'backend_activity_input'}">
               <button class="be-nav be-nav btn-font-color-gray">新增活動</button>
             </router-link>
-              <!-- <button class="be-nav btn-font-color-gray "  onclick="window.location.href='#/backend_activity'">活動列表</button>
-              <button class="be-nav be-nav btn-font-color-gray" onclick="window.location.href='#/backend_activity_input'">新增活動</button> -->
-            </div>
+             <button class="be-nav btn-font-color-gray "  onclick="window.location.href='#/backend_activity'">活動列表</button>
+              <button class="be-nav be-nav btn-font-color-gray" onclick="window.location.href='#/backend_activity_input'">新增活動</button>
+            </div> -->
           </li>
 
+          <!-- 空間管理 -->
           <li>
-            <a class="be-nav opacity-6 btn-color-darkgray be-menu">
-              <div class="width-3 text-left">空間管理</div>
-              <i class="bi bi-caret-down-fill i-s"></i>
-            </a>
-            <div class="be-nav-on be-nav-off ">
-              <router-link :to="{name:'backend_space_list'}">
-                <button class="be-nav btn-font-color-gray">空間總覽</button>
-            </router-link>
-            <router-link :to="{name:'backend_space_management'}">
-              <button class="be-nav be-nav btn-font-color-gray">預約管理</button>
-            </router-link>
+              <a a class="be-nav opacity-6 btn-color-darkgray be-menu">
+                <div class="width-3 text-left">空間管理</div>
+                <i class="bi bi-caret-down-fill i-s"></i>
+              </a>
+              <div class="be-nav-on be-nav-off">
+                <router-link :to="{name:'backend_space_reservation'}">
+                <button class="be-nav be-nav btn-font-color-gray">待審核預約</button>
+                </router-link>
+                <router-link :to="{name:'backend_space_management'}">
+                <button class="be-nav be-nav btn-font-color-gray">預約列表</button>
+                </router-link>
+                <router-link :to="{name:'backend_space_list'}">
+                    <button class="be-nav btn-font-color-green">空間總覽</button>
+                </router-link>
               <!-- <button class="be-nav btn-font-color-gray"  onclick="window.location.href='''">空間列表</button>
               <button class="be-nav be-nav btn-font-color-gray"  onclick="window.location.href=''">預約管理</button> -->
-            </div>
+              </div>
           </li>
           <li>
             <router-link :to="{name:''}" class="be-nav opacity-6 btn-color-unopened be-menu">
@@ -179,7 +182,7 @@
         <section class="section_right">
           <!-- 活動總覽 -->
           <div class="w90percentage accounttable bk-activity">
-            <h1>活動列表</h1>
+            <h1>活動總覽</h1>
             <div class="displayflex justifycontent">
 
               <div class="displayflex textalignleft">
@@ -204,10 +207,11 @@
                 </div>
               </div>
               <div class="displayflex margintop18">
-                <button type="button" class="btn-10-s btn-color-green"
-                  onclick="window.location.href='activity_input.html'">
-                  <i class="bi bi-plus-lg"></i>新增活動
-                </button>
+                <router-link :to="{name:'backend_activity_input'}">
+                  <button type="button" class="btn-10-s btn-color-green">
+                    <i class="bi bi-plus-lg"></i>新增活動
+                  </button>
+                </router-link>
 
               </div>
 
@@ -222,34 +226,34 @@
                     <td>分類</td>
                     <td>活動名稱</td>
                     <td>費用</td>
-                    <td>上架狀態</td>
                     <td>報名數</td>
                     <td>置頂</td>
                     <td>名單</td>
                     <td>編輯</td>
+                    <td>上架狀態</td>
                   </tr>
                   <tr>
                     <td>001</td>
                     <td>藝文</td>
                     <td>清明畫出漂亮書法</td>
                     <td>免費</td>
+                    <td>14</td>
+                    <td><label class="f-checkbox">
+                      <input type="checkbox" name="multichoice" checked>
+                      <span class="checkmark"></span>
+                    </label></td>
+                    <td><button type="button" class="btn-icon" onclick="window.location.href='#/backend_activity_memberlist'">
+                      <i class="bi bi-file-earmark-bar-graph btn-font-color-green"></i>
+                    </button>
+                    </td>
+                    <td><button type="button" class="btn-icon">
+                      <i class="bi bi-pencil-square btn-font-color-green"></i>
+                    </button>
+                    </td>
                     <td><label class="switch">
                         <input type="checkbox" checked>
                         <span class="slider"></span>
                       </label>
-                    </td>
-                    <td>14</td>
-                    <td><label class="f-checkbox">
-                        <input type="checkbox" name="multichoice" checked>
-                        <span class="checkmark"></span>
-                      </label></td>
-                    <td><button type="button" class="btn-icon" onclick="window.location.href='#/backend_activity_memberlist'">
-                        <i class="bi bi-file-earmark-bar-graph btn-font-color-green"></i>
-                      </button>
-                    </td>
-                    <td><button type="button" class="btn-icon">
-                        <i class="bi bi-pencil-square btn-font-color-green"></i>
-                      </button>
                     </td>
                   </tr>
 
@@ -258,23 +262,23 @@
                     <td>課程</td>
                     <td>DIY造龍舟教學</td>
                     <td>NT$ 200</td>
+                    <td>14</td>
+                    <td><label class="f-checkbox">
+                      <input type="checkbox" name="multichoice" checked>
+                      <span class="checkmark"></span>
+                    </label></td>
+                    <td><button type="button" class="btn-icon">
+                      <i class="bi bi-file-earmark-bar-graph btn-font-color-green"></i>
+                    </button>
+                    </td>
+                      <td><button type="button" class="btn-icon">
+                        <i class="bi bi-pencil-square btn-font-color-green"></i>
+                      </button>
+                    </td>
                     <td><label class="switch">
                         <input type="checkbox" checked>
                         <span class="slider"></span>
                       </label>
-                    </td>
-                    <td>14</td>
-                    <td><label class="f-checkbox">
-                        <input type="checkbox" name="multichoice" checked>
-                        <span class="checkmark"></span>
-                      </label></td>
-                    <td><button type="button" class="btn-icon">
-                        <i class="bi bi-file-earmark-bar-graph btn-font-color-green"></i>
-                      </button>
-                    </td>
-                    <td><button type="button" class="btn-icon">
-                        <i class="bi bi-pencil-square btn-font-color-green"></i>
-                      </button>
                     </td>
                   </tr>
 
@@ -283,48 +287,48 @@
                     <td>課程</td>
                     <td>教你包出美味肉粽</td>
                     <td>NT$ 100</td>
+                    <td>14</td>
+                    <td><label class="f-checkbox">
+                      <input type="checkbox" name="multichoice">
+                      <span class="checkmark"></span>
+                    </label></td>
+                    <td><button type="button" class="btn-icon">
+                      <i class="bi bi-file-earmark-bar-graph btn-font-color-green"></i>
+                    </button>
+                    </td>
+                    <td><button type="button" class="btn-icon">
+                      <i class="bi bi-pencil-square btn-font-color-green"></i>
+                    </button>
+                    </td>
                     <td><label class="switch">
                         <input type="checkbox">
                         <span class="slider"></span>
                       </label>
                     </td>
-                    <td>14</td>
-                    <td><label class="f-checkbox">
-                        <input type="checkbox" name="multichoice">
-                        <span class="checkmark"></span>
-                      </label></td>
-                    <td><button type="button" class="btn-icon">
-                        <i class="bi bi-file-earmark-bar-graph btn-font-color-green"></i>
-                      </button>
-                    </td>
-                    <td><button type="button" class="btn-icon">
-                        <i class="bi bi-pencil-square btn-font-color-green"></i>
-                      </button>
-                    </td>
-                  </tr>
+              </tr>
 
                   <tr>
                     <td>004</td>
                     <td>旅遊</td>
                     <td>歡樂草莓採摘去</td>
                     <td>免費</td>
+                    <td>14</td>
+                    <td><label class="f-checkbox">
+                      <input type="checkbox" name="multichoice">
+                      <span class="checkmark"></span>
+                    </label></td>
+                    <td><button type="button" class="btn-icon">
+                      <i class="bi bi-file-earmark-bar-graph btn-font-color-green"></i>
+                    </button>
+                    </td>
+                    <td><button type="button" class="btn-icon">
+                      <i class="bi bi-pencil-square btn-font-color-green"></i>
+                    </button>
+                    </td>
                     <td><label class="switch">
                         <input type="checkbox" checked>
                         <span class="slider"></span>
                       </label>
-                    </td>
-                    <td>14</td>
-                    <td><label class="f-checkbox">
-                        <input type="checkbox" name="multichoice">
-                        <span class="checkmark"></span>
-                      </label></td>
-                    <td><button type="button" class="btn-icon">
-                        <i class="bi bi-file-earmark-bar-graph btn-font-color-green"></i>
-                      </button>
-                    </td>
-                    <td><button type="button" class="btn-icon">
-                        <i class="bi bi-pencil-square btn-font-color-green"></i>
-                      </button>
                     </td>
                   </tr>
 

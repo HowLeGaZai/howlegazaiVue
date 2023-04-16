@@ -3,7 +3,7 @@
     <div class="main">
             <!-- 後台頁尾的網址請各位記得修改，不然連不回首頁 -->
             <section class="footer-img">
-                <a href="/index">
+                <a href="#/">
                     <img src="../assets/img/logo2.svg" alt="">
                 </a>
                 <h3>我們，一直都在</h3>
