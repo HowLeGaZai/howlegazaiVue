@@ -122,7 +122,7 @@ export default {
        });
 
     //   },
-    // },
+    },
 
     //搜尋最新消息
     postsearch(){
