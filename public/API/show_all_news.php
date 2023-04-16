@@ -18,9 +18,5 @@ include("conn.php");
 
     echo json_encode($data);
 
-    
-
 ?>
 
-
-<?php?>
