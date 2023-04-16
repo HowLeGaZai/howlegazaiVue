@@ -4,8 +4,8 @@
   <main class="news_page">
     <h1>最新消息</h1>
     <div class="search-bar">
-      <input type="text"  v-model.lazy.trim="searchNews" class="f-text f-round" placeholder=""
-        style="font-family:bootstrap-icons"/>
+      <input type="text" v-model.lazy.trim="searchNews" class="f-text f-round" placeholder=""
+        style="font-family:bootstrap-icons" />
 
       <button class="btn-m btn-color-green" @click="postsearch">搜尋</button>
     </div>
@@ -37,26 +37,28 @@
       <!-- <news-list v-for="news in filterNews" :key="news.id"></news-list> -->
       <!-- ===== newslist_components ===== -->
 
-      <a href="#" v-for="(news,index) in newsdata" :key="index">
+      <a href="#" v-for="(news, index) in newsdata" :key="index">
         <!-- <a href="#" v-for="news in filterNews" :key="news"> -->
-      <!-- <a href="#" v-for="news in filterNews" :key="news.news"> -->
+        <!-- <a href="#" v-for="news in filterNews" :key="news.news"> -->
         <article class="news_item">
           <section>
             <section class="article_news">
               <div :class="['tag', addTagClass(news.CATEGORY)]">{{ news.CATEGORY }}</div>
 
-              <p class="rwd-newsdate">{{getFormatDate(news.CREATE_TIME)}}</p>
+              <p class="rwd-newsdate">{{ getFormatDate(news.CREATE_TIME) }}</p>
               <h2>{{ news.TITLE }}</h2>
-              <h5>{{getFormatDate(news.CREATE_TIME)}}</h5>
+              <h5>{{ getFormatDate(news.CREATE_TIME) }}</h5>
             </section>
             <div class="image list_pic">
               <!-- Vue無法抓取null的屬性做判斷，這裡直接將找不到的值轉換成字串null再做更替預設圖片 -->
-              <img :src= "(news.PIC && news.PIC !== 'null') ? require(`@/assets/img/${news.PIC }`) : require(`@/assets/img/default.jpg`)" alt="">
+              <img
+                :src="(news.PIC && news.PIC !== 'null') ? require(`@/assets/img/${news.PIC}`) : require(`@/assets/img/default.jpg`)"
+                alt="">
             </div>
           </section>
         </article>
       </a>
- 
+
 
 
 
@@ -78,6 +80,8 @@
 import navbar from './navbar.vue';
 import Footer from './Footer.vue';
 import NewsList from '../components/NewsList.vue';
+import { formatDate } from '../plugin/date';
+
 
 
 
@@ -110,55 +114,58 @@ export default {
     },
 
     // 自動撈取最新消息
-     getnews(){
-       axios.post('http://localhost/TGD104G1/public/API/show_all_news.php')
-      .then(response => {
-        this.newsdata= response.data;
-        console.log(this.newsdata);
-       })
-       .catch(error => {
-         console.log(error);
-       });
+    getnews() {
+      axios.post('http://localhost/TGD104G1/public/API/show_all_news.php')
+        .then(response => {
+          this.newsdata = response.data;
+          console.log(this.newsdata);
+        })
+        .catch(error => {
+          console.log(error);
+        });
 
-    
+
     },
-  
+
 
     //搜尋最新消息
-    postsearch(){
+    postsearch() {
 
       const formdata = new FormData()
-      formdata.append('searchNews',this.searchNews) 
+      formdata.append('searchNews', this.searchNews)
       console.log(this.searchNews);
-      axios.post('http://localhost/TGD104G1/public/API/search_news.php', formdata )// searchNews:this.searchNews
-      .then(response => {
-        this.newsdata=response.data;
-        // console.log('123',response.data);
-        // console.log('123');
-       })
-       .catch(error => {
-         console.log(error);
-       });
+      axios.post('http://localhost/TGD104G1/public/API/search_news.php', formdata)// searchNews:this.searchNews
+        .then(response => {
+          this.newsdata = response.data;
+          // console.log('123',response.data);
+          // console.log('123');
+        })
+        .catch(error => {
+          console.log(error);
+        });
+
+    },
+    //轉換日期格式
+    getFormatDate(val) {
+    return formatDate(val);
+    },
 
 
 
-    }
 
-
-    
   },
 
-  computed:{
+  computed: {
     //搜尋函式
     // filterNews(){
     //   return this.news.filter(searchResult => searchResult.news.match(this.searchNews))
     // }
-    
+
   },
 
 
   mounted() {
-    
+
     this.getnews();
 
     var desktopfilter = document.getElementById("news-desktop-filter");
