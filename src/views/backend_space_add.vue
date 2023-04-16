@@ -223,6 +223,15 @@
                                                 <input type="checkbox" name="multichoice">
                                                 <span class="checkmark"></span>
                                             </label>
+                                            <label class="f-checkbox">星期六
+                                                <input type="checkbox" name="multichoice">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                            <label class="f-checkbox">星期日
+                                                <input type="checkbox" name="multichoice">
+                                                <span class="checkmark"></span>
+                                            </label>
+
                                         </div>
                                     </div>
                                 </div>
