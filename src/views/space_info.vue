@@ -105,10 +105,18 @@
             
             <h3><i class="bi bi-dot"></i>空間地址<i class="bi bi-dot"></i></h3>
             <ul>
-                <li>{{spaces.ADDRESS}}</li>
+                <li class="address">{{spaces.ADDRESS}}</li>
                 <li>
+                  <!-- https://www.google.com/maps/embed/v1/place?key=AIzaSyAwotM85aG1f4JdzyU7QVc9slACz2UuD1s&q={{spaces.ADDRESS}} -->
                     <div class="space-map">
-                        <img :src="require(`@/assets/img/${spaces.MAP_PIC}`)" alt="">
+                      <iframe :src="`https://www.google.com/maps/embed/v1/place?key=AIzaSyAwotM85aG1f4JdzyU7QVc9slACz2UuD1s&q=${spaces.ADDRESS}`"
+                        width="450"
+                        height="250"
+                        frameborder="0" style="border: 2px solid #27b096;border-radius: 5px;"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        allowfullscreen>
+                      </iframe>
+                        <!-- <img :src="require(`@/assets/img/${spaces.MAP_PIC}`)" alt=""> -->
                     </div>
                 </li>
             </ul>
@@ -119,6 +127,7 @@
     </main>
     <Footer></Footer>
 </template>
+
 
 <script>
 import { Swiper, SwiperSlide } from 'swiper/vue';
@@ -164,7 +173,7 @@ export default {
               "OPEN_DATE": "2023-06-30",
               "OPEN_TIME": "08：00",
               "CLOSE_TIME": "21：00",
-              "ADDRESS": "花蓮縣大湖里南京東路三段219號4樓",
+              "ADDRESS": "高雄市前鎮區崗山南街277巷46",
               "REMARK": "請於使用日前7日預約，每人限定預約當日內2場次。預約送出後，須待里辦公室審核預約申請，申請進度請至個人帳戶>預約空間紀錄查看。年節期間另行公告開放時間、若遇天災則視直轄單位宣布是否達停班停課標準。其他如公司行號、學校、機關團體預約或長期借用，請洽里辦公室。",
               "SPACE_PIC": "s_1.png",
               "MAP_PIC":"space-map.png",
