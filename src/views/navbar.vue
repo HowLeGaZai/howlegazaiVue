@@ -50,7 +50,7 @@
               <p>歡迎 <span>{{userName}}</span></p>
               <!-- 會員大頭貼 -->
               <a href="#" class="userbtn tooltip" id="userBtn">
-                <img src="../assets/img/user_pic.png" alt="" class="user_pic" />
+                <img :src="require(`@/assets/img/${portrait}`)" alt="" class="user_pic" />
               </a>
               <div id="navMenu">
                 <ul class="account-menu" id="accountMenu">
@@ -62,7 +62,7 @@
                     <p><span>{{userName}}</span></p>
                     <!-- 會員大頭貼 -->
                     <a href="#" class="userbtn">
-                      <img src="../assets/img/user_pic.png" alt="" class="user_pic" />
+                      <img :src="require(`@/assets/img/${portrait}`)" alt="" class="user_pic" />
                     </a>
                   </li>
                   <li><router-link :to="{name:'account_user'}" :class="{active: $route.name === 'account_user'}">個人資訊</router-link></li>
@@ -112,6 +112,7 @@ export default {
       return {
         isLoggedIn: false,
         userName: "",
+        portrait: "",
         }
     },
     // props: {
@@ -139,12 +140,15 @@ export default {
     },
     mounted(){
       const cookieValue = this.getCookieValue('帳號');
-      const uusername = this.getCookieValue('姓名')
+      const uusername = this.getCookieValue('姓名');
+      const uuserpic = this.getCookieValue('圖檔');
+
     
         // 判斷 Cookie 是否存在
         if (cookieValue !== null) {
           this.isLoggedIn = true;
           this.userName = uusername;
+          this.portrait = uuserpic;
           // Cookie 存在，執行相應的處理
           // console.log('Cookie 存在，值為: ' + cookieValue);
           // 在這裡執行 home.vue 中的相應函式或處理

@@ -151,7 +151,7 @@ export default {
               "其他",
             ],
             chatTopics: [],
-            displayedTopics:[],
+            // displayedTopics:[],
         }
     },
     mounted(){
