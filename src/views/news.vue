@@ -115,7 +115,7 @@ export default {
       .then(response => {
         this.newsdata= response.data;
         console.log(this.newsdata);
-        console.log('123');
+        // console.log('123');
        })
        .catch(error => {
          console.log(error);
@@ -158,7 +158,8 @@ export default {
 
 
   mounted() {
-    this.postsearch();
+    // this.postsearch();
+    this.getnews();
 
     var desktopfilter = document.getElementById("news-desktop-filter");
     var btns = desktopfilter.getElementsByClassName("tag-btn");

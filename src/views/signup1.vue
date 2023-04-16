@@ -17,6 +17,24 @@
             </div>
           </div>
         </div>
+  <navbar></navbar>
+  <div class="bgc">
+    <main>
+      <div class="center">
+        <h2 class="p-10">戶長註冊</h2>
+        <div class="step_2">
+          <div class="threesteps">
+            <div class="steps">
+              <div class="steps-circle">1</div>
+              <h5>填寫資料</h5>
+            </div>
+            <div class="line notyet"></div>
+            <div class="steps">
+              <div class="steps-circle">2</div>
+              <h5>報名完成</h5>
+            </div>
+          </div>
+        </div>
 
         <div class="signup1">
           <div class="row">
@@ -126,6 +144,8 @@ export default {
     },
   },
 
+  watch: {
+    // 可以使用 watch 來監聽數據的更改並將它們存儲在 localStorage中，
   watch: {
     // 可以使用 watch 來監聽數據的更改並將它們存儲在 localStorage中，
     // 當 input1, input2, input3 或 inputValue 發生更改時
