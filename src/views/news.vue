@@ -111,7 +111,7 @@ export default {
 
     // 自動撈取最新消息
      getnews(){
-       axios.post('http://localhost/howlegazaiVue2/public/API/show_all_news.php')
+       axios.post('http://localhost/TGD104G1/public/API/show_all_news.php')
       .then(response => {
         this.newsdata= response.data;
         console.log(this.newsdata);
@@ -122,27 +122,27 @@ export default {
        });
 
     //   },
-    },
+    }
 
     //搜尋最新消息
-    postsearch(){
+    // postsearch(){
 
-      const formdata = new FormData()
-      formdata.append('searchNews',this.searchNews) 
-      console.log(this.searchNews);
-      axios.post('http://localhost/TGD104G1/public/API/search_news.php', formdata )// searchNews:this.searchNews
-      .then(response => {
-        this.newsdata=response.data;
-        // console.log('123',response.data);
-        // console.log('123');
-       })
-       .catch(error => {
-         console.log(error);
-       });
+    //   const formdata = new FormData()
+    //   formdata.append('searchNews',this.searchNews) 
+    //   console.log(this.searchNews);
+    //   axios.post('http://localhost/TGD104G1/public/API/search_news.php', formdata )// searchNews:this.searchNews
+    //   .then(response => {
+    //     this.newsdata=response.data;
+    //     // console.log('123',response.data);
+    //     // console.log('123');
+    //    })
+    //    .catch(error => {
+    //      console.log(error);
+    //    });
 
 
 
-    }
+    // }
 
 
     
@@ -158,8 +158,7 @@ export default {
 
 
   mounted() {
-    // this.getnews();
-    this.postsearch();
+    
     this.getnews();
 
     var desktopfilter = document.getElementById("news-desktop-filter");
