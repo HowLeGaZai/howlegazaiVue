@@ -111,7 +111,7 @@ export default {
 
     // 自動撈取最新消息
      getnews(){
-       axios.post('http://localhost/TGD104G1/public/API/show_all_news.php')
+       axios.post('http://localhost/howlegazaiVue2/public/API/show_all_news.php')
       .then(response => {
         this.newsdata= response.data;
         console.log(this.newsdata);
@@ -159,6 +159,7 @@ export default {
 
   mounted() {
     this.postsearch();
+    this.getnews();
 
     var desktopfilter = document.getElementById("news-desktop-filter");
     var btns = desktopfilter.getElementsByClassName("tag-btn");
