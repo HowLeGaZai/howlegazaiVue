@@ -47,11 +47,11 @@
 
               <p class="rwd-newsdate">{{getFormatDate(news.CREATE_TIME)}}</p>
               <h2>{{ news.TITLE }}</h2>
-              <h5>{{ news.CREATE_TIME }}</h5>
+              <h5>{{getFormatDate(news.CREATE_TIME)}}</h5>
             </section>
             <div class="image list_pic">
               <!-- Vue無法抓取null的屬性做判斷，這裡直接將找不到的值轉換成字串null再做更替預設圖片 -->
-              <img :src= "(news.PIC && news.PIC !== 'null') ? require(`@/assets/img/${news.PIC }`) : require(`@/assets/img/news_default.jpg`)" alt="">
+              <img :src= "(news.PIC && news.PIC !== 'null') ? require(`@/assets/img/${news.PIC }`) : require(`@/assets/img/default.jpg`)" alt="">
             </div>
           </section>
         </article>
@@ -78,7 +78,6 @@
 import navbar from './navbar.vue';
 import Footer from './Footer.vue';
 import NewsList from '../components/NewsList.vue';
-import { formatDate } from '../plugin/date';
 
 
 
@@ -141,12 +140,9 @@ export default {
          console.log(error);
        });
 
-    },
 
-    //轉換日期格式
-    getFormatDate(val){
-      return formatDate(val);
-    },
+
+    }
 
 
     
