@@ -45,7 +45,7 @@
             <section class="article_news">
               <div :class="['tag', addTagClass(news.CATEGORY)]">{{ news.CATEGORY }}</div>
 
-              <p class="rwd-newsdate">{{ news.CREATE_TIME }}</p>
+              <p class="rwd-newsdate">{{getFormatDate(news.CREATE_TIME)}}</p>
               <h2>{{ news.TITLE }}</h2>
               <h5>{{ news.CREATE_TIME }}</h5>
             </section>
@@ -78,6 +78,7 @@
 import navbar from './navbar.vue';
 import Footer from './Footer.vue';
 import NewsList from '../components/NewsList.vue';
+import { formatDate } from '../plugin/date';
 
 
 
@@ -115,14 +116,14 @@ export default {
       .then(response => {
         this.newsdata= response.data;
         console.log(this.newsdata);
-        // console.log('123');
        })
        .catch(error => {
          console.log(error);
        });
 
-
+    
     },
+  
 
     //搜尋最新消息
     postsearch(){
@@ -140,9 +141,12 @@ export default {
          console.log(error);
        });
 
+    },
 
-
-    }
+    //轉換日期格式
+    getFormatDate(val){
+      return formatDate(val);
+    },
 
 
     
@@ -158,7 +162,7 @@ export default {
 
 
   mounted() {
-    // this.postsearch();
+    
     this.getnews();
 
     var desktopfilter = document.getElementById("news-desktop-filter");
