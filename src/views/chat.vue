@@ -9,9 +9,12 @@
             <button type="button" class="btn-m btn-color-green">搜尋</button>
           </div>
           <div class="add-chat">
-            <router-link to="/chat_new" custom v-slot="{ navigate }">
+            <!-- <router-link to="/chat_new" custom v-slot="{ navigate }">
               <button class="btn-m btn-color-green" @click="navigate" role="link">發起討論</button>
-            </router-link>
+            </router-link> -->
+            <!-- <router-link to="{ path: '/chat_new' ,query:{ plan:'abc'}  }" > -->
+              <button class="btn-m btn-color-green" @click="preview()" role="link">發起討論</button>
+            <!-- </router-link> -->
           </div>
           
           <div class="desktop-filter" id="chat-desktop-filter">
@@ -194,6 +197,13 @@ export default {
     getFormatDate(val){
       return formatDate(val);
     },
+        preview(){
+          const Id = 123;
+          // this.$router.push({ name: 'chat_new', params: { Id: Id } })
+          this.$router.push({ name: 'chat_new', params: { Id: Id } })
+        }
+  
+    
     },
 
  computed: {

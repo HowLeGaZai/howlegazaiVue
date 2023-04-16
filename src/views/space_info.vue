@@ -4,23 +4,26 @@
     <main class="front-space">
        
       <section> 
-        <h1 class="title_space">預約{{spaces.NAME}}</h1>
+        <h1 class="title_space">預約{{spaceData.NAME}}</h1>
         
           <swiper  :navigation="{ nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }" :modules="modules" class="spaceSwiper" :slidesPerView="1">
 
              <swiper-slide>
               <div class="image space_pic">
-                <img :src="require(`@/assets/img/${spaces.SPACE_PIC}`)" alt="">
+                <!-- <img :src="require(`@/assets/img/${spaces.SPACE_PIC}`)" alt=""> -->
+                <img :src="spaceData.SPACE_PIC" alt="">
               </div>
            </swiper-slide>
              <swiper-slide>
               <div class="image space_pic">
-                <img :src="require(`@/assets/img/${spaces.SPACE_PIC}`)" alt="">
+                <!-- <img :src="require(`@/assets/img/${spaces.SPACE_PIC}`)" alt=""> -->
+                <img :src="spaceData.SPACE_PIC" alt="">
               </div>
               </swiper-slide>
              <swiper-slide>
               <div class="image space_pic">
-                <img :src="require(`@/assets/img/${spaces.SPACE_PIC}`)" alt="">
+                <!-- <img :src="require(`@/assets/img/${spaces.SPACE_PIC}`)" alt=""> -->
+                <img :src="spaceData.SPACE_PIC" alt="">
               </div>
               </swiper-slide>
         </swiper>
@@ -83,10 +86,10 @@
         <div class="space-detail">
             <h3><i class="bi bi-dot"></i>空間資訊<i class="bi bi-dot"></i></h3>
             <ul>
-                <li><i class="bi bi-dot"></i>開放時間：{{spaces.OPEN_TIME}} - {{spaces.CLOSE_TIME}}</li>
-                <li><i class="bi bi-dot"></i>性質：{{spaces.CATEGORY}}</li>
-                <li><i class="bi bi-dot"></i>容納人數：{{spaces.CAPACITY}}人</li>
-                <li><i class="bi bi-dot"></i>坪數：{{spaces.SPACE_SIZE}}</li>
+                <li><i class="bi bi-dot"></i>開放時間：{{spaceData.OPEN_TIME}} - {{spaceData.CLOSE_TIME}}</li>
+                <li><i class="bi bi-dot"></i>性質：{{spaceData.CATEGORY}}</li>
+                <li><i class="bi bi-dot"></i>容納人數：{{spaceData.CAPACITY}}人</li>
+                <li><i class="bi bi-dot"></i>坪數：{{spaceData.SPACE_SIZE}}</li>
                 <li><i class="bi bi-dot"></i>場地設備：<span>2.5噸冷氣 / 會議桌 / 椅子</span></li>
             </ul>
     
@@ -99,13 +102,13 @@
             </ul>
             <h3><i class="bi bi-dot"></i>管理人聯繫資訊<i class="bi bi-dot"></i></h3>
             <ul>
-                <li><i class="bi bi-dot"></i>管理人：{{spaces.MANAGER}}</li>
-                <li><i class="bi bi-dot"></i>聯繫電話：{{spaces.MANAGER_PHONE}}</li>
+                <li><i class="bi bi-dot"></i>管理人：{{spaceData.MANAGER}}</li>
+                <li><i class="bi bi-dot"></i>聯繫電話：{{spaceData.MANAGER_PHONE}}</li>
             </ul>
             
             <h3><i class="bi bi-dot"></i>空間地址<i class="bi bi-dot"></i></h3>
             <ul>
-                <li>{{spaces.ADDRESS}}</li>
+                <li>{{spaceData.ADDRESS}}</li>
                 <li>
                     <div class="space-map">
                         <img :src="require(`@/assets/img/${spaces.MAP_PIC}`)" alt="">
@@ -147,6 +150,8 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
+      spaceJsonData:[],
+      spaceData:[],
       jsonData:[],
       timeRanges:[],
       data:[],
@@ -189,6 +194,8 @@ export default {
   mounted() {
     const self = this
     this.showData();
+
+    this.getSpaceData();
     // console.log('abcdef',this.jsonData);
     $('#resizable').resizable({});
     $('#datepicker').datepicker({
@@ -255,20 +262,40 @@ export default {
 //   data.class = 'btn-color-gray'
 // })
  
-
-
-
-
-
-
-
-    
-
-  
-
   },
   methods:{
- showData() {
+    async getSpaceData() {
+              await  axios
+                //  htdocs的環境下測試
+                    .get('http://localhost/TGD104G1/public/API/space.php')
+                        // .get('https://tibamef2e.com/tgd104/g1/accountOverview.php')
+                    .then(response => {
+                        this.spaceJsonData = response.data;
+                        console.log('abc',this.spaceJsonData);
+                    })
+                    .catch(error => {
+                        // console.log(error);
+                    });
+
+
+                    let space = sessionStorage.getItem("space");
+                    
+
+                    for(let i=0;i<this.spaceJsonData.length;i++){
+                      // console.log(i,this.spaceJsonData[i]);
+                      if(space == this.spaceJsonData[i][1]){
+                        // console.log('空間資料',this.spaceJsonData[i]);
+                        this.spaceData = this.spaceJsonData[i];
+                        console.log('空間資料',this.spaceData);
+                      }else{
+
+                      }
+                    }
+
+                    
+
+    },
+  showData() {
     
     // console.log('abc',this.jsonData);
 
@@ -295,7 +322,7 @@ export default {
         const value_about = 'btn-m btn-color-white timeslot';
         dataList_about.push({ time_about,value_about});
       }
-      console.log('dataList_about',dataList_about);
+      // console.log('dataList_about',dataList_about);
       // console.log(time);
       const value ='btn-m btn-color-white timeslot'
       dataList.push({ time,value });
@@ -349,7 +376,7 @@ async getData(date) {
         const value_about = 'btn-m btn-color-white timeslot';
         dataList_about.push({ time_about,value_about});
       }
-      console.log('dataList_about',dataList_about);
+      
       // console.log(time);
       const value ='btn-m btn-color-white timeslot'
       dataList.push({ time,value });
@@ -366,15 +393,15 @@ async getData(date) {
     // alert(formattedDate);
 
     for(let i=0;i<this.jsonData.length;i++){
-        console.log('預約日期',this.jsonData[i][0]);
+        
         if(formattedDate == this.jsonData[i][0] ){
-          console.log('abc',formattedDate);
+          
             //加入日期判斷
               // console.log(i,this.jsonData[i][1]);
                 for(let j =0; j<dataList_about.length;j++){
                   // console.log(j,dataList_about[j].time_about)
                   if(this.jsonData[i][1] == dataList_about[j].time_about){
-                      console.log('有預約時段',dataList_about[j].time_about);
+                      
                       dataList_about[j].value_about = 'btn-m btn-color-white timeslot btn-color-gray';
                       // console.log(dataList_about[j].value_about);
                   }else{
@@ -419,8 +446,9 @@ async getData(date) {
         sessionStorage.setItem("end", end);
 
 
-      
     }
+
+
   },
    computed: {
     isInOrder(item) {
