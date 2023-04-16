@@ -13,7 +13,7 @@
       </button>
       <div class="pic-area" >
           <div class="pic-area-box" v-if="result.dataURL">
-              <img :src="result.dataURL" ref="watermarkedImg"/>
+              <img :src="result.dataURL"/>
           </div>
           <p>建議：450 x 285 像素，且大小不得超過 100 KB 的圖檔</p>
       </div>
@@ -186,7 +186,7 @@ methods: {
           ctx.fillText(watermark, xPos, yPos);
         }
       }
-      this.$refs.watermarkedImg.src = canvas.toDataURL();
+      this.result.dataURL = canvas.toDataURL();
       // // 增加浮水印
       // ctx.fillText(watermark, canvas.width / 8, canvas.height / 2);
       // ctx.fillText(watermark, canvas.width / 8, canvas.height / 1.7);

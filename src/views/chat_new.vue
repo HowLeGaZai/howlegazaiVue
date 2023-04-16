@@ -44,7 +44,8 @@
               </router-link> -->
       <button type="button" class="btn-m btn-color-white" onclick="location.href='#/chat'">取消</button>
       <!-- <button type="button" class="btn-m btn-color-green" onclick="location.href='#/chat_info'">發布</button> -->
-      <button type="button" class="btn-m btn-color-green" @click="gotoPreview">預覽</button>
+      <!-- <button type="button" class="btn-m btn-color-green" @click="gotoPreview">預覽</button> -->
+      <button type="button" class="btn-m btn-color-green" @click="gotoPreview()">預覽</button>
         
     </div>
     <div v-html="editorHtml"></div>
@@ -186,7 +187,9 @@ export default {
       sessionStorage.setItem('form-tinymceContent', this.tinymceContent);
 
       // 導向預覽頁面
-      this.$router.push('/chat_info/preview');
+      // this.$router.push('/chat_info/preview');
+      const Id = 123;
+      this.$router.push({ name: 'chat_preview', params: { Id: Id } });
     },
   
       // previewChatinfo(){

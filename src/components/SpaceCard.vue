@@ -11,9 +11,12 @@
                   <h5 class="space-size">空間大小：<span>{{space.SPACE_SIZE}}</span>坪</h5>
                   <h5 class="space-add">地址：{{space.ADDRESS}}</h5>
                   <div class="space-btn">
-                      <router-link to="/space_info" custom v-slot="{ navigate }">
+                      <!-- <router-link to="/space_info" custom v-slot="{ navigate }">
                           <button class="btn-m btn-color-green" @click="navigate" role="link">我要預約</button>
-                        </router-link>
+                      </router-link> -->
+                      <!-- <router-link to="/space_info" custom v-slot="{ navigate }"> -->
+                          <button class="btn-m btn-color-green" @click="spaceInfo(index)" role="link">我要預約</button>
+                      <!-- </router-link> -->
                     <!-- <button type="button" class="btn-m btn-color-green" onclick="location.href='/space_info'">我要預約</button> -->
                 </div>
               </div>
@@ -92,7 +95,14 @@ export default {
                 }
             },
             methods: {
-                
+                spaceInfo(index){
+                    this.$router.push('/space_info')
+                    // alert(index);
+                    console.log(this.jsonData[index]);
+                    console.log('教室的名稱是',this.jsonData[index][1]);
+                    sessionStorage.setItem("space", this.jsonData[index][1]);
+
+                }
             },
             mounted() {
                 //axios
