@@ -111,7 +111,7 @@ export default {
 
     // 自動撈取最新消息
      getnews(){
-       axios.post('http://localhost/howlegazaiVue2/public/API/show_all_news.php')
+       axios.post('http://localhost/TGD104G1/public/API/show_all_news.php')
       .then(response => {
         this.newsdata= response.data;
         console.log(this.newsdata);
@@ -130,7 +130,7 @@ export default {
       const formdata = new FormData()
       formdata.append('searchNews',this.searchNews) 
       console.log(this.searchNews);
-      axios.post('http://localhost/howlegazaiVue2/public/API/search_news.php', formdata )// searchNews:this.searchNews
+      axios.post('http://localhost/TGD104G1/public/API/search_news.php', formdata )// searchNews:this.searchNews
       .then(response => {
         this.newsdata=response.data;
         // console.log('123',response.data);
