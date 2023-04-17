@@ -72,7 +72,7 @@
     </div>
 
     <div class="watch-more">
-      <button type="button" class="btn-m btn-color-greenborder" v-if="num < this.newsdata.length"
+      <button type="button" class="btn-m btn-color-greenborder" id="showmore" v-if="num < this.newsdata.length"
         @click="showmore">看更多</button>
     </div>
 
@@ -170,6 +170,13 @@ export default {
     showmore() {
       this.num = this.num + 5;
       console.log(123, this.num.length);
+      if (this.num >= this.num.length) {
+        // alert('顯示最多');
+        let lookmore = document.getElementById("showmore");
+        // console.log(lookmore);
+        lookmore.style.display = "none";
+      } else {
+      }
  
     }
 
