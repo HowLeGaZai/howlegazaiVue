@@ -106,7 +106,7 @@ const routes = [
   },
   {
     // 前台 空間 空間介紹頁
-    path: '/space_info',
+    path: '/space_info/',
     name: 'space_info',
     component:() => import(/* webpackChunkName: "about" */ '../views/space_info.vue')
   },
@@ -281,13 +281,13 @@ const routes = [
     component:() => import(/* webpackChunkName: "about" */ '../views/backend_account_new.vue')
   },
   {
-    // 後台 空間管理 待審核訂單
+    // 後台 空間管理 待審核訂單 
     path: '/backend_space_list',
     name: 'backend_space_list',
     component:() => import(/* webpackChunkName: "about" */ '../views/backend_space_list.vue')
   },
   {
-    // 後台 空間管理 預約列表
+    // 後台 空間管理 預約列表（潤：應該是待審核預約）
     path: '/backend_space_reservation',
     name: 'backend_space_reservation',
     component:() => import(/* webpackChunkName: "about" */ '../views/backend_space_reservation.vue')
@@ -319,31 +319,7 @@ const routes = [
     component:() => import(/* webpackChunkName: "about" */ '../views/backend_news_add.vue')
   },
   
-  // 空間管理
 
-  {
-    path: '/backend_space_list',
-    name: 'backend_space_list',
-    component:() => import(/* webpackChunkName: "about" */ '../views/backend_space_list.vue')
-  },
-
-
-  // 新增空間
-  {
-    path: '/backend_space_add',
-    name: 'backend_space_add',
-    component:() => import(/* webpackChunkName: "about" */ '../views/backend_space_add.vue')
-  },
-  
-
-  
-  // 空間預約管理
-
-  {
-    path: '/backend_space_management',
-    name: 'backend_space_management',
-    component:() => import(/* webpackChunkName: "about" */ '../views/backend_space_management.vue')
-  },
 
 
   // 後台 手機不支援

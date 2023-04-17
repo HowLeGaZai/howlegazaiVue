@@ -289,6 +289,7 @@ export default {
 
                     let space = sessionStorage.getItem("space");
                     
+                    
 
                     for(let i=0;i<this.spaceJsonData.length;i++){
                       // console.log(i,this.spaceJsonData[i]);
@@ -354,7 +355,7 @@ async getData(date) {
               .then(response => {
                   this.jsonData = response.data;
                   
-                  // console.log(this.jsonData);
+                  console.log('OrderDate',this.jsonData);
               })
               .catch(error => {
                   // console.log(error);
@@ -399,17 +400,24 @@ async getData(date) {
 
     const formattedDate = date.replace(/\//g, '-');
 
+    
+
     // alert(formattedDate);
+    
+  let spaceID = sessionStorage.getItem("spaceID");
 
     for(let i=0;i<this.jsonData.length;i++){
         
         if(formattedDate == this.jsonData[i][0] ){
-          
             //加入日期判斷
               // console.log(i,this.jsonData[i][1]);
+              
+             
+              
                 for(let j =0; j<dataList_about.length;j++){
+                  // console.log('spaceID',spaceID);
                   // console.log(j,dataList_about[j].time_about)
-                  if(this.jsonData[i][1] == dataList_about[j].time_about){
+                  if(this.jsonData[i][1] == dataList_about[j].time_about && spaceID == this.jsonData[i][2]){
                       
                       dataList_about[j].value_about = 'btn-m btn-color-white timeslot btn-color-gray';
                       // console.log(dataList_about[j].value_about);

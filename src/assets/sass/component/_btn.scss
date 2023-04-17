@@ -9,7 +9,21 @@
 
 
 /* Option 2: Import via CSS */
+// @mixin btnColor($bgc,$color, $borderColor, $hoverbgc, $hoverColor){
+//   background-color: $bgc;
+//   color:$color;
+//   border: 1px solid $borderColor;
 
+//   &:hover{
+//     background-color: darken($hoverbgc,5%);
+//     color: $hoverColor;
+//   }
+//   &:active{
+//     background-color: darken($hoverbgc,5%);
+//     color: $hoverColor;
+//   }
+  
+// }
 
 /* --------button Area------- */
 
@@ -17,14 +31,6 @@
 .btn-color {
   &-green {
     @include btnColor($green, $white, transparent, $green, $white);
-  }
-
-  &-white {
-    @include btnColor($white, $green, $green, $white, $green);
-  }
-
-  &-gray {
-    @include btnColor($gray, $white, transparent, darken($gray, 5%), $white);
   }
 
   &-greenborder {
@@ -37,10 +43,23 @@
     color: #525456 $lightdark;
   }
 
+  &-white {
+    @include btnColor($white, $green, $green, $white, $green);
+  }
+
+  &-gray {
+    @include btnColor($gray, $white, transparent, darken($gray, 5%), $white);
+  }
+
   // 未開放 button 
   &-unopened{
     background-color: $silver;
     color:$lightdark;
+
+    &:hover{
+      background-color: $silver;
+      color:$lightdark;
+    }
 
   }
 
@@ -294,9 +313,21 @@
 .be-nav {
   line-height: 2.8;
   @include btnSize(1rem, 10px, 160px, auto, auto, auto);
+  margin-bottom: 5px;
+  background-color: $ghostwhite;
+  color:$lightdark;
+  opacity: 0.6;
+  border: 1px solid transparent;
+
+  &:hover{
+    background-color: $white;
+    color:$green;
+    // border: 1px solid $green;
+    opacity: 1;
+  }
+
 
   
-  margin-bottom: 5px;
 
   div {
     width: 120px;
@@ -306,6 +337,29 @@
   }
 }
 
+.be-nav-active{
+    background-color: $white ;
+    color:$green;
+    border: 1px solid $green;
+    opacity: 1;
+
+}
+
+.be-nav-unopen{
+  line-height: 2.8;
+  @include btnSize(1rem, 10px, 160px, auto, auto, auto);
+  margin-bottom: 5px;
+  background-color: $lightgray;
+  color:$gray;
+  opacity: 0.6;
+  border: 1px solid transparent;
+  div {
+    width: 120px;
+    // height: 40px;
+    line-height: 40px;
+    padding-left: 15px;
+  }
+}
 
 .be-nav-on {
   line-height: 2;
@@ -320,6 +374,11 @@
     border: none;
     border-radius: 10px;
     box-shadow: none;
+
+    &:hover{
+      color:$green;
+      opacity: 1;
+    }
   }
 }
 

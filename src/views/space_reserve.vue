@@ -13,13 +13,14 @@
         
         <div class="space nobtn">
           <div class="image space-pic">
-              <img src="../assets/img/s_1.png" alt="">
+              <!-- <img src="../assets/img/s_1.png" alt=""> -->
+              <img :src="spaceData.SPACE_PIC" alt="">
           </div>
           <div class="space-info">
-              <h3 class="space-title">A102教室</h3>
-              <h5 class="space-type">活動及表演</h5>
-              <h5 class="space-size">空間大小：<span>20</span>坪</h5>
-              <h5 class="space-add">地址：花蓮縣大湖里南京東路三段219號4樓</h5>
+              <h3 class="space-title">{{spaceData.NAME}}</h3>
+              <h5 class="space-type">{{spaceData.CATEGORY}}</h5>
+              <h5 class="space-size">空間大小：<span>{{spaceData.SPACE_SIZE}}</span>坪</h5>
+              <h5 class="space-add">地址：{{spaceData.ADDRESS}}</h5>
           </div>
         </div>
       </section>
@@ -98,6 +99,8 @@ import axios from 'axios';
 export default {
   data () {
     return {
+        spaceData:[],
+
         date:'',
         time:'',
         onlydate:'',
@@ -123,10 +126,45 @@ export default {
          this.end = sessionStorage.getItem('end');
          this.onlydate = sessionStorage.getItem('onlydate');
 
-         
+         this.getSpaceData();
     },
     methods:{
+        async getSpaceData() {
+              await  axios
+                //  htdocs的環境下測試
+                    .get('http://localhost/TGD104G1/public/API/space.php')
+                        // .get('https://tibamef2e.com/tgd104/g1/accountOverview.php')
+                    .then(response => {
+                        this.spaceJsonData = response.data;
+                        console.log('abc',this.spaceJsonData);
+                    })
+                    .catch(error => {
+                        // console.log(error);
+                    });
+
+
+                    let space = sessionStorage.getItem("space");
+                    
+                    
+
+                    for(let i=0;i<this.spaceJsonData.length;i++){
+                      // console.log(i,this.spaceJsonData[i]);
+                      if(space == this.spaceJsonData[i][1]){
+                        // console.log('空間資料',this.spaceJsonData[i]);
+                        this.spaceData = this.spaceJsonData[i];
+                        console.log('空間資料',this.spaceData);
+                      }else{
+
+                      }
+                    }
+
+                    
+
+    },
+
+
         navigate2(){
+            let spaceID = sessionStorage.getItem("spaceID");
 
             const formData = new FormData()
             formData.append('date', this.onlydate)
@@ -137,6 +175,7 @@ export default {
             formData.append('APPLY_MAIL', this.mail)
             formData.append('APPLY_PHONE', this.phone)
             formData.append('PURPOSE', this.apply)
+            formData.append('SPACE_ID', spaceID)
 
             axios
             .post('http://localhost/TGD104G1/public/API/spaceInfo.php', formData)
