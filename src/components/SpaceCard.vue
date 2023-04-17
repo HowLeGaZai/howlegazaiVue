@@ -96,11 +96,13 @@ export default {
             },
             methods: {
                 spaceInfo(index){
-                    this.$router.push('/space_info')
+                    this.$router.push('/space_info');
                     // alert(index);
                     console.log(this.jsonData[index]);
                     console.log('教室的名稱是',this.jsonData[index][1]);
                     sessionStorage.setItem("space", this.jsonData[index][1]);
+                    console.log("space", this.jsonData[index][0]);
+                    sessionStorage.setItem("spaceID", this.jsonData[index][1]);
 
                 }
             },

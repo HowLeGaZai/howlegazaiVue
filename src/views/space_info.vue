@@ -280,6 +280,7 @@ export default {
 
                     let space = sessionStorage.getItem("space");
                     
+                    
 
                     for(let i=0;i<this.spaceJsonData.length;i++){
                       // console.log(i,this.spaceJsonData[i]);
