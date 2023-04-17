@@ -37,7 +37,7 @@
 
               <div class="row">
                 <div class="input-box col-sm-12 col-sm-6">
-                  <label class="details">帳號<span v-if="!account && formSubmitted" class="red-dot">*</span><span v-if="!accountValid" class="red">*請輸入英數字混合帳號8~12位</span><span v-if="accountDuplicate" class="red">*{{this.account}}帳號已被註冊</span></label>
+                  <label class="details">帳號<span v-if="!account && formSubmitted" class="red-dot">*</span><span v-if="!accountValid" class="red">*請輸入英數字混合帳號8~12位</span><span v-if="accountDuplicate" class="red">*{{this.badaccount}}帳號已被註冊</span></label>
                   <input
                     type="text"
                     class="f-text"
@@ -45,7 +45,9 @@
                     placeholder="帳號:英數字混合帳號8~12位"
                     required
                     v-model="account"
-                    @blur="validateAccount"
+                    ref="myaccount"
+                    @keyup="validateAccount"
+                    @focus="cleanBadaccount"
                   />
                 </div>
 
@@ -186,6 +188,8 @@ export default {
     return {
       address: "",
       account:'',
+      badaccount:'',
+
       password:'',
       firstName: '',
       lastName: '',
@@ -241,6 +245,10 @@ export default {
       if (result === 'duplicate') {
         // 帳號重複
         this.accountDuplicate =  true; // 設定為 true
+        this.badaccount = this.account;
+        this.account ="";
+        this.$refs.myaccount.blur()
+       
       } else {
         // 帳號未重複
         this.accountDuplicate = false; // 設定為 false
@@ -250,6 +258,10 @@ export default {
       // 處理錯誤
     }
   },
+    cleanBadaccount(){
+      this.badaccount = "";
+      this.accountDuplicate =  false;
+    },
      validatePassword() {
       // 檢查帳號格式
       const accountRegex = /^[a-z0-9]{8,12}$/; // 英文小寫+數字，8-12碼
@@ -341,31 +353,7 @@ export default {
   },
   mounted() {
     this.address = localStorage.getItem("address");
-// ----------------------------------- navbar----------------------------------------------------------
-    // let labels = document.querySelectorAll(".collapsible-item-label");
-    // let contents = document.querySelectorAll(".collapsible-item-content");
 
-    // labels.forEach((label, index) => {
-    //   label.addEventListener("click", () => {
-    //     // 檢查是否已經打開
-    //     const isOpen = label.classList.contains("open-item-label");
-    //     const content = contents[index];
-    //     const isContentOpen = content.classList.contains("open-item-content");
-
-    //     // 移除所有元素上已經打開的樣式
-    //     labels.forEach((label) => label.classList.remove("open-item-label"));
-    //     contents.forEach((content) =>
-    //       content.classList.remove("open-item-content")
-    //     );
-
-    //     // 添加或移除打開的樣式
-    //     if (!isOpen && !isContentOpen) {
-    //       label.classList.add("open-item-label");
-    //       content.classList.add("open-item-content");
-    //     }
-    //   });
-    // });
-    
   },
 };
 
