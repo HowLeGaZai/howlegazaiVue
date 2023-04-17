@@ -98,9 +98,13 @@
               </div>
             </li>
           </ul>
-           <button v-else type="button" @click="goToLogin" class="btn rad-2 font-1 color-green">
+          <div v-else>
+           <button  type="button" @click="goToLogin" class="btn rad-2 font-1 color-green">
             登入 / 註冊
           </button>
+          <button  type="button" @click="goToLogin" class="loginbtn">
+          <i class="bi bi-person-circle"></i></button>
+          </div>
         </div>
       </nav>
     </header>
