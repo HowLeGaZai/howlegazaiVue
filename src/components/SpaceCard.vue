@@ -101,8 +101,9 @@ export default {
                     console.log(this.jsonData[index]);
                     console.log('教室的名稱是',this.jsonData[index][1]);
                     sessionStorage.setItem("space", this.jsonData[index][1]);
-                    console.log("space", this.jsonData[index][0]);
-                    sessionStorage.setItem("spaceID", this.jsonData[index][1]);
+                    console.log("space", this.jsonData[index][1]);
+                    console.log("spaceID", this.jsonData[index][0]);
+                    sessionStorage.setItem("spaceID", this.jsonData[index][0]);
 
                 }
             },

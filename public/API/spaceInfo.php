@@ -4,7 +4,7 @@ include("conn.php");
 
 
 //建立SQL語法
-$sql = "INSERT into SPACE_ORDER VALUES(DEFAULT,1,'1',?,?,?,?,?,?,?,?,1)";
+$sql = "INSERT into SPACE_ORDER VALUES(DEFAULT,1,'1',?,?,?,?,?,?,?,?,?)";
 
 // $request_body = file_get_contents('php://input');
 // $data = json_decode($request_body, true);
@@ -19,6 +19,7 @@ $APPLY_NAME = $_POST['APPLY_NAME'];
 $APPLY_MAIL = $_POST['APPLY_MAIL'];
 $APPLY_TITLE = $_POST['APPLY_TITLE'];
 $APPLY_PHONE = $_POST['APPLY_PHONE'];
+$SPACE_ID = $_POST['SPACE_ID'];
 
 
 // echo $city;
@@ -36,6 +37,7 @@ $statement->bindValue(5, $APPLY_NAME);
 $statement->bindValue(6, $APPLY_MAIL);
 $statement->bindValue(7, $APPLY_TITLE);
 $statement->bindValue(8, $APPLY_PHONE);
+$statement->bindValue(9, $SPACE_ID);
 $statement->execute();
 
 
