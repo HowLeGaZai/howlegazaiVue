@@ -13,43 +13,49 @@
       <!-- 網站管理 -->
       <li>
         <a class="be-nav be-menu"
-          :class="{ ['be-nav-active']: $route.name === 'backend_websiteinfo' || $route.name ==='backend_officeinfo'||$route.name ==='backend_faq' }">
+          :class="{ ['be-nav-active']: $route.name === 'backend_websiteinfo' || $route.name === 'backend_officeinfo' || $route.name === 'backend_faq' }">
           <div class="width-3 text-left">網站管理</div>
           <i class="bi bi-caret-down-fill i-s"></i>
         </a>
-        <div class="be-nav-on ">
-          <router-link :to="{ name:'backend_websiteinfo'}" :class="{ ['btn-font-color-green']: $route.name === 'backend_websiteinfo'}">
-            <button class="be-nav " :class="{ ['be-nav-active']:$route.name === 'backend_websiteinfo'}">網站基本設定</button>
+        <div class="be-nav-on"
+          :class="{ ['be-nav-off']: $route.name !== 'backend_websiteinfo' && $route.name !== 'backend_officeinfo' && $route.name !== 'backend_faq' }">
+          <router-link :to="{ name: 'backend_websiteinfo' }"
+            :class="{ ['btn-font-color-green']: $route.name === 'backend_websiteinfo' }">
+            <button class="be-nav " :class="{ ['be-nav-active']: $route.name === 'backend_websiteinfo' }">網站基本設定</button>
           </router-link>
           <router-link :to="{ name: 'backend_officeinfo' }">
-            <button class="be-nav " :class="{ ['be-nav-active']:$route.name === 'backend_officeinfo'}">聯絡里辦資訊</button>
+            <button class="be-nav " :class="{ ['be-nav-active']: $route.name === 'backend_officeinfo' }">聯絡里辦資訊</button>
           </router-link>
-          <router-link :to="{ name: 'backend_faq'}" >
-            <button class="be-nav" :class="{ ['be-nav-active']:$route.name === 'backend_faq'}">常見問題設定</button>
+          <router-link :to="{ name: 'backend_faq' }">
+            <button class="be-nav" :class="{ ['be-nav-active']: $route.name === 'backend_faq' }">常見問題設定</button>
           </router-link>
         </div>
       </li>
       <!-- 帳戶管理 -->
       <li>
-        <a class="be-nav be-menu" :class="{ ['be-nav-active']: $route.name === 'backend_account_new' || $route.name ==='backend_account_overview'||$route.name ==='backend_account_cancel' }">
+        <a class="be-nav be-menu"
+          :class="{ ['be-nav-active']: $route.name === 'backend_account_new' || $route.name === 'backend_account_overview' || $route.name === 'backend_account_cancel' }">
           <div class="width-3 text-left">帳戶管理</div>
           <i class="bi bi-caret-down-fill i-s"></i>
         </a>
-        <div class="be-nav-on be-nav-off">
+        <div class="be-nav-on"
+          :class="{ ['be-nav-off']: $route.name !== 'backend_account_new' && $route.name !== 'backend_account_overview' && $route.name !== 'backend_account_cancel' }">
           <router-link :to="{ name: 'backend_account_new' }">
-            <button class="be-nav btn-font-color-gray" :class="{ ['be-nav-active']:$route.name === 'backend_account_new'}">待審核清單</button>
+            <button class="be-nav btn-font-color-gray"
+              :class="{ ['be-nav-active']: $route.name === 'backend_account_new' }">待審核清單</button>
           </router-link>
           <router-link :to="{ name: 'backend_account_overview' }">
-            <button class="be-nav" :class="{ ['be-nav-active']:$route.name === 'backend_account_overview'}">帳戶總列表</button>
+            <button class="be-nav" :class="{ ['be-nav-active']: $route.name === 'backend_account_overview' }">帳戶總列表</button>
           </router-link>
           <router-link :to="{ name: 'backend_account_cancel' }">
-            <button class="be-nav" :class="{ ['be-nav-active']:$route.name === 'backend_account_cancel'}">已刪除帳戶</button>
+            <button class="be-nav" :class="{ ['be-nav-active']: $route.name === 'backend_account_cancel' }">已刪除帳戶</button>
           </router-link>
         </div>
       </li>
       <!-- 最新消息管理 -->
       <li>
-        <router-link :to="{ name: 'backend_news' }" class="be-nav be-menu" :class="{ ['be-nav-active']: $route.name === 'backend_news' }">
+        <router-link :to="{ name: 'backend_news' }" class="be-nav be-menu"
+          :class="{ ['be-nav-active']: $route.name === 'backend_news'||  $route.name === 'backend_news_add'}">
           <div class="width-3 text-left">最新消息管理</div>
           <i class="bi bi-caret-down-fill i-s opacity-0"></i>
         </router-link>
@@ -57,7 +63,8 @@
       </li>
       <!-- 討論區列表 -->
       <li>
-        <router-link :to="{ name: 'backend_chat_list' }" class="be-nav be-menu" :class="{ ['be-nav-active']: $route.name === 'backend_chat_list' }" >
+        <router-link :to="{ name: 'backend_chat_list' }" class="be-nav be-menu"
+          :class="{ ['be-nav-active']: $route.name === 'backend_chat_list' }">
           <div class="width-3 text-left">討論區列表</div>
           <i class="bi bi-caret-down-fill i-s opacity-0"></i>
         </router-link>
@@ -65,25 +72,31 @@
       </li>
       <!-- 活動管理 -->
       <li>
-        <router-link class="be-nav" :to="{ name: 'backend_activity' }" :class="{ ['be-nav-active']: $route.name === 'backend_activity'|| $route.name ==='backend_activity_input'}"> 
+        <router-link class="be-nav" :to="{ name: 'backend_activity' }"
+          :class="{ ['be-nav-active']: $route.name === 'backend_activity' || $route.name === 'backend_activity_input' ||$route.name === 'backend_activity_memberlist'}">
           <div class="width-3 text-left">活動管理</div>
           <i class="bi bi-caret-down-fill i-s opacity-0"></i>
         </router-link>
       </li>
       <!-- 空間管理 -->
       <li>
-        <a class="be-nav  be-menu" :class="{ ['be-nav-active']: $route.name === 'backend_space_list'|| $route.name ==='backend_space_management'||$route.name ==='backend_space_reservation'}">
+        <a class="be-nav  be-menu"
+          :class="{ ['be-nav-active']: $route.name === 'backend_space_list' || $route.name === 'backend_space_management' || $route.name === 'backend_space_reservation' }">
           <div class="width-3 text-left">空間管理</div>
           <i class="bi bi-caret-down-fill i-s"></i>
         </a>
-        <div class="be-nav-on ">
-          <router-link :to="{ name: 'backend_space_list'}" :class="{ ['be-nav-active']:$route.name === 'backend_space_list'}">
+        <div class="be-nav-on"
+          :class="{ ['be-nav-off']: $route.name !== 'backend_space_list' && $route.name !== 'backend_space_management' && $route.name !== 'backend_space_reservation' }">
+          <router-link :to="{ name: 'backend_space_list' }"
+            :class="{ ['be-nav-active']: $route.name === 'backend_space_list' }">
             <button class="be-nav btn-font-color-gray">空間列表</button>
           </router-link>
-          <router-link :to="{ name: 'backend_space_management' }" :class="{ ['be-nav-active']:$route.name === 'backend_space_management'}">
+          <router-link :to="{ name: 'backend_space_management' }"
+            :class="{ ['be-nav-active']: $route.name === 'backend_space_management' }">
             <button class="be-nav btn-font-color-gray">預約列表</button>
           </router-link>
-          <router-link :to="{ name: 'backend_space_reservation' }" :class="{ ['be-nav-active']:$route.name === 'backend_space_reservation'}">
+          <router-link :to="{ name: 'backend_space_reservation' }"
+            :class="{ ['be-nav-active']: $route.name === 'backend_space_reservation' }">
             <button class="be-nav btn-font-color-gray">待審核預約</button>
           </router-link>
 
@@ -110,13 +123,13 @@
 
           <div class="width-3 text-left">維修通報</div>
           <i class="bi bi-caret-down-fill i-s opacity-0"></i>
-        <!-- </router-link> -->
+          <!-- </router-link> -->
         </div>
         <div class="be-nav-on"></div>
       </li>
       <!-- 守望相助 -->
       <li>
-        
+
         <div class=" be-nav-unopen">
           <div class="width-3 text-left">守望相助</div>
           <i class="bi bi-caret-down-fill i-s "></i>
@@ -160,7 +173,7 @@ export default {
   },
 
   computed: {
-    // 點擊展開
+    //點擊展開
     togglebutton() {
       let beMenu = document.querySelectorAll(".be-menu");
       let beMenuOn = document.querySelectorAll(".be-nav-on");
@@ -174,6 +187,8 @@ export default {
         })
       }
     }
+
+    
 
 
   },
