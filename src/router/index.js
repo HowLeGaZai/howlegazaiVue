@@ -106,7 +106,7 @@ const routes = [
   },
   {
     // 前台 空間 空間介紹頁
-    path: '/space_info',
+    path: '/space_info/',
     name: 'space_info',
     component:() => import(/* webpackChunkName: "about" */ '../views/space_info.vue')
   },
