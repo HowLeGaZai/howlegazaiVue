@@ -10,24 +10,29 @@
       <button class="btn-m btn-color-green" @click="postsearch">搜尋</button>
     </div>
     <div class="desktop-filter" id="news-desktop-filter">
-      <div class="tag tag-btn tag-main tag-btn-selected">全部消息</div>
-      <div class="tag tag-orange tag-btn">公告</div>
-      <div class="tag tag-pink tag-btn">宣導</div>
-      <div class="tag tag-yellow tag-btn">里民服務</div>
-      <div class="tag tag-blue tag-btn">新聞分享</div>
-      <div class="tag tag-green tag-btn">會議記錄</div>
+      <div class="tag tag-btn tag-main tag-btn-selected" :class="{ 'tag-btn-selected': selectedCategory === '全部消息'}"
+        @click="selectedCategory = '全部消息'" value="">全部消息</div>
+      <div class="tag tag-orange tag-btn" :class="{ 'tag-btn-selected': selectedCategory === '公告' }"
+        @click="selectedCategory = '公告'" value="公告">公告</div>
+      <div class="tag tag-pink tag-btn" :class="{ 'tag-btn-selected': selectedCategory === '宣導' }"
+        @click="selectedCategory = '宣導'" value="宣導">宣導</div>
+      <div class="tag tag-yellow tag-btn" :class="{ 'tag-btn-selected': selectedCategory === '里民服務' }"
+        @click="selectedCategory = '里民服務'" value="公告">里民服務</div>
+      <div class="tag tag-blue tag-btn" :class="{ 'tag-btn-selected': selectedCategory === '新聞分ㄏㄧㄤˇ' }"
+        @click="selectedCategory = '新聞分享'" value="新聞分享">新聞分享</div>
+      <div class="tag tag-green tag-btn" :class="{ 'tag-btn-selected': selectedCategory === '會議記錄' }"
+        @click="selectedCategory = '會議記錄'" value="會議記錄">會議記錄</div>
       <!-- <div class="tag tag-sky opacity-6">經費報告</div> -->
     </div>
     <div class="mobile-filter">
       <label for="chattype" class="f-label">分類</label>
-      <select name="" id="chattype" class="f-select">
-        <option value="1">全部消息</option>
-        <option value="2">公告</option>
-        <option value="3">宣導</option>
-        <option value="4">里民服務</option>
-        <option value="5">新聞分享</option>
-        <option value="6">會議記錄</option>
-        <!-- <option value="7">經費報告</option> -->
+      <select name="" id="newstype" class="f-select" v-model="selectedCategory">
+        <option value="全部消息">全部消息</option>
+        <option value="公告">公告</option>
+        <option value="宣導">宣導</option>
+        <option value="里民服務">里民服務</option>
+        <option value="新聞分享">新聞分享</option>
+        <option value="會議記錄">會議記錄</option>
       </select>
     </div>
 
@@ -37,7 +42,7 @@
       <!-- <news-list v-for="news in filterNews" :key="news.id"></news-list> -->
       <!-- ===== newslist_components ===== -->
 
-      <a href="#" v-for="(news, index) in newsdata" :key="index">
+      <a href="#" v-for="(news, index) in displayedTopics" :key="index" v-show="index < num">
         <!-- <a href="#" v-for="news in filterNews" :key="news"> -->
         <!-- <a href="#" v-for="news in filterNews" :key="news.news"> -->
         <article class="news_item">
@@ -67,7 +72,8 @@
     </div>
 
     <div class="watch-more">
-      <button type="button" class="btn-m btn-color-greenborder">看更多</button>
+      <button type="button" class="btn-m btn-color-greenborder" v-if="num < this.newsdata.length"
+        @click="showmore">看更多</button>
     </div>
 
   </main>
@@ -96,21 +102,31 @@ export default {
   data() {
     return {
       searchNews: '', // input的搜尋輸入內容
-      // newsData:[],// 搜尋結果
-      newsdata: [],
-      // news2:[],
+      newsdata: [], //所有的最新消息
+      num: 8,//預設單頁的顯示最大筆數
+      selectedCategory: '全部消息',
+      categories: [
+        '全部消息',
+        '公告',
+        "宣導",
+        "里民服務",
+        "新聞分享",
+        "會議記錄",
+      ],
+
     }
   },
   methods: {
     // 變換tag顏色與樣式
-    addTagClass(i) {
-      switch (i) {
-        case "公告": return "tag-orange";
-        case "宣導": return "tag-pink";
-        case "里民服務": return "tag-yellow";
-        case "新聞分享": return "tag-blue";
-        case "會議記錄": return "tag-green";
-      }
+    addTagClass(category) {
+      return {
+        "tag-main": category === "全部消息",
+        "tag-orange": category === "公告",
+        "tag-pink": category === "宣導",
+        "tag-yellow": category === "里民服務",
+        "tag-blue": category === "新聞分享",
+        "tag-green": category === "會議記錄",
+      };
     },
 
     // 自動撈取最新消息
@@ -147,19 +163,31 @@ export default {
     },
     //轉換日期格式
     getFormatDate(val) {
-    return formatDate(val);
+      return formatDate(val);
     },
 
+    //點選看更多
+    showmore() {
+      this.num = this.num + 5;
+      console.log(123, this.num.length);
+ 
+    }
 
 
 
   },
 
   computed: {
-    //搜尋函式
-    // filterNews(){
-    //   return this.news.filter(searchResult => searchResult.news.match(this.searchNews))
-    // }
+    //取得newsdata後判斷selectedCategory種類進行資料渲染
+    displayedTopics() {
+      if (this.selectedCategory === '全部消息') {
+        return this.newsdata;
+      } else {
+        return this.newsdata.filter(
+          (newsdata) => newsdata.CATEGORY === this.selectedCategory
+        );
+      }
+    },
 
   },
 
@@ -173,7 +201,7 @@ export default {
 
     for (var i = 0; i < btns.length; i++) {
       btns[i].addEventListener("click", function () {
-        var current = document.getElementsByClassName(" tag-btn-selected");
+        var current = document.getElementsByClassName(" 、tag-btn-selected");
 
         if (current.length > 0) {
           current[0].className = current[0].className.replace(" tag-btn-selected", "");
