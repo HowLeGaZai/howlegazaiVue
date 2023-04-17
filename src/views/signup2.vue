@@ -223,10 +223,10 @@ export default {
   mounted() {
     //抓取signup1 的 localStorage data 資料
     
-    this.input1 = localStorage.getItem("input1");
-    this.input2 = localStorage.getItem("input2");
-    this.input3 = localStorage.getItem("input3");
-    this.localStorageValue = this.input1 +  this.input2 + this.input3  + localStorage.getItem("inputValue");
+    // this.input1 = localStorage.getItem("input1");
+    // this.input2 = localStorage.getItem("input2");
+    // this.input3 = localStorage.getItem("input3");
+    this.localStorageValue = localStorage.getItem("inputValue");
 // ----------------------------------- navbar----------------------------------------------------------
     let labels = document.querySelectorAll(".collapsible-item-label");
     let contents = document.querySelectorAll(".collapsible-item-content");

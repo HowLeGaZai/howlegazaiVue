@@ -13,7 +13,7 @@
             <div class="line notyet"></div>
             <div class="steps">
               <div class="steps-circle">2</div>
-              <h5>報名完成</h5>
+              <h5>確認資料</h5>
             </div>
           </div>
         </div>
@@ -129,17 +129,17 @@ export default {
   watch: {
     // 可以使用 watch 來監聽數據的更改並將它們存儲在 localStorage中，
     // 當 input1, input2, input3 或 inputValue 發生更改時
-    input1(val) {
-      localStorage.setItem("input1", val);
-    },
-    input2(val) {
-      localStorage.setItem("input2", val);
-    },
-    input3(val) {
-      localStorage.setItem("input3", val);
-    },
+    // input1(val) {
+    //   localStorage.setItem("input1", val);
+    // },
+    // input2(val) {
+    //   localStorage.setItem("input2", val);
+    // },
+    // input3(val) {
+    //   localStorage.setItem("input3", val);
+    // },
     inputValue(val) {
-      localStorage.setItem("inputValue", val);
+      localStorage.setItem("inputValue", "花蓮縣花蓮市大湖里" + val);
     },
   },
   mounted() {

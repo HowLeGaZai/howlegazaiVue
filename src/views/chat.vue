@@ -8,12 +8,12 @@
             <input type="" class="f-text f-round" placeholder="&#xF52A" style="font-family:bootstrap-icons"/>
             <button type="button" class="btn-m btn-color-green">搜尋</button>
           </div>
-          <div class="add-chat">
+          <div class="add-chat" >
             <!-- <router-link to="/chat_new" custom v-slot="{ navigate }">
               <button class="btn-m btn-color-green" @click="navigate" role="link">發起討論</button>
             </router-link> -->
             <!-- <router-link to="{ path: '/chat_new' ,query:{ plan:'abc'}  }" > -->
-              <button class="btn-m btn-color-green" @click="preview()" role="link">發起討論</button>
+              <button class="btn-m btn-color-green" @click="preview()" role="link" v-show="createChat">發起討論</button>
             <!-- </router-link> -->
           </div>
           
@@ -124,89 +124,106 @@
 </template>
 
 <script>
-
-
-import ChatTopic from '../components/ChatTopic.vue'
-import navbar from './navbar.vue';
-import Footer from './Footer.vue';
+import ChatTopic from "../components/ChatTopic.vue";
+import navbar from "./navbar.vue";
+import Footer from "./Footer.vue";
 // import { BootstrapIconsPlugin } from 'bootstrap-icons-vue';
-import { formatDate } from '../plugin/date';
-
-
+import { formatDate } from "../plugin/date";
 
 export default {
-   data(){
-        return {
-            // isShow: true,
-            // txt: "看更多",
-            num: 10,
-            selectedCategory: "所有話題",
-            categories: [
-              "所有話題",
-              "美食討論",
-              "二手交易",
-              "里民閒聊",
-              "團購討論",
-              "我要抱怨",
-              "其他",
-            ],
-            chatTopics: [],
-            displayedTopics:[],
-        }
-    },
-    mounted(){
-      axios.get('http://localhost/TGD104G1/public/API/chatlist.php').then(response => {
-        
-        const data = response.data; 
-        console.log(response.data);
-       
-        this.chatTopics = data; 
-      }).catch(error => {
-        console.error(error); 
+  data() {
+    return {
+      // isShow: true,
+      // txt: "看更多",
+      num: 10,
+      selectedCategory: "所有話題",
+      categories: [
+        "所有話題",
+        "美食討論",
+        "二手交易",
+        "里民閒聊",
+        "團購討論",
+        "我要抱怨",
+        "其他",
+      ],
+      chatTopics: [],
+      // displayedTopics:[],
+      createChat: false,
+    };
+  },
+  mounted() {
+    axios
+      .get("http://localhost/TGD104G1/public/API/chatlist.php")
+      .then((response) => {
+        const data = response.data;
+        // console.log(response.data);
+
+        this.chatTopics = data;
+      })
+      .catch((error) => {
+        console.error(error);
       });
-    },
-    methods: {
-        addClass(category){
-          return {
-            'tag-main': category === '所有話題',
-            'tag-pink': category === '美食討論',
-            'tag-orange': category === '二手交易',
-            'tag-blue': category === '里民閒聊',
-            'tag-sky': category === '團購討論',
-            'tag-green': category === '我要抱怨',
-            'tag-yellow': category === '其他',
-          }
-        },
-        showmore() {
-        // this.isShow = !this.isShow;
 
-        // this.num = this.isShow ? this.constNum : this.displayedTopics.length;
-        // this.txt = this.isShow ? "看更多" : "收起";
-        this.num = this.num + 5;
-        // console.log(this.chatTopics.length);
-        if(this.num >= this.chatTopics.length){
-            // alert('顯示最多');
-            let lookmore = document.getElementById("lookmore");
-            // console.log(lookmore);
-            lookmore.style.display="none";
-        }else{
+    const cookieValue = this.getCookieValue("id");
 
-        };
-        
+    // 判斷 Cookie 是否存在
+    if (cookieValue !== null) {
+      this.createChat = true;
+    } else {
+      this.createChat = false;
+    }
+  },
+  methods: {
+    addClass(category) {
+      return {
+        "tag-main": category === "所有話題",
+        "tag-pink": category === "美食討論",
+        "tag-orange": category === "二手交易",
+        "tag-blue": category === "里民閒聊",
+        "tag-sky": category === "團購討論",
+        "tag-green": category === "我要抱怨",
+        "tag-yellow": category === "其他",
+      };
     },
-    getFormatDate(val){
+    showmore() {
+      // this.isShow = !this.isShow;
+
+      // this.num = this.isShow ? this.constNum : this.displayedTopics.length;
+      // this.txt = this.isShow ? "看更多" : "收起";
+      this.num = this.num + 5;
+      // console.log(this.chatTopics.length);
+      if (this.num >= this.chatTopics.length) {
+        // alert('顯示最多');
+        let lookmore = document.getElementById("lookmore");
+        // console.log(lookmore);
+        lookmore.style.display = "none";
+      } else {
+      }
+    },
+    getFormatDate(val) {
       return formatDate(val);
     },
-        preview(){
-          const Id = 123;
-          // this.$router.push({ name: 'chat_new', params: { Id: Id } })
-          this.$router.push({ name: 'chat_new', params: { Id: Id } })
-        }
-  
-    
+    preview() {
+      const Id = 123;
+      // this.$router.push({ name: 'chat_new', params: { Id: Id } })
+      this.$router.push({ name: "chat_new", params: { Id: Id } });
     },
 
- computed: {
+    getCookieValue(cookieName) {
+      // 讀取指定名稱的 Cookie 值
+      const cookieStr = decodeURIComponent(document.cookie);
+      const cookies = cookieStr.split("; ");
+      for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].split("=");
+        if (cookie[0] === cookieName) {
+          return cookie[1] || null;
+        }
+      }
+      return null;
+    },
+  },
+
+  computed: {
     displayedTopics() {
       if (this.selectedCategory === "所有話題") {
         return this.chatTopics;
@@ -216,10 +233,11 @@ export default {
         );
       }
     },
-    
   },
   components: {
-      navbar,Footer,ChatTopic,
-    },
-}
+    navbar,
+    Footer,
+    ChatTopic,
+  },
+};
 </script>
