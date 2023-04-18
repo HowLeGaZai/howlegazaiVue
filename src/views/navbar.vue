@@ -61,7 +61,7 @@
                     <!-- 會員姓名 -->
                     <p><span>{{userName}}</span></p>
                     <!-- 會員大頭貼 -->
-                    <a href="#" class="userbtn">
+                    <a href="" class="userbtn">
                       <img :src="portrait" alt="" class="user_pic" />
                     </a>
                   </li>
@@ -238,7 +238,7 @@ export default {
       userBtn.onclick = function (e) {
         accountMenu.classList.add("accountshow");
         if (window.innerWidth > 1400) {
-          userBtn.href = "#/account_user"; // 修改 href 屬性值為 #
+          userBtn.href = "/account_user"; // 修改 href 屬性值為 #
         }else{
           e.preventDefault();
         }
