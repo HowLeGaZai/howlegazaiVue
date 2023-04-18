@@ -9,7 +9,8 @@ $accepted_origins = array("http://localhost", "http://10.2.7.103", "http://local
 /*********************************************
  * 設置圖片保存的資料夾 *
  *********************************************/
-$imageFolder = "/img/userupload/";
+$imageFolder = "/TGD104G1/dist/src/assets/img/";
+// $imageFolder = "/img/userupload/";
 
 reset ($_FILES);
 $temp = current($_FILES);

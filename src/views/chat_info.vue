@@ -176,12 +176,14 @@ export default {
           // console.log(message);
           this.data = data;
       },
+      
     },
 
     mounted() {
     // if (this.$route.query.content) {
     //   this.$refs.tinymcecontent.setContent(this.$route.query.content)
     // }
+    
   },
 
     

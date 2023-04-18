@@ -13,7 +13,7 @@
             <div class="line notyet"></div>
             <div class="steps">
               <div class="steps-circle">2</div>
-              <h5>報名完成</h5>
+              <h5>確認資料</h5>
             </div>
           </div>
         </div>
@@ -23,22 +23,22 @@
             <!-- 選擇縣市 -->
             <div class="txt_field col-sm-12 col-sm-4">
               <label for="selecte" class="f-label">縣/市</label>
-              <select name="" id="selecte" class="f-select" v-model="input1">
-                <option value="">{{ input1 }}花蓮縣</option>
+              <select name="" id="city" class="f-select">
+                <option value="">{{input1}}</option>
               </select>
             </div>
 
             <div class="txt_field col-sm-12 col-sm-4">
               <label for="selecte" class="f-label">鄉/鎮/市/區</label>
-              <select name="" id="selecte" class="f-select" v-model="input2">
-                <option value="">{{ input2 }}國安鄉</option>
+              <select name="" id="district" class="f-select">
+                <option value="">{{ input2}}</option>
               </select>
             </div>
 
             <div class="txt_field col-sm-12 col-sm-4">
               <label for="selecte" class="f-label">村里</label>
-              <select name="" id="selecte" class="f-select" v-model="input3">
-                <option value="">{{ input3 }}大湖里</option>
+              <select name="" id="village" class="f-select">
+                <option value="">{{input3}}</option>
               </select>
             </div>
           </div>
@@ -56,6 +56,7 @@
                 inputValue = $event.target.value;
                 add = $event.target.value;
               "
+              :placeholder="placeholder"
             />
             <p v-if="showError" style="color: red">{{ errorMessage }}</p>
             <!-- <h6 style="color: red; text-align: center"> -->
@@ -103,6 +104,7 @@ export default {
       input2: "",
       input3: "",
       inputValue: "",
+      jsonData: [],
     };
   },
   setup() {
@@ -124,22 +126,32 @@ export default {
         this.$router.push({ name: "signup2", state: formData });
       }
     },
+
+    webInfo(){
+      
+      this.input1 = this.jsonData[this.jsonData.length-1].CITY ;
+      this.input2 = this.jsonData[this.jsonData.length-1].DISTRICT ;
+      this.input3 = this.jsonData[this.jsonData.length-1].TOWN ;
+      console.log(this.input2);
+
+    },
+
   },
 
   watch: {
     // 可以使用 watch 來監聽數據的更改並將它們存儲在 localStorage中，
     // 當 input1, input2, input3 或 inputValue 發生更改時
-    input1(val) {
-      localStorage.setItem("input1", val);
-    },
-    input2(val) {
-      localStorage.setItem("input2", val);
-    },
-    input3(val) {
-      localStorage.setItem("input3", val);
-    },
+    // input1(val) {
+    //   localStorage.setItem("input1", val);
+    // },
+    // input2(val) {
+    //   localStorage.setItem("input2", val);
+    // },
+    // input3(val) {
+    //   localStorage.setItem("input3", val);
+    // },
     inputValue(val) {
-      localStorage.setItem("inputValue", val);
+      localStorage.setItem("address", this.input1 + this.input2 + this.input3 + val);
     },
   },
   mounted() {
@@ -166,7 +178,28 @@ export default {
         }
       });
     });
+
   },
+  created(){
+    axios
+        .post('http://localhost/TGD104G1/public/API/home.php',{})
+        .then(response => {
+            this.jsonData = response.data;
+            // alert(response.data)
+            console.log(this.jsonData[this.jsonData.length-1].CITY);
+            this.webInfo();
+            // console.log(this.jsonData.length);
+            // console.log(this.jsonData);
+        })
+        .catch(error => {
+            // console.log(error);
+        });
+  },
+  computed: {
+  placeholder() {
+    return '請從"' + this.input1 + this.input2 + this.input3 + '"後開始填寫';
+  }
+}
 };
 
 // localStorage.setItem('myData', this.myData);

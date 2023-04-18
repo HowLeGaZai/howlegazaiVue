@@ -50,7 +50,7 @@
               <p>歡迎 <span>{{userName}}</span></p>
               <!-- 會員大頭貼 -->
               <a href="#" class="userbtn tooltip" id="userBtn">
-                <img :src="require(`@/assets/img/${portrait}`)" alt="" class="user_pic" />
+                <img :src="portrait" alt="" class="user_pic" />
               </a>
               <div id="navMenu">
                 <ul class="account-menu" id="accountMenu">
@@ -62,8 +62,11 @@
                     <p><span>{{userName}}</span></p>
                     <!-- 會員大頭貼 -->
                     <a href="#" class="userbtn">
-                      <img :src="require(`@/assets/img/${portrait}`)" alt="" class="user_pic" />
+                      <img :src="portrait" alt="" class="user_pic" />
                     </a>
+                  </li>
+                  <li>
+                    <a href="/" @click="clearCookies">登出</a>
                   </li>
                   <li><router-link :to="{name:'account_user'}" :class="{active: $route.name === 'account_user'}">個人資訊</router-link></li>
                   <li><router-link :to="{name:'account_user_manage'}" :class="{active: $route.name === 'account_user_manage'}">成員管理</router-link></li>
@@ -90,16 +93,18 @@
                   <li>
                     <router-link :to="{name:'account_user_change_pwd'}">變更密碼</router-link>
                   </li>
-                  <li>
-                    <router-link :to="{name:'home'}">登出</router-link>
-                  </li>
+                  
                 </ul>
               </div>
             </li>
           </ul>
-           <button v-else type="button" @click="goToLogin" class="btn rad-2 font-1 color-green">
+          <div v-else>
+           <button  type="button" @click="goToLogin" class="btn rad-2 font-1 color-green">
             登入 / 註冊
           </button>
+          <button  type="button" @click="goToLogin" class="loginbtn">
+          <i class="bi bi-person-circle"></i></button>
+          </div>
         </div>
       </nav>
     </header>
@@ -112,7 +117,7 @@ export default {
       return {
         isLoggedIn: false,
         userName: "",
-        portrait: "",
+        portrait:"",
         }
     },
     // props: {
@@ -137,18 +142,31 @@ export default {
         }
         return null;
       },
+      clearCookies() {
+      // 取得目前的 cookie 字串
+      let cookies = document.cookie;
+      // 將 cookie 字串分割成每個 cookie
+      let cookieArr = cookies.split("; ");
+      // 迭代 cookieArr，將每個 cookie 都設置過期時間為過去的日期，使其被刪除
+      for (let i = 0; i < cookieArr.length; i++) {
+        let cookie = cookieArr[i];
+        let eqPos = cookie.indexOf("=");
+        let name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+        document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/`;
+      }
+      window.location.reload();
+    },
     },
     mounted(){
-      const cookieValue = this.getCookieValue('帳號');
-      const uusername = this.getCookieValue('姓名');
-      const uuserpic = this.getCookieValue('圖檔');
-
+      const cookieValue = this.getCookieValue('account');
+      const uusername = this.getCookieValue('name');
+      let uportrait = sessionStorage.getItem("portrait");
     
         // 判斷 Cookie 是否存在
         if (cookieValue !== null) {
           this.isLoggedIn = true;
           this.userName = uusername;
-          this.portrait = uuserpic;
+          this.portrait = uportrait;
           // Cookie 存在，執行相應的處理
           // console.log('Cookie 存在，值為: ' + cookieValue);
           // 在這裡執行 home.vue 中的相應函式或處理

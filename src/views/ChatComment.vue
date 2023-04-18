@@ -14,10 +14,11 @@ export default {
     data(){
         return{
             message:'',
-             USER_ID:2,
-          USER_PORTRAIT:"user_pic.png",
-          USER_NICKNAME:"李奧",
-          CREATE_TIME:"2023-04-12",
+             USER_ID:'',
+          PORTRAIT:"",
+          NICKNAME:"",
+          CREATE_TIME:"",
+          currentDateTime:'',
         
         }
 
@@ -27,20 +28,69 @@ export default {
 
              const data = JSON.stringify({
                 USER_ID:this.USER_ID,
-                USER_PORTRAIT:this.USER_PORTRAIT,
-                USER_NICKNAME:this.USER_NICKNAME,
+                PORTRAIT:this.PORTRAIT,
+                NICKNAME:this.NICKNAME,
                 CREATE_TIME:this.CREATE_TIME,
                 CONTENT:this.message,
 
-                
               })
+
+            const formData = new FormData()
+            formData.append('USER_ID', this.USER_ID)
+            formData.append('CREATE_TIME', this.CREATE_TIME)
+            formData.append('CONTENT', this.message)    
+
+            axios
+                .post('http://localhost/TGD104G1/public/API/addComment.php', formData)
+                // .post('https://tibamef2e.com/tgd104/g1/webinfo.php', formData)
+                .then(response => {
+                    // this.jsonData = response.data;
+                    console.log(response.data);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+
+
 
             this.$emit("message" , data)
             // console.log(this.message);
             this.message = ''
             
         },
+        getCookieValue(cookieName) {
+        // 讀取指定名稱的 Cookie 值
+        const cookieStr = decodeURIComponent(document.cookie);
+        const cookies = cookieStr.split('; ');
+        for (let i = 0; i < cookies.length; i++) {
+          const cookie = cookies[i].split('=');
+          if (cookie[0] === cookieName) {
+            return cookie[1] || null;
+          }
+        }
+        return null;
+      },
         
+    },
+    mounted(){
+      // const Id = this.getCookieValue('id');
+      // const nickname = this.getCookieValue('nickname');
+      // const portrait = this.getCookieValue('portrait');
+      this.USER_ID = this.getCookieValue('id');
+      this.NICKNAME = this.getCookieValue('nickname');
+      this.PORTRAIT = this.getCookieValue('portrait');
+
+      const currentDate = new Date();
+      console.log(currentDate);
+      this.currentDateTime = currentDate.toLocaleString();
+      const year = currentDate.getFullYear();
+      const month = currentDate.getMonth() + 1;
+      const date = currentDate.getDate();
+      const hours = currentDate.getHours();
+      const minutes = currentDate.getMinutes();
+
+      // this.currentDateTime = `${year}-${month}-${date} ${hours}:${minutes}:${seconds}`;
+      this.CREATE_TIME = `${year}-${month}-${date} ${hours}:${minutes}`;
     }
 }
 </script>
