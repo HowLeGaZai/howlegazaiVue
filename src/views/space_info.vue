@@ -183,6 +183,10 @@ export default {
               "SPACE_PIC": "s_1.png",
               "MAP_PIC":"space-map.png",
               },
+
+      OPEN_TIME:'',
+      CLOSE_TIME:'',
+      OPEN_CLOSE_TIME:'',
               
     }
   },
@@ -202,9 +206,12 @@ export default {
   
   mounted() {
     const self = this
-    this.showData();
 
-    this.getSpaceData();
+    // this.getSpaceData();
+    // console.log(this.getSpaceData);
+    // this.OPEN_CLOSE_TIME = this.getSpaceData();
+    // console.log("開放時間為",this.OPEN_CLOSE_TIME)
+    this.showData();
     // console.log('abcdef',this.jsonData);
     $('#resizable').resizable({});
     $('#datepicker').datepicker({
@@ -296,22 +303,27 @@ export default {
                       if(space == this.spaceJsonData[i][1]){
                         // console.log('空間資料',this.spaceJsonData[i]);
                         this.spaceData = this.spaceJsonData[i];
+                        this.OPEN_TIME = this.spaceJsonData[i].OPEN_TIME;
+                        this.CLOSE_TIME = this.spaceJsonData[i].CLOSE_TIME;
                         console.log('空間資料',this.spaceData);
                       }else{
 
                       }
                     }
 
-                    
+                    // alert(`${this.OPEN_TIME}-${this.CLOSE_TIME}`)
+                    return `${this.OPEN_TIME}-${this.CLOSE_TIME}`
 
     },
-  showData() {
+  async showData(){
     
     // console.log('abc',this.jsonData);
-
-    const timeRange = '8:00-21:59';
+    const OPEN_CLOSE_TIME = await this.getSpaceData();
+    
+    const space_timeRange =  OPEN_CLOSE_TIME;
+    
     // console.log(timeRange);
-    const [startTime, endTime] = timeRange.split('-')
+    const [startTime, endTime] = space_timeRange.split('-')
     // console.log(startHour);
     // console.log(endHour);
 
@@ -332,6 +344,9 @@ export default {
         const value_about = 'btn-m btn-color-white timeslot';
         dataList_about.push({ time_about,value_about});
       }
+
+
+
       // console.log('dataList_about',dataList_about);
       // console.log(time);
       const value ='btn-m btn-color-white timeslot'
@@ -363,9 +378,12 @@ async getData(date) {
     // console.log('abc',this.jsonData);
     // alert(date);
     console.log('選擇的日期是',date);
-    const timeRange = '8:00-21:59';
+
+    const OPEN_CLOSE_TIME = await this.getSpaceData();
+    
+    const space_timeRange =  OPEN_CLOSE_TIME;
     // console.log(timeRange);
-    const [startTime, endTime] = timeRange.split('-')
+    const [startTime, endTime] = space_timeRange.split('-')
     // console.log(startHour);
     // console.log(endHour);
 
