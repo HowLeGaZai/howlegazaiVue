@@ -31,7 +31,7 @@
           <!-- </div> -->
         
         <div class="signup_link">
-          尚未加入大湖里?<a href="#/signup1">  馬上註冊</a>
+          尚未加入大湖里?<a href="/signup1">  馬上註冊</a>
         </div>
       </div>
 
@@ -85,7 +85,7 @@ export default {
             alert('帳號或密碼錯誤');
           } else {
             alert('登入成功');
-            location.href = '#/';
+            location.href = '/';
             // this.jsonData = response.data;
             let login_id = response.data[0][0]; 
             let login_name = response.data[0][3]; 
@@ -96,7 +96,8 @@ export default {
             document.cookie="name=" + login_name;
             document.cookie="account=" + login_account;
             document.cookie="nickname=" + login_nickname;
-            document.cookie="portrait=" + login_pic;
+            // document.cookie="portrait=" + login_pic;
+            sessionStorage.setItem("portrait", login_pic);
           }
         })
          .catch(error => {

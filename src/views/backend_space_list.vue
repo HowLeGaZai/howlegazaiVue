@@ -208,24 +208,26 @@
                                     <td>刪除</td>
                                     
                                     </tr>
-                                    <tr>
-                                    <td>001</td>
-                                    <td>大湖里A102室</td>
-                                    <td>0筆</td>
-                                    <td><button type="button" class="btn-icon" onclick="window.open('#/space_info', '_blank')">
-                                        <i class="bi bi-link-45deg btn-font-color-green"></i>
-                                    </button>
-                                    </td>
-                                    
-                                    <td><button type="button" class="btn-icon">
-                                        <i class="bi bi-pencil-square btn-font-color-green"></i>
-                                    </button>
-                                    </td>
-
-                                    <td><button type="button" class="btn-icon">
-                                        <i class="bi bi-x-circle-fill btn-font-color-green"></i>
+                                    <tr v-for="(space,index) in jsonData" :key="index">
+                                        <td>{{index+1}}</td>
+                                        <td>{{space.NAME}}</td>
+                                        <td>{{space.COUNT}}</td>
+                                        <td>
+                                            <!-- <button type="button" class="btn-icon" onclick="window.open('#/space_info', '_blank')"> -->
+                                            <button type="button" class="btn-icon" @click="spaceInfo(index)">
+                                            <i class="bi bi-link-45deg btn-font-color-green"></i>
                                         </button>
-                                    </td>
+                                        </td>
+                                        
+                                        <td><button type="button" class="btn-icon">
+                                            <i class="bi bi-pencil-square btn-font-color-green"></i>
+                                        </button>
+                                        </td>
+
+                                        <td><button type="button" class="btn-icon" @click="deleteSpace(space.ID)">
+                                            <i class="bi bi-x-circle-fill btn-font-color-green"></i>
+                                            </button>
+                                        </td>
                                     
                                     </tr>
                                     
@@ -280,7 +282,14 @@ import 'jquery-ui-dist/jquery-ui.min.css'
 import Footer from './Footer.vue';
 
 export default {
-  components: {
+    data(){
+        return{
+            jsonData:[],
+            orderData:[],
+            spaceID:'',
+        };
+    },
+    components: {
       backendNavbar,Footer
     },
     mounted() {
@@ -310,8 +319,64 @@ export default {
     //   console.log(beMenu[i]);
     })
   }
+
+
+    axios
+     .get('http://localhost/TGD104G1/public/API/backendSpace.php')
+        // .get('https://tibamef2e.com/tgd104/g1/accountOverview.php')
+        .then(response => {
+            this.jsonData = response.data;
+            console.log(response.data);
+            const newArr = this.jsonData.map(item => {
+                return{
+                    ID: item.ID,
+                    NAME: item.NAME,
+                    COUNT: item.COUNT === null ? 0 : item.COUNT,
+                }
+            });
+            console.log('new',newArr);
+            this.jsonData = newArr;
+
+            
+        })
+        .catch(error => {
+            // console.log(error);
+        });
+
+
+
+        
     
   },
+  methods:{
+        spaceInfo(index){
+            console.log(index);
+            console.log(this.jsonData[index]);
+            sessionStorage.setItem("spaceID", this.jsonData[index].ID);
+            sessionStorage.setItem("space", this.jsonData[index].NAME);
+            this.$router.push({ name: 'space_info', params: { Id: this.jsonData[index].ID } });
+        },
+        deleteSpace(spaceID){
+            
+            const formData = new FormData()
+            formData.append('spaceID', this.spaceID)
+
+            axios
+                .post('http://localhost/TGD104G1/public/API/updateSpace.php', formData)
+                // .post('https://tibamef2e.com/tgd104/g1/webinfo.php', formData)
+                .then(response => {
+                    // this.jsonData = response.data;
+                    console.log(response.data);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+
+        }
+  },
+  computed:{
+
+  }
  
   
 

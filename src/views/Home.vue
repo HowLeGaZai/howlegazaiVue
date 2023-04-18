@@ -476,7 +476,7 @@ export default {
         case "經費報告":
           return "tag-cyan";
       }
-    },
+    },  
     webInfo(){
       
       this.city = this.jsonData[this.jsonData.length-1].CITY ;

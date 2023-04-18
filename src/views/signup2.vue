@@ -37,29 +37,31 @@
 
               <div class="row">
                 <div class="input-box col-sm-12 col-sm-6">
-                  <label class="details">帳號<span v-if="!account && formSubmitted" class="red-dot">*</span><span v-if="!accountValid" class="red">*請輸入英數字混合帳號8~12位</span><span v-if="accountDuplicate" class="red">*{{this.badaccount}}帳號已被註冊</span></label>
+                  <label class="details">帳號<span v-if="!account && formSubmitted" class="red-dot"><i class="bi bi-asterisk"></i></span><span v-if="!accountValid" class="red">*8~12字元，需包含英文小寫和數字</span><span v-if="accountDuplicate" class="red">*{{this.badaccount}}帳號已被註冊</span></label>
                   <input
                     type="text"
                     class="f-text"
                     id="sAccount"
-                    placeholder="帳號:英數字混合帳號8~12位"
+                    placeholder=""
                     required
                     v-model="account"
                     ref="myaccount"
-                    @keyup="validateAccount"
+                    maxlength="12"
+                    @blur="validateAccount"
                     @focus="cleanBadaccount"
                   />
                 </div>
 
                 <div class="input-box col-sm-12 col-sm-6">
-                  <label class="details">密碼<span v-if="!password && formSubmitted" class="red-dot">*</span><span v-if="!passwordValid" class="red">*請輸入英數字混合8~12位</span></label>
+                  <label class="details">密碼<span v-if="!password && formSubmitted" class="red-dot"><i class="bi bi-asterisk"></i></span><span v-if="!passwordValid" class="red">*8~12字元，需包含英文小寫和數字</span></label>
                   <input
                     type="password"
                     class="f-text"
                     id="sPassword"
-                    placeholder="密碼:英數字混合帳號8~12位"
+                    placeholder=""
                     required
                     v-model="password"
+                    maxlength="12"
                     @blur="validatePassword"
                   />
                 </div>
@@ -67,31 +69,31 @@
 
               <div class="row">
                 <div class="input-box col-sm-12 col-sm-4">
-                  <label class="details">姓<span v-if="!firstName && formSubmitted" class="red-dot">*</span></label>
-                  <input type="text" class="f-text" id="sLastname" placeholder="王" required v-model="firstName" @blur="xEmpty"/>
+                  <label class="details">姓<span v-if="!firstName && formSubmitted" class="red-dot"><i class="bi bi-asterisk"></i></span></label>
+                  <input type="text" class="f-text" id="sLastname" placeholder="" required v-model="firstName" @blur="xEmpty"/>
                 </div>
                 <div class="input-box col-sm-12 col-sm-4">
-                  <label class="details">名<span v-if="!lastName && formSubmitted" class="red-dot">*</span></label>
-                  <input type="text" class="f-text" id="sFirstname" placeholder="小明" required v-model="lastName"/>
+                  <label class="details">名<span v-if="!lastName && formSubmitted" class="red-dot"><i class="bi bi-asterisk"></i></span></label>
+                  <input type="text" class="f-text" id="sFirstname" placeholder="" required v-model="lastName"/>
                 </div>
                 <div class="input-box col-sm-12 col-sm-4">
-                  <label class="details">暱稱<span v-if="!nickName && formSubmitted" class="red-dot">*</span></label>
-                  <input type="text" class="f-text" id="sNickname" placeholder="大軒哥" required v-model="nickName"/>
+                  <label class="details">暱稱<span v-if="!nickName && formSubmitted" class="red-dot"><i class="bi bi-asterisk"></i></span></label>
+                  <input type="text" class="f-text" id="sNickname" placeholder="" required v-model="nickName"/>
                 </div>
               </div>
 
               <div class="row">
                 <div class="input-box col-sm-12 col-sm-6">
-                  <label class="details">身分證字號<span v-if="!idNum && formSubmitted" class="red-dot">*</span></label>
+                  <label class="details">身分證字號<span v-if="!idNum && formSubmitted" class="red-dot"><i class="bi bi-asterisk"></i></span></label>
                   <span v-if="!idNumValid" class="red">*請輸入正確身分證</span>
-                  <input type="text" class="f-text" id="sID" placeholder="A123456" maxlength="10" minlength="10" required v-model="idNum" @blur="validateIdNum"/>
+                  <input type="text" class="f-text" id="sID" placeholder="" maxlength="10" minlength="10" required v-model="idNum" @blur="validateIdNum"/>
                  
                 </div>
                 <div class="gender-details col-sm-12 col-sm-6">
                   <!-- <input type="radio" name="gender" id="dot-1">
                   <input type="radio" name="gender" id="dot-2">
                   <input type="radio" name="gender" id="dot-3"> -->
-                  <label class="details">性別<span v-if="!gender && formSubmitted" class="red-dot">*</span></label>
+                  <label class="details">性別<span v-if="!gender && formSubmitted" class="red-dot"><i class="bi bi-asterisk"></i></span></label>
                   <div class="category">
                     <label class="f-checkbox"
                       >男
@@ -109,13 +111,13 @@
 
               <div class="row">
                 <div class="input-box col-sm-12 col-sm-6">
-                  <label class="details">電子信箱<span v-if="!email && formSubmitted" class="red-dot">*</span><span v-if="!emailValid" class="red">*請輸入正確email</span></label>
-                  <input type="text" class="f-text" id="sEmail" placeholder="123@abc.com" required v-model="email"
+                  <label class="details">電子信箱<span v-if="!email && formSubmitted" class="red-dot"><i class="bi bi-asterisk"></i></span><span v-if="!emailValid" class="red">*請輸入正確email</span></label>
+                  <input type="text" class="f-text" id="sEmail" placeholder="e.g.123@abc.com" required v-model="email"
                   @blur="validateEmail"/>
                 </div>
                 <div class="input-box col-sm-12 col-sm-6">
-                  <label class="details">手機號碼<span v-if="!phoneNum && formSubmitted" class="red-dot">*</span><span v-if="!phoneValid" class="red">*請輸入正確手機號碼</span></label>
-                  <input type="text" class="f-text" id="sPhone" placeholder="0912345678" maxlength="10" minlength="10" required v-model="phoneNum" 
+                  <label class="details">手機號碼<span v-if="!phoneNum && formSubmitted" class="red-dot"><i class="bi bi-asterisk"></i></span><span v-if="!phoneValid" class="red">*請輸入正確手機號碼</span></label>
+                  <input type="text" class="f-text" id="sPhone" placeholder="" maxlength="10" minlength="10" required v-model="phoneNum" 
                   @blur="validatePhone"/>
                 </div>
               </div>
@@ -124,10 +126,10 @@
                 <div>
                   <label>身分證影本</label>
                   <section class="section_right addflex">
-                      <p>正面<span v-if="!idFront && formSubmitted" class="red-dot">*</span></p>
+                      <p>正面<span v-if="!idFront && formSubmitted" class="red-dot"><i class="bi bi-asterisk"></i></span></p>
                       <picture-cropid @data-updated1="handleDataUpdated1"></picture-cropid>
 
-                      <p>反面<span v-if="!idBack && formSubmitted" class="red-dot">*</span></p>
+                      <p>反面<span v-if="!idBack && formSubmitted" class="red-dot"><i class="bi bi-asterisk"></i></span></p>
                       <picture-cropid @data-updated2="handleDataUpdated2"></picture-cropid>
                     </section>
                 </div>
@@ -224,7 +226,7 @@ export default {
     
     async validateAccount() {
       // 檢查帳號格式
-      const accountRegex = /^[a-z0-9]{8,12}$/; // 英數字混合帳號8~12位
+      const accountRegex = /^(?=.*[a-z])(?=.*\d)[a-z\d]{8,12}$/i; // 英數字混合帳號8~12位
       if (!accountRegex.test(this.account)) {
         this.accountValid = false;
         // this.account ="";
@@ -264,7 +266,7 @@ export default {
     },
      validatePassword() {
       // 檢查帳號格式
-      const accountRegex = /^[a-z0-9]{8,12}$/; // 英文小寫+數字，8-12碼
+      const accountRegex = /^(?=.*[a-z])(?=.*\d)[a-z\d]{8,12}$/i; // 英文小寫+數字，8-12碼
       if (!accountRegex.test(this.password)) {
         this.passwordValid = false;
         // this.password ="";
@@ -361,12 +363,12 @@ export default {
 
 <style>
 .red-dot {
-  color: red;
-  font-size: 1.5em;
+  color: rgb(255, 85, 85);
+  font-size: 6px;
   
 }
 .red {
-  color: rgb(212, 90, 90);
+  color: rgb(255, 85, 85);
   font-size: 12px;
 }
 </style>

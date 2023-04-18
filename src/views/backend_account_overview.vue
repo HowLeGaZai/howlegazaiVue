@@ -299,7 +299,7 @@ export default {
       console.log('ID是' + this.jsonData[index][0]);
       axios
         // .post('https://tibamef2e.com/tgd104/g1/accountOverview.php', {index:this.jsonData[index][0]})
-        .post('http://localhost/TGD104G1/public/API/accountOverview.php', { index: this.jsonData[index][0] })
+        .post('http://localhost/TGD104G1/public/API/manageAccount.php', { index: this.jsonData[index][0] })
         .then(response => {
           // this.jsonData = response.data;
           console.log(response.data);

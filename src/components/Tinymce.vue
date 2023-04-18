@@ -68,8 +68,11 @@ export default {
         toolbar: this.toolbar,
         quickbars_insert_toolbar: false,
         branding: false,
-        images_upload_url: 'https://tibamef2e.com/tgd104/g1/tinymce_uploadimg.php',
-        images_upload_base_path: 'https://tibamef2e.com/tgd104/g1/dist/img/userupload',
+        // images_upload_url: '/TGD104G1/dist/API/tinymce_uploadimg.php',
+        images_upload_url: 'http://localhost/TGD104G1/dist/API/tinymce_uploadimg.php',
+        // images_upload_url: 'https://tibamef2e.com/tgd104/g1/tinymce_uploadimg.php',
+        images_upload_base_path: 'http://localhost/TGD104G1/dist/img/',
+        // images_upload_base_path: 'https://tibamef2e.com/tgd104/g1/dist/img/userupload',
         images_upload_credentials : true,
     //     images_upload_handler: function (blobInfo, succFun, failFun) {
     //     var xhr, formData;

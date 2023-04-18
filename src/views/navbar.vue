@@ -47,10 +47,10 @@
           <ul v-if="isLoggedIn">
             <li>
               <!-- 會員姓名 -->
-              <p>歡迎 <span>{{userName}}</span></p>
+              <p>歡迎 <span>{{nickName}}</span></p>
               <!-- 會員大頭貼 -->
               <a href="#" class="userbtn tooltip" id="userBtn">
-                <img :src="require(`@/assets/img/${portrait}`)" alt="" class="user_pic" />
+                <img :src="portrait" alt="" class="user_pic" />
               </a>
               <div id="navMenu">
                 <ul class="account-menu" id="accountMenu">
@@ -59,10 +59,10 @@
                   </li>
                   <li class="user">
                     <!-- 會員姓名 -->
-                    <p><span>{{userName}}</span></p>
+                    <p><span>{{nickName}}</span></p>
                     <!-- 會員大頭貼 -->
-                    <a href="#" class="userbtn">
-                      <img :src="require(`@/assets/img/${portrait}`)" alt="" class="user_pic" />
+                    <a href="" class="userbtn">
+                      <img :src="portrait" alt="" class="user_pic" />
                     </a>
                   </li>
                   <li>
@@ -117,7 +117,8 @@ export default {
       return {
         isLoggedIn: false,
         userName: "",
-        portrait: "",
+        portrait:"",
+        nickName:"",
         }
     },
     // props: {
@@ -160,14 +161,15 @@ export default {
     mounted(){
       const cookieValue = this.getCookieValue('account');
       const uusername = this.getCookieValue('name');
-      const uuserpic = this.getCookieValue('portrait');
-
+      const unickname = this.getCookieValue('nickname');
+      let uportrait = sessionStorage.getItem("portrait");
     
         // 判斷 Cookie 是否存在
         if (cookieValue !== null) {
           this.isLoggedIn = true;
           this.userName = uusername;
-          this.portrait = uuserpic;
+          this.nickName = unickname;
+          this.portrait = uportrait;
           // Cookie 存在，執行相應的處理
           // console.log('Cookie 存在，值為: ' + cookieValue);
           // 在這裡執行 home.vue 中的相應函式或處理
@@ -239,7 +241,7 @@ export default {
       userBtn.onclick = function (e) {
         accountMenu.classList.add("accountshow");
         if (window.innerWidth > 1400) {
-          userBtn.href = "#/account_user"; // 修改 href 屬性值為 #
+          userBtn.href = "/account_user"; // 修改 href 屬性值為 #
         }else{
           e.preventDefault();
         }

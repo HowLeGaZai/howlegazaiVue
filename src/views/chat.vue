@@ -5,16 +5,11 @@
     <h1 class="title_space">討論區</h1>
     <div class="search-filter">
       <div class="search">
-        <input type="" class="f-text f-round" placeholder="&#xF52A" style="font-family:bootstrap-icons" />
-        <button type="button" class="btn-m btn-color-green">搜尋</button>
+        <input type="text" v-model.lazy.trim="searchChat" class="f-text f-round" placeholder="&#xF52A" style="font-family:bootstrap-icons" />
+        <button class="btn-m btn-color-green" @click="postsearch">搜尋</button>
       </div>
       <div class="add-chat">
-        <!-- <router-link to="/chat_new" custom v-slot="{ navigate }">
-              <button class="btn-m btn-color-green" @click="navigate" role="link">發起討論</button>
-            </router-link> -->
-        <!-- <router-link to="{ path: '/chat_new' ,query:{ plan:'abc'}  }" > -->
-        <button class="btn-m btn-color-green" @click="preview()" role="link" v-show="createChat">發起討論</button>
-        <!-- </router-link> -->
+        <button class="btn-m btn-color-green" @click="preview()" role="link" >發起討論</button>
       </div>
 
       <div class="desktop-filter" id="chat-desktop-filter">
@@ -71,7 +66,7 @@
             <h5 class="post_d">{{ getFormatDate(chatTopic.CREATE_TIME) }}</h5>
             <div class="poster">
               <div class="image user_pic">
-                <img :src="require(`@/assets/img/${chatTopic.PORTRAIT}`)" alt="">
+                <img :src="chatTopic.PORTRAIT" alt="">
               </div>
               <h5 class="poster_name">{{ chatTopic.NICKNAME }}</h5>
             </div>
@@ -108,6 +103,7 @@ export default {
     return {
       // isShow: true,
       // txt: "看更多",
+      searchChat: '',
       num: 10,
       selectedCategory: "所有話題",
       categories: [
@@ -137,14 +133,14 @@ export default {
         console.error(error);
       });
 
-    const cookieValue = this.getCookieValue("id");
+    // const cookieValue = this.getCookieValue("id");
 
     // 判斷 Cookie 是否存在
-    if (cookieValue !== null) {
-      this.createChat = true;
-    } else {
-      this.createChat = false;
-    }
+    // if (cookieValue !== null) {
+    //   this.createChat = true;
+    // } else {
+    //   this.createChat = false;
+    // }
   },
   methods: {
     addClass(category) {
@@ -173,6 +169,23 @@ export default {
       } else {
       }
     },
+     postsearch() {
+
+      const formdata = new FormData()
+      formdata.append('searchChat', this.searchChat)
+      console.log(this.searchChat);
+      axios.post('http://localhost/TGD104G1/public/API/search_chat.php', formdata)
+        .then(response => {
+          this.chatTopics = response.data;
+          // console.log('123',response.data);
+          // console.log('123');
+        })
+        .catch(error => {
+          console.log(error);
+        });
+
+    },
+
     getFormatDate(val) {
       return formatDate(val);
     },
