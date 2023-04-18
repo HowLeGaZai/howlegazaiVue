@@ -117,8 +117,7 @@ export default {
       return {
         isLoggedIn: false,
         userName: "",
-        portrait: "",
-        testp:"require(`@/assets/img/user_pic.png`)",
+        portrait:"",
         }
     },
     // props: {
@@ -161,14 +160,13 @@ export default {
     mounted(){
       const cookieValue = this.getCookieValue('account');
       const uusername = this.getCookieValue('name');
-      const uuserpic = this.getCookieValue('portrait');
-
+      let uportrait = sessionStorage.getItem("portrait");
     
         // 判斷 Cookie 是否存在
         if (cookieValue !== null) {
           this.isLoggedIn = true;
           this.userName = uusername;
-          this.portrait = uuserpic;
+          this.portrait = uportrait;
           // Cookie 存在，執行相應的處理
           // console.log('Cookie 存在，值為: ' + cookieValue);
           // 在這裡執行 home.vue 中的相應函式或處理
