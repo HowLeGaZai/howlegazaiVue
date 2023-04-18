@@ -213,6 +213,19 @@ import "swiper/css/navigation";
 import { Navigation } from "swiper";
 
 export default {
+  data() {
+    return {
+      fullname : '',
+      mainphone : '',
+      email : '',
+      secphone : '',
+      electionyear : '',
+      degree : '',
+      adress : '',
+      pic1 : '',
+      gender : '',
+    }
+  },
   components: {
     Footer,
     navbar,
@@ -228,16 +241,26 @@ export default {
     webInfo(){
       
       this.fullname = this.jsonData[this.jsonData.length-1].FULLNAME ;
+      console.log(this.fullname);
+      this.email = this.jsonData[this.jsonData.length-1].EMAIL ;
+      console.log(this.email);
+      this.mainphone = this.jsonData[this.jsonData.length-1].MAINPHONE ;
+      this.secphone = this.jsonData[this.jsonData.length-1].SECPHONE ;
+      this.electionyear = this.jsonData[this.jsonData.length-1].ELECTIONYEAR ;
+      this.degree = this.jsonData[this.jsonData.length-1].DEGREE ;
+      this.adress = this.jsonData[this.jsonData.length-1].ADDRESS ;
+      this.pic1 = this.jsonData[this.jsonData.length-1].PIC1 ;
+      this.gender = this.jsonData[this.jsonData.length-1].GENDER ;
 
     },
   },
   mounted() {
     axios
-        .post('http://localhost/TGD104G1/public/API/officeinfo.php',{})
+        .post('http://localhost/TGD104G1/public/API/Connection.php',{})
         .then(response => {
             this.jsonData = response.data;
             // alert(response.data)
-            console.log(this.jsonData[this.jsonData.length-1].FULLNAME);
+            // console.log(this.jsonData[this.jsonData.length-1].FULLNAME);
             this.webInfo();
             // console.log(this.jsonData.length);
             // console.log(this.jsonData);
