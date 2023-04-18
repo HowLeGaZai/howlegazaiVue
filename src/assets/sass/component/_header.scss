@@ -10,6 +10,11 @@ header {
   // z-index: 10;
   // left: 0;
   // top: 0;
+  .main{
+    @include breakpoint($grid-breakpoints, 'sm') {
+      padding: 0 10px;
+    }
+  }
 
   z-index: 20;
   nav {
@@ -221,12 +226,31 @@ header {
       /* 登入前按鈕 */
       .btn {
         // display: none;
+        width: 160px;
+        height: 40px;
         border: none;
         background-color: $green;
         color: $white;
         font-size: 1.5em;
-        border-radius:10px;
+        border-radius:20px;
         cursor: pointer;
+        @include breakpoint($grid-breakpoints, 'md') {
+          display: none;
+        }
+      }
+      .loginbtn{
+        background-color: transparent;
+        border: none;
+        font-size: 2em;
+        color: $darkgray;
+        cursor: pointer;
+        &:hover{
+          color: $green;
+        }
+        display: none;
+        @include breakpoint($grid-breakpoints, 'md') {
+        display: block;
+        }
       }
 
       /* 登入後選單 */

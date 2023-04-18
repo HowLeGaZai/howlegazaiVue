@@ -3,9 +3,9 @@
         <div class="chat-commit" v-for="(comment,index) in jsonData" :key="index">
         <div class="chat-commit-title"> 
             <div class="image user_pic"> 
-                <img class="image event_pic" :src="require(`@/assets/img/${comment.USER_PORTRAIT}`)" alt="">
+                <img class="image event_pic" :src="require(`@/assets/img/${comment.PORTRAIT}`)" alt="">
             </div>
-            <h5 class="commit-user">{{comment.USER_NICKNAME}}</h5>
+            <h5 class="commit-user">{{comment.NICKNAME}}</h5>
             <h5 class="commit-date">{{comment.CREATE_TIME}}</h5>
         </div>
         <div class="chat-commit-content">
@@ -78,10 +78,10 @@ export default {
     },
     mounted(){
       axios
-        .get('/commentlist.json')
+        .get('http://localhost/TGD104G1/public/API/commentList.php')
         .then(response => {
             this.jsonData = response.data;
-            // console.log(response.data);
+            console.log('abc',response.data);
         })
         .catch(error => {
             console.log(error);
@@ -104,7 +104,13 @@ export default {
             let data2 = JSON.parse(newVal);
             // let data3 = {"0":data2.USER_ID,"1": data2.USER_PORTRAIT,"2":data2.USER_NICKNAME,"3":data2.CREATE_TIME,"4":data2.CONTENT};
             // console.log( data2);
+            console.log(data2);
             this.jsonData.push(data2);
+
+            const formData = new FormData()
+            
+            
+            
             //  console.log(this.jsonData);
           }
         }

@@ -108,10 +108,18 @@
             
             <h3><i class="bi bi-dot"></i>空間地址<i class="bi bi-dot"></i></h3>
             <ul>
-                <li>{{spaceData.ADDRESS}}</li>
+                <li class="address">{{spaces.ADDRESS}}</li>
                 <li>
+                  <!-- https://www.google.com/maps/embed/v1/place?key=AIzaSyAwotM85aG1f4JdzyU7QVc9slACz2UuD1s&q={{spaces.ADDRESS}} -->
                     <div class="space-map">
-                        <img :src="require(`@/assets/img/${spaces.MAP_PIC}`)" alt="">
+                      <iframe :src="`https://www.google.com/maps/embed/v1/place?key=AIzaSyAwotM85aG1f4JdzyU7QVc9slACz2UuD1s&q=${spaces.ADDRESS}`"
+                        width="450"
+                        height="250"
+                        frameborder="0" style="border: 2px solid #27b096;border-radius: 5px;"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        allowfullscreen>
+                      </iframe>
+                        <!-- <img :src="require(`@/assets/img/${spaces.MAP_PIC}`)" alt=""> -->
                     </div>
                 </li>
             </ul>
@@ -122,6 +130,7 @@
     </main>
     <Footer></Footer>
 </template>
+
 
 <script>
 import { Swiper, SwiperSlide } from 'swiper/vue';
@@ -169,11 +178,15 @@ export default {
               "OPEN_DATE": "2023-06-30",
               "OPEN_TIME": "08：00",
               "CLOSE_TIME": "21：00",
-              "ADDRESS": "花蓮縣大湖里南京東路三段219號4樓",
+              "ADDRESS": "高雄市前鎮區崗山南街277巷46",
               "REMARK": "請於使用日前7日預約，每人限定預約當日內2場次。預約送出後，須待里辦公室審核預約申請，申請進度請至個人帳戶>預約空間紀錄查看。年節期間另行公告開放時間、若遇天災則視直轄單位宣布是否達停班停課標準。其他如公司行號、學校、機關團體預約或長期借用，請洽里辦公室。",
               "SPACE_PIC": "s_1.png",
               "MAP_PIC":"space-map.png",
               },
+
+      OPEN_TIME:'',
+      CLOSE_TIME:'',
+      OPEN_CLOSE_TIME:'',
               
     }
   },
@@ -193,9 +206,12 @@ export default {
   
   mounted() {
     const self = this
-    this.showData();
 
-    this.getSpaceData();
+    // this.getSpaceData();
+    // console.log(this.getSpaceData);
+    // this.OPEN_CLOSE_TIME = this.getSpaceData();
+    // console.log("開放時間為",this.OPEN_CLOSE_TIME)
+    this.showData();
     // console.log('abcdef',this.jsonData);
     $('#resizable').resizable({});
     $('#datepicker').datepicker({
@@ -280,28 +296,34 @@ export default {
 
                     let space = sessionStorage.getItem("space");
                     
+                    
 
                     for(let i=0;i<this.spaceJsonData.length;i++){
                       // console.log(i,this.spaceJsonData[i]);
                       if(space == this.spaceJsonData[i][1]){
                         // console.log('空間資料',this.spaceJsonData[i]);
                         this.spaceData = this.spaceJsonData[i];
+                        this.OPEN_TIME = this.spaceJsonData[i].OPEN_TIME;
+                        this.CLOSE_TIME = this.spaceJsonData[i].CLOSE_TIME;
                         console.log('空間資料',this.spaceData);
                       }else{
 
                       }
                     }
 
-                    
+                    // alert(`${this.OPEN_TIME}-${this.CLOSE_TIME}`)
+                    return `${this.OPEN_TIME}-${this.CLOSE_TIME}`
 
     },
-  showData() {
+  async showData(){
     
     // console.log('abc',this.jsonData);
-
-    const timeRange = '8:00-21:59';
+    const OPEN_CLOSE_TIME = await this.getSpaceData();
+    
+    const space_timeRange =  OPEN_CLOSE_TIME;
+    
     // console.log(timeRange);
-    const [startTime, endTime] = timeRange.split('-')
+    const [startTime, endTime] = space_timeRange.split('-')
     // console.log(startHour);
     // console.log(endHour);
 
@@ -322,6 +344,9 @@ export default {
         const value_about = 'btn-m btn-color-white timeslot';
         dataList_about.push({ time_about,value_about});
       }
+
+
+
       // console.log('dataList_about',dataList_about);
       // console.log(time);
       const value ='btn-m btn-color-white timeslot'
@@ -345,7 +370,7 @@ async getData(date) {
               .then(response => {
                   this.jsonData = response.data;
                   
-                  // console.log(this.jsonData);
+                  console.log('OrderDate',this.jsonData);
               })
               .catch(error => {
                   // console.log(error);
@@ -353,9 +378,12 @@ async getData(date) {
     // console.log('abc',this.jsonData);
     // alert(date);
     console.log('選擇的日期是',date);
-    const timeRange = '8:00-21:59';
+
+    const OPEN_CLOSE_TIME = await this.getSpaceData();
+    
+    const space_timeRange =  OPEN_CLOSE_TIME;
     // console.log(timeRange);
-    const [startTime, endTime] = timeRange.split('-')
+    const [startTime, endTime] = space_timeRange.split('-')
     // console.log(startHour);
     // console.log(endHour);
 
@@ -390,17 +418,24 @@ async getData(date) {
 
     const formattedDate = date.replace(/\//g, '-');
 
+    
+
     // alert(formattedDate);
+    
+  let spaceID = sessionStorage.getItem("spaceID");
 
     for(let i=0;i<this.jsonData.length;i++){
         
         if(formattedDate == this.jsonData[i][0] ){
-          
             //加入日期判斷
               // console.log(i,this.jsonData[i][1]);
+              
+             
+              
                 for(let j =0; j<dataList_about.length;j++){
+                  // console.log('spaceID',spaceID);
                   // console.log(j,dataList_about[j].time_about)
-                  if(this.jsonData[i][1] == dataList_about[j].time_about){
+                  if(this.jsonData[i][1] == dataList_about[j].time_about && spaceID == this.jsonData[i][2]){
                       
                       dataList_about[j].value_about = 'btn-m btn-color-white timeslot btn-color-gray';
                       // console.log(dataList_about[j].value_about);

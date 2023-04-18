@@ -1,11 +1,11 @@
 <?php
 
 include("conn.php");
- ;// searchNews為最新消息的搜尋input內容
+ // searchNews為最新消息的搜尋input內容
 
     //建立SQL語法
     // 查找符合的新聞標題 
-    $sql = "SELECT * FROM NEWS";
+    $sql = "SELECT * FROM NEWS ORDER BY CREATE_TIME desc";
     
     // echo $sql;
     // $statement = $pdo->prepare($sql);
@@ -18,6 +18,5 @@ include("conn.php");
 
     echo json_encode($data);
 
-    
-
 ?>
+

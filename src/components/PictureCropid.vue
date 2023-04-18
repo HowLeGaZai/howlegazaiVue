@@ -13,7 +13,7 @@
       </button>
       <div class="pic-area" >
           <div class="pic-area-box" v-if="result.dataURL">
-              <img :src="result.dataURL" ref="watermarkedImg"/>
+              <img :src="result.dataURL"/>
           </div>
           <p>建議：450 x 285 像素，且大小不得超過 100 KB 的圖檔</p>
       </div>
@@ -186,7 +186,10 @@ methods: {
           ctx.fillText(watermark, xPos, yPos);
         }
       }
-      this.$refs.watermarkedImg.src = canvas.toDataURL();
+      this.result.dataURL = canvas.toDataURL();
+     
+      this.sendDataToParent1();
+      this.sendDataToParent2();
       // // 增加浮水印
       // ctx.fillText(watermark, canvas.width / 8, canvas.height / 2);
       // ctx.fillText(watermark, canvas.width / 8, canvas.height / 1.7);
@@ -195,9 +198,10 @@ methods: {
     };
 
     // canvas 圖片 = 上傳裁切後的圖片網址
-    this.result.dataURL = base64;
+    // this.result.dataURL = base64;
     this.result.blobURL = URL.createObjectURL(blob);
     this.isShowModal = false;
+
   },
   
   /**
@@ -219,6 +223,13 @@ methods: {
    */
   ready() {
     console.log('Cropper is ready.')
+  },
+
+  sendDataToParent1() {
+    this.$emit('data-updated1',this.result.dataURL);
+  },
+  sendDataToParent2() {
+    this.$emit('data-updated2',this.result.dataURL);
   },
 },
 mounted() {

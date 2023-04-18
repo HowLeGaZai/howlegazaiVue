@@ -10,7 +10,7 @@
         ON U.USER_LEVEL = L.ID 
     LEFT JOIN T_USER_TAG T
         ON U.USER_TAG = T.ID
-        WHERE U.STATUS > 0
+        WHERE U.USER_STATUS > 0
     ORDER BY U.ID ";
 
     //執行並查詢，會回傳查詢結果的物件，必須使用fetch、fetchAll...等方式取得資料
