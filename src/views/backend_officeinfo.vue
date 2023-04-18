@@ -180,23 +180,24 @@
                 <section>
                     <h5>村里長簡介</h5>
                     <div class="row">
-                        <div class="col-12 col-ml-6">
-                            <label for="firstname" class="f-label">姓</label>
-                            <input type="text" class="f-text" id="firstname" placeholder="範例：王" v-model="firstname">
+                      <div class="col-12 col-ml-6">
+                            <label for="lastname" class="f-label">姓</label>
+                            <input type="text" class="f-text" id="lastname" placeholder="範例：王" v-model="lastname">
                         </div>
                         <div class="col-12 col-ml-6">
-                            <label for="lastname" class="f-label">名字</label>
-                            <input type="text" class="f-text" id="lastname" placeholder="範例：小明" v-model="lastname">
+                            <label for="firstname" class="f-label">名字</label>
+                            <input type="text" class="f-text" id="firstname" placeholder="範例：小明" v-model="firstname">
                         </div>
+                    
                         <div class="col-12 col-ml-6">
                             <label for="singlechoice" class="f-label">性別</label>
                             <div class="gender">
                                 <label class="f-checkbox">男
-                                    <input type="radio" name="singlechoice" v-model="male">
+                                    <input type="radio" name="singlechoice" value="male" v-model="gender">
                                     <span class="checkmark"></span>
                                 </label>
                                 <label class="f-checkbox">女
-                                    <input type="radio" name="singlechoice" v-model="female">
+                                    <input type="radio" name="singlechoice" value="female" v-model="gender">
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
@@ -412,8 +413,7 @@ export default{
     return {
       firstname : '',
       lastname : '',
-      male : '' ,
-      female : '' ,
+      gender : '' ,
       electionyear : '' ,
       degree : '' ,
       mainphone : '',
@@ -445,10 +445,10 @@ export default{
       // 上面的按鈕
       saveEO(){
         const formData = new FormData()
-        formData.append('firsrname', this.firsrname)
-        formData.append('lastname', this.lastname)
-        formData.append('male', this.male)
-        formData.append('female', this.female)
+        formData.append('fullname', this.lastname + this.firsrname)
+        // formData.append('lastname', this.lastname)
+        formData.append('gender', this.gender)
+        // formData.append('female', this.female)
         formData.append('electionyear', this.electionyear)
         formData.append('degree', this.degree)
         formData.append('mainphone', this.mainphone)
@@ -467,16 +467,8 @@ export default{
         .catch(error => {
             console.log(error);
         });
-        // 這是存里長大頭貼的
-      //   let formDataPIC = new FormData()
-      // formData.append('image', this.pic1)
-      // axios.post('http://localhost/TGD104G1/public/API/officeinfo.php', formData)
-      //   .then(response => {
-      //     console.log(response.data)
-      //   })
-      //   .catch(error => {
-      //     console.log(error)
-      //   })
+
+        
 
 
       this.firsrname;

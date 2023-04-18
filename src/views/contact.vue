@@ -10,10 +10,10 @@
           <i class="bi bi-telephone-fill"></i>
           <h2>里辦電話</h2>
           <a href="tel:+886-2-9111234" target="_blank"
-            ><span>（第一）</span>(02) 2911-1234</a
+            ><span>（第一）</span>{{mainphone}}</a
           >
           <a href="tel:+886-912345678" target="_blank"
-            ><span>（第二）</span>0912-345-678</a
+            ><span>（第二）</span>{{ secphone }}</a
           >
         </li>
 
@@ -21,7 +21,7 @@
           <i class="bi bi-envelope-fill"></i>
           <h2>里辦信箱</h2>
           <p>
-            <a href="mailto:abcd@gmail.com" target="_blank">abcd@gmail.com</a>
+            <a href="mailto:abcd@gmail.com" target="_blank">{{ email }}</a>
           </p>
         </li>
 
@@ -32,7 +32,7 @@
             <a
               href="https://www.google.com/search?q=花蓮縣國安鄉大湖里忠孝路12巷3號"
               target="_blank"
-              >花蓮縣國安鄉大湖里忠孝路12巷3號</a
+              >{{ adress }}</a
             >
           </p>
         </li>
@@ -44,19 +44,19 @@
       <h1 class="title_space">里長簡介</h1>
       <section>
         <div class="content">
-          <h3>鄭成功</h3>
+          <h3>{{ fullname }}</h3>
           <ul>
-            <li>性別：<span>111年大湖里村里長選舉</span></li>
-            <li>選舉屆次：<span>男</span></li>
-            <li>學歷：<span>大湖理工大學</span></li>
+            <li>性別：<span>{{ gender }}</span></li>
+            <li>選舉屆次：<span>{{ electionyear }}</span></li>
+            <li>學歷：<span>{{ degree }}</span></li>
           </ul>
           <div>
-            鄭成功，1912年3月4日出生於花蓮縣，鄭成功小時為棒球好手，曾為朴子少棒隊捕手。就讀朴子國小和東石國中，在畢業後，同時考取大湖理工大學資工系。雖然家人希望他從醫，但鄭成功看了《JavaScript》一書之後，希望成為排名第一的「邏輯」的碼農，期待學成返鄉後促成偏鄉數位轉型。
+            {{fullname}}，1912年3月4日出生於花蓮縣，{{fullname}}小時為棒球好手，曾為朴子少棒隊捕手。就讀朴子國小和東石國中，在畢業後，同時考取大湖理工大學資工系。雖然家人希望他從醫，但鄭成功看了《JavaScript》一書之後，希望成為排名第一的「邏輯」的碼農，期待學成返鄉後促成偏鄉數位轉型。
             於大湖理工大學資畢業後，就繼續進修，獲得大湖理工大學都市規劃、企業管理雙碩士學位，並獲取大湖理工大學土地規劃與都市管理博士學位
           </div>
         </div>
         <div class="image contact_pic_chief">
-          <img src="../assets/img/c_chief1.jpg" alt="" />
+          <img :src="pic1" alt="" />
         </div>
       </section>
     </section>
@@ -224,7 +224,29 @@ export default {
  modules: [Navigation],
     };
   },
+  methods: {
+    webInfo(){
+      
+      this.fullname = this.jsonData[this.jsonData.length-1].FULLNAME ;
+
+    },
+  },
   mounted() {
+    axios
+        .post('http://localhost/TGD104G1/public/API/officeinfo.php',{})
+        .then(response => {
+            this.jsonData = response.data;
+            // alert(response.data)
+            console.log(this.jsonData[this.jsonData.length-1].FULLNAME);
+            this.webInfo();
+            // console.log(this.jsonData.length);
+            // console.log(this.jsonData);
+        })
+        .catch(error => {
+            // console.log(error);
+        });
+
+
       let labels = document.querySelectorAll('.collapsible-item-label');
       let contents = document.querySelectorAll('.collapsible-item-content');
 
