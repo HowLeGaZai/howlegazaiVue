@@ -50,7 +50,7 @@
               <p>歡迎 <span>{{userName}}</span></p>
               <!-- 會員大頭貼 -->
               <a href="#" class="userbtn tooltip" id="userBtn">
-                <img :src="require(`@/assets/img/${portrait}`)" alt="" class="user_pic" />
+                <img :src="portrait" alt="" class="user_pic" />
               </a>
               <div id="navMenu">
                 <ul class="account-menu" id="accountMenu">
@@ -62,7 +62,7 @@
                     <p><span>{{userName}}</span></p>
                     <!-- 會員大頭貼 -->
                     <a href="#" class="userbtn">
-                      <img :src="require(`@/assets/img/${portrait}`)" alt="" class="user_pic" />
+                      <img :src="portrait" alt="" class="user_pic" />
                     </a>
                   </li>
                   <li>
@@ -118,6 +118,7 @@ export default {
         isLoggedIn: false,
         userName: "",
         portrait: "",
+        testp:"require(`@/assets/img/user_pic.png`)",
         }
     },
     // props: {
