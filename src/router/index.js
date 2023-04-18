@@ -13,7 +13,6 @@ const routes = [
     component: Home
   },
   {
-
     // 前台 歡迎頁、前後台入口頁
     path: '/welcome',
     name: 'welcome',
