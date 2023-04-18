@@ -47,7 +47,7 @@
                     v-model="account"
                     ref="myaccount"
                     maxlength="12"
-                    @keyup="validateAccount"
+                    @blur="validateAccount"
                     @focus="cleanBadaccount"
                   />
                 </div>
@@ -62,7 +62,7 @@
                     required
                     v-model="password"
                     maxlength="12"
-                    @keyup="validatePassword"
+                    @blur="validatePassword"
                   />
                 </div>
               </div>
