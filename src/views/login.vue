@@ -31,7 +31,7 @@
           <!-- </div> -->
         
         <div class="signup_link">
-          尚未加入大湖里?<a href="#/signup1">  馬上註冊</a>
+          尚未加入大湖里?<a href="/signup1">  馬上註冊</a>
         </div>
       </div>
 
