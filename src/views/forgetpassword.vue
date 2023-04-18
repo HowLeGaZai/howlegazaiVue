@@ -8,13 +8,12 @@
             <h2>忘記密碼</h2>
             <form  @submit.prevent="handleSubmit">
               <div class="txt_field">
-                <label>身分證</label>
-                <input type="text" class="f-text label-left"  placeholder="請輸入身分證" v-model="myId">
-                <p v-if="showError">{{ errorMessage }}</p>
+                <label>身分證</label><span v-if="!myId" class="red-dot"><i class="bi bi-asterisk"></i></span><span v-if="!idNumValid" class="red">*此身分證號尚未註冊為會員</span>
+                <input type="text" class="f-text label-left"  placeholder="請輸入身分證" v-model="myId" @blur="validateIdNum">
               </div>
               <div class="txt_field">
-                <label>電子郵件</label>
-                <input type="text" class="f-text label-left" id="name5" placeholder="請輸入電子信箱" required>
+                <label>電子郵件</label><span v-if="!email" class="red-dot"><i class="bi bi-asterisk"></i></span><span v-if="!emailValid" class="red">*請輸入正確email格式</span>
+                <input type="text" class="f-text label-left" id="name5" placeholder="請輸入電子信箱" required v-model="email" @blur="validateEmail">
               </div>
               <div class="txt_field verification">
                 <label>驗證碼</label>
@@ -63,9 +62,12 @@ export default {
       // ==================
       // 這個是身分證
       myId: '',
+      idNumValid:true,
+      emailValid:true,
       result: '',
-      letters: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'],
-      areaCodeAll: ['10', '11', '12', '13', '14', '15', '16', '17', '34', '18', '19', '20', '21', '22', '35', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33']
+      // letters: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'],
+      // areaCodeAll: ['10', '11', '12', '13', '14', '15', '16', '17', '34', '18', '19', '20', '21', '22', '35', '23', '24', '25', '26', '27', '28', '29', '30', '31', '32', '33']
+      email:'',
     }
   },
     components: {
@@ -115,21 +117,65 @@ export default {
        }
     },
     // 這裡是身分證驗證函式-------------------------------------------
-    check() {
-  if (this.myId.length !== 10 && this.myId.length > 10) {
-    this.result = '身分證輸入資料的長度要有 10 位';
-  } else if (!this.letters.includes(this.myId.charAt(0).toUpperCase())) {
-    this.result = '身分證第一個應該是字母 A ~ Z';
-  } else if (this.myId.charAt(1) !== '1' && this.myId.charAt(1) !== '2') {
-    this.result = '身分證第二個字要是 1 或 2';
-  } else if (isNaN(parseInt(this.myId.substring(1, this.myId.length), 10)) || this.myId.substring(1, this.myId.length).length !== 9) {
-    this.result = '身分證後面九個字都要是數字';
-  } else {
-    // 所有的检查都通过
-    this.result = '通過';
-    this.$router.push('./login')
-  }
-}
+    // check() {
+    //   if (this.myId.length !== 10 && this.myId.length > 10) {
+    //     this.result = '身分證輸入資料的長度要有 10 位';
+    //   } else if (!this.letters.includes(this.myId.charAt(0).toUpperCase())) {
+    //     this.result = '身分證第一個應該是字母 A ~ Z';
+    //   } else if (this.myId.charAt(1) !== '1' && this.myId.charAt(1) !== '2') {
+    //     this.result = '身分證第二個字要是 1 或 2';
+    //   } else if (isNaN(parseInt(this.myId.substring(1, this.myId.length), 10)) || this.myId.substring(1, this.myId.length).length !== 9) {
+    //     this.result = '身分證後面九個字都要是數字';
+    //   } else {
+      //  // 所有的检查都通过
+      //   this.result = '通過';
+      //   this.$router.push('./login')
+      // }
+    // },
+     async validateIdNum() {
+      const idNumRegex = /^[A-Z]{1}[1-2]{1}\d{8}$/; // 台灣身分證字號正規表達式
+      if (!idNumRegex.test(this.myId)) {
+        this.idNumValid = false;
+        // this.account ="";
+        return;
+      }
+      await this.checkDuplicateAccount(this.myId); 
+      this.idNumValid = true;
+    },
+
+    async checkDuplicateAccount() {
+    try {
+      const formData2 = new FormData()
+      formData2.append('account', this.account)
+      
+      const response = await axios.post('http://localhost/TGD104G1/public/API/check_duplicate_account.php', formData2);
+      const result = response.data;
+      console.log(result);
+      if (result === 'duplicate') {
+        // 帳號重複
+        this.accountDuplicate =  true; // 設定為 true
+        this.badaccount = this.account;
+        this.account ="";
+        this.$refs.myaccount.blur()
+       
+      } else {
+        // 帳號未重複
+        this.accountDuplicate = false; // 設定為 false
+      }
+    } catch (error) {
+      console.error(error);
+      // 處理錯誤
+    }
+  },
+
+     validateEmail() {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(this.email)) {
+        this.emailValid = false;
+        return;
+      }
+      this.emailValid = true; 
+    },
 
         // 計算第一個英文字母的加權
       //   const letter = this.myId[0];
@@ -181,3 +227,15 @@ export default {
 
 
 </script>
+
+<style>
+.red-dot {
+  color: rgb(255, 85, 85);
+  font-size: 6px;
+  
+}
+.red {
+  color: rgb(255, 85, 85);
+  font-size: 12px;
+}
+</style>

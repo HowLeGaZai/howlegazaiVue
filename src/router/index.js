@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 // import HomeView from '../views/HomeView.vue'
 // import contact from '../views/contact.vue'
 import Home from '../views/Home.vue'
@@ -54,6 +54,9 @@ const routes = [
     path: '/chat_new/:Id',
     // path: '/chat_new/',
     name: 'chat_new',
+    meta: {
+      requiresAuth: true // 添加一個 meta 屬性來標記需要登錄的頁面
+    },
     component:() => import(/* webpackChunkName: "about" */ '../views/chat_new.vue')
   },
   {
@@ -83,12 +86,18 @@ const routes = [
     // 前台 活動報名 步驟一、報名資訊填寫
     path: '/activity_registStep1',
     name: 'activity_registStep1',
+    meta: {
+      requiresAuth: true // 添加一個 meta 屬性來標記需要登錄的頁面
+    },
     component:() => import(/* webpackChunkName: "about" */ '../views/activity_registStep1.vue')
   },
   {
     // 前台 活動報名 步驟三、感謝報名
     path: '/activity_registStep3',
     name: 'activity_registStep3',
+    meta: {
+      requiresAuth: true // 添加一個 meta 屬性來標記需要登錄的頁面
+    },
     component:() => import(/* webpackChunkName: "about" */ '../views/activity_registStep3.vue')
   },
   {
@@ -131,36 +140,54 @@ const routes = [
     // 前台 帳戶管理 個人資訊
     path: '/account_user',
     name: 'account_user',
+    meta: {
+      requiresAuth: true // 添加一個 meta 屬性來標記需要登錄的頁面
+    },
     component:() => import(/* webpackChunkName: "about" */ '../views/account_user.vue')
   },
   {
     // 前台 帳戶管理 成員管理
     path: '/account_user_manage',
     name: 'account_user_manage',
+    meta: {
+      requiresAuth: true // 添加一個 meta 屬性來標記需要登錄的頁面
+    },
     component:() => import(/* webpackChunkName: "about" */ '../views/account_user_manage.vue')
   },
   {
     // 前台 帳戶管理 貼文刊登紀錄
     path: '/account_user_chat',
     name: 'account_user_chat',
+    meta: {
+      requiresAuth: true // 添加一個 meta 屬性來標記需要登錄的頁面
+    },
     component:() => import(/* webpackChunkName: "about" */ '../views/account_user_chat.vue')
   },
   {
     // 前台 帳戶管理 空間預約紀錄
     path: '/account_user_space',
     name: 'account_user_space',
+    meta: {
+      requiresAuth: true // 添加一個 meta 屬性來標記需要登錄的頁面
+    },
     component:() => import(/* webpackChunkName: "about" */ '../views/account_user_space.vue')
   },
   {
     // 前台 帳戶管理 活動報名紀錄
     path: '/account_user_activity',
     name: 'account_user_activity',
+    meta: {
+      requiresAuth: true // 添加一個 meta 屬性來標記需要登錄的頁面
+    },
     component:() => import(/* webpackChunkName: "about" */ '../views/account_user_activity.vue')
   },
   {
     // 前台 帳戶管理 變更密碼
     path: '/account_user_change_pwd',
     name: 'account_user_change_pwd',
+    meta: {
+      requiresAuth: true // 添加一個 meta 屬性來標記需要登錄的頁面
+    },
     component:() => import(/* webpackChunkName: "about" */ '../views/account_user_change_pwd.vue')
   },
   {
@@ -179,27 +206,42 @@ const routes = [
     // 前台 登入介面 
     path: '/login',
     name: 'login',
+    meta: {
+      requiresNoAuth: true // 添加一個 meta 屬性來標記需要未登錄才能訪問的頁面
+    },
     component:() => import(/* webpackChunkName: "about" */ '../views/login.vue')
   },
   {  // 前台 忘記密碼介面 
     path: '/forgetpassword',
     name: 'forgetpassword',
+    meta: {
+      requiresNoAuth: true // 添加一個 meta 屬性來標記需要未登錄才能訪問的頁面
+    },
     component:() => import(/* webpackChunkName: "about" */ '../views/forgetpassword.vue')
   },
   {  // 前台 註冊第一頁介面 
     path: '/signup1',
     name: 'signup1',
+    meta: {
+      requiresNoAuth: true // 添加一個 meta 屬性來標記需要未登錄才能訪問的頁面
+    },
     component:() => import(/* webpackChunkName: "about" */ '../views/signup1.vue') , 
     
   },
   {  // 前台 註冊第二頁介面 
       path: '/signup2',
       name: 'signup2',
+      meta: {
+        requiresNoAuth: true // 添加一個 meta 屬性來標記需要未登錄才能訪問的頁面
+      },
       component:() => import(/* webpackChunkName: "about" */ '../views/signup2.vue') , 
   },
   {// 前台 修改密碼
     path: '/updatepassword',
     name: 'updatepassword',
+    meta: {
+      requiresAuth: true // 添加一個 meta 屬性來標記需要登錄的頁面
+    },
     component:() => import(/* webpackChunkName: "about" */ '../views/updatepassword.vue')
   },
   
@@ -328,11 +370,39 @@ const routes = [
 
 
 const router = createRouter({
-  history: createWebHashHistory(process.env.BASE_URL),
+  history: createWebHistory(process.env.BASE_URL),
   routes
 })
 
+const noAuthPages = ['/login', '/signup1','/signup2','/updatepassword'];
 
+router.beforeEach((to, from, next) => {
+  // 檢查是否有登錄憑證
+  const token = getCookie('account');
+
+  if (noAuthPages.includes(to.path) && token) {
+    // 如果要訪問的頁面需要未登錄，但用戶已經登錄，則跳轉到受保護的頁面
+    next('/');
+  } else if (to.matched.some(record => record.meta.requiresAuth) && !token) {
+    // 如果要訪問的頁面需要登錄，但用戶未登錄，則跳轉到登錄頁面
+    next('/login');
+  } else {
+    next();
+  }
+});
+
+// 讀取 Cookie
+function getCookie(name) {
+  const cookieString = document.cookie;
+  const cookies = cookieString.split('; ');
+  for (let i = 0; i < cookies.length; i++) {
+    const [cookieName, cookieValue] = cookies[i].split('=');
+    if (cookieName === name) {
+      return cookieValue;
+    }
+  }
+  return null;
+}
 
 
 
