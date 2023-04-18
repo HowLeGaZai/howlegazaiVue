@@ -212,7 +212,7 @@
                     </div>
 
                     <h5>村里長照片</h5>
-                    <picture-crop @pic="sendpic"></picture-crop>
+                    <picture-crop @pic="sendpic1"></picture-crop>
 
                     <!-- <div class="uploading">
                         <label for="upload-file-1" class="uploadpic">
@@ -283,7 +283,7 @@
                                       <p>設計最佳建議：560 x 560 像素，且大小不得超過 100 KB 的圖檔</p>
                                   </div>
                                 </div> -->
-                               <picture-crop @pic="sendpic"></picture-crop>
+                               <picture-crop @pic="sendpic2"></picture-crop>
                             </div>
                         </div> <br>
                         <div class="row">
@@ -321,7 +321,7 @@
                                       <p>設計最佳建議：560 x 560 像素，且大小不得超過 100 KB 的圖檔</p>
                                   </div>
                                 </div> -->
-                               <picture-crop @pic="sendpic"></picture-crop>
+                               <picture-crop @pic="sendpic3"></picture-crop>
                             </div>
                         </div> <br>
                         <div class="row">
@@ -357,7 +357,7 @@
                                       <p>設計最佳建議：560 x 560 像素，且大小不得超過 100 KB 的圖檔</p>
                                   </div>
                                 </div> -->
-                               <picture-crop @pic="sendpic"></picture-crop>
+                               <picture-crop @pic="sendpic4"></picture-crop>
                             </div>
                         </div> <br>
                         <div class="row">
@@ -369,7 +369,7 @@
                         </div>
                     </div>
                     
-                    <button type="button" class="savebtn btn-10-s btn-color-green">儲存 </button>
+                    <button type="button" class="savebtn btn-10-s btn-color-green" @click="saveSW">儲存 </button>
                 </section>
             </div>
           
@@ -420,25 +420,42 @@ export default{
       secphone : '',
       email : '',
       address : '' ,
-      pic : '',
+      
+      title1 : '',
+      title2 : '',
+      title3 : '',
+      content1 : '',
+      content2 : '',
+      content3 : '',
+
+      //村里長
+      pic1 : '',
+
+      //輪播
+      pic2 : '',
+      pic3 : '',
+      pic4 : '',
+
     }
   },
   components: {
       backendNavbar,Footer,PictureCrop,
     },
     methods: {
+      // 上面的按鈕
       saveEO(){
         const formData = new FormData()
-      formData.append('firsrname', this.firsrname)
-      formData.append('lastname', this.lastname)
-      formData.append('male', this.male)
-      formData.append('female', this.female)
-      formData.append('electionyear', this.electionyear)
-      formData.append('degree', this.degree)
-      formData.append('mainphone', this.mainphone)
-      formData.append('secphone', this.secphone)
-      formData.append('email', this.email)
-      formData.append('address', this.address)
+        formData.append('firsrname', this.firsrname)
+        formData.append('lastname', this.lastname)
+        formData.append('male', this.male)
+        formData.append('female', this.female)
+        formData.append('electionyear', this.electionyear)
+        formData.append('degree', this.degree)
+        formData.append('mainphone', this.mainphone)
+        formData.append('secphone', this.secphone)
+        formData.append('email', this.email)
+        formData.append('address', this.address)
+        formData.append('pic1', this.pic1)
 
       axios
         .post('http://localhost/howlegazaiVue2/public/API/officeinfo.php', formData)
@@ -450,6 +467,18 @@ export default{
         .catch(error => {
             console.log(error);
         });
+        // 這是存里長大頭貼的
+      //   let formDataPIC = new FormData()
+      // formData.append('image', this.pic1)
+      // axios.post('http://localhost/TGD104G1/public/API/officeinfo.php', formData)
+      //   .then(response => {
+      //     console.log(response.data)
+      //   })
+      //   .catch(error => {
+      //     console.log(error)
+      //   })
+
+
       this.firsrname;
       this.lastname;
       this.male;
@@ -460,7 +489,72 @@ export default{
       this.secphone;
       this.email;
       this.address;
+      // 里長頭貼
+      this.pic1;
       },
+
+
+      //最下面的按鈕
+      saveSW(){
+        const formData = new FormData()
+      formData.append('title1', this.title1)
+      formData.append('content1', this.content1)
+      formData.append('title2', this.title2)
+      formData.append('title3', this.title3)
+      formData.append('content2', this.content2)
+      formData.append('content3', this.content3)
+      // 輪播圖
+      formData.append('pic2', this.pic2)
+      formData.append('pic3', this.pic3)
+      formData.append('pic4', this.pic4)
+
+      axios
+        .post('http://localhost/howlegazaiVue2/public/API/officeSwiper.php', formData)
+        // .post('https://tibamef2e.com/tgd104/g1/webinfo.php', formData)
+        .then(response => {
+            // this.jsonData = response.data;
+            console.log(response.data);
+        })
+        .catch(error => {
+            console.log(error);
+        });
+
+        // 存輪播三張圖
+      //   let formDataPIC = new FormDataPIC1()
+      // formData.append('image', this.pic1)
+      // axios.post('http://localhost/TGD104G1/public/API/uploadBanner.php', formData)
+      //   .then(response => {
+      //     console.log(response.data)
+      //   })
+      //   .catch(error => {
+      //     console.log(error)
+      //   })
+
+      this.title1;
+      this.title2;
+      this.title3;
+      this.content1;
+      this.content2;
+      this.content3;
+      this.content3;
+      this.pic2;
+      this.pic3;
+      this.pic4;
+     
+      },
+
+      sendpic1(data){
+        this.pic1 = data;
+      },
+      sendpic2(data){
+        this.pic2 = data;
+      },
+      sendpic3(data){
+        this.pic3 = data;
+      },
+      sendpic4(data){
+        this.pic4 = data;
+      }
     },
     mounted() {
     // ======nav的收合======
@@ -474,6 +568,8 @@ export default{
       beMenuOn[i].classList.toggle('be-nav-off');
     //   console.log(beMenu[i]);
     })
+
+    
   }
  
 //  const uploadButtons = document.querySelectorAll('input[type="file"]');

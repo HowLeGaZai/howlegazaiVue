@@ -6,19 +6,12 @@ import Home from '../views/Home.vue'
 
 const routes = [
   {
-    // 暫時用
-    path: '/ppppppppppppppppp',
-    name: 'ppppppppppppppppp',
-    component:() => import(/* webpackChunkName: "about" */ '../views/ppppppppppppppppp.vue')
-  },
-  {
     // 前台 首頁
     path: '/',
     name: 'home',
     component: Home
   },
   {
-
     // 前台 歡迎頁、前後台入口頁
     path: '/welcome',
     name: 'welcome',
