@@ -138,6 +138,7 @@ export default{
         this.result.dataURL = base64;
         this.result.blobURL = URL.createObjectURL(blob);;
         this.isShowModal = false;
+        // console.log(this.result.dataURL);
         },
     
     /**
