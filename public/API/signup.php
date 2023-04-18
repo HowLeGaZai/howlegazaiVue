@@ -2,7 +2,7 @@
     include("conn.php");
 
     //建立SQL語法
-    $sql = "INSERT into USER VALUES(DEFAULT,?,?,?,'http://localhost/TGD104G1/src/assets/img/user_pic.png`)',?,?,?,?,?,?,?,1,DEFAULT,?,?,DEFAULT,NOW(),DEFAULT, DEFAULT,?,DEFAULT,DEFAULT)";
+    $sql = "INSERT into USER VALUES(DEFAULT,?,?,?,'http://localhost/TGD104G1/src/assets/img/user_pic.png',?,?,?,?,?,?,?,1,DEFAULT,?,?,DEFAULT,NOW(),?, DEFAULT,?,DEFAULT,DEFAULT)";
 
     $firstName = $_POST['firstName'];
     $lastName = $_POST['lastName'];
@@ -17,6 +17,7 @@
     $phoneNum = $_POST['phoneNum'];
     $idFront = $_POST['idFront'];
     $idBack = $_POST['idBack'];
+    $birth = $_POST['birthdate'];
 
 
     //執行
@@ -35,7 +36,8 @@
     $statement->bindValue(10, $nickName);
     $statement->bindValue(11, $idFront);
     $statement->bindValue(12, $idBack);
-    $statement->bindValue(13, $idNum);
+    $statement->bindValue(13, $birth);
+    $statement->bindValue(14, $idNum);
     $statement->execute();
 
     echo '加入成功';
