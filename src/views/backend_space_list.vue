@@ -224,7 +224,7 @@
                                         </button>
                                         </td>
 
-                                        <td><button type="button" class="btn-icon">
+                                        <td><button type="button" class="btn-icon" @click="deleteSpace(space.ID)">
                                             <i class="bi bi-x-circle-fill btn-font-color-green"></i>
                                             </button>
                                         </td>
@@ -286,6 +286,7 @@ export default {
         return{
             jsonData:[],
             orderData:[],
+            spaceID:'',
         };
     },
     components: {
@@ -354,6 +355,23 @@ export default {
             sessionStorage.setItem("spaceID", this.jsonData[index].ID);
             sessionStorage.setItem("space", this.jsonData[index].NAME);
             this.$router.push({ name: 'space_info', params: { Id: this.jsonData[index].ID } });
+        },
+        deleteSpace(spaceID){
+            
+            const formData = new FormData()
+            formData.append('spaceID', this.spaceID)
+
+            axios
+                .post('http://localhost/TGD104G1/public/API/updateSpace.php', formData)
+                // .post('https://tibamef2e.com/tgd104/g1/webinfo.php', formData)
+                .then(response => {
+                    // this.jsonData = response.data;
+                    console.log(response.data);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+
         }
   },
   computed:{

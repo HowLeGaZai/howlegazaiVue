@@ -187,6 +187,7 @@ export default {
       OPEN_TIME:'',
       CLOSE_TIME:'',
       OPEN_CLOSE_TIME:'',
+      ID:'',
               
     }
   },
@@ -205,6 +206,7 @@ export default {
 
   
   mounted() {
+
     const self = this
 
     // this.getSpaceData();
@@ -294,13 +296,13 @@ export default {
                     });
 
 
-                    let space = sessionStorage.getItem("space");
+                    console.log(this.$route);
                     
                     
-
                     for(let i=0;i<this.spaceJsonData.length;i++){
                       // console.log(i,this.spaceJsonData[i]);
-                      if(space == this.spaceJsonData[i][1]){
+                      if(this.$route.params.Id == this.spaceJsonData[i][0]){
+                        // console.log('ID',this.spaceJsonData[i][0]);
                         // console.log('空間資料',this.spaceJsonData[i]);
                         this.spaceData = this.spaceJsonData[i];
                         this.OPEN_TIME = this.spaceJsonData[i].OPEN_TIME;
