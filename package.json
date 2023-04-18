@@ -13,6 +13,7 @@
     "bootstrap-icons-vue": "^1.10.3",
     "chinese-lunar-calendar": "^1.0.1",
     "core-js": "^3.8.3",
+    "emailjs-com": "^3.2.0",
     "i": "^0.3.7",
     "jquery": "^3.6.4",
     "jquery-ui-dist": "^1.13.2",
