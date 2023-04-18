@@ -221,13 +221,13 @@
                                 <td>預約時段</td>
                                 <td>用途</td>                            
                             </tr>
-                            <tr>
+                            <tr v-for="(order,index) in jsonData" :key="index">
                                 <td>001</td>
-                                <td>張迪生</td>
-                                <td>0912345678</td>
-                                <td>大湖里A102室</td>
-                                <td>2023-01-01 <br> 10:00-11:00</td>
-                                <td>美安直銷活動</td>
+                                <td>{{order.APPLY_NAME}}</td>
+                                <td>{{order.APPLY_PHONE}}</td>
+                                <td>{{order.NAME}}</td>
+                                <td>{{order.REV_DATE}} <br>{{order.START_CLOSE_TIME}}</td>
+                                <td>{{order.PURPOSE}}</td>
                             </tr>
                             
                         </tbody>
@@ -286,6 +286,11 @@ export default {
   components: {
       backendNavbar,Footer
     },
+    data(){
+        return{
+          jsonData:[],  
+        };
+    },
     mounted() {
     $('#resizable').resizable({});
     $('#datepicker').datepicker({
@@ -314,7 +319,25 @@ export default {
     })
   }
     
+
+
+    axios
+     .get('http://localhost/TGD104G1/public/API/backend_space_order.php')
+        // .get('https://tibamef2e.com/tgd104/g1/accountOverview.php')
+        .then(response => {
+            this.jsonData = response.data;
+            console.log(response.data);
+
+        })
+        .catch(error => {
+            // console.log(error);
+        });
+
+
   },
+
+
+  
  
   
 
