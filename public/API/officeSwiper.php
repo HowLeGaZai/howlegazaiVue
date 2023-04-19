@@ -7,11 +7,6 @@
     //建立SQL語法
     $sql = "INSERT into group1.FEATURE VALUES (DEFAULT,?,?,?,?,?,?,?,?,?)";
     
-    // $request_body = file_get_contents('php://input');
-    // $data = json_decode($request_body, true);
-
-    // $index = $data["index"];
-
     $title1 = $_POST['title1'];
     $content1 = $_POST['content1'];
     $title2 = $_POST['title2'];

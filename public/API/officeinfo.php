@@ -7,8 +7,6 @@
     //建立SQL語法
     $sql = "INSERT into group1.CONTACT_VILLAGE VALUES(DEFAULT,?,?,?,?,?,?,?,?,?)";
     
-    // $request_body = file_get_contents('php://input');
-    // $data = json_decode($request_body, true);
 
     // $index = $data["index"];
 

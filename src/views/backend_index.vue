@@ -134,7 +134,7 @@
               <tr>
                 <td class="family">
                   <div class="family-num">
-                    <h1>127</h1>
+                    <h1>{{ population }}</h1>
                     <h2>大湖里戶數</h2>
                   </div>
                   <p class="positive">↑12%</p>
@@ -145,7 +145,7 @@
 
                 <td class="area-number">
                   <div class="family-num">
-                    <h1>231</h1>
+                    <h1>{{ home_num }}</h1>
                     <h2>大湖里人口數</h2>
                   </div>
                   <p class="positive">↑2%</p>
@@ -221,10 +221,38 @@ import Footer from './Footer.vue';
 
 
 export default {
+  data() {
+    return {
+      population : '',
+      home_num: '',
+    }
+  },
   components: {
       backendNavbar,Footer,backCalender,BackLeftNav
     },
+    methods: {
+        webhp(){
+          this.population = this.jsonData[this.jsonData.length-1].POPULATION ;
+          this.home_num = this.jsonData[this.jsonData.length-1].HOME_NUM ;
+        },
+    },
     mounted() {
+
+      axios
+        .post('http://localhost/TGD104G1/public/API/people.php',{})
+        .then(response => {
+            this.jsonData = response.data;
+            // alert(response.data)
+            // console.log(this.jsonData[this.jsonData.length-1].FULLNAME);
+            this.webhp();
+            // console.log(this.jsonData.length);
+            // console.log(this.jsonData);
+        })
+        .catch(error => {
+            // console.log(error);
+        });  
+
+
     $('#resizable').resizable({});
     $('#datepicker').datepicker({
         monthNames: [ "一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月" ],
@@ -236,7 +264,7 @@ export default {
             $('.selectedD').html(`日期:&nbsp` + selected);
             // console.log(selected);
 
-            // let dayNamesMin = $(this).datepicker( "option", "dayNamesMin" );
+            // lwet dayNamesMin = $(this).datepicker( "option", "dayNamesMin" );
             // console.log(dayNamesMin);
         }
     });
