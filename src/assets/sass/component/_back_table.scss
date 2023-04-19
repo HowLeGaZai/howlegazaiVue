@@ -124,5 +124,8 @@
     padding: 0;
 }
 
-
-
+.back-table-space-reservation{
+    td:nth-child(5){
+        width: auto;
+    }
+}

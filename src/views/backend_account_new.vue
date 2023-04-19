@@ -28,44 +28,46 @@
                 </ul>
 
                 <!-- 第一筆資料 -->
-                <ul class="ori-row row">
-                  <li class="col-sm-12 col-sm-1">
-                    <i class="bi bi-check"> </i><i class="bi bi-x"></i>
-                  </li>
-                  <li class="col-sm-12 col-sm-1">001</li>
-                  <li class="col-sm-12 col-sm-1">王小明</li>
-                  <li class="col-sm-12 col-sm-4">myaccount123@gmail.com</li>
-                  <li class="col-sm-12 col-sm-4">花蓮縣大湖里碧山路255巷7號</li>
-                  <li class="col-sm-12 col-sm-1">
-                    <i class="bi bi-caret-down-fill openBtn" id="openBtn"></i>
-                  </li>
-                </ul>
-                <div class="hidden">
-                  <ul class="row">
-                    <li class="col-sm-12 col-sm-2">出生年月日</li>
-                    <li class="col-sm-12 col-sm-1">性別</li>
-                    <li class="col-sm-12 col-sm-2">暱稱</li>
-                    <li class="col-sm-12 col-sm-4">email</li>
-                    <li class="col-sm-12 col-sm-3">電話號碼</li>
-                  </ul>
-                  <ul class="row">
-                    <li class="col-sm-12 col-sm-2">1989/7/4</li>
-                    <li class="col-sm-12 col-sm-1">男</li>
-                    <li class="col-sm-12 col-sm-2">五星上將</li>
-                    <li class="col-sm-12 col-sm-4">ismail123@mail.com</li>
-                    <li class="col-sm-12 col-sm-3">0912345678</li>
-                  </ul>
-                  <div>
-                    <p>身分證影本</p>
-                    <div class="nationalIDC">
-                      <img src="../assets/img/font-idcard.jpg" alt="" />
-                      <img src="../assets/img/back-idcard.jpg" alt="" />
-                    </div>
-                  </div>
-                </div>
+                <template v-for="(accountNew,index) in jsonData" :key="index">
 
+                  <ul class="ori-row row">
+                    <li class="col-sm-12 col-sm-1">
+                      <i class="bi bi-check" @click="confirm(index)"> </i><i class="bi bi-x" @click="cancel(index)"></i>
+                    </li>
+                    <li class="col-sm-12 col-sm-1">001</li>
+                    <li class="col-sm-12 col-sm-1">{{accountNew.FULL_NAME}}</li>
+                    <li class="col-sm-12 col-sm-4">{{accountNew.ACCOUNT}}</li>
+                    <li class="col-sm-12 col-sm-4">{{accountNew.ADDRESS}}</li>
+                    <li class="col-sm-12 col-sm-1">
+                      <i class="bi bi-caret-down-fill openBtn" id="openBtn" @click="info(index)"></i>
+                    </li>
+                  </ul>
+                  <div class="hidden">
+                    <ul class="row">
+                      <li class="col-sm-12 col-sm-2">出生年月日</li>
+                      <li class="col-sm-12 col-sm-1">性別</li>
+                      <li class="col-sm-12 col-sm-2">暱稱</li>
+                      <li class="col-sm-12 col-sm-4">email</li>
+                      <li class="col-sm-12 col-sm-3">電話號碼</li>
+                    </ul>
+                    <ul class="row">
+                      <li class="col-sm-12 col-sm-2">{{accountNew.BIRTHDATE}}</li>
+                      <li class="col-sm-12 col-sm-1">{{accountNew.GENDER}}</li>
+                      <li class="col-sm-12 col-sm-2">{{accountNew.NICKNAME}}</li>
+                      <li class="col-sm-12 col-sm-4">{{accountNew.EMAIL}}</li>
+                      <li class="col-sm-12 col-sm-3">{{accountNew.PHONE}}</li>
+                    </ul>
+                    <div>
+                      <p>身分證影本</p>
+                      <div class="nationalIDC">
+                        <img :src="accountNew.IDCARD_FRONT" alt="" />
+                        <img :src="accountNew.IDCARD_BACK" alt="" />
+                      </div>
+                    </div>
+                  </div>
+                </template>
                 <!-- 第二筆資料 -->
-                <ul class="ori-row row">
+                <!-- <ul class="ori-row row">
                   <li class="col-sm-12 col-sm-1">
                     <i class="bi bi-check"> </i><i class="bi bi-x"></i>
                   </li>
@@ -99,7 +101,7 @@
                       <img src="../assets/img/back-idcard.jpg" alt="" />
                     </div>
                   </div>
-                </div>
+                </div> -->
               </section>
 
               <!-- table 版本 -->
@@ -260,6 +262,11 @@ import BackLeftNav from '../components/BackLeftNav.vue';
 
 
 export default {
+  data(){
+        return{
+          jsonData:[],  
+        };
+  },
   components: {
     backendNavbar,
     Footer,backCalender,BackLeftNav
@@ -296,12 +303,44 @@ export default {
 
 
     // table row 開合 //
-    let openBtns = document.querySelectorAll(".openBtn");
-    let hiddenRows = document.querySelectorAll(".hidden");
+    // 原本js的開合
+    // let openBtns = document.querySelectorAll(".openBtn");
+    // let hiddenRows = document.querySelectorAll(".hidden");
 
-    openBtns.forEach((openBtn, index) => {
-      openBtn.addEventListener("click", () => {
-        let hiddenRow = hiddenRows[index];
+    // openBtns.forEach((openBtn, index) => {
+    //   openBtn.addEventListener("click", () => {
+    //     let hiddenRow = hiddenRows[index];
+    //     if (hiddenRow.style.maxHeight) {
+    //       hiddenRow.style.maxHeight = null;
+    //       openBtn.classList.remove("rotate");
+    //     } else {
+    //       hiddenRow.style.maxHeight = hiddenRow.scrollHeight + "px";
+    //       openBtn.classList.add("rotate");
+    //     }
+    //   });
+    // });
+     axios
+     .post('http://localhost/TGD104G1/public/API/accountNew.php')
+        // .get('https://tibamef2e.com/tgd104/g1/accountOverview.php')
+        .then(response => {
+            this.jsonData = response.data;
+            console.log(response.data);
+
+        })
+        .catch(error => {
+            // console.log(error);
+        });
+
+
+  },
+
+  methods:{
+    //vue寫法的開合
+    info(index){
+      let openBtns = document.querySelectorAll(".openBtn");
+      let hiddenRows = document.querySelectorAll(".hidden");
+      let hiddenRow = hiddenRows[index];
+      let openBtn = openBtns[index];
         if (hiddenRow.style.maxHeight) {
           hiddenRow.style.maxHeight = null;
           openBtn.classList.remove("rotate");
@@ -309,8 +348,41 @@ export default {
           hiddenRow.style.maxHeight = hiddenRow.scrollHeight + "px";
           openBtn.classList.add("rotate");
         }
-      });
-    });
-  },
+    },
+    confirm(index){
+
+      
+        let formData = new FormData()
+        formData.append('ID', this.jsonData[index].ID)
+        axios.post('http://localhost/TGD104G1/public/API/accountNew_confirm.php', formData)
+          .then(response => {
+            console.log(response.data)
+          })
+          .catch(error => {
+            console.log(error)
+          })
+
+      location.reload();
+
+    },
+
+    cancel(index){
+
+      
+        let formData = new FormData()
+        formData.append('ID', this.jsonData[index].ID)
+        axios.post('http://localhost/TGD104G1/public/API/accountNew_cancel.php', formData)
+          .then(response => {
+            console.log(response.data)
+          })
+          .catch(error => {
+            console.log(error)
+          })
+
+      location.reload();
+      
+    },
+    
+  }
 };
 </script>
