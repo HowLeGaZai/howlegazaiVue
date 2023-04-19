@@ -7,7 +7,7 @@ include("conn.php");
 $user_id = $_POST['user_id'];
 
 // 撈取符合 cookie ID 的使用者資料
-$sql = "SELECT * FROM USER WHERE ID = $user_id";
+$sql = "SELECT ID,ADDRESS,ACCOUNT,FULL_NAME,NICKNAME,GENDER,ID_NUMBER,BIRTHDATE,EMAIL,PHONE,PORTRAIT FROM USER WHERE ID = $user_id";
 
 // 執行並查詢，會回傳查詢結果的物件，必須使用 fetch、fetchAll...等方式取得資料
 $statement = $pdo->query($sql);
@@ -21,6 +21,4 @@ if (count($data) == 0) {
 
 // 輸出成 JSON 格式
 echo json_encode($data);
-
 ?>
-

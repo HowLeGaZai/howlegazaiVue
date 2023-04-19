@@ -134,11 +134,14 @@ export default{
         const base64 = cropper.getDataURL();
         const blob = await cropper.getBlob();
         if (!blob) return;
-        console.log({ base64, blob });
+        // console.log({ base64, blob });
         this.result.dataURL = base64;
         this.result.blobURL = URL.createObjectURL(blob);;
         this.isShowModal = false;
         // console.log(this.result.dataURL);
+
+        // emit the event with the result data
+        this.$emit('result-changed', this.result);
         },
     
     /**
@@ -162,5 +165,11 @@ export default{
       console.log('Cropper is ready.')
     },
   },
+  // watch: {
+  //     portraitcropPic(newValue) {
+  //     this.result = this.$refs.VuePictureCropper.updateEditorValue();
+  //     this.result = tinymceContent;
+  //   }
+  // },
 }
 </script>
