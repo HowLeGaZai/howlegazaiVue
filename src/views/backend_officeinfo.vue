@@ -180,23 +180,24 @@
                 <section>
                     <h5>村里長簡介</h5>
                     <div class="row">
-                        <div class="col-12 col-ml-6">
-                            <label for="firstname" class="f-label">姓</label>
-                            <input type="text" class="f-text" id="firstname" placeholder="範例：王" v-model="firstname">
+                      <div class="col-12 col-ml-6">
+                            <label for="lastname" class="f-label">姓</label>
+                            <input type="text" class="f-text" id="lastname" placeholder="範例：王" v-model="lastname">
                         </div>
                         <div class="col-12 col-ml-6">
-                            <label for="lastname" class="f-label">名字</label>
-                            <input type="text" class="f-text" id="lastname" placeholder="範例：小明" v-model="lastname">
+                            <label for="firstname" class="f-label">名字</label>
+                            <input type="text" class="f-text" id="firstname" placeholder="範例：小明" v-model="firstname">
                         </div>
+                    
                         <div class="col-12 col-ml-6">
                             <label for="singlechoice" class="f-label">性別</label>
                             <div class="gender">
                                 <label class="f-checkbox">男
-                                    <input type="radio" name="singlechoice" v-model="male">
+                                    <input type="radio" name="singlechoice" value="男" v-model="gender">
                                     <span class="checkmark"></span>
                                 </label>
                                 <label class="f-checkbox">女
-                                    <input type="radio" name="singlechoice" v-model="female">
+                                    <input type="radio" name="singlechoice" value="女" v-model="gender">
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
@@ -412,8 +413,7 @@ export default{
     return {
       firstname : '',
       lastname : '',
-      male : '' ,
-      female : '' ,
+      gender : '' ,
       electionyear : '' ,
       degree : '' ,
       mainphone : '',
@@ -445,10 +445,10 @@ export default{
       // 上面的按鈕
       saveEO(){
         const formData = new FormData()
-        formData.append('firsrname', this.firsrname)
-        formData.append('lastname', this.lastname)
-        formData.append('male', this.male)
-        formData.append('female', this.female)
+        formData.append('fullname', this.lastname + this.firstname)
+        // formData.append('lastname', this.lastname)
+        formData.append('gender', this.gender)
+        // formData.append('female', this.female)
         formData.append('electionyear', this.electionyear)
         formData.append('degree', this.degree)
         formData.append('mainphone', this.mainphone)
@@ -457,26 +457,17 @@ export default{
         formData.append('address', this.address)
         formData.append('pic1', this.pic1)
 
-      axios
-        .post('http://localhost/howlegazaiVue2/public/API/officeinfo.php', formData)
-        // .post('https://tibamef2e.com/tgd104/g1/webinfo.php', formData)
-        .then(response => {
-            // this.jsonData = response.data;
-            console.log(response.data);
-        })
-        .catch(error => {
-            console.log(error);
-        });
-        // 這是存里長大頭貼的
-      //   let formDataPIC = new FormData()
-      // formData.append('image', this.pic1)
-      // axios.post('http://localhost/TGD104G1/public/API/officeinfo.php', formData)
-      //   .then(response => {
-      //     console.log(response.data)
-      //   })
-      //   .catch(error => {
-      //     console.log(error)
-      //   })
+        let responseData;
+axios
+  .post('http://localhost/TGD104G1/public/API/officeinfo.php', formData)
+  .then(response => {
+      responseData = response.data;
+      console.log(responseData);
+  })
+  .catch(error => {
+      console.log(error);
+  });
+        
 
 
       this.firsrname;
@@ -508,27 +499,18 @@ export default{
       formData.append('pic3', this.pic3)
       formData.append('pic4', this.pic4)
 
+      let responseData;
+
       axios
-        .post('http://localhost/howlegazaiVue2/public/API/officeSwiper.php', formData)
-        // .post('https://tibamef2e.com/tgd104/g1/webinfo.php', formData)
+        .post('http://localhost/TGD104G1/public/API/officeSwiper.php', formData)
         .then(response => {
             // this.jsonData = response.data;
+            responseData = response.data;
             console.log(response.data);
         })
         .catch(error => {
             console.log(error);
         });
-
-        // 存輪播三張圖
-      //   let formDataPIC = new FormDataPIC1()
-      // formData.append('image', this.pic1)
-      // axios.post('http://localhost/TGD104G1/public/API/uploadBanner.php', formData)
-      //   .then(response => {
-      //     console.log(response.data)
-      //   })
-      //   .catch(error => {
-      //     console.log(error)
-      //   })
 
       this.title1;
       this.title2;
@@ -540,6 +522,7 @@ export default{
       this.pic2;
       this.pic3;
       this.pic4;
+      
      
       },
 

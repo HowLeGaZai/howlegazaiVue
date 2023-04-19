@@ -47,7 +47,7 @@
                     v-model="account"
                     ref="myaccount"
                     maxlength="12"
-                    @keyup="validateAccount"
+                    @blur="validateAccount"
                     @focus="cleanBadaccount"
                   />
                 </div>
@@ -62,7 +62,7 @@
                     required
                     v-model="password"
                     maxlength="12"
-                    @keyup="validatePassword"
+                    @blur="validatePassword"
                   />
                 </div>
               </div>
@@ -83,13 +83,18 @@
               </div>
 
               <div class="row">
-                <div class="input-box col-sm-12 col-sm-6">
+                <div class="input-box col-sm-12 col-sm-4">
                   <label class="details">身分證字號<span v-if="!idNum && formSubmitted" class="red-dot"><i class="bi bi-asterisk"></i></span></label>
                   <span v-if="!idNumValid" class="red">*請輸入正確身分證</span>
                   <input type="text" class="f-text" id="sID" placeholder="" maxlength="10" minlength="10" required v-model="idNum" @blur="validateIdNum"/>
                  
                 </div>
-                <div class="gender-details col-sm-12 col-sm-6">
+                <div class="input-box col-sm-12 col-sm-4">
+                  <label class="details">出生年/月/日<span v-if="!birth && formSubmitted" class="red-dot"><i class="bi bi-asterisk"></i></span></label>
+                  <input type="date" class="f-text" id="birthdate" required v-model="birth" :max="maxBirthdate"/>
+                 
+                </div>
+                <div class="gender-details col-sm-12 col-sm-4">
                   <!-- <input type="radio" name="gender" id="dot-1">
                   <input type="radio" name="gender" id="dot-2">
                   <input type="radio" name="gender" id="dot-3"> -->
@@ -203,6 +208,8 @@ export default {
       agree: false,
       idFront : '' ,
       idBack : '' , 
+      birth: null,
+      maxBirthdate: this.getToday(),
 
       formSubmitted: false,
 
@@ -260,6 +267,13 @@ export default {
       // 處理錯誤
     }
   },
+    getToday() {
+        const today = new Date()
+        const yyyy = today.getFullYear()
+        const mm = String(today.getMonth() + 1).padStart(2, '0')
+        const dd = String(today.getDate()).padStart(2, '0')
+        return `${yyyy}-${mm}-${dd}`
+    },
     cleanBadaccount(){
       this.badaccount = "";
       this.accountDuplicate =  false;
@@ -313,7 +327,7 @@ export default {
     submitForm() {
       this.formSubmitted = true;
       if (this.account === '' || this.password === '' || this.lastName === '' || this.firstName === '' ||
-      this.nickName === '' ||  this.idNum === '' || this.email === '' || this.phoneNum === '' || this.agree == false || this.idFront === '' || this.idBack === '' || this.accountValid == false || this.passwordValid == false || this.idNumValid == false || this.emailValid == false || this.phoneValid == false  || this.accountDuplicate == true) {
+      this.nickName === '' ||  this.idNum === '' || this.birth == null || this.email === '' || this.phoneNum === '' || this.agree == false || this.idFront === '' || this.idBack === '' || this.accountValid == false || this.passwordValid == false || this.idNumValid == false || this.emailValid == false || this.phoneValid == false  || this.accountDuplicate == true) {
         alert('請正確填寫必填欄位');
         // this.$router.push('./signup2')
         return;
@@ -335,6 +349,7 @@ export default {
       userformData.append('fullname', this.firstName + this.lastName)
       userformData.append('nickName', this.nickName)
       userformData.append('idNum', this.idNum)
+      userformData.append('birthdate', this.birth)
       userformData.append('gender', this.gender)
       userformData.append('email', this.email)
       userformData.append('phoneNum', this.phoneNum)

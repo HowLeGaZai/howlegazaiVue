@@ -4,12 +4,13 @@ include("conn.php");
 
 //---------------------------------------------------
 
+// 住址對比已存帳戶USER_STATUS_0
 $sql = "SELECT * FROM USER WHERE ACCOUNT = ?";
 
-$account = $_POST['account'];
+$address = $_POST['address'];
 
  $statement = $pdo->prepare($sql);
- $statement->bindValue(1, $account);
+ $statement->bindValue(1, $address);
  $statement->execute();
  $data = $statement->fetchAll();
 

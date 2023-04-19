@@ -5,7 +5,7 @@
         {{ newsHome.CATEGORY }}
       </div>
       <span>{{ newsHome.CREATE_TIME }}</span>
-      <a href="#/news_info">{{ newsHome.TITLE }}</a>
+      <a href="/news_info">{{ newsHome.TITLE }}</a>
     </td>
     <td>{{ newsHome.CREATE_TIME }}</td>
   </tr>
