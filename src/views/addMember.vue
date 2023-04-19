@@ -1,17 +1,18 @@
 <template>
-    <form v-if="isShow">
-<div class="row account_row account_row2">
-  <div class="col-md-3 col-12">
-     
-  </div>
-  <div class="col-md-6 col-12">
-      <h4>帳號*</h4>
-      <input type="text" class="f-text nomargin" id="account" v-model="account" placeholder="帳號" >
-  </div>
-  <div class="col-md-3 col-12">
-      
-  </div>
-</div>
+
+    <div v-if="show">
+    <div class="row account_row account_row2">
+        <div class="col-md-3 col-12">
+          
+        </div>
+        <div class="col-md-6 col-12">
+            <h4>帳號*</h4>
+            <input type="text" class="f-text nomargin" id="account" v-model="account" placeholder="帳號" >
+        </div>
+        <div class="col-md-3 col-12">
+            
+        </div>
+    </div>
 
 <div class="row account_row">
   <div class="col-md-3 col-12">
@@ -78,14 +79,17 @@
     </div>
 </div>  
 
-<button type="submit" class="btn-m btn-color-green" @click.self.prevent="dataSavetoObject">送出</button>
+<!-- <button type="submit" class="btn-m btn-color-green" @click.self.prevent="dataSavetoObject">送出</button> -->
+<button type="submit" class="btn-m btn-color-green" @click="dataSavetoObject">送出</button>
 
 
-</form>
+</div>
+
 </template>
 
 <script>
 export default {
+    props:["show"],
     data() {
             return {
                 account: "",
@@ -93,9 +97,8 @@ export default {
                 first_name:"",
                 last_name:"",
                 email:"",
-                isShow:true,
                 
-            }
+              }
              },
 
             methods: {
@@ -112,17 +115,8 @@ export default {
                 
               })
 
-              
-             
 
-              if (this.isShow) {
-                this.isShow = false;
-              } else {
-                console.log("Test");
-                this.isShow = true;
-              }
-
-              this.$emit("value-update", data);
+              this.$emit("value-update", {data:data, toggleShow:!this.show});
               
                 
             },
