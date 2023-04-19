@@ -4,8 +4,9 @@ include("conn.php");
  // searchNews為最新消息的搜尋input內容
 
     //建立SQL語法
-    // 查找符合的新聞標題 
-    $sql = "SELECT * FROM NEWS ORDER BY CREATE_TIME desc";
+    // 查找符合的新聞標題(未下架的才會出現) 
+   
+    $sql = "SELECT * FROM NEWS WHERE STATUS='online'";
     
     // echo $sql;
     // $statement = $pdo->prepare($sql);
