@@ -86,6 +86,7 @@ import Tinymce from "@/components/Tinymce.vue";
 import { ref } from "vue";
 
 
+
 export default {
   components: {
     navbar,
@@ -99,6 +100,7 @@ export default {
       tinymceContent:'',
       title: "",
       type: "",
+      chatid:"",
     };
   },
   mounted() {
@@ -188,7 +190,7 @@ export default {
 
       // 導向預覽頁面
       // this.$router.push('/chat_info/preview');
-      const Id = 123;
+      // const Id = 123;
       this.$router.push({ name: 'chat_preview', params: { Id: Id } });
     },
   

@@ -1,28 +1,28 @@
 <template>
-    <navbar></navbar>
-         <main class="chat_info">
-            <router-link to="/chat" custom v-slot="{ navigate }">
-                <button class="btn-prepage font-green" @click="navigate" role="link">
-                  <i class=" bi bi-caret-left-fill font-green"></i>返回【上一頁】
-                </button>
-            </router-link>
-        <!-- <button class="btn-prepage font-green" onclick="location.href='./chat.html'">
+  <navbar></navbar>
+  <main class="chat_info">
+    <!-- <router-link to="/chat" custom v-slot="{ navigate }">
+      <button class="btn-prepage font-green" @click="navigate" role="link">
+        <i class="bi bi-caret-left-fill font-green"></i>返回【上一頁】
+      </button>
+    </router-link> -->
+    <!-- <button class="btn-prepage font-green" onclick="location.href='./chat.html'">
           <i class=" bi bi-caret-left-fill font-green"></i>返回【上一頁】</button> -->
-        <div class="chat_info_topic">
-          <h1>{{ title }}</h1>
-          <div class="add_inf">
-            <div class="userbtn" id="">
-              <img src="../assets/img/user_pic2.png" alt="" class="user_pic" />
-            </div>
-            <h4>Emma</h4>
-            <h4>發布日期：5小時前</h4>
-          </div>
-          <div :class="['tag',addTagClass(type)]">{{ type }}</div>
+    <div class="chat_info_topic">
+      <h1>{{ title }}</h1>
+      <div class="add_inf">
+        <div class="userbtn" id="">
+          <img :src="portrait" alt="" class="user_pic" />
         </div>
-        <div class="chat-article" v-html="tinymceContent"></div>
-        <!-- <TinymceContent ref="TinymceContent"></TinymceContent> -->
-        <!-- <div class="chat-article"> -->
-          <!-- img的容器設定為原大小的95%
+        <h4>{{usernickname}}</h4>
+        <h4>發布日期：5小時前</h4>
+      </div>
+      <div :class="['tag', addTagClass(type)]">{{ type }}</div>
+    </div>
+    <div class="chat-article chat-article-new" v-html="tinymceContent"></div>
+    <!-- <TinymceContent ref="TinymceContent"></TinymceContent> -->
+    <!-- <div class="chat-article"> -->
+    <!-- img的容器設定為原大小的95%
           <p class="chat-article-content">
             如果你喜歡吃方便又美味的食物，那麼7-11的炙燒雪花牛御飯糰絕對是一個值得推薦的選擇。這款美食融合了經典的日式御飯糰和台灣炙燒牛肉的口味，簡單便捷卻又不失美味。炙燒雪花牛御飯糰的製作非常獨特。先用炭火烤焦牛肉的外層，再切成薄片。然後把軟糯的米飯和醬汁混合後，包裹著烤好的牛肉片，讓每一口都充滿了口感和層次。
             <br>
@@ -33,13 +33,12 @@
           <div class="image chat-img">
             <img src="../assets/img/chat-pic.png" alt="">
           </div> -->
-    
-          
-        <!-- </div> -->
-    
-        <chat-comment   @message="addComment"></chat-comment>
+
+    <!-- </div> -->
+
+    <!-- <chat-comment   @message="addComment"></chat-comment> -->
     <!-- =========================================== -->
-        <!-- <div class="comment-list">
+    <!-- <div class="comment-list">
           <div class="chat-commit">
             <div class="chat-commit-title">
               
@@ -137,20 +136,19 @@
           </div>
     </div> -->
     <!-- =========================================== -->
-      <chat-commentlist :sendToList="data"></chat-commentlist>
-    
-        <div class="confirm-btn">
-             <router-link to="/chat" custom v-slot="{ navigate }">
-                    <button class="btn-m btn-color-green" @click="navigate" role="link">返回上一頁</button>
-            </router-link>
-          <!-- <button type="button" class="btn-m btn-color-green" onclick="location.href='./chat.html'">返回上一頁</button> -->
-        </div>
-    
-    
-    
-      </main>
-      <Footer></Footer>
-    </template>
+    <!-- <chat-commentlist :sendToList="data"></chat-commentlist> -->
+
+    <div class="confirm-btn">
+      <router-link to="/chat" custom v-slot="{ navigate }">
+        <button class="btn-m btn-color-green" @click="navigate" role="link">
+          返回上一頁
+        </button>
+      </router-link>
+      <!-- <button type="button" class="btn-m btn-color-green" onclick="location.href='./chat.html'">返回上一頁</button> -->
+    </div>
+  </main>
+  <Footer></Footer>
+</template>
     
     <script>
     
@@ -172,6 +170,8 @@
             title:'',
             type:'',
             tinymceContent:'',
+            usernickname:'',
+            portrait:'',
 
             // chatinfo:'',
                 // chatinfo: [
@@ -214,13 +214,29 @@
                 case "其他":
                     return "tag-yellow";
             }
-        },
+          },
+        
+          getCookieValue(cookieName) {
+            // 讀取指定名稱的 Cookie 值
+            const cookieStr = decodeURIComponent(document.cookie);
+            const cookies = cookieStr.split("; ");
+            for (let i = 0; i < cookies.length; i++) {
+              const cookie = cookies[i].split("=");
+              if (cookie[0] === cookieName) {
+                return cookie[1] || null;
+              }
+            }
+            return null;
+          },
         },
     
         mounted(){
          this.title = sessionStorage.getItem('form-title');
          this.type = sessionStorage.getItem('form-type');
          this.tinymceContent = sessionStorage.getItem('form-tinymceContent');
+
+          this.usernickname = this.getCookieValue('nickname');
+          this.portrait = sessionStorage.getItem("portrait");
     },
     
         

@@ -21,12 +21,14 @@
     "swiper": "^9.2.0",
     "tinymce": "^5.10.7",
     "tinymce-i18n": "^23.1.23",
+    "uuid": "^9.0.0",
     "vue": "^3.2.13",
     "vue-axios": "^3.5.2",
     "vue-picture-cropper": "^0.6.1",
     "vue-router": "^4.1.6"
   },
   "devDependencies": {
+    "@types/uuid": "^9.0.1",
     "@vue/cli-plugin-babel": "~5.0.0",
     "@vue/cli-plugin-router": "~5.0.0",
     "@vue/cli-service": "~5.0.0",

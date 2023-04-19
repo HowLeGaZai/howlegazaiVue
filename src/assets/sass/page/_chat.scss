@@ -436,11 +436,32 @@
     overflow: unset;
     white-space: normal;
     line-height: 2;
-    font-size: 22px;
+    // font-size: 22px;
     margin-top: 30px;
 
     @include breakpoint($grid-breakpoints, 'sm') {
       font-size: 18px;
     }
   }
+}
+
+.chat-article-new {
+  overflow: visible;
+  white-space: normal;
+  text-overflow: unset;
+  word-wrap: break-word;
+  p{
+    overflow: visible;
+    white-space: normal;
+    text-overflow: unset;
+    word-wrap: break-word;
+    
+    span{
+      overflow: visible;
+      white-space: normal;
+      text-overflow: unset;
+      word-wrap: break-word;
+    }
+  }
+  
 }

@@ -97,6 +97,7 @@ import navbar from "./navbar.vue";
 import Footer from "./Footer.vue";
 // import { BootstrapIconsPlugin } from 'bootstrap-icons-vue';
 import { formatDate } from "../plugin/date";
+import { v4 as uuidv4 } from 'uuid';
 
 export default {
   data() {
@@ -190,7 +191,7 @@ export default {
       return formatDate(val);
     },
     preview() {
-      const Id = 123;
+      const Id = uuidv4();
       // this.$router.push({ name: 'chat_new', params: { Id: Id } })
       this.$router.push({ name: "chat_new", params: { Id: Id } });
     },
