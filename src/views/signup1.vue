@@ -50,7 +50,7 @@
               inputValue = $event.target.value;
                                             // add = $event.target.value;
                                           " :placeholder="placeholder" />
-            <p v-if="showError" style="color: red">{{ errorMessage }}</p>
+            <p v-if="showError" class="alert">{{ errorMessage }}</p>
             <!-- <h6 style="color: red; text-align: center"> -->
             <h6 v-if="addressError" class="alert">
 
@@ -90,7 +90,7 @@ export default {
   data() {
     return {
       showError: false,
-      addressError: false,
+      addressError: false, //
       errorMessage: "不能空白",
       input1: "",
       input2: "",
@@ -124,7 +124,8 @@ export default {
 
         } else {
           // console.log("不行喔");
-          this.addressError = true;        
+          this.addressError = true;   
+          this.showError = false;     
         }
       });
 
