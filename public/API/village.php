@@ -4,7 +4,7 @@ include("conn.php");
 
 
 //建立SQL語法
-$sql = "INSERT into VILLAGE VALUES(?,?,NOW())";
+$sql = "INSERT into VILLAGE VALUES(?,?)";
 
 // $request_body = file_get_contents('php://input');
 // $data = json_decode($request_body, true);
@@ -18,8 +18,10 @@ $home_num = $_POST['home_num'];
 $statement = $pdo -> prepare($sql);
 
 //給值
-$statement->bindValue(1, $population);
-$statement->bindValue(2, $home_num);
+$statement->bindValue(1, $home_num);
+$statement->bindValue(2, $population);
+
+
 $statement->execute();
 
 
