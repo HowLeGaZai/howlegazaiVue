@@ -76,33 +76,33 @@
         <swiper-slide>
           <div>
             <div class="image contact_pic_banner">
-              <img src="../assets/img/c_banner.png" alt="" />
+              <img :src="pic2" alt="" />
             </div>
-            <h2>文化</h2>
+            <h2>{{ title1 }}</h2>
             <div class="summary">
-              大湖里風光明媚，從昔日國會山莊所在的山頭，逐漸往五指山系這一帶綿延發展，成為新興住宅與舊系紅磚老宅混搭的社區
+              {{ content1 }}
             </div>
           </div>
         </swiper-slide>
         <swiper-slide>
           <div>
             <div class="image contact_pic_banner">
-              <img src="../assets/img/c_banner.png" alt="" />
+              <img :src="pic3" alt="" />
             </div>
-            <h2>歷史</h2>
+            <h2>{{ title2 }}</h2>
             <div class="summary">
-              大湖里風光明媚，從昔日國會山莊所在的山頭，逐漸往五指山系這一帶綿延發展，成為新興住宅與舊系紅磚老宅混搭的社區
+              {{ content2 }}
             </div>
           </div>
         </swiper-slide>
         <swiper-slide>
           <div>
             <div class="image contact_pic_banner">
-              <img src="../assets/img/c_banner.png" alt="" />
+              <img :src="pic4" alt="" />
             </div>
-            <h2>文化資產</h2>
+            <h2>{{ title3 }}</h2>
             <div class="summary">
-              大湖里風光明媚，從昔日國會山莊所在的山頭，逐漸往五指山系這一帶綿延發展，成為新興住宅與舊系紅磚老宅混搭的社區
+              {{ content3 }}
             </div>
           </div>
         </swiper-slide>
@@ -132,12 +132,12 @@
           <div class="collapsible-item">
             <input type="radio" id="rad1" name="radio" />
             <label class="collapsible-item-label" for="rad1"
-              >花蓮縣大湖里跟苗栗大湖一樣有產草莓嗎？<i
+              >{{ question1 }}<i
                 class="bi bi-caret-down-fill"
               ></i
             ></label>
             <div class="collapsible-item-content">
-              大湖里有美男里長，好山好水好無聊！美女里長，好山好水好無聊！美女里長，好山好水好無聊！美女里長，好山好水好無聊！
+              {{ answer1 }}
             </div>
           </div>
         </div>
@@ -146,12 +146,12 @@
           <div class="collapsible-item">
             <input type="radio" id="rad2" name="radio" />
             <label class="collapsible-item-label" for="rad2"
-              >花蓮縣大湖里跟苗栗大湖一樣有產草莓嗎？<i
+              >{{ question2 }}<i
                 class="bi bi-caret-down-fill"
               ></i
             ></label>
             <div class="collapsible-item-content">
-              大湖里有美男里長，好山好水好無聊！美女里長，好山好水好無聊！美女里長，好山好水好無聊！美女里長，好山好水好無聊！
+              {{ answer2 }}
             </div>
           </div>
         </div>
@@ -160,12 +160,12 @@
           <div class="collapsible-item">
             <input type="radio" id="rad3" name="radio" />
             <label class="collapsible-item-label" for="rad3"
-              >花蓮縣大湖里跟苗栗大湖一樣有產草莓嗎？<i
+              >{{ question3 }}<i
                 class="bi bi-caret-down-fill"
               ></i
             ></label>
             <div class="collapsible-item-content" id="collapsible-item-content">
-              大湖里有美男里長，好山好水好無聊！美女里長，好山好水好無聊！美女里長，好山好水好無聊！美女里長，好山好水好無聊！
+              {{ answer3 }}
             </div>
           </div>
         </div>
@@ -174,12 +174,12 @@
           <div class="collapsible-item">
             <input type="radio" id="rad4" name="radio" />
             <label class="collapsible-item-label" for="rad4"
-              >花蓮縣大湖里跟苗栗大湖一樣有產草莓嗎？<i
+              >{{ question4 }}<i
                 class="bi bi-caret-down-fill"
               ></i
             ></label>
             <div class="collapsible-item-content" id="collapsible-item-content">
-              大湖里有美男里長，好山好水好無聊！美女里長，好山好水好無聊！美女里長，好山好水好無聊！美女里長，好山好水好無聊！
+              {{ answer4 }}
             </div>
           </div>
         </div>
@@ -188,12 +188,12 @@
           <div class="collapsible-item">
             <input type="radio" id="rad5" name="radio" />
             <label class="collapsible-item-label" for="rad5"
-              >花蓮縣大湖里跟苗栗大湖一樣有產草莓嗎？<i
+              >{{ question5 }}<i
                 class="bi bi-caret-down-fill"
               ></i
             ></label>
             <div class="collapsible-item-content">
-              大湖里有美男里長，好山好水好無聊！美女里長，好山好水好無聊！美女里長，好山好水好無聊！美女里長，好山好水好無聊！
+              {{ answer5 }}
             </div>
           </div>
         </div>
@@ -224,13 +224,35 @@ export default {
       adress : '',
       pic1 : '',
       gender : '',
+
+      //特色輪播
+      pic2 : '',
+      title1 : '',
+      title2 : '',
+      title3 : '',
+      pic3 : '',
+      pic4 : '',
+      content1 : '',
+      content2 : '',
+      content3 : '',
+      //QA 問答
+      question1 : '',
+      question2 : '',
+      question3 : '',
+      question4 : '',
+      question5 : '',
+      answer1 : '',
+      answer2 : '',
+      answer3 : '',
+      answer4 : '',
+      answer5 : '',
     }
   },
   components: {
     Footer,
     navbar,
     Swiper,
-      SwiperSlide,
+    SwiperSlide,
   },
   setup() {
     return {
@@ -238,12 +260,14 @@ export default {
     };
   },
   methods: {
+
+    // 上半段資訊
     webInfo(){
       
       this.fullname = this.jsonData[this.jsonData.length-1].FULLNAME ;
-      console.log(this.fullname);
+      // console.log(this.fullname);
       this.email = this.jsonData[this.jsonData.length-1].EMAIL ;
-      console.log(this.email);
+      // console.log(this.email);
       this.mainphone = this.jsonData[this.jsonData.length-1].MAINPHONE ;
       this.secphone = this.jsonData[this.jsonData.length-1].SECPHONE ;
       this.electionyear = this.jsonData[this.jsonData.length-1].ELECTIONYEAR ;
@@ -253,8 +277,37 @@ export default {
       this.gender = this.jsonData[this.jsonData.length-1].GENDER ;
 
     },
+
+    // 特色輪播
+    webSwiper(){
+      this.title1 = this.jsonData[this.jsonData.length-1].FEATURE_TITLE_1 ;
+      console.log(this.title1)
+      this.title2 = this.jsonData[this.jsonData.length-1].FEATURE_TITLE_2 ;
+      this.title3 = this.jsonData[this.jsonData.length-1].FEATURE_TITLE_3 ;
+      this.content1 = this.jsonData[this.jsonData.length-1].FEATURE_CONTENT_1 ;
+      this.content2 = this.jsonData[this.jsonData.length-1].FEATURE_CONTENT_2 ;
+      this.content3 = this.jsonData[this.jsonData.length-1].FEATURE_CONTENT_3 ;
+      this.pic2 = this.jsonData[this.jsonData.length-1].PIC1 ;
+      this.pic3 = this.jsonData[this.jsonData.length-1].PIC2 ;
+      this.pic4 = this.jsonData[this.jsonData.length-1].PIC3 ;
+    },
+
+    // QA 問答
+    webQA(){
+      this.question1 = this.jsonData[this.jsonData.length-1].QUESTION_1 ;
+      this.question2 = this.jsonData[this.jsonData.length-1].QUESTION_2 ;
+      this.question3 = this.jsonData[this.jsonData.length-1].QUESTION_3 ;
+      this.question4 = this.jsonData[this.jsonData.length-1].QUESTION_4 ;
+      this.question5 = this.jsonData[this.jsonData.length-1].QUESTION_5 ;
+      this.answer1 = this.jsonData[this.jsonData.length-1].ANSWER_1 ;
+      this.answer2 = this.jsonData[this.jsonData.length-1].ANSWER_2 ;
+      this.answer3 = this.jsonData[this.jsonData.length-1].ANSWER_3 ;
+      this.answer4 = this.jsonData[this.jsonData.length-1].ANSWER_4 ;
+      this.answer5 = this.jsonData[this.jsonData.length-1].ANSWER_5 ;
+    },
   },
   mounted() {
+    //上半部資訊 axios
     axios
         .post('http://localhost/TGD104G1/public/API/Connection.php',{})
         .then(response => {
@@ -268,9 +321,40 @@ export default {
         .catch(error => {
             // console.log(error);
         });
+    //中半部輪播 axios
+        axios
+        .post('http://localhost/TGD104G1/public/API/feature.php',{})
+        .then(response => {
+            this.jsonData = response.data;
+            // alert(response.data)
+            // console.log(this.jsonData[this.jsonData.length-1].FULLNAME);
+            this.webSwiper();
+            // console.log(this.jsonData.length);
+            // console.log(this.jsonData);
+        })
+        .catch(error => {
+            // console.log(error);
+        });
+
+    // 下半部輪播 axios     
+        axios
+            .post('http://localhost/TGD104G1/public/API/QAdata.php',{})
+            .then(response => {
+                this.jsonData = response.data;
+                // alert(response.data)
+                // console.log(this.jsonData[this.jsonData.length-1].FULLNAME);
+                this.webQA();
+                // console.log(this.jsonData.length);
+                // console.log(this.jsonData);
+            })
+            .catch(error => {
+                // console.log(error);
+            });
 
 
-      let labels = document.querySelectorAll('.collapsible-item-label');
+      
+
+        let labels = document.querySelectorAll('.collapsible-item-label');
       let contents = document.querySelectorAll('.collapsible-item-content');
 
       labels.forEach((label, index) => {
@@ -292,6 +376,9 @@ export default {
               }
           });
       });
+
+        
+
   },
 };
 </script>

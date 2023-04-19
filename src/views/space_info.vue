@@ -95,7 +95,7 @@
     
             <h3><i class="bi bi-dot"></i>預約須知<i class="bi bi-dot"></i></h3>
             <ul>
-                <li><i class="bi bi-dot"></i>{{spaces.REMARK}}</li>
+                <li><i class="bi bi-dot"></i>{{spaceData.REMARK}}</li>
                 <!-- <li><i class="bi bi-dot"></i>預約送出後，須待里辦公室審核預約申請，申請進度請至個人帳戶>預約空間紀錄查看。</li>
                 <li><i class="bi bi-dot"></i>年節期間另行公告開放時間、若遇天災則視直轄單位宣布是否達停班停課標準。</li>
                 <li><i class="bi bi-dot"></i>其他如公司行號、學校、機關團體預約或長期借用，請洽里辦公室。</li> -->
@@ -167,21 +167,21 @@ export default {
       selectDate:'',
       spaces: 
               {
-              "ID": "1",
-              "NAME": "A102教室",
-              "CATEGORY": "教室 / 靜態會議活動 / 讀書會",
-              "CAPACITY": 40,
-              "SPACE_SIZE": 20,
-              "NOTE": "",
-              "MANAGER": "李上巴",
-              "MANAGER_PHONE": "0919426289",
-              "OPEN_DATE": "2023-06-30",
-              "OPEN_TIME": "08：00",
-              "CLOSE_TIME": "21：00",
+              // "ID": "1",
+              // "NAME": "A102教室",
+              // "CATEGORY": "教室 / 靜態會議活動 / 讀書會",
+              // "CAPACITY": 40,
+              // "SPACE_SIZE": 20,
+              // "NOTE": "",
+              // "MANAGER": "李上巴",
+              // "MANAGER_PHONE": "0919426289",
+              // "OPEN_DATE": "2023-06-30",
+              // "OPEN_TIME": "08：00",
+              // "CLOSE_TIME": "21：00",
               "ADDRESS": "高雄市前鎮區崗山南街277巷46",
-              "REMARK": "請於使用日前7日預約，每人限定預約當日內2場次。預約送出後，須待里辦公室審核預約申請，申請進度請至個人帳戶>預約空間紀錄查看。年節期間另行公告開放時間、若遇天災則視直轄單位宣布是否達停班停課標準。其他如公司行號、學校、機關團體預約或長期借用，請洽里辦公室。",
-              "SPACE_PIC": "s_1.png",
-              "MAP_PIC":"space-map.png",
+              // "REMARK": "請於使用日前7日預約，每人限定預約當日內2場次。預約送出後，須待里辦公室審核預約申請，申請進度請至個人帳戶>預約空間紀錄查看。年節期間另行公告開放時間、若遇天災則視直轄單位宣布是否達停班停課標準。其他如公司行號、學校、機關團體預約或長期借用，請洽里辦公室。",
+              // "SPACE_PIC": "s_1.png",
+              // "MAP_PIC":"space-map.png",
               },
 
       OPEN_TIME:'',
