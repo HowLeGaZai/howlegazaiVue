@@ -127,6 +127,7 @@ export default {
   }
 },
   methods: {
+      
       gotoPreview() {
       
       // 檢查必填欄位是否已經填寫
@@ -191,6 +192,7 @@ export default {
       // 導向預覽頁面
       // this.$router.push('/chat_info/preview');
       // const Id = 123;
+      const Id = this.$route.params.Id;
       this.$router.push({ name: 'chat_preview', params: { Id: Id } });
     },
   

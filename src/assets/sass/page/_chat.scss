@@ -308,8 +308,15 @@
   }
 
   .confirm-btn {
-    width: 160px;
-    margin: 50px auto;
+    // width: 160px;
+    // margin: 50px auto;
+    align-content: center;
+    margin-top:50px;
+    text-align: center;
+    &>button{
+      margin: 0 10px;
+    }
+
   }
 }
 

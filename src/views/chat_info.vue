@@ -168,6 +168,7 @@ export default {
       return{
         // message:'',
         data:[],
+        chatID:'',
        
       }
     },
@@ -179,12 +180,26 @@ export default {
       
     },
 
-    mounted() {
-    // if (this.$route.query.content) {
-    //   this.$refs.tinymcecontent.setContent(this.$route.query.content)
-    // }
-    
-  },
+  //   created() {
+  //     this.chatID = this.$route.params.Id;
+  //   // if (this.$route.query.content) {
+  //   //   this.$refs.tinymcecontent.setContent(this.$route.query.content)
+  //   // }
+  //      const chatdata = new FormData();
+  //   chatdata.append('routeid', this.chatID);
+
+  //   axios
+  //     .post("http://localhost/TGD104G1/public/API/chatcontent.php", chatdata)
+  //     .then((response) => {
+  //       const data = response.data;
+  //       // console.log(response.data);
+
+  //       this.data = data;
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //     });
+  // },
 
     
 }

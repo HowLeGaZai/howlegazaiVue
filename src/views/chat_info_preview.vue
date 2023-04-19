@@ -15,9 +15,9 @@
           <img :src="portrait" alt="" class="user_pic" />
         </div>
         <h4>{{usernickname}}</h4>
-        <h4>發布日期：5小時前</h4>
+        <h4>發布日期: 2023-04-26</h4>
       </div>
-      <div :class="['tag', addTagClass(type)]">{{ type }}</div>
+      <div :class="['tag','tag-mini', addTagClass(type)]">{{ type }}</div>
     </div>
     <div class="chat-article chat-article-new" v-html="tinymceContent"></div>
     <!-- <TinymceContent ref="TinymceContent"></TinymceContent> -->
@@ -139,11 +139,10 @@
     <!-- <chat-commentlist :sendToList="data"></chat-commentlist> -->
 
     <div class="confirm-btn">
-      <router-link to="/chat" custom v-slot="{ navigate }">
-        <button class="btn-m btn-color-green" @click="navigate" role="link">
-          返回上一頁
-        </button>
-      </router-link>
+  
+        <button class="btn-m btn-color-white" @click="goBackedit()" role="link">返回上一頁</button>
+        <button class="btn-m btn-color-green" @click="publish()" role="link">發布</button>
+      
       <!-- <button type="button" class="btn-m btn-color-green" onclick="location.href='./chat.html'">返回上一頁</button> -->
     </div>
   </main>
@@ -158,7 +157,6 @@
     import ChatCommentlist from './ChatCommentlist.vue';
     // import TinymceContent from '@/components/TinymceContent.vue';
     
-    
     export default {
       components: {
           navbar,Footer,ChatComment,ChatCommentlist,
@@ -170,31 +168,18 @@
             title:'',
             type:'',
             tinymceContent:'',
+            textContent:'',
             usernickname:'',
             portrait:'',
-
-            // chatinfo:'',
-                // chatinfo: [
-                //     {
-                //         "ID": "",
-                //         "CATEGORY": "",
-                //         "TITLE": "",
-                //         "CONTENT": "",
-                //         // "PIC": "c_1_food.jpg",
-                //         // "CREATE_TIME": "2023-04-05",
-
-                //         // "USER_ID": 56677,
-                //         // "PORTRAIT": "user_pic6.png",
-                //         // "NICKNAME": "櫻桃爺爺",
-
-                //         // "COMMENT_ID": "",
-                //         // "COMMENT_TIME": "",
-                //         // "STATUS": "",
-                //     },]
-           
+            userid:'',
+            routerid:'',
+  
           }
         },
         methods:{
+          getFormatDate(val) {
+            return formatDate(val);
+          },
           addComment(data){
               // console.log(message);
               this.data = data;
@@ -228,6 +213,29 @@
             }
             return null;
           },
+          publish(){
+            const chatform = new FormData()
+            
+            chatform.append('category', this.type)
+            chatform.append('title', this.title)
+            chatform.append('content', this.tinymceContent)
+            chatform.append('text', this.textContent)
+            chatform.append('userid', this.userid)
+            chatform.append('routerid', this.routerid)
+            
+
+            axios
+              .post('http://localhost/TGD104G1/public/API/publishchat.php', chatform)
+              .then(response => {
+                  // this.jsonData = response.data;
+                  console.log(response.data);
+                  const Id = this.$route.params.Id;
+                  this.$router.push({ name: 'chat_info', params: { Id: Id } });
+              })
+              .catch(error => {
+                  console.log(error);
+              });
+            },
         },
     
         mounted(){
@@ -236,7 +244,10 @@
          this.tinymceContent = sessionStorage.getItem('form-tinymceContent');
 
           this.usernickname = this.getCookieValue('nickname');
+          this.userid = this.getCookieValue('id');
           this.portrait = sessionStorage.getItem("portrait");
+          this.routerid = this.$route.params.Id;
+          this.textContent = this.tinymceContent.replace(/(<([^>]+)>)/gi, '');
     },
     
         

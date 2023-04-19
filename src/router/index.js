@@ -61,7 +61,7 @@ const routes = [
   },
   {
     // 前台 討論區單篇文章
-    path: '/chat_info',
+    path: '/chat_info/:Id',
     name: 'chat_info',
     component:() => import(/* webpackChunkName: "about" */ '../views/chat_info.vue')
   },

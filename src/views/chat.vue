@@ -73,11 +73,11 @@
 
           </div>
 
-          <h2><router-link :to="{ name: 'chat_info' }">{{ chatTopic.TITLE }}</router-link></h2>
-          <p>{{ chatTopic.CONTENT }}</p>
+          <h2><router-link :to="{ name: 'chat_info', params: { id: chatTopic.ROUTER_ID } }">{{ chatTopic.TITLE }}</router-link></h2>
+          <p>{{ chatTopic.TEXT }}</p>
         </section>
         <div class="image list_pic">
-          <img :src="require(`@/assets/img/${chatTopic.PIC}`)" alt="">
+          <img :src="chatTopic.PIC" alt="">
         </div>
       </section>
     </article>
