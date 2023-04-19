@@ -247,7 +247,7 @@
           this.userid = this.getCookieValue('id');
           this.portrait = sessionStorage.getItem("portrait");
           this.routerid = this.$route.params.Id;
-          this.textContent = this.tinymceContent.replace(/(<([^>]+)>)/gi, '');
+          this.textContent = this.tinymceContent.replace(/(<([^>]+)>)/gi, '').replace(/&[^;]+;/g, '');
     },
     
         

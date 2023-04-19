@@ -9,16 +9,18 @@
     <!-- <button class="btn-prepage font-green" onclick="location.href='./chat.html'">
       <i class=" bi bi-caret-left-fill font-green"></i>返回【上一頁】</button> -->
     <div class="chat_info_topic">
-      <h1>最近吃到7-11超好吃飯糰</h1>
+      <h1>{{chatarticle.TITLE}}</h1>
       <div class="add_inf">
         <div class="userbtn" id="">
-          <img src="../assets/img/user_pic2.png" alt="" class="user_pic" />
+          <img :src="chatarticle.PORTRAIT" alt="" class="user_pic" />
         </div>
-        <h4>Emma</h4>
-        <h4>發布日期：5小時前</h4>
+        <h4>{{chatarticle.NICKNAME}}</h4>
+        <h4>{{getFormatDate(chatarticle.CREATE_TIME)}}</h4>
       </div>
-      <div class="tag tag-orange">美食</div>
+      <div class="tag tag-orange tag-mini">{{chatarticle.CATEGORY}}</div>
     </div>
+    <div class="chat-article chat-article-new" v-html="chatarticle.CONTENT"></div>
+
     <!-- <TinymceContent ref="TinymceContent"></TinymceContent> -->
     <!-- <div class="chat-article"> -->
       <!-- img的容器設定為原大小的95%
@@ -157,6 +159,7 @@ import navbar from './navbar.vue';
 import Footer from './Footer.vue';
 import ChatComment from './ChatComment.vue';
 import ChatCommentlist from './ChatCommentlist.vue';
+import { formatDate } from "../plugin/date";
 
 
 export default {
@@ -169,7 +172,7 @@ export default {
         // message:'',
         data:[],
         chatID:'',
-       
+        chatarticle:{},
       }
     },
     methods:{
@@ -177,32 +180,34 @@ export default {
           // console.log(message);
           this.data = data;
       },
-      
+      getFormatDate(val) {
+        return formatDate(val);
+      },
     },
 
-  //   created() {
-  //     this.chatID = this.$route.params.Id;
-  //   // if (this.$route.query.content) {
-  //   //   this.$refs.tinymcecontent.setContent(this.$route.query.content)
-  //   // }
-  //      const chatdata = new FormData();
-  //   chatdata.append('routeid', this.chatID);
+    beforeMount() {
+      this.chatID = this.$route.params.Id;
+    // if (this.$route.query.content) {
+    //   this.$refs.tinymcecontent.setContent(this.$route.query.content)
+    // }
+       const chatdata = new FormData();
+      chatdata.append('routeid', this.chatID);
 
-  //   axios
-  //     .post("http://localhost/TGD104G1/public/API/chatcontent.php", chatdata)
-  //     .then((response) => {
-  //       const data = response.data;
-  //       // console.log(response.data);
-
-  //       this.data = data;
-  //     })
-  //     .catch((error) => {
-  //       console.error(error);
-  //     });
-  // },
-
+    axios
+      .post("http://localhost/TGD104G1/public/API/chatcontent.php", chatdata)
+      .then((response) => {
+        // const chatarticle = response.data;
+        this.chatarticle = response.data[0];
+         console.log(response.data)
+        // console.log(this.chatarticle);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+     
+  },
     
-}
+};
 </script>
 
 

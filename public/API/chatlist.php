@@ -4,7 +4,7 @@ include("conn.php");
 
 //---------------------------------------------------
 
- $sql = "SELECT c.ID, c.CATEGORY, c.TITLE, c.CONTENT, c.TEXT, c.PIC, c.CREATE_TIME,c.ROUTER_ID, u.PORTRAIT, u.NICKNAME
+ $sql = "SELECT c.ID, c.CATEGORY, c.TITLE, c.CONTENT, c.TEXT, c.PIC, c.CREATE_TIME, c.ROUTER_ID, u.PORTRAIT, u.NICKNAME
         FROM CHAT c
         JOIN USER u
         ON c.USER_ID = u.ID

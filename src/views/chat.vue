@@ -73,7 +73,8 @@
 
           </div>
 
-          <h2><router-link :to="{ name: 'chat_info', params: { id: chatTopic.ROUTER_ID } }">{{ chatTopic.TITLE }}</router-link></h2>
+          <h2><router-link :to="{ name: 'chat_info', params: { Id: chatTopic.ROUTER_ID } }">{{ chatTopic.TITLE }}</router-link></h2>
+          <!-- <h2>{{ chatTopic.TITLE }}</h2> -->
           <p>{{ chatTopic.TEXT }}</p>
         </section>
         <div class="image list_pic">
