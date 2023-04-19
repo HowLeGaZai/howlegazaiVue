@@ -5,7 +5,7 @@
 
 
     //建立SQL語法
-    $sql = "INSERT into group1.CONTACT_VILLAGE VALUES(DEFAULT,?,?,?,?,?,?,?,?,?,?)";
+    $sql = "INSERT into group1.CONTACT_VILLAGE VALUES(DEFAULT,?,?,?,?,?,?,?,?,?)";
     
     // $request_body = file_get_contents('php://input');
     // $data = json_decode($request_body, true);
@@ -36,6 +36,6 @@
     $statement->bindValue(8, $address);
     $statement->bindValue(9, $pic1);
 
-
+    $statement->execute();
     
 ?>

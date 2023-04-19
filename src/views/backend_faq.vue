@@ -21,14 +21,14 @@
                 <div class="row">
                   <div class="col-12">
                     <label for="tarea" class="f-label qalabel">問題</label>
-                    <textarea name="" id="tarea" cols="30" class="f-text" placeholder="">大湖里為什麼叫大湖里</textarea>
+                    <textarea name="" id="tarea" cols="30" class="f-text" placeholder="" v-model="question1"></textarea>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-12">
                     <label for="tarea" class="f-label qalabel">答案</label>
-                    <textarea name="" id="tarea" cols="30" rows="5" class="f-text"
-                      placeholder="">因為民國57年7月1日，改隸院轄花蓮縣後，大湖村改名為「大湖里」， 沿用至今；於91年9月1日起，因區域內人口眾多而劃出秀湖里</textarea>
+                    <textarea name="" id="tarea" cols="30" rows="5" class="f-text" v-model="answer1"
+                      placeholder=""></textarea>
                   </div>
                 </div>
               </div>
@@ -39,14 +39,14 @@
                 <div class="row">
                   <div class="col-12">
                     <label for="tarea" class="f-label qalabel">問題</label>
-                    <textarea name="" id="tarea" cols="30" class="f-text" placeholder="">大湖里為什麼叫大湖里</textarea>
+                    <textarea name="" id="tarea" cols="30" class="f-text" placeholder="" v-model="question2"></textarea>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-12">
                     <label for="tarea" class="f-label qalabel">答案</label>
                     <textarea name="" id="tarea" cols="30" rows="5" class="f-text"
-                      placeholder="">因為民國57年7月1日，改隸院轄花蓮縣後，大湖村改名為「大湖里」， 沿用至今；於91年9月1日起，因區域內人口眾多而劃出秀湖里</textarea>
+                      placeholder="" v-model="answer2" ></textarea>
                   </div>
                 </div>
               </div>
@@ -57,14 +57,14 @@
                 <div class="row">
                   <div class="col-12">
                     <label for="tarea" class="f-label qalabel">問題</label>
-                    <textarea name="" id="tarea" cols="30" class="f-text" placeholder="">大湖里為什麼叫大湖里</textarea>
+                    <textarea name="" id="tarea" cols="30" class="f-text" placeholder="" v-model="question3"></textarea>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-12">
                     <label for="tarea" class="f-label qalabel">答案</label>
-                    <textarea name="" id="tarea" cols="30" rows="5" class="f-text"
-                      placeholder="">因為民國57年7月1日，改隸院轄花蓮縣後，大湖村改名為「大湖里」， 沿用至今；於91年9月1日起，因區域內人口眾多而劃出秀湖里</textarea>
+                    <textarea name="" id="tarea" cols="30" rows="5" class="f-text" 
+                      placeholder="" v-model="answer3"></textarea>
                   </div>
                 </div>
               </div>
@@ -75,14 +75,14 @@
                 <div class="row">
                   <div class="col-12">
                     <label for="tarea" class="f-label qalabel">問題</label>
-                    <textarea name="" id="tarea" cols="30" class="f-text" placeholder="">大湖里為什麼叫大湖里</textarea>
+                    <textarea name="" id="tarea" cols="30" class="f-text" placeholder="" v-model="question4"></textarea>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-12">
                     <label for="tarea" class="f-label qalabel">答案</label>
                     <textarea name="" id="tarea" cols="30" rows="5" class="f-text"
-                      placeholder="">因為民國57年7月1日，改隸院轄花蓮縣後，大湖村改名為「大湖里」， 沿用至今；於91年9月1日起，因區域內人口眾多而劃出秀湖里</textarea>
+                      placeholder="" v-model="answer4"></textarea>
                   </div>
                 </div>
               </div>
@@ -93,21 +93,21 @@
                 <div class="row">
                   <div class="col-12">
                     <label for="tarea" class="f-label qalabel">問題</label>
-                    <textarea name="" id="tarea" cols="30" class="f-text" placeholder="">大湖里為什麼叫大湖里</textarea>
+                    <textarea name="" id="tarea" cols="30" class="f-text" placeholder="" v-model="question5"></textarea>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-12">
                     <label for="tarea" class="f-label qalabel">答案</label>
                     <textarea name="" id="tarea" cols="30" rows="5" class="f-text"
-                      placeholder="">因為民國57年7月1日，改隸院轄花蓮縣後，大湖村改名為「大湖里」， 沿用至今；於91年9月1日起，因區域內人口眾多而劃出秀湖里</textarea>
+                      placeholder="" v-model="answer5"></textarea>
                   </div>
                 </div>
               </div>
             </div>
 
 
-            <button type="button" class="savebtn btn-10-s btn-color-green">儲存 </button>
+            <button type="button" class="savebtn btn-10-s btn-color-green" @click="saveqa">儲存 </button>
           </section>
         </div>
 
@@ -141,11 +141,56 @@ import backendNavbar from './backendNavbar.vue';
 import Footer from './Footer.vue';
 import BackLeftNav from '../components/BackLeftNav.vue';
 import backCalender from '../components/BackCalender.vue';
+import axios from 'axios';
 
 
 
 
 export default {
+  data() {
+    return {
+      question1:'',
+      question2:'',
+      question3:'',
+      question4:'',
+      question5:'',
+      answer1 :'',
+      answer2 :'',
+      answer3 :'',
+      answer4 :'',
+      answer5 :'',
+    }
+  },
+
+  //存問題答案的from data
+  methods: {
+    saveqa(){
+      const formData = new FormData()
+      formData.append('question1', this.question1)
+      formData.append('question2', this.question2)
+      formData.append('question3', this.question3)
+      formData.append('question4', this.question4)
+      formData.append('question5', this.question5)
+      formData.append('answer1', this.answer1)
+      formData.append('answer2', this.answer2)
+      formData.append('answer3', this.answer3)
+      formData.append('answer4', this.answer4)
+      formData.append('answer5', this.answer5)
+
+      axios
+        .post('http://localhost/TGD104G1/public/API/QA.php', formData)
+        // .post('https://tibamef2e.com/tgd104/g1/webinfo.php', formData)
+        .then(response => {
+            this.jsonData = response.data;
+            console.log(response.data);
+        })
+        .catch(error => {
+            console.log(error);
+        });
+
+      alert("儲存成功")
+    },
+  },
   components: {
     backendNavbar, Footer, backCalender, BackLeftNav
   },

@@ -67,16 +67,16 @@
 
               <div class="account_row">
                 <h4>地址</h4>
-                <h4>花蓮縣大湖里偉育里復興南路5樓</h4>
+                <h4>{{ ADDRESS }}</h4>
               </div>
               <div class="account_row">
                 <h4>帳號</h4>
-                <h4 class="changelineheight">myaccount123</h4>
+                <h4 class="changelineheight">{{ ACCOUNT }}</h4>
               </div>
               <div class="row account_row">
                 <div class="col-md-6 col-12">
                   <h4>姓名</h4>
-                  <h4>王三明</h4>
+                  <h4>{{ FULL_NAME }}</h4>
                   <!-- <input type="text" class="f-text nomargin" id="name" v-model="name" placeholder="王大明"> -->
                 </div>
 
@@ -87,7 +87,7 @@
                     class="f-text nomargin"
                     id="nickname"
                     v-model="nickname"
-                    placeholder="阿水"
+                    placeholder="{{ NICKNAME }}"
                   />
                 </div>
               </div>
@@ -100,7 +100,7 @@
                     <input
                       type="radio"
                       name="singlechoice"
-                      v-model="gender"
+                      v-model="GENDER"
                       value="male"
                     />
                     <span class="checkmark"></span>
@@ -110,7 +110,7 @@
                     <input
                       type="radio"
                       name="singlechoice"
-                      v-model="gender"
+                      v-model="GENDER"
                       value="female"
                     />
                     <span class="checkmark"></span>
@@ -120,7 +120,7 @@
                     <input
                       type="radio"
                       name="singlechoice"
-                      v-model="gender"
+                      v-model="GENDER"
                       value="noanswer"
                     />
                     <span class="checkmark"></span>
@@ -131,7 +131,7 @@
               <div class="row account_row">
                 <div class="col-md-6 col-12">
                   <h4>身份證字號*</h4>
-                  <h4>A112234567</h4>
+                  <h4>{{ ID_NUMBER }}</h4>
                   <!-- <input type="text" class="f-text nomargin" id="name" v-model="IDnumber" placeholder="身份證字號"> -->
                 </div>
               </div>
@@ -139,7 +139,7 @@
               <div class="row account_row">
                 <div class="col-md-6 col-12">
                   <h4>出生 年/月/日</h4>
-                  <h4>1994/9/4</h4>
+                  <h4>{{ BIRTHDATE }}</h4>
                   <!-- <input type="text" class="f-text nomargin" id="name" v-model="birthdate" placeholder="YYYY/MM/DD"> -->
                 </div>
               </div>
@@ -152,7 +152,7 @@
                     class="f-text nomargin"
                     id="name"
                     v-model="email"
-                    placeholder="abc@a"
+                    placeholder="{{ EMAIL }}"
                   />
                 </div>
 
@@ -162,8 +162,8 @@
                     type="text"
                     class="f-text nomargin"
                     id="name"
-                    v-model="phonenumber"
-                    placeholder="手機號碼"
+                    v-model="PHONE"
+                    placeholder="{{ PHONE }}"
                   />
                 </div>
               </div>
@@ -193,19 +193,25 @@
 
 
 <script>
-import PortraitCrop from "../components/PortraitCrop.vue";
 import navbar from "./navbar.vue";
+import axios from 'axios';
+import PortraitCrop from "../components/PortraitCrop.vue";
+// import Address from "ipaddr.js";
 
 export default {
   data() {
     return {
-      name: "",
-      nickname: "",
-      gender: "",
-      IDnumber: "",
-      birthdate: "",
-      email: "",
-      phonenumber: "",
+      userId:"",
+      ADDRESS: "",
+      ACCOUNT:"",
+      FULL_NAME: "",
+      NICKNAME:"",
+      GENDER:"",
+      BIRTHDATE:"",
+      EMAIL:"",
+      PHONE:"",
+      PORTRAIT:"",
+      jsonData: [],
 
       accountNavs: [
         { nav: "個人資訊", con: "./account_user.html" },
@@ -228,41 +234,53 @@ export default {
   },
 
   mounted() {
-    // const uploadButtons = document.querySelectorAll('input[type="file"]');
+    const userId = this.getCookieValue("id");
+    console.log(userId);
+    
+    const getUserData = () => {
+    const url = "http://localhost/TGD104G1/public/API/account_user.php";
+    const data = { user_id: userId };
+    axios
+      .post(url, data)
+      .then((response) => {
+        this.jsonData = response.data;
+        this.accountInfo();
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    };
 
-    // uploadButtons.forEach((button) => {
-    //   button.addEventListener("change", (event) => {
-    //     const uploadGroup = button.closest(".uploading");
+    getUserData();
 
-    //     const picArea = uploadGroup.querySelector(".pic-area-box");
-        // const picImg = picArea.querySelector('img');
-        // const picName = picArea.querySelector("span");
-
-        // const file = event.target.files[0];
-
-        // if (file.type.startsWith("image/")) {
-        //   const reader = new FileReader();
-
-        //   reader.onload = () => {
-            // picImg.src = reader.result;
-            // picName.textContent = file.name;
-
-            // picImg.style.width = '100%'
-            // picImg.style.height = '100%'
-            // picImg.style.maxWidth = '300px'
-            // picImg.style.maxHeight = '100px'
-            // console.log(file.name);
-        //   };
-
-        //   reader.readAsDataURL(file);
-        // } else {
-        //   picImg.src = "";
-        //   picName.textContent = file.name;
-    //     // }
-    //   });
-    // });
   },
   methods: {
+      getCookieValue(cookieName) {
+        const cookies = document.cookie.split("; ");
+        for (let i = 0; i < cookies.length; i++) {
+          const cookie = cookies[i].split("=");
+          if (cookie[0] === cookieName) {
+            return cookie[1];
+          }
+        }
+        return null;
+      },
+
+      accountInfo() {
+        this.userId = this.jsonData[this.jsonData.length - 1].ID;
+        this.ADDRESS = this.jsonData[this.jsonData.length - 1].ADDRESS;
+        this.ACCOUNT = this.jsonData[this.jsonData.length - 1].ACCOUNT;
+        this.FULL_NAME = this.jsonData[this.jsonData.length - 1].FULL_NAME;
+        this.NICKNAME = this.jsonData[this.jsonData.length - 1].NICKNAME;
+        this.GENDER = this.jsonData[this.jsonData.length - 1].GENDER;
+        this.BIRTHDATE = this.jsonData[this.jsonData.length - 1].BIRTHDATE;
+        this.EMAIL = this.jsonData[this.jsonData.length - 1].EMAIL;
+        this.PHONE = this.jsonData[this.jsonData.length - 1].PHONE;
+        this.PORTRAIT = this.jsonData[this.jsonData.length - 1].PORTRAIT;
+      },
+
+
+      // 登出功能清除 cookie
       clearCookies() {
       // 取得目前的 cookie 字串
       let cookies = document.cookie;

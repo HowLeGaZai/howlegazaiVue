@@ -345,6 +345,7 @@ input[type="submit"]:hover {
   .user-details .input-box input:valid {
     border-color: #27b096;
   }
+
   form .gender-details .gender-title {
     font-size: 20px;
     font-weight: 900;
@@ -674,7 +675,7 @@ input[type="submit"]:hover {
     .gender-details {
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      // justify-content: space-between;
       .category {
         display: flex;
         @media (max-width: 600px) {
@@ -682,6 +683,9 @@ input[type="submit"]:hover {
           .f-checkbox {
             margin-bottom: 0px;
           }
+        };
+        .f-checkbox{
+          margin-top: 10px;
         }
       }
     }
@@ -762,4 +766,8 @@ input[type="submit"]:hover {
       }
     }
   }
+}
+
+#birthdate{
+  height: 36px;
 }
