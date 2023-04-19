@@ -264,7 +264,7 @@ export default {
             $('.selectedD').html(`日期:&nbsp` + selected);
             // console.log(selected);
 
-            // let dayNamesMin = $(this).datepicker( "option", "dayNamesMin" );
+            // lwet dayNamesMin = $(this).datepicker( "option", "dayNamesMin" );
             // console.log(dayNamesMin);
         }
     });

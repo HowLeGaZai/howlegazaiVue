@@ -1,10 +1,8 @@
 <?php
 
 include("conn.php");
- // searchNews為最新消息的搜尋input內容
 
     //建立SQL語法
-    // 查找符合的新聞標題 
     $sql = "SELECT * FROM  VILLAGE";
     
     // echo $sql;
