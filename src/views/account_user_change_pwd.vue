@@ -5,35 +5,7 @@
         <main>
         <section class="account-border">
             <div class="account">
-                <section class="account-menu-pc">
-                    <h1 >帳戶管理</h1>
-                    <div class="image user_pic"><img src="../assets/img/user_pic.png" alt=""></div>
-                    <ul>
-
-                        <!-- <li v-for="accountNav in accountNavs"><a :href="accountNav.con">{{accountNav.nav}}</a></li> -->
-                       <li><router-link :to="{name:'account_user'}" class="">個人資訊</router-link></li>
-                        <!-- <li><a href="#" class="a-select">個人資訊</a></li> -->
-                        <li><router-link :to="{name:'account_user_manage'}" class="">成員管理</router-link></li>
-                        
-                        <!-- <li><a href="#">成員管理</a></li> -->
-                        <!-- <li><a href="#">貼文刊登紀錄</a></li> -->
-                        <li><router-link :to="{name:'account_user_chat'}" class="">貼文刊登紀錄</router-link></li>
-                        
-                        <!-- <li><a href="#">空間預約紀錄</a></li> -->
-                        <li><router-link :to="{name:'account_user_space'}" class="">空間預約紀錄</router-link></li>
-
-                        <!-- <li><a href="#">活動報名紀錄</a></li> -->
-                        <li><router-link :to="{name:'account_user_activity'}" class="">活動報名紀錄</router-link></li>
-                        
-                        <!-- <li><a href="#">變更密碼</a></li> -->
-                        <li><router-link :to="{name:'account_user_change_pwd'}" class="a-select">變更密碼</router-link></li>
-
-                        <li><router-link :to="{name:'home'}" class="" @click="clearCookies">登出</router-link></li>
-
-                        
-
-                    </ul>
-                </section>
+                <Accountsidebar :PORTRAIT="PORTRAIT"></Accountsidebar>
                 <section class="account-content">
                     <h1 class="marginbottom30">變更密碼</h1>
                 
@@ -108,6 +80,7 @@
 <script>
 
 import navbar from './navbar.vue';
+import Accountsidebar from '@/components/Accountsidebar.vue';
 export default {
      data(){
                    return {
@@ -118,24 +91,6 @@ export default {
                     birthdate:'',
                     email:'',
                     phonenumber:'',
-
-                    // isShow:false,
-
-                    accountNavs:[{nav:'個人資訊',con:'./account_user.html'},
-                    {nav:'成員管理',con:'./account_user_manage_3.html'},
-                    {nav:'貼文刊登紀錄',con:'./account_user_chat.html'},
-                    {nav:'瓦斯錶回報紀錄',con:'./account_user_gas.html'},
-                    {nav:'空間預約紀錄'},
-                    {nav:'活動報名紀錄'},
-                    {nav:'團購管理'},
-                    {nav:'變更密碼'}],
-
-
-                    mainMenus:[{nav:'聯絡里辦',con:'./contact.html'},
-                    {nav:'最新消息',con:'./news.html'},
-                    {nav:'討論區',con:'./chat.html'},
-                    // {nav:'智慧里民',con:'#'},
-                    ],
 
                     datasTrs:[
                         'No.', '姓名', '帳號', '電子信箱', '編輯',  '刪除'
@@ -169,6 +124,6 @@ export default {
                         }
                     },
                     },
-                    components:{navbar,} 
+                    components:{navbar,Accountsidebar} 
 }
 </script>
