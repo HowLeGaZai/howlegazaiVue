@@ -27,13 +27,13 @@
                                     <h5>文章分類</h5>
                                 </label>
                                 <div>
-                                    <select name="" id="selecte" class="f-select">
+                                    <select name="" id="selecte" class="f-select" v-model="category">
                                         <option value="1">-選擇-</option>
                                         <option value="公告">公告</option>
-                                        <option value="3">宣導 </option>
-                                        <option value="4">里民服務</option>
-                                        <option value="5">新聞分享</option>
-                                        <option value="6">會議記錄</option>
+                                        <option value="宣導">宣導 </option>
+                                        <option value="里民服務">里民服務</option>
+                                        <option value="新聞分享">新聞分享</option>
+                                        <option value="會議記錄">會議記錄</option>
 
                                     </select>
                                 </div>
@@ -71,9 +71,9 @@
                         <div id="container">
                             <!-- <div id="editor">
                                 </div> -->
-                            <Tinymce></Tinymce>
+                            <Tinymce v-model="content"></Tinymce >
                             <div>
-                                <ckeditor :editor="editor" v-model="content" />
+                                <ckeditor :editor="editor"  />
                             </div>
                         </div>
 
@@ -111,7 +111,7 @@
 import backendNavbar from './backendNavbar.vue';
 import backCalender from '../components/BackCalender.vue';
 import BackLeftNav from '../components/BackLeftNav.vue';
-import $ from 'jquery'
+// import $ from 'jquery'
 
 import Footer from './Footer.vue';
 import Tinymce from "@/components/Tinymce.vue";
@@ -139,7 +139,6 @@ export default {
             formData.append('title', this.title);
             formData.append('pic', this.pic);
             formData.append('content', this.content);
-
 
             axios
                 .post('http://localhost/TGD104G1/public/API/newsAdd.php', formData)
