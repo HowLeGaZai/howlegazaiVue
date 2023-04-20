@@ -20,7 +20,7 @@
     </div>
   <div class="col-md-6 col-12">
       <h4>密碼*</h4>
-      <input type="text" class="f-text nomargin" id="password" v-model="password" placeholder="密碼" >
+      <input type="text" class="f-text nomargin" id="password" v-model="password" placeholder="建議預設為手機號碼" >
   </div>
   <div class="col-md-3 col-12">
      

@@ -23,7 +23,7 @@
                 <img :src="result.blobURL"/>
 
                 </div> -->
-                <p>設計最佳建議：270x 270 像素，且大小不得超過 100 KB 的圖檔</p>
+                <p>設計最佳建議：210 x 210 像素，且大小不得超過 100 KB 的圖檔</p>
             </div>
     </div>
 
@@ -57,13 +57,13 @@
               :options="{
                 viewMode: 1,
                 dragMode: 'move',
-                aspectRatio: 1,
-                cropBoxResizable:true,
+                aspectRatio: 21/21,
+                cropBoxResizable:false,
               }"
               :presetMode="{
                 mode:'fixedSize',
-                width:270,
-                height:270,
+                width:210,
+                height:210,
               }"
               @ready="ready"
             />
@@ -75,7 +75,8 @@
 </template>
 
 <script>
-import VuePictureCropper, { cropper } from 'vue-picture-cropper'
+import VuePictureCropper, { cropper } from 'vue-picture-cropper';
+import axios from 'axios';
 
 export default{
   components: {
@@ -116,13 +117,20 @@ export default{
       reader.onload = () => {
         // Update the picture source of the `img` prop
         this.pic = String(reader.result)
+        
         // Show the modal
         this.isShowModal = true
         // Clear selected files of input element
         if (!this.$refs.uploadInput) return
         this.$refs.uploadInput.value = ''
       }
+      
+      // this.sendData();
     }
+
+    
+    
+
     },
 
     
@@ -133,16 +141,24 @@ export default{
         if (!cropper) return;
         const base64 = cropper.getDataURL();
         const blob = await cropper.getBlob();
+        console.log(base64);
+        console.log('分隔線');
+        console.log(blob);
         if (!blob) return;
-        // console.log({ base64, blob });
+        console.log({ base64, blob });
         this.result.dataURL = base64;
+        
         this.result.blobURL = URL.createObjectURL(blob);;
         this.isShowModal = false;
         // console.log(this.result.dataURL);
-
+        // alert(this.result.dataURL);
+        this.sendData();
+        
         // emit the event with the result data
         this.$emit('result-changed', this.result);
         },
+
+        
     
     /**
      * Clear the crop box
@@ -164,12 +180,11 @@ export default{
     ready() {
       console.log('Cropper is ready.')
     },
+
+    sendData(){
+        this.$emit('pic',this.result.dataURL)
+    },
+    
   },
-  // watch: {
-  //     portraitcropPic(newValue) {
-  //     this.result = this.$refs.VuePictureCropper.updateEditorValue();
-  //     this.result = tinymceContent;
-  //   }
-  // },
 }
 </script>

@@ -9,7 +9,10 @@
         <button class="btn-m btn-color-green" @click="postsearch">搜尋</button>
       </div>
       <div class="add-chat">
-        <button class="btn-m btn-color-green" @click="preview()" role="link" >發起討論</button>
+        <!-- <button class="btn-m btn-color-green" @click="preview()" role="link" >發起討論</button> -->
+        <router-link :to="{ path: '/chat_new/' + id }"  >
+          <button class="btn-m btn-color-green">發起討論</button>
+        </router-link>
       </div>
 
       <div class="desktop-filter" id="chat-desktop-filter">
@@ -73,11 +76,12 @@
 
           </div>
 
-          <h2><router-link :to="{ name: 'chat_info' }">{{ chatTopic.TITLE }}</router-link></h2>
-          <p>{{ chatTopic.CONTENT }}</p>
+          <h2><router-link :to="{ name: 'chat_info', params: { Id: chatTopic.ROUTER_ID } }">{{ chatTopic.TITLE }}</router-link></h2>
+          <!-- <h2>{{ chatTopic.TITLE }}</h2> -->
+          <p>{{ chatTopic.TEXT }}</p>
         </section>
         <div class="image list_pic">
-          <img :src="require(`@/assets/img/${chatTopic.PIC}`)" alt="">
+          <img :src="chatTopic.PIC" alt="">
         </div>
       </section>
     </article>
@@ -97,6 +101,7 @@ import navbar from "./navbar.vue";
 import Footer from "./Footer.vue";
 // import { BootstrapIconsPlugin } from 'bootstrap-icons-vue';
 import { formatDate } from "../plugin/date";
+import { v4 as uuidv4 } from 'uuid';
 
 export default {
   data() {
@@ -118,6 +123,7 @@ export default {
       chatTopics: [],
       // displayedTopics:[],
       createChat: false,
+      id: new Date().getTime() // 獲取當前時間的 ISO 字符串
     };
   },
   mounted() {
@@ -189,8 +195,13 @@ export default {
     getFormatDate(val) {
       return formatDate(val);
     },
+    // preview() {
+    //   const Id = 123;
+    //   // this.$router.push({ name: 'chat_new', params: { Id: Id } })
+    //   this.$router.push({ name: "chat_new", params: { Id: Id } });
+    // },
     preview() {
-      const Id = 123;
+      const Id = uuidv4();
       // this.$router.push({ name: 'chat_new', params: { Id: Id } })
       this.$router.push({ name: "chat_new", params: { Id: Id } });
     },
