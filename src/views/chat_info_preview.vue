@@ -1,137 +1,149 @@
 <template>
   <div class="preview_toolbar">
-    <p>**** 此為預覽頁面，請記得點擊<router-link @click="publish()" class="a-select">發布討論區文章</router-link>完成刊登，或是<a href="#">取消</a> ****</p>
+    <p>
+      **** 此為預覽頁面，請記得點擊<a
+        @click="publish"
+        class="a-select"
+        >發布討論區文章</a
+      >完成刊登，或是<a href="#">取消</a> ****
+    </p>
   </div>
-      <navbar></navbar>
-      <main class="chat_info">
-     <!-- <button class="btn-prepage font-green" onclick="location.href='./chat.html'">
+  <navbar></navbar>
+  <main class="chat_info">
+    <!-- <button class="btn-prepage font-green" onclick="location.href='./chat.html'">
        <i class=" bi bi-caret-left-fill font-green"></i>返回【上一頁】</button> -->
-     <div class="chat_info_topic">
-       <h1>{{ title }}</h1>
-       <div class="add_inf">
-         <div class="userbtn" id="">
-           <img src="../assets/img/user_pic2.png" alt="" class="user_pic" />
-         </div>
-         <h4>Emma</h4>
-         <h4>發布日期：5小時前</h4>
-       </div>
-       <div :class="['tag',addTagClass(type)]">{{ type }}</div>
-     </div>
-     <div class="chat-article" v-html="tinymceContent"></div>
+    <div class="chat_info_topic">
+      <h1>{{ title }}</h1>
+      <div class="add_inf">
+        <div class="userbtn" id="">
+          <img :src="portrait" class="user_pic" />
+        </div>
+        <h4>{{usernickname}}</h4>
+        <h4>發布日期：5小時前</h4>
+      </div>
+      <div :class="['tag', addTagClass(type)]">{{ type }}</div>
+    </div>
+    <div class="chat-article" v-html="tinymceContent"></div>
+  </main>
 
-    </main>
-  
-      <Footer></Footer>
-    </template>
+  <Footer></Footer>
+</template>
     
     <script>
-    
-    import navbar from './navbar.vue';
-    import Footer from './Footer.vue';
-    import ChatComment from './ChatComment.vue';
-    import ChatCommentlist from './ChatCommentlist.vue';
-    // import TinymceContent from '@/components/TinymceContent.vue';
-    
-    export default {
-      components: {
-          navbar,Footer,ChatComment,ChatCommentlist,
-        },
-    
-        data(){
-          return{ 
-            title:'',
-            type:'',
-            tinymceContent:'',
-            PictureCropChatbanner:"",
-            textContent:'',
-            usernickname:'',
-            portrait:'',
-            userid:'',
-            routerid:'',
-  
-          }
-        },
-        methods:{
-          getFormatDate(val) {
-            return formatDate(val);
-          },
-          addComment(data){
-              // console.log(message);
-              this.data = data;
-          },
-          addTagClass(i){
-            switch(i){
-                case "美食討論":
-                    return "tag-pink";
-                case "二手交易":
-                    return "tag-orange";
-                case "里民閒聊":
-                    return "tag-blue";
-                case "團購討論":
-                    return "tag-sky";
-                case "我要抱怨":
-                    return "tag-green";
-                case "其他":
-                    return "tag-yellow";
-            }
-          },
-        
-          getCookieValue(cookieName) {
-            // 讀取指定名稱的 Cookie 值
-            const cookieStr = decodeURIComponent(document.cookie);
-            const cookies = cookieStr.split("; ");
-            for (let i = 0; i < cookies.length; i++) {
-              const cookie = cookies[i].split("=");
-              if (cookie[0] === cookieName) {
-                return cookie[1] || null;
-              }
-            }
-            return null;
-          },
-          publish(){
-            const chatform = new FormData()
-            
-            chatform.append('category', this.type)
-            chatform.append('title', this.title)
-            chatform.append('content', this.tinymceContent)
-            chatform.append('pic',this.PictureCropChatbanner)
-            chatform.append('text', this.textContent)
-            chatform.append('userid', this.userid)
-            chatform.append('routerid', this.routerid)
-            
+import navbar from "./navbar.vue";
+import Footer from "./Footer.vue";
+import ChatComment from "./ChatComment.vue";
+import ChatCommentlist from "./ChatCommentlist.vue";
+// import TinymceContent from '@/components/TinymceContent.vue';
 
-            axios
-              .post('http://localhost/TGD104G1/public/API/publishchat.php', chatform)
-              .then(response => {
-                  // this.jsonData = response.data;
-                  console.log(response.data);
-                  const Id = this.$route.params.Id;
-                  this.$router.push({ name: 'chat_info', params: { Id: Id } });
-              })
-              .catch(error => {
-                  console.log(error);
-              });
+export default {
+  components: {
+    navbar,
+    Footer,
+    ChatComment,
+    ChatCommentlist,
+  },
 
-              console.log('載入axios')
-            },
-        },
-    
-        mounted(){
-         this.title = sessionStorage.getItem('form-title');
-         this.type = sessionStorage.getItem('form-type');
-         this.tinymceContent = sessionStorage.getItem('form-tinymceContent');
-         this.PictureCropChatbanner = sessionStorage.getItem('form-PictureCropChatbanner');
-
-          this.usernickname = this.getCookieValue('nickname');
-          this.userid = this.getCookieValue('id');
-          this.portrait = sessionStorage.getItem("portrait");
-          this.routerid = this.$route.params.Id;
-          this.textContent = this.tinymceContent.replace(/(<([^>]+)>)/gi, '').replace(/&[^;]+;/g, '');
+  data() {
+    return {
+      title: "",
+      type: "",
+      tinymceContent: "",
+      PictureCropChatbanner: "",
+      textContent: "",
+      usernickname: "",
+      portrait: "",
+      userid: "",
+      routerid: "",
+    };
+  },
+  methods: {
+    getFormatDate(val) {
+      return formatDate(val);
     },
-    
-        
-    }
-    </script>
+    addComment(data) {
+      // console.log(message);
+      this.data = data;
+    },
+    addTagClass(i) {
+      switch (i) {
+        case "美食討論":
+          return "tag-pink";
+        case "二手交易":
+          return "tag-orange";
+        case "里民閒聊":
+          return "tag-blue";
+        case "團購討論":
+          return "tag-sky";
+        case "我要抱怨":
+          return "tag-green";
+        case "其他":
+          return "tag-yellow";
+      }
+    },
+
+    getCookieValue(cookieName) {
+      // 讀取指定名稱的 Cookie 值
+      const cookieStr = decodeURIComponent(document.cookie);
+      const cookies = cookieStr.split("; ");
+      for (let i = 0; i < cookies.length; i++) {
+        const cookie = cookies[i].split("=");
+        if (cookie[0] === cookieName) {
+          return cookie[1] || null;
+        }
+      }
+      return null;
+    },
+    publish() {
+      const picornot = this.PictureCropChatbanner;
+      if(!picornot){
+        this.PictureCropChatbanner = "http://localhost/TGD104G1/src/assets/img/default.jpg";
+      }
+
+      const chatform = new FormData();
+
+      chatform.append("category", this.type);
+      chatform.append("title", this.title);
+      chatform.append("content", this.tinymceContent);
+      chatform.append("pic", this.PictureCropChatbanner);
+      chatform.append("text", this.textContent);
+      chatform.append("userid", this.userid);
+      chatform.append("routerid", this.routerid);
+
+      axios
+        .post("http://localhost/TGD104G1/public/API/publishchat.php", chatform)
+        .then((response) => {
+          // this.jsonData = response.data;
+          console.log(response.data);
+          // const Id = this.$route.params.Id;
+          // this.$router.push({ name: "chat_info", params: { Id: Id } });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
+      console.log("載入axios");
+    },
+  },
+
+  mounted() {
+    this.title = sessionStorage.getItem("form-title");
+    this.type = sessionStorage.getItem("form-type");
+    this.tinymceContent = sessionStorage.getItem("form-tinymceContent");
+    this.PictureCropChatbanner = sessionStorage.getItem(
+      "form-PictureCropChatbanner"
+    );
+
+    this.usernickname = this.getCookieValue("nickname");
+    this.userid = this.getCookieValue("id");
+    this.portrait = localStorage.getItem("portrait");
+    this.routerid = this.$route.params.Id;
+    this.textContent = this.tinymceContent
+      .replace(/(<([^>]+)>)/gi, "")
+      .replace(/&[^;]+;/g, "");
+  },
+};
+</script>
     
     
     

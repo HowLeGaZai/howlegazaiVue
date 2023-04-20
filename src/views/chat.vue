@@ -76,7 +76,7 @@
 
           </div>
 
-          <h2><router-link :to="{ name: 'chat_info', params: { Id: chatTopic.ROUTER_ID } }">{{ chatTopic.TITLE }}</router-link></h2>
+          <h2><router-link :to="{ name: 'chat_info', params: { Id: chatTopic.ID } }">{{ chatTopic.TITLE }}</router-link></h2>
           <!-- <h2>{{ chatTopic.TITLE }}</h2> -->
           <p>{{ chatTopic.TEXT }}</p>
         </section>
@@ -139,6 +139,7 @@ export default {
         console.error(error);
       });
 
+   
     // const cookieValue = this.getCookieValue("id");
 
     // 判斷 Cookie 是否存在
