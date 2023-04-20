@@ -103,6 +103,10 @@
   margin-bottom: 30px;
   padding-bottom: 30px;
 
+  &:hover .article_news h2{
+    color:$green;
+  }
+
   .article_news {
     @include breakpoint($grid-breakpoints, "sm") {
       flex-direction: row;
