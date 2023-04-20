@@ -30,7 +30,7 @@
         <i class="bi bi-caret-left-fill font-green"></i>返回【上一頁】
       </button>
     </router-link> -->
-    <div class="chat_info_topic">
+    <!-- <div class="chat_info_topic">
       <h1>{{ title }}</h1>
       <div class="add_inf">
         <div class="userbtn" id="">
@@ -41,7 +41,7 @@
       </div>
       <div :class="['tag','tag-mini', addTagClass(type)]">{{ type }}</div>
     </div>
-    <div class="chat-article chat-article-new" v-html="tinymceContent"></div>
+    <div class="chat-article chat-article-new" v-html="tinymceContent"></div> -->
     <!-- <TinymceContent ref="TinymceContent"></TinymceContent> -->
     <!-- <div class="chat-article"> -->
     <!-- img的容器設定為原大小的95%
