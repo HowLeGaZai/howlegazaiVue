@@ -72,11 +72,6 @@
                         <div id="container">
                             <!-- <div id="editor">
                                 </div> -->
-<<<<<<< HEAD
-                            <Tinymce v-model="content"></Tinymce >
-                            <div>
-                                <ckeditor :editor="editor"  />
-=======
                             <Tinymce v-model="content"></Tinymce>
                             <div>
                                 <ckeditor :editor="editor" />
@@ -118,10 +113,7 @@
 import backendNavbar from './backendNavbar.vue';
 import backCalender from '../components/BackCalender.vue';
 import BackLeftNav from '../components/BackLeftNav.vue';
-<<<<<<< HEAD
-=======
 import PictureCropChatbanner from "@/components/PictureCropChatbanner.vue";
->>>>>>> dev
 // import $ from 'jquery'
 
 import Footer from './Footer.vue';
@@ -145,6 +137,7 @@ export default {
             title: '',
             pic: '',
             content: '',
+            
 
         };
     },
@@ -162,10 +155,7 @@ export default {
             formData.append('title', this.title);
             formData.append('pic', this.pic);
             formData.append('content', this.content);
-<<<<<<< HEAD
-=======
             console.log(this.pic);
->>>>>>> dev
 
             axios
                 .post('http://localhost/TGD104G1/public/API/newsAdd.php', formData)
