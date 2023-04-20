@@ -9,10 +9,13 @@ $accepted_origins = array("http://localhost", "http://10.2.7.103", "http://local
 /*********************************************
  * 設置圖片保存的資料夾 *
  *********************************************/
-$imageFolder = "/img/userupload/";
-
+$imageFolder = "/TGD104G1/dist/img/";
+// $imageFolder = "/img/userupload/";
+echo 'asdad';
 reset ($_FILES);
 $temp = current($_FILES);
+
+print_r(is_uploaded_file($temp['tmp_name']));
 if (!is_uploaded_file($temp['tmp_name'])){
   // 通知編輯器上傳失敗
   header("HTTP/1.1 500 Server Error");
@@ -44,26 +47,27 @@ if (preg_match("/([^\w\s\d\-_~,;:\[\]\(\).])|([\.]{2,})/", $temp['name'])) {
 
 // 驗證擴展名
 if (!in_array(strtolower(pathinfo($temp['name'], PATHINFO_EXTENSION)), array("gif", "jpg", "png"))) {
-    header("HTTP/1.1 400 Invalid extension.");
-    exit;
-}
+  header("HTTP/1.1 400 Invalid extension.");
+  return;
 
-// 都沒問題，就將上傳數據移動到目標文件夾，此處直接使用原文件名，建議重命名
+
+// Accept upload if there was no origin, or if it is an accepted origin
 $filetowrite = $imageFolder . $temp['name'];
-// move_uploaded_file($temp['tmp_name'], $filetowrite);
-
-// 重新命名，確認是否名稱相同
-if (file_exists($filetowrite)) {
-  $newFileName = uniqid() . '.' . pathinfo($temp['name'], PATHINFO_EXTENSION);
-  $filetowrite = $imageFolder . $newFileName;
-}
-
 move_uploaded_file($temp['tmp_name'], $filetowrite);
 
+// Determine the base URL
+$protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on' ? "https://" : "http://";
+$baseurl = $protocol . $_SERVER["HTTP_HOST"] . rtrim(dirname($_SERVER['REQUEST_URI']), "/") . "/";
 
-// 返回JSON格式的數據
-// 形如下一行所示，使用location存放圖片URL
-// { location : '/your/uploaded/image/file.jpg'}
-echo json_encode(array('location' => $filetowrite));
+// Respond to the successful upload with JSON.
+// Use a location key to specify the path to the saved image resource.
+// { location : '/your/uploaded/image/file'}
+echo json_encode(array('location' => $baseurl . $filetowrite));
+} else {
+// Notify editor that the upload failed
+header("HTTP/1.1 500 Server Error");
+}
+
+
 
 ?>

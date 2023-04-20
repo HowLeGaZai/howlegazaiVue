@@ -8,7 +8,8 @@
             <section class="account-menu-pc">
               <h1>帳戶專區</h1>
               <div class="image user_pic">
-                <img src="../assets/img/user_pic.png" alt="" />
+                <!-- <img src="../assets/img/user_pic.png" alt=""> -->
+                <img :src="PORTRAIT" alt="" />
               </div>
               <ul>
                 <!-- <li v-for="accountNav in accountNavs"><a :href="accountNav.con">{{accountNav.nav}}</a></li> -->
@@ -67,16 +68,16 @@
 
               <div class="account_row">
                 <h4>地址</h4>
-                <h4>花蓮縣大湖里偉育里復興南路5樓</h4>
+                <h4>{{ ADDRESS }}</h4>
               </div>
               <div class="account_row">
                 <h4>帳號</h4>
-                <h4 class="changelineheight">myaccount123</h4>
+                <h4 class="changelineheight">{{ ACCOUNT }}</h4>
               </div>
               <div class="row account_row">
                 <div class="col-md-6 col-12">
                   <h4>姓名</h4>
-                  <h4>王三明</h4>
+                  <h4>{{ FULL_NAME }}</h4>
                   <!-- <input type="text" class="f-text nomargin" id="name" v-model="name" placeholder="王大明"> -->
                 </div>
 
@@ -86,8 +87,8 @@
                     type="text"
                     class="f-text nomargin"
                     id="nickname"
-                    v-model="nickname"
-                    placeholder="阿水"
+                    v-model="NICKNAME"
+                    placeholder="請輸入暱稱" required
                   />
                 </div>
               </div>
@@ -100,8 +101,8 @@
                     <input
                       type="radio"
                       name="singlechoice"
-                      v-model="gender"
-                      value="male"
+                      v-model="GENDER"
+                      v-bind:value="'male'" disabled
                     />
                     <span class="checkmark"></span>
                   </label>
@@ -110,8 +111,8 @@
                     <input
                       type="radio"
                       name="singlechoice"
-                      v-model="gender"
-                      value="female"
+                      v-model="GENDER"
+                      v-bind:value="'female'" disabled
                     />
                     <span class="checkmark"></span>
                   </label>
@@ -120,8 +121,8 @@
                     <input
                       type="radio"
                       name="singlechoice"
-                      v-model="gender"
-                      value="noanswer"
+                      v-model="GENDER"
+                      v-bind:value="'noanswer'" disabled
                     />
                     <span class="checkmark"></span>
                   </label>
@@ -131,7 +132,7 @@
               <div class="row account_row">
                 <div class="col-md-6 col-12">
                   <h4>身份證字號*</h4>
-                  <h4>A112234567</h4>
+                  <h4>{{ ID_NUMBER }}</h4>
                   <!-- <input type="text" class="f-text nomargin" id="name" v-model="IDnumber" placeholder="身份證字號"> -->
                 </div>
               </div>
@@ -139,7 +140,7 @@
               <div class="row account_row">
                 <div class="col-md-6 col-12">
                   <h4>出生 年/月/日</h4>
-                  <h4>1994/9/4</h4>
+                  <h4>{{ BIRTHDATE }}</h4>
                   <!-- <input type="text" class="f-text nomargin" id="name" v-model="birthdate" placeholder="YYYY/MM/DD"> -->
                 </div>
               </div>
@@ -151,8 +152,9 @@
                     type="text"
                     class="f-text nomargin"
                     id="name"
-                    v-model="email"
-                    placeholder="abc@a"
+                    v-model="EMAIL"
+                    placeholder="請輸入聯絡電子郵件" required
+                    @blur="validateEmail"
                   />
                 </div>
 
@@ -162,8 +164,9 @@
                     type="text"
                     class="f-text nomargin"
                     id="name"
-                    v-model="phonenumber"
-                    placeholder="手機號碼"
+                    v-model="PHONE"
+                    placeholder="請輸入聯絡電話" required
+                    @blur="validatePhone"
                   />
                 </div>
               </div>
@@ -172,12 +175,14 @@
                 <div class="col-12">
                   <h4>變更頭像</h4>
                   <!-- <input type="text" class="f-text nomargin" id="name" placeholder="大頭照.jpg"> -->
-                  <portrait-crop></portrait-crop>
+                  <!-- <portrait-crop :dataURL="PORTRAIT"></portrait-crop> -->
+                  <portrait-crop @result-changed="onResultChanged"></portrait-crop>
                 </div>
               </div>
 
               <div class="account-row textalignright">
-                <button type="button" class="btn-m btn-color-green">
+                <!-- <button type="button" class="btn-m btn-color-green"> -->
+                  <button type="button" class="btn-m btn-color-green" @click="saveInput">
                   儲存
                 </button>
               </div>
@@ -193,19 +198,28 @@
 
 
 <script>
-import PortraitCrop from "../components/PortraitCrop.vue";
 import navbar from "./navbar.vue";
+import axios from 'axios';
+import PortraitCrop from "../components/PortraitCrop.vue";
+import { nextTick } from 'vue'
+// import Address from "ipaddr.js";
 
 export default {
   data() {
     return {
-      name: "",
-      nickname: "",
-      gender: "",
-      IDnumber: "",
-      birthdate: "",
-      email: "",
-      phonenumber: "",
+      userId:"",
+      ADDRESS: "",
+      ACCOUNT:"",
+      FULL_NAME: "",
+      NICKNAME:"",
+      GENDER:"",
+      ID_NUMBER:"",
+      BIRTHDATE:"",
+      EMAIL:"",
+      PHONE:"",
+      PORTRAIT:"",
+      formData: {},
+      jsonData: [],
 
       accountNavs: [
         { nav: "個人資訊", con: "./account_user.html" },
@@ -228,41 +242,122 @@ export default {
   },
 
   mounted() {
-    // const uploadButtons = document.querySelectorAll('input[type="file"]');
+    const userId = this.getCookieValue("id");
+    // console.log(userId);
+    
+    const getUserData = () => {
+    const url = "http://localhost/TGD104G1/public/API/account_user.php";
+    const data = new FormData();
+    data.append('user_id', userId)
 
-    // uploadButtons.forEach((button) => {
-    //   button.addEventListener("change", (event) => {
-    //     const uploadGroup = button.closest(".uploading");
+    axios
+      .post(url, data)
+      .then((response) => {
+        this.jsonData = response.data;
+        this.accountInfo();
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    };
 
-    //     const picArea = uploadGroup.querySelector(".pic-area-box");
-        // const picImg = picArea.querySelector('img');
-        // const picName = picArea.querySelector("span");
+    getUserData();
 
-        // const file = event.target.files[0];
 
-        // if (file.type.startsWith("image/")) {
-        //   const reader = new FileReader();
-
-        //   reader.onload = () => {
-            // picImg.src = reader.result;
-            // picName.textContent = file.name;
-
-            // picImg.style.width = '100%'
-            // picImg.style.height = '100%'
-            // picImg.style.maxWidth = '300px'
-            // picImg.style.maxHeight = '100px'
-            // console.log(file.name);
-        //   };
-
-        //   reader.readAsDataURL(file);
-        // } else {
-        //   picImg.src = "";
-        //   picName.textContent = file.name;
-    //     // }
-    //   });
-    // });
   },
   methods: {
+
+      getCookieValue(cookieName) {
+        const cookies = document.cookie.split("; ");
+        for (let i = 0; i < cookies.length; i++) {
+          const cookie = cookies[i].split("=");
+          if (cookie[0] === cookieName) {
+            return cookie[1];
+          }
+        }
+        return null;
+      },
+
+      accountInfo() {
+        this.userId = this.jsonData[this.jsonData.length - 1].ID;
+        this.ADDRESS = this.jsonData[this.jsonData.length - 1].ADDRESS;
+        this.ACCOUNT = this.jsonData[this.jsonData.length - 1].ACCOUNT;
+        this.FULL_NAME = this.jsonData[this.jsonData.length - 1].FULL_NAME;
+        this.NICKNAME = this.jsonData[this.jsonData.length - 1].NICKNAME;
+        this.GENDER = this.jsonData[this.jsonData.length - 1].GENDER;
+        this.ID_NUMBER = this.jsonData[this.jsonData.length - 1].ID_NUMBER;
+        this.BIRTHDATE = this.jsonData[this.jsonData.length - 1].BIRTHDATE;
+        this.EMAIL = this.jsonData[this.jsonData.length - 1].EMAIL;
+        this.PHONE = this.jsonData[this.jsonData.length - 1].PHONE;
+        this.PORTRAIT = this.jsonData[this.jsonData.length - 1].PORTRAIT;
+        // console.log(this.NICKNAME);
+      },
+
+      validateEmail() {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(this.email)) {
+          this.emailValid = false;
+          return;
+        }
+        this.emailValid = true; 
+      },
+
+      validatePhone() {
+        const phoneRegex = /^09\d{8}$/;
+        if (!phoneRegex.test(this.phoneNum)) {
+          this.phoneValid = false;
+        } else {
+          this.phoneValid = true;
+        }
+      },
+
+      onResultChanged(result) {
+        // console.log(result.dataURL);
+        this.dataURL = result.dataURL;
+        // console.log(this.dataURL);
+      },
+
+      saveInput() {
+        const userId = this.getCookieValue("id");
+        const NICKNAME = this.NICKNAME;
+        const EMAIL = this.EMAIL;
+        const PHONE = this.PHONE;
+        const PORTRAIT = this.dataURL;
+
+        const url = 'http://localhost/TGD104G1/public/API/updateAccount.php';
+        const data = new FormData();
+        data.append('user_id', userId);
+        data.append('NICKNAME', this.NICKNAME);
+        data.append('EMAIL', this.EMAIL);
+        data.append('PHONE', this.PHONE);
+        data.append('PORTRAIT', PORTRAIT);
+
+        axios.post(url, data)
+        .then(response => {
+          this.jsonData = response.data;
+          this.accountInfo();
+          // console.log(NICKNAME);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+
+        axios.post('http://localhost/TGD104G1/public/API/updateAccount.php', data)
+        .then(function (response) {
+          console.log(response.data); // 輸出回應資料
+          if (response.data.status === 'success') {
+            alert(response.data.message); // 顯示儲存成功訊息
+          } else {
+            alert('儲存失敗'); // 顯示儲存失敗訊息
+          };
+          nextTick(() => {
+            this.mounted(); // 重新調用 mounted 函數
+            console.log("成功mounted")
+          });
+        });
+      },
+      
+      // 登出功能清除 cookie
       clearCookies() {
       // 取得目前的 cookie 字串
       let cookies = document.cookie;
@@ -276,6 +371,11 @@ export default {
         document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/`;
       }
     },
+  },
+  watch: {
+    async getResult() {
+      this.dataURL = this.$refs.PortraitCrop.getResult(dataURL);
+    }
   },
   computed: {},
   components: {

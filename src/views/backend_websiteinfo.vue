@@ -293,6 +293,7 @@ export default {
 
   },
   methods:{
+    //建立一個fromdata 
     save1(){
       const formData = new FormData()
       formData.append('city', this.city)
@@ -300,7 +301,8 @@ export default {
       formData.append('village', this.village)
 
       axios
-        .post('http://localhost/TGD104G1/public/API/webinfo.php', formData)
+      // 這裡是 縣市鄉
+        .post('http://localhost/TGD104G1/public/API/officeinfo.php', formData)
         // .post('https://tibamef2e.com/tgd104/g1/webinfo.php', formData)
         .then(response => {
             // this.jsonData = response.data;
@@ -315,7 +317,7 @@ export default {
       this.village='';
     },
     save2(){
-
+        //這裡是 人口 戶籍 
       const formData2 = new FormData()
       formData2.append('population', this.population)
       formData2.append('home_num', this.home_num)
@@ -330,32 +332,16 @@ export default {
             console.log(error);
         });
 
-      this.population='';
-      this.home_num='';
+      this.population = '' ;
+      this.home_num = '' ;
     },
-    onChangeFileUpload(){
-        this.file = this.$refs.file.files[0];
-        console.log(this.file);
-    },
+    // onChangeFileUpload(){
+    //     this.file = this.$refs.file.files[0];
+    //     console.log(this.file);
+    // },
     save3(){
-      //  const formData3 = new FormData();
-            
-            // formData3.append('ProductImage', input_file.files[0]);
-
-        //     let formData3 = new FormData();
-        //     formData3.append('file', this.file);
-
-        // axios
-        // .post('http://localhost/howlegazaiVue2/public/API/uploadBanner.php', formData3)
-        // .then(response => {
-        //     // this.jsonData = response.data;
-        //     console.log(response.data);
-        // })
-        // .catch(error => {
-        //     console.log(error);
-        // });
-
-        
+      
+      // 這裡是首頁背景圖
       let formData = new FormData()
       formData.append('image', this.pic)
       axios.post('http://localhost/TGD104G1/public/API/uploadBanner.php', formData)

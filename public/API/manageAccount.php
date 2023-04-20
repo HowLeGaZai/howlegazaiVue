@@ -5,7 +5,7 @@
 
 
     //建立SQL語法
-    $sql = "UPDATE USER SET STATUS = 0 , UPDATE_DATE = CURDATE() WHERE ID = ?";
+    $sql = "UPDATE USER SET USER_STATUS = 0 , UPDATE_DATE = CURDATE() WHERE ID = ?";
     
     $request_body = file_get_contents('php://input');
     $data = json_decode($request_body, true);

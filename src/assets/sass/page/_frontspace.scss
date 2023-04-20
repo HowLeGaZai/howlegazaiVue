@@ -106,13 +106,14 @@
         }
         li{
             font-size: 1.1em;
-            // padding-left: 30px;
+            padding-left: 30px;
             line-height: 1.6;
             @include breakpoint($grid-breakpoints, 'sm') {
                 padding-left: 0px;
             }
             .space-map{
                 margin: 20px;
+                // width: auto;
                 max-width: 350px;
                 @include breakpoint($grid-breakpoints, 'md') {
                     margin: 20px;
@@ -121,6 +122,9 @@
                     margin: 0 auto;
                 }
             }
+        }
+        .address{
+            margin-left: 20px;
         }
     }
 

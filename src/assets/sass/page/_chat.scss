@@ -257,6 +257,13 @@
   .row {
     text-align: left;
   }
+  .chat_banner{
+    text-align: left;
+    margin: 50px 0;
+    .f-label{
+      text-align: left;
+    }
+  }
 
   #container {
     display: flex;
@@ -308,8 +315,15 @@
   }
 
   .confirm-btn {
-    width: 160px;
-    margin: 50px auto;
+    // width: 160px;
+    // margin: 50px auto;
+    align-content: center;
+    margin-top:50px;
+    text-align: center;
+    &>button{
+      margin: 0 10px;
+    }
+
   }
 }
 
@@ -436,11 +450,77 @@
     overflow: unset;
     white-space: normal;
     line-height: 2;
-    font-size: 22px;
+    // font-size: 22px;
     margin-top: 30px;
 
     @include breakpoint($grid-breakpoints, 'sm') {
       font-size: 18px;
     }
   }
+}
+
+.preview_toolbar{
+  width: 100%;
+  height: 130px;
+  padding: 20px auto;
+  border-bottom: solid 5px $green;
+  background-color: rgba(0, 0, 0, 0.8);
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  position: fixed;
+  z-index: 100;
+  @include breakpoint($grid-breakpoints, 'md') {
+    height: 150px;
+    padding: 10px 30px;
+    text-align: center;
+  }
+  p{
+    color: $white;
+    font-size: 28px;
+    @include breakpoint($grid-breakpoints, 'md') {
+      font-size: 18px;
+      word-break: break-all;
+      white-space:pre-wrap;
+    }
+
+    a{
+      display: inline-flex;
+      color: $green;
+      &:hover{
+        color: $darkorange;
+        // color: lighten($green, 30%);
+      }
+      &:last-child{
+        color: $white;
+        &:hover{
+          color: $gray;
+          // color: lighten($green, 30%);
+        }
+      }
+    }
+  }
+}
+
+.chat-article-new {
+  overflow: visible;
+  white-space: normal;
+  text-overflow: unset;
+  word-wrap: break-word;
+  p{
+    overflow: visible;
+    white-space: normal;
+    text-overflow: unset;
+    word-wrap: break-word;
+    
+    span{
+      overflow: visible;
+      white-space: normal;
+      text-overflow: unset;
+      word-wrap: break-word;
+    }
+  }
+  
 }

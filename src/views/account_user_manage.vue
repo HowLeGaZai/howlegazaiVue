@@ -54,47 +54,28 @@
                         <tr>
                             <th v-for="datasTr in datasTrs" >{{datasTr}}</th>
                         </tr>
-                        <tr v-for="data in datas" >
+                        <tr v-for="(data,index) in datas" :key="index">
                             <td data-label="No.">
-                              {{data[0]}}
+                              {{index+1}}
                               <!-- <button type="button" class="btn-icon"><i class="bi bi-pencil-square btn-font-color-green"></i></button>
                               <button type="button" class="btn-icon"><i class="bi bi-x-circle-fill btn-font-color-green"></i></button> -->
                             </td>
                             <td data-label="姓名">{{data[1]}}</td>
                             <td data-label="帳號">{{data[2]}}</td>
                             <td data-label="電子信箱">{{data[3]}}</td>
-                            <td data-label="編輯">
+                            <!-- <td data-label="編輯">
                               <button type="button" class="btn-icon"><i class="bi bi-pencil-square btn-font-color-green"></i></button>
                               <button type="button" class="btn-icon"><i class="bi bi-x-circle-fill btn-font-color-green"></i></button>
-                            </td>
-                            <td data-label="刪除"><button type="button" class="btn-icon"><i class="bi bi-x-circle-fill btn-font-color-green"></i></button></td>
+                            </td> -->
+                            <td data-label="刪除">
+                                <button type="button" class="btn-icon"><i class="bi bi-x-circle-fill btn-font-color-green"></i></button></td>
                         </tr>
                     
                       </table>  
 
-                
-                     
-                      <!-- <button @click="content='add-member'" @is_show-update="isShow" >新增</button> -->
-                      <button class="btn-m btn-color-green marginbottom20"  @click="content='add-member'">新增</button>
+                      <button class="btn-m btn-color-green marginbottom20"  @click="showChild = !showChild">新增</button>
                       
-
-
-
-                      <component :is="content" @value-update="getValFromChild"></component>
-                      <!-- <p>{{inputValFromChild}}</p> -->
-                      <!-- <add-member @value-update="getValFromChild"></add-member> -->
-
-               
-
-                
-
-                      
-              
-                  
-
-
-
-
+                      <add-member v-if="showChild" :show="booleenforShow"  @value-update="getValFromChild"></add-member>
 
                 </section>
             </div>
@@ -109,7 +90,7 @@ import navbar from './navbar.vue';
 import addMember from './addMember.vue';
 
 export default {
-  data(){
+            data(){
                    return {
                     name:'',
                     nickname:'',   
@@ -119,7 +100,8 @@ export default {
                     email:'',
                     phonenumber:'',
 
-                    // isShow:false,
+                    showChild:false,
+                    booleenforShow:true,
 
                     accountNavs:[{nav:'個人資訊',con:'./account_user.html'},
                     {nav:'成員管理',con:'./account_user_manage_3.html'},
@@ -130,7 +112,6 @@ export default {
                     {nav:'團購管理'},
                     {nav:'變更密碼'}],
 
-
                     mainMenus:[{nav:'聯絡里辦',con:'./contact.html'},
                     {nav:'最新消息',con:'./news.html'},
                     {nav:'討論區',con:'./chat.html'},
@@ -138,7 +119,7 @@ export default {
                     ],
 
                     datasTrs:[
-                        'No.', '姓名', '帳號', '電子信箱', '編輯',  '刪除'
+                        'No.', '姓名', '帳號', '電子信箱', '刪除'
                     ],
 
                     datas:[
@@ -147,51 +128,28 @@ export default {
                     ],
 
                     content:'',
-                inputValFromChild: [{}],
+                    inputValFromChild: [{}],
                
-                   }
-
-                   
-
-                   },
-    
-    
-                      
-                  
-              mounted(){
-                       
-                   },
-               methods: {
-                    
-                  
-
-
-                   
-                    getValFromChild(data,val) {
-                this.inputValFromChild = JSON.parse(data);
-                let data2 = JSON.parse(data);
-                // this.datas.push(data);
-                // console.log({"0":'3',"1": data2.first_name+data2.last_name,"2":data2.Account,"3":data2.email});
-                let data3 = {"0":'3',"1": data2.first_name+data2.last_name,"2":data2.Account,"3":data2.email};
-                this.datas.push(data3);
-                // console.log(this.datas);
-                console.log(this.datas);
-                // alert(val)
-                      // alert('傳上來的'+data)
-                      /*
-                      // alert(val);
-                      if (val) {
-                            // console.log('111');
-                      // this.isShow = true;
-                    } else {
-                      // console.log("Test");
-                      // this.isShow = true;
                     }
-                    */
+
+            },
+    
+            methods: {
+
+                getValFromChild({data,toggleShow}) {
+                this.inputValFromChild = JSON.parse(data);
+                let dataNew = JSON.parse(data);
+                
+                // console.log({"0":'3',"1": data2.first_name+data2.last_name,"2":data2.Account,"3":data2.email});
+                let dataAdd = {"0":'3',"1": dataNew.first_name+dataNew.last_name,"2":dataNew.Account,"3":dataNew.email};
+                this.datas.push(dataAdd);
 
 
+                console.log(toggleShow);
 
-                    },
+                this.showChild = toggleShow;
+               
+                },
                     clearCookies() {
                         // 取得目前的 cookie 字串
                         let cookies = document.cookie;

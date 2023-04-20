@@ -187,6 +187,9 @@ methods: {
         }
       }
       this.result.dataURL = canvas.toDataURL();
+     
+      this.sendDataToParent1();
+      this.sendDataToParent2();
       // // 增加浮水印
       // ctx.fillText(watermark, canvas.width / 8, canvas.height / 2);
       // ctx.fillText(watermark, canvas.width / 8, canvas.height / 1.7);
@@ -195,9 +198,10 @@ methods: {
     };
 
     // canvas 圖片 = 上傳裁切後的圖片網址
-    this.result.dataURL = base64;
+    // this.result.dataURL = base64;
     this.result.blobURL = URL.createObjectURL(blob);
     this.isShowModal = false;
+
   },
   
   /**
@@ -219,6 +223,13 @@ methods: {
    */
   ready() {
     console.log('Cropper is ready.')
+  },
+
+  sendDataToParent1() {
+    this.$emit('data-updated1',this.result.dataURL);
+  },
+  sendDataToParent2() {
+    this.$emit('data-updated2',this.result.dataURL);
   },
 },
 mounted() {

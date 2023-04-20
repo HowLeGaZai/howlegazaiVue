@@ -5,10 +5,10 @@
 
 
     //建立SQL語法
-    $sql = "SELECT U.UPDATE_DATE, U.ID, U.FULL_NAME,U.ACCOUNT, L.NAME ,CREATEDATE  FROM USER U 
+    $sql = "SELECT U.UPDATE_DATE, U.ID, U.FULL_NAME,U.ACCOUNT, L.NAME AS LEVEL ,CREATEDATE  FROM USER U 
             JOIN T_USER_LEVEL L
             ON U.USER_LEVEL = L.ID 
-            WHERE U.STATUS = 0 ";
+            WHERE U.USER_STATUS = 0 ";
     
     // $request_body = file_get_contents('php://input');
     // $data = json_decode($request_body, true);

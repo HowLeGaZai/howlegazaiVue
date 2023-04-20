@@ -14,7 +14,8 @@
                    
                   </div>
                   
-                  <h2><router-link :to="{name:'chat_info'}">{{chatTopic.TITLE}}</router-link></h2>
+                  <!-- <h2><router-link :to="{name:'chat_info'}">{{chatTopic.TITLE}}</router-link></h2> -->
+                  <h2>{{chatTopic.TITLE}}</h2>
                   <p>{{chatTopic.CONTENT}}</p>
               </section>
               <div class="image list_pic">
