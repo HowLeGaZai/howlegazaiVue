@@ -44,7 +44,8 @@
                                     <h5 style="margin-bottom:5px">文章縮圖</h5>
                                 </label>
                                 <div>
-                                    <picture-crop v-model="pic"></picture-crop>
+                                    <PictureCropChatbanner @pic="sendnewspic"></PictureCropChatbanner>
+                                    <!-- <PictureCropChatbanner @result-changed="onResultChanged"></PictureCropChatbanner> -->
 
                                     <!-- <div class="uploading">
                                             <label class="uploadpic" for="vrep-pic">
@@ -71,13 +72,13 @@
                         <div id="container">
                             <!-- <div id="editor">
                                 </div> -->
-                            <Tinymce v-model="content"></Tinymce >
+                            <Tinymce v-model="content"></Tinymce>
                             <div>
-                                <ckeditor :editor="editor"  />
+                                <ckeditor :editor="editor" />
                             </div>
                         </div>
 
-                        <button type="button" class="savebtn btn-10-s btn-color-green">預覽</button>
+                        <button type="button" class="savebtn btn-10-s btn-color-green" @click="addNews">預覽</button>
                     </section>
                 </div>
             </section>
@@ -111,17 +112,23 @@
 import backendNavbar from './backendNavbar.vue';
 import backCalender from '../components/BackCalender.vue';
 import BackLeftNav from '../components/BackLeftNav.vue';
+import PictureCropChatbanner from "@/components/PictureCropChatbanner.vue";
 // import $ from 'jquery'
 
 import Footer from './Footer.vue';
 import Tinymce from "@/components/Tinymce.vue";
 
-import PictureCrop from '../components/PictureCrop.vue';
+
 // import { response } from 'express';
 
 export default {
     components: {
-        backendNavbar, Footer, PictureCrop, Tinymce, backCalender, BackLeftNav
+        backendNavbar,
+        Footer,
+        PictureCropChatbanner,
+        Tinymce,
+        backCalender,
+        BackLeftNav
     },
     data() {
         return {
@@ -132,13 +139,21 @@ export default {
 
         };
     },
-    method: {
+    methods: {
+        sendnewspic(data) {
+            this.pic = data;
+        },
+    //     onResultChanged(result) {
+    //       this.PdataURL = result.dataURL;
+    //   },
         addNews() {
+           
             const formData = new FormData();
             formData.append('category', this.category);
             formData.append('title', this.title);
             formData.append('pic', this.pic);
             formData.append('content', this.content);
+            console.log(this.pic);
 
             axios
                 .post('http://localhost/TGD104G1/public/API/newsAdd.php', formData)
@@ -151,14 +166,17 @@ export default {
                 });
 
 
-            this.category = '';
-            this.title = '';
-            this.pic = '';
-            this.content = '';
+            // this.category = '';
+            // this.title = '';
+            // this.pic = '';
+            // this.content = '';
 
 
 
-        }
+        },
+
+
+
     },
     mounted() {
 
