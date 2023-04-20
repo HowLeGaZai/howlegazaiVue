@@ -63,11 +63,12 @@
                             <td data-label="姓名">{{data[1]}}</td>
                             <td data-label="帳號">{{data[2]}}</td>
                             <td data-label="電子信箱">{{data[3]}}</td>
-                            <td data-label="編輯">
+                            <!-- <td data-label="編輯">
                               <button type="button" class="btn-icon"><i class="bi bi-pencil-square btn-font-color-green"></i></button>
                               <button type="button" class="btn-icon"><i class="bi bi-x-circle-fill btn-font-color-green"></i></button>
-                            </td>
-                            <td data-label="刪除"><button type="button" class="btn-icon"><i class="bi bi-x-circle-fill btn-font-color-green"></i></button></td>
+                            </td> -->
+                            <td data-label="刪除">
+                                <button type="button" class="btn-icon"><i class="bi bi-x-circle-fill btn-font-color-green"></i></button></td>
                         </tr>
                     
                       </table>  
@@ -118,7 +119,7 @@ export default {
                     ],
 
                     datasTrs:[
-                        'No.', '姓名', '帳號', '電子信箱', '編輯',  '刪除'
+                        'No.', '姓名', '帳號', '電子信箱', '刪除'
                     ],
 
                     datas:[

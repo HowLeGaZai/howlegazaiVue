@@ -1,25 +1,25 @@
 <template>
-    <navbar></navbar>
-         <main class="chat_info">
-            <router-link to="/chat" custom v-slot="{ navigate }">
-                <button class="btn-prepage font-green" @click="navigate" role="link">
-                  <i class=" bi bi-caret-left-fill font-green"></i>返回【上一頁】
-                </button>
-            </router-link>
-        <!-- <button class="btn-prepage font-green" onclick="location.href='./chat.html'">
-          <i class=" bi bi-caret-left-fill font-green"></i>返回【上一頁】</button> -->
-        <div class="chat_info_topic">
-          <h1>{{ title }}</h1>
-          <div class="add_inf">
-            <div class="userbtn" id="">
-              <img src="../assets/img/user_pic2.png" alt="" class="user_pic" />
-            </div>
-            <h4>Emma</h4>
-            <h4>發布日期：5小時前</h4>
-          </div>
-          <div :class="['tag',addTagClass(type)]">{{ type }}</div>
-        </div>
-        <div class="chat-article" v-html="tinymceContent"></div>
+  <div class="preview_toolbar">
+    <p>**** 此為預覽頁面，請記得點擊<a href="#">發布討論區文章</a>完成刊登，或是<a href="#">取消</a> ****</p>
+  </div>
+      <navbar></navbar>
+      <main class="chat_info">
+     <!-- <button class="btn-prepage font-green" onclick="location.href='./chat.html'">
+       <i class=" bi bi-caret-left-fill font-green"></i>返回【上一頁】</button> -->
+     <div class="chat_info_topic">
+       <h1>{{ title }}</h1>
+       <div class="add_inf">
+         <div class="userbtn" id="">
+           <img src="../assets/img/user_pic2.png" alt="" class="user_pic" />
+         </div>
+         <h4>Emma</h4>
+         <h4>發布日期：5小時前</h4>
+       </div>
+       <div :class="['tag',addTagClass(type)]">{{ type }}</div>
+     </div>
+     <div class="chat-article" v-html="tinymceContent"></div>
+
+    </main>
         <!-- <TinymceContent ref="TinymceContent"></TinymceContent> -->
         <!-- <div class="chat-article"> -->
           <!-- img的容器設定為原大小的95%
@@ -37,7 +37,7 @@
           
         <!-- </div> -->
     
-        <chat-comment   @message="addComment"></chat-comment>
+        <!-- <chat-comment   @message="addComment"></chat-comment> -->
     <!-- =========================================== -->
         <!-- <div class="comment-list">
           <div class="chat-commit">
@@ -137,18 +137,15 @@
           </div>
     </div> -->
     <!-- =========================================== -->
-      <chat-commentlist :sendToList="data"></chat-commentlist>
+      <!-- <chat-commentlist :sendToList="data"></chat-commentlist>
     
         <div class="confirm-btn">
              <router-link to="/chat" custom v-slot="{ navigate }">
                     <button class="btn-m btn-color-green" @click="navigate" role="link">返回上一頁</button>
             </router-link>
-          <!-- <button type="button" class="btn-m btn-color-green" onclick="location.href='./chat.html'">返回上一頁</button> -->
-        </div>
-    
-    
-    
-      </main>
+          <button type="button" class="btn-m btn-color-green" onclick="location.href='./chat.html'">返回上一頁</button>
+        </div> -->
+  
       <Footer></Footer>
     </template>
     
@@ -172,6 +169,7 @@
             title:'',
             type:'',
             tinymceContent:'',
+            PictureCropChatbanner:"",
 
             // chatinfo:'',
                 // chatinfo: [
@@ -221,6 +219,7 @@
          this.title = sessionStorage.getItem('form-title');
          this.type = sessionStorage.getItem('form-type');
          this.tinymceContent = sessionStorage.getItem('form-tinymceContent');
+         this.PictureCropChatbanner = sessionStorage.getItem('form-PictureCropChatbanner');
     },
     
         

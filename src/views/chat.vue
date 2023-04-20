@@ -9,7 +9,10 @@
         <button class="btn-m btn-color-green" @click="postsearch">搜尋</button>
       </div>
       <div class="add-chat">
-        <button class="btn-m btn-color-green" @click="preview()" role="link" >發起討論</button>
+        <!-- <button class="btn-m btn-color-green" @click="preview()" role="link" >發起討論</button> -->
+        <router-link :to="{ path: '/chat_new/' + id }"  >
+          <button class="btn-m btn-color-green">發起討論</button>
+        </router-link>
       </div>
 
       <div class="desktop-filter" id="chat-desktop-filter">
@@ -118,6 +121,7 @@ export default {
       chatTopics: [],
       // displayedTopics:[],
       createChat: false,
+      id: new Date().getTime() // 獲取當前時間的 ISO 字符串
     };
   },
   mounted() {
@@ -189,11 +193,11 @@ export default {
     getFormatDate(val) {
       return formatDate(val);
     },
-    preview() {
-      const Id = 123;
-      // this.$router.push({ name: 'chat_new', params: { Id: Id } })
-      this.$router.push({ name: "chat_new", params: { Id: Id } });
-    },
+    // preview() {
+    //   const Id = 123;
+    //   // this.$router.push({ name: 'chat_new', params: { Id: Id } })
+    //   this.$router.push({ name: "chat_new", params: { Id: Id } });
+    // },
 
     getCookieValue(cookieName) {
       // 讀取指定名稱的 Cookie 值

@@ -29,10 +29,15 @@
         </select>
       </div>
     </div>
-    
+
     <div id="container">
       <label for="content" class="f-label">討論內容</label>
       <Tinymce ref="Tinymce" v-model="tinymceContent" v-model-save="tinymceContent"></Tinymce>      
+    </div>
+
+    <div class="chat_banner">
+      <label class="f-label">討論區預覽圖（未上傳則為預設）</label>
+      <PictureCropChatbanner @result-changed="onResultChanged"></PictureCropChatbanner>
     </div>
 
     <div class="confirm-btn">
@@ -82,14 +87,19 @@
 <script>
 import navbar from "./navbar.vue";
 import Footer from "./Footer.vue";
+import PictureCropChatbanner from "@/components/PictureCropChatbanner.vue";
 import Tinymce from "@/components/Tinymce.vue";
 import { ref } from "vue";
-
+import { useRouter } from 'vue-router'
 
 export default {
+  created() {
+    this.pathId = this.$route.params.Id;
+  },
   components: {
     navbar,
     Footer,
+    PictureCropChatbanner,
     Tinymce,
 
   },
@@ -125,6 +135,13 @@ export default {
   }
 },
   methods: {
+      onResultChanged(result) {
+          this.dataURL = result.dataURL;
+      },
+      getpageid(){
+        const router = useRouter();
+        console.log(router);
+      },
       gotoPreview() {
       
       // 檢查必填欄位是否已經填寫
@@ -185,11 +202,19 @@ export default {
       sessionStorage.setItem('form-title', this.title);
       sessionStorage.setItem('form-type', this.type);
       sessionStorage.setItem('form-tinymceContent', this.tinymceContent);
+      sessionStorage.setItem('form-PictureCropChatbanner', this.dataURL);
 
       // 導向預覽頁面
-      // this.$router.push('/chat_info/preview');
+      this.$router.push('/chat_info/preview');
       const Id = 123;
       this.$router.push({ name: 'chat_preview', params: { Id: Id } });
+      // 導向預覽頁面
+      // this.$router.push({ 
+      //   name: 'chat_preview', 
+      //   params: { 
+      //     Id: this.pathId // 將當前頁面的 id 值作為參數傳遞給下一個頁面
+      //   } 
+      // });
     },
   
       // previewChatinfo(){

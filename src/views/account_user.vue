@@ -356,6 +356,21 @@ export default {
           });
         });
       },
+      
+      // 登出功能清除 cookie
+      clearCookies() {
+      // 取得目前的 cookie 字串
+      let cookies = document.cookie;
+      // 將 cookie 字串分割成每個 cookie
+      let cookieArr = cookies.split("; ");
+      // 迭代 cookieArr，將每個 cookie 都設置過期時間為過去的日期，使其被刪除
+      for (let i = 0; i < cookieArr.length; i++) {
+        let cookie = cookieArr[i];
+        let eqPos = cookie.indexOf("=");
+        let name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+        document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/`;
+      }
+    },
   },
   watch: {
     async getResult() {
