@@ -17,10 +17,10 @@
               <div class="displayflex justifycontent">
                 <div class="dropdown">
                   <label for="selecte" class="f-label">成員分類</label>
-                  <select name="" id="selecte" class="f-select">
-                    <option value="1">-選擇-</option>
-                    <option value="2">戶長</option>
-                    <option value="3">會員</option>
+                  <select name="" id="selecte" class="f-select" v-model="selectLevel">
+                    <option value="">-選擇-</option>
+                    <option value="戶長">戶長</option>
+                    <option value="成員">成員</option>
                   </select>
                 </div>
               </div>
@@ -35,7 +35,7 @@
                       <td>等級</td>
                       <td>申請日期</td>
                     </tr>
-                    <tr v-for="account in jsonData">
+                    <tr v-for="account in filteredItems">
                       <td>{{account[0]}}</td>
                       <td>{{account[1]}}</td>
                       <td>{{account[2]}}</td>
@@ -156,7 +156,8 @@ export default {
   },
   data(){
       return {
-              jsonData: null
+              jsonData: [],
+              selectLevel:"",
               }
   },
   mounted() {
@@ -202,6 +203,18 @@ export default {
 
 
 
+  },
+
+  computed: {
+    filteredItems() {
+      if(this.selectLevel === ""){
+        return this.jsonData;
+      }else{
+        return this.jsonData.filter(
+          (jsonData) => jsonData.LEVEL === this.selectLevel
+        );
+      }
+    },
   },
 };
 </script>
