@@ -162,7 +162,7 @@ export default {
       const cookieValue = this.getCookieValue('account');
       const uusername = this.getCookieValue('name');
       const unickname = this.getCookieValue('nickname');
-      let uportrait = sessionStorage.getItem("portrait");
+      let uportrait = localStorage.getItem("portrait");
     
         // 判斷 Cookie 是否存在
         if (cookieValue !== null) {

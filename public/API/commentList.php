@@ -2,10 +2,15 @@
 
     include("conn.php");
 
+    $chatID = $_POST['chatID'];
+
+
     $sql = "SELECT C.CHAT_ID,U.PORTRAIT, C.USER_ID, U.NICKNAME, C.CREATE_TIME, C.CONTENT  
             FROM COMMENT C 
             JOIN USER U 
-            ON C.USER_ID = U.ID; ";
+            ON C.USER_ID = U.ID 
+            WHERE C.CHAT_ID LIKE '%$chatID%'
+            order by C.CREATE_TIME desc";
 
     $statement = $pdo->query($sql);
 

@@ -97,7 +97,7 @@ export default {
             document.cookie="account=" + login_account;
             document.cookie="nickname=" + login_nickname;
             // document.cookie="portrait=" + login_pic;
-            sessionStorage.setItem("portrait", login_pic);
+            localStorage.setItem("portrait", login_pic);
           }
         })
          .catch(error => {
