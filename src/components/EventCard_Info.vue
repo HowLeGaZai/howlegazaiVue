@@ -91,13 +91,18 @@ import axios from 'axios';
 export default {
     data() {
       return {
-        activity: null
-      }
+        spaceJsonData:[],
+        spaceData:[],
+        jsonData:[],
+        timeRanges:[],
+        data:[],
+        selectDate:'',
+        }
     },
     mounted() {
         axios
         
-        .get('http://localhost/howlegazaiVue2/public/API/activity.php', {})
+        .get('http://localhost/TGD104G1/public/API/activity.php', {})
         // .get('/API/activity.php')
         // .get('https://tibamef2e.com/tgd104/g1/activity.php')
         .then(response => {
@@ -108,16 +113,231 @@ export default {
             console.log(error);
         });
     },
-    // mounted() {
-    //   // 從 API 獲取 activity 的詳細內容
-    //   const activityId = this.$route.params.id;
-    //   axios.get(`/api/activity/${activityId}`)
-    //     .then(response => {
-    //       this.activity = response.data;
-    //     })
-    //     .catch(error => {
-    //       console.log(error);
-    //     });
-    // }
+    methods: {
+        async getSpaceData() {
+            await  axios
+            //  htdocs的環境下測試
+            .get('http://localhost/TGD104G1/public/API/activity.php')
+                // .get('https://tibamef2e.com/tgd104/g1/accountOverview.php')
+            .then(response => {
+                this.spaceJsonData = response.data;
+                console.log('abc',this.spaceJsonData);
+            })
+            .catch(error => {
+                // console.log(error);
+            });
+
+
+            let space = sessionStorage.getItem("space");
+            
+
+            for(let i=0;i<this.spaceJsonData.length;i++){
+            // console.log(i,this.spaceJsonData[i]);
+            if(space == this.spaceJsonData[i][1]){
+                // console.log('空間資料',this.spaceJsonData[i]);
+                this.spaceData = this.spaceJsonData[i];
+                console.log('空間資料',this.spaceData);
+                }else{
+
+                }
+            }
+        },
+    },
+    methods:{
+    async getSpaceData() {
+              await  axios
+                //  htdocs的環境下測試
+                    .get('http://localhost/TGD104G1/public/API/space.php')
+                        // .get('https://tibamef2e.com/tgd104/g1/accountOverview.php')
+                    .then(response => {
+                        this.spaceJsonData = response.data;
+                        console.log('abc',this.spaceJsonData);
+                    })
+                    .catch(error => {
+                        // console.log(error);
+                    });
+
+
+                    let space = sessionStorage.getItem("space");
+                    
+
+                    for(let i=0;i<this.spaceJsonData.length;i++){
+                      // console.log(i,this.spaceJsonData[i]);
+                      if(space == this.spaceJsonData[i][1]){
+                        // console.log('空間資料',this.spaceJsonData[i]);
+                        this.spaceData = this.spaceJsonData[i];
+                        console.log('空間資料',this.spaceData);
+                      }else{
+
+                      }
+                    }
+
+                    
+
+    },
+  showData() {
+    
+    // console.log('abc',this.jsonData);
+
+    const timeRange = '8:00-21:59';
+    // console.log(timeRange);
+    const [startTime, endTime] = timeRange.split('-')
+    // console.log(startHour);
+    // console.log(endHour);
+
+    let startHour  = startTime.split(':')[0].trim();
+    let endHour = endTime.split(':')[0].trim();
+    // console.log(startHour);
+    const dataList= [];
+    const dataList_about =[];
+    for (let h = Number(startHour); h <= Number(endHour); h++) {
+      // console.log(h);
+      const time = `${h}:00-${h}:59` // 產生時間範圍字串，例如 '8:00-8:59'
+      if(h<10){
+        const time_about = `0${h}:00:00-0${h}:59:00`;
+        const value_about = 'btn-m btn-color-white timeslot';
+        dataList_about.push({ time_about,value_about});
+      }else{
+        const time_about = `${h}:00:00-${h}:59:00`;
+        const value_about = 'btn-m btn-color-white timeslot';
+        dataList_about.push({ time_about,value_about});
+      }
+      // console.log('dataList_about',dataList_about);
+      // console.log(time);
+      const value ='btn-m btn-color-white timeslot'
+      dataList.push({ time,value });
+      
+    }
+// dataList_about.push(time_about);
+    // console.log('調整格式',dataList_about);
+
+    console.log('確定預約的',this.jsonData);
+    this.data = dataList_about;
+
+
+},
+
+async getData(date) {
+    await axios
+          //  htdocs的環境下測試
+          .get('http://localhost/TGD104G1/public/API/spaceAfterOrder.php')
+              
+              .then(response => {
+                  this.jsonData = response.data;
+                  
+                  // console.log(this.jsonData);
+              })
+              .catch(error => {
+                  // console.log(error);
+              });
+    // console.log('abc',this.jsonData);
+    // alert(date);
+    console.log('選擇的日期是',date);
+    const timeRange = '8:00-21:59';
+    // console.log(timeRange);
+    const [startTime, endTime] = timeRange.split('-')
+    // console.log(startHour);
+    // console.log(endHour);
+
+    let startHour  = startTime.split(':')[0].trim();
+    let endHour = endTime.split(':')[0].trim();
+    // console.log(startHour);
+    const dataList= [];
+    const dataList_about =[];
+    for (let h = Number(startHour); h <= Number(endHour); h++) {
+      // console.log(h);
+      const time = `${h}:00-${h}:59` // 產生時間範圍字串，例如 '8:00-8:59'
+      if(h<10){
+        const time_about = `0${h}:00:00-0${h}:59:00`;
+        const value_about = 'btn-m btn-color-white timeslot';
+        dataList_about.push({ time_about,value_about});
+      }else{
+        const time_about = `${h}:00:00-${h}:59:00`;
+        const value_about = 'btn-m btn-color-white timeslot';
+        dataList_about.push({ time_about,value_about});
+      }
+      
+      // console.log(time);
+      const value ='btn-m btn-color-white timeslot'
+      dataList.push({ time,value });
+      
+    }
+// dataList_about.push(time_about);
+    // console.log('調整格式',dataList_about);
+
+    console.log('確定預約的',this.jsonData);
+    
+
+    const formattedDate = date.replace(/\//g, '-');
+
+    // alert(formattedDate);
+
+    for(let i=0;i<this.jsonData.length;i++){
+        
+        if(formattedDate == this.jsonData[i][0] ){
+          
+            //加入日期判斷
+              // console.log(i,this.jsonData[i][1]);
+                for(let j =0; j<dataList_about.length;j++){
+                  // console.log(j,dataList_about[j].time_about)
+                  if(this.jsonData[i][1] == dataList_about[j].time_about){
+                      
+                      dataList_about[j].value_about = 'btn-m btn-color-white timeslot btn-color-gray';
+                      // console.log(dataList_about[j].value_about);
+                  }else{
+
+                  }
+                }
+                
+
+            
+        }
+    }
+
+
+
+    console.log('dataList',dataList);
+    this.data = dataList_about;
+
+
+},
+
+
+    
+    clickActive(event){
+      const button = event.target;
+      var selectedtime = button.value;
+      console.log(selectedtime);
+      var current = document.getElementsByClassName("active");
+
+      if (current.length > 0) {
+          current[0].className = current[0].className.replace("active", "");
+        }
+
+      
+      
+      button.className += " active";
+
+      sessionStorage.setItem("time", selectedtime);
+
+        const timeStr = selectedtime;
+        const [start, end] = timeStr.split('-');
+        sessionStorage.setItem("start", start);
+        sessionStorage.setItem("end", end);
+
+
+    }
+
+
+  },
+   computed: {
+    isInOrder(item) {
+      return this.data.time.includes(item);
+    }
+  },
+
+   updated(){
+  },
+
 }
 </script>

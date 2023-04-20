@@ -10,11 +10,7 @@
 
                     <h5 class="card-date">活動日期：<span>{{activity.START_DATE}}</span></h5>
                     <h3 class="card-price">{{activity.PRICE}}元</h3>
-                    <!-- <a class="card-link" href="#/activity_info"><h5> 活動詳情<i class="bi bi-arrow-right"></i></h5></a> -->
-                    <router-link to="/activity_info" custom v-slot="{ activity_info }">
-                        <a class="card-link" href="#/activity_info" @click="activity_info"><h5> 活動詳情<i class="bi bi-arrow-right"></i></h5></a>
-                        <!-- <button class="btn-m btn-color-green" @click="navigate" role="link">活動詳情</button> -->
-                    </router-link>
+                    <a class="card-link" @click="spaceInfo(index)" role="link"><h5> 活動詳情<i class="bi bi-arrow-right"></i></h5></a>
                 </div>
             </div>
         </div>
@@ -34,12 +30,18 @@ export default {
         jsonData: null
         }
     },
+    methods: {
+        spaceInfo(index){
+            this.$router.push('/activity_info')
+            // alert(index);
+            console.log(this.jsonData[index]);
+            console.log('活動的名稱是',this.jsonData[index][1]);
+            sessionStorage.setItem("space", this.jsonData[index][1]);
+        }
+    },
     mounted() {
         axios
-        
         .get('http://localhost/TGD104G1/public/API/activity.php', {})
-        //.get('/API/activity.php')
-        //.get('https://tibamef2e.com/tgd104/g1/activity.php')
         .then(response => {
             this.jsonData = response.data;
             console.log(response.data);
