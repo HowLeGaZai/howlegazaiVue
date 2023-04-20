@@ -76,11 +76,12 @@
 
           </div>
 
-          <h2><router-link :to="{ name: 'chat_info' }">{{ chatTopic.TITLE }}</router-link></h2>
-          <p>{{ chatTopic.CONTENT }}</p>
+          <h2><router-link :to="{ name: 'chat_info', params: { Id: chatTopic.ROUTER_ID } }">{{ chatTopic.TITLE }}</router-link></h2>
+          <!-- <h2>{{ chatTopic.TITLE }}</h2> -->
+          <p>{{ chatTopic.TEXT }}</p>
         </section>
         <div class="image list_pic">
-          <img :src="require(`@/assets/img/${chatTopic.PIC}`)" alt="">
+          <img :src="chatTopic.PIC" alt="">
         </div>
       </section>
     </article>
@@ -100,6 +101,7 @@ import navbar from "./navbar.vue";
 import Footer from "./Footer.vue";
 // import { BootstrapIconsPlugin } from 'bootstrap-icons-vue';
 import { formatDate } from "../plugin/date";
+import { v4 as uuidv4 } from 'uuid';
 
 export default {
   data() {
@@ -198,6 +200,11 @@ export default {
     //   // this.$router.push({ name: 'chat_new', params: { Id: Id } })
     //   this.$router.push({ name: "chat_new", params: { Id: Id } });
     // },
+    preview() {
+      const Id = uuidv4();
+      // this.$router.push({ name: 'chat_new', params: { Id: Id } })
+      this.$router.push({ name: "chat_new", params: { Id: Id } });
+    },
 
     getCookieValue(cookieName) {
       // 讀取指定名稱的 Cookie 值

@@ -129,7 +129,7 @@ export default {
     // },
    methods: {
       goToLogin() {
-        this.$router.push('login');
+        this.$router.push('../login');
       },
        getCookieValue(cookieName) {
         // 讀取指定名稱的 Cookie 值

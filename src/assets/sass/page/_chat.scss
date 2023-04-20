@@ -315,8 +315,15 @@
   }
 
   .confirm-btn {
-    width: 160px;
-    margin: 50px auto;
+    // width: 160px;
+    // margin: 50px auto;
+    align-content: center;
+    margin-top:50px;
+    text-align: center;
+    &>button{
+      margin: 0 10px;
+    }
+
   }
 }
 
@@ -443,7 +450,7 @@
     overflow: unset;
     white-space: normal;
     line-height: 2;
-    font-size: 22px;
+    // font-size: 22px;
     margin-top: 30px;
 
     @include breakpoint($grid-breakpoints, 'sm') {
@@ -495,4 +502,25 @@
       }
     }
   }
+}
+
+.chat-article-new {
+  overflow: visible;
+  white-space: normal;
+  text-overflow: unset;
+  word-wrap: break-word;
+  p{
+    overflow: visible;
+    white-space: normal;
+    text-overflow: unset;
+    word-wrap: break-word;
+    
+    span{
+      overflow: visible;
+      white-space: normal;
+      text-overflow: unset;
+      word-wrap: break-word;
+    }
+  }
+  
 }

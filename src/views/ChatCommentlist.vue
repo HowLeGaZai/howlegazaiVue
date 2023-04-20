@@ -3,7 +3,7 @@
         <div class="chat-commit" v-for="(comment,index) in jsonData" :key="index">
         <div class="chat-commit-title"> 
             <div class="image user_pic"> 
-                <img class="image event_pic" :src="require(`@/assets/img/${comment.PORTRAIT}`)" alt="">
+                <img class="image event_pic" :src="comment.PORTRAIT" alt="">
             </div>
             <h5 class="commit-user">{{comment.NICKNAME}}</h5>
             <h5 class="commit-date">{{comment.CREATE_TIME}}</h5>

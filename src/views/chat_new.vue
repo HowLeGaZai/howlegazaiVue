@@ -92,6 +92,7 @@ import Tinymce from "@/components/Tinymce.vue";
 import { ref } from "vue";
 import { useRouter } from 'vue-router'
 
+
 export default {
   created() {
     this.pathId = this.$route.params.Id;
@@ -109,6 +110,7 @@ export default {
       tinymceContent:'',
       title: "",
       type: "",
+      chatid:"",
     };
   },
   mounted() {
@@ -142,6 +144,7 @@ export default {
         const router = useRouter();
         console.log(router);
       },
+      
       gotoPreview() {
       
       // 檢查必填欄位是否已經填寫
@@ -205,8 +208,11 @@ export default {
       sessionStorage.setItem('form-PictureCropChatbanner', this.dataURL);
 
       // 導向預覽頁面
-      this.$router.push('/chat_info/preview');
-      const Id = 123;
+      // this.$router.push('/chat_info/preview');
+      // const Id = 123;
+      // this.$router.push('/chat_info/preview');
+      // const Id = 123;
+      const Id = this.$route.params.Id;
       this.$router.push({ name: 'chat_preview', params: { Id: Id } });
       // 導向預覽頁面
       // this.$router.push({ 

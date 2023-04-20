@@ -9,3 +9,16 @@
 .newscheck{
     margin: -8px 20px 20px 20px;
 }
+
+
+.news-back-table{
+    .back-table-3 td:nth-child(2){
+       text-align: left;
+    }
+
+    .back-table-3 td:nth-child(4),
+    .back-table-3 td:nth-child(5),
+    .back-table-3 td:nth-child(6){
+        width: 60px;
+    }
+}
