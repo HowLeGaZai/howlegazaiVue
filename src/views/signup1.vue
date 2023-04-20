@@ -108,6 +108,7 @@ export default {
       let formData = new FormData();
       if (this.inputValue.trim() === "") {
         this.showError = true;
+        this.addressError = false;  
         return false;
       } else {
         this.showError = false;

@@ -41,7 +41,7 @@
                   </div>
                 </div>
                 <div class="displayflex margintop18">
-                  <router-link :to="{ name: 'backend_news_add' }" >
+                  <router-link :to="{ path: '/backend_news_add/'+id }" >
                   <button type="button" class="btn-10-s btn-color-green">
                     <a href="#/backend_news_add"><i class="bi bi-plus-lg">新增消息</i> </a>
                   </button>
@@ -161,10 +161,7 @@ export default {
     return {
       newsData: [],
       num:8,
-      
-      
-
-
+      id: new Date().getTime() ,// 設當前時間的字符串為ID
       selectedCategory: '',
       selectedDate: '',
     }

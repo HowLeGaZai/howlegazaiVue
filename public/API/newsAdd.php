@@ -2,7 +2,7 @@
 
 include("conn.php");
 
-$sql = "INSERT into NEWS VALUES(DEFAULT,?,?,?,?,NOW(),'online',0)";
+$sql = "INSERT into NEWS VALUES(DEFAULT,?,?,?,?,NOW(),'online','0')";
 
 $category= $_POST['category'];
 $title= $_POST['title'];
