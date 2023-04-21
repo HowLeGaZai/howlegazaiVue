@@ -105,7 +105,7 @@ export default {
 
     this.title = sessionStorage.getItem("news-title");
     this.category = sessionStorage.getItem("news-category");
-    this.content = sessionStorage.getItem("news-category");
+    this.content = sessionStorage.getItem("news-content");
     // this.pic = sessionStorage.getItem("news-pic");
 
 
