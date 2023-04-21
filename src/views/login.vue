@@ -61,25 +61,21 @@ export default {
   methods:{
     doSubmit() {
 
-        // let account = this.$refs.account.value;
-        // let pwd = this.$refs.pwd.value;
-
         if (this.$refs.account.value == '') {
-          
             alert("請填寫[帳號]");
             return false;
         }
         if (this.$refs.pwd.value == '') {
             alert("請填寫[密碼]");
             return false;
-        }
+        };
 
-        
+        const loginData = new FormData()
+        loginData.append('account', this.$refs.account.value)
+        loginData.append('password', this.$refs.pwd.value)
+
         axios
-        .post('http://localhost/TGD104G1/public/API/login.php', {
-            account: this.$refs.account.value,
-            pwd: this.$refs.pwd.value
-        })
+        .post('http://localhost/TGD104G1/public/API/login.php', loginData)
         .then((response) => {
           if (response.data === 'N') {
             alert('帳號或密碼錯誤');
