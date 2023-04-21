@@ -329,7 +329,7 @@ export default {
             .catch(error => {
                 // console.log(error);
             });
-
+            alert("審核通過")
             location.reload();
 
         },

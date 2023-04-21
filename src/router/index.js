@@ -130,7 +130,7 @@ const routes = [
   },
   {
     // 前台 空間預約總覽 步驟二、確認預約
-    path: '/space_reserve_check',
+    path: '/space_reserve_check/:Id',
     name: 'space_reserve_check',
     component:() => import(/* webpackChunkName: "about" */ '../views/space_reserve_check.vue')
   },
@@ -142,7 +142,7 @@ const routes = [
   },
   {
     // 前台 空間預約總覽 步驟一、填寫預約單
-    path: '/space_reserve',
+    path: '/space_reserve/:Id',
     name: 'space_reserve',
     component:() => import(/* webpackChunkName: "about" */ '../views/space_reserve.vue')
   },
