@@ -74,12 +74,11 @@
                                 </div> -->
                             <Tinymce v-model="content"></Tinymce>
                             <div>
-                                <ckeditor :editor="editor" />
->>>>>>> dev
+
                             </div>
                         </div>
 
-                        <button type="button" class="savebtn btn-10-s btn-color-green" @click="addNews">預覽</button>
+                        <button type="button" class="savebtn btn-10-s btn-color-green" @click="newsPreview()">預覽</button>
                     </section>
                 </div>
             </section>
@@ -120,6 +119,7 @@ import Footer from './Footer.vue';
 import Tinymce from "@/components/Tinymce.vue";
 
 
+
 // import { response } from 'express';
 
 export default {
@@ -131,13 +131,16 @@ export default {
         backCalender,
         BackLeftNav
     },
+    created() {
+        // this.pathId = this.$route.params.Id;
+    },
+
     data() {
         return {
             category: '',
             title: '',
-            pic: '',
+            // pic: '',
             content: '',
-            
 
         };
     },
@@ -145,27 +148,26 @@ export default {
         sendnewspic(data) {
             this.pic = data;
         },
-    //     onResultChanged(result) {
-    //       this.PdataURL = result.dataURL;
-    //   },
+        //     onResultChanged(result) {
+        //       this.PdataURL = result.dataURL;
+        //   },
         addNews() {
-           
-            const formData = new FormData();
-            formData.append('category', this.category);
-            formData.append('title', this.title);
-            formData.append('pic', this.pic);
-            formData.append('content', this.content);
-            console.log(this.pic);
+            // const formData = new FormData();
+            // formData.append('category', this.category);
+            // formData.append('title', this.title);
+            // formData.append('pic', this.pic);
+            // formData.append('content', this.content);
+            // console.log(this.pic);
 
-            axios
-                .post('http://localhost/TGD104G1/public/API/newsAdd.php', formData)
-                .then(response => {
-                    // this.jsonData = response.data;
-                    console.log(response.data);
-                })
-                .catch(error => {
-                    console.log(error);
-                });
+            // axios
+            //     .post('http://localhost/TGD104G1/public/API/newsAdd.php', formData)
+            //     .then(response => {
+            //         // this.jsonData = response.data;
+            //         console.log(response.data);
+            //     })
+            //     .catch(error => {
+            //         console.log(error);
+            //     });
 
 
             // this.category = '';
@@ -177,6 +179,22 @@ export default {
 
         },
 
+
+        newsPreview() {
+            // 將資料傳至sessionStorage
+            sessionStorage.setItem('news-title', this.title);
+            sessionStorage.setItem('news-category', this.category);
+            sessionStorage.setItem('news-content', this.content);
+            sessionStorage.setItem('news-pic', this.pic);
+
+            // 轉往預覽頁
+            const Id = this.$route.params.Id;
+            console.log(Id)
+            this.$router.push({name: 'news_info_preview', params: { Id: Id } });
+
+
+        },
+        
 
 
     },

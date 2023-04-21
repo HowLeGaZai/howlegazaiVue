@@ -6,231 +6,44 @@
         <section class="account-border">
             <div class="account">
               <Accountsidebar :PORTRAIT="PORTRAIT"></Accountsidebar>
+
                 <section class="account-content">
                     <h1 class="marginbottom30">活動報名紀錄</h1>
-                
-                  <!-- <div class="row"></div> -->
-                      <!-- <div class="col-md-6 col-12"></div> -->
-                      <!-- <div class="col-12"></div> -->
-                  
-                      <!-- <div class="row account_row">
-                        <div class="col-md-6 col-12">
-                            <h4>出生 年/月/日</h4>
-                            <input type="text" class="f-text nomargin" id="name" v-model="birthdate" placeholder="YYYY/MM/DD">
-                        </div>
-                      </div> -->
-                  
-                      <!-- <table class="account-table w90percentage marginbottom20 account-table_gas">
-                        <tr>
-                            <th v-for="datasTr in datasTrs" >{{datasTr}}</th>
-                        </tr>
-                        <tr v-for="data in datas" >
-                            <td data-label="活動日期">{{data[0]}}</td>
-                            <td data-label="報名項目">{{data[1]}}</td>
-                            <td data-label=""><button type="button" class="btn-cir-s btn-color-white"><i class="bi bi-caret-down-fill i-s"></i></button></td>
-                        </tr>
-                    
-                      </table>   -->
-
                       <div class="check_activity_content bgcolordarkgreen">
                         <div class="displayflex content_row1">
-                          <h4 class="fontsize20"> 活動日期</h4>
-                          <h4 class="fontsize20 forSecondColumn"> 報名項目</h4>
+                          <h4 class="fontsize20">活動日期</h4>
+                          <h4 class="fontsize20 forSecondColumn">報名項目</h4>
                         </div>
-                        <div class=" content_row borderBottomLightgray">
+
+                        <div class=" content_row borderBottomLightgray" v-for="(data,index) in datas" :key="index">
                           <div class="displayflex">
-                            <h4 class="fontsize20"> 2023-02-28</h4>
-                            <h4 class="fontsize20 forSecondColumn"> 慶元宵發燈籠活動</h4>
-                            <button type="button" class="btn-cir-s btn-color-white collapse"><i class="bi bi-caret-down-fill i-s"></i></button>
+                            <h4 class="fontsize20">{{ data.START_DATE}}</h4>
+                            <h4 class="fontsize20 forSecondColumn"><router-link class="titlelink" :to="{ name: 'activity_info', params: { Id: data.ID } }">
+                                {{data.TITLE}}
+                                </router-link></h4>
+                            <button type="button" class="btn-cir-s btn-color-white collapse collapseBtn">
+                              <i class="bi bi-caret-down-fill openBtn" id="openBtn" @click="info(index)"></i></button>
                             
                           </div>
-                          <div class="attendDetail displayNone">
+                          <div class="attendDetail hidden">
 
-                            <h4>報名序號 : QA149229195</h4>
-                            <h4>已付金額 : 150元</h4>
-                            <h4>活動時間 : 2023-03-04 (六) 15:00~18:00</h4>
-                            <h4>活動地點 : 台北市大湖區大湖里大湖路大湖街66號 快樂公園教室B</h4>
-                            <h4>參加人數 : 2人</h4>
-
-                            <div class="attendDetail2">
-                              <div class="attendMember">
-                                <h4>參加人(1) : 李上巴</h4>
-                                <h4>聯絡電話 : 0966166166</h4>
-                                <h4>電子信箱 : zxc123zxc123@gmail.com</h4>
-                              </div>
-                              <div class="attendDetail2">
-
-                                  <div class="attendMember">
-                                    <h4>參加人(2) : 李中巴</h4>
-                                    <h4>聯絡電話 : 0916166166</h4>
-                                    <h4>電子信箱 : zxc456zxc456@gmail.com</h4>
-                                  </div>
-                                <!-- <button type="button" class="btn-m btn-color-green ">搜尋</button> -->
-
-                              </div>
-                            </div>
-                             
-                          </div>
-                        </div>
-                        
-                        <div class=" content_row borderBottomLightgray">
-                          <div class="displayflex">
-                            <h4 class="fontsize20"> 2023-02-28</h4>
-                            <h4 class="fontsize20 forSecondColumn"> 慶元宵發燈籠活動</h4>
-                            <button type="button" class="btn-cir-s btn-color-white collapse"><i class="bi bi-caret-down-fill i-s"></i></button>
-                            
-                          </div>
-                          <div class="attendDetail displayNone">
-
-                            <h4>報名序號 : QA149229195</h4>
-                            <h4>已付金額 : 150元</h4>
-                            <h4>活動時間 : 2023-03-04 (六) 15:00~18:00</h4>
-                            <h4>活動地點 : 台北市大湖區大湖里大湖路大湖街66號 快樂公園教室B</h4>
-                            <h4>參加人數 : 2人</h4>
+                            <h4>訂單編號 : {{ data[0].ID }}</h4>
+                            <h4>已付金額 : {{ data.PAYMENT }}</h4>
+                            <h4>活動時間 : {{ data.START_DATE }} {{ data.START_TIME }}~{{ data.END_DATE }} {{ data.END_TIME }}</h4>
+                            <h4>活動地點 : {{ data.LOCATION }}</h4>
+                            <h4>參加人數 : {{ getAttendeeCount(data) }}</h4>
 
                             <div class="attendDetail2">
-                              <div class="attendMember">
-                                <h4>參加人(1) : 李上巴</h4>
-                                <h4>聯絡電話 : 0966166166</h4>
-                                <h4>電子信箱 : zxc123zxc123@gmail.com</h4>
-                              </div>
-                              <div class="attendDetail2">
-
-                                  <div class="attendMember">
-                                    <h4>參加人(2) : 李中巴</h4>
-                                    <h4>聯絡電話 : 0916166166</h4>
-                                    <h4>電子信箱 : zxc456zxc456@gmail.com</h4>
-                                  </div>
-                                <!-- <button type="button" class="btn-m btn-color-green ">搜尋</button> -->
-
-                              </div>
-                            </div>
-                             
-                          </div>
-                        </div>
-                       
-                        <div class=" content_row borderBottomLightgray">
-                          <div class="displayflex">
-                            <h4 class="fontsize20"> 2023-02-28</h4>
-                            <h4 class="fontsize20 forSecondColumn"> 慶元宵發燈籠活動</h4>
-                            <button type="button" class="btn-cir-s btn-color-white collapse"><i class="bi bi-caret-down-fill i-s"></i></button>
-                          </div>
-                          <div class="attendDetail displayNone">
-
-                            <h4>報名序號 : QA149229195</h4>
-                            <h4>已付金額 : 150元</h4>
-                            <h4>活動時間 : 2023-03-04 (六) 15:00~18:00</h4>
-                            <h4>活動地點 : 台北市大湖區大湖里大湖路大湖街66號 快樂公園教室B</h4>
-                            <h4>參加人數 : 2人</h4>
-
-                             <div class="attendDetail2">
-                              <div class="attendMember">
-                                <h4>參加人(1) : 李上巴</h4>
-                                <h4>聯絡電話 : 0966166166</h4>
-                                <h4>電子信箱 : zxc123zxc123@gmail.com</h4>
-                              </div>
-                              <div class="attendDetail2">
-
-                                  <div class="attendMember">
-                                    <h4>參加人(2) : 李中巴</h4>
-                                    <h4>聯絡電話 : 0916166166</h4>
-                                    <h4>電子信箱 : zxc456zxc456@gmail.com</h4>
-                                  </div>
-                                <!-- <button type="button" class="btn-m btn-color-green ">搜尋</button> -->
-
+                              <div class="attendMember" v-for="attendee in getAttend(data)" :key="attendee.i">
+                                <h4>參加人({{ index + 1 }}) : {{ attendee.ATTEND_NAME }}</h4>
+                                <h4>聯絡電話 : {{ attendee.ATTEND_PHONE }}</h4>
+                                <h4>電子信箱 : {{ attendee.ATTEND_MAIL }}</h4>
                               </div>
                             </div>
                           </div>
+
                         </div>
-
-                        <div class=" content_row borderBottomLightgray">
-                          <div class="displayflex">
-                            <h4 class="fontsize20"> 2023-02-28</h4>
-                            <h4 class="fontsize20 forSecondColumn"> 慶元宵發燈籠活動</h4>
-                            <button type="button" class="btn-cir-s btn-color-white collapse"><i class="bi bi-caret-down-fill i-s"></i></button>
-                          </div>
-                          <div class="attendDetail displayNone">
-
-                            <h4>報名序號 : QA149229195</h4>
-                            <h4>已付金額 : 150元</h4>
-                            <h4>活動時間 : 2023-03-04 (六) 15:00~18:00</h4>
-                            <h4>活動地點 : 台北市大湖區大湖里大湖路大湖街66號 快樂公園教室B</h4>
-                            <h4>參加人數 : 2人</h4>
-
-                             <div class="attendDetail2">
-                              <div class="attendMember">
-                                <h4>參加人(1) : 李上巴</h4>
-                                <h4>聯絡電話 : 0966166166</h4>
-                                <h4>電子信箱 : zxc123zxc123@gmail.com</h4>
-                              </div>
-                              <div class="attendDetail2">
-
-                                  <div class="attendMember">
-                                    <h4>參加人(2) : 李中巴</h4>
-                                    <h4>聯絡電話 : 0916166166</h4>
-                                    <h4>電子信箱 : zxc456zxc456@gmail.com</h4>
-                                  </div>
-                                <!-- <button type="button" class="btn-m btn-color-green ">搜尋</button> -->
-
-                              </div>
-                            </div>
-                             
-                          </div>
-                        </div>
-
-                        <div class=" content_row borderBottomLightgray">
-                          <div class="displayflex">
-                            <h4 class="fontsize20"> 2023-02-28</h4>
-                            <h4 class="fontsize20 forSecondColumn"> 慶元宵發燈籠活動</h4>
-                            <button type="button" class="btn-cir-s btn-color-white collapse"><i class="bi bi-caret-down-fill i-s"></i></button>
-                          </div>
-                          <div class="attendDetail displayNone">
-
-                            <h4>報名序號 : QA149229195</h4>
-                            <h4>已付金額 : 150元</h4>
-                            <h4>活動時間 : 2023-03-04 (六) 15:00~18:00</h4>
-                            <h4>活動地點 : 台北市大湖區大湖里大湖路大湖街66號 快樂公園教室B</h4>
-                            <h4>參加人數 : 2人</h4>
-
-                             <div class="attendDetail2">
-                              <div class="attendMember">
-                                <h4>參加人(1) : 李上巴</h4>
-                                <h4>聯絡電話 : 0966166166</h4>
-                                <h4>電子信箱 : zxc123zxc123@gmail.com</h4>
-                              </div>
-                              <div class="attendDetail2">
-
-                                  <div class="attendMember">
-                                    <h4>參加人(2) : 李中巴</h4>
-                                    <h4>聯絡電話 : 0916166166</h4>
-                                    <h4>電子信箱 : zxc456zxc456@gmail.com</h4>
-                                  </div>
-                                <!-- <button type="button" class="btn-m btn-color-green ">搜尋</button> -->
-
-                              </div>
-                            </div>
-                             
-                          </div>
-                        </div>
-                        
                       </div>
-
-                
-                     
-                      
-
-               
-
-                
-
-                      
-              
-                  
-
-
-
-
-
                 </section>
             </div>
         </section>
@@ -242,54 +55,111 @@
 <script>
 
 import $ from 'jquery'
-import Accountsidebar from '@/components/Accountsidebar.vue';
 import navbar from './navbar.vue';
+import Accountsidebar from '@/components/Accountsidebar.vue';
 
 export default {
     data(){
-                   return {
+        return {
+          START_DATE:'',
+          TITLE:'',
+          ID:'',
+          PAYMENT:'',
+          START_TIME:'',
+          END_DATE:'',
+          END_TIME:'',
+          LOCATION:'',
+          ATTEND_NAME:'',
+          ATTEND_PHONE:'',
+          ATTEND_MAIL:'',
 
-                    datasTrs:[
-                        '活動日期', '報名項目', ''
-                    ],
-
-                    datas:[
-                        {"0": '2023-03-04', "1": "新春書法體驗課"},
-                        {"0": '2023-02-28', "1": "慶元宵發燈籠活動"},
-                        {"0": '2023-02-04', "1": "112年第一次工作會報"},
-                        {"0": '2023-01-11', "1": "打擊詐騙訊息，從你我開始"},
-                        {"0": '2022-12-14', "1": "電影旅遊講座"},
-                        
-                    ],
-
-                    
-               
-                   }
-                   },
- 
-              mounted(){
-                        $(function(){
-          $(".collapse").click(function(){
-          $(this).parents('.content_row').find('.attendDetail').slideToggle("slow");
-          $(this).toggleClass('changeButton');
-
-      });});
-                   },
-      methods: {
-        clearCookies() {
-        // 取得目前的 cookie 字串
-        let cookies = document.cookie;
-        // 將 cookie 字串分割成每個 cookie
-        let cookieArr = cookies.split("; ");
-        // 迭代 cookieArr，將每個 cookie 都設置過期時間為過去的日期，使其被刪除
-        for (let i = 0; i < cookieArr.length; i++) {
-          let cookie = cookieArr[i];
-          let eqPos = cookie.indexOf("=");
-          let name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-          document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/`;
+          datas:[
+              // {"0": '2023-03-04', "1": "新春書法體驗課"},
+              // {"0": '2023-02-28', "1": "慶元宵發燈籠活動"},
+              // {"0": '2023-02-04', "1": "112年第一次工作會報"},
+              // {"0": '2023-01-11', "1": "打擊詐騙訊息，從你我開始"},
+              // {"0": '2022-12-14', "1": "電影旅遊講座"},
+              
+          ],
         }
-      },
     },
-    components:{navbar,Accountsidebar}  
+ 
+    mounted(){
+
+        // $(function(){
+        // $(".collapse").click(function(){
+        //     $(this).parents('.content_row').find('.attendDetail').slideToggle("slow");
+        //     $("#openBtn").toggleClass('changeButton');
+        // });});
+
+        const userId = this.getCookieValue("id");
+        const url = "http://localhost/TGD104G1/public/API/account_activity.php";
+        const data = new FormData();
+        data.append('user_id', userId)
+        
+        axios
+            .post(url, data)
+            .then((response) => {
+                const data = response.data;
+                this.datas = data;
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    },
+
+    methods: {
+      getCookieValue(cookieName) {
+          const cookies = document.cookie.split("; ");
+          for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].split("=");
+            if (cookie[0] === cookieName) {
+              return cookie[1];
+            }
+          }
+          return null;
+      },
+
+      //vue寫法的開合
+      info(index){
+        let openBtns = document.querySelectorAll(".openBtn");
+        let hiddenRows = document.querySelectorAll(".hidden");
+        let hiddenRow = hiddenRows[index];
+        let openBtn = openBtns[index];
+          if (hiddenRow.style.maxHeight) {
+            hiddenRow.style.maxHeight = null;
+            openBtn.classList.remove("rotate");
+          } else {
+            hiddenRow.style.maxHeight = hiddenRow.scrollHeight + "px";
+            openBtn.classList.add("rotate");
+          }
+      },
+
+      getAttend(data) {
+        const ATTEND_NAME = data.ATTEND_NAME.slice(1, -1).split(",");
+        const ATTEND_MAIL = data.ATTEND_MAIL.slice(1, -1).split(",");
+        const ATTEND_PHONE = data.ATTEND_PHONE.slice(1, -1).split(",");
+
+        return ATTEND_NAME.map((name, i) => {
+          return {
+            ATTEND_NAME: ATTEND_NAME[i],
+            ATTEND_MAIL: ATTEND_MAIL[i],
+            ATTEND_PHONE: ATTEND_PHONE[i]
+          };
+        });
+      },
+
+      getAttendeeCount(data) {
+        const ATTEND_NAME = data.ATTEND_NAME.slice(1, -1).split(",");
+        
+        return ATTEND_NAME.length;
+      }
+
+    },
+    components:{navbar,Accountsidebar
+    },
+    computed: {
+    },
+
 }
 </script>

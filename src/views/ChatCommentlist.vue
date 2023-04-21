@@ -40,6 +40,7 @@ export default {
         .then(response => {
             this.jsonData = response.data;
             console.log('abc',response.data);
+
         })
         .catch(error => {
             console.log(error);
@@ -81,6 +82,6 @@ export default {
       //   this.jsonData.push(this.propData);
       //   // console.log(this.jsonData);
       // }
-    }
+    },
 }
 </script>
