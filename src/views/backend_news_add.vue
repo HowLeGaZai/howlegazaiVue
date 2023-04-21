@@ -151,33 +151,7 @@ export default {
         //     onResultChanged(result) {
         //       this.PdataURL = result.dataURL;
         //   },
-        addNews() {
-            // const formData = new FormData();
-            // formData.append('category', this.category);
-            // formData.append('title', this.title);
-            // formData.append('pic', this.pic);
-            // formData.append('content', this.content);
-            // console.log(this.pic);
-
-            // axios
-            //     .post('http://localhost/TGD104G1/public/API/newsAdd.php', formData)
-            //     .then(response => {
-            //         // this.jsonData = response.data;
-            //         console.log(response.data);
-            //     })
-            //     .catch(error => {
-            //         console.log(error);
-            //     });
-
-
-            // this.category = '';
-            // this.title = '';
-            // this.pic = '';
-            // this.content = '';
-
-
-
-        },
+  
 
 
         newsPreview() {

@@ -11,7 +11,7 @@
           <img :src="newsarticle.PORTRAIT" alt="" class="user_pic" />
         </div>
         <h4>{{ newsarticle.FULLNAME }}里長</h4>
-        <h4>發布日期：{{ getFormatDate(newsarticle.CREATE_TIME) }}</h4>
+        <h4>發佈日期：{{ getFormatDate(newsarticle.CREATE_TIME) }}</h4>
       </div>
       <div :class="['tag', addTagClass(newsarticle.CATEGORY)]">{{ newsarticle.CATEGORY }}</div>
     </div>
