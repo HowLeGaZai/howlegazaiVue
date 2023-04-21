@@ -5,60 +5,7 @@
       <main>
         <section class="account-border">
           <div class="account">
-            <section class="account-menu-pc">
-              <h1>帳戶專區</h1>
-              <div class="image user_pic">
-                <!-- <img src="../assets/img/user_pic.png" alt=""> -->
-                <img :src="PORTRAIT" alt="" />
-              </div>
-              <ul>
-                <!-- <li v-for="accountNav in accountNavs"><a :href="accountNav.con">{{accountNav.nav}}</a></li> -->
-                <li>
-                  <router-link :to="{ name: 'account_user' }" class="a-select"
-                    >個人資訊</router-link
-                  >
-                </li>
-                <!-- <li><a href="#" class="a-select">個人資訊</a></li> -->
-                <li>
-                  <router-link :to="{ name: 'account_user_manage' }" class=""
-                    >成員管理</router-link
-                  >
-                </li>
-
-                <!-- <li><a href="#">成員管理</a></li> -->
-                <!-- <li><a href="#">貼文刊登紀錄</a></li> -->
-                <li>
-                  <router-link :to="{ name: 'account_user_chat' }" class=""
-                    >貼文刊登紀錄</router-link
-                  >
-                </li>
-
-                <!-- <li><a href="#">空間預約紀錄</a></li> -->
-                <li>
-                  <router-link :to="{ name: 'account_user_space' }" class=""
-                    >空間預約紀錄</router-link
-                  >
-                </li>
-
-                <!-- <li><a href="#">活動報名紀錄</a></li> -->
-                <li>
-                  <router-link :to="{ name: 'account_user_activity' }" class=""
-                    >活動報名紀錄</router-link
-                  >
-                </li>
-
-                <!-- <li><a href="#">變更密碼</a></li> -->
-                <li>
-                  <router-link
-                    :to="{ name: 'account_user_change_pwd' }"
-                    class=""
-                    >變更密碼</router-link
-                  >
-                </li>
-                <li><router-link :to="{name:'home'}" class="" @click="clearCookies">登出</router-link></li>
-
-              </ul>
-            </section>
+            <Accountsidebar :PORTRAIT="PORTRAIT"></Accountsidebar>
             <section class="account-content">
               <h1 class="marginbottom30">個人資訊</h1>
 
@@ -88,7 +35,7 @@
                     class="f-text nomargin"
                     id="nickname"
                     v-model="NICKNAME"
-                    placeholder="請輸入暱稱" required
+                    placeholder="請輸入暱稱" required disabled
                   />
                 </div>
               </div>
@@ -199,6 +146,7 @@
 
 <script>
 import navbar from "./navbar.vue";
+import Accountsidebar from '@/components/Accountsidebar.vue';
 import axios from 'axios';
 import PortraitCrop from "../components/PortraitCrop.vue";
 import { nextTick } from 'vue'
@@ -355,22 +303,26 @@ export default {
             console.log("成功mounted")
           });
         });
+
+        
+        location.reload();
       },
       
-      // 登出功能清除 cookie
-      clearCookies() {
-      // 取得目前的 cookie 字串
-      let cookies = document.cookie;
-      // 將 cookie 字串分割成每個 cookie
-      let cookieArr = cookies.split("; ");
-      // 迭代 cookieArr，將每個 cookie 都設置過期時間為過去的日期，使其被刪除
-      for (let i = 0; i < cookieArr.length; i++) {
-        let cookie = cookieArr[i];
-        let eqPos = cookie.indexOf("=");
-        let name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-        document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/`;
-      }
-    },
+      // updateNickname(newNickname) {
+      //   // 新的 nickname
+      //   document.cookie = "nickname=" + newNickname;
+
+      //   // 从cookie中讀取nickname值
+      //   const cookieNickname = document.cookie.replace(/(?:(?:^|.*;\s*)nickname\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+      //   console.log(cookieNickname)
+      // },
+      getCookie(nickman) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${nickman}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+
+        console.log(nickman)
+      },
   },
   watch: {
     async getResult() {
@@ -381,6 +333,7 @@ export default {
   components: {
     navbar,
     PortraitCrop,
+    Accountsidebar,
   },
 };
 </script>

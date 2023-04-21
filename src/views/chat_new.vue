@@ -111,6 +111,7 @@ export default {
       title: "",
       type: "",
       chatid:"",
+      dataURL:"",
     };
   },
   mounted() {

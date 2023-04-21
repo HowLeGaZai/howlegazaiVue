@@ -26,7 +26,8 @@
         </thead>
         <tbody>
           <!-- 渲染 5 次 -->
-          <NewsListHome v-for="i in 5" :key="i"></NewsListHome>
+          <NewsListHome   v-for="i in 1" :key="i">
+          {{ newsHomes.CATEGORY }}</NewsListHome>
         </tbody>
       </table>
     </section>
@@ -114,231 +115,6 @@
       </div>
     </section>
 
-    <!-- 團購區 -->
-    <!-- <section class="home-product">
-      <h1 class="title_space">團購區</h1> -->
-
-    <!-- Swiper -->
-    <!-- <swiper
-        :navigation="{
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev',
-        }"
-        :modules="modules"
-        class="mySwiper"
-        :slidesPerView="3"
-        :spaceBetween="10"
-        :pagination="{
-          clickable: true,
-        }"
-        :breakpoints="{
-          360: { slidesPerView: 1, spaceBetween: 0 },
-          900: { slidesPerView: 2, spaceBetween: 5 },
-          1280: { slidesPerView: 3, spaceBetween: 10 },
-        }"
-      >
-        <swiper-slide>
-          <div class="card">
-            <a href="#">
-              <img
-                class="image event_pic"
-                src="../assets/img/p1_cherry.jpg"
-                alt=""
-              />
-            </a>
-            <div class="tag tag-round tag-blue card-tag">食品</div>
-            <div class="card-line"></div>
-            <div class="">
-              <h3 class="card-title">櫻桃妹子團購</h3>
-              <div class="card-person">
-                <div class="image user_pic">
-                  <img src="../assets/img/user_pic.png" alt="" />
-                </div>
-                <p>Emma</p>
-              </div>
-
-              <p class="card-content">
-                櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺
-              </p>
-              <h5 class="card-date">團購截止日期：<span>2023-01-01</span></h5>
-              <h3 class="card-price">100/盒</h3>
-              <a class="card-link" href="#"
-                ><h5>商品詳情<i class="bi bi-arrow-right"></i></h5
-              ></a>
-            </div>
-          </div>
-        </swiper-slide>
-        <swiper-slide>
-          <div class="card">
-            <a href="#">
-              <img
-                class="image event_pic"
-                src="../assets/img/p1_cherry.jpg"
-                alt=""
-              />
-            </a>
-            <div class="tag tag-round tag-blue card-tag">食品</div>
-            <div class="card-line"></div>
-            <div class="">
-              <h3 class="card-title">櫻桃妹子團購</h3>
-              <div class="card-person">
-                <div class="image user_pic">
-                  <img src="../assets/img/user_pic.png" alt="" />
-                </div>
-                <p>Emma</p>
-              </div>
-
-              <p class="card-content">
-                櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺
-              </p>
-              <h5 class="card-date">團購截止日期：<span>2023-01-01</span></h5>
-              <h3 class="card-price">100/盒</h3>
-              <a class="card-link" href="#"
-                ><h5>商品詳情<i class="bi bi-arrow-right"></i></h5
-              ></a>
-            </div>
-          </div>
-        </swiper-slide>
-        <swiper-slide>
-          <div class="card">
-            <a href="#">
-              <img
-                class="image event_pic"
-                src="../assets/img/p1_cherry.jpg"
-                alt=""
-              />
-            </a>
-            <div class="tag tag-round tag-blue card-tag">食品</div>
-            <div class="card-line"></div>
-            <div class="">
-              <h3 class="card-title">櫻桃妹子團購</h3>
-              <div class="card-person">
-                <div class="image user_pic">
-                  <img src="../assets/img/user_pic.png" alt="" />
-                </div>
-                <p>Emma</p>
-              </div>
-
-              <p class="card-content">
-                櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺
-              </p>
-              <h5 class="card-date">團購截止日期：<span>2023-01-01</span></h5>
-              <h3 class="card-price">100/盒</h3>
-              <a class="card-link" href="#"
-                ><h5>商品詳情<i class="bi bi-arrow-right"></i></h5
-              ></a>
-            </div>
-          </div>
-        </swiper-slide>
-        <swiper-slide>
-          <div class="card">
-            <a href="#">
-              <img
-                class="image event_pic"
-                src="../assets/img/p1_cherry.jpg"
-                alt=""
-              />
-            </a>
-            <div class="tag tag-round tag-blue card-tag">食品</div>
-            <div class="card-line"></div>
-            <div class="">
-              <h3 class="card-title">櫻桃妹子團購</h3>
-              <div class="card-person">
-                <div class="image user_pic">
-                  <img src="../assets/img/user_pic.png" alt="" />
-                </div>
-                <p>Emma</p>
-              </div>
-
-              <p class="card-content">
-                櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺
-              </p>
-              <h5 class="card-date">團購截止日期：<span>2023-01-01</span></h5>
-              <h3 class="card-price">100/盒</h3>
-              <a class="card-link" href="#"
-                ><h5>商品詳情<i class="bi bi-arrow-right"></i></h5
-              ></a>
-            </div>
-          </div>
-        </swiper-slide>
-        <swiper-slide>
-          <div class="card">
-            <a href="#">
-              <img
-                class="image event_pic"
-                src="../assets/img/p1_cherry.jpg"
-                alt=""
-              />
-            </a>
-            <div class="tag tag-round tag-blue card-tag">食品</div>
-            <div class="card-line"></div>
-            <div class="">
-              <h3 class="card-title">櫻桃妹子團購</h3>
-              <div class="card-person">
-                <div class="image user_pic">
-                  <img src="../assets/img/user_pic.png" alt="" />
-                </div>
-                <p>Emma</p>
-              </div>
-
-              <p class="card-content">
-                櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺
-              </p>
-              <h5 class="card-date">團購截止日期：<span>2023-01-01</span></h5>
-              <h3 class="card-price">100/盒</h3>
-              <a class="card-link" href="#"
-                ><h5>商品詳情<i class="bi bi-arrow-right"></i></h5
-              ></a>
-            </div>
-          </div>
-        </swiper-slide>
-        <swiper-slide>
-          <div class="card">
-            <a href="#">
-              <img
-                class="image event_pic"
-                src="../assets/img/p1_cherry.jpg"
-                alt=""
-              />
-            </a>
-            <div class="tag tag-round tag-blue card-tag">食品</div>
-            <div class="card-line"></div>
-            <div class="">
-              <h3 class="card-title">櫻桃妹子團購</h3>
-              <div class="card-person">
-                <div class="image user_pic">
-                  <img src="../assets/img/user_pic.png" alt="" />
-                </div>
-                <p>Emma</p>
-              </div>
-
-              <p class="card-content">
-                櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺櫻桃爺爺
-              </p>
-              <h5 class="card-date">團購截止日期：<span>2023-01-01</span></h5>
-              <h3 class="card-price">100/盒</h3>
-              <a class="card-link" href="#"
-                ><h5>商品詳情<i class="bi bi-arrow-right"></i></h5
-              ></a>
-            </div>
-          </div>
-        </swiper-slide>
-      </swiper>
-      <div class="swiper-button">
-        <button
-          type="button"
-          class="btn-cir-m btn-color-white swiper-button-prev"
-        >
-          <i class="bi bi-caret-left-fill"></i>
-        </button>
-        <button
-          type="button"
-          class="btn-cir-m btn-color-green swiper-button-next"
-        >
-          <i class="bi bi-caret-right-fill"></i>
-        </button>
-      </div>
-    </section> -->
 
     <!-- 智慧里民 -->
     <section class="home-smartChief">
@@ -405,6 +181,7 @@ export default {
     NewsListHome,
     ChatTopic,
   },
+ 
   setup() {
     return {
       modules: [Navigation],
@@ -413,6 +190,7 @@ export default {
   data() {
     return {
       // isLoggedIn: false,
+      news: '',
       eventCards: [
         {
           BANNER: 0,
@@ -456,7 +234,7 @@ export default {
       city:'',
       district:'',
       town:'',
-      homeBanner:'',
+      homeBanner:'',     
     };
   },
 
@@ -490,6 +268,7 @@ export default {
         // console.log('123',this.jsonDataBanner);
         // console.log('123', this.jsonDataBanner);
     },
+   
   },
   mounted() {
      axios

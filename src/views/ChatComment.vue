@@ -1,9 +1,9 @@
 <template>
-    <div class="comment">
+    <div class="comment" v-if="isLoggedIn">
       <label for="mail" class="f-label">
         <h4>回覆貼文</h4>
       </label>
-      <textarea name="" id="tarea" cols="30" rows="10" class="f-text" placeholder="回覆貼文" v-model="message"></textarea>
+      <textarea name="" id="tarea" cols="30" rows="10" class="f-text" placeholder="回覆貼文" v-model="message" ></textarea>
       <button type="button" class="btn-m btn-color-green" @click="sendComment">回覆</button>
     </div>
 </template>
@@ -13,13 +13,14 @@
 export default {
     data(){
         return{
-            message:'',
-             USER_ID:'',
+          message:'',
+          USER_ID:'',
           PORTRAIT:"",
           NICKNAME:"",
           CREATE_TIME:"",
+          CHATID:"",
           currentDateTime:'',
-        
+          isLoggedIn: false,        
         }
 
     },
@@ -34,11 +35,12 @@ export default {
                 CONTENT:this.message,
 
               })
-
+           
             const formData = new FormData()
             formData.append('USER_ID', this.USER_ID)
             formData.append('CREATE_TIME', this.CREATE_TIME)
-            formData.append('CONTENT', this.message)    
+            formData.append('CONTENT', this.message)
+            formData.append('CHAT_ID', this.CHATID)    
 
             axios
                 .post('http://localhost/TGD104G1/public/API/addComment.php', formData)
@@ -73,12 +75,22 @@ export default {
         
     },
     mounted(){
+      const cookieValue = this.getCookieValue('account');
+    
+        // 判斷 Cookie 是否存在
+        if (cookieValue !== null) {
+          this.isLoggedIn = true;
+        } else {
+          this.isLoggedIn = false;
+        };
+
       // const Id = this.getCookieValue('id');
       // const nickname = this.getCookieValue('nickname');
       // const portrait = this.getCookieValue('portrait');
       this.USER_ID = this.getCookieValue('id');
       this.NICKNAME = this.getCookieValue('nickname');
-      this.PORTRAIT = this.getCookieValue('portrait');
+      this.PORTRAIT = localStorage.getItem('portrait');
+      this.CHATID = this.$route.params.Id; 
 
       const currentDate = new Date();
       console.log(currentDate);
