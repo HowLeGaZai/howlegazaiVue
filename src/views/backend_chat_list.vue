@@ -2,180 +2,13 @@
   <backendNavbar></backendNavbar>
   <div class="body-sec">
     <main class="backpadding">
-      <div class="container-date">
-        <!-- 需渲染資料區塊 -->
-        <p>西曆：2023 年 03 月 11 日</p>
-        <p>農曆：癸卯年 乙卯月 戊辰日 二月二十</p>
-        <!-- 需渲染資料區塊 -->
-      </div>
+       <backCalender></backCalender>
 
       <section class="container-main">
-        <div class="backend-nav">
-          <ul class="">
-          <li>
-            <router-link :to="{name:'backend_index'}" class="be-nav opacity-6 btn-color-darkgray be-menu">
-              <div class="width-3 text-left">後台管理首頁</div>
-              <i class="bi bi-caret-down-fill i-s opacity-0"></i>
-            </router-link>
-            <!-- <a class="be-nav btn-color-white be-menu" href="#/backend_index">
-            </a> -->
-            <div class="be-nav-on be-nav-off"></div>
-          </li>
-          <li>
-            <a class="be-nav  opacity-6 btn-color-darkgray be-menu">
-              <div class="width-3 text-left">網站管理</div>
-              <i class="bi bi-caret-down-fill i-s"></i>
-            </a>
-            <div class="be-nav-on be-nav-off">
-              <!-- <button class="be-nav btn-font-color-gray" onclick="window.location.href='#/backend_websiteinfo'">網站基本設定</button> -->
-              <!-- <button class="be-nav be-nav btn-font-color-gray" onclick="window.location.href='#/backend_officeinfo'">聯絡里辦資訊</button> -->
-              <!-- <button class="be-nav btn-font-color-gray" onclick="window.location.href='#/backend_faq'">常見問題設定</button> -->
-              <router-link :to="{name:'backend_websiteinfo'}">
-                <button class="be-nav btn-font-color-gray">網站基本設定</button>
-              </router-link>
-              <router-link :to="{name:'backend_officeinfo'}">
-                <button class="be-nav btn-font-color-gray">聯絡里辦資訊</button>
-              </router-link>
-              <router-link :to="{name:'backend_faq'}">
-                <button class="be-nav btn-font-color-gray">常見問題設定</button>
-              </router-link>
-            </div>
-          </li>
 
-          <li>
-            <a class="be-nav  opacity-6 btn-color-darkgray be-menu" >
-              <div class="width-3 text-left">帳戶管理</div>
-              <i class="bi bi-caret-down-fill i-s"></i>
-            </a>
-            <div class="be-nav-on be-nav-off">
-              <!-- <button class="be-nav btn-font-color-gray " onclick="window.location.href='#/backend_websiteinfo'">帳戶總列表</button>
-              <button class="be-nav btn-font-color-gray" onclick="window.location.href='#/backend_account_new'">待審核清單</button>
-              <button class="be-nav btn-font-color-gray" onclick="window.location.href='#/backend_account_cancel'">已刪除帳戶</button> -->
-              <router-link :to="{name:'backend_account_new'}">
-                <button class="be-nav btn-font-color-gray">待審核清單</button>
-              </router-link>
-              <router-link :to="{name:'backend_account_overview'}">
-                <button class="be-nav btn-font-color-gray">帳戶總列表</button>
-              </router-link>
-              <router-link :to="{name:'backend_account_cancel'}">
-                <button class="be-nav btn-font-color-gray">已刪除帳戶</button>
-              </router-link>
-            </div>
-          </li>
-
-          <li>
-            <router-link :to="{name:'backend_news'}" class="be-nav opacity-6 btn-color-darkgray be-menu">
-            <!-- <router-link :to="{name:'backend_news'}" class="be-nav opacity-6 btn-color-darkgray be-menu"> --> 
-              <div class="width-3 text-left">最新消息管理</div>
-              <i class="bi bi-caret-down-fill i-s opacity-0"></i>
-            </router-link>
-            <!-- <a class="be-nav opacity-6 btn-color-darkgray be-menu" href="#">
-              <div class="width-3 text-left">最新消息管理</div>
-              <i class="bi bi-caret-down-fill i-s opacity-0"></i>
-            </a> -->
-            <div class="be-nav-on"></div>
-          </li>
-          <li>
-            <router-link :to="{name:'backend_chat_list'}" class="be-nav btn-color-white be-menu">
-              <div class="width-3 text-left">討論區列表</div>
-              <i class="bi bi-caret-down-fill i-s opacity-0"></i>
-            </router-link>
-            <!-- <a class="be-nav opacity-6 btn-color-darkgray be-menu" href="#/backend_chat_list">
-              <div class="width-3 text-left">討論區列表</div>
-              <i class="bi bi-caret-down-fill i-s opacity-0"></i>
-            </a> -->
-            <div class="be-nav-on"></div>
-          </li>
-          <li>
-            <a class="be-nav  opacity-6 btn-color-darkgray be-menu" >
-              <div class="width-3 text-left">活動管理</div>
-              <i class="bi bi-caret-down-fill i-s"></i>
-            </a>
-            <div class="be-nav-on be-nav-off" id="beMenuOn">
-              <router-link :to="{name:'backend_activity'}">
-                <button class="be-nav btn-font-color-gray ">活動列表</button>
-            </router-link>
-            <router-link :to="{name:'backend_activity_input'}">
-              <button class="be-nav be-nav btn-font-color-gray">新增活動</button>
-            </router-link>
-              <!-- <button class="be-nav btn-font-color-gray "  onclick="window.location.href='#/backend_activity'">活動列表</button>
-              <button class="be-nav be-nav btn-font-color-gray" onclick="window.location.href='#/backend_activity_input'">新增活動</button> -->
-            </div>
-          </li>
-
-          <li>
-            <a class="be-nav opacity-6 btn-color-darkgray be-menu">
-              <div class="width-3 text-left">空間管理</div>
-              <i class="bi bi-caret-down-fill i-s"></i>
-            </a>
-            <div class="be-nav-on be-nav-off ">
-              <router-link :to="{name:'backend_space_list'}">
-                <button class="be-nav btn-font-color-gray">空間總覽</button>
-            </router-link>
-            <router-link :to="{name:'backend_space_management'}">
-              <button class="be-nav be-nav btn-font-color-gray">預約管理</button>
-            </router-link>
-              <!-- <button class="be-nav btn-font-color-gray"  onclick="window.location.href='''">空間列表</button>
-              <button class="be-nav be-nav btn-font-color-gray"  onclick="window.location.href=''">預約管理</button> -->
-            </div>
-          </li>
-          <li>
-            <router-link :to="{name:''}" class="be-nav opacity-6 btn-color-unopened be-menu">
-              <div class="width-3 text-left">團購網管理</div>
-              <i class="bi bi-caret-down-fill i-s opacity-0"></i>
-            </router-link>
-            <!-- <a class="be-nav opacity-6 btn-color-darkgray be-menu" href="">
-              <div class="width-3 text-left">團購網管理</div>
-              <i class="bi bi-caret-down-fill i-s opacity-0"></i>
-            </a> -->
-            <div class="be-nav-on"></div>
-          </li>
-          <li>
-            <router-link :to="{name:''}" class="be-nav opacity-6 btn-color-unopened be-menu">
-              <div class="width-3 text-left">維修通報</div>
-              <i class="bi bi-caret-down-fill i-s opacity-0"></i>
-            </router-link>
-            <!-- <a class="be-nav opacity-6 btn-color-darkgray be-menu" href="#">
-              <div class="width-3 text-left">維修通報</div>
-              <i class="bi bi-caret-down-fill i-s opacity-0"></i>
-            </a> -->
-            <div class="be-nav-on"></div>
-          </li>
-
-          <li>
-            <a class="be-nav opacity-6 btn-color-unopened be-menu " href="#">
-              <div class="width-3 text-left">守望相助</div>
-              <i class="bi bi-caret-down-fill i-s "></i>
-            </a>
-            <div class="be-nav-on be-nav-off be-menu">
-              <router-link :to="{name:''}">
-                <button class="be-nav btn-font-color-green">守望隊管理</button>
-              </router-link>
-              <router-link :to="{name:''}">
-                <button class="be-nav btn-font-color-gray">簽到列表</button>
-              </router-link>
-              <!-- <button class="be-nav btn-font-color-green">守望隊管理</button>
-              <button class="be-nav be-nav btn-font-color-gray">簽到列表</button> -->
-            </div>
-          </li>
-
-          <li>
-            <router-link :to="{name:''}" class="be-nav opacity-6 be-menu btn-color-unopened">
-              <div class="width-3 text-left">瓦斯表數據</div>
-              <i class="bi bi-caret-down-fill i-s opacity-0"></i>
-            </router-link>
-
-            <!-- <a class="be-nav opacity-6 btn-color-darkgray be-menu" href="#">
-              <div class="width-3 text-left">瓦斯表數據</div>
-              <i class="bi bi-caret-down-fill i-s opacity-0"></i>
-            </a> -->
-            <div class="be-nav-on"></div>
-          </li>
-
-        </ul>
-        </div>
+        <BackLeftNav></BackLeftNav>
+        
         <section class="section_right">
-          <!-- 活動總覽 -->
           <div class="w90percentage accounttable bk-chat">
             <h1>討論區列表</h1>
             <div class="displayflex justifycontent bk-filter">
@@ -199,17 +32,8 @@
                       <option value="">-選擇-</option>
                       <option value="new">最新至最舊</option>
                       <option value="old">最舊至最新 </option>
-                      <!-- <option value="4">審核通過 </option> -->
                   </select>
               </div>
-                <!-- <div>
-              <label for="selecte" class="f-label">上架狀態</label>
-              <select name="" id="selecte" class="f-select">
-                <option value="1">全部</option>
-                <option value="2">上架中</option>
-                <option value="3">已下架 </option>
-              </select>
-            </div> -->
               </div>
 
 
@@ -226,146 +50,26 @@
                     <td class="bk-chat-account">發佈用戶</td>
                     <td class="bk-chat-link">連結</td>
                     <td class="bk-chat-state">上架狀態</td>
-
                   </tr>
-                  <tr v-for="item in filteredItems" :key="item.id">
-                    <td>{{ item.category }}</td> <!-- 發布類別 -->
-                    <td>{{ item.title }}</td>   <!-- 標題 -->
-                    <td>{{ item.date }}</td> <!-- 時間 -->
-                    <td>{{ item.user }}</td> <!-- 用戶名稱 -->
+
+                  <tr v-for="(chat, index) in filteredItems" :key="index">
+                    <td>{{ chat[1] }}</td> <!-- 發布類別 -->
+                    <td>{{ chat[2] }}</td>   <!-- 標題 -->
+                    <td>{{ new Date(chat[3]).toLocaleDateString() }}</td> <!-- 時間 -->
+                    <td>{{ chat[4] }}</td> <!-- 用戶名稱 -->
                 
                    
-                    <td><button type="button" class="btn-icon" onclick="window.open('#/chat_info', '_blank')">
+                    <td><button type="button" class="btn-icon" @click="chatInfo(index)">
                         <i class="bi bi-link-45deg btn-font-color-green"></i>
                       </button>
                     </td>
-                    <td id="togle">
+                    <td id="toggle">
                       <label class="switch">
-                        <input type="checkbox" checked>
+                        <input type="checkbox" :checked="chat[6] === 1" @click="onoff(index)">
                         <span class="slider"></span>
                       </label>
                     </td>
                   </tr>
-
-                  <!-- <tr>
-                    <td>二手交易</td>
-                    <td>小孩已長大，售幼兒可愛包屁衣多款</td>
-                    <td>2022-01-03</td>
-                    <td>張迪生</td>
-                    <td><button type="button" class="btn-icon">
-                        <i class="bi bi-link-45deg btn-font-color-green"></i>
-                      </button>
-                    </td>
-                    <td>
-                      <div class="test-label">
-                        <label class="switch">
-                          <input type="checkbox">
-                          <span class="slider"></span>
-                        </label>
-                      </div>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>我要抱怨</td>
-                    <td>某社區的半夜還在唱來去高雄 = =</td>
-                    <td>2022-01-03</td>
-                    <td>車干可可</td>
-                    <td><button type="button" class="btn-icon">
-                        <i class="bi bi-link-45deg btn-font-color-green"></i>
-                      </button>
-                    </td>
-                    <td><label class="switch">
-                        <input type="checkbox" checked>
-                        <span class="slider"></span>
-                      </label>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>里民閒聊</td>
-                    <td>最近半夜都有怪人騷擾女生</td>
-                    <td>2022-01-03</td>
-                    <td>廖老大</td>
-                    <td><button type="button" class="btn-icon">
-                        <i class="bi bi-link-45deg btn-font-color-green"></i>
-                      </button>
-                    </td>
-                    <td><label class="switch">
-                        <input type="checkbox">
-                        <span class="slider"></span>
-                      </label>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>美食</td>
-                    <td>誰知道這附近最好喝的摩卡是哪家咖啡廳</td>
-                    <td>2022-03-03</td>
-                    <td>張因心</td>
-                    <td><button type="button" class="btn-icon">
-                        <i class="bi bi-link-45deg btn-font-color-green"></i>
-                      </button>
-                    </td>
-                    <td><label class="switch">
-                        <input type="checkbox" checked>
-                        <span class="slider"></span>
-                      </label>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>里民閒聊</td>
-                    <td>家裡漏水，有沒有推薦的水電師傅</td>
-                    <td>2022-03-03</td>
-                    <td>潘湯米</td>
-                    <td><button type="button" class="btn-icon">
-                        <i class="bi bi-link-45deg btn-font-color-green"></i>
-                      </button>
-                    </td>
-                    <td><label class="switch">
-                        <input type="checkbox" checked>
-                        <span class="slider"></span>
-                      </label>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>美食</td>
-                    <td>誰知道711前的豆花伯的營業時間？</td>
-                    <td>2022-03-03</td>
-                    <td>郭蜜莉</td>
-                    <td><button type="button" class="btn-icon">
-                        <i class="bi bi-link-45deg btn-font-color-green"></i>
-                      </button>
-                    </td>
-                    <td><label class="switch">
-                        <input type="checkbox" checked>
-                        <span class="slider"></span>
-                      </label>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>里民閒聊</td>
-                    <td>河堤旁遛小孩</td>
-                    <td>2022-03-03</td>
-                    <td>櫻桃爺爺</td>
-                    <td><button type="button" class="btn-icon">
-                        <i class="bi bi-link-45deg btn-font-color-green"></i>
-                      </button>
-                    </td>
-                    <td><label class="switch">
-                        <input type="checkbox" checked>
-                        <span class="slider"></span>
-                      </label>
-                    </td>
-                  </tr> -->
-
-
-
-
-
                 </tbody>
 
               </table>
@@ -394,7 +98,7 @@
 
     </main>
     <!------ 補這裡：不支援手機畫面 ------>
-    <div :class="bodyClass" class="nosupport">
+    <div class="nosupport">
                 <main>
                     <section class="noSupport">
                         <a href="#">
@@ -408,14 +112,15 @@
                     </section>
                 </main>
             
-        </div>
+      </div>
         <!------ 補這裡：不支援手機畫面 ------>
   </div>
   <Footer></Footer>
 </template>
 
 <script>
-
+import backCalender from '../components/BackCalender.vue';
+import BackLeftNav from '../components/BackLeftNav.vue';
 import backendNavbar from './backendNavbar.vue';
 import Footer from './Footer.vue';
 
@@ -423,55 +128,81 @@ import Footer from './Footer.vue';
 export default {
   data() {
     return {
-      items: [
-        { id: 1, category: '美食討論',title: '潘家牛肉麵只有2.2星', date: '2022-01-01' , user : '生哥' },
-        { id: 2, category: '二手交易',title: 'JS犀牛書跳樓大拍賣', date: '2022-01-02' , user : '阿薛' },
-        { id: 3, category: '二手交易',title: 'JS犀牛書跳樓亂賣一通', date: '2022-01-02' , user : '阿米'},
-        { id: 4, category: '里民閒聊',title: '明天緯育教室沒開放',  date: '2022-01-03' , user : '阿媛' },
-        { id: 5, category: '團購討論',title: '高雄櫻桃鴨徵人團購',   date: '2022-01-04' ,user : '阿慧'},
-        { id: 6, category: '我要抱怨',title: '後端PHP AJAX 好難',   date: '2022-01-07' , user : '阿妤' },
-        { id: 7, category: '其他',title: '好想幫第一組做團專',   date: '2022-04-14' , user : '實習生阿恩' },
-        // { id: 4, category: '公告',title: '其他網站的新功能正在努力開發中qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq',   date: '2022-01-04' },
-      ],
+      jsonData: [],
       selectedCategory: '',
       selectedDate: '',
     }
   },
   components: {
-    backendNavbar, Footer
+    backendNavbar, Footer,backCalender,BackLeftNav
   },
   computed :{
-    filteredItems() {
-      let filteredItems = this.items;
+
+
+     filteredItems: function() {
+      let filteredChats = this.jsonData;
+      // 類別篩選
       if (this.selectedCategory) {
-        filteredItems = filteredItems.filter((item) => item.category === this.selectedCategory);
+        filteredChats = filteredChats.filter(jsonData => {
+          return jsonData[1] === this.selectedCategory;
+        });
       }
+      // 日期排序
       if (this.selectedDate === 'new') {
-        filteredItems = filteredItems.sort((a, b) => new Date(b.date) - new Date(a.date));
+        filteredChats = filteredChats.sort((a, b) => new Date(b[3]) - new Date(a[3]));
       } else if (this.selectedDate === 'old') {
-        filteredItems = filteredItems.sort((a, b) => new Date(a.date) - new Date(b.date));
+        filteredChats = filteredChats.sort((a, b) => new Date(a[3]) - new Date(b[3]));
       }
-      return filteredItems;
-    },
+      return filteredChats;
+    }
+ 
   },
   mounted() {
 
-    let beMenu = document.querySelectorAll(".be-menu");
-    let beMenuOn = document.querySelectorAll(".be-nav-on");
-    // let beMenu = document.querySelectorAll("be-nav");
-    // console.log(beMenu);
-
-    for (let i = 0; i < beMenu.length; i++) {
-      beMenu[i].addEventListener("click", function () {
-        beMenuOn[i].classList.toggle('be-nav-off');
-        //   console.log(beMenu[i]);
+      axios
+      //  htdocs的環境下測試
+      .get('http://localhost/TGD104G1/public/API/backendChat.php')
+      // .get('https://tibamef2e.com/tgd104/g1/backendChat.php')
+      .then(response => {
+        this.jsonData = response.data;
+        console.log(response.data);
       })
-    }
+      .catch(error => {
+        // console.log(error);
+      });
 
   },
+  methods:{
+    chatInfo(index){
+      this.$router.push({ name: 'chat_info', params: { Id: this.jsonData[index][0] } });
+    },
+    onoff(index) {
+      // console.log(index);
+      console.log(this.jsonData[index]);
+      console.log('ID是' + this.jsonData[index][0]);
+      this.jsonData[index][6] = this.jsonData[index][6] === 1 ? 0 : 1; // 切換 0 和 1
+      
+      console.log('狀態' + this.jsonData[index][6]);
 
+    
+      const updateData = new FormData()
+      updateData.append('chatid', this.jsonData[index][0])
+      updateData.append('onoff', this.jsonData[index][6])
 
+      axios
+        // .post('https://tibamef2e.com/tgd104/g1/accountOverview.php', {index:this.jsonData[index][0]})
+        .post('http://localhost/TGD104G1/public/API/manageChat.php', updateData)
+        .then(response => {
+          // this.jsonData = response.data;
+          console.log(response.data);
+        })
+        .catch(error => {
+          console.log(error);
+        });
 
+      location.reload();
+    }
+  },
 
 }
 </script>
