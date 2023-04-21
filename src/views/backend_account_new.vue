@@ -322,6 +322,19 @@ export default {
     },
     confirm(index){
 
+        let familyData = new FormData()
+        familyData.append('ID', this.jsonData[index].ID)
+        familyData.append('ADDRESS', this.jsonData[index].ADDRESS)
+        axios.post('http://localhost/TGD104G1/public/API/signup_family.php', familyData)
+          .then(response => {
+            console.log(response.data)
+          })
+          .catch(error => {
+            console.log(error)
+          })
+
+
+
       
         let formData = new FormData()
         formData.append('ID', this.jsonData[index].ID)
