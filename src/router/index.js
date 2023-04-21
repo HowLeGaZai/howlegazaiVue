@@ -125,6 +125,12 @@ const routes = [
     component:() => import(/* webpackChunkName: "about" */ '../views/activity_info.vue')
   },
   {
+    // 前台 活動 活動介紹頁
+    path: '/activity_info/:Id',
+    name: 'activity_infoo',
+    component:() => import(/* webpackChunkName: "about" */ '../views/activity_info.vue')
+  },
+  {
     // 前台 空間預約總覽
     path: '/space',
     name: 'space',
