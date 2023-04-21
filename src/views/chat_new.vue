@@ -53,7 +53,7 @@
       <button type="button" class="btn-m btn-color-green" @click="gotoPreview()">預覽</button>
         
     </div>
-    <div v-html="editorHtml"></div>
+    
   </main>
   <Footer></Footer>
 </template>
