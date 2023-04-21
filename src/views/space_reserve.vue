@@ -39,7 +39,7 @@
                     <tr class="row left">
                         <td>
                             <label class="f-checkbox">同申請者
-                                <input type="checkbox" name="multichoice">
+                                <input type="checkbox" name="multichoice" v-model="isChecked" @change="handleChange">
                                 <span class="checkmark"></span>
                             </label>
                         </td>
@@ -52,8 +52,8 @@
                         <td class="col-12">
                             <label for="inputState" class="f-label">稱謂</label>
                             <select id="inputState" class="f-select" v-model="inputState">
-                            <option selected>先生</option>
-                            <option>女士</option>
+                            <option selected value="male">先生</option>
+                            <option value="female">女士</option>
                             </select>
                         </td>
                         <td class="col-12">
@@ -81,7 +81,7 @@
                           <button class="btn-m btn-color-gray" @click="navigate" role="link">返回上一步</button>
             </router-link>
              <!-- <router-link to="/space_reserve_check" custom v-slot="{ navigate }"> -->
-                          <button class="btn-m btn-color-green" @click="navigate2" >填寫完成，下一步</button>
+            <button class="btn-m btn-color-green" @click="navigate2" >填寫完成，下一步</button>
             <!-- </router-link> -->
         <!-- <button type="button" class="btn-m btn-color-gray" onclick="location.href='/space_info'">返回上一步</button>
         <button type="button" class="btn-m btn-color-green" onclick="location.href='/space_reserve_check'">填寫完成，下一步</button> -->
@@ -114,12 +114,18 @@ export default {
         mail:'',
         apply:'',
         
+        isChecked:false,
+        jsonData:[],
+        
     }
   },  
   components: {
       navbar,Footer,
     },
     mounted(){
+
+        //  sessionStorage.setItem("USER_ID", id);
+
          this.date = sessionStorage.getItem('date');
          this.time = sessionStorage.getItem('time');
          this.start = sessionStorage.getItem('start');
@@ -127,13 +133,17 @@ export default {
          this.onlydate = sessionStorage.getItem('onlydate');
 
          this.getSpaceData();
+
+         
+
+        
+         
     },
     methods:{
         async getSpaceData() {
               await  axios
-                //  htdocs的環境下測試
                     .get('http://localhost/TGD104G1/public/API/space.php')
-                        // .get('https://tibamef2e.com/tgd104/g1/accountOverview.php')
+
                     .then(response => {
                         this.spaceJsonData = response.data;
                         console.log('abc',this.spaceJsonData);
@@ -142,15 +152,12 @@ export default {
                         // console.log(error);
                     });
 
-
                     let space = sessionStorage.getItem("space");
                     
-                    
-
                     for(let i=0;i<this.spaceJsonData.length;i++){
-                      // console.log(i,this.spaceJsonData[i]);
+
                       if(space == this.spaceJsonData[i][1]){
-                        // console.log('空間資料',this.spaceJsonData[i]);
+
                         this.spaceData = this.spaceJsonData[i];
                         console.log('空間資料',this.spaceData);
                       }else{
@@ -164,29 +171,50 @@ export default {
 
 
         navigate2(){
-            let spaceID = sessionStorage.getItem("spaceID");
+            sessionStorage.setItem("APPLY_NAME", this.name);
+            sessionStorage.setItem("APPLY_TITLE", this.inputState);
+            sessionStorage.setItem("APPLY_PHONE", this.phone);
+            sessionStorage.setItem("APPLY_MAIL", this.mail);
+            sessionStorage.setItem("PURPOSE", this.apply);
 
-            const formData = new FormData()
-            formData.append('date', this.onlydate)
-            formData.append('start', this.start)
-            formData.append('end', this.end)
-            formData.append('APPLY_NAME', this.name)
-            formData.append('APPLY_TITLE', this.inputState)
-            formData.append('APPLY_MAIL', this.mail)
-            formData.append('APPLY_PHONE', this.phone)
-            formData.append('PURPOSE', this.apply)
-            formData.append('SPACE_ID', spaceID)
+            this.$router.push({ name: 'space_reserve_check', params: { Id: this.$route.params.Id } })
+        },
 
-            axios
-            .post('http://localhost/TGD104G1/public/API/spaceInfo.php', formData)
-            .then(response => {
-                // this.jsonData = response.data;
-                console.log(response.data);
-            })
-            .catch(error => {
-                console.log(error);
-            });
-            this.$router.push('/space_reserve_check')
+        handleChange(){
+
+            if(this.isChecked){
+
+                const formData = new FormData()
+                formData.append('user_id',this.getCookieValue('id') )
+                axios
+                    .post('http://localhost/TGD104G1/public/API/account_user.php', formData)
+                    .then(response => {
+                    this.jsonData = response.data;
+                    // console.log(this.jsonData[0]);
+                    this.name = this.jsonData[0].FULL_NAME;
+                    this.phone = this.jsonData[0].PHONE;
+                    this.mail = this.jsonData[0].EMAIL;
+                    this.inputState = this.jsonData[0].GENDER;
+
+                    })
+                    .catch(error => {
+                    console.log(error);
+                    });
+            }else{
+                
+            }
+        },
+        getCookieValue(cookieName) {
+        // 讀取指定名稱的 Cookie 值
+        const cookieStr = decodeURIComponent(document.cookie);
+        const cookies = cookieStr.split('; ');
+        for (let i = 0; i < cookies.length; i++) {
+          const cookie = cookies[i].split('=');
+          if (cookie[0] === cookieName) {
+            return cookie[1] || null;
+          }
+        }
+        return null;
         },
         
     }

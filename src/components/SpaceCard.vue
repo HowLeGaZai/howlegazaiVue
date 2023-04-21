@@ -104,7 +104,7 @@ export default {
                     sessionStorage.setItem("space", this.jsonData[index][1]);
                     console.log("space", this.jsonData[index][1]);
                     console.log("spaceID", this.jsonData[index][0]);
-                    // sessionStorage.setItem("spaceID", this.jsonData[index][0]);
+                    sessionStorage.setItem("spaceID", this.jsonData[index][0]);
 
                     this.$router.push({ name: 'space_info', params: { Id: this.jsonData[index][0] } });
 

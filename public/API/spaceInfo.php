@@ -4,13 +4,14 @@ include("conn.php");
 
 
 //建立SQL語法
-$sql = "INSERT into SPACE_ORDER VALUES(DEFAULT,1,'1',?,?,?,?,?,?,?,?,?)";
+$sql = "INSERT into SPACE_ORDER VALUES(DEFAULT,?,'0',?,?,?,?,?,?,?,?,?)";
 
 // $request_body = file_get_contents('php://input');
 // $data = json_decode($request_body, true);
 
 // $index = $data["index"];
 
+$USER_ID = $_POST['USER_ID'];
 $PURPOSE = $_POST['PURPOSE'];
 $date = $_POST['date'];
 $start = $_POST['start'];
@@ -29,15 +30,16 @@ $SPACE_ID = $_POST['SPACE_ID'];
 $statement = $pdo -> prepare($sql);
 
 //給值
-$statement->bindValue(1, $PURPOSE);
-$statement->bindValue(2, $date);
-$statement->bindValue(3, $start);
-$statement->bindValue(4, $end);
-$statement->bindValue(5, $APPLY_NAME);
-$statement->bindValue(6, $APPLY_MAIL);
-$statement->bindValue(7, $APPLY_TITLE);
-$statement->bindValue(8, $APPLY_PHONE);
-$statement->bindValue(9, $SPACE_ID);
+$statement->bindValue(1, $USER_ID);
+$statement->bindValue(2, $PURPOSE);
+$statement->bindValue(3, $date);
+$statement->bindValue(4, $start);
+$statement->bindValue(5, $end);
+$statement->bindValue(6, $APPLY_NAME);
+$statement->bindValue(7, $APPLY_MAIL);
+$statement->bindValue(8, $APPLY_TITLE);
+$statement->bindValue(9, $APPLY_PHONE);
+$statement->bindValue(10, $SPACE_ID);
 $statement->execute();
 
 

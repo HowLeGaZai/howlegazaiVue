@@ -17,18 +17,18 @@
             <br>
             <div class="popup_l_s">
               <div class="popup-pad">
-                <img src="../assets/img/s_1.png" alt="">
+                <img :src="spaceData.SPACE_PIC" alt="">
               </div>
               <div class="popup-pad">
-                <h3>A102教室</h3>
+                <h3>{{spaceData.NAME}}</h3>
                 <br>
-                <h4>藝文藝文活動及表演</h4>
+                <h4>{{spaceData.CATEGORY}}</h4>
                 <br>
-                <h4>空間大小：15坪</h4>
+                <h4>空間大小：{{spaceData.SPACE_SIZE}}</h4>
                 <br>
-                <h4>地址：花蓮縣大湖里南京東路三段219號4樓</h4>
-                <h5 class="popup-pad">2023-03-05（日）
-                  13:00 - 13:59</h5>
+                <h4>地址：{{spaceData.ADDRESS}}</h4>
+                <h5 class="popup-pad">{{date}}
+                  {{time}}</h5>
               </div>
               <!-- <br> -->
               <div>
@@ -39,13 +39,13 @@
             <div class="popup_l_t">
               <h3>申請人資訊</h3>
               <br>
-              <h4>姓名：張迪生 先生</h4>
+              <h4>姓名：{{name}} 先生</h4>
               <br>
-              <h4>聯絡電話：091231231232</h4>
+              <h4>聯絡電話：{{phone}}</h4>
               <br>
-              <h4>電子信箱：qweasdzxc2er@gmail.com</h4>
+              <h4>電子信箱：{{mail}}</h4>
               <br>
-              <h4>申請用途：舉辦前端工程師讀書會與面試交流討論，並舉辦櫻桃派對</h4>
+              <h4>申請用途：{{apply}}</h4>
               <br>
             </div>
           </div>
@@ -70,5 +70,67 @@ export default {
   components: {
       navbar,Footer,
     },
+
+    data () {
+    return {
+        spaceData:[],
+
+        date:'',
+        time:'',
+
+        // 申請資料
+        name:'',
+        inputState:'', //稱謂
+        phone:'',
+        mail:'',
+        apply:'',
+        
+    }
+  },  
+
+  mounted(){
+        this.date = sessionStorage.getItem('date');
+        this.time = sessionStorage.getItem('time');
+        this.name = sessionStorage.getItem("APPLY_NAME");
+        if(sessionStorage.getItem("APPLY_TITLE") == "male"){
+          this.inputState = "先生"
+        }else{
+          this.inputState = "女士"
+        }
+        this.phone = sessionStorage.getItem("APPLY_PHONE");
+        this.mail = sessionStorage.getItem("APPLY_MAIL");
+        this.apply = sessionStorage.getItem("PURPOSE");
+
+        this.getSpaceData();
+
+  },
+  methods:{
+     async getSpaceData() {
+              await  axios
+                    .get('http://localhost/TGD104G1/public/API/space.php')
+
+                    .then(response => {
+                        this.spaceJsonData = response.data;
+                        console.log('abc',this.spaceJsonData);
+                    })
+                    .catch(error => {
+                        // console.log(error);
+                    });
+
+                    let space = sessionStorage.getItem("space");
+                    
+                    for(let i=0;i<this.spaceJsonData.length;i++){
+
+                      if(space == this.spaceJsonData[i][1]){
+
+                        this.spaceData = this.spaceJsonData[i];
+                        console.log('空間資料',this.spaceData);
+                      }else{
+
+                      }
+                    }
+
+    },
+  }
 }
 </script>
