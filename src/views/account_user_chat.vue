@@ -5,78 +5,30 @@
     <main>
         <section class="account-border">
             <div class="account">
-                <section class="account-menu-pc">
-                    <h1 >帳戶管理</h1>
-                    <div class="image user_pic"><img src="../assets/img/user_pic.png" alt=""></div>
-                    <ul>
-
-                        <!-- <li v-for="accountNav in accountNavs"><a :href="accountNav.con">{{accountNav.nav}}</a></li> -->
-                        <li><router-link :to="{name:'account_user'}" class="">個人資訊</router-link></li>
-                        <!-- <li><a href="#" class="a-select">個人資訊</a></li> -->
-                        <li><router-link :to="{name:'account_user_manage'}" class="">成員管理</router-link></li>
-                        
-                        <!-- <li><a href="#">成員管理</a></li> -->
-                        <!-- <li><a href="#">貼文刊登紀錄</a></li> -->
-                        <li><router-link :to="{name:'account_user_chat'}" class="a-select">貼文刊登紀錄</router-link></li>
-                        
-                        <!-- <li><a href="#">空間預約紀錄</a></li> -->
-                        <li><router-link :to="{name:'account_user_space'}" class="">空間預約紀錄</router-link></li>
-
-                        <!-- <li><a href="#">活動報名紀錄</a></li> -->
-                        <li><router-link :to="{name:'account_user_activity'}" class="">活動報名紀錄</router-link></li>
-                        
-                        <!-- <li><a href="#">變更密碼</a></li> -->
-                        <li><router-link :to="{name:'account_user_change_pwd'}" class="">變更密碼</router-link></li>
-
-                        <li><router-link :to="{name:'home'}" class="" @click="clearCookies">登出</router-link></li>
-
-                        
-
-                    </ul>
-                </section>
+                <Accountsidebar :PORTRAIT="PORTRAIT"></Accountsidebar>
                 <section class="account-content">
                     <h1 class="marginbottom30">貼文刊登紀錄</h1>
-                
-                  <!-- <div class="row"></div> -->
-                      <!-- <div class="col-md-6 col-12"></div> -->
-                      <!-- <div class="col-12"></div> -->
-                  
-                      <!-- <div class="row account_row">
-                        <div class="col-md-6 col-12">
-                            <h4>出生 年/月/日</h4>
-                            <input type="text" class="f-text nomargin" id="name" v-model="birthdate" placeholder="YYYY/MM/DD">
-                        </div>
-                      </div> -->
                   
                       <table class="account-table w90percentage marginbottom20 account-table_chat">
                         <tr>
                             <th v-for="datasTr in datasTrs" >{{datasTr}}</th>
                         </tr>
-                        <tr v-for="data in datas" >
-                            <td data-label="發布日期">{{data[0]}}</td>
-                            <td data-label="貼文標題 :">{{data[1]}}</td>
-                            <td data-label="編輯"><button type="button" class="btn-icon"><i class="bi bi-pencil-square btn-font-color-green"></i></button></td>
-                            
+                        <tr v-for="(data,index) in datas" :key="index">
+                            <td data-label="CREATE_TIME">{{ formatDate(data.CREATE_TIME) }}</td>
+                            <td data-label="STATUS">{{ data.STATUS == 1 ? '已上架' : '已下架' }}</td>
+                            <td data-label="TITLE:"><router-link class="titlelink" :to="{ name: 'chat_info', params: { Id: data.ID } }">
+                                {{data.TITLE}}
+                                </router-link></td>
+                            <td data-label="編輯">
+                                <router-link :to="{ name: 'chat_new', params: { Id: data.ID } }" v-if="data.STATUS == 1">
+                                    <button type="button" class="btn-icon"><i class="bi bi-pencil-square btn-font-color-green"></i></button>
+                                </router-link>
+                            </td>
+                            <td data-label="永久下架">
+                                <button @click="articleDel" type="button" class="btn-icon" v-if="data.STATUS != -1"><i class="bi bi-x-circle-fill btn-font-color-green"></i></button>
+                            </td>
                         </tr>
-                    
                       </table>  
-
-                
-                     
-                      
-
-               
-
-                
-
-                      
-              
-                  
-
-
-
-
-
                 </section>
             </div>
         </section>
@@ -87,60 +39,98 @@
 
 <script>
 import navbar from './navbar.vue';
+import Accountsidebar from '@/components/Accountsidebar.vue';
 export default {
      data(){
-                   return {
-                    
+        return {
+            userId:"",
+            CREATE_TIME:'',
+            TITLE:'',
+            ID:'',
+            CONTENT:'',
+            STATUS:'',
+            
+            datasTrs:[
+                '發布日期', '狀態', '貼文標題', '編輯', '永久下架'
+            ],
 
-                    
+            datas:[
+            ],
+        }
+    },
+    methods: {
 
-                    accountNavs:[{nav:'個人資訊',con:'./account_user.html'},
-                    {nav:'成員管理',con:'./account_user_manage_3.html'},
-                    {nav:'貼文刊登紀錄',con:'./account_user_chat.html'},
-                    {nav:'瓦斯錶回報紀錄',con:'./account_user_gas.html'},
-                    {nav:'空間預約紀錄'},
-                    {nav:'活動報名紀錄'},
-                    {nav:'團購管理'},
-                    {nav:'變更密碼'}],
+        getCookieValue(cookieName) {
+        const cookies = document.cookie.split("; ");
+        for (let i = 0; i < cookies.length; i++) {
+          const cookie = cookies[i].split("=");
+          if (cookie[0] === cookieName) {
+            return cookie[1];
+          }
+        }
+            return null;
+        },
 
+        formatDate(dateTimeStr) {
+            const dateObj = new Date(dateTimeStr);
+            const year = dateObj.getFullYear();
+            const month = dateObj.getMonth() + 1;
+            const date = dateObj.getDate();
+            return `${year}-${month}-${date}`;
+        },
+        
+        getID(){
+            this.ID = this.datas[0].ID;
+        },
+        
+        articleDel(){
+            this.getID();
+            const ID = this.ID;
+            const requestData = {
+                    STATUS: -1
+                };
+            const STATUS = requestData.STATUS;
 
-                    mainMenus:[{nav:'聯絡里辦',con:'./contact.html'},
-                    {nav:'最新消息',con:'./news.html'},
-                    {nav:'討論區',con:'./chat.html'},
-                    // {nav:'智慧里民',con:'#'},
-                    ],
+            const url = 'http://localhost/TGD104G1/public/API/updateAccountChat.php';
+            const data = new FormData();
+            data.append('ID', ID);
+            data.append('STATUS', STATUS);
 
-                    datasTrs:[
-                        '發布日期', '貼文標題', '編輯'
-                    ],
+            axios
+                .post(url, data)
+                .then(function (response) {
+                    if (response.data.status === 'success') {
+                        alert(response.data.message); // 顯示儲存成功訊息
+                    } else {
+                        alert('下架失敗'); // 顯示儲存失敗訊息
+                    };
+                });
 
-                    datas:[
-                        {"0": '2023-03-03', "1": "最近吃到7-11超好吃飯糰"},
-                        {"0": '2023-02-01', "1": "在我們社區中經營一家小生意，是怎樣的體驗？"},
-                        {"0": '2023-01-13', "1": "我們社區的公共設施，有哪些需要改進？"},
-                        {"0": '2022-12-30', "1": "這些問題影響著我們社區的生活品質，你有甚麼想法？"},
-                        {"0": '2022-11-15', "1": "探索我們社區的公共藝術，感受藝術之美"},
-                    ],
+            
+            location.reload();
+        },
 
-                    
-               
-                   }
-                   },
-                     methods: {
-                        clearCookies() {
-                        // 取得目前的 cookie 字串
-                        let cookies = document.cookie;
-                        // 將 cookie 字串分割成每個 cookie
-                        let cookieArr = cookies.split("; ");
-                        // 迭代 cookieArr，將每個 cookie 都設置過期時間為過去的日期，使其被刪除
-                        for (let i = 0; i < cookieArr.length; i++) {
-                        let cookie = cookieArr[i];
-                        let eqPos = cookie.indexOf("=");
-                        let name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-                        document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/`;
-                        }
-                    },
-                    },
-                components:{navbar,}
+    },
+    mounted(){
+        const userId = this.getCookieValue("id");
+        const url = "http://localhost/TGD104G1/public/API/account_chat.php";
+        const data = new FormData();
+        data.append('user_id', userId)
+        
+        axios
+            .post(url, data)
+            .then((response) => {
+                const data = response.data;
+                this.datas = data;
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+        
+    },
+    components:{
+        navbar,
+        Accountsidebar,
+    }
 }
 </script>

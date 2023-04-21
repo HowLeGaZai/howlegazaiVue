@@ -43,6 +43,14 @@ const routes = [
     name: 'news',
     component:() => import(/* webpackChunkName: "about" */ '../views/news.vue')
   },
+
+  {
+    // 前台 最新消息 公告內容頁
+    path: '/news_info/:Id',
+    name: 'news_info',
+    component:() => import(/* webpackChunkName: "about" */ '../views/news_info.vue')
+  },
+
   {
     // 前台 討論區總覽頁
     path: '/chat',
@@ -206,12 +214,7 @@ const routes = [
     name: 'privacy',
     component:() => import(/* webpackChunkName: "about" */ '../views/privacy.vue')
   },
-  {
-    // 前台 最新消息 公告內容頁
-    path: '/news_info',
-    name: 'news_info',
-    component:() => import(/* webpackChunkName: "about" */ '../views/news_info.vue')
-  },
+  
   {
     // 前台 登入介面 
     path: '/login',
@@ -363,9 +366,9 @@ const routes = [
     name: 'backend_news',
     component:() => import(/* webpackChunkName: "about" */ '../views/backend_news.vue')
   },
-  // 最新消息 (增加消息)
+  // 最新消息 (新增消息)
   {
-    path: '/backend_news_add',
+    path: '/backend_news_add/:Id',
     name: 'backend_news_add',
     component:() => import(/* webpackChunkName: "about" */ '../views/backend_news_add.vue')
   },

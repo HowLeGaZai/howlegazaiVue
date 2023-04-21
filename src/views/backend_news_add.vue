@@ -27,13 +27,13 @@
                                     <h5>文章分類</h5>
                                 </label>
                                 <div>
-                                    <select name="" id="selecte" class="f-select">
+                                    <select name="" id="selecte" class="f-select" v-model="category">
                                         <option value="1">-選擇-</option>
                                         <option value="公告">公告</option>
-                                        <option value="3">宣導 </option>
-                                        <option value="4">里民服務</option>
-                                        <option value="5">新聞分享</option>
-                                        <option value="6">會議記錄</option>
+                                        <option value="宣導">宣導 </option>
+                                        <option value="里民服務">里民服務</option>
+                                        <option value="新聞分享">新聞分享</option>
+                                        <option value="會議記錄">會議記錄</option>
 
                                     </select>
                                 </div>
@@ -44,7 +44,8 @@
                                     <h5 style="margin-bottom:5px">文章縮圖</h5>
                                 </label>
                                 <div>
-                                    <picture-crop v-model="pic"></picture-crop>
+                                    <PictureCropChatbanner @pic="sendnewspic"></PictureCropChatbanner>
+                                    <!-- <PictureCropChatbanner @result-changed="onResultChanged"></PictureCropChatbanner> -->
 
                                     <!-- <div class="uploading">
                                             <label class="uploadpic" for="vrep-pic">
@@ -71,13 +72,14 @@
                         <div id="container">
                             <!-- <div id="editor">
                                 </div> -->
-                            <Tinymce></Tinymce>
+                            <Tinymce v-model="content"></Tinymce>
                             <div>
-                                <ckeditor :editor="editor" v-model="content" />
+                                <ckeditor :editor="editor" />
+>>>>>>> dev
                             </div>
                         </div>
 
-                        <button type="button" class="savebtn btn-10-s btn-color-green">預覽</button>
+                        <button type="button" class="savebtn btn-10-s btn-color-green" @click="addNews">預覽</button>
                     </section>
                 </div>
             </section>
@@ -111,17 +113,23 @@
 import backendNavbar from './backendNavbar.vue';
 import backCalender from '../components/BackCalender.vue';
 import BackLeftNav from '../components/BackLeftNav.vue';
-import $ from 'jquery'
+import PictureCropChatbanner from "@/components/PictureCropChatbanner.vue";
+// import $ from 'jquery'
 
 import Footer from './Footer.vue';
 import Tinymce from "@/components/Tinymce.vue";
 
-import PictureCrop from '../components/PictureCrop.vue';
+
 // import { response } from 'express';
 
 export default {
     components: {
-        backendNavbar, Footer, PictureCrop, Tinymce, backCalender, BackLeftNav
+        backendNavbar,
+        Footer,
+        PictureCropChatbanner,
+        Tinymce,
+        backCalender,
+        BackLeftNav
     },
     data() {
         return {
@@ -129,17 +137,25 @@ export default {
             title: '',
             pic: '',
             content: '',
+            
 
         };
     },
-    method: {
+    methods: {
+        sendnewspic(data) {
+            this.pic = data;
+        },
+    //     onResultChanged(result) {
+    //       this.PdataURL = result.dataURL;
+    //   },
         addNews() {
+           
             const formData = new FormData();
             formData.append('category', this.category);
             formData.append('title', this.title);
             formData.append('pic', this.pic);
             formData.append('content', this.content);
-
+            console.log(this.pic);
 
             axios
                 .post('http://localhost/TGD104G1/public/API/newsAdd.php', formData)
@@ -152,14 +168,17 @@ export default {
                 });
 
 
-            this.category = '';
-            this.title = '';
-            this.pic = '';
-            this.content = '';
+            // this.category = '';
+            // this.title = '';
+            // this.pic = '';
+            // this.content = '';
 
 
 
-        }
+        },
+
+
+
     },
     mounted() {
 

@@ -257,7 +257,7 @@
 }  
 
 .backend main .account-border .account .account-menu-pc ul li{
-  .a-select{
+  .active{
     color: #27b096;
     background: #fff;
   }
@@ -741,5 +741,17 @@
   
 }
 
+button{
+  i{
+    &:hover{
+      color: darken($green, 20%)
+    }
+  }
+}
 
-
+.titlelink{
+  color: $black;
+  &:hover{
+    color: $green;
+  }
+}
