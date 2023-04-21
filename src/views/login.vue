@@ -15,7 +15,7 @@
           <div class="txt_field">
             <h5>密碼</h5>
             <input ref="pwd" type="password" class="f-text label-left" id="pwd" placeholder="請輸入密碼" required>
-            <label>   <div class="pass"><a href="#/forgetpassword">忘記密碼</a> </div> </label>
+            <label>   <div class="pass"><a href="/forgetpassword">忘記密碼</a> </div> </label>
           </div>
         
          

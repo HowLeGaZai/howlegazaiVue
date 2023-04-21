@@ -250,7 +250,7 @@ const routes = [
     path: '/updatepassword',
     name: 'updatepassword',
     meta: {
-      requiresAuth: true // 添加一個 meta 屬性來標記需要登錄的頁面
+      requiresNoAuth: true // 添加一個 meta 屬性來標記需要未登錄才能訪問的頁面
     },
     component:() => import(/* webpackChunkName: "about" */ '../views/updatepassword.vue')
   },
@@ -384,7 +384,7 @@ const router = createRouter({
   routes
 })
 
-const noAuthPages = ['/login', '/signup1','/signup2','/updatepassword'];
+const noAuthPages = ['/login', '/signup1','/signup2','/forgetpassword','/updatepassword'];
 
 router.beforeEach((to, from, next) => {
   // 檢查是否有登錄憑證
