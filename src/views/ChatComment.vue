@@ -58,7 +58,7 @@ export default {
             this.$emit("message" , data)
             // console.log(this.message);
             this.message = ''
-            
+            this.$emit('commentAdded');
         },
         getCookieValue(cookieName) {
         // 讀取指定名稱的 Cookie 值
