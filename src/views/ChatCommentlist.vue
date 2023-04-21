@@ -45,10 +45,6 @@ export default {
         .catch(error => {
             console.log(error);
         });
-
-        // this.propData =  this.sendToList;
-        // console.log('123456'+ this.propData);
-        // this.addToArray();
     },
     watch:{
         sendToList:{
@@ -78,10 +74,6 @@ export default {
       getFormatDate(val) {
         return formatDate(val);
       },
-      // addToArray(){
-      //   this.jsonData.push(this.propData);
-      //   // console.log(this.jsonData);
-      // }
     },
 }
 </script>
