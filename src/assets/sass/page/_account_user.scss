@@ -473,8 +473,6 @@
 
       }
       button{
-        margin-top: 10px;
-        margin-right: 10px;
       }
       h4{
         margin-left: 10px;
@@ -547,8 +545,6 @@
 }
 .changeButton{
   transform: rotate(180deg);
-  background-color: $green;
-  color:$white;
 }
 
 .productSelect{
@@ -674,10 +670,13 @@
     left:0;
   }
   h6{
-    text-align: center;
-    max-width: 300px;
-    display: block;
-    margin: 0 auto;
+    text-align: left;
+    max-width: 410px;
+    margin-left: auto;
+    display: flex;
+    justify-content: flex-end;
+    color: $red;
+    margin-bottom: 20px;
   }
 
 }
@@ -701,9 +700,11 @@
   h5{
     margin-top: 10px;
     margin-right: 15px;
+    text-align: left;
   }
   @media screen and (max-width: 992px) {
     flex-wrap: wrap;
+    justify-content: flex-start;
   }
 }
 
@@ -720,6 +721,7 @@
   }
   @media screen and (max-width: 992px) {
     flex-wrap: wrap;
+    justify-content: flex-start;
   }
   textarea{
     @media screen and (max-width: 992px) {
@@ -741,6 +743,8 @@
   
 }
 
+
+
 button{
   i{
     &:hover{
@@ -754,4 +758,30 @@ button{
   &:hover{
     color: $green;
   }
+}
+
+.account-content{
+  .displayflex{
+    .collapseBtn{
+      flex-basis: 35px;
+      border: 0px;
+      background: transparent;
+      box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+      i{
+        line-height: 55px;
+        font-size: 25px;
+      }
+    }
+  }
+}
+
+
+#openBtn.rotate {
+  transform: rotate(180deg);
+}
+
+.hidden {
+  max-height: 0px;
+  transition: max-height 0.5s ease-out;
+  overflow: hidden;
 }
