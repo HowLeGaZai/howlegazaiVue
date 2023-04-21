@@ -377,7 +377,7 @@ const routes = [
   {
     path: '/news_info_preview/:Id',
     name: 'news_info_preview',
-    component: () => import(/* webpackChunkName: "about" */ '../views/backend_news_add.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/news_info_preview.vue')
   },
 
 

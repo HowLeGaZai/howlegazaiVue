@@ -119,6 +119,7 @@ import Footer from './Footer.vue';
 import Tinymce from "@/components/Tinymce.vue";
 
 
+
 // import { response } from 'express';
 
 export default {
@@ -138,7 +139,7 @@ export default {
         return {
             category: '',
             title: '',
-            pic: '',
+            // pic: '',
             content: '',
 
         };
@@ -188,10 +189,12 @@ export default {
 
             // 轉往預覽頁
             const Id = this.$route.params.Id;
+            console.log(Id)
             this.$router.push({name: 'news_info_preview', params: { Id: Id } });
 
 
-        }
+        },
+        
 
 
     },
