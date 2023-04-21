@@ -437,7 +437,7 @@
 }
 
 .chat-article {
-
+  margin: 30px 0 50px;
   @include breakpoint($grid-breakpoints, 'md') {
     margin: 30px 20px;
   }
@@ -523,4 +523,12 @@
     }
   }
   
+}
+.chat_area{
+  margin: 20px 0;
+  height: 30px;
+  border-bottom: 1px solid rgb(224, 224, 224);
+  // background-color: $green;
+
+  // background-color: $green;
 }

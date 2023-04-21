@@ -60,7 +60,7 @@
                     id="sPassword"
                     placeholder=""
                     required
-                    v-model="password"
+                    v-model.lazy.trim="password"
                     maxlength="12"
                     @blur="validatePassword"
                   />
@@ -70,15 +70,15 @@
               <div class="row">
                 <div class="input-box col-sm-12 col-sm-4">
                   <label class="details">姓<span v-if="!firstName && formSubmitted" class="red-dot"><i class="bi bi-asterisk"></i></span></label>
-                  <input type="text" class="f-text" id="sLastname" placeholder="" required v-model="firstName" @blur="xEmpty"/>
+                  <input type="text" class="f-text" id="sLastname" placeholder="" required v-model.trim="firstName" @blur="xEmpty"/>
                 </div>
                 <div class="input-box col-sm-12 col-sm-4">
                   <label class="details">名<span v-if="!lastName && formSubmitted" class="red-dot"><i class="bi bi-asterisk"></i></span></label>
-                  <input type="text" class="f-text" id="sFirstname" placeholder="" required v-model="lastName"/>
+                  <input type="text" class="f-text" id="sFirstname" placeholder="" required v-model.trim="lastName"/>
                 </div>
                 <div class="input-box col-sm-12 col-sm-4">
                   <label class="details">暱稱<span v-if="!nickName && formSubmitted" class="red-dot"><i class="bi bi-asterisk"></i></span></label>
-                  <input type="text" class="f-text" id="sNickname" placeholder="" required v-model="nickName"/>
+                  <input type="text" class="f-text" id="sNickname" placeholder="" required v-model.trim="nickName"/>
                 </div>
               </div>
 
@@ -86,7 +86,7 @@
                 <div class="input-box col-sm-12 col-sm-4">
                   <label class="details">身分證字號<span v-if="!idNum && formSubmitted" class="red-dot"><i class="bi bi-asterisk"></i></span></label>
                   <span v-if="!idNumValid" class="red">*請輸入正確身分證</span>
-                  <input type="text" class="f-text" id="sID" placeholder="" maxlength="10" minlength="10" required v-model="idNum" @blur="validateIdNum"/>
+                  <input type="text" class="f-text" id="sID" placeholder="" maxlength="10" minlength="10" required v-model.trim="idNum" @blur="validateIdNum"/>
                  
                 </div>
                 <div class="input-box col-sm-12 col-sm-4">
@@ -117,12 +117,12 @@
               <div class="row">
                 <div class="input-box col-sm-12 col-sm-6">
                   <label class="details">電子信箱<span v-if="!email && formSubmitted" class="red-dot"><i class="bi bi-asterisk"></i></span><span v-if="!emailValid" class="red">*請輸入正確email</span></label>
-                  <input type="text" class="f-text" id="sEmail" placeholder="e.g.123@abc.com" required v-model="email"
+                  <input type="text" class="f-text" id="sEmail" placeholder="e.g.123@abc.com" required v-model.trim="email"
                   @blur="validateEmail"/>
                 </div>
                 <div class="input-box col-sm-12 col-sm-6">
                   <label class="details">手機號碼<span v-if="!phoneNum && formSubmitted" class="red-dot"><i class="bi bi-asterisk"></i></span><span v-if="!phoneValid" class="red">*請輸入正確手機號碼</span></label>
-                  <input type="text" class="f-text" id="sPhone" placeholder="" maxlength="10" minlength="10" required v-model="phoneNum" 
+                  <input type="text" class="f-text" id="sPhone" placeholder="" maxlength="10" minlength="10" required v-model.trim="phoneNum" 
                   @blur="validatePhone"/>
                 </div>
               </div>

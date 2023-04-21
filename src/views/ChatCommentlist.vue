@@ -40,6 +40,7 @@ export default {
         .then(response => {
             this.jsonData = response.data;
             console.log('abc',response.data);
+
         })
         .catch(error => {
             console.log(error);
@@ -63,7 +64,7 @@ export default {
             // let data3 = {"0":data2.USER_ID,"1": data2.USER_PORTRAIT,"2":data2.USER_NICKNAME,"3":data2.CREATE_TIME,"4":data2.CONTENT};
             // console.log( data2);
             console.log(data2);
-            this.jsonData.push(data2);
+            this.jsonData.unshift(data2);
 
             const formData = new FormData()
             
@@ -81,6 +82,6 @@ export default {
       //   this.jsonData.push(this.propData);
       //   // console.log(this.jsonData);
       // }
-    }
+    },
 }
 </script>
