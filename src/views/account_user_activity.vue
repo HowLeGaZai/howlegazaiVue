@@ -18,7 +18,7 @@
                         <div class=" content_row borderBottomLightgray" v-for="(data,index) in datas" :key="index">
                           <div class="displayflex">
                             <h4 class="fontsize20">{{ data.START_DATE}}</h4>
-                            <h4 class="fontsize20 forSecondColumn"><router-link class="titlelink" :to="{ name: 'activity_info', params: { Id: data.ID } }">
+                            <h4 class="fontsize20 forSecondColumn"><router-link class="titlelink" :to="{ name: 'activity_info', params: { Id: ACTIVITY_ID } }">
                                 {{data.TITLE}}
                                 </router-link></h4>
                             <button type="button" class="btn-cir-s btn-color-white collapse collapseBtn">
@@ -29,7 +29,7 @@
 
                             <h4>訂單編號 : {{ data[0].ID }}</h4>
                             <h4>已付金額 : {{ data.PAYMENT }}</h4>
-                            <h4>活動時間 : {{ data.START_DATE }} {{ data.START_TIME }}~{{ data.END_DATE }} {{ data.END_TIME }}</h4>
+                            <h4>活動時間 : {{ data.START_DATE }} {{ formattedStartTime(data.START_TIME) }}~{{ data.END_DATE }} {{ formattedEndTime(data.END_TIME) }}</h4>
                             <h4>活動地點 : {{ data.LOCATION }}</h4>
                             <h4>參加人數 : {{ getAttendeeCount(data) }}</h4>
 
@@ -151,13 +151,24 @@ export default {
 
       getAttendeeCount(data) {
         const ATTEND_NAME = data.ATTEND_NAME.slice(1, -1).split(",");
-        
         return ATTEND_NAME.length;
-      }
+      },
+
+      formatTime(timeString) {
+            const [hour, minute] = timeString.split(":");
+            return `${hour}:${minute}`;
+      },
+      formattedStartTime(startTime) {
+          return this.formatTime(startTime);
+      },
+      formattedEndTime(endTime) {
+          return this.formatTime(endTime);
+      },
 
     },
     components:{navbar,Accountsidebar
     },
+
     computed: {
     },
 

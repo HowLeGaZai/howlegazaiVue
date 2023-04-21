@@ -670,10 +670,13 @@
     left:0;
   }
   h6{
-    text-align: center;
-    max-width: 300px;
-    display: block;
-    margin: 0 auto;
+    text-align: left;
+    max-width: 410px;
+    margin-left: auto;
+    display: flex;
+    justify-content: flex-end;
+    color: $red;
+    margin-bottom: 20px;
   }
 
 }
@@ -697,9 +700,11 @@
   h5{
     margin-top: 10px;
     margin-right: 15px;
+    text-align: left;
   }
   @media screen and (max-width: 992px) {
     flex-wrap: wrap;
+    justify-content: flex-start;
   }
 }
 
@@ -716,6 +721,7 @@
   }
   @media screen and (max-width: 992px) {
     flex-wrap: wrap;
+    justify-content: flex-start;
   }
   textarea{
     @media screen and (max-width: 992px) {
