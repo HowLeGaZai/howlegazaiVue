@@ -8,11 +8,6 @@
             <Accountsidebar :PORTRAIT="PORTRAIT"></Accountsidebar>
             <section class="account-content">
               <h1 class="marginbottom30">個人資訊</h1>
-
-              <!-- <div class="row"></div> -->
-              <!-- <div class="col-md-6 col-12"></div> -->
-              <!-- <div class="col-12"></div> -->
-
               <div class="account_row">
                 <h4>地址</h4>
                 <h4>{{ ADDRESS }}</h4>
@@ -25,7 +20,6 @@
                 <div class="col-md-6 col-12">
                   <h4>姓名</h4>
                   <h4>{{ FULL_NAME }}</h4>
-                  <!-- <input type="text" class="f-text nomargin" id="name" v-model="name" placeholder="王大明"> -->
                 </div>
 
                 <div class="col-md-6 col-12 input2">
