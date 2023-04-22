@@ -10,19 +10,12 @@
                 @change="selectFile"
                 />
         </button>
-            <!-- <label for="upload-file-6" class="uploadpic" >
-            <input ref="uploadInput" type="file" id="upload-file-6" style="display:none" accept="image/jpg, image/jpeg, image/png, image/gif"
-          @change="selectFile">
-            <div class="btn-10-s btn-color-green "><i class="bi bi-arrow-bar-up"></i>上傳圖片</div>
-        </label> -->
+
             <div class="pic-area" >
                 <div class="pic-area-box" v-if="result.dataURL">
                 <img :src="result.dataURL"/>
                 </div>
-                 <!-- <div class="pic-area-box" v-if="result.blobURL">
-                <img :src="result.blobURL"/>
 
-                </div> -->
                 <p>設計最佳建議：1400 x 400 像素，且大小不得超過 100 KB 的圖檔</p>
             </div>
     </div>
@@ -102,11 +95,7 @@ export default{
       this.pic = ''
       this.result.dataURL = ''
       this.result.blobURL = ''
-    // Get selected files
-    //   const files = e.target instanceof HTMLInputElement
-    //   if (files == null || files.length == 0) {
-    //     return;
-    //     }
+
         const file = e.target.files[0];
         if (file.type.startsWith('image/')) {
           
@@ -125,15 +114,10 @@ export default{
         this.$refs.uploadInput.value = ''
       }
       
-      // this.sendData();
     }
 
-    
-    
-
     },
-
-    
+ 
     /**
      * Get cropping results
      */
@@ -145,14 +129,44 @@ export default{
         console.log('分隔線');
         console.log(blob);
         if (!blob) return;
-        console.log({ base64, blob });
-        this.result.dataURL = base64;
+        // console.log({ base64, blob });
+        // this.result.dataURL = base64;
+
+        // Convert to WebP format
+        const webpDataURL = await this.convertBase64ToWebP(base64);
+
+        // Update the result object
+        this.result.dataURL = webpDataURL;
         
         this.result.blobURL = URL.createObjectURL(blob);;
         this.isShowModal = false;
         // console.log(this.result.dataURL);
         // alert(this.result.dataURL);
         this.sendData();
+        },
+
+        
+        async convertBase64ToWebP(base64) {
+          return new Promise((resolve) => {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+
+            const image = new Image();
+            image.src = base64;
+            image.onload = () => {
+              canvas.width = image.width;
+              canvas.height = image.height;
+              ctx.drawImage(image, 0, 0);
+
+              canvas.toBlob((blob) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(blob);
+                reader.onloadend = () => {
+                  resolve(reader.result);
+                };
+              }, 'image/webp', 0.8);
+            };
+          });
         },
     
     /**
