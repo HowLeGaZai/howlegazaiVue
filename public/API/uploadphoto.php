@@ -2,17 +2,18 @@
 
 include("conn.php");
 
-$photo = $_POST['photo'];
-
-list($type, $data) = explode(';', $photo);
-list(, $data)      = explode(',', $data);
-
-$image_data = base64_decode($data);
-
-print_r($image_data);
+$photo = $_POST['image'];
 
 
+$bin = base64_decode($photo);
 
+$im = imageCreateFromString($bin);
+
+if (!$im) {
+    die('Base64 value is not a valid image');
+}
+
+print_r($im);
 
 
 

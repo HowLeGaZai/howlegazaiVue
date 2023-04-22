@@ -139,19 +139,7 @@ export default{
         this.result.blobURL = URL.createObjectURL(blob);;
         this.isShowModal = false;
 
-        const formData = new FormData()
-        formData.append('photo', this.result.dataURL)
-        axios
-        .post('http://localhost/TGD104G1/public/API/uploadphoto.php',formData)
-            .then(response => {
-                this.jsonData = response.data;
-                console.log(response.data);
-            })
-            .catch(error => {
-                // console.log(error);
-            });
-
-        // this.sendData();
+        this.sendData();
         },
     
     /**
