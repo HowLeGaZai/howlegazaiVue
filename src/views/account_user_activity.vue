@@ -5,7 +5,7 @@
          <main>
         <section class="account-border">
             <div class="account">
-              <Accountsidebar :PORTRAIT="PORTRAIT"></Accountsidebar>
+              <Accountsidebar :localPORTRAIT="localPORTRAIT"></Accountsidebar>
 
                 <section class="account-content">
                     <h1 class="marginbottom30">活動報名紀錄</h1>
@@ -17,7 +17,7 @@
 
                         <div class=" content_row borderBottomLightgray" v-for="(data,index) in datas" :key="index">
                           <div class="displayflex">
-                            <h4 class="fontsize20">{{ data.START_DATE}}</h4>
+                            <h4 class="fontsize20" >{{ data.START_DATE}}</h4>
                             <h4 class="fontsize20 forSecondColumn"><router-link class="titlelink" :to="{ name: 'activity_info', params: { Id: ACTIVITY_ID } }">
                                 {{data.TITLE}}
                                 </router-link></h4>
@@ -27,11 +27,11 @@
                           </div>
                           <div class="attendDetail hidden">
 
-                            <h4>訂單編號 : {{ data[0].ID }}</h4>
-                            <h4>已付金額 : {{ data.PAYMENT }}</h4>
+                            <h4>訂單編號 : {{ data[0] }}</h4>
+                            <h4>已付金額 : {{ data.PAYMENT }} 元</h4>
                             <h4>活動時間 : {{ data.START_DATE }} {{ formattedStartTime(data.START_TIME) }}~{{ data.END_DATE }} {{ formattedEndTime(data.END_TIME) }}</h4>
                             <h4>活動地點 : {{ data.LOCATION }}</h4>
-                            <h4>參加人數 : {{ getAttendeeCount(data) }}</h4>
+                            <h4>參加人數 : {{ getAttendeeCount(data) }} 位</h4>
 
                             <div class="attendDetail2">
                               <div class="attendMember" v-for="attendee in getAttend(data)" :key="attendee.i">
@@ -72,6 +72,7 @@ export default {
           ATTEND_NAME:'',
           ATTEND_PHONE:'',
           ATTEND_MAIL:'',
+          localPORTRAIT:"",
 
           datas:[
               // {"0": '2023-03-04', "1": "新春書法體驗課"},
@@ -85,7 +86,7 @@ export default {
     },
  
     mounted(){
-
+        this.localPORTRAIT = localStorage.getItem("portrait");
         // $(function(){
         // $(".collapse").click(function(){
         //     $(this).parents('.content_row').find('.attendDetail').slideToggle("slow");
@@ -135,7 +136,9 @@ export default {
           } else {
             hiddenRow.style.maxHeight = hiddenRow.scrollHeight + "px";
             openBtn.classList.add("rotate");
-          }
+          };
+
+       
       },
 
       getAttend(data) {

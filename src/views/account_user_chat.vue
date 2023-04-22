@@ -5,7 +5,7 @@
     <main>
         <section class="account-border">
             <div class="account">
-                <Accountsidebar :PORTRAIT="PORTRAIT"></Accountsidebar>
+                <Accountsidebar :localPORTRAIT="localPORTRAIT"></Accountsidebar>
                 <section class="account-content">
                     <h1 class="marginbottom30">貼文刊登紀錄</h1>
                   
@@ -49,6 +49,7 @@ export default {
             ID:'',
             CONTENT:'',
             STATUS:'',
+            localPORTRAIT:"",
             
             datasTrs:[
                 '發布日期', '狀態', '貼文標題', '編輯', '永久下架'
@@ -112,6 +113,8 @@ export default {
 
     },
     mounted(){
+        this.localPORTRAIT = localStorage.getItem("portrait");
+
         const userId = this.getCookieValue("id");
         const url = "http://localhost/TGD104G1/public/API/account_chat.php";
         const data = new FormData();

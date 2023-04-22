@@ -150,14 +150,14 @@ export default {
     // }
   },
   methods: {
-    addClass(category) {
+   addClass(category) {
       return {
         "tag-main": category === "所有話題",
         "tag-pink": category === "美食討論",
         "tag-orange": category === "二手交易",
         "tag-blue": category === "里民閒聊",
         "tag-sky": category === "團購討論",
-        "tag-green": category === "我要抱怨",
+        "tag-green ": category === "我要抱怨",
         "tag-yellow": category === "其他",
       };
     },
