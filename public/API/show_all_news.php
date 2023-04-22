@@ -6,7 +6,7 @@ include("conn.php");
     //建立SQL語法
     // 查找符合的新聞標題(未下架的才會出現) 
    
-    $sql = "SELECT * FROM NEWS WHERE STATUS='online' ORDER BY CREATE_TIME desc";
+    $sql = "SELECT * FROM NEWS WHERE STATUS=1 ORDER BY CREATE_TIME desc";
     
     // echo $sql;
     // $statement = $pdo->prepare($sql);
