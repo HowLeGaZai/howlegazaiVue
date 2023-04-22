@@ -5,7 +5,7 @@
       <main>
         <section class="account-border">
           <div class="account">
-            <Accountsidebar :PORTRAIT="PORTRAIT"></Accountsidebar>
+              <Accountsidebar :PORTRAIT="PORTRAIT"></Accountsidebar>
             <section class="account-content">
               <h1 class="marginbottom30">個人資訊</h1>
               <div class="account_row">

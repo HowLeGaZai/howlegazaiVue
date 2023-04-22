@@ -106,6 +106,9 @@ export default {
             .catch((error) => {
                 console.error(error);
             });
+
+        // this.ID = this.datas[index][0];
+        // console.log(ID)
     },
 
     methods: {
