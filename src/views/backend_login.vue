@@ -43,7 +43,7 @@
           </div>
           <div class="login_btn">
             <div class="logo_center">
-              <a href="./backend/index.html">
+              <a href="/backend_index">
                 <button type="button" class="btn-m btn-color-green" @click="doSubmit">
                   登入
                 </button></a
