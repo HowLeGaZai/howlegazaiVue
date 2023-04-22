@@ -55,19 +55,19 @@
         }"
       >
         <!-- 渲染 9 次 swiper-slide -->
-        <template v-for="i in 9" :key="i">
-          <swiper-slide v-for="eventCard in eventCards">
+        <template v-for="i in 1" :key="i">
+          <swiper-slide v-for="eventCard in jsonData">
             <div class="card">
               <a href="#">
                 <img
-                  :src="require(`@/assets/img/${eventCard.CONTENT_PIC}`)"
+                  :src="Titlepic"
                   alt=""
                   class="image event_pic"
                 />
               </a>
-              <div
+              <!-- <div
                 :class="['tag', 'card-tag', addTagClass(eventCard.CATEGORY)]"
-              ></div>
+              ></div> -->
               <div class="card-line"></div>
               <div class="">
                 <h3 class="card-title">{{ eventCard.TITLE }}</h3>
@@ -190,43 +190,13 @@ export default {
   data() {
     return {
       // isLoggedIn: false,
-      news: '',
+      // 這裡是活動輪播的data
       eventCards: [
         {
-          BANNER: 0,
-          CATEGORY: "藝文",
-          CONTENT: "跟里長一起看電影",
-          CONTENT_PIC: "e1_calligraphy.png",
-          END_DATE: "2023-06-30",
-          END_TIME: "23:59:59",
-          ID: 1,
-          LOCATION: "里長家",
-          MAX_PPL: 60,
-          PRICE: 300,
-          REG_END: "2023-02-20",
-          REG_START: "2023-02-01",
-          START_DATE: "2023-03-01",
-          START_TIME: "00:00:01",
-          TITLE: "新春書法體驗課",
-          URL: "#/activity_info",
-        },
-        {
-          BANNER: 0,
-          CATEGORY: "藝文",
-          CONTENT: "跟里長一起看電影",
-          CONTENT_PIC: "e1_calligraphy.png",
-          END_DATE: "2023-06-30",
-          END_TIME: "23:59:59",
-          ID: 1,
-          LOCATION: "里長家",
-          MAX_PPL: 60,
-          PRICE: 300,
-          REG_END: "2023-02-20",
-          REG_START: "2023-02-01",
-          START_DATE: "2023-03-01",
-          START_TIME: "00:00:01",
-          TITLE: "游泳課體驗課",
-          URL: "#/activity_info",
+          Titlepic : '',
+          PRICE: '',
+          START_DATE: "",
+          TITLE: "",
         },
       ],
       jsonData: [],
@@ -268,15 +238,22 @@ export default {
         // console.log('123',this.jsonDataBanner);
         // console.log('123', this.jsonDataBanner);
     },
+    banner1(){
+        this.Titlepic = this.jsonData[this.jsonData.length-1].BANNER;
+        this.PRICE = this.jsonData[this.jsonData.length-1].PRICE;
+        this.START_DATE = this.jsonData[this.jsonData.length-1].START_DATE;
+        this.TITLE = this.jsonData[this.jsonData.length-1].TITLE;
+    },
    
   },
   mounted() {
+    // 這裡是 縣市里
      axios
         .post('http://localhost/TGD104G1/public/API/home.php',{})
         .then(response => {
             this.jsonData = response.data;
             // alert(response.data)
-            console.log(this.jsonData[this.jsonData.length-1].CITY);
+            // console.log(this.jsonData[this.jsonData.length-1].CITY);
             this.webInfo();
             // console.log(this.jsonData.length);
             // console.log(this.jsonData);
@@ -285,12 +262,27 @@ export default {
             // console.log(error);
         });
 
-
+    // Banner
       axios
         .post('http://localhost/TGD104G1/public/API/homeBanner.php',{})
         .then(response => {
             this.jsonDataBanner = response.data;
             // alert(response.data)
+            // console.log(this.jsonDataBanner[this.jsonDataBanner.length-1].BANNER);
+            
+            // console.log(this.jsonData.length);
+            // console.log(this.jsonData);
+        })
+        .catch(error => {
+            // console.log(error);
+        });
+
+      // 活動輪播
+      axios
+        .post('http://localhost/TGD104G1/public/API/index_activity.php',{})
+        .then(response => {
+          this.jsonData = response.data;
+          this.banner1();
             // console.log(this.jsonDataBanner[this.jsonDataBanner.length-1].BANNER);
             
             // console.log(this.jsonData.length);
