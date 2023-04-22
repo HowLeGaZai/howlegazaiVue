@@ -71,9 +71,9 @@
           <router-link to="/space" custom v-slot="{ navigate }">
             <button class="btn-m btn-color-gray" @click="navigate" role="link">返回空間總覽</button>
           </router-link>
-          <router-link to="/space_reserve" custom v-slot="{ navigate }">
-            <button class="btn-m btn-color-green" @click="navigate" role="link" id="spacerev">確認，下一步填寫資訊</button>
-          </router-link>
+          <!-- <router-link to="/space_reserve" custom v-slot="{ navigate }"> -->
+          <button class="btn-m btn-color-green" @click="navigate2" role="link" id="spacerev">確認，下一步填寫資訊</button>
+          <!-- </router-link> -->
           
           <!-- <button type="button" class="btn-m btn-color-gray" onclick="location.href='/space'">返回空間總覽</button>
           <button type="button" class="btn-m btn-color-green" onclick="location.href='/space_reserve'">確認，下一步填寫資訊</button> -->
@@ -296,7 +296,7 @@ export default {
                     });
 
 
-                    console.log(this.$route);
+                    console.log(this.$route.params.Id);
                     
                     
                     for(let i=0;i<this.spaceJsonData.length;i++){
@@ -424,7 +424,9 @@ async getData(date) {
 
     // alert(formattedDate);
     
-  let spaceID = sessionStorage.getItem("spaceID");
+  // let spaceID = sessionStorage.getItem("spaceID");
+  
+
 
     for(let i=0;i<this.jsonData.length;i++){
         
@@ -437,7 +439,7 @@ async getData(date) {
                 for(let j =0; j<dataList_about.length;j++){
                   // console.log('spaceID',spaceID);
                   // console.log(j,dataList_about[j].time_about)
-                  if(this.jsonData[i][1] == dataList_about[j].time_about && spaceID == this.jsonData[i][2]){
+                  if(this.jsonData[i][1] == dataList_about[j].time_about && this.$route.params.Id == this.jsonData[i][2]){
                       
                       dataList_about[j].value_about = 'btn-m btn-color-white timeslot btn-color-gray';
                       // console.log(dataList_about[j].value_about);
@@ -483,6 +485,10 @@ async getData(date) {
         sessionStorage.setItem("end", end);
 
 
+    },
+    navigate2(){
+      // console.log(this.$route.params.Id);
+      this.$router.push({ name: 'space_reserve', params: { Id: this.$route.params.Id } })
     }
 
 

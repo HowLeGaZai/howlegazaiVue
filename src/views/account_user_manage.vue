@@ -26,15 +26,15 @@
                         <tr>
                             <th v-for="datasTr in datasTrs" >{{datasTr}}</th>
                         </tr>
-                        <tr v-for="(data,index) in datas" :key="index">
+                        <tr v-for="(member,index) in jsonData" :key="index">
                             <td data-label="No.">
                               {{index+1}}
                               <!-- <button type="button" class="btn-icon"><i class="bi bi-pencil-square btn-font-color-green"></i></button>
                               <button type="button" class="btn-icon"><i class="bi bi-x-circle-fill btn-font-color-green"></i></button> -->
                             </td>
-                            <td data-label="姓名">{{data[1]}}</td>
-                            <td data-label="帳號">{{data[2]}}</td>
-                            <td data-label="電子信箱">{{data[3]}}</td>
+                            <td data-label="姓名">{{member.FULL_NAME}}</td>
+                            <td data-label="帳號">{{member.ACCOUNT}}</td>
+                            <td data-label="電子信箱">{{member.EMAIL}}</td>
                             <!-- <td data-label="編輯">
                               <button type="button" class="btn-icon"><i class="bi bi-pencil-square btn-font-color-green"></i></button>
                               <button type="button" class="btn-icon"><i class="bi bi-x-circle-fill btn-font-color-green"></i></button>
@@ -65,6 +65,9 @@ import addMember from './addMember.vue';
 export default {
             data(){
                    return {
+
+                    jsonData:[],
+
                     name:'',
                     nickname:'',   
                     gender:'',
@@ -73,6 +76,8 @@ export default {
                     email:'',
                     phonenumber:'',
 
+                    USER_ID:'',
+
                     showChild:false,
                     booleenforShow:true,
 
@@ -80,10 +85,10 @@ export default {
                         'No.', '姓名', '帳號', '電子信箱', '刪除'
                     ],
 
-                    datas:[
-                        {"0": 1, "1": "王一明", "2": "w1account123", "3": "q1w2e3r4@email.com"},
-                        {"0": 2, "1": "王二明", "2": "leeaccount1231111", "3": "zxcvb1245@mailbox.com"},
-                    ],
+                    // datas:[
+                    //     {"0": 1, "1": "王一明", "2": "w1account123", "3": "q1w2e3r4@email.com"},
+                    //     {"0": 2, "1": "王二明", "2": "leeaccount1231111", "3": "zxcvb1245@mailbox.com"},
+                    // ],
 
                     content:'',
                     inputValFromChild: [{}],
@@ -99,8 +104,8 @@ export default {
                 let dataNew = JSON.parse(data);
                 
                 // console.log({"0":'3',"1": data2.first_name+data2.last_name,"2":data2.Account,"3":data2.email});
-                let dataAdd = {"0":'3',"1": dataNew.first_name+dataNew.last_name,"2":dataNew.Account,"3":dataNew.email};
-                this.datas.push(dataAdd);
+                // let dataAdd = {"FULL_NAME": dataNew.first_name+dataNew.last_name,"ACCOUNT":dataNew.Account,"EMAIL":dataNew.email};
+                this.jsonData.push(dataNew);
 
 
                 console.log(toggleShow);
@@ -121,8 +126,39 @@ export default {
                         document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/`;
                         }
                     },
+
+                    getCookieValue(cookieName) {
+                        // 讀取指定名稱的 Cookie 值
+                        const cookieStr = decodeURIComponent(document.cookie);
+                        const cookies = cookieStr.split('; ');
+                        for (let i = 0; i < cookies.length; i++) {
+                        const cookie = cookies[i].split('=');
+                        if (cookie[0] === cookieName) {
+                            return cookie[1] || null;
+                        }
+                        }
+                        return null;
+                    },
                },   
                computed: {},
+               mounted(){
+                    this.USER_ID = this.getCookieValue('id');
+                    // console.log(this.USER_ID);
+
+                    const formData = new FormData()
+                    formData.append('ID', this.USER_ID)
+                    axios
+                    .post('http://localhost/TGD104G1/public/API/account_user_family.php',formData)
+
+                        .then(response => {
+                            this.jsonData = response.data;
+                            console.log(response.data);
+                            
+                        })
+                        .catch(error => {
+                            // console.log(error);
+                        });
+               },
                components:{navbar,addMember,Accountsidebar}
               
 }

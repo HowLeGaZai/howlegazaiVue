@@ -5,7 +5,7 @@
     $pwd = $_POST['password'];
 
     // 建立 SQL
-    $sql = "SELECT * FROM USER WHERE STATUS = 1 and ACCOUNT = ? and PASSWORD = ?";
+    $sql = "SELECT * FROM BACKEND_ADMIN WHERE ACCOUNT = ? and PASSWORD = ?";
 
     // 給值
     $statement = $pdo->prepare($sql);

@@ -4,13 +4,7 @@
 
     $chatID = $_POST['chatID'];
 
-
-    $sql = "SELECT C.CHAT_ID,U.PORTRAIT, C.USER_ID, U.NICKNAME, C.CREATE_TIME, C.CONTENT  
-            FROM COMMENT C 
-            JOIN USER U 
-            ON C.USER_ID = U.ID 
-            WHERE C.CHAT_ID = $chatID
-            order by C.CREATE_TIME desc";
+    $sql = "SELECT COUNT(*) FROM COMMENT WHERE CHAT_ID = $chatID ";
 
     $statement = $pdo->query($sql);
 

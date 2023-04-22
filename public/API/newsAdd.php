@@ -2,20 +2,25 @@
 
 include("conn.php");
 
-$sql = "INSERT into NEWS VALUES(DEFAULT,?,?,?,?,NOW(),'online','0')";
+$sql = "INSERT into NEWS VALUES(DEFAULT,?,?,?,?,?,?,NOW(),1,0)";
 
+$routerid = $_POST['routerid'];
 $category= $_POST['category'];
 $title= $_POST['title'];
+$adminid= $_POST['adminid'];
+
 $content= $_POST['content'];
 $pic= $_POST['pic'];
 
 
 $statement = $pdo -> prepare($sql);
 
-$statement->bindValue(1, $category);
-$statement->bindValue(2, $title);
-$statement->bindValue(3, $content);
-$statement->bindValue(4, $pic);
+$statement->bindValue(1, $routerid);
+$statement->bindValue(2, $category);
+$statement->bindValue(3, $title);
+$statement->bindValue(4, $adminid);
+$statement->bindValue(5, $content);
+$statement->bindValue(6, $pic);
 
 $statement->execute();
 

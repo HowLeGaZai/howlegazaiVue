@@ -58,7 +58,7 @@
             <div class="image list_pic">
               <!-- Vue無法抓取null的屬性做判斷，這裡直接將找不到的值轉換成字串null再做更替預設圖片 -->
               <img
-                :src="(news.PIC && news.PIC !== 'null') ? (news.PIC) : require(`@/assets/img/default.jpg`)"
+                :src="(news.PIC && news.PIC !== 'null' && news.PIC !== 'undefined') ? (news.PIC) : require(`@/assets/img/default.jpg`)"
                 alt="">
             </div>
           </section>
