@@ -159,7 +159,7 @@ export default {
   data() {
     return {
       newsData: [],
-      num: 8,
+      num: 12,
       id: new Date().getTime(),// 設當前時間的字符串為ID
       selectedCategory: '',
       selectedDate: '',
@@ -215,7 +215,7 @@ export default {
           console.log(error);
         });
 
-        location.reload();
+        // location.reload();
 
     }
   },
