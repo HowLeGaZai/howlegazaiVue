@@ -4,12 +4,10 @@ include("conn.php");
 
 //---------------------------------------------------
 
- $sql = "SELECT c.ID, c.CATEGORY, c.TITLE, c.CREATE_TIME, u.FULL_NAME, c.ROUTER_ID, c.STATUS 
-        FROM CHAT c
-        JOIN USER u
-        ON c.USER_ID = u.ID
-        WHERE c.STATUS >= 0
-        order by c.CREATE_TIME desc";
+$sql = "SELECT BANNER, PRICE, START_DATE, TITLE
+        FROM ACTIVITY
+        ORDER BY START_DATE DESC
+        LIMIT 8;";
 
  //執行並查詢，會回傳查詢結果的物件，必須使用fetch、fetchAll...等方式取得資料
  $statement = $pdo->query($sql);
