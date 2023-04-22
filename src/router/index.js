@@ -272,96 +272,144 @@ const routes = [
     // 後台 登入頁
     path: '/backend_login',
     name: 'backend_login',
+    meta: {
+      backrequiresNoAuth: true // 添加一個 meta 屬性來標記需要未登錄才能訪問的頁面
+    },
     component: () => import(/* webpackChunkName: "about" */ '../views/backend_login.vue')
   },
   {
     // 後台 首頁
     path: '/backend_index',
     name: 'backend_index',
+    meta: {
+      backrequiresAuth: true // 添加一個 meta 屬性來標記需要登錄的頁面
+    },
     component: () => import(/* webpackChunkName: "about" */ '../views/backend_index.vue')
   },
   {
     // 後台 討論區列表
     path: '/backend_chat_list',
     name: 'backend_chat_list',
+    meta: {
+      backrequiresAuth: true // 添加一個 meta 屬性來標記需要登錄的頁面
+    },
     component: () => import(/* webpackChunkName: "about" */ '../views/backend_chat_list.vue')
   },
   {
     // 後台 網站管理 網站基本設定
     path: '/backend_websiteinfo',
     name: 'backend_websiteinfo',
+    meta: {
+      backrequiresAuth: true // 添加一個 meta 屬性來標記需要登錄的頁面
+    },
     component: () => import(/* webpackChunkName: "about" */ '../views/backend_websiteinfo.vue')
   },
   {
     // 後台 網站管理 聯絡里辦資訊
     path: '/backend_officeinfo',
     name: 'backend_officeinfo',
+    meta: {
+      backrequiresAuth: true // 添加一個 meta 屬性來標記需要登錄的頁面
+    },
     component: () => import(/* webpackChunkName: "about" */ '../views/backend_officeinfo.vue')
   },
   {
     // 後台 網站管理 常見問題設定
     path: '/backend_faq',
     name: 'backend_faq',
+    meta: {
+      backrequiresAuth: true // 添加一個 meta 屬性來標記需要登錄的頁面
+    },
     component: () => import(/* webpackChunkName: "about" */ '../views/backend_faq.vue')
   },
   {
     // 後台 活動管理 活動列表
     path: '/backend_activity',
     name: 'backend_activity',
+    meta: {
+      backrequiresAuth: true // 添加一個 meta 屬性來標記需要登錄的頁面
+    },
     component: () => import(/* webpackChunkName: "about" */ '../views/backend_activity.vue')
   },
   {
     // 後台 活動管理 活動列表 參加名單
     path: '/backend_activity_memberlist',
     name: 'backend_activity_memberlist',
+    meta: {
+      backrequiresAuth: true // 添加一個 meta 屬性來標記需要登錄的頁面
+    },
     component: () => import(/* webpackChunkName: "about" */ '../views/backend_activity_memberlist.vue')
   },
   {
     // 後台 活動管理 新增活動
     path: '/backend_activity_input',
     name: 'backend_activity_input',
+    meta: {
+      backrequiresAuth: true // 添加一個 meta 屬性來標記需要登錄的頁面
+    },
     component: () => import(/* webpackChunkName: "about" */ '../views/backend_activity_input.vue')
   },
   {
     // 後台 帳戶管理 帳戶總列表
     path: '/backend/account/overview',
     name: 'backend_account_overview',
+    meta: {
+      backrequiresAuth: true // 添加一個 meta 屬性來標記需要登錄的頁面
+    },
     component: () => import(/* webpackChunkName: "about" */ '../views/backend_account_overview.vue')
   },
   {
     // 後台 帳戶管理 已刪除帳戶
     path: '/backend/account/cancel',
     name: 'backend_account_cancel',
+    meta: {
+      backrequiresAuth: true // 添加一個 meta 屬性來標記需要登錄的頁面
+    },
     component: () => import(/* webpackChunkName: "about" */ '../views/backend_account_cancel.vue')
   },
   {
     // 後台 帳戶管理 待審核帳戶
     path: '/backend/account/new',
     name: 'backend_account_new',
+    meta: {
+      backrequiresAuth: true // 添加一個 meta 屬性來標記需要登錄的頁面
+    },
     component: () => import(/* webpackChunkName: "about" */ '../views/backend_account_new.vue')
   },
   {
     // 後台 空間管理 待審核訂單 
     path: '/backend_space_list',
     name: 'backend_space_list',
+    meta: {
+      backrequiresAuth: true // 添加一個 meta 屬性來標記需要登錄的頁面
+    },
     component: () => import(/* webpackChunkName: "about" */ '../views/backend_space_list.vue')
   },
   {
     // 後台 空間管理 預約列表（潤：應該是待審核預約）
     path: '/backend_space_reservation',
     name: 'backend_space_reservation',
+    meta: {
+      backrequiresAuth: true // 添加一個 meta 屬性來標記需要登錄的頁面
+    },
     component: () => import(/* webpackChunkName: "about" */ '../views/backend_space_reservation.vue')
   },
   {
     // 後台 空間管理 新增空間
     path: '/backend_space_add',
     name: 'backend_space_add',
+    meta: {
+      backrequiresAuth: true // 添加一個 meta 屬性來標記需要登錄的頁面
+    },
     component: () => import(/* webpackChunkName: "about" */ '../views/backend_space_add.vue')
   },
   {
     // 後台 空間管理 空間總覽
     path: '/backend_space_management',
     name: 'backend_space_management',
+    meta: {
+      backrequiresAuth: true // 添加一個 meta 屬性來標記需要登錄的頁面
+    },
     component: () => import(/* webpackChunkName: "about" */ '../views/backend_space_management.vue')
   },
 
@@ -370,6 +418,9 @@ const routes = [
   {
     path: '/backend_news',
     name: 'backend_news',
+    meta: {
+      backrequiresAuth: true // 添加一個 meta 屬性來標記需要登錄的頁面
+    },
     component: () => import(/* webpackChunkName: "about" */ '../views/backend_news.vue')
   },
   // 最新消息 (新增消息)
@@ -402,9 +453,12 @@ const router = createRouter({
 
 const noAuthPages = ['/login', '/signup1','/signup2','/forgetpassword','/updatepassword'];
 
+
 router.beforeEach((to, from, next) => {
   // 檢查是否有登錄憑證
   const token = getCookie('account');
+ 
+
 
   if (noAuthPages.includes(to.path) && token) {
     // 如果要訪問的頁面需要未登錄，但用戶已經登錄，則跳轉到受保護的頁面
@@ -415,6 +469,24 @@ router.beforeEach((to, from, next) => {
   } else {
     next();
   }
+
+
+});
+
+const backnoAuthPages = ['/backend_login'];
+router.beforeEach((to, from, next) => {
+  const token2 = sessionStorage.getItem('login');
+  
+  if (backnoAuthPages.includes(to.path) && token2) {
+    // 如果要訪問的頁面需要未登錄，但用戶已經登錄，則跳轉到受保護的頁面
+    next('/backend_index');
+  } else if (to.matched.some(record => record.meta.backrequiresAuth) && !token2) {
+    // 如果要訪問的頁面需要登錄，但用戶未登錄，則跳轉到登錄頁面
+    next('/backend_login');
+  } else {
+    next();
+  }
+
 });
 
 // 讀取 Cookie
