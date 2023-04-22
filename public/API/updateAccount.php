@@ -5,7 +5,10 @@ include("conn.php");
 
 // Get user ID from request
 $user_id = $_POST['user_id'];
+$GENDER = $_POST['GENDER'];
 $NICKNAME = $_POST['NICKNAME'];
+$ID_NUMBER = $_POST['ID_NUMBER'];
+$BIRTHDATE = $_POST['BIRTHDATE'];
 $PHONE = $_POST['PHONE'];
 $EMAIL = $_POST['EMAIL'];
 $PORTRAIT = $_POST['PORTRAIT'];
@@ -13,30 +16,45 @@ $PORTRAIT = $_POST['PORTRAIT'];
 // Update user data
 $userData = array();
 
-if (isset($NICKNAME)) {
+if (!is_null($GENDER)) {
+    $userData['GENDER'] = $GENDER;
+}
+
+if (!is_null($ID_NUMBER)) {
+    $userData['ID_NUMBER'] = $ID_NUMBER;
+}
+
+if (!is_null($BIRTHDATE)) {
+    $userData['BIRTHDATE'] = $BIRTHDATE;
+}
+
+if (!is_null($NICKNAME)) {
     $userData['NICKNAME'] = $NICKNAME;
 }
 
-if (isset($PHONE)) {
+if (!is_null($PHONE)) {
     $userData['PHONE'] = $PHONE;
 }
 
-if (isset($EMAIL)) {
+if (!is_null($EMAIL)) {
     $userData['EMAIL'] = $EMAIL;
 }
 
-if (isset($PORTRAIT)) {
+if (!is_null($PORTRAIT)) {
     $userData['PORTRAIT'] = $PORTRAIT;
 }
   
 // Update user data in database
-$sql = "UPDATE USER SET NICKNAME = ?, PHONE = ?, EMAIL = ?, PORTRAIT = ? WHERE ID = ?";
+$sql = "UPDATE USER SET GENDER = ?, ID_NUMBER = ?, BIRTHDATE = ?, NICKNAME = ?, PHONE = ?, EMAIL = ?, PORTRAIT = ? WHERE ID = ?";
 $statement = $pdo->prepare($sql);
-$statement->bindValue(1, $userData['NICKNAME'] ?? null);
-$statement->bindValue(2, $userData['PHONE'] ?? null);
-$statement->bindValue(3, $userData['EMAIL'] ?? null);
-$statement->bindValue(4, $userData['PORTRAIT'] ?? null);
-$statement->bindValue(5, $user_id);
+$statement->bindValue(1, $userData['GENDER'] ?? null);
+$statement->bindValue(2, $userData['ID_NUMBER'] ?? null);
+$statement->bindValue(3, $userData['BIRTHDATE'] ?? null);
+$statement->bindValue(4, $userData['NICKNAME'] ?? null);
+$statement->bindValue(5, $userData['PHONE'] ?? null);
+$statement->bindValue(6, $userData['EMAIL'] ?? null);
+$statement->bindValue(7, $userData['PORTRAIT'] ?? null);
+$statement->bindValue(8, $user_id);
 $statement->execute();
 
 // 建立回應資料

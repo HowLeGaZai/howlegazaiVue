@@ -7,7 +7,7 @@
     <main>
         <section class="account-border">
             <div class="account">
-                <Accountsidebar :PORTRAIT="PORTRAIT"></Accountsidebar>
+                <Accountsidebar :localPORTRAIT="localPORTRAIT"></Accountsidebar>
                 <section class="account-content">
                     <h1 class="marginbottom30">成員管理</h1>
                 
@@ -63,43 +63,43 @@ import Accountsidebar from '@/components/Accountsidebar.vue';
 import addMember from './addMember.vue';
 
 export default {
-            data(){
-                   return {
+        data(){
+            return {
+                localPORTRAIT:"",
+                jsonData:[],
 
-                    jsonData:[],
+                name:'',
+                nickname:'',   
+                gender:'',
+                IDnumber:'',
+                birthdate:'',
+                email:'',
+                phonenumber:'',
 
-                    name:'',
-                    nickname:'',   
-                    gender:'',
-                    IDnumber:'',
-                    birthdate:'',
-                    email:'',
-                    phonenumber:'',
+                USER_ID:'',
 
-                    USER_ID:'',
+                showChild:false,
+                booleenforShow:true,
 
-                    showChild:false,
-                    booleenforShow:true,
+                datasTrs:[
+                    'No.', '姓名', '帳號', '電子信箱', '刪除'
+                ],
 
-                    datasTrs:[
-                        'No.', '姓名', '帳號', '電子信箱', '刪除'
-                    ],
+                // datas:[
+                //     {"0": 1, "1": "王一明", "2": "w1account123", "3": "q1w2e3r4@email.com"},
+                //     {"0": 2, "1": "王二明", "2": "leeaccount1231111", "3": "zxcvb1245@mailbox.com"},
+                // ],
 
-                    // datas:[
-                    //     {"0": 1, "1": "王一明", "2": "w1account123", "3": "q1w2e3r4@email.com"},
-                    //     {"0": 2, "1": "王二明", "2": "leeaccount1231111", "3": "zxcvb1245@mailbox.com"},
-                    // ],
+                content:'',
+                inputValFromChild: [{}],
+            
+            }
 
-                    content:'',
-                    inputValFromChild: [{}],
-               
-                    }
-
-            },
+        },
     
-            methods: {
+        methods: {
 
-                getValFromChild({data,toggleShow}) {
+            getValFromChild({data,toggleShow}) {
                 this.inputValFromChild = JSON.parse(data);
                 let dataNew = JSON.parse(data);
                 
@@ -111,56 +111,44 @@ export default {
                 console.log(toggleShow);
 
                 this.showChild = toggleShow;
-               
-                },
-                    clearCookies() {
-                        // 取得目前的 cookie 字串
-                        let cookies = document.cookie;
-                        // 將 cookie 字串分割成每個 cookie
-                        let cookieArr = cookies.split("; ");
-                        // 迭代 cookieArr，將每個 cookie 都設置過期時間為過去的日期，使其被刪除
-                        for (let i = 0; i < cookieArr.length; i++) {
-                        let cookie = cookieArr[i];
-                        let eqPos = cookie.indexOf("=");
-                        let name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-                        document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/`;
-                        }
-                    },
+            },
+            getCookieValue(cookieName) {
+                    // 讀取指定名稱的 Cookie 值
+                    const cookieStr = decodeURIComponent(document.cookie);
+                    const cookies = cookieStr.split('; ');
+                    for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].split('=');
+                    if (cookie[0] === cookieName) {
+                        return cookie[1] || null;
+                    }
+                    }
+                    return null;
+            },
+        },   
+        computed: {
 
-                    getCookieValue(cookieName) {
-                        // 讀取指定名稱的 Cookie 值
-                        const cookieStr = decodeURIComponent(document.cookie);
-                        const cookies = cookieStr.split('; ');
-                        for (let i = 0; i < cookies.length; i++) {
-                        const cookie = cookies[i].split('=');
-                        if (cookie[0] === cookieName) {
-                            return cookie[1] || null;
-                        }
-                        }
-                        return null;
-                    },
-               },   
-               computed: {},
-               mounted(){
-                    this.USER_ID = this.getCookieValue('id');
-                    // console.log(this.USER_ID);
+        },
+        mounted(){
+            this.localPORTRAIT = localStorage.getItem("portrait");
+            this.USER_ID = this.getCookieValue('id');
+            // console.log(this.USER_ID);
 
-                    const formData = new FormData()
-                    formData.append('ID', this.USER_ID)
-                    axios
-                    .post('http://localhost/TGD104G1/public/API/account_user_family.php',formData)
+            const formData = new FormData()
+            formData.append('ID', this.USER_ID)
+            axios
+                .post('http://localhost/TGD104G1/public/API/account_user_family.php',formData)
 
-                        .then(response => {
-                            this.jsonData = response.data;
-                            console.log(response.data);
-                            
-                        })
-                        .catch(error => {
-                            // console.log(error);
-                        });
-               },
-               components:{navbar,addMember,Accountsidebar}
-              
+                .then(response => {
+                    this.jsonData = response.data;
+                    console.log(response.data);
+                    
+                })
+                .catch(error => {
+                    // console.log(error);
+                });
+        },
+        components:{
+            navbar,addMember,Accountsidebar
+        }           
 }
-
-    </script>
+</script>

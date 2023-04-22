@@ -2,7 +2,7 @@
         <section class="account-menu-pc">
               <h1>帳戶專區</h1>
               <div class="image user_pic">
-                <img :src="PORTRAIT" alt="" />
+                <img :src="localPORTRAIT" alt="" />
               </div>
               <ul>
                 <li>
@@ -45,7 +45,7 @@
 <script>
 
 export default {
-  // props: ["PORTRAIT"],
+  props: ["localPORTRAIT"],
 
   data() {
     return {
@@ -104,7 +104,6 @@ export default {
 
   mounted() {
     this.togglebutton;
-    this.PORTRAIT = localStorage.getItem("portrait");
 
     
     // this.abc = this.PORTRAIT;
