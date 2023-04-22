@@ -143,66 +143,74 @@ methods: {
   //     this.isShowModal = false;
   //     },
 
-  /**
-   * Get cropping results + watermark results
-   */
-   async getResult() {
-    if (!cropper) return;
-    const base64 = cropper.getDataURL();
-    const blob = await cropper.getBlob();
-    if (!blob) return;
+    /**
+     * Get cropping results + watermark results
+     */
+    async getResult() {
+      if (!cropper) return;
+      const base64 = cropper.getDataURL();
+      const blob = await cropper.getBlob();
+      if (!blob) return;
 
-    const img = new Image(); // load original image to new Image object
-    img.src = base64;
-    img.onload = () => {
-      const canvas = document.createElement('canvas');
-      const ctx = canvas.getContext('2d');
-      const watermark = this.city + this.town + '辦公室';
-      const x = -50; // x coordinate of the watermark
-      const y = 10; // y coordinate of the watermark
-      const size = 20; // font size of the watermark
-      const color = 'rgba(200, 200, 200, 0.6)'; // color of the watermark
+      const img = new Image(); // load original image to new Image object
+      img.src = base64;
+      img.onload = async () => {
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        const watermark = this.city + this.town + '辦公室';
+        const x = -50; // x coordinate of the watermark
+        const y = 10; // y coordinate of the watermark
+        const size = 20; // font size of the watermark
+        const color = 'rgba(200, 200, 200, 0.6)'; // color of the watermark
 
-      // canvas 畫布大小 = 上傳圖片大小
-      canvas.width = img.width;
-      canvas.height = img.height;
+        // canvas 畫布大小 = 上傳圖片大小
+        canvas.width = img.width;
+        canvas.height = img.height;
 
-      // canvas drawImage
-      ctx.drawImage(img, 0, 0);
-      ctx.rotate((-15 * Math.PI) / 180);
-      // ctx.textAlign = "left";
-      // ctx.textBaseline = "middle";
-      ctx.font = `${size}px sans-serif`;
-      ctx.fillStyle = color;
+        // canvas drawImage
+        ctx.drawImage(img, 0, 0);
+        ctx.rotate((-15 * Math.PI) / 180);
+        // ctx.textAlign = "left";
+        // ctx.textBaseline = "middle";
+        ctx.font = `${size}px sans-serif`;
+        ctx.fillStyle = color;
 
-      // 畫出多個浮水印
-      const numWatermarks = 50;
-      const spacing = 50;
-      for (let i = 0; i < 3; i++) {
-        const xPos = x + i * 200;
+        // 畫出多個浮水印
+        const numWatermarks = 50;
+        const spacing = 50;
+        for (let i = 0; i < 3; i++) {
+          const xPos = x + i * 200;
 
-        for (let j = 0; j < numWatermarks; j++) {
-          const yPos = y + j * spacing;
-          ctx.fillText(watermark, xPos, yPos);
+          for (let j = 0; j < numWatermarks; j++) {
+            const yPos = y + j * spacing;
+            ctx.fillText(watermark, xPos, yPos);
+          }
         }
-      }
-      this.result.dataURL = canvas.toDataURL();
-     
-      this.sendDataToParent1();
-      this.sendDataToParent2();
-      // // 增加浮水印
-      // ctx.fillText(watermark, canvas.width / 8, canvas.height / 2);
-      // ctx.fillText(watermark, canvas.width / 8, canvas.height / 1.7);
-      // ctx.fillText(watermark, canvas.width / 8, canvas.height / 1.4);
-      // ctx.fillText(watermark, canvas.width / 8, canvas.height / 1.1);
-    };
 
-    // canvas 圖片 = 上傳裁切後的圖片網址
-    // this.result.dataURL = base64;
-    this.result.blobURL = URL.createObjectURL(blob);
-    this.isShowModal = false;
+        // 將 Canvas 轉換為 WebP 格式
+        canvas.toBlob(async (blob) => {
+          const webpBlob = await new Promise((resolve) => {
+            canvas.toBlob(resolve, 'image/webp');
+          });
 
-  },
+          // 將 WebP 格式轉換為 Base64
+          const reader = new FileReader();
+          reader.readAsDataURL(webpBlob);
+          reader.onloadend = () => {
+            const base64Webp = reader.result;
+
+            this.result.dataURL = base64Webp;
+            this.sendDataToParent1();
+            this.sendDataToParent2();
+          };
+        }, 'image/webp', 0.8);
+      };
+
+      // canvas 圖片 = 上傳裁切後的圖片網址
+      // this.result.dataURL = base64;
+      this.result.blobURL = URL.createObjectURL(blob);
+      this.isShowModal = false;
+    },
   
   /**
    * Clear the crop box

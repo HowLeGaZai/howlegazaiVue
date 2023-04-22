@@ -135,13 +135,44 @@ export default{
         const blob = await cropper.getBlob();
         if (!blob) return;
         // console.log({ base64, blob });
-        this.result.dataURL = base64;
+
+        // Convert to WebP format
+        const webpDataURL = await this.convertBase64ToWebP(base64);
+
+        // Update the result object
+        this.result.dataURL = webpDataURL;
+
+        // this.result.dataURL = base64;
         this.result.blobURL = URL.createObjectURL(blob);;
         this.isShowModal = false;
         // console.log(this.result.dataURL);
 
         // emit the event with the result data
         this.$emit('result-changed', this.result);
+        },
+
+
+         async convertBase64ToWebP(base64) {
+          return new Promise((resolve) => {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+
+            const image = new Image();
+            image.src = base64;
+            image.onload = () => {
+              canvas.width = image.width;
+              canvas.height = image.height;
+              ctx.drawImage(image, 0, 0);
+
+              canvas.toBlob((blob) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(blob);
+                reader.onloadend = () => {
+                  resolve(reader.result);
+                };
+              }, 'image/webp', 0.8);
+            };
+          });
         },
     
     /**
