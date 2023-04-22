@@ -201,6 +201,7 @@ export default {
       ],
       jsonData: [],
       jsonDataBanner: [],
+      jsonChat: [],
       city:'',
       district:'',
       town:'',
@@ -301,20 +302,20 @@ export default {
             // console.log(error);
         });
         // 討論區
-      axios
-        .post('http://localhost/TGD104G1/public/API/chatlist.php',{})
-        .then(response => {
-          this.jsonData = response.data;
-          this.chat();
-          // console.log(response.data)
-            // console.log(this.jsonDataBanner[this.jsonDataBanner.length-1].BANNER);
+      // axios
+      //   .post('http://localhost/TGD104G1/public/API/chatlist.php',{})
+      //   .then(response => {
+      //     this.jsonChat = response.data;
+      //     this.chat();
+      //     // console.log(response.data)
+      //       // console.log(this.jsonDataBanner[this.jsonDataBanner.length-1].BANNER);
             
-            // console.log(this.jsonData.length);
-            // console.log(this.jsonData);
-        })
-        .catch(error => {
-            // console.log(error);
-        });
+      //       // console.log(this.jsonData.length);
+      //       // console.log(this.jsonData);
+      //   })
+      //   .catch(error => {
+      //       // console.log(error);
+      //   });
 
         
   },
