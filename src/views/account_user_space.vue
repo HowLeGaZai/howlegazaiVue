@@ -13,15 +13,16 @@
                         <tr>
                             <th v-for="datasTr in datasTrs" >{{datasTr}}</th>
                         </tr>
-                        <tr v-for="data in datas" >
+                        <tr v-for="(data,index) in datas" :key="index" >
                             <td data-label="預約日期">{{data.REV_DATE}}</td>
+                            <td data-label="狀態">{{ data[2] == 1 ? '已成功' : data[2] == 0 ? '待審核' : data[2] == -1 ? '未通過' : '已取消' }}</td>
+                            <td data-label="預約原因">{{data.PURPOSE}}</td>
+                            <td data-label="預約時間">{{ formattedStartTime(data.REV_START_TIME) }}~{{ formattedEndTime(data.REV_END_TIME) }}</td>
                             <td data-label="預約空間">
                                 <router-link class="titlelink" :to="{ name: 'space_info', params: { Id: data.SPACE_ID } }">
-                                    {{data.NAME}}
+                                    <button type="button" class="btn-icon"><i class="bi bi-link-45deg btn-font-color-green"></i></button>
                                 </router-link></td>
-                            <td data-label="預約時間">{{ formattedStartTime(data.REV_START_TIME) }}~{{ formattedEndTime(data.REV_END_TIME) }}</td>
-                            <td data-label="狀態">{{ data[2] == 1 ? '已成功' : data[2] == 0 ? '待審核' : data[2] == -1 ? '審核未通過' : '已取消' }}</td>
-                            <td data-label="取消"><button type="button" class="btn-m btn-color-green btn_cancel" @click="showLightBox" v-if=" data[2] == 1 || data[2] == 0">取消</button></td>
+                            <td data-label="取消"><button type="button" class="btn-m btn-color-green btn_cancel" @click="showLightBox(index)" v-if=" data[2] == 1 || data[2] == 0">取消</button></td>
                         </tr>
                     
                       </table>  
@@ -56,6 +57,7 @@ export default {
             REV_END_TIME:'',
             STATUS:'',
             CANCEL:'',
+            PORTRAIT:"",
             isLightBoxVisible: false,
 
             lightboxData: {
@@ -67,7 +69,7 @@ export default {
             },
 
             datasTrs:[
-                '預約日期', '預約空間', '預約時間', '狀態', '取消'
+                '預約日期','狀態','預約事由','預約時間','空間', '取消'
             ],
 
             datas:[      
@@ -136,21 +138,16 @@ export default {
             return this.formatTime(endTime);
         },
 
-        showLightBox() {
+        showLightBox(index) {
             this.lightboxVisible = true;
             document.getElementById("lightbox").classList.remove("none");
+            this.ID = this.datas[index][0];
 
-        },
-
-        getID(){
-            this.ID = this.datas[0];
-            console.log(ID);
         },
         
         getCancel(cancelData) {
             // console.log('分類：', data.selectValue);
             // console.log('取消原因：', data.textareaValue);
-            this.getID();
             const ID = this.ID;
 
             const CANCEL = cancelData.selectValue + "," + cancelData.textareaValue;
@@ -186,6 +183,11 @@ export default {
     computed: {
 
     },
+    watch: {
+    async getResult() {
+      this.dataURL = this.$refs.PortraitCrop.getResult(dataURL);
+    }
+  },
         
 }
 </script>

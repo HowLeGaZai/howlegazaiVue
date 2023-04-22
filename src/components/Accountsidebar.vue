@@ -45,7 +45,7 @@
 <script>
 
 export default {
-  props: ["PORTRAIT"],
+  // props: ["PORTRAIT"],
 
   data() {
     return {
@@ -104,6 +104,9 @@ export default {
 
   mounted() {
     this.togglebutton;
+    this.PORTRAIT = localStorage.getItem("portrait");
+
+    
     // this.abc = this.PORTRAIT;
   }
 }
