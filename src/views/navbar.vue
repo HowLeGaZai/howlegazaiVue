@@ -238,14 +238,14 @@ export default {
     let accountMenu = document.getElementById("accountMenu");
     let menuClose = document.getElementById("menuClose");
 
-    userBtn.onclick = function (e) {
-      accountMenu.classList.add("accountshow");
-      if (window.innerWidth > 1400) {
-        userBtn.href = "/account_user"; // 修改 href 屬性值為 #
-      }else{
-        e.preventDefault();
-      }
-    };
+      userBtn.onclick = function (e) {  
+        accountMenu.classList.add("accountshow");
+        if (window.innerWidth > 1400) {
+          userBtn.href = "/account_user"; // 修改 href 屬性值為 #  <-----還沒改
+        }else{
+          e.preventDefault();
+        }
+      };
 
     menuClose.onclick = function () {
       accountMenu.classList.remove("accountshow");

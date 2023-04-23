@@ -6,8 +6,8 @@
           
         </div>
         <div class="col-md-6 col-12">
-           <label class="details displayflex">
-            <h4>帳號</h4><span v-if="!accountValid" class="margintop5">*8~12字元，需包含英文小寫和數字</span>
+           <label class="details displayflex marginB">
+            <label>帳號</label><span v-if="!accountValid" class="red">*8~12字元，需包含英文小寫和數字</span>
             <span v-if="accountDuplicate" class="red">*{{this.badaccount}}帳號已被註冊</span>
            </label>
             <input 
@@ -30,8 +30,8 @@
      
     </div>
   <div class="col-md-6 col-12">
-      <h4>密碼*</h4>
-      <input type="text" class="f-text nomargin" id="password" v-model="password" placeholder="建議預設為手機號碼" >
+      <label class="details">密碼*</label>
+      <input type="password" class="f-text nomargin" id="password" v-model="newPassword" placeholder="建議預設為手機號碼" @keyup="updatePassword" >
   </div>
   <div class="col-md-3 col-12">
      
@@ -43,8 +43,8 @@
      
     </div>
   <div class="col-md-6 col-12">
-      <h4>確認密碼*</h4>
-      <input type="text" class="f-text nomargin" id="password" v-model="password" placeholder="確認密碼" >
+      <label class="details">確認密碼*</label><span v-if="!consistent" class="red"> *密碼不一致</span>
+      <input type="password" class="f-text nomargin" id="password" v-model="confirmPassword" @keyup="updatePassword" placeholder="確認密碼" >
   </div>
   <div class="col-md-3 col-12">
      
@@ -56,7 +56,7 @@
      
     </div>
   <div class="col-md-6 col-12">
-      <h4>姓</h4>
+      <label class="details">姓</label>
       <input type="text" class="f-text nomargin" id="first_name" v-model="first_name" placeholder="姓" >
   </div>
   <div class="col-md-3 col-12">
@@ -69,7 +69,7 @@
      
     </div>
   <div class="col-md-6 col-12">
-      <h4>名</h4>
+      <label class="details">名</label>
       <input type="text" class="f-text nomargin" id="last_name" v-model="last_name" placeholder="名" >
   </div>
   <div class="col-md-3 col-12">
@@ -82,8 +82,8 @@
      
     </div>
   <div class="col-md-6 col-12">
-      <h4>電子信箱</h4>
-      <input type="text" class="f-text nomargin" id="email" v-model="email" placeholder="電子信箱" >
+      <label >電子信箱</label><span v-if="!emailValid" class="red">*請輸入正確email</span>
+      <input type="text" class="f-text nomargin" id="email" v-model="email" placeholder="電子信箱" @keyup="validateEmail" >
   </div>
   <div class="col-md-3 col-12">
      
@@ -104,7 +104,8 @@ export default {
     data() {
             return {
                 account: "",
-                password: "",
+                newPassword: "",
+                confirmPassword: "",
                 first_name:"",
                 last_name:"",
                 email:"",
@@ -118,6 +119,8 @@ export default {
 
                 accountValid: true,
                 passwordValid: true,
+                consistent: true,
+                emailValid: true,
                 
               }
              },
@@ -140,7 +143,7 @@ export default {
 
               const formData = new FormData()
               formData.append('ACCOUNT', this.account)
-              formData.append('PASSWORD', this.password)
+              formData.append('PASSWORD', this.newPassword)
               formData.append('FIRST_NAME', this.first_name)
               formData.append('LAST_NAME', this.last_name)
               formData.append('EMAIL', this.email)
@@ -220,6 +223,24 @@ export default {
             this.badaccount = "";
             this.accountDuplicate =  false;
           },
+            updatePassword() {
+            if (this.newPassword === this.confirmPassword && this.confirmPassword !== '' ) {
+              // 密碼一致，執行修改密碼的程式碼
+              this.consistent = true;
+              console.log('執行修改密碼的程式碼');
+            } else {
+              // 密碼不一致，顯示錯誤提示
+              this.consistent = false;
+            }
+          },
+          validateEmail() {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(this.email)) {
+              this.emailValid = false;
+              return;
+            }
+            this.emailValid = true; 
+          },
 
           },
 
@@ -249,3 +270,15 @@ export default {
 
 }
 </script>
+
+<style>
+.red-dot {
+  color: rgb(255, 85, 85);
+  font-size: 6px;
+  
+}
+.red {
+  color: rgb(255, 85, 85);
+  font-size: 12px;
+}
+</style>
