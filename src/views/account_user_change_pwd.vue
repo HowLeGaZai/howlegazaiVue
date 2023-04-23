@@ -14,7 +14,6 @@
                             <input
                             type="password"
                             class="f-text nomargin"
-                            id="sPassword"
                             placeholder="請輸入未更改前密碼"
                             required
                             v-model="oldpassword"
@@ -30,7 +29,6 @@
                             <input
                                     type="password"
                                     class="f-text nomargin"
-                                    id="sPassword"
                                     placeholder="8~12字元，需包含英文小寫和數字"
                                     required
                                     v-model="newpassword"
@@ -44,7 +42,6 @@
                             <input
                                     type="password"
                                     class="f-text nomargin"
-                                    id="sPassword"
                                     placeholder="請再輸入一次"
                                     required
                                     v-model="newpasswordDouble"
@@ -136,17 +133,17 @@ export default {
                 axios.post('http://localhost/TGD104G1/public/API/account_check_pwd.php', formData);
                 const result = response.data;
                 console.log(result);
-                if (result === 'notsame') {
-                    // 密碼不一致
-                    alert('密碼錯誤');
-                    this.passwordDuplicate = false;           
-                } else {
+                if (result === 'notsame' && this.oldpassword != "") {
+                        // 密碼不一致
+                        alert('密碼錯誤');
+                        this.passwordDuplicate = false;           
+                } else if(result === 'same'){
                     // 密碼一致
                     this.passwordDuplicate = true;
                     setTimeout(() => {
                         this.passwordDuplicate = false;
                     }, 2000); // 2 秒
-                }
+                }else{};
             } catch (error) {
                 console.error(error);
             // 處理錯誤
@@ -206,15 +203,17 @@ export default {
                 axios.post('http://localhost/TGD104G1/public/API/account_check_pwd.php', formData2);
                 const result = response.data;
                 console.log(result);
-                if (result === 'same') {
+                if (result === 'same' && oldpassword != "") {
                     // 新密碼假裝有更新
                     alert('新密碼與舊密碼太過類似，請重新輸入');
                     this.newpassword = "";
                     this.newpasswordDouble = "";
-                } else {
+                } else if(result === 'same' && oldpassword === "") {
+                    alert('尚未輸入舊密碼');
+                }else{
                     // 新密碼真的有更新
                     this.newpasswordDouble = newpasswordDouble;
-                }
+                };
             // 處理錯誤
             } catch (error) {
                 console.error(error);
