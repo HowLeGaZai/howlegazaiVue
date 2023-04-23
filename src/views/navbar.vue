@@ -157,6 +157,11 @@ export default {
       }
       window.location.reload();
     },
+
+    isBase64Data() {
+      // 使用正規表示式判斷是否為 base64 字串
+      return /^data:image\/\w+;base64,/.test(this.imageData);
+    },
     },
     mounted(){
       const cookieValue = this.getCookieValue('account');
@@ -261,5 +266,15 @@ export default {
       //   });
       // });
     },
+    computed:{
+      imageSrc() {
+      if (this.isBase64Data()) {
+        return this.imageData;
+      } else {
+        const imagePath = `@/assets/images/${this.imageData}`;
+        return require(imagePath);
+      }
+    },
+    }
 }
 </script>
