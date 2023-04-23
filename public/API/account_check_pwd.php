@@ -14,7 +14,7 @@ $OLDPASSWORD = $_POST['OLDPASSWORD'];
 
 $sql = "SELECT ID, PASSWORD
         FROM USER 
-        WHERE ID = `$ID`";
+        WHERE ID = $ID";
 
 
 

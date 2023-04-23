@@ -118,13 +118,14 @@ export default {
             try {
                 const userId = this.getCookieValue("id");
                 const oldpassword = this.oldpassword;
+                
 
                 console.log(userId);
                 console.log(oldpassword)
 
                 const formData2 = new FormData()
                 formData2.append('OLDPASSWORD', this.oldpassword)
-                formData2.append('userId', this.userId)
+                formData2.append('userId', userId)
                 const response = await
                 
                 axios.post('http://localhost/TGD104G1/public/API/account_check_pwd.php', formData2);
