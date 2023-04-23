@@ -141,15 +141,6 @@ export default {
         console.error(error);
       });
 
-   
-    // const cookieValue = this.getCookieValue("id");
-
-    // 判斷 Cookie 是否存在
-    // if (cookieValue !== null) {
-    //   this.createChat = true;
-    // } else {
-    //   this.createChat = false;
-    // }
   },
   methods: {
    addClass(category) {
@@ -164,10 +155,7 @@ export default {
       };
     },
     showmore() {
-      // this.isShow = !this.isShow;
-
-      // this.num = this.isShow ? this.constNum : this.displayedTopics.length;
-      // this.txt = this.isShow ? "看更多" : "收起";
+    
       this.num = this.num + 5;
       // console.log(this.chatTopics.length);
       if (this.num >= this.chatTopics.length) {
@@ -201,16 +189,6 @@ export default {
     getFormatDate(val) {
       return formatDate(val);
     },
-    // preview() {
-    //   const Id = 123;
-    //   // this.$router.push({ name: 'chat_new', params: { Id: Id } })
-    //   this.$router.push({ name: "chat_new", params: { Id: Id } });
-    // },
-    preview() {
-      const Id = uuidv4();
-      // this.$router.push({ name: 'chat_new', params: { Id: Id } })
-      this.$router.push({ name: "chat_new", params: { Id: Id } });
-    },
 
     getCookieValue(cookieName) {
       // 讀取指定名稱的 Cookie 值
@@ -224,23 +202,6 @@ export default {
       }
       return null;
     },
-
-    // isBase64Data(imgData) {
-    //   // 使用正規表示式判斷是否為 base64 字串
-    //   return /^data:image\/\w+;base64,/.test(imgData);
-    // },
-
-    // imageSrc(imgData) {
-    //   if (this.isBase64Data(imgData)) {
-    //     console.log('456');
-    //     return imgData;
-    //   } else {
-    //     console.log('123',imgData);
-    //     const imagePath = `@/assets/img/${imgData}`;
-    //     console.log(imagePath);
-    //     return require({imagePath: `\`${imagePath}\``});
-    //   }
-    // },
   },
 
   computed: {

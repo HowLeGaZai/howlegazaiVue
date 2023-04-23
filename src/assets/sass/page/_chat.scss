@@ -489,6 +489,7 @@
     a{
       display: inline-flex;
       color: $green;
+      cursor: pointer;
       &:hover{
         color: $darkorange;
         // color: lighten($green, 30%);

@@ -5,13 +5,11 @@
         @click="publish"
         class="a-select"
         >發布討論區文章</a
-      >完成刊登，或是<a href="#">取消</a> ****
+      >完成刊登，或<a @click="goback">返回上一頁</a> ****
     </p>
   </div>
   <navbar></navbar>
   <main class="chat_info">
-    <!-- <button class="btn-prepage font-green" onclick="location.href='./chat.html'">
-       <i class=" bi bi-caret-left-fill font-green"></i>返回【上一頁】</button> -->
     <div class="chat_info_topic">
       <h1>{{ title }}</h1>
       <div class="add_inf">
@@ -115,14 +113,19 @@ export default {
         .then((response) => {
           // this.jsonData = response.data;
           console.log(response.data);
-          // const Id = this.$route.params.Id;
-          // this.$router.push({ name: "chat_info", params: { Id: Id } });
+          const Id = this.$route.params.Id;
+          this.$router.push({ name: "chat_info", params: { Id: Id } });
+          sessionStorage.clear();
         })
         .catch((error) => {
           console.log(error);
         });
 
       console.log("載入axios");
+    },
+    goback(){
+      const Id = this.$route.params.Id;
+      this.$router.push({ name: "chat_new", params: { Id: Id } });
     },
   },
 
