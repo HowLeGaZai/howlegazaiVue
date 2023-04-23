@@ -2,7 +2,8 @@
 @import "../component/grid";
 
 @font-face {
-    font-family: "jfopen",Arial, Helvetica, sans-serif;
+    font-family: "jfopen","Microsoft JhengHei","PingFang TC","Noto Sans TC","微軟正黑體",sans-serif,Arial, Helvetica;
+    font-display: swap;
     src: local("jfopen"),
       url("../font/jf-openhuninn-2.0.ttf");
   }
