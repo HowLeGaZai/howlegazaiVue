@@ -136,7 +136,8 @@
                       <h1>{{ population }}</h1>
                       <h2>大湖里戶數</h2>
                     </div>
-                    <p class="positive">↑12%</p>
+                    <p class="positive" :class="{ fontred: homeNumPercentage < 0, fontgreen: homeNumPercentage > 0 }">
+                      {{ homeNumPercentage * 100 + "%" }}</p>
                   </td>
                   <!-- <td>
                   <h1>2000</h1>
@@ -144,22 +145,23 @@
 
                   <td class="area-number">
                     <div class="family-num">
-                      <h1>{{ home_num }}</h1>
+                      <h1>{{ homeNum }}</h1>
                       <h2>大湖里人口數</h2>
                     </div>
-                    <p class="positive">↑2%</p>
+                    <p class="positive" :class="{ fontred: populationPercentage < 0, fontgreen: populationPercentage > 0 }">
+                      {{ populationPercentage * 100 + "%" }}</p>
                   </td>
 
                   <td class="area-number">
                     <div class="family-num">
-                      <h1>147</h1>
+                      <h1>{{ webFamily }}</h1>
                       <h2>網站註冊戶數</h2>
                     </div>
                     <p class="positive">↑6%</p>
                   </td>
                   <td class="area-number">
                     <div class="family-num">
-                      <h1>147</h1>
+                      <h1>{{ account }}</h1>
                       <h2>網站註冊人數</h2>
                     </div>
                     <p class="negative">↓2%</p>
@@ -217,6 +219,7 @@ import $ from 'jquery'
 import 'jquery-ui-dist/jquery-ui'
 import 'jquery-ui-dist/jquery-ui.min.css'
 import Footer from './Footer.vue';
+import { BIconMailbox } from 'bootstrap-icons-vue';
 
 
 export default {
@@ -226,46 +229,65 @@ export default {
 
   data() {
     return {
-      villageData:[],
+      villageData: [],
       population: '',
-      home_num: '',
+      populationPercentage: '', //人口計算成長率
+      homeNum: '',
+      homeNumPercentage: '',//戶數計算成長率
+
+
+      accountData: [],
+      webFamily: '', //網站戶數 
+      account: '', //網站註冊數（且審核通過）T_STATUS＝1||2 && USER_STATUS =1
+
 
     }
   },
 
-
-  method: {
-    //取得大湖里人員統計
-    getvillage() {
-
-      axios
-        .post('http://localhost/TGD104G1/public/API/people.php', {})
-        .then(response => {
-          this.villageData = response.data;
-          // alert(response.data)
-          // console.log(this.jsonData[this.jsonData.length-1].FULLNAME);
-          this.webhp();
-          // console.log(this.jsonData.length);
-          // console.log(this.jsonData);
-        })
-        .catch(error => {
-          // console.log(error);
-        });
-    }
-
-  },
 
   methods: {
-    webhp() {
-      this.population = this.jsonData[this.jsonData.length - 1].POPULATION;
-      this.home_num = this.jsonData[this.jsonData.length - 1].HOME_NUM;
+    //取得大湖里人員統計
 
 
+    countvillage() {
+      this.population = this.villageData[this.villageData.length - 1].POPULATION;
+      this.homeNum = this.villageData[this.villageData.length - 1].HOME_NUM;
+
+      //（最新 - 上次 /上次人口）＊100%
+      this.populationPercentage = ((this.villageData[this.villageData.length - 1].POPULATION
+        - this.villageData[this.villageData.length - 2].POPULATION)
+        / this.villageData[this.villageData.length - 2].POPULATION).toFixed(2);
+
+
+      this.homeNumPercentage = ((this.villageData[this.villageData.length - 1].HOME_NUM
+        - this.villageData[this.villageData.length - 2].HOME_NUM)
+        / this.villageData[this.villageData.length - 2].HOME_NUM).toFixed(2);
+
+      // console.log(this.homeNumPercentage + "百分比");
+      // console.log("最新人口數" + this.population);
+      // console.log("最新戶數" + this.homeNum);
     },
-  },
-  mounted() {
 
-    this.getvillage(),
+
+    // countaccount() {
+
+
+    // }
+
+
+    // webhp() {
+    //   this.population = this.jsonData[this.jsonData.length - 1].POPULATION;
+    //   this.home_num = this.jsonData[this.jsonData.length - 1].HOME_NUM;
+
+    // },
+
+  },
+
+
+
+
+
+  mounted() {
 
 
     $('#resizable').resizable({});
@@ -281,7 +303,37 @@ export default {
     });
 
 
+    //人口數與戶數
+    axios
+      .post('http://localhost/TGD104G1/public/API/people.php', {})
+      .then(response => {
+        this.villageData = response.data;
+        // alert(response.data)
+        // console.log(this.villageData[this.villageData.length-1].POPULATION);//最新人口數
+        // console.log(this.villageData[this.villageData.length-1].HOME_NUM);//最新戶數
+        //計算人口相關加總數
+        this.countvillage();
 
+      })
+      .catch(error => {
+        console.log(error);
+      });
+
+
+    //網站戶數與註冊數
+    axios
+      .post('http://localhost/TGD104G1/public/API/account_count.php', {})
+      .then(response => {
+        this.accountData = response.data;
+        // this.countaccount()
+        this.account= Object.keys(this.accountData);
+        
+        console.log(this.account);
+
+      })
+      .catch(error => {
+        console.log(error);
+      });
 
   },
 
