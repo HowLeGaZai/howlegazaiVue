@@ -10,9 +10,9 @@
       </div>
       <div class="add-chat">
         <!-- <button class="btn-m btn-color-green" @click="preview()" role="link" >發起討論</button> -->
-        <router-link :to="{ path: '/chat_new/' + id }"  >
-          <button class="btn-m btn-color-green">發起討論</button>
-        </router-link>
+        <!-- <router-link :to="{ path: '/chat_new/' + id }"  > -->
+          <button class="btn-m btn-color-green" @click="toNewChat">發起討論</button>
+        <!-- </router-link> -->
       </div>
 
       <div class="desktop-filter" id="chat-desktop-filter">
@@ -191,6 +191,9 @@ export default {
           console.log(error);
         });
 
+    },
+    toNewChat(){
+      this.$router.push({ path: '/chat_new/' + this.id });
     },
 
     getFormatDate(val) {

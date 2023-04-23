@@ -475,7 +475,7 @@ router.beforeEach((to, from, next) => {
 
 const backnoAuthPages = ['/backend_login'];
 router.beforeEach((to, from, next) => {
-  const token2 = sessionStorage.getItem('login');
+  const token2 = getCookie('backendlogin');
   
   if (backnoAuthPages.includes(to.path) && token2) {
     // 如果要訪問的頁面需要未登錄，但用戶已經登錄，則跳轉到受保護的頁面

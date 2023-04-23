@@ -15,7 +15,7 @@
           <div class="txt_field">
             <h5>密碼</h5>
             <input ref="pwd" type="password" class="f-text label-left" id="pwd" placeholder="請輸入密碼" required>
-            <label>   <div class="pass"><a href="/forgetpassword">忘記密碼</a> </div> </label>
+            <label>   <div class="pass"><router-link :to="{name:'forgetpassword'}">忘記密碼</router-link></div></label>
           </div>
         
          
@@ -81,7 +81,7 @@ export default {
             alert('帳號或密碼錯誤');
           } else {
             alert('登入成功');
-            location.href = '/';
+            this.$router.back(-2);
             // this.jsonData = response.data;
             let login_id = response.data[0][0]; 
             let login_name = response.data[0][3]; 

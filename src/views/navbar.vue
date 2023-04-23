@@ -129,7 +129,7 @@ export default {
     // },
    methods: {
       goToLogin() {
-        this.$router.push('../login');
+        this.$router.push('/login');
       },
        getCookieValue(cookieName) {
         // 讀取指定名稱的 Cookie 值
@@ -144,6 +144,7 @@ export default {
         return null;
       },
       clearCookies() {
+      localStorage.removeItem("portrait");
       // 取得目前的 cookie 字串
       let cookies = document.cookie;
       // 將 cookie 字串分割成每個 cookie

@@ -65,7 +65,7 @@
                     </td>
                     <td id="toggle">
                       <label class="switch">
-                        <input type="checkbox" :checked="chat[6] === 1" @click="onoff(index)">
+                        <input type="checkbox" :checked="chat[6] == 1" @click="onoff(index)">
                         <span class="slider"></span>
                       </label>
                     </td>
@@ -174,13 +174,13 @@ export default {
   },
   methods:{
     chatInfo(index){
-      this.$router.push({ name: 'chat_info', params: { Id: this.jsonData[index][0] } });
+      this.$router.push({ name: 'chat_info', params: { Id: this.filteredItems[index][0] } });
     },
     onoff(index) {
       // console.log(index);
       console.log(this.jsonData[index]);
       console.log('ID是' + this.jsonData[index][0]);
-      this.jsonData[index][6] = this.jsonData[index][6] === 1 ? 0 : 1; // 切換 0 和 1
+      this.jsonData[index][6] = this.jsonData[index][6] == 1 ? 0 : 1; // 切換 0 和 1
       
       console.log('狀態' + this.jsonData[index][6]);
 

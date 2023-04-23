@@ -8,15 +8,15 @@
             <h2>忘記密碼</h2>
             <!-- <form  @submit.prevent="handleSubmit"> -->
               <div class="txt_field">
-                <label>帳號<span v-if="!account" class="red-dot"><i class="bi bi-asterisk"></i></span><span v-if="!accountFormat" class="red">*帳號格式錯誤</span></label>
+                <label>帳號<span v-if="!account" class="red-dot"><i class="bi bi-asterisk"></i></span><span v-if="!accountFormat" class="red">帳號格式錯誤</span></label>
                 <input type="text" class="f-text label-left" maxlength="12"  placeholder="請輸入帳號" v-model.trim="account" @keyup="validateAccount">
               </div>
               <div class="txt_field">
-                <label>電子郵件</label><span v-if="!email" class="red-dot"><i class="bi bi-asterisk"></i></span><span v-if="!emailFormat" class="red">*email格式錯誤</span>
+                <label>電子郵件</label><span v-if="!email" class="red-dot"><i class="bi bi-asterisk"></i></span><span v-if="!emailFormat" class="red">email格式錯誤</span>
                 <input type="text" class="f-text label-left" id="name5" placeholder="請輸入電子信箱" required v-model.trim="email" @blur="validateEmail">
               </div>
               <div class="txt_field verification">
-                <label>驗證碼</label><span v-if="!inputNumber" class="red-dot"><i class="bi bi-asterisk"></i></span><span v-if="!verifyNum" class="red">*驗證碼錯誤</span>
+                <label>驗證碼</label><span v-if="!inputNumber" class="red-dot"><i class="bi bi-asterisk"></i></span><span v-if="!verifyNum" class="red">驗證碼錯誤</span>
                 <input type="text" class="f-text label-left" id="name6" placeholder="請輸入下方數字驗證碼" v-model.trim="inputNumber">
               </div>
               <!-- 驗證碼 -->
@@ -87,24 +87,8 @@ export default {
         number += Math.floor(Math.random() * 10); //產生亂數 (整數)
       }
       this.number = number;  //這個是 抓出data 裡面的number
+      this.verifyNum = true;
     },
-    // submitForm() {
-    //   if (this.inputValue === '') {
-    //     this.showError = true;
-    //   } else {
-    //     // 在這裡處理提交表單的邏輯
-    //     this.showError = false;
-        
-    //   }
-    // },
-    // handleSubmit() {
-    //   if (this.inputValue.trim() === '') {
-    //     this.showError = true;
-    //     return false; // 返回 false 來停止後續的程式碼執行
-    //   }
-    //   // 如果 input 不是空值，顯示下一頁連結
-    //   this.showError = false;
-    // },
 
     // 這個是 驗證
     checkNumber() {
@@ -143,32 +127,19 @@ export default {
                 this.$router.push({ path: '/updatepassword' })
               } else {
                 alert("帳號或電子信箱或驗證碼有誤");
+                this.generateNumber();
               }
             } else {
               this.final = false; // 設定為 false
               alert("帳號或電子信箱或驗證碼有誤");
+              this.generateNumber();
             }
         })
         .catch(error => {
             console.log(error);
         });
     },
-    // 這裡是身分證驗證函式-------------------------------------------
-    // check() {
-    //   if (this.myId.length !== 10 && this.myId.length > 10) {
-    //     this.result = '身分證輸入資料的長度要有 10 位';
-    //   } else if (!this.letters.includes(this.myId.charAt(0).toUpperCase())) {
-    //     this.result = '身分證第一個應該是字母 A ~ Z';
-    //   } else if (this.myId.charAt(1) !== '1' && this.myId.charAt(1) !== '2') {
-    //     this.result = '身分證第二個字要是 1 或 2';
-    //   } else if (isNaN(parseInt(this.myId.substring(1, this.myId.length), 10)) || this.myId.substring(1, this.myId.length).length !== 9) {
-    //     this.result = '身分證後面九個字都要是數字';
-    //   } else {
-      //  // 所有的检查都通过
-      //   this.result = '通過';
-      //   this.$router.push('./login')
-      // }
-    // },
+
      validateAccount() {
       // 檢查帳號格式
       const accountRegex = /^(?=.*[a-z])(?=.*\d)[a-z\d]{8,12}$/i; // 英數字混合帳號8~12位
@@ -188,52 +159,11 @@ export default {
       }
       this.emailFormat = true; 
     },
-
-        // 計算第一個英文字母的加權
-      //   const letter = this.myId[0];
-      // const index = this.letters.indexOf(letter);
-      // const areaCode = this.areaCodeAll[index];
-      // let checkCode = areaCode[0] * 1 + areaCode[1] * 9;
-      
-      // // 計算檢查碼
-      // for (let i = 1; i <= 8; i++) {
-      //   checkCode += parseInt(this.myId.charAt(i)) * (9 - i);
-      // }
-      // checkCode %= 10;
-
-    
-
     
  }, 
    
   mounted() {
-      this.generateNumber();
-
-      // let labels = document.querySelectorAll('.collapsible-item-label');
-      // let contents = document.querySelectorAll('.collapsible-item-content');
-
-      // labels.forEach((label, index) => {
-      //     label.addEventListener('click', () => {
-
-      //         // 檢查是否已經打開
-      //         const isOpen = label.classList.contains('open-item-label');
-      //         const content = contents[index];
-      //         const isContentOpen = content.classList.contains('open-item-content');
-
-      //         // 移除所有元素上已經打開的樣式
-      //         labels.forEach(label => label.classList.remove('open-item-label'));
-      //         contents.forEach(content => content.classList.remove('open-item-content'));
-
-      //         // 添加或移除打開的樣式
-      //         if (!isOpen && !isContentOpen) {
-      //         label.classList.add('open-item-label');
-      //         content.classList.add('open-item-content');
-      //         }
-      //     });
-      // });
-
-
-    
+      this.generateNumber();   
    
   },
 };

@@ -78,6 +78,7 @@ export default {
           .post("http://localhost/TGD104G1/public/API/countcomment.php", formData)
           .then((response) => {
             this.countnum = response.data[0][0];
+            location.reload();
           })
           .catch((error) => {
             console.error(error);
