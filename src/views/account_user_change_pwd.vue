@@ -19,7 +19,7 @@
                             required
                             v-model="oldpassword"
                             maxlength="12"
-                            @keyup="checkOldPassword"
+                            @blur="checkOldPassword"
                             >
                             <i class="bi bi-eye-slash-fill" @click="openpwd"></i>
                             <!-- @keyup="checkOldPassword" -->
@@ -35,7 +35,7 @@
                                     required
                                     v-model.lazy.trim="newpassword"
                                     maxlength="12"
-                                    @blur="validatePassword(newpassword)"
+                                    @blur="validatePassword(newpassword);"
                                 ><i class="bi bi-eye-slash-fill" @click="openpwd"></i>
                             <!-- <input type="text" class="f-text nomargin" id="newpwd" v-model="newpwd" placeholder="8~12字元，需包含英文小寫和數字" > -->
                         </div>
@@ -49,7 +49,7 @@
                                     required
                                     v-model.lazy.trim="newpasswordDouble"
                                     maxlength="12"
-                                    @blur="validatePassword(newpasswordDouble)"
+                                    @blur=""
                                 ><i class="bi bi-eye-slash-fill" @click="openpwd"></i>
                                 <!-- bi-eye-fill -->
                             <!-- <input type="text" class="f-text nomargin" id="newpwd2" v-model="newpwd2" placeholder="請再輸入一次" > -->
@@ -100,19 +100,7 @@ export default {
             return null;
         },
 
-        validatePassword(password) {
-            // 檢查單一密碼欄位是否符合指定格式
-            const passwordRegex = /^(?=.*[a-z])(?=.*\d)[a-z\d]{8,12}$/i; // 英文小寫+數字，8-12碼
-
-            if (!passwordRegex.test(password)) {
-                this.passwordValid = false;
-                // this.password = "";
-                return;
-            }
-            this.passwordValid = true;
-        },
-
-        
+        // 驗證
         async checkOldPassword(){
 
             try {
@@ -125,15 +113,18 @@ export default {
 
                 const formData2 = new FormData()
                 formData2.append('OLDPASSWORD', this.oldpassword)
-                formData2.append('userId', userId)
+                formData2.append('userId', this.userId)
                 const response = await
                 
                 axios.post('http://localhost/TGD104G1/public/API/account_check_pwd.php', formData2);
                     const result = response.data;
                     console.log(result);
-                    if (result === 'nosame') {
+                    if (result === 'notsame') {
                         // 密碼不一致
                         this.passwordDuplicate =  true; // 設定為 true
+                        setTimeout(() => {
+                            this.passwordDuplicate = false;
+                        }, 1.800); // 1.8 秒後設定為 false
                     
                     } else {
                         // 密碼一致
