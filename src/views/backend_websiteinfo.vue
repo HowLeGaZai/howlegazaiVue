@@ -138,7 +138,7 @@ export default {
 
       axios
       // 這裡是 縣市鄉
-        .post('http://localhost/TGD104G1/public/API/officeinfo.php', formData)
+        .post('http://localhost/TGD104G1/public/API/webinfo.php', formData)
         // .post('https://tibamef2e.com/tgd104/g1/webinfo.php', formData)
         .then(response => {
             // this.jsonData = response.data;

@@ -14,7 +14,7 @@ $OLDPASSWORD = $_POST['OLDPASSWORD'];
 
 $sql = "SELECT ID, PASSWORD
         FROM USER 
-        WHERE ID = `$ID`";
+        WHERE ID = $ID";
 
 
 
@@ -30,7 +30,7 @@ $data = $statement->fetchAll();
 
 if ($data[0]['PASSWORD'] !== $OLDPASSWORD) {
     // 密碼不一致
-    echo "nosame";
+    echo "notsame";
 } else {
     // 密碼一致
     echo "same";

@@ -35,7 +35,7 @@
                                     required
                                     v-model.lazy.trim="newpassword"
                                     maxlength="12"
-                                    @blur="checkPassword(oldpassword)"
+                                    @blur="checkPassword"
                                 ><i class="bi bi-eye-slash-fill" @click="openpwd"></i>
                             <!-- <input type="text" class="f-text nomargin" id="newpwd" v-model="newpwd" placeholder="8~12字元，需包含英文小寫和數字" > -->
                         </div>
@@ -130,15 +130,19 @@ export default {
                 
                 const formData2 = new FormData()
                 formData2.append('OLDPASSWORD', this.oldpassword)
-                formData2.append('userId', this.userId)
+                formData2.append('userId', userId)
                 const response = await
                 
                 axios.post('http://localhost/TGD104G1/public/API/account_check_pwd.php', formData2);
                 const result = response.data;
                 console.log(result);
-                if (result === 'nosame') {
+                if (result === 'notsame') {
                     // 密碼不一致
                     this.passwordDuplicate =  true; // 設定為 true
+                    
+                    if (OLDPASSWORD === ""){
+                        this.passwordDuplicate = false; // 設定為 false
+                    }
                     
                 } else {
                     // 密碼一致

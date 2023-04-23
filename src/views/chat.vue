@@ -10,9 +10,9 @@
       </div>
       <div class="add-chat">
         <!-- <button class="btn-m btn-color-green" @click="preview()" role="link" >發起討論</button> -->
-        <router-link :to="{ path: '/chat_new/' + id }"  >
-          <button class="btn-m btn-color-green">發起討論</button>
-        </router-link>
+        <!-- <router-link :to="{ path: '/chat_new/' + id }"  > -->
+          <button class="btn-m btn-color-green" @click="toNewChat">發起討論</button>
+        <!-- </router-link> -->
       </div>
 
       <div class="desktop-filter" id="chat-desktop-filter">
@@ -70,6 +70,7 @@
             <div class="poster">
               <div class="image user_pic">
                 <img :src="chatTopic.PORTRAIT" alt="">
+                <!-- <img :src="require('@/assets/img/user_pic.png')" alt=""> -->
               </div>
               <h5 class="poster_name">{{ chatTopic.NICKNAME }}</h5>
             </div>
@@ -134,6 +135,7 @@ export default {
         // console.log(response.data);
 
         this.chatTopics = data;
+        console.log(this.chatTopics);
       })
       .catch((error) => {
         console.error(error);
@@ -192,6 +194,9 @@ export default {
         });
 
     },
+    toNewChat(){
+      this.$router.push({ path: '/chat_new/' + this.id });
+    },
 
     getFormatDate(val) {
       return formatDate(val);
@@ -219,6 +224,23 @@ export default {
       }
       return null;
     },
+
+    // isBase64Data(imgData) {
+    //   // 使用正規表示式判斷是否為 base64 字串
+    //   return /^data:image\/\w+;base64,/.test(imgData);
+    // },
+
+    // imageSrc(imgData) {
+    //   if (this.isBase64Data(imgData)) {
+    //     console.log('456');
+    //     return imgData;
+    //   } else {
+    //     console.log('123',imgData);
+    //     const imagePath = `@/assets/img/${imgData}`;
+    //     console.log(imagePath);
+    //     return require({imagePath: `\`${imagePath}\``});
+    //   }
+    // },
   },
 
   computed: {
@@ -231,6 +253,8 @@ export default {
         );
       }
     },
+
+     
   },
   components: {
     navbar,

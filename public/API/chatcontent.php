@@ -9,7 +9,7 @@ $chatid = $_POST['routeid'];
         FROM CHAT c
         JOIN USER u
         ON c.USER_ID = u.ID
-        where c.ROUTER_ID LIKE '%$chatid%' ";
+        where c.ID = $chatid ";
 
  //執行並查詢，會回傳查詢結果的物件，必須使用fetch、fetchAll...等方式取得資料
  $statement = $pdo->query($sql);
