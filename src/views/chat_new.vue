@@ -158,7 +158,7 @@ export default {
             const label = field.parentNode.querySelector('label');
             const asterisk = label.querySelector('.asterisk');
             if (!asterisk) {
-              label.insertAdjacentHTML('beforeend', '<span class="asterisk" style="color:red;"> <i class="bi bi-asterisk" style="font-size:12px;"></i></span>');
+              label.insertAdjacentHTML('beforeend', '<span class="asterisk" style="color:red">*</span>');
             }
             return false;
           }else {
@@ -173,7 +173,7 @@ export default {
             const label = field.parentNode.querySelector('label');
             const asterisk = label.querySelector('.asterisk');
             if (!asterisk) {
-              label.insertAdjacentHTML('beforeend', '<span class="asterisk" style="color:red;"> <i class="bi bi-asterisk" style="font-size:12px;"></i></span>');
+              label.insertAdjacentHTML('beforeend', '<span class="asterisk" style="color:red">*</span>');
             }
             return false;
             // input{outline:$red};

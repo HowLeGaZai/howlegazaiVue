@@ -656,43 +656,6 @@
 
 .changePwd_Content{
   margin-top: 60px;
-  display: flex;
-  padding: 0 12vw;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  &>div{
-    width: 100%;
-    position: relative;
-
-    h4{
-      margin-bottom: 10px;
-      text-align: left;
-      span{
-        color: $red;
-        font-size: 12px;
-       
-      }
-    }
-    input{
-      width: 100%;
-      margin-bottom: 20px;
-      &::placeholder{
-        font-size: 16px;
-        @include breakpoint($grid-breakpoints, "md") {
-          font-size: 10px;
-        }
-      }
-    }
-    .bi-eye-fill,.bi-eye-slash-fill{
-      position: absolute;
-      top: 43px;
-      right: 13px;
-      z-index: 1;
-      
-    }
-  }
 }
 .paddingleft10{
   padding-left: 10px;

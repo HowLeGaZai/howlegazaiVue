@@ -65,18 +65,21 @@
                       <img :src="portrait" alt="" class="user_pic" />
                     </a>
                   </li>
+                  <li>
+                    <a href="/" @click="clearCookies">登出</a>
+                  </li>
                   <li><router-link :to="{name:'account_user'}" :class="{active: $route.name === 'account_user'}">個人資訊</router-link></li>
                   <li><router-link :to="{name:'account_user_manage'}" :class="{active: $route.name === 'account_user_manage'}">成員管理</router-link></li>
                   <li class="user-record">
                     <a href="#" :class="{active: $route.name === 'account_user_chat' || $route.name === 'account_user_space' || $route.name === 'account_user_activity'}"
-                    >管理紀錄
-                    <i class="bi bi-chevron-down bi-rotate"></i>
-                  </a>
-                  <ul class="dropdown-menu">
-                    <li>
-                      <router-link :to="{name:'account_user_chat'}" class="dropdown-item" :class="{active: $route.name === 'account_user_chat'}">貼文刊登紀錄</router-link>
-                    </li>
-                    <!-- <li><router-link :to="{name:'account_user_gas'}" class="dropdown-item">瓦斯錶回報</router-link> -->
+                      >管理紀錄
+                      <i class="bi bi-chevron-down bi-rotate"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <router-link :to="{name:'account_user_chat'}" class="dropdown-item" :class="{active: $route.name === 'account_user_chat'}">貼文刊登紀錄</router-link>
+                      </li>
+                      <!-- <li><router-link :to="{name:'account_user_gas'}" class="dropdown-item">瓦斯錶回報</router-link> -->
                       <li>
                         <router-link :to="{name:'account_user_space'}" class="dropdown-item" :class="{active: $route.name === 'account_user_space'}">空間預約紀錄</router-link>
                       </li>
@@ -90,16 +93,13 @@
                   <li>
                     <router-link :to="{name:'account_user_change_pwd'}">變更密碼</router-link>
                   </li>
-                  <li>
-                    <a href="/" @click="clearCookies">登出</a>
-                  </li>
                   
                 </ul>
               </div>
             </li>
           </ul>
           <div v-else>
-           <button  type="button" @click="goToLogin" class="btn rad-2 font-1 color-green signupandlogin">
+           <button  type="button" @click="goToLogin" class="btn rad-2 font-1 color-green">
             登入 / 註冊
           </button>
           <button  type="button" @click="goToLogin" class="loginbtn">
