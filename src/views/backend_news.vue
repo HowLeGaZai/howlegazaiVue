@@ -77,9 +77,14 @@
                           <span class="checkmark newscheck"></span>
                         </label></td>
                       <!-- 編輯 -->
-                      <td> <button type="button" class="btn-icon" @click="newsedit">
+
+                      <td> 
+                        <router-link :to="{ path: '/backend_news_add/' + this.newsData[index][1] }">
+                        <button type="button" class="btn-icon">
                           <i class="bi bi-pencil-square btn-font-color-green"></i>
-                        </button></td>
+                        </button>
+                      </router-link>
+                      </td>
 
                       <!-- 下架 -->
                       <td>
@@ -231,9 +236,6 @@ export default {
     },
 
 
-    newsedit(){
-
-    }
 
   },
 
