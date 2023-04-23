@@ -43,11 +43,9 @@
           </div>
           <div class="login_btn">
             <div class="logo_center">
-              <!-- <a href="/backend_index"> -->
-                <button type="button" class="btn-m btn-color-green" @click="doSubmit">
+              <router-link :to="{ name: 'backend_index' }"><button type="button" class="btn-m btn-color-green" @click="doSubmit">
                   登入
-                </button>
-                <!-- </a> -->
+                </button></router-link>
             </div>
           </div>
         </form>
@@ -91,10 +89,10 @@ export default {
             alert('帳號或密碼錯誤');
           } else {
             alert('登入成功');
-            location.href = '/backend_index';
+            this.$router.push('/backend_index')
+            // location.href = '/backend_index';
             // this.jsonData = response.data;
-  
-            sessionStorage.setItem("login", "true");
+            document.cookie="backendlogin=" + "true";
           }
         })
          .catch(error => {
