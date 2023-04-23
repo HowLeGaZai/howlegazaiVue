@@ -10,7 +10,7 @@
                     <h1 class="marginbottom30">變更密碼</h1>
                     <div class="changePwd_Content">
                         <div class="">
-                            <h4>舊密碼<span v-if="!password"><i class="bi bi-asterisk"></i></span><span v-if="passwordDuplicate" class="red">密碼錯誤</span></h4>
+                            <h4>舊密碼<span v-if="!password"><i class="bi bi-asterisk"></i>必填</span><span v-if="passwordDuplicate">密碼錯誤</span></h4>
                             <input
                             type="password"
                             class="f-text nomargin"
@@ -19,14 +19,14 @@
                             required
                             v-model="oldpassword"
                             maxlength="12"
-                            @keyup="checkOldPassword"
+                            @blur="checkOldPassword"
                             >
                             <i class="bi bi-eye-slash-fill" @click="openpwd"></i>
                             <!-- @keyup="checkOldPassword" -->
                             <!-- <input type="text" class="f-text nomargin" id="pwd" v-model="pwd" placeholder="請輸入原先密碼" > -->
                         </div>
                         <div class="">
-                            <h4>新密碼<span v-if="!password"><i class="bi bi-asterisk"></i></span><span v-if="!passwordValid">*8~12字元，需包含英文小寫和數字</span></h4>
+                            <h4>新密碼<span v-if="!password"><i class="bi bi-asterisk"></i>必填</span><span v-if="!passwordValid">*8~12字元，需包含英文小寫和數字</span></h4>
                             <input
                                     type="password"
                                     class="f-text nomargin"
@@ -35,12 +35,12 @@
                                     required
                                     v-model.lazy.trim="newpassword"
                                     maxlength="12"
-                                    @blur="validatePassword(newpassword)"
+                                    @keyup="checkPassword;"
                                 ><i class="bi bi-eye-slash-fill" @click="openpwd"></i>
                             <!-- <input type="text" class="f-text nomargin" id="newpwd" v-model="newpwd" placeholder="8~12字元，需包含英文小寫和數字" > -->
                         </div>
                         <div class="">
-                            <h4>再次輸入新密碼<span v-if="!password"><i class="bi bi-asterisk"></i></span><span v-if="!passwordValid">*8~12字元，需包含英文小寫和數字</span></h4>
+                            <h4>再次輸入新密碼<span v-if="!password"><i class="bi bi-asterisk"></i>必填</span><span v-if="!passwordValid">*8~12字元，需包含英文小寫和數字</span></h4>
                             <input
                                     type="password"
                                     class="f-text nomargin"
@@ -49,12 +49,12 @@
                                     required
                                     v-model.lazy.trim="newpasswordDouble"
                                     maxlength="12"
-                                    @blur="validatePassword(newpasswordDouble)"
+                                    @blur="checkNewPassword"
                                 ><i class="bi bi-eye-slash-fill" @click="openpwd"></i>
                                 <!-- bi-eye-fill -->
                             <!-- <input type="text" class="f-text nomargin" id="newpwd2" v-model="newpwd2" placeholder="請再輸入一次" > -->
                         </div>
-                        <button class="btn-m btn-color-green marginbottom20">送出修改</button>
+                        <button class="btn-m btn-color-green marginbottom20" @click="submitNewPWD">送出修改</button>
 
                   </div>  
                 </section>
@@ -91,13 +91,71 @@ export default {
 
         getCookieValue(cookieName) {
             const cookies = document.cookie.split("; ");
-            for (let i = 0; i < cookies.length; i++) {
-            const cookie = cookies[i].split("=");
-            if (cookie[0] === cookieName) {
-                return cookie[1];
-            }
+                for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].split("=");
+                if (cookie[0] === cookieName) {
+                    return cookie[1];
+                }
             }
             return null;
+        },
+        
+        // 小眼睛開合
+        openpwd(event) {
+            // 取得 i 元素
+            const icon = event.target;
+            // 切換 i 元素的類別
+            icon.classList.toggle("bi-eye-fill");
+            icon.classList.toggle("bi-eye-slash-fill");
+
+            // 取得 i 上面一層的 input 元素
+            const passwordInput = icon.previousSibling;
+
+            if (passwordInput.type === "password") {
+                passwordInput.setAttribute("type", "text");
+            } else {
+                passwordInput.setAttribute("type", "password");
+            }
+        },
+
+        // 比對輸入舊密碼是否與資料庫原始密碼相符
+        async checkOldPassword(){
+            
+            try {
+                const userId = this.getCookieValue("id");
+                const oldpassword = this.oldpassword;
+                this.userId = userId;
+                
+                const formData2 = new FormData()
+                console.log(this.userId)
+                formData2.append('OLDPASSWORD', this.oldpassword)
+                formData2.append('userId', this.userId)
+                const response = await
+                
+                axios.post('http://localhost/TGD104G1/public/API/account_check_pwd.php', formData2);
+                const result = response.data;
+                console.log(result);
+                if (result === 'notsame') {
+                    // 密碼不一致
+                    this.passwordDuplicate =  true; // 設定為 true
+                    setTimeout(() => {
+                        this.passwordDuplicate = false;
+                    }, 2000); // 2 秒後設定為 false
+                
+                } else {
+                    // 密碼一致
+                    this.passwordDuplicate = false; // 設定為 false
+                }
+            } catch (error) {
+                console.error(error);
+            // 處理錯誤
+            }
+        },
+
+        // 輸入舊密碼後要確認 1. 格式驗證 2. 是否與下個欄位再次輸入密碼一致
+        checkPassword(){
+            validatePassword(password);
+            checkNewPassword();
         },
 
         validatePassword(password) {
@@ -111,54 +169,49 @@ export default {
             }
             this.passwordValid = true;
         },
-
         
-        async checkOldPassword(){
+        // 確認兩次新密碼是否輸入一致
+        checkNewPassword(){
 
-            try {
-                const userId = this.getCookieValue("id");
-                const oldpassword = this.oldpassword;
+            const firstPwd = this.newpassword;
+            const secondPwd = this.newpasswordDouble;
 
-                console.log(userId);
-                console.log(oldpassword)
-
-                const formData2 = new FormData()
-                formData2.append('OLDPASSWORD', this.oldpassword)
-                formData2.append('userId', this.userId)
-                const response = await
-                
-                axios.post('http://localhost/TGD104G1/public/API/account_check_pwd.php', formData2);
-                    const result = response.data;
-                    console.log(result);
-                    if (result === 'nosame') {
-                        // 密碼不一致
-                        this.passwordDuplicate =  true; // 設定為 true
-                    
-                    } else {
-                        // 密碼一致
-                        this.passwordDuplicate = false; // 設定為 false
-                    }
-                    } catch (error) {
-                        console.error(error);
-                    // 處理錯誤
-                    }
+            if (firstPwd != secondPwd){
+                alert('輸入的密碼不一致');
+            }else{
+                this.newpasswordDouble = secondPwd;
+            }            
         },
 
-        openpwd(event) {
-            // 取得 i 元素
-            const icon = event.target;
-            // 切換 i 元素的類別
-            icon.classList.toggle("bi-eye-fill");
-            icon.classList.toggle("bi-eye-slash-fill");
+        // // 確認第一次新密碼是否有輸入
+        // checkFirstPwd(){
+        //     console.log(this.newpassword);
+        //     const firstPwd = this.newpassword;
+        //     console.log(firstPwd);
 
-            // 取得要修改的 input 元素
-            const passwordInput = icon.previousSibling;
+        //     if(firstPwd === ""){
+        //         alert('請先輸入上面欄位')
+        //     }else{
+        //         this.newpassword = firstPwd;
+        //     }
+        // },
 
-            if (passwordInput.type === "password") {
-                passwordInput.setAttribute("type", "text");
-            } else {
-                passwordInput.setAttribute("type", "password");
+        
+        //送出表單按鈕
+        submitNewPWD(){
+            this.formSubmitted = true;
+            if (this.account === '' || this.password === '' || this.lastName === '' || this.firstName === '' ||
+            this.nickName === '' ||  this.idNum === '' || this.birth == null || this.email === '' || this.phoneNum === '' || this.agree == false || this.idFront === '' || this.idBack === '' || this.accountValid == false || this.passwordValid == false || this.idNumValid == false || this.emailValid == false || this.phoneValid == false  || this.accountDuplicate == true) {
+                alert('請正確填寫必填欄位');
+                // this.$router.push('./signup2')
+                return;
+            }else {
+                this.savedata();
+                alert('註冊成功，請登入')
+                this.$router.push('./login')
             }
+            // 在這裡編寫提交表單的程式碼
+            console.log('表單提交成功');  
         },
         // clearCookies() {
         //     // 取得目前的 cookie 字串
