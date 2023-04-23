@@ -128,44 +128,45 @@
             </p>
 
 
-          <div class="account-dashboard">
-            <table>
-              <tr>
-                <td class="family">
-                  <div class="family-num">
-                    <h1>{{ population }}</h1>
-                    <h2>大湖里戶數</h2>
-                  </div>
-                  <p class="positive">↑12%</p>
-                </td>
-                <!-- <td>
+            <div class="account-dashboard">
+              <table>
+                <tr>
+                  <td class="family">
+                    <div class="family-num">
+                      <h1>{{ population }}</h1>
+                      <h2>大湖里戶數</h2>
+                    </div>
+                    <p class="positive" :class="{ fontred: homeNumPercentage < 0, fontgreen: homeNumPercentage > 0 }">
+                      {{ homeNumPercentage * 100 + "%" }}</p>
+                  </td>
+                  <!-- <td>
                   <h1>2000</h1>
                 </td> -->
 
-                <td class="area-number">
-                  <div class="family-num">
-                    <h1>{{ home_num }}</h1>
-                    <h2>大湖里人口數</h2>
-                  </div>
-                  <p class="positive">↑2%</p>
-                </td>
+                  <td class="area-number">
+                    <div class="family-num">
+                      <h1>{{ home_num }}</h1>
+                      <h2>大湖里人口數</h2>
+                    </div>
+                    <p class="positive">↑2%</p>
+                  </td>
 
-                <td class="area-number">
-                  <div class="family-num">
-                    <h1>147</h1>
-                    <h2>網站註冊戶數</h2>
-                  </div>
-                  <p class="positive">↑6%</p>
-                </td>
-                <td class="area-number">
-                  <div class="family-num">
-                    <h1>147</h1>
-                    <h2>網站註冊人數</h2>
-                  </div>
-                  <p class="negative">↓2%</p>
-                </td>
-              </tr>
-              
+                  <td class="area-number">
+                    <div class="family-num">
+                      <h1>147</h1>
+                      <h2>網站註冊戶數</h2>
+                    </div>
+                    <p class="positive">↑6%</p>
+                  </td>
+                  <td class="area-number">
+                    <div class="family-num">
+                      <h1>147</h1>
+                      <h2>網站註冊人數</h2>
+                    </div>
+                    <p class="negative">↓2%</p>
+                  </td>
+                </tr>
+
 
 
 
@@ -227,34 +228,35 @@ export default {
 
   data() {
     return {
-      population : '',
-      home_num: '',
+      villageData: [],
+      population: '',
+      populationPercentage: '', //人口計算成長率
+      homeNum: '',
+      homeNumPercentage: '',//戶數計算成長率
+
+
+      accountData: [],
+      webFamily: '', //網站戶數 
+      account: '', //網站註冊數（且審核通過）T_STATUS＝1||2 && USER_STATUS =1
+
+
     }
   },
-  components: {
-      backendNavbar,Footer,backCalender,BackLeftNav
-    },
-    methods: {
-        webhp(){
-          this.population = this.jsonData[this.jsonData.length-1].POPULATION ;
-          this.home_num = this.jsonData[this.jsonData.length-1].HOME_NUM ;
-        },
-    },
-    mounted() {
 
-      axios
-        .post('http://localhost/TGD104G1/public/API/people.php',{})
-        .then(response => {
-            this.jsonData = response.data;
-            // alert(response.data)
-            // console.log(this.jsonData[this.jsonData.length-1].FULLNAME);
-            this.webhp();
-            // console.log(this.jsonData.length);
-            // console.log(this.jsonData);
-        })
-        .catch(error => {
-            // console.log(error);
-        });  
+
+  method: {
+    //取得大湖里人員統計
+    getvillage() {
+
+    // },
+
+  },
+
+
+
+
+
+  mounted() {
 
 
     $('#resizable').resizable({});
@@ -282,9 +284,38 @@ export default {
   //   })
   // }
 
-  //  ＝＝＝＝＝＝側欄選單的JS end＝＝＝＝＝＝
+    //人口數與戶數
+    axios
+      .post('http://localhost/TGD104G1/public/API/people.php', {})
+      .then(response => {
+        this.villageData = response.data;
+        // alert(response.data)
+        // console.log(this.villageData[this.villageData.length-1].POPULATION);//最新人口數
+        // console.log(this.villageData[this.villageData.length-1].HOME_NUM);//最新戶數
+        //計算人口相關加總數
+        this.countvillage();
 
-    
+      })
+      .catch(error => {
+        console.log(error);
+      });
+
+
+    //網站戶數與註冊數
+    axios
+      .post('http://localhost/TGD104G1/public/API/account_count.php', {})
+      .then(response => {
+        this.accountData = response.data;
+        // this.countaccount()
+        this.account= Object.keys(this.accountData);
+        
+        console.log(this.account);
+
+      })
+      .catch(error => {
+        console.log(error);
+      });
+
   },
 
 
