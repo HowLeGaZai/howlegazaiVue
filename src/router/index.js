@@ -5,7 +5,7 @@ import Home from '../views/Home.vue'
 
 
 const routes = [
-
+  
   {
     // 前台 首頁
     path: '/',

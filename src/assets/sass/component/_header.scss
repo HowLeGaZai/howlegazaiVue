@@ -238,6 +238,11 @@ header {
           display: none;
         }
       }
+      .signupandlogin{
+        width: 170px;
+        height: 47px;
+        border-radius: 25px;
+      }
       .loginbtn{
         background-color: transparent;
         border: none;
@@ -296,7 +301,7 @@ header {
               left: -100vw;
               
               width: 100vw;
-              height: 100vh;
+              height: 135vh;
               background: $white;
               padding: 10px 20px;
               transition: all ease-in-out 0.8s;
@@ -371,7 +376,7 @@ header {
                   }
                 }
               }
-              li:last-child {
+              li:nth-child(7) {
                 a {
                   color: $gray;
                 }
