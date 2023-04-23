@@ -45,7 +45,8 @@ export default {
     },
     mounted() {
         axios
-        .get('https://tibamef2e.com/tgd104/g1/API/activity.php')
+        // .get('https://tibamef2e.com/tgd104/g1/API/activity.php')
+        .get('http://localhost/TGD104G1/public/API/activity.php')
         .then(response => {
             this.jsonData = response.data;
             console.log(response.data);
