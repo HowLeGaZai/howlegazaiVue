@@ -10,13 +10,13 @@
             <!-- <h1>活動資訊</h1>
              -->
             <div class="activity_typeAndTime">
-                <div class="tag tag-round tag-pink tag-btn tag-btn-selected">藝文</div>
+                <div class="tag tag-round tag-pink tag-btn tag-btn-selected">{{ activityData.CATEGORY }}</div>
                 <h4>發布日期：5小時前</h4>
             </div>
         </div>
 
         <div class="info-article">
-            <h2>{{ activity.TITLE }}</h2>
+            <h2>{{ activityData.TITLE }}</h2>
 
             <div class="userTag-2" id="">
                 <img src="../assets/img/user_pic2.png" alt="" class="userPic" />
@@ -27,33 +27,33 @@
             <table class="activityContent-2">
                 <tr class="actInfo-2">
                     <td>活動時間：</td>
-                    <td>2023-03-04  （六） 15:00～18:00</td>
+                    <td>{{ activityData.START_DATE }}  {{ activityData.START_TIME }}</td>
                 </tr>
                 <tr class="actInfo-2">
                     <td>地點：</td>
-                    <td>花蓮縣大湖里幸福路和平街66號 快樂公園教室Ｂ</td>
+                    <td>{{ activityData.LOCATION }}</td>
                 </tr>
                 <tr class="actInfo-2">
                     <td>報名人數限制：</td>
-                    <td>40人</td>
+                    <td>{{ activityData.MAX_PPL }}</td>
                 </tr>
                 <tr class="actInfo-2">
                     <td>報名截止時間：</td>
-                    <td>2023-02-15（五）24:00</td>
+                    <td>{{ activityData.REG_END }}</td>
                 </tr>
                 <tr rowspan="2" class="actPrice-2">
-                    <td>200元/人</td>
+                    <td>{{ activityData.PRICE }} 元/人</td>
                     <!-- <td>元/人</td> -->
                 </tr>
             </table>
 
             <div class="regist">
-                <div class="peopleCount">
+                <!-- <div class="peopleCount">
                     <label for="name" class="f-label">人數</label>
                     <input type="text" class="f-text" id="name" placeholder="">
-                </div>
+                </div> -->
                 <div class="confirm-btn"> 
-                    <a href="#/activity_registStep1"><button type="button" class="btn-m btn-color-green">點我報名</button></a>
+                    <button type="button" class="btn-m btn-color-green btn_regist">點我報名</button>
                 </div>
             </div>
         </div>
@@ -62,26 +62,59 @@
             <h1>活動介紹</h1>
             
             <div class="image act-img">
-                <img src="../assets/img/e1_calligraphy.png" alt="">
+                <!-- <img src="../assets/img/e1_calligraphy.png" alt=""> -->
+                <img :src="activityData.CONTENT_PIC" alt="">
             </div>
             <div class="infoText">
 
-                <p class="infoText-p">
-                今天我們要介紹一個獨特的旅遊主題——印度。印度是一個充滿神秘與色彩的國度，而電影更是印度文化的重要代表之一。在這個電影旅遊講座中，我們將介紹北印度和南印度，並透過電影帶領大家一同神遊印度。
-                <br>
-                <br>
-                首先，我們會以北印度為起點。北印度是印度的政治、文化中心，也是印度最熱門的旅遊目的地之一。在這裡，我們將透過電影《三傻大闖關》、《印度合唱團》等，介紹北印度著名的景點如泰姬陵、德里紅堡等，還有北印度獨特的文化和飲食。
-                <br><br>
-                接著，我們轉往南印度。南印度是印度的文化、宗教、歷史中心之一，以其富饒的自然環境和悠久的歷史文化聞名。在這裡，我們將透過電影《巴霍巴利王》、《瘋狂印度》等，介紹南印度獨特的寺廟、海灘、自然風光等，還有南印度獨特的文化和美食。
-                <br><br>
-                這個電影旅遊講座不僅是一次視覺和文化的盛宴，也是一次了解印度旅遊的好機會。我們將通過電影的介紹，讓大家更深入地了解印度的文化和歷史，更好地體驗印度的旅遊魅力。
-                <br><br>
-                如果你對印度的文化和電影有興趣，或者你正在計劃前往印度旅遊，那麼這個電影旅遊講座是一個絕佳的選擇。讓我們一起用電影神遊印度，探索這個充滿神秘與色彩的國度吧！
-                </p>
+                <p class="infoText-p">{{ activityData.CONTENT }}</p>
 
             </div>
         </div>
     </main>
+    <lightBox>
+
+        <div id="lightbox" class="none">
+            <article>
+                <div class="popup_content">
+                    <button type="button" class="btn-cir-m  btn-color-white btn_modal_close"><i class="bi bi-caret-left-fill"></i></button>
+                <br><br><br>
+                <div class="g1234">
+                    <h2>確認參加人數</h2>
+                </div>
+                <br><br>
+
+                <h3>{{ activityData.TITLE }}</h3>
+                <br>
+                <hr size="5" color="#27B096">
+                <br>
+                <br>
+                <div class="activity_pop">
+                    <h4>參加人數</h4>
+                    <input type="number" max="20" min="1" oninput="if(value.length>2)value=value.slice(1,2)" v-model="inputValue" @input="multiplyInput">
+                    <h3>人</h3>
+                </div>
+                <br><br>
+                <hr size="5" color="#27B096">
+
+                <br><br>
+                <div class="activity_pop2">
+                    <h6>活動單價 NT$ {{ activityData.PRICE }} ，費用共計 NT$ {{ result }}</h6>
+                    <br><br>
+                    <h6 style="color: red;">注意：若經查證後參加者非本里住民，將取消參加資格。</h6>
+                    <br><br>
+                </div>
+                <button type="button" class="btn-m btn-color-green" @click="activityRegistInfo(index)">填寫報名資料</button>
+                <h6>活動取消須知：於活動開始前四日（含）取消，免費取消，
+                    若於活動前二日，將退返報名費用之50%
+                    若於活動前一日取消，將不予退費。</h6>
+                <br>
+
+                </div>
+        </article>
+        </div>
+
+    </lightBox>
 
     <Footer></Footer>
 </template>
@@ -92,17 +125,27 @@
 import navbar from './navbar.vue';
 import Footer from './Footer.vue';
 import axios from 'axios';
+//import lightBox from '../components/lightBox_activity.vue';
 
 export default {
 
     data () {
         return {
-        spaceJsonData:[],
-        spaceData:[],
+        activityJsonData:[],
+        activityData:[],
         jsonData:[],
 
         data:[],
 
+        inputValue: null,
+        }
+    },
+    computed: {
+        result() {
+            if (this.inputValue !== null) {
+                return this.inputValue * this.activityData.PRICE
+            }
+            return 0
         }
     },
     components: {
@@ -114,40 +157,64 @@ export default {
             modules: [Navigation],
         };
     },
-    mounted() {
+    // mounted() {
 
-        this.getSpaceData();
-    },
+    //     this.getActivityData();
+    // },
+    mounted(){
+        this.getActivityData();
+
+        //lightBox_activity的JS
+        let lightbox_el = document.getElementById("lightbox");
+        let btnRegist = document.querySelectorAll(".btn_regist")[0];
+        let btn_modal_close = document.getElementsByClassName("btn_modal_close")[0];
+        
+        btnRegist.addEventListener("click",function(e){
+            lightbox_el.classList.remove("none");
+        });
+
+        btn_modal_close.addEventListener("click", function(){
+            lightbox_el.classList.add("none");
+        });
+        
+    },    
     methods:{
-        async getSpaceData() {
+        async getActivityData() {
             await  axios
             //  htdocs的環境下測試
-            .get('http://localhost/TGD104G1/public/API/activity.php')
+            .get('https://tibamef2e.com/tgd104/g1/API/activity.php')
             .then(response => {
-                this.spaceJsonData = response.data;
-                console.log('abc',this.spaceJsonData);
+                this.activityJsonData = response.data;
+                console.log('abc',this.activityJsonData);
             })
             .catch(error => {
                 // console.log(error);
             });
 
 
-            let space = sessionStorage.getItem("space");
+            let activity = sessionStorage.getItem("activity");
                         
 
-            for(let i=0;i<this.spaceJsonData.length;i++){
+            for(let i = 0; i < this.activityJsonData.length; i++){
                 // console.log(i,this.spaceJsonData[i]);
-                if(space == this.spaceJsonData[i][1]){
+                if(activity == this.activityJsonData[i][1]){
                     // console.log('空間資料',this.spaceJsonData[i]);
-                    this.spaceData = this.spaceJsonData[i];
-                    console.log('空間資料',this.spaceData);
+                    this.activityData = this.activityJsonData[i];
+                    console.log('活動資料',this.activityData);
                 }else{
 
                 }
             }
         },
 
+        activityRegistInfo(index){
+            this.$router.push('/activity_registStep1')
+            // alert(index);
+            sessionStorage.setItem('inputValue', this.inputValue)
+            sessionStorage.setItem('result', this.result)
+        },
 
+        
     },
 }
-</script>=
+</script>

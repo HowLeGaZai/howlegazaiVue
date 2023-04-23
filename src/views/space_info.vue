@@ -95,7 +95,7 @@
     
             <h3><i class="bi bi-dot"></i>預約須知<i class="bi bi-dot"></i></h3>
             <ul>
-                <li><i class="bi bi-dot"></i>{{spaceData.REMARK}}</li>
+                <li><i class="bi bi-dot"></i>{{spaces.REMARK}}</li>
                 <!-- <li><i class="bi bi-dot"></i>預約送出後，須待里辦公室審核預約申請，申請進度請至個人帳戶>預約空間紀錄查看。</li>
                 <li><i class="bi bi-dot"></i>年節期間另行公告開放時間、若遇天災則視直轄單位宣布是否達停班停課標準。</li>
                 <li><i class="bi bi-dot"></i>其他如公司行號、學校、機關團體預約或長期借用，請洽里辦公室。</li> -->
@@ -108,18 +108,10 @@
             
             <h3><i class="bi bi-dot"></i>空間地址<i class="bi bi-dot"></i></h3>
             <ul>
-                <li class="address">{{spaces.ADDRESS}}</li>
+                <li>{{spaceData.ADDRESS}}</li>
                 <li>
-                  <!-- https://www.google.com/maps/embed/v1/place?key=AIzaSyAwotM85aG1f4JdzyU7QVc9slACz2UuD1s&q={{spaces.ADDRESS}} -->
                     <div class="space-map">
-                      <iframe :src="`https://www.google.com/maps/embed/v1/place?key=AIzaSyAwotM85aG1f4JdzyU7QVc9slACz2UuD1s&q=${spaces.ADDRESS}`"
-                        width="450"
-                        height="250"
-                        frameborder="0" style="border: 2px solid #27b096;border-radius: 5px;"
-                        referrerpolicy="no-referrer-when-downgrade"
-                        allowfullscreen>
-                      </iframe>
-                        <!-- <img :src="require(`@/assets/img/${spaces.MAP_PIC}`)" alt=""> -->
+                        <img :src="require(`@/assets/img/${spaces.MAP_PIC}`)" alt="">
                     </div>
                 </li>
             </ul>
@@ -130,7 +122,6 @@
     </main>
     <Footer></Footer>
 </template>
-
 
 <script>
 import { Swiper, SwiperSlide } from 'swiper/vue';
@@ -167,27 +158,22 @@ export default {
       selectDate:'',
       spaces: 
               {
-              // "ID": "1",
-              // "NAME": "A102教室",
-              // "CATEGORY": "教室 / 靜態會議活動 / 讀書會",
-              // "CAPACITY": 40,
-              // "SPACE_SIZE": 20,
-              // "NOTE": "",
-              // "MANAGER": "李上巴",
-              // "MANAGER_PHONE": "0919426289",
-              // "OPEN_DATE": "2023-06-30",
-              // "OPEN_TIME": "08：00",
-              // "CLOSE_TIME": "21：00",
-              "ADDRESS": "高雄市前鎮區崗山南街277巷46",
-              // "REMARK": "請於使用日前7日預約，每人限定預約當日內2場次。預約送出後，須待里辦公室審核預約申請，申請進度請至個人帳戶>預約空間紀錄查看。年節期間另行公告開放時間、若遇天災則視直轄單位宣布是否達停班停課標準。其他如公司行號、學校、機關團體預約或長期借用，請洽里辦公室。",
-              // "SPACE_PIC": "s_1.png",
-              // "MAP_PIC":"space-map.png",
+              "ID": "1",
+              "NAME": "A102教室",
+              "CATEGORY": "教室 / 靜態會議活動 / 讀書會",
+              "CAPACITY": 40,
+              "SPACE_SIZE": 20,
+              "NOTE": "",
+              "MANAGER": "李上巴",
+              "MANAGER_PHONE": "0919426289",
+              "OPEN_DATE": "2023-06-30",
+              "OPEN_TIME": "08：00",
+              "CLOSE_TIME": "21：00",
+              "ADDRESS": "花蓮縣大湖里南京東路三段219號4樓",
+              "REMARK": "請於使用日前7日預約，每人限定預約當日內2場次。預約送出後，須待里辦公室審核預約申請，申請進度請至個人帳戶>預約空間紀錄查看。年節期間另行公告開放時間、若遇天災則視直轄單位宣布是否達停班停課標準。其他如公司行號、學校、機關團體預約或長期借用，請洽里辦公室。",
+              "SPACE_PIC": "s_1.png",
+              "MAP_PIC":"space-map.png",
               },
-
-      OPEN_TIME:'',
-      CLOSE_TIME:'',
-      OPEN_CLOSE_TIME:'',
-      ID:'',
               
     }
   },
@@ -205,76 +191,34 @@ export default {
     },
 
   
-  mounted() {
-    const self = this
-    this.showData();
+    mounted() {
+        const self = this
+        this.showData();
 
-    this.getSpaceData();
-    // console.log('abcdef',this.jsonData);
-    $('#resizable').resizable({});
-    $('#datepicker').datepicker({
-      monthNames: [ "一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月" ],
-      dayNamesMin: [ "週日", "週一", "週二", "週三", "週四", "週五", "週六" ], 
-      dateFormat: "yy/mm/dd",
-      
-      onSelect: function(dateText, inst){
-        var selected = $(this).val();
-        var dateObj = new Date(selected);
-        var dayOfWeek = dateObj.getDay();
-        var dayNamesMin = ["日", "一", "二", "三", "四", "五", "六"];
-        var dayOfWeekText = dayNamesMin[dayOfWeek];
-        
-        $('.selectedD').html(`日期:&nbsp;` + selected + `&nbsp;(` + dayOfWeekText + `)`);
-        sessionStorage.setItem("date", selected + `(` + dayOfWeekText + `)`);
-        sessionStorage.setItem("onlydate", selected );
-        this.selectDate = selected;
-        self.getData(selected);
-        // alert("確定預約這一天嗎");
-        // alert(selected);
-      }
-    });
-    // var btnContainer = document.getElementById("selected");
-    // var btns = btnContainer.getElementsByClassName("timeslot");
-
-    // console.log(btns);
-
-    // for (var i = 0; i < btns.length; i++) {
-    //   btns[i].addEventListener("click", function() {
-    //     var selectedtime = this.value;
-    //     // console.log(this.value);
-    //     var current = document.getElementsByClassName("active");
-        
-    //     if (current.length > 0) {
-    //       current[0].className = current[0].className.replace("active", "");
-    //     }
-    //     this.className += " active";
-    //     sessionStorage.setItem("time", selectedtime);
-
-    //     const timeStr = selectedtime;
-    //     const [start, end] = timeStr.split(' - ');
-    //     sessionStorage.setItem("start", start);
-    //     sessionStorage.setItem("end", end);
-
-
-   
-        
-
-    //   });
-    // };
- 
-// console.log('預約的時段有', orderData);
-  
-
-  
-
- 
-  // console.log(this.jsonData);
-
-
-
-// filteredData.forEach(data => {
-//   data.class = 'btn-color-gray'
-// })
+        this.getSpaceData();
+        // console.log('abcdef',this.jsonData);
+        $('#resizable').resizable({});
+        $('#datepicker').datepicker({
+        monthNames: [ "一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月" ],
+        dayNamesMin: [ "週日", "週一", "週二", "週三", "週四", "週五", "週六" ], 
+        dateFormat: "yy/mm/dd",
+    
+        onSelect: function(dateText, inst){
+            var selected = $(this).val();
+            var dateObj = new Date(selected);
+            var dayOfWeek = dateObj.getDay();
+            var dayNamesMin = ["日", "一", "二", "三", "四", "五", "六"];
+            var dayOfWeekText = dayNamesMin[dayOfWeek];
+            
+            $('.selectedD').html(`日期:&nbsp;` + selected + `&nbsp;(` + dayOfWeekText + `)`);
+            sessionStorage.setItem("date", selected + `(` + dayOfWeekText + `)`);
+            sessionStorage.setItem("onlydate", selected );
+            this.selectDate = selected;
+            self.getData(selected);
+            // alert("確定預約這一天嗎");
+            // alert(selected);
+            }
+        });
  
     },
     methods:{
@@ -291,58 +235,55 @@ export default {
             });
 
 
-                    let space = sessionStorage.getItem("space");
-                    
+            let space = sessionStorage.getItem("space");
+                        
 
-                    for(let i=0;i<this.spaceJsonData.length;i++){
-                      // console.log(i,this.spaceJsonData[i]);
-                      if(space == this.spaceJsonData[i][1]){
-                        // console.log('空間資料',this.spaceJsonData[i]);
-                        this.spaceData = this.spaceJsonData[i];
-                        console.log('空間資料',this.spaceData);
-                      }else{
+            for(let i=0;i<this.spaceJsonData.length;i++){
+                // console.log(i,this.spaceJsonData[i]);
+                if(space == this.spaceJsonData[i][1]){
+                    // console.log('空間資料',this.spaceJsonData[i]);
+                    this.spaceData = this.spaceJsonData[i];
+                    console.log('空間資料',this.spaceData);
+                }else{
 
-                      }
-                    }
+                }
+            }
+        },
+    showData() {
+        
+        // console.log('abc',this.jsonData);
 
-                    
+        const timeRange = '8:00-21:59';
+        // console.log(timeRange);
+        const [startTime, endTime] = timeRange.split('-')
+        // console.log(startHour);
+        // console.log(endHour);
 
-    },
-  showData() {
-    
-    // console.log('abc',this.jsonData);
-
-    const timeRange = '8:00-21:59';
-    // console.log(timeRange);
-    const [startTime, endTime] = timeRange.split('-')
-    // console.log(startHour);
-    // console.log(endHour);
-
-    let startHour  = startTime.split(':')[0].trim();
-    let endHour = endTime.split(':')[0].trim();
-    // console.log(startHour);
-    const dataList= [];
-    const dataList_about =[];
-    for (let h = Number(startHour); h <= Number(endHour); h++) {
-      // console.log(h);
-      const time = `${h}:00-${h}:59` // 產生時間範圍字串，例如 '8:00-8:59'
-      if(h<10){
-        const time_about = `0${h}:00:00-0${h}:59:00`;
-        const value_about = 'btn-m btn-color-white timeslot';
-        dataList_about.push({ time_about,value_about});
-      }else{
-        const time_about = `${h}:00:00-${h}:59:00`;
-        const value_about = 'btn-m btn-color-white timeslot';
-        dataList_about.push({ time_about,value_about});
-      }
-      // console.log('dataList_about',dataList_about);
-      // console.log(time);
-      const value ='btn-m btn-color-white timeslot'
-      dataList.push({ time,value });
-      
-    }
-// dataList_about.push(time_about);
-    // console.log('調整格式',dataList_about);
+        let startHour  = startTime.split(':')[0].trim();
+        let endHour = endTime.split(':')[0].trim();
+        // console.log(startHour);
+        const dataList= [];
+        const dataList_about =[];
+        for (let h = Number(startHour); h <= Number(endHour); h++) {
+        // console.log(h);
+        const time = `${h}:00-${h}:59` // 產生時間範圍字串，例如 '8:00-8:59'
+        if(h<10){
+            const time_about = `0${h}:00:00-0${h}:59:00`;
+            const value_about = 'btn-m btn-color-white timeslot';
+            dataList_about.push({ time_about,value_about});
+        }else{
+            const time_about = `${h}:00:00-${h}:59:00`;
+            const value_about = 'btn-m btn-color-white timeslot';
+            dataList_about.push({ time_about,value_about});
+        }
+        // console.log('dataList_about',dataList_about);
+        // console.log(time);
+        const value ='btn-m btn-color-white timeslot'
+        dataList.push({ time,value });
+        
+        }
+    // dataList_about.push(time_about);
+        // console.log('調整格式',dataList_about);
 
         console.log('確定預約的',this.jsonData);
         this.data = dataList_about;
@@ -358,7 +299,7 @@ async getData(date) {
               .then(response => {
                   this.jsonData = response.data;
                   
-                  console.log('OrderDate',this.jsonData);
+                  // console.log(this.jsonData);
               })
               .catch(error => {
                   // console.log(error);
@@ -366,12 +307,9 @@ async getData(date) {
     // console.log('abc',this.jsonData);
     // alert(date);
     console.log('選擇的日期是',date);
-
-    const OPEN_CLOSE_TIME = await this.getSpaceData();
-    
-    const space_timeRange =  OPEN_CLOSE_TIME;
+    const timeRange = '8:00-21:59';
     // console.log(timeRange);
-    const [startTime, endTime] = space_timeRange.split('-')
+    const [startTime, endTime] = timeRange.split('-')
     // console.log(startHour);
     // console.log(endHour);
 
@@ -406,24 +344,17 @@ async getData(date) {
 
     const formattedDate = date.replace(/\//g, '-');
 
-    
-
     // alert(formattedDate);
-    
-  let spaceID = sessionStorage.getItem("spaceID");
 
     for(let i=0;i<this.jsonData.length;i++){
         
         if(formattedDate == this.jsonData[i][0] ){
+          
             //加入日期判斷
               // console.log(i,this.jsonData[i][1]);
-              
-             
-              
                 for(let j =0; j<dataList_about.length;j++){
-                  // console.log('spaceID',spaceID);
                   // console.log(j,dataList_about[j].time_about)
-                  if(this.jsonData[i][1] == dataList_about[j].time_about && spaceID == this.jsonData[i][2]){
+                  if(this.jsonData[i][1] == dataList_about[j].time_about){
                       
                       dataList_about[j].value_about = 'btn-m btn-color-white timeslot btn-color-gray';
                       // console.log(dataList_about[j].value_about);

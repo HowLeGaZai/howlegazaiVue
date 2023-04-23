@@ -5,7 +5,13 @@ import Home from '../views/Home.vue'
 
 
 const routes = [
-  
+  // ECpay測試
+  {
+    path: '/ecTest',
+    name: 'ecTest',
+    component: () => import(/* webpackChunkName: "about" */ '../views/ecTest.vue')
+  },
+
   {
     // 前台 首頁
     path: '/',
