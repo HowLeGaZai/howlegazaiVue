@@ -77,15 +77,23 @@
                           <span class="checkmark newscheck"></span>
                         </label></td>
                       <!-- 編輯 -->
-                      <td> <button type="button" class="btn-icon">
+                      <td> <button type="button" class="btn-icon" @click="newsedit">
                           <i class="bi bi-pencil-square btn-font-color-green"></i>
                         </button></td>
 
                       <!-- 下架 -->
-                      <td> <button type="button" class="btn-icon">
+                      <td>
+                         <!-- <button type="button" class="btn-icon">
                           <i class="bi bi-x-circle-fill btn-font-color-green"
                             @click="newsmanage(news, index, 'STATUS')"></i>
-                        </button></td>
+                        </button> -->
+                        <label class="switch">
+                        <input type="checkbox" :checked="(news.STATUS) === 1" @click="newsmanage(news, index, 'STATUS')">
+                        <span class="slider"></span>
+                      </label>
+                      
+                      
+                      </td>
                     </tr>
                   </tbody>
 
@@ -165,6 +173,10 @@ export default {
       selectedDate: '',
     }
   },
+
+  //進頁面前檢查是否有存有routerid
+
+
   methods: {
     // 自動撈取最新消息
     getnews() {
@@ -183,7 +195,6 @@ export default {
     },
 
 
-
     newsmanage(news, index, active) {
 
       // console.log(this.newsData[index]);
@@ -200,7 +211,7 @@ export default {
       updateNews.append('status', result); //判斷送入0或1
       console.log(updateNews);
       // newsdata.append('title', this.title);
-      // console.log(news, index, event)
+      // console.log(news, index, event);
       //  const 
 
       axios.post('http://localhost/TGD104G1/public/API/manageNews.php',updateNews)
@@ -217,7 +228,13 @@ export default {
 
         // location.reload();
 
+    },
+
+
+    newsedit(){
+
     }
+
   },
 
 
