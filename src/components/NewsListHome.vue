@@ -1,8 +1,7 @@
 <template>
-  <tr v-for="newsHome in newsHomes">
+  <tr v-for="newsHome in jsonData">
     <td>
-      <div :class="['tag', addTagClass(newsHome.CATEGORY)]">
-        {{ newsHome.CATEGORY }}
+      <div :class="['tag', addTagClass(newsHome.CATEGORY)]">{{ newsHome.CATEGORY }}
       </div>
       <span>{{ newsHome.CREATE_TIME }}</span>
       <a href="/news_info">{{ newsHome.TITLE }}</a>
@@ -18,33 +17,13 @@ export default {
   },
   data() {
     return {
-      newsHomes: [
+      newsHomes: 
         {
-          CATEGORY: "公告",
-          CREATE_TIME: "2023-03-02",
-          TITLE: "清明期間 大湖里第一公墓管制出入",
+          CATEGORY: "",
+          CREATE_TIME: "",
+          TITLE: "",
         },
-        // {
-        //   CATEGORY: "宣導",
-        //   CREATE_TIME: "2023-03-11",
-        //   TITLE: "大湖里反詐騙宣導：為避免輕易上當，請撥165反詐騙電話",
-        // },
-        // {
-        //   CATEGORY: "里民服務",
-        //   CREATE_TIME: "2023-03-11",
-        //   TITLE: "清明期間 大湖里第二公墓管制出入",
-        // },
-        // {
-        //   CATEGORY: "新聞分享",
-        //   CREATE_TIME: "2023-03-11",
-        //   TITLE: "清明期間 大湖里第二公墓管制出入",
-        // },
-        // {
-        //   CATEGORY: "會議記錄",
-        //   CREATE_TIME: "2023-03-11",
-        //   TITLE: "清明期間 大湖里第二公墓管制出入",
-        // },
-      ],
+      
     };
   },
   methods: {
@@ -65,6 +44,20 @@ export default {
       }
     },
   },
-  mounted() {},
+  mounted() {
+    axios
+        .post('http://localhost/TGD104G1/public/API/index_news.php',{})
+        .then(response => {
+            this.jsonData = response.data;
+            // alert(response.data)
+            // console.log(this.jsonData[this.jsonData.length-1].CITY);
+        
+            // console.log(this.jsonData.length);
+            // console.log(this.jsonData);
+        })
+        .catch(error => {
+            // console.log(error);
+        });
+  },
 };
 </script>

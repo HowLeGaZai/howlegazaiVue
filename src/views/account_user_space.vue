@@ -5,103 +5,37 @@
         <main>
         <section class="account-border">
             <div class="account">
-                <section class="account-menu-pc">
-                    <h1 >帳戶管理</h1>
-                    <div class="image user_pic"><img src="../assets/img/user_pic.png" alt=""></div>
-                    <ul>
-
-                        <!-- <li v-for="accountNav in accountNavs"><a :href="accountNav.con">{{accountNav.nav}}</a></li> -->
-                       <li><router-link :to="{name:'account_user'}" class="">個人資訊</router-link></li>
-                        <!-- <li><a href="#" class="a-select">個人資訊</a></li> -->
-                        <li><router-link :to="{name:'account_user_manage'}" class="">成員管理</router-link></li>
-                        
-                        <!-- <li><a href="#">成員管理</a></li> -->
-                        <!-- <li><a href="#">貼文刊登紀錄</a></li> -->
-                        <li><router-link :to="{name:'account_user_chat'}" class="">貼文刊登紀錄</router-link></li>
-                        
-                        <!-- <li><a href="#">空間預約紀錄</a></li> -->
-                        <li><router-link :to="{name:'account_user_space'}" class="a-select">空間預約紀錄</router-link></li>
-
-                        <!-- <li><a href="#">活動報名紀錄</a></li> -->
-                        <li><router-link :to="{name:'account_user_activity'}" class="">活動報名紀錄</router-link></li>
-                        
-                        <!-- <li><a href="#">變更密碼</a></li> -->
-                        <li><router-link :to="{name:'account_user_change_pwd'}" class="">變更密碼</router-link></li>
-
-                        <li><router-link :to="{name:'home'}" class="" @click="clearCookies">登出</router-link></li>
-
-                        
-
-                    </ul>
-                </section>
+                <Accountsidebar :localPORTRAIT="localPORTRAIT"></Accountsidebar>
                 <section class="account-content">
                     <h1 class="marginbottom30">空間預約紀錄</h1>
-                
-                  <!-- <div class="row"></div> -->
-                      <!-- <div class="col-md-6 col-12"></div> -->
-                      <!-- <div class="col-12"></div> -->
-                  
-                      <!-- <div class="row account_row">
-                        <div class="col-md-6 col-12">
-                            <h4>出生 年/月/日</h4>
-                            <input type="text" class="f-text nomargin" id="name" v-model="birthdate" placeholder="YYYY/MM/DD">
-                        </div>
-                      </div> -->
                   
                       <table class="account-table w90percentage marginbottom20 account-table_space">
                         <tr>
                             <th v-for="datasTr in datasTrs" >{{datasTr}}</th>
                         </tr>
-                        <tr v-for="data in datas" >
-                            <td data-label="預約日期">{{data[0]}}</td>
-                            <td data-label="預約空間">{{data[1]}}</td>
-                            <td data-label="預約時間">{{data[2]}}</td>
-                            <td data-label="狀態">{{data[3]}}</td>
-                            <td data-label="取消"><button type="button" class="btn-m btn-color-green btn_cancel" >取消</button></td>
+                        <tr v-for="(data,index) in datas" :key="index" >
+                            <td data-label="預約日期">{{data.REV_DATE}}</td>
+                            <td data-label="狀態">{{ data[2] == 1 ? '已成功' : data[2] == 0 ? '待審核' : data[2] == -1 ? '未通過' : '已取消' }}</td>
+                            <td data-label="預約原因">{{data.PURPOSE}}</td>
+                            <td data-label="預約時間">{{ formattedStartTime(data.REV_START_TIME) }}~{{ formattedEndTime(data.REV_END_TIME) }}</td>
+                            <td data-label="預約空間">
+                                <router-link class="titlelink" :to="{ name: 'space_info', params: { Id: data.SPACE_ID } }">
+                                    <button type="button" class="btn-icon"><i class="bi bi-link-45deg btn-font-color-green"></i></button>
+                                </router-link></td>
+                            <td data-label="取消"><button type="button" class="btn-m btn-color-green btn_cancel" @click="showLightBox(index)" v-if=" data[2] == 1 || data[2] == 0">取消</button></td>
                         </tr>
                     
                       </table>  
-
-                
-                     <!-- popup -->
-<!-- <div id="lightbox" class="none">
-      <article>
-    <div class="popup_content">
-      <button type="button" class="btn-cir-m  btn-color-white btn_modal_close changeposition"><i class="bi bi-caret-left-fill"></i></button>
-      <h3>申請取消</h3>
-      <div class="apply_cancel">
-            <div class="cancelreason">
-                <h5>取消原因:</h5>
-                <select name="" id="" class="f-select col1 width70percentage">
-                <option value="1">-選擇-</option>
-                <option value="2">其他</option>
-                <option value="3">交通</option>
-                <option value="3">設施</option>
-                </select>
-            </div>
-            <div class="remark">
-            <h5>備註:</h5>
-            <textarea name="" id="" cols="30" rows="10" style="resize:none" class="f-text width70percentage" placeholder="回覆討論" ></textarea>
-            </div>
-      </div>
-    <h6>空間預約取消須知：請於預約日三日前取消，若超過日期需取消，請聯繫里辦取消預約</h6>
-      <button type="button" class="btn-m btn-color-green">同意取消</button>
-    </div>
-  </article>
-</div> -->
-    <light-box></light-box>
-               
-
-                
-
-                      
-              
-                  
-
-
-
-
-
+                      <lightBox :title="lightboxData.title"
+                                :category="lightboxData.category"
+                                :CANCEL="lightboxData.CANCEL"
+                                :note="lightboxData.note"
+                                :btn="lightboxData.btn"
+                                :labelSelect="lightboxData.labelSelect"
+                                :pic="lightboxData.pic"
+                                :labelTextarea="lightboxData.labelTextarea"
+                                @updatedCANCEL="getCancel">
+                      </lightBox>
                 </section>
             </div>
         </section>
@@ -112,84 +46,158 @@
 
 <script>
 import navbar from './navbar.vue';
+import Accountsidebar from '@/components/Accountsidebar.vue';
 import lightBox from '../components/lightBox.vue';
+
 export default {
-            data(){
-                   return {
-                      
+    data(){
+        return {
+            ID:'',
+            REV_DATE:'',
+            PURPOSE:'',
+            NAME:'',
+            REV_START_TIME:'',
+            REV_END_TIME:'',
+            STATUS:'',
+            CANCEL:'',
+            localPORTRAIT:"",
+            PORTRAIT:"",
+            isLightBoxVisible: false,
 
-                    
+            lightboxData: {
+                title: '取消原因',
+                pic:'',
+                labelSelect:'類別',
+                category: ['交通', '誤按', '不需要了', '其它'],
+                labelTextarea:'事由',
+                CANCEL:'',
+                note: '請於預約日3日前取消，若超過日期需取消，請聯繫里辦',
+                btn: '同意取消',
+            },
 
-                    accountNavs:[{nav:'個人資訊',con:'./account_user.html'},
-                    {nav:'成員管理',con:'./account_user_manage_3.html'},
-                    {nav:'貼文刊登紀錄',con:'./account_user_chat.html'},
-                    {nav:'瓦斯錶回報紀錄',con:'./account_user_gas.html'},
-                    {nav:'空間預約紀錄'},
-                    {nav:'活動報名紀錄'},
-                    {nav:'團購管理'},
-                    {nav:'變更密碼'}],
+            datasTrs:[
+                '預約日期','狀態','預約事由','預約時間','空間', '取消'
+            ],
+
+            datas:[      
+            ],
+
+        
+    
+            }
+    },
+
+    mounted(){
+
+        this.localPORTRAIT = localStorage.getItem("portrait");
+        
+
+        const userId = this.getCookieValue("id");
+        const url = "http://localhost/TGD104G1/public/API/account_space.php";
+        const data = new FormData();
+        data.append('user_id', userId)
+        
+        axios
+            .post(url, data)
+            .then((response) => {
+                const data = response.data;
+                this.datas = data;
+            })
+            .catch((error) => {
+                console.error(error);
+            });
 
 
-                    mainMenus:[{nav:'聯絡里辦',con:'./contact.html'},
-                    {nav:'最新消息',con:'./news.html'},
-                    {nav:'討論區',con:'./chat.html'},
-                    // {nav:'智慧里民',con:'#'},
-                    ],
+            // //lightBox的JS
+            // let lightbox_el = document.getElementById("lightbox");
+            // let btnCancel = document.querySelectorAll(".btn_cancel") ;
+            // let btn_modal_close = document.getElementsByClassName("btn_modal_close")[0];
+            // //    console.log(btnCancel);
+            // for(let i = 0; i < btnCancel.length; i++){
+            //     btnCancel[i].addEventListener("click",function(e){
+            //     // console.log(e.target);
+            //     lightbox_el.classList.remove("none");
+            // });
 
-                    datasTrs:[
-                        '預約日期', '預約空間', '預約時間', '狀態', '取消'
-                    ],
+            //     btn_modal_close.addEventListener("click", function(){
+            //     lightbox_el.classList.add("none");
+            //     });
+            // }
+                
+    },
+    methods: {
+        getCookieValue(cookieName) {
+            const cookies = document.cookie.split("; ");
+            for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].split("=");
+            if (cookie[0] === cookieName) {
+                return cookie[1];
+            }
+            }
+            return null;
+        },
 
-                    datas:[
-                        {"0": '2023-03-17 (五)', "1": "A101空間", "2": "13:00 - 13:59","3": "審核中"},
-                        {"0": '2023-03-24 (二)', "1": "B101空間", "2": "13:00 - 13:59","3": "未通過"},
-                        {"0": '2023-02-04 (二)', "1": "A101空間", "2": "13:00 - 13:59","3": "審核通過"},
-                        {"0": '2023-01-16 (二)', "1": "B102空間", "2": "13:00 - 13:59","3": "審核中"},
-                        {"0": '2023-01-02 (二)', "1": "A103空間", "2": "13:00 - 13:59","3": "審核中"},
-                        {"0": '2022-12-27 (二)', "1": "A104空間", "2": "13:00 - 13:59","3": "審核中"},
-                        
-                    ],
+        formatTime(timeString) {
+            const [hour, minute] = timeString.split(":");
+            return `${hour}:${minute}`;
+        },
+        formattedStartTime(startTime) {
+            return this.formatTime(startTime);
+        },
+        formattedEndTime(endTime) {
+            return this.formatTime(endTime);
+        },
 
-                    
-               
-                   }
-                   },
- 
-              mounted(){
+        showLightBox(index) {
+            this.lightboxVisible = true;
+            document.getElementById("lightbox").classList.remove("none");
+            this.ID = this.datas[index][0];
 
-                        //lightBox的JS
-                        let lightbox_el = document.getElementById("lightbox");
-                        let btnCancel = document.querySelectorAll(".btn_cancel") ;
-                        let btn_modal_close = document.getElementsByClassName("btn_modal_close")[0];
-                        //    console.log(btnCancel);
-                        for(let i = 0; i < btnCancel.length; i++){
-                            btnCancel[i].addEventListener("click",function(e){
-                            // console.log(e.target);
-                            lightbox_el.classList.remove("none");
-                        });
+        },
+        
+        getCancel(cancelData) {
+            // console.log('分類：', data.selectValue);
+            // console.log('取消原因：', data.textareaValue);
+            const ID = this.ID;
 
-                        btn_modal_close.addEventListener("click", function(){
-                        lightbox_el.classList.add("none");
-                        });
-                        }
-                       
-                   },
-               methods: {
-                    clearCookies() {
-                        // 取得目前的 cookie 字串
-                        let cookies = document.cookie;
-                        // 將 cookie 字串分割成每個 cookie
-                        let cookieArr = cookies.split("; ");
-                        // 迭代 cookieArr，將每個 cookie 都設置過期時間為過去的日期，使其被刪除
-                        for (let i = 0; i < cookieArr.length; i++) {
-                        let cookie = cookieArr[i];
-                        let eqPos = cookie.indexOf("=");
-                        let name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-                        document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/`;
-                        }
-                    },
-               },   
-            components:{navbar,lightBox},
-               
+            const CANCEL = cancelData.selectValue + "," + cancelData.textareaValue;
+            const cancelSTATUS = -2;
+            this.STATUS = cancelSTATUS;
+            const STATUS = this.STATUS;
+
+            const url = 'http://localhost/TGD104G1/public/API/updateAccountSpace.php';
+            const data = new FormData();
+                data.append('ID', ID);
+                data.append('STATUS', STATUS);
+                data.append('CANCEL', CANCEL);
+    
+            axios
+                .post(url, data)
+                .then(function (response) {
+                    if (response.data.status === 'success') {
+                        alert(response.data.message); // 顯示儲存成功訊息
+                    } else {
+                        alert('取消失敗'); // 顯示儲存失敗訊息
+                    };
+                });
+    
+            
+            location.reload();
+
+            // updateAccountSpace.php
+        },
+    },
+    components:{
+        navbar,lightBox,Accountsidebar
+    },
+    computed: {
+
+    },
+    watch: {
+    async getResult() {
+      this.dataURL = this.$refs.PortraitCrop.getResult(dataURL);
+    }
+  },
+        
 }
 </script>

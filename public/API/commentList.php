@@ -9,7 +9,7 @@
             FROM COMMENT C 
             JOIN USER U 
             ON C.USER_ID = U.ID 
-            WHERE C.CHAT_ID LIKE '%$chatID%'
+            WHERE C.CHAT_ID = $chatID
             order by C.CREATE_TIME desc";
 
     $statement = $pdo->query($sql);

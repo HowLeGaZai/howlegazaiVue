@@ -257,7 +257,7 @@
 }  
 
 .backend main .account-border .account .account-menu-pc ul li{
-  .a-select{
+  .active{
     color: #27b096;
     background: #fff;
   }
@@ -380,12 +380,12 @@
 .account-table_space{
   tr{
     th:first-child{
-      width: 220px;
       text-align: left;
       padding-left: 25px;
       
     }
     th:nth-child(2){
+
       // padding: 0 90px;
       @media screen and (max-width: 1050px) {
         padding: 0;
@@ -401,9 +401,15 @@
         
       }
     }
+    th:nth-child(6){
+      text-align: center;
+      @media screen and (max-width: 1050px) {
+        
+      }
+    }
     td:first-child{
       // display: block;
-      width: 220px;
+      width: 200px;
       text-align: left;
       padding-left: 25px;
       @media screen and (max-width: 1050px) {
@@ -412,40 +418,74 @@
         padding-left: 0;
       }
     }
-    td:nth-child(2){
-      // display: block;
-      max-width: 550px;
+    td:nth-child(5){
+      text-align: center;
+      max-width: 50px;
+      a{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-top: 10px;
+
+        .btn-icon{
+          padding: 0px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          i{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+        }
+       }
+        
       // padding: 0 90px;
+    }
+
+    td:nth-child(3){
+      // display: block;
+      width: auto;
+      min-width: 200px;
       @media screen and (max-width: 1050px) {
         padding: 10px 0;
         padding-right: 10px;
         width: auto;
         max-width: none;
       }
-    }
 
-    td:nth-child(3){
+    }
+    td:nth-child(4){
       // display: block;
-      width: 150px;
+      width: 125px;
       @media screen and (max-width: 1050px) {
         width: auto;
         padding-left: 0;
         
       }
+
     }
-    td:nth-child(4){
+    td:nth-child(2){
       // display: block;
-      
+      width: 125px;
+      text-align: left;
       @media screen and (max-width: 1050px) {
         
         padding-left: 0;
         
       }
     }
-    td:nth-child(5){
+    td:nth-child(6){
       // display: block;
       width: 120px;
-      text-align: center;
+      text-align: right;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .btn-m{
+        max-width: 100px;
+        padding: 0 30px;
+      }
       @media screen and (max-width: 1050px) {
         width: auto;
         
@@ -473,8 +513,6 @@
 
       }
       button{
-        margin-top: 10px;
-        margin-right: 10px;
       }
       h4{
         margin-left: 10px;
@@ -547,8 +585,6 @@
 }
 .changeButton{
   transform: rotate(180deg);
-  background-color: $green;
-  color:$white;
 }
 
 .productSelect{
@@ -640,7 +676,18 @@
   width: 100%;
   height: 100vh;
   background-color: hsla(0, 0%, 0%, .5);
-  
+ .apply_cancel{
+  display: flex;
+  flex-direction: column;
+ }
+  .lightboxpic{
+    margin-top: 30px;
+    margin-left: auto;
+    max-height: 200px;
+    max-width: 420px;
+    text-align: right;
+    overflow: hidden;
+  }
 }
 .none{
   display: none;
@@ -659,7 +706,7 @@
 
 
   // margin: 117px 202px 169px 193px;
-  padding: 58px 50px 81px 51px;
+  padding: 50px;
   border-radius: 20px;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
   // box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
@@ -674,10 +721,13 @@
     left:0;
   }
   h6{
-    text-align: center;
-    max-width: 300px;
-    display: block;
-    margin: 0 auto;
+    text-align: left;
+    max-width: 410px;
+    margin-left: auto;
+    display: flex;
+    justify-content: flex-end;
+    color: $red;
+    margin-bottom: 20px;
   }
 
 }
@@ -701,15 +751,20 @@
   h5{
     margin-top: 10px;
     margin-right: 15px;
+    text-align: left;
   }
   @media screen and (max-width: 992px) {
     flex-wrap: wrap;
+    justify-content: flex-start;
   }
 }
 
 .remark{
   display: flex;
   justify-content: flex-end;
+  textarea{
+    max-height: 200px;
+  }
   // justify-content: center;
   h5{
     margin-right: 10px;
@@ -720,6 +775,7 @@
   }
   @media screen and (max-width: 992px) {
     flex-wrap: wrap;
+    justify-content: flex-start;
   }
   textarea{
     @media screen and (max-width: 992px) {
@@ -743,3 +799,43 @@
 
 
 
+button{
+  i{
+    &:hover{
+      color: darken($green, 20%)
+    }
+  }
+}
+
+.titlelink{
+  color: $black;
+  &:hover{
+    color: $green;
+  }
+}
+
+.account-content{
+  .displayflex{
+    .collapseBtn{
+      flex-basis: 35px;
+      border: 0px;
+      background: transparent;
+      box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+      i{
+        line-height: 55px;
+        font-size: 25px;
+      }
+    }
+  }
+}
+
+
+#openBtn.rotate {
+  transform: rotate(180deg);
+}
+
+.hidden {
+  max-height: 0px;
+  transition: max-height 0.5s ease-out;
+  overflow: hidden;
+}

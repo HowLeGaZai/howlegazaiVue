@@ -5,35 +5,7 @@
         <main>
         <section class="account-border">
             <div class="account">
-                <section class="account-menu-pc">
-                    <h1 >帳戶管理</h1>
-                    <div class="image user_pic"><img src="../assets/img/user_pic.png" alt=""></div>
-                    <ul>
-
-                        <!-- <li v-for="accountNav in accountNavs"><a :href="accountNav.con">{{accountNav.nav}}</a></li> -->
-                       <li><router-link :to="{name:'account_user'}" class="">個人資訊</router-link></li>
-                        <!-- <li><a href="#" class="a-select">個人資訊</a></li> -->
-                        <li><router-link :to="{name:'account_user_manage'}" class="">成員管理</router-link></li>
-                        
-                        <!-- <li><a href="#">成員管理</a></li> -->
-                        <!-- <li><a href="#">貼文刊登紀錄</a></li> -->
-                        <li><router-link :to="{name:'account_user_chat'}" class="">貼文刊登紀錄</router-link></li>
-                        
-                        <!-- <li><a href="#">空間預約紀錄</a></li> -->
-                        <li><router-link :to="{name:'account_user_space'}" class="">空間預約紀錄</router-link></li>
-
-                        <!-- <li><a href="#">活動報名紀錄</a></li> -->
-                        <li><router-link :to="{name:'account_user_activity'}" class="">活動報名紀錄</router-link></li>
-                        
-                        <!-- <li><a href="#">變更密碼</a></li> -->
-                        <li><router-link :to="{name:'account_user_change_pwd'}" class="a-select">變更密碼</router-link></li>
-
-                        <li><router-link :to="{name:'home'}" class="" @click="clearCookies">登出</router-link></li>
-
-                        
-
-                    </ul>
-                </section>
+                <Accountsidebar :localPORTRAIT="localPORTRAIT"></Accountsidebar>
                 <section class="account-content">
                     <h1 class="marginbottom30">變更密碼</h1>
                 
@@ -108,67 +80,53 @@
 <script>
 
 import navbar from './navbar.vue';
+import Accountsidebar from '@/components/Accountsidebar.vue';
 export default {
      data(){
-                   return {
-                    name:'',
-                    nickname:'',   
-                    gender:'',
-                    IDnumber:'',
-                    birthdate:'',
-                    email:'',
-                    phonenumber:'',
+        return {
+            name:'',
+            nickname:'',   
+            gender:'',
+            IDnumber:'',
+            birthdate:'',
+            email:'',
+            phonenumber:'',
+            localPORTRAIT:"",
 
-                    // isShow:false,
+            datasTrs:[
+                'No.', '姓名', '帳號', '電子信箱', '編輯',  '刪除'
+            ],
 
-                    accountNavs:[{nav:'個人資訊',con:'./account_user.html'},
-                    {nav:'成員管理',con:'./account_user_manage_3.html'},
-                    {nav:'貼文刊登紀錄',con:'./account_user_chat.html'},
-                    {nav:'瓦斯錶回報紀錄',con:'./account_user_gas.html'},
-                    {nav:'空間預約紀錄'},
-                    {nav:'活動報名紀錄'},
-                    {nav:'團購管理'},
-                    {nav:'變更密碼'}],
+            datas:[
+                {"0": 1, "1": "王一明", "2": "w1account123", "3": "q1w2e3r4@email.com"},
+                {"0": 2, "1": "王二明", "2": "leeaccount1231111", "3": "zxcvb1245@mailbox.com"},
+            ],
 
+            content:'',
+            inputValFromChild: [{}],
 
-                    mainMenus:[{nav:'聯絡里辦',con:'./contact.html'},
-                    {nav:'最新消息',con:'./news.html'},
-                    {nav:'討論區',con:'./chat.html'},
-                    // {nav:'智慧里民',con:'#'},
-                    ],
-
-                    datasTrs:[
-                        'No.', '姓名', '帳號', '電子信箱', '編輯',  '刪除'
-                    ],
-
-                    datas:[
-                        {"0": 1, "1": "王一明", "2": "w1account123", "3": "q1w2e3r4@email.com"},
-                        {"0": 2, "1": "王二明", "2": "leeaccount1231111", "3": "zxcvb1245@mailbox.com"},
-                    ],
-
-                    content:'',
-                inputValFromChild: [{}],
-               
-                   }
-
-                   
-
-                   },
-                     methods: {
-                        clearCookies() {
-                        // 取得目前的 cookie 字串
-                        let cookies = document.cookie;
-                        // 將 cookie 字串分割成每個 cookie
-                        let cookieArr = cookies.split("; ");
-                        // 迭代 cookieArr，將每個 cookie 都設置過期時間為過去的日期，使其被刪除
-                        for (let i = 0; i < cookieArr.length; i++) {
-                        let cookie = cookieArr[i];
-                        let eqPos = cookie.indexOf("=");
-                        let name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-                        document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/`;
-                        }
-                    },
-                    },
-                    components:{navbar,} 
+        }
+    },
+    methods: {
+        clearCookies() {
+            // 取得目前的 cookie 字串
+            let cookies = document.cookie;
+            // 將 cookie 字串分割成每個 cookie
+            let cookieArr = cookies.split("; ");
+            // 迭代 cookieArr，將每個 cookie 都設置過期時間為過去的日期，使其被刪除
+            for (let i = 0; i < cookieArr.length; i++) {
+            let cookie = cookieArr[i];
+            let eqPos = cookie.indexOf("=");
+            let name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+            document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/`;
+            }
+        },
+    },
+    components:{
+        navbar,Accountsidebar
+    },
+    mounted(){
+        this.localPORTRAIT = localStorage.getItem("portrait");
+    },
 }
 </script>

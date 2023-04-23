@@ -31,23 +31,21 @@
                   </div>
                   <div>
                     <label for="date" class="f-label">發布日期</label>
-                    <select name="" id="date" class="f-select" 
-                    v-model="selectedDate">
+                    <select name="" id="date" class="f-select" v-model="selectedDate">
                       <option value="">-選擇-</option>
                       <option value="new">最新至最舊</option>
                       <option value="old">最舊至最新 </option>
-                      <!-- <option value="4">審核通過 </option> -->
                     </select>
                   </div>
                 </div>
                 <div class="displayflex margintop18">
-                  <router-link :to="{ name: 'backend_news_add' }" >
-                  <button type="button" class="btn-10-s btn-color-green">
-                    <a href="#/backend_news_add"><i class="bi bi-plus-lg">新增消息</i> </a>
-                  </button>
-                </router-link>
+                  <router-link :to="{ path: '/backend_news_add/' + id }">
+                    <button type="button" class="btn-10-s btn-color-green">
+                      <a href="#/backend_news_add"><i class="bi bi-plus-lg">新增消息</i> </a>
+                    </button>
+                  </router-link>
 
-                <!-- <button type="button" class="btn-10-s btn-color-green">
+                  <!-- <button type="button" class="btn-10-s btn-color-green">
                 <i class="bi bi-cloud-arrow-down-fill"></i>匯出資料
               </button> -->
                 </div>
@@ -71,21 +69,22 @@
                     <tr v-for="(news, index) in newsData" :key="index" v-show="index < num">
                       <td>{{ news.CATEGORY }}</td> <!-- 發布類別 -->
                       <td>{{ news.TITLE }}</td> <!-- 標題 -->
-                      <td>{{getFormatDate(news.CREATE_TIME) }}</td> <!-- 時間 -->
-                      
+                      <td>{{ getFormatDate(news.CREATE_TIME) }}</td> <!-- 時間 -->
+
                       <!-- 置頂 -->
                       <td><label class="f-checkbox">
-                          <input type="checkbox" name="multichoice" v-model="check" value="1">
+                          <input type="checkbox" :checked="(news.TOP) === 1" @click="newsmanage(news, index, 'TOP')">
                           <span class="checkmark newscheck"></span>
                         </label></td>
                       <!-- 編輯 -->
-                      <td> <button type="button" class="btn-icon" >
+                      <td> <button type="button" class="btn-icon">
                           <i class="bi bi-pencil-square btn-font-color-green"></i>
                         </button></td>
 
                       <!-- 下架 -->
-                      <td> <button type="button" class="btn-icon" >
-                          <i class="bi bi-x-circle-fill btn-font-color-green"></i>
+                      <td> <button type="button" class="btn-icon">
+                          <i class="bi bi-x-circle-fill btn-font-color-green"
+                            @click="newsmanage(news, index, 'STATUS')"></i>
                         </button></td>
                     </tr>
                   </tbody>
@@ -160,11 +159,8 @@ export default {
   data() {
     return {
       newsData: [],
-      num:8,
-      
-      
-
-
+      num: 12,
+      id: new Date().getTime(),// 設當前時間的字符串為ID
       selectedCategory: '',
       selectedDate: '',
     }
@@ -175,7 +171,7 @@ export default {
       axios.post('http://localhost/TGD104G1/public/API/backend_news_show.php')
         .then(response => {
           this.newsData = response.data;
-          
+
         })
         .catch(error => {
           console.log(error);
@@ -188,17 +184,39 @@ export default {
 
 
 
-    remove(){
-      if(this.check.value === 1){
-        console.log("上架")
-      }else{
-        console.log("下架")
-      }
+    newsmanage(news, index, active) {
 
+      // console.log(this.newsData[index]);
+      // console.log(this.newsData[index][0]); //object的ID
+      const result =this.newsData[index][active] = this.newsData[index][active] === 1 ? 0 : 1;
 
-      // axios.post('http://localhost/TGD104G1/public/API/backend_news_update.php')
-      
-      
+      // console.log([event])
+      // console.log(this.newsData[index][0])
+      // console.log(this.newsData[index][event]);
+
+      const updateNews = new FormData();
+      updateNews.append('newsid', this.newsData[index][0]); //object的ID
+      updateNews.append('active', [active]); //object 觸發的事件
+      updateNews.append('status', result); //判斷送入0或1
+      console.log(updateNews);
+      // newsdata.append('title', this.title);
+      // console.log(news, index, event)
+      //  const 
+
+      axios.post('http://localhost/TGD104G1/public/API/manageNews.php',updateNews)
+      .then(response => {
+          // this.jsonData = response.data;
+          console.log(response.data);
+          alert("修改成功！")
+          
+
+        })
+        .catch(error => {
+          console.log(error);
+        });
+
+        // location.reload();
+
     }
   },
 

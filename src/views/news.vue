@@ -42,7 +42,8 @@
       <!-- <news-list v-for="news in filterNews" :key="news.id"></news-list> -->
       <!-- ===== newslist_components ===== -->
 
-      <a href="#" v-for="(news, index) in displayedTopics" :key="index" v-show="index < num">
+      <div  v-for="(news, index) in displayedTopics" :key="index" v-show="index < num">
+        <router-link :to="{ name: 'news_info', params: { Id: news.ROUTER_ID }}" >
         <!-- <a href="#" v-for="news in filterNews" :key="news"> -->
         <!-- <a href="#" v-for="news in filterNews" :key="news.news"> -->
         <article class="news_item">
@@ -57,12 +58,13 @@
             <div class="image list_pic">
               <!-- Vue無法抓取null的屬性做判斷，這裡直接將找不到的值轉換成字串null再做更替預設圖片 -->
               <img
-                :src="(news.PIC && news.PIC !== 'null') ? require(`@/assets/img/${news.PIC}`) : require(`@/assets/img/default.jpg`)"
+                :src="(news.PIC && news.PIC !== 'null' && news.PIC !== 'undefined') ? (news.PIC) : require(`@/assets/img/default.jpg`)"
                 alt="">
             </div>
           </section>
         </article>
-      </a>
+      </router-link>
+    </div>
 
 
 
@@ -113,6 +115,7 @@ export default {
         "新聞分享",
         "會議記錄",
       ],
+      // id: new Date().getTime() // 獲取當前時間的 ISO 字符串
 
     }
   },
@@ -203,19 +206,8 @@ export default {
 
     this.getnews();
 
-    var desktopfilter = document.getElementById("news-desktop-filter");
-    var btns = desktopfilter.getElementsByClassName("tag-btn");
-
-    for (var i = 0; i < btns.length; i++) {
-      btns[i].addEventListener("click", function () {
-        var current = document.getElementsByClassName(" 、tag-btn-selected");
-
-        if (current.length > 0) {
-          current[0].className = current[0].className.replace(" tag-btn-selected", "");
-        }
-        this.className += " tag-btn-selected";
-      });
-    };
+  
+  
 
     // this.postsearch();
   }

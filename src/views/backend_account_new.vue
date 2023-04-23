@@ -272,35 +272,6 @@ export default {
     Footer,backCalender,BackLeftNav
   },
   mounted() {
-    $("#resizable").resizable({});
-    $("#datepicker").datepicker({
-      monthNames: [
-        "一月",
-        "二月",
-        "三月",
-        "四月",
-        "五月",
-        "六月",
-        "七月",
-        "八月",
-        "九月",
-        "十月",
-        "十一月",
-        "十二月",
-      ],
-      dayNamesMin: ["週日", "週一", "週二", "週三", "週四", "週五", "週六"],
-      dateFormat: "yy/mm/dd",
-
-      onSelect: function () {
-        var selected = $(this).val();
-        $(".selectedD").html(`日期:&nbsp` + selected);
-        // console.log(selected);
-
-        // let dayNamesMin = $(this).datepicker( "option", "dayNamesMin" );
-        // console.log(dayNamesMin);
-      },
-    });
-
 
     // table row 開合 //
     // 原本js的開合
@@ -350,6 +321,19 @@ export default {
         }
     },
     confirm(index){
+
+        let familyData = new FormData()
+        familyData.append('ID', this.jsonData[index].ID)
+        familyData.append('ADDRESS', this.jsonData[index].ADDRESS)
+        axios.post('http://localhost/TGD104G1/public/API/signup_family.php', familyData)
+          .then(response => {
+            console.log(response.data)
+          })
+          .catch(error => {
+            console.log(error)
+          })
+
+
 
       
         let formData = new FormData()

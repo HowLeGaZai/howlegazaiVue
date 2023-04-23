@@ -10,7 +10,11 @@
 
                     <h5 class="card-date">活動日期：<span>{{activity.START_DATE}}</span></h5>
                     <h3 class="card-price">{{activity.PRICE}}元</h3>
-                    <a class="card-link" @click="activityInfo(index)" role="link"><h5> 活動詳情<i class="bi bi-arrow-right"></i></h5></a>
+                    <!-- <a class="card-link" href="#/activity_info"><h5> 活動詳情<i class="bi bi-arrow-right"></i></h5></a> -->
+                    <router-link to="/activity_info" custom v-slot="{ activity_info }">
+                        <a class="card-link" href="#/activity_info" @click="activity_info"><h5> 活動詳情<i class="bi bi-arrow-right"></i></h5></a>
+                        <!-- <button class="btn-m btn-color-green" @click="navigate" role="link">活動詳情</button> -->
+                    </router-link>
                 </div>
             </div>
         </div>
