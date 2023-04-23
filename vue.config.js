@@ -6,7 +6,7 @@ module.exports = defineConfig({
   // build時傳上server的publicPath
   // publicPath: "/tgd104/g1/dist/",
 
-  //build時local端測的publicPath
+  // build時local端測的publicPath
   // publicPath: "/TGD104G1/dist/",
 
 
