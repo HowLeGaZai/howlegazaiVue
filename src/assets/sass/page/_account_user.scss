@@ -676,7 +676,18 @@
   width: 100%;
   height: 100vh;
   background-color: hsla(0, 0%, 0%, .5);
-  
+ .apply_cancel{
+  display: flex;
+  flex-direction: column;
+ }
+  .lightboxpic{
+    margin-top: 30px;
+    margin-left: auto;
+    max-height: 200px;
+    max-width: 420px;
+    text-align: right;
+    overflow: hidden;
+  }
 }
 .none{
   display: none;
@@ -695,7 +706,7 @@
 
 
   // margin: 117px 202px 169px 193px;
-  padding: 58px 50px 81px 51px;
+  padding: 50px;
   border-radius: 20px;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
   // box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
@@ -751,6 +762,9 @@
 .remark{
   display: flex;
   justify-content: flex-end;
+  textarea{
+    max-height: 200px;
+  }
   // justify-content: center;
   h5{
     margin-right: 10px;
