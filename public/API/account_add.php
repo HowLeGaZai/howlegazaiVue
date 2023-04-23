@@ -3,7 +3,7 @@
 include("conn.php");
 
 //建立SQL語法
-$sql = "INSERT into USER VALUES(DEFAULT,?,?,?,'http://localhost/TGD104G1/src/assets/img/user_pic.png',NULL,?,?,NULL,?,?,NULL,2,DEFAULT,NULL,NULL,1,NOW(),NULL, ?,NULL,DEFAULT,DEFAULT)";
+$sql = "INSERT into USER VALUES(DEFAULT,?,?,?,'https://tibamef2e.com/tgd104/g1/dist/img/user_pic.f39552a1.png',NULL,?,?,NULL,?,?,NULL,2,DEFAULT,NULL,NULL,1,NOW(),NULL, ?,NULL,DEFAULT,DEFAULT,?)";
 
 $FIRST_NAME = $_POST['FIRST_NAME'];
 $LAST_NAME = $_POST['LAST_NAME'];
@@ -28,6 +28,7 @@ $statement->bindValue(5, $PASSWORD);
 $statement->bindValue(6, $EMAIL);
 $statement->bindValue(7, $ADDRESS);
 $statement->bindValue(8, $FAMILY_ID);
+$statement->bindValue(9, $FAMILY_ID);
 
 
 $statement->execute();
