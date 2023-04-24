@@ -111,35 +111,35 @@
         </div>
       </li>
       <!-- 團購網管理 -->
-      <li>
+      <!-- <li>
         <div class="be-nav-unopen ">
           <div class="width-3 text-left">團購網管理</div>
           <i class="bi bi-caret-down-fill i-s opacity-0"></i>
-        </div>
+        </div> -->
         <!-- <a class="be-nav opacity-6 btn-color-darkgray be-menu" href="">
                 <div class="width-3 text-left">團購網管理</div>
                 <i class="bi bi-caret-down-fill i-s opacity-0"></i>
                 </a> -->
-        <div class="be-nav-on"></div>
-      </li>
+        <!-- <div class="be-nav-on"></div>
+      </li> -->
       <!-- 維修通報 -->
-      <li>
+      <!-- <li> -->
         <!-- <router-link :to="{ name: '' }" class="be-nav btn-color-unopened be-menu"> -->
-        <div class="be-nav-unopen ">
+        <!-- <div class="be-nav-unopen ">
 
           <div class="width-3 text-left">維修通報</div>
-          <i class="bi bi-caret-down-fill i-s opacity-0"></i>
+          <i class="bi bi-caret-down-fill i-s opacity-0"></i> -->
           <!-- </router-link> -->
-        </div>
-        <div class="be-nav-on"></div>
-      </li>
+        <!-- </div>
+        <div class="be-nav-on"></div> -->
+      <!-- </li> -->
       <!-- 守望相助 -->
-      <li>
+      <!-- <li> -->
 
-        <div class=" be-nav-unopen">
+        <!-- <div class=" be-nav-unopen">
           <div class="width-3 text-left">守望相助</div>
           <i class="bi bi-caret-down-fill i-s "></i>
-        </div>
+        </div> -->
         <!-- <div class="be-nav-on be-nav-off be-menu">
           <router-link :to="{ name: '' }">
             <button class="be-nav btn-font-color-green">守望隊管理</button>
@@ -148,15 +148,15 @@
             <button class="be-nav btn-font-color-gray">簽到列表</button>
           </router-link>
         </div> -->
-      </li>
+      <!-- </li> -->
       <!-- 瓦斯表數據 -->
-      <li>
+      <!-- <li>
         <div class=" be-nav-unopen ">
           <div class="width-3 text-left">瓦斯表數據</div>
           <i class="bi bi-caret-down-fill i-s opacity-0"></i>
         </div>
         <div class=""></div>
-      </li>
+      </li> -->
     </ul>
   </div>
 </template>

@@ -6,9 +6,9 @@ include("conn.php");
 // Get user ID from request
 
 
-// 撈取符合 的使用者資料
+// 撈取正在使用中的family數量
 
-$sql = "SELECT * FROM USER WHERE USER_STATUS=1 && STATUS =1 || STATUS =2";
+$sql = "SELECT * FROM FAMILY WHERE STATUS=1";
 
 // 執行並查詢，會回傳查詢結果的物件，必須使用 fetch、fetchAll...等方式取得資料
 $statement = $pdo->query($sql);
@@ -18,5 +18,5 @@ $data = $statement->fetchAll();
 
 
 // // 輸出成 JSON 格式
-echo json_encode($data);
+// echo json_encode($data);
 ?>
