@@ -61,15 +61,14 @@
             <p>待辦事項</p>
             <div class="displayflex">
               <router-link :to="{ name: 'backend_account_new' }">
-                <button type="button" class="btn-be-dash btn-color-green" :class="{ opacity_4: accountNew < 1 }">
-                  <div class=" text-ali font-13">新申請<br>戶長帳號({{ accountNew }})<i
-                      class="bi bi-arrow-right-circle-fill btn-i"></i>
+                <button type="button" class="btn-be-dash btn-color-green" :class="{ opacity6:accountNew < 1 }">
+                  <div class=" text-ali font-13">新申請<br>戶長帳號({{ accountNew }})
                   </div>
                 </button>
               </router-link>
               <router-link :to="{ name: 'backend_space_reservation' }">
-                <button type="button" class="btn-be-dash btn-color-green opacity-4">
-                  <div class=" text-ali font-13">待批准<br>空間預約 (0){{}}</div>
+                <button type="button" class="btn-be-dash btn-color-green" :class="{ opacity6:spaceNew < 1 }" >
+                  <div class=" text-ali font-13">待批准<br>空間預約({{ spaceNew }})</div>
                 </button>
               </router-link>
               <router-link :to="{}">
@@ -198,7 +197,7 @@ export default {
       activityData: [],// 活動資訊
       activityNum: 4,
       accountNew: '', //待審核戶長
-      spaceNew:'', //待審核空間
+      spaceNew: '', //待審核空間
 
       villageData: [],
       population: '',
@@ -225,7 +224,7 @@ export default {
         "tag-orange": category === "旅遊",
         "tag-pink": category === "健康",
         "tag-yellow": category === "其他",
-  
+
       };
     },
 
@@ -251,10 +250,10 @@ export default {
     },
 
 
-  
 
 
- 
+
+
 
   },
 
@@ -324,16 +323,16 @@ export default {
 
     //待審核空間預約
     axios
-        .get('http://localhost/TGD104G1/public/API/backend_space_reservation.php')
-            // .get('https://tibamef2e.com/tgd104/g1/accountOverview.php')
-            .then(response => {
-                this.spaceData = response.data;
-                console.log(this.spaceData);
+      .get('http://localhost/TGD104G1/public/API/backend_space_reservation.php')
+      // .get('https://tibamef2e.com/tgd104/g1/accountOverview.php')
+      .then(response => {
+        this.spaceNew = response.data.length;
+        console.log(this.spaceNew);
 
-            })
-            .catch(error => {
-                // console.log(error);
-            });
+      })
+      .catch(error => {
+        // console.log(error);
+      });
 
 
 
