@@ -62,7 +62,7 @@
             <div class="card">
               <a href="#">
                 <img
-                  :src="Titlepic"
+                  :src="eventCard.BANNER"
                   alt=""
                   class="image event_pic"
                 />

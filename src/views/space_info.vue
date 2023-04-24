@@ -108,11 +108,11 @@
             
             <h3><i class="bi bi-dot"></i>空間地址<i class="bi bi-dot"></i></h3>
             <ul>
-                <li class="address">{{spaces.ADDRESS}}</li>
+                <li class="address">{{spaceData.ADDRESS}}</li>
                 <li>
                   <!-- https://www.google.com/maps/embed/v1/place?key=AIzaSyAwotM85aG1f4JdzyU7QVc9slACz2UuD1s&q={{spaces.ADDRESS}} -->
                     <div class="space-map">
-                      <iframe :src="`https://www.google.com/maps/embed/v1/place?key=AIzaSyAwotM85aG1f4JdzyU7QVc9slACz2UuD1s&q=${spaces.ADDRESS}`"
+                      <iframe :src="`https://www.google.com/maps/embed/v1/place?key=AIzaSyAwotM85aG1f4JdzyU7QVc9slACz2UuD1s&q=${spaceData.ADDRESS}`"
                         width="450"
                         height="250"
                         frameborder="0" style="border: 2px solid #27b096;border-radius: 5px;"

@@ -19,18 +19,19 @@ $note = $_POST['note'];
 $pic = $_POST['pic'];
 
 
-$sql = "INSERT INTO SPACE VALUES(DEFAULT,?,?,?,?,?,?,?,'2023-03-01',?,?,?,?);";
+$sql = "INSERT INTO SPACE VALUES(DEFAULT,?,?,?,?,NULL,?,?,NULL,?,?,?,?,?,1);";
     $statement = $pdo -> prepare($sql);
     $statement->bindValue(1 ,$spaceName);
     $statement->bindValue(2 ,$type);
     $statement->bindValue(3 ,$capacity);
     $statement->bindValue(4 ,$spaceSize);
-    $statement->bindValue(5 ,$note);
-    $statement->bindValue(6 ,$manager);
-    $statement->bindValue(7 ,$phone);
-    $statement->bindValue(8 ,$spaceTimeStart);
-    $statement->bindValue(9 ,$spaceTimeClose);
-    $statement->bindValue(10 ,$address);
+    // $statement->bindValue(5 ,$note);
+    $statement->bindValue(5 ,$manager);
+    $statement->bindValue(6 ,$phone);
+    $statement->bindValue(7 ,$spaceTimeStart);
+    $statement->bindValue(8 ,$spaceTimeClose);
+    $statement->bindValue(9 ,$address);
+    $statement->bindValue(10 ,$note);
     $statement->bindValue(11 ,$pic);
     $statement->execute();
 

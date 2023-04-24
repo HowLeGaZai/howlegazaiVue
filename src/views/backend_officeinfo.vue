@@ -266,7 +266,8 @@ export default{
       address : '' ,
       autobiography:'',
       
-      
+      responseData:'',
+
       title1 : '',
       title2 : '',
       title3 : '',
@@ -335,14 +336,14 @@ export default{
         return false;
           }
 
-  return true;
+  // return true;
 
  
 axios
   .post('http://localhost/TGD104G1/public/API/officeinfo.php', formData)
   .then(response => {
-      responseData = response.data;
-      console.log(responseData);
+      this.responseData = response.data;
+      console.log(this.responseData);
       alert("儲存成功")
   })
   .catch(error => {
@@ -362,6 +363,8 @@ axios
         autobiography : 'this.autobiography',
         pic1 : this.pic1,
       }));
+
+
       },
 
 
