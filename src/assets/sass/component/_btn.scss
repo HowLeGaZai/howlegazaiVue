@@ -475,6 +475,7 @@
 
 
 
+
 // /* button 的顏色設定 -綠底白字 */
 // .color-green {
 //   color: white;
@@ -517,6 +518,14 @@
 /* button 的字體顏色設定 - 綠字 */
 .font-green {
   color:$green;
+}
+
+.fontgreen{
+  color:$green !important; 
+}
+
+.fontred{
+  color:#ff8c4b !important;
 }
 
 /* button 的字體顏色設定 -  灰字 */
