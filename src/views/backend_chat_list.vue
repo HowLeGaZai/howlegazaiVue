@@ -29,8 +29,8 @@
                 <div>
                   <label for="date" class="f-label">發布日期</label>
                   <select name="" id="date" class="f-select" v-model="selectedDate">
-                      <option value="">-選擇-</option>
-                      <option value="new">最新至最舊</option>
+                      <!-- <option value="">-選擇-</option> -->
+                      <option value="">最新至最舊</option>
                       <option value="old">最舊至最新 </option>
                   </select>
               </div>
@@ -148,7 +148,7 @@ export default {
         });
       }
       // 日期排序
-      if (this.selectedDate === 'new') {
+      if (this.selectedDate === '') {
         filteredChats = filteredChats.sort((a, b) => new Date(b[3]) - new Date(a[3]));
       } else if (this.selectedDate === 'old') {
         filteredChats = filteredChats.sort((a, b) => new Date(a[3]) - new Date(b[3]));
