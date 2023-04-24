@@ -173,8 +173,8 @@ export default {
       formData.append('answer5', this.answer5)
 
       axios
-        .post(`${process.env.VUE_APP_AJAX_URL}QA.php`, formData)
-        // .post('https://tibamef2e.com/tgd104/g1/webinfo.php`, formData)
+        .post('http://localhost/TGD104G1/public/API/QA.php', formData)
+        // .post('https://tibamef2e.com/tgd104/g1/webinfo.php', formData)
         .then(response => {
             this.jsonData = response.data;
             console.log(response.data);

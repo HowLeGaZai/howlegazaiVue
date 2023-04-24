@@ -146,7 +146,7 @@ export default {
         // const searchid = new FormData();
         // searchid.append('routerid', routerid);
         // axios
-        //     .post(`${process.env.VUE_APP_AJAX_URL}check_duplicate_news.php`, searchid)
+        //     .post('http://localhost/TGD104G1/public/API/check_duplicate_news.php', searchid)
         //     .then(response => {
         //         // this.$set(this.data,'saveNewsdata',this.newsdata)
         //         this.newsdata = response.data[0];
@@ -209,7 +209,7 @@ export default {
         // const searchid = new FormData();
         // searchid.append('routerid', routerid);
         // axios
-        //     .post(`${process.env.VUE_APP_AJAX_URL}check_duplicate_news.php`, searchid)
+        //     .post('http://localhost/TGD104G1/public/API/check_duplicate_news.php', searchid)
         //     .then(response => {
         //         // this.$set(this.data,'saveNewsdata',this.newsdata)
         //         this.newsdata = response.data;
@@ -259,7 +259,7 @@ export default {
         const searchid = new FormData();
         searchid.append('routerid', routerid);
         axios
-            .post(`${process.env.VUE_APP_AJAX_URL}check_duplicate_news.php`, searchid)
+            .post('http://localhost/TGD104G1/public/API/check_duplicate_news.php', searchid)
             .then(response => {
                 // this.$set(this.data,'saveNewsdata',this.newsdata)
                 this.newsdata = response.data[0];

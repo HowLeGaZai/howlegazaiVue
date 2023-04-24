@@ -291,8 +291,8 @@ export default {
     //   });
     // });
      axios
-     .post(`${process.env.VUE_APP_AJAX_URL}accountNew.php`)
-        // .get('https://tibamef2e.com/tgd104/g1/accountOverview.php`)
+     .post('http://localhost/TGD104G1/public/API/accountNew.php')
+        // .get('https://tibamef2e.com/tgd104/g1/accountOverview.php')
         .then(response => {
             this.jsonData = response.data;
             console.log(response.data);
@@ -325,7 +325,7 @@ export default {
         let familyData = new FormData()
         familyData.append('ID', this.jsonData[index].ID)
         familyData.append('ADDRESS', this.jsonData[index].ADDRESS)
-        axios.post(`${process.env.VUE_APP_AJAX_URL}signup_family.php`, familyData)
+        axios.post('http://localhost/TGD104G1/public/API/signup_family.php', familyData)
           .then(response => {
             console.log(response.data)
           })
@@ -338,7 +338,7 @@ export default {
       
         let formData = new FormData()
         formData.append('ID', this.jsonData[index].ID)
-        axios.post(`${process.env.VUE_APP_AJAX_URL}accountNew_confirm.php`, formData)
+        axios.post('http://localhost/TGD104G1/public/API/accountNew_confirm.php', formData)
           .then(response => {
             console.log(response.data)
           })
@@ -355,7 +355,7 @@ export default {
       
         let formData = new FormData()
         formData.append('ID', this.jsonData[index].ID)
-        axios.post(`${process.env.VUE_APP_AJAX_URL}accountNew_cancel.php`, formData)
+        axios.post('http://localhost/TGD104G1/public/API/accountNew_cancel.php', formData)
           .then(response => {
             console.log(response.data)
           })

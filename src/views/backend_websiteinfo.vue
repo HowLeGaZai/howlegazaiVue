@@ -138,8 +138,8 @@ export default {
 
       axios
       // 這裡是 縣市鄉
-        .post(`${process.env.VUE_APP_AJAX_URL}webinfo.php`, formData)
-        // .post('https://tibamef2e.com/tgd104/g1/webinfo.php`, formData)
+        .post('http://localhost/TGD104G1/public/API/webinfo.php', formData)
+        // .post('https://tibamef2e.com/tgd104/g1/webinfo.php', formData)
         .then(response => {
             // this.jsonData = response.data;
             console.log(response.data);
@@ -159,7 +159,7 @@ export default {
       formData2.append('home_num', this.home_num)
 
       axios
-        .post(`${process.env.VUE_APP_AJAX_URL}village.php`, formData2)
+        .post('http://localhost/TGD104G1/public/API/village.php', formData2)
         .then(response => {
             // this.jsonData = response.data;
             console.log(response.data);
@@ -180,7 +180,7 @@ export default {
       // 這裡是首頁背景圖
       let formData = new FormData()
       formData.append('image', this.pic)
-      axios.post(`${process.env.VUE_APP_AJAX_URL}uploadBanner.php`, formData)
+      axios.post('http://localhost/TGD104G1/public/API/uploadBanner.php', formData)
         .then(response => {
           console.log(response.data)
         })

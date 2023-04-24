@@ -322,8 +322,8 @@ export default {
 
 
     axios
-     .get(`${process.env.VUE_APP_AJAX_URL}backendSpace.php`)
-        // .get('https://tibamef2e.com/tgd104/g1/accountOverview.php`)
+     .get('http://localhost/TGD104G1/public/API/backendSpace.php')
+        // .get('https://tibamef2e.com/tgd104/g1/accountOverview.php')
         .then(response => {
             this.jsonData = response.data;
             console.log(response.data);
@@ -362,8 +362,8 @@ export default {
             formData.append('spaceID', this.spaceID)
 
             axios
-                .post(`${process.env.VUE_APP_AJAX_URL}updateSpace.php`, formData)
-                // .post('https://tibamef2e.com/tgd104/g1/webinfo.php`, formData)
+                .post('http://localhost/TGD104G1/public/API/updateSpace.php', formData)
+                // .post('https://tibamef2e.com/tgd104/g1/webinfo.php', formData)
                 .then(response => {
                     // this.jsonData = response.data;
                     console.log(response.data);

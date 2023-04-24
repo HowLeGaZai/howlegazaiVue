@@ -36,7 +36,7 @@ export default {
       const formData = new FormData()
           formData.append('chatID', this.chatid)
       axios
-        .post(`${process.env.VUE_APP_AJAX_URL}commentList.php`, formData)
+        .post('http://localhost/TGD104G1/public/API/commentList.php', formData)
         .then(response => {
             this.jsonData = response.data;
             console.log('abc',response.data);

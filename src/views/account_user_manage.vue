@@ -136,7 +136,7 @@ export default {
             const formData = new FormData()
             formData.append('ID', this.USER_ID)
             axios
-                .post(`${process.env.VUE_APP_AJAX_URL}account_user_family.php`,formData)
+                .post('http://localhost/TGD104G1/public/API/account_user_family.php',formData)
 
                 .then(response => {
                     this.jsonData = response.data;

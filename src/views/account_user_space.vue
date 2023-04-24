@@ -165,7 +165,7 @@ export default {
             this.STATUS = cancelSTATUS;
             const STATUS = this.STATUS;
 
-            const url = `${process.env.VUE_APP_AJAX_URL}updateAccountSpace.php`;
+            const url = 'http://localhost/TGD104G1/public/API/updateAccountSpace.php';
             const data = new FormData();
                 data.append('ID', ID);
                 data.append('STATUS', STATUS);

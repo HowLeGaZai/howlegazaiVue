@@ -107,7 +107,7 @@ export default {
   methods:{
      async getSpaceData() {
               await  axios
-                    .get(`${process.env.VUE_APP_AJAX_URL}space.php`)
+                    .get('http://localhost/TGD104G1/public/API/space.php')
 
                     .then(response => {
                         this.spaceJsonData = response.data;

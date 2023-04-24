@@ -115,7 +115,7 @@ export default {
       console.log(newsdata);
 
       axios
-        .post(`${process.env.VUE_APP_AJAX_URL}newsAdd.php`, newsdata)
+        .post('http://localhost/TGD104G1/public/API/newsAdd.php', newsdata)
         .then(response => {
           // this.jsonData = response.data;
           // console.log(response.data);

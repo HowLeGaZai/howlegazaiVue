@@ -64,7 +64,7 @@ export default {
     const newsdata = new FormData();
     newsdata.append('routeid', this.$route.params.Id);
 
-    axios.post(`${process.env.VUE_APP_AJAX_URL}news_content.php`, newsdata)
+    axios.post('http://localhost/TGD104G1/public/API/news_content.php', newsdata)
       .then(response => {
         this.newsarticle = response.data[0];
         console.log("1111");

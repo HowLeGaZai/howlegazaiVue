@@ -426,8 +426,8 @@
                     formData.append('pic', this.pic)
 
                         axios
-                            .post(`${process.env.VUE_APP_AJAX_URL}spaceAdd.php`, formData)
-                            // .post('https://tibamef2e.com/tgd104/g1/webinfo.php`, formData)
+                            .post('http://localhost/TGD104G1/public/API/spaceAdd.php', formData)
+                            // .post('https://tibamef2e.com/tgd104/g1/webinfo.php', formData)
                             .then(response => {
                                 // this.jsonData = response.data;
                                 console.log(response.data);

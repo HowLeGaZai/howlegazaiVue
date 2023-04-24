@@ -239,7 +239,7 @@ export default {
     mounted() {
 
       axios
-        .post(`${process.env.VUE_APP_AJAX_URL}people.php`,{})
+        .post('http://localhost/TGD104G1/public/API/people.php',{})
         .then(response => {
             this.jsonData = response.data;
             // alert(response.data)

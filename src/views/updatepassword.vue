@@ -91,7 +91,7 @@ export default {
           updateData.append('userid', this.userID)
           updateData.append('newpwd', this.newPassword)
 
-        axios.post(`${process.env.VUE_APP_AJAX_URL}updatePassword.php`, updateData)
+        axios.post('http://localhost/TGD104G1/public/API/updatePassword.php', updateData)
           .then(response => {
             console.log(response.data);
             // 將修改密碼成功訊息顯示在畫面上

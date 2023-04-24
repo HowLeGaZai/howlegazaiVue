@@ -142,7 +142,7 @@ export default {
     methods:{
         async getSpaceData() {
               await  axios
-                    .get(`${process.env.VUE_APP_AJAX_URL}space.php`)
+                    .get('http://localhost/TGD104G1/public/API/space.php')
 
                     .then(response => {
                         this.spaceJsonData = response.data;
@@ -187,7 +187,7 @@ export default {
                 const formData = new FormData()
                 formData.append('user_id',this.getCookieValue('id') )
                 axios
-                    .post(`${process.env.VUE_APP_AJAX_URL}account_user.php`, formData)
+                    .post('http://localhost/TGD104G1/public/API/account_user.php', formData)
                     .then(response => {
                     this.jsonData = response.data;
                     // console.log(this.jsonData[0]);

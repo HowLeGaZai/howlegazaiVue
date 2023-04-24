@@ -91,7 +91,7 @@ export default {
   methods:{
     getSpaceData() {
               axios
-                    .get(`${process.env.VUE_APP_AJAX_URL}space.php`)
+                    .get('http://localhost/TGD104G1/public/API/space.php')
                     .then(response => {
                         this.spaceJsonData = response.data;
                         console.log(response.data);
@@ -129,7 +129,7 @@ export default {
             formData.append('SPACE_ID', spaceID)
 
             axios
-            .post(`${process.env.VUE_APP_AJAX_URL}spaceInfo.php`, formData)
+            .post('http://localhost/TGD104G1/public/API/spaceInfo.php', formData)
             .then(response => {
                 // this.jsonData = response.data;
                 console.log(response.data);

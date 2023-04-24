@@ -151,7 +151,7 @@ export default {
               formData.append('FAMILY_ID', this.familyID)
 
               axios
-              .post(`${process.env.VUE_APP_AJAX_URL}account_add.php`,formData)
+              .post('http://localhost/TGD104G1/public/API/account_add.php',formData)
 
                   .then(response => {
                       this.jsonData = response.data;
@@ -185,7 +185,7 @@ export default {
               const formData2 = new FormData()
               formData2.append('account', this.account)
               
-              const response = await axios.post(`${process.env.VUE_APP_AJAX_URL}check_duplicate_account.php`, formData2);
+              const response = await axios.post('http://localhost/TGD104G1/public/API/check_duplicate_account.php', formData2);
               const result = response.data;
               console.log(result);
               if (result === 'duplicate') {
@@ -251,7 +251,7 @@ export default {
             formData.append('ID', this.USER_ID)
 
             axios
-              .post(`${process.env.VUE_APP_AJAX_URL}account_address.php`,formData)
+              .post('http://localhost/TGD104G1/public/API/account_address.php',formData)
 
                   .then(response => {
                       this.address = response.data[0].ADDRESS;

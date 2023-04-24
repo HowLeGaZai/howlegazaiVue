@@ -109,7 +109,7 @@ export default {
       forgetData.append('email', this.email) 
 
       axios
-        .post(`${process.env.VUE_APP_AJAX_URL}checkForget.php`, forgetData)
+        .post('http://localhost/TGD104G1/public/API/checkForget.php', forgetData)
         .then(response => {
             // this.jsonData = response.data;
             console.log(response.data);

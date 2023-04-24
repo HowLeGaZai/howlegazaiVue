@@ -242,7 +242,7 @@ methods: {
 },
 mounted() {
      axios
-        .post(`${process.env.VUE_APP_AJAX_URL}home.php`,{})
+        .post('http://localhost/TGD104G1/public/API/home.php',{})
         .then(response => {
             this.jsonData = response.data;
             // alert(response.data)
