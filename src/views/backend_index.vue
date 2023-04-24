@@ -30,7 +30,7 @@
               <table class="activity-list">
                 <tr v-for="(activity, index) in activityData" :key="index" v-show="index < activityNum">
                   <td class="activity-label">
-                    <div class="tag tag-pink">{{ activity.CATEGORY }}</div>
+                    <div :class="['tag', addTagClass(news.CATEGORY)]">{{ activity.CATEGORY }}</div>
                   </td>
                   <td class="activity-name">
                     {{ activity.TITLE }}
@@ -213,8 +213,19 @@ export default {
 
 
   methods: {
-    //取得大湖里人員統計
 
+    addTagClass(category) {
+      return {
+        "tag-main": category === "全部消息",
+        "tag-orange": category === "公告",
+        "tag-pink": category === "宣導",
+        "tag-yellow": category === "里民服務",
+        "tag-blue": category === "新聞分享",
+        "tag-green": category === "會議記錄",
+      };
+    },
+
+    //取得大湖里人員統計
 
     countvillage() {
       this.population = this.villageData[this.villageData.length - 1].POPULATION;
