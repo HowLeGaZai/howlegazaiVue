@@ -20,7 +20,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <!-- <input type="text" class="f-text" id="lastname" value="newsdata.TITLE"> -->
-                                <input type="text" class="f-text" id="lastname" v-model="TITLE">
+                                <input type="text" class="f-text" id="lastname" v-model="title" required>
 
                                 <!-- <input type="text" class="f-text" id="lastname" v-model="title"> -->
                                 <!-- <input type="text" class="f-text" id="lastname" v-model="title"> -->
@@ -32,7 +32,7 @@
                                     <h5>文章分類</h5>
                                 </label>
                                 <div>
-                                    <select name="" id="selecte" class="f-select" v-model="category">
+                                    <select name="" id="selecte" class="f-select" v-model="category" required>
                                         <option value="1">-選擇-</option>
                                         <option value="公告">公告</option>
                                         <option value="宣導">宣導 </option>
@@ -77,7 +77,7 @@
                         <div id="container">
                             <!-- <div id="editor">
                                 </div> -->
-                            <Tinymce v-model="content"></Tinymce>
+                            <Tinymce v-model="content" required></Tinymce>
                             <div>
 
                             </div>
@@ -139,7 +139,7 @@ export default {
         BackLeftNav
     },
 
-    
+
     beforeMount() {
 
         // const routerid = this.$route.params.Id;
@@ -160,7 +160,7 @@ export default {
         //     });
 
         // console.log(this.newsdata);
-    
+
 
     },
 
@@ -190,6 +190,44 @@ export default {
 
 
         newsPreview() {
+
+            // 檢查必填欄位是否已經填寫
+            // const requiredFields = document.querySelectorAll('[required]');
+            // for (const field of requiredFields) {
+            //     if (field.tagName === 'SELECT' && field.selectedIndex === 0) {
+            //         field.style.outline = '1px solid $red';
+            //         const label = field.parentNode.querySelector('label');
+            //         const asterisk = label.querySelector('.asterisk');
+            //         if (!asterisk) {
+            //             label.insertAdjacentHTML('beforeend', '<span class="asterisk" style="color:red;"> <i class="bi bi-asterisk" style="font-size:12px;"></i></span>');
+            //         }
+            //         return false;
+            //     } else {
+            //         const label = field.parentNode.querySelector('label');
+            //         const asterisk = label.querySelector('.asterisk');
+            //         if (asterisk) {
+            //             asterisk.remove();
+            //         }
+            //     }
+            //     if (!field.value) {
+            //         field.style.outline = '1px solid $red';
+            //         const label = field.parentNode.querySelector('label');
+            //         const asterisk = label.querySelector('.asterisk');
+            //         if (!asterisk) {
+            //             label.insertAdjacentHTML('beforeend', '<span class="asterisk" style="color:red;"> <i class="bi bi-asterisk" style="font-size:12px;"></i></span>');
+            //         }
+            //         return false;
+            //         // input{outline:$red};
+            //         // required
+            //     } else {
+            //         const label = field.parentNode.querySelector('label');
+            //         const asterisk = label.querySelector('.asterisk');
+            //         if (asterisk) {
+            //             asterisk.remove();
+            //         }
+            //     }
+            // }
+
             // 將資料傳至sessionStorage
             sessionStorage.setItem('news-title', this.title);
             sessionStorage.setItem('news-category', this.category);
@@ -223,7 +261,7 @@ export default {
         //         console.log(error);
         //     });
 
-        
+
 
 
         //將撈取出的routerID塞進input value中
@@ -235,7 +273,7 @@ export default {
 
             if (this.newsdata == null) {
                 console.log('null')
-            // console.log(this.newsdata)
+                // console.log(this.newsdata)
 
             } else {
                 // console.log(this.newsdata.TITLE)
@@ -255,7 +293,7 @@ export default {
 
     },
     mounted() {
-       
+
         //進頁面前檢查是否有重複routerID
         const routerid = this.$route.params.Id;
         console.log(routerid);
@@ -275,14 +313,14 @@ export default {
             .catch(error => {
                 console.log(error);
             });
-            
-        
-        
+
+
+
         // this.checksavedNews()
-          
 
 
-        
+
+
 
     },
 
