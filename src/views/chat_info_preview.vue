@@ -93,10 +93,10 @@ export default {
       return null;
     },
     publish() {
-      const picornot = this.PictureCropChatbanner;
-      if(!picornot){
-        this.PictureCropChatbanner = "http://localhost/TGD104G1/src/assets/img/default.jpg";
-      }
+      // const picornot = this.PictureCropChatbanner;
+      // if(!picornot){
+      //   this.PictureCropChatbanner = "http://localhost/TGD104G1/src/assets/img/default.jpg";
+      // }
 
       const chatform = new FormData();
 
