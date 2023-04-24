@@ -15,6 +15,7 @@
     </section>
 
     <!-- 最新消息 -->
+    
     <section class="home-news">
       <h1 class="title_space">最新消息</h1>
       <table>
@@ -27,7 +28,8 @@
         <tbody>
           <!-- 渲染 5 次 -->
           <NewsListHome   v-for="i in 1" :key="i">
-          {{ newsHomes.CATEGORY }}</NewsListHome>
+          {{ newsHomes.CATEGORY }}
+        </NewsListHome>
         </tbody>
       </table>
     </section>
@@ -60,7 +62,7 @@
             <div class="card">
               <a href="#">
                 <img
-                  :src="Titlepic"
+                  :src="eventCard.BANNER"
                   alt=""
                   class="image event_pic"
                 />
@@ -136,7 +138,7 @@
           <div class="orbit">
             <div class="planet"></div>
           </div>
-          <div class="smart_center">里民服務</div>
+          <router-link :to="{ name: 'chat' }"><div class="smart_center">  里民服務</div></router-link>
         </div>
         <div class="right">
           <div>

@@ -1,29 +1,25 @@
 <template>
   <tr v-for="newsHome in jsonData">
+    
+  
     <td>
       <div :class="['tag', addTagClass(newsHome.CATEGORY)]">{{ newsHome.CATEGORY }}
       </div>
-      <span>{{ newsHome.CREATE_TIME }}</span>
-      <a href="/news_info">{{ newsHome.TITLE }}</a>
+      <router-link :to="{ name: 'news_info', params: { Id: newsHome.ROUTER_ID }}" > <span>{{new Date(newsHome.CREATE_TIME).toLocaleDateString()}}</span>
+      {{ newsHome.TITLE }}  </router-link>
     </td>
-    <td>{{ newsHome.CREATE_TIME }}</td>
+    <td>{{new Date(newsHome.CREATE_TIME).toLocaleDateString()}}</td>
+
   </tr>
 </template>
 
 <script>
-export default {
-  props: {
+import axios from 'axios';
 
-  },
+export default {
   data() {
     return {
-      newsHomes: 
-        {
-          CATEGORY: "",
-          CREATE_TIME: "",
-          TITLE: "",
-        },
-      
+      jsonData: [],
     };
   },
   methods: {
@@ -44,20 +40,15 @@ export default {
       }
     },
   },
-  mounted() {
+  created() {
     axios
-        .post('http://localhost/TGD104G1/public/API/index_news.php',{})
-        .then(response => {
-            this.jsonData = response.data;
-            // alert(response.data)
-            // console.log(this.jsonData[this.jsonData.length-1].CITY);
-        
-            // console.log(this.jsonData.length);
-            // console.log(this.jsonData);
-        })
-        .catch(error => {
-            // console.log(error);
-        });
+      .post('http://localhost/TGD104G1/public/API/index_news.php',{})
+      .then(response => {
+        this.jsonData = response.data;
+      })
+      .catch(error => {
+        console.log(error);
+      });
   },
 };
 </script>
