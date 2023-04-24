@@ -103,7 +103,6 @@ export default {
 
     publishNews() {
 
-
       const newsdata = new FormData();
       newsdata.append('routerid', this.routerid);
       newsdata.append('category', this.category);

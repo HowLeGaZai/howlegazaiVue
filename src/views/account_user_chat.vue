@@ -20,7 +20,7 @@
                                 {{data.TITLE}}
                                 </router-link></td>
                             <td data-label="編輯">
-                                <router-link :to="{ name: 'chat_new', params: { Id: data.ID } }" v-if="data.STATUS == 1">
+                                <router-link :to="{ name: 'chat_update', params: { Id: data.ID } }" v-if="data.STATUS == 1">
                                     <button type="button" class="btn-icon"><i class="bi bi-pencil-square btn-font-color-green"></i></button>
                                 </router-link>
                             </td>
