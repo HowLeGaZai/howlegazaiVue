@@ -64,9 +64,14 @@
                 <button type="button" class="btn-be-dash btn-color-green" :class="{ opacity6:accountNew < 1 }">
                   <div class=" text-ali font-13">新申請<br>戶長帳號({{ accountNew }})
                   </div>
+                <button type="button" class="btn-be-dash btn-color-green" :class="{ opacity6:accountNew < 1 }">
+                  <div class=" text-ali font-13">新申請<br>戶長帳號({{ accountNew }})
+                  </div>
                 </button>
               </router-link>
               <router-link :to="{ name: 'backend_space_reservation' }">
+                <button type="button" class="btn-be-dash btn-color-green" :class="{ opacity6:spaceNew < 1 }" >
+                  <div class=" text-ali font-13">待批准<br>空間預約({{ spaceNew }})</div>
                 <button type="button" class="btn-be-dash btn-color-green" :class="{ opacity6:spaceNew < 1 }" >
                   <div class=" text-ali font-13">待批准<br>空間預約({{ spaceNew }})</div>
                 </button>
@@ -105,7 +110,7 @@
 
                   <td class="area-number">
                     <div class="family-num">
-                      <h1>{{ homeNum }}</h1>
+                      <h1>{{ home_num }}</h1>
                       <h2>大湖里人口數</h2>
                     </div>
                     <p class="positive"
@@ -115,16 +120,18 @@
 
                   <td class="area-number">
                     <div class="family-num">
-                      <h1>{{ webFamily }}</h1>
+                      <h1>147</h1>
                       <h2>網站註冊戶數</h2>
                     </div>
+                    <!-- <p class="positive">↑6%</p> -->
                     <!-- <p class="positive">↑6%</p> -->
                   </td>
                   <td class="area-number">
                     <div class="family-num">
-                      <h1>{{ account }}</h1>
+                      <h1>147</h1>
                       <h2>網站註冊人數</h2>
                     </div>
+                    <!-- <p class="negative">↓2%</p> -->
                     <!-- <p class="negative">↓2%</p> -->
                   </td>
                 </tr>
@@ -195,6 +202,11 @@ export default {
       accountNew: '', //待審核戶長
       spaceNew: '', //待審核空間
 
+      activityData: [],// 活動資訊
+      activityNum: 4,
+      accountNew: '', //待審核戶長
+      spaceNew: '', //待審核空間
+
       villageData: [],
       population: '',
       populationPercentage: '', //人口計算成長率
@@ -203,6 +215,7 @@ export default {
 
 
       accountData: [],
+      familyData: [], //家庭資料
       familyData: [], //家庭資料
       webFamily: '', //網站戶數 
       account: '', //網站註冊數（且審核通過）T_STATUS＝1||2 && USER_STATUS =1
@@ -213,6 +226,17 @@ export default {
 
 
   methods: {
+
+    addTagClass(category) {
+      return {
+        "tag-green": category === "藝文",
+        "tag-orange": category === "旅遊",
+        "tag-pink": category === "健康",
+        "tag-yellow": category === "其他",
+
+      };
+    },
+
 
     addTagClass(category) {
       return {
@@ -271,6 +295,12 @@ export default {
         $('.selectedD').html(`日期:&nbsp` + selected);
       }
     });
+   
+  //  ＝＝＝＝＝＝側欄選單的JS＝＝＝＝＝＝
+  // let beMenu = document.querySelectorAll(".be-menu");
+  //  let beMenuOn = document.querySelectorAll(".be-nav-on");
+  //   // let beMenu = document.querySelectorAll("be-nav");
+  //   // console.log(beMenu);
 
     //撈取活動
     axios
@@ -309,7 +339,7 @@ export default {
       // .get('https://tibamef2e.com/tgd104/g1/accountOverview.php')
       .then(response => {
         this.spaceNew = response.data.length;
-        // console.log(this.spaceNew);
+        console.log(this.spaceNew);
 
       })
       .catch(error => {
@@ -351,6 +381,25 @@ export default {
       .catch(error => {
         console.log(error);
       });
+
+
+
+    axios
+      .post('http://localhost/TGD104G1/public/API/family_count.php', {})
+      .then(response => {
+        this.familyData = response.data;
+        // this.countaccount()
+        this.webFamily = this.familyData.length + 1; //計算戶數數量
+
+        console.log(this.webFamily + "已註冊戶數");
+
+      })
+      .catch(error => {
+        console.log(error);
+      });
+
+
+
 
 
 

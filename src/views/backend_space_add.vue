@@ -182,7 +182,7 @@
                     <!-- 新增空間 -->
                     <div class="bk-activity-add">
                         <h1>新增空間</h1>
-                        <form action="" name="activity-add">
+                        <div  name="activity-add">
 
                             <!-- 空間名稱 -->
                             <section>
@@ -336,7 +336,7 @@
                         <!-- 是否有預覽頁-->
                         <!-- <button type="submit" class="btn-m btn-color-green" onclick="location.href='./activity.html'" >送出</button> -->
                         <button type="submit" class="btn-m btn-color-green"  @click="send">送出</button>
-                    </form>
+                    </div >
                 </div>
                 </section>
             </section>

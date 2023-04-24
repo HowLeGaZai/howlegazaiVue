@@ -20,7 +20,11 @@
                         <div class="row">
                             <div class="col-12">
                                 <!-- <input type="text" class="f-text" id="lastname" value="newsdata.TITLE"> -->
+<<<<<<< HEAD
                                 <input type="text" class="f-text" id="lastname" v-model="title">
+=======
+                                <input type="text" class="f-text" id="lastname" v-model="TITLE">
+>>>>>>> dev
 
                                 <!-- <input type="text" class="f-text" id="lastname" v-model="title"> -->
                                 <!-- <input type="text" class="f-text" id="lastname" v-model="title"> -->

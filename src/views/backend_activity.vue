@@ -56,132 +56,66 @@
                     <td>活動名稱</td>
                     <td>費用</td>
                     <td>報名數</td>
-                    <td>置頂</td>
                     <td>名單</td>
+                    <td>置頂</td>
                     <td>編輯</td>
                     <td>上架狀態</td>
                   </tr>
-                  <tr>
-                    <td>001</td>
-                    <td>藝文</td>
-                    <td>清明畫出漂亮書法</td>
-                    <td>免費</td>
-                    <td>14</td>
-                    <td><label class="f-checkbox">
-                      <input type="checkbox" name="multichoice" checked>
-                      <span class="checkmark"></span>
-                    </label></td>
-                    <td><button type="button" class="btn-icon" onclick="window.location.href='#/backend_activity_memberlist'">
-                      <i class="bi bi-file-earmark-bar-graph btn-font-color-green"></i>
-                    </button>
+                  <tr v-for="(data, index) in datas" :key="index">
+                    <td data-label="活動編號">{{ data.ID }}</td>
+                    <td data-label="活動分類">{{ data.CATEGORY }}</td>
+                    <td data-label="活動名稱">
+                            <router-link class="titlelink" :to="{ name: 'activity_info', params: { Id: data.ID } }">
+                                {{data.TITLE}}
+                            </router-link>
                     </td>
-                    <td><button type="button" class="btn-icon">
-                      <i class="bi bi-pencil-square btn-font-color-green"></i>
-                    </button>
+                    <td data-label="活動價格">{{ data.PRICE == 0 ? '免費' : data.PRICE + "元" }}</td>
+                    <!-- <td data-label="報名數" v-for="attend in getAattends(data)" :key="attend.i">{{ attend.ATTEND_NUM }}</td> -->
+                    <td data-label="報名數">{{ this.ATTEND_NUM }}</td>
+                    
+                    <!-- 名單 -->
+                    <td>
+                      <button type="button" class="btn-icon" onclick="window.location.href='#/backend_activity_memberlist'">
+                        <i class="bi bi-file-earmark-bar-graph btn-font-color-green"></i>
+                      </button>
                     </td>
-                    <td><label class="switch">
-                        <input type="checkbox" checked>
-                        <span class="slider"></span>
-                      </label>
-                    </td>
-                  </tr>
 
-                  <tr>
-                    <td>002</td>
-                    <td>課程</td>
-                    <td>DIY造龍舟教學</td>
-                    <td>NT$ 200</td>
-                    <td>14</td>
-                    <td><label class="f-checkbox">
-                      <input type="checkbox" name="multichoice" checked>
-                      <span class="checkmark"></span>
-                    </label></td>
-                    <td><button type="button" class="btn-icon">
-                      <i class="bi bi-file-earmark-bar-graph btn-font-color-green"></i>
-                    </button>
-                    </td>
-                      <td><button type="button" class="btn-icon">
+                    <!-- 置頂 -->
+                    <td>
+                      <label class="f-checkbox">
+                          <input type="checkbox">
+                          <span class="checkmark newscheck"></span>
+                        </label>
+                      </td>
+
+                    <!-- 編輯 -->
+                    <td>
+                      <button type="button" class="btn-icon">
                         <i class="bi bi-pencil-square btn-font-color-green"></i>
                       </button>
                     </td>
+
+                    <!-- 上下架 -->
                     <td><label class="switch">
                         <input type="checkbox" checked>
                         <span class="slider"></span>
                       </label>
                     </td>
+
                   </tr>
-
-                  <tr>
-                    <td>003</td>
-                    <td>課程</td>
-                    <td>教你包出美味肉粽</td>
-                    <td>NT$ 100</td>
-                    <td>14</td>
-                    <td><label class="f-checkbox">
-                      <input type="checkbox" name="multichoice">
-                      <span class="checkmark"></span>
-                    </label></td>
-                    <td><button type="button" class="btn-icon">
-                      <i class="bi bi-file-earmark-bar-graph btn-font-color-green"></i>
-                    </button>
-                    </td>
-                    <td><button type="button" class="btn-icon">
-                      <i class="bi bi-pencil-square btn-font-color-green"></i>
-                    </button>
-                    </td>
-                    <td><label class="switch">
-                        <input type="checkbox">
-                        <span class="slider"></span>
-                      </label>
-                    </td>
-              </tr>
-
-                  <tr>
-                    <td>004</td>
-                    <td>旅遊</td>
-                    <td>歡樂草莓採摘去</td>
-                    <td>免費</td>
-                    <td>14</td>
-                    <td><label class="f-checkbox">
-                      <input type="checkbox" name="multichoice">
-                      <span class="checkmark"></span>
-                    </label></td>
-                    <td><button type="button" class="btn-icon">
-                      <i class="bi bi-file-earmark-bar-graph btn-font-color-green"></i>
-                    </button>
-                    </td>
-                    <td><button type="button" class="btn-icon">
-                      <i class="bi bi-pencil-square btn-font-color-green"></i>
-                    </button>
-                    </td>
-                    <td><label class="switch">
-                        <input type="checkbox" checked>
-                        <span class="slider"></span>
-                      </label>
-                    </td>
-                  </tr>
-
-
-
-
                 </tbody>
-
               </table>
-
             </div>
             <!-- 頁碼 -->
-            <ul class="btn-page-block">
+            <!-- <ul class="btn-page-block">
               <li><button class="btn-page btn-color-white"><i class="bi bi-caret-left-fill"></i></button></li>
               <li><button class="btn-page btn-color-green">1</button></li>
               <li><button class="btn-page btn-color-white">2</button></li>
               <li><button class="btn-page btn-color-white">3</button></li>
               <li><button class="btn-page btn-color-white"><i class="bi bi-caret-right-fill"></i></button></li>
-            </ul>
+            </ul> -->
 
           </div>
-
-
-
         </section>
       </section>
 
@@ -207,29 +141,63 @@
 </template>
 
 <script>
-
 import backendNavbar from './backendNavbar.vue';
 import Footer from './Footer.vue';
-
 import backCalender from '../components/BackCalender.vue';
 import BackLeftNav from '../components/BackLeftNav.vue';
 
 export default {
+  data() {
+    return {
+      ID:'',
+      TITLE:'',
+      PRICE:'',
+      TOP:'',
+      STATUS:'',
+      CATEGORY:'',
+      ATTEND_NUM:'10', // 報名數
+
+      datas:[],
+      attends:[],
+    };
+  },
   components: {
-    backendNavbar, Footer,backCalender,BackLeftNav
+      backendNavbar,
+      Footer,
+      backCalender,
+      BackLeftNav,
   },
   mounted() {
-    // ======nav的收合======
-  
 
-
-
-
-
+      axios
+          .get('http://localhost/TGD104G1/public/API/activity.php')
+          .then((response) => {
+            this.jsonData = response.data;
+            this.datas = this.jsonData;
+          })
+          .catch((error) => {
+              console.error(error);
+          });
   },
+  methods: {
 
+    getAattends(){
+      
+      const ID = this.datas.ID;
+      console.log(ID);
 
-
-
+      const url = "http://localhost/TGD104G1/public/API/activityOrder.php"
+      const data = new FormData();
+        data.append('activity_id', ID)
+      axios
+          .get('url,data')
+          .then((response) => {
+            this.attends = response.data;
+          })
+          .catch((error) => {
+              console.error(error);
+          });
+    },
+  },
 }
 </script>

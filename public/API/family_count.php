@@ -18,5 +18,5 @@ $data = $statement->fetchAll();
 
 
 // // 輸出成 JSON 格式
-echo json_encode($data);
+// echo json_encode($data);
 ?>
