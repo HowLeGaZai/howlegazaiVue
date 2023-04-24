@@ -36,11 +36,9 @@
                 </div>
               </div>
               <div class="displayflex margintop18">
-                <router-link :to="{name:'backend_activity_input'}">
-                  <button type="button" class="btn-10-s btn-color-green">
+                  <button type="button" class="btn-10-s btn-color-green" @click="toNewactivity">
                     <i class="bi bi-plus-lg"></i>新增活動
                   </button>
-                </router-link>
 
               </div>
 
@@ -70,14 +68,15 @@
                             </router-link>
                     </td>
                     <td data-label="活動價格">{{ data.PRICE == 0 ? '免費' : data.PRICE + "元" }}</td>
-                    <!-- <td data-label="報名數" v-for="attend in getAattends(data)" :key="attend.i">{{ attend.ATTEND_NUM }}</td> -->
-                    <td data-label="報名數">{{ this.ATTEND_NUM }}</td>
+                    <td data-label="報名數">{{ data.ATTEND_NUM }}</td>
                     
                     <!-- 名單 -->
                     <td>
-                      <button type="button" class="btn-icon" onclick="window.location.href='#/backend_activity_memberlist'">
-                        <i class="bi bi-file-earmark-bar-graph btn-font-color-green"></i>
-                      </button>
+                      <router-link class="titlelink" :to="{ name: 'backend_activity_memberlist', params: { Id: data.ID } }">
+                          <button type="button" class="btn-icon">
+                            <i class="bi bi-file-earmark-bar-graph btn-font-color-green"></i>
+                          </button>
+                      </router-link>
                     </td>
 
                     <!-- 置頂 -->
@@ -155,10 +154,11 @@ export default {
       TOP:'',
       STATUS:'',
       CATEGORY:'',
-      ATTEND_NUM:'10', // 報名數
+      ATTEND_NUM:'',
 
       datas:[],
       attends:[],
+      id: new Date().getTime()
     };
   },
   components: {
@@ -169,35 +169,44 @@ export default {
   },
   mounted() {
 
-      axios
-          .get('http://localhost/TGD104G1/public/API/activity.php')
-          .then((response) => {
-            this.jsonData = response.data;
-            this.datas = this.jsonData;
-          })
-          .catch((error) => {
+        // 同時載入兩隻 php
+        Promise.all([
+            axios.get('http://localhost/TGD104G1/public/API/activity.php'),
+            axios.get('http://localhost/TGD104G1/public/API/backend_activity.php')
+          ]).then((responses) => {
+            const activityData = responses[0].data;
+            const activityOrder = responses[1].data;
+            
+            // 合併兩個資料物件
+            const mergedData = activityData.map(function(activity) {
+              
+              const Order = activityOrder.find(function(order) {
+                return order.ACTIVITY_ID === activity.ID;
+              });
+              
+              const mergedActivity = Object.assign({}, activity);
+
+              if (Order) {
+                mergedActivity.ATTEND_NUM = Order.ATTEND_NUM;
+              } else {
+                mergedActivity.ATTEND_NUM = 0;
+              }
+              return mergedActivity;
+            });
+
+            // 在這裡處理合併後的資料
+            this.datas = mergedData;
+          }).catch((error) => {
               console.error(error);
           });
-  },
-  methods: {
+        },
 
-    getAattends(){
-      
-      const ID = this.datas.ID;
-      console.log(ID);
+        methods: {
+          
+          toNewactivity(){
+              this.$router.push({ path: '/backend_activity_input/' + this.id });
+          },
 
-      const url = "http://localhost/TGD104G1/public/API/activityOrder.php"
-      const data = new FormData();
-        data.append('activity_id', ID)
-      axios
-          .get('url,data')
-          .then((response) => {
-            this.attends = response.data;
-          })
-          .catch((error) => {
-              console.error(error);
-          });
-    },
-  },
-}
+        },
+  };
 </script>
