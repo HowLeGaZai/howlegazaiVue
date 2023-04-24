@@ -82,7 +82,8 @@
           <p>{{ chatTopic.TEXT }}</p>
         </section>
         <div class="image list_pic">
-          <img :src="chatTopic.PIC" alt="">
+           <img :src="chatTopic.PIC ? chatTopic.PIC :require(`@/assets/img/default.jpg`)" alt="">
+          <!-- <img :src="chatTopic.PIC" alt=""> -->
         </div>
       </section>
     </article>
