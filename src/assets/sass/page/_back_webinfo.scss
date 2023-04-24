@@ -337,8 +337,8 @@
         .modal{
             position: relative;
             top: 100px;
-            width: 800px;
-            // max-width: calc(100vw - var(--demo-spacing));
+            width: 60vw;
+            min-width: 350px;
             background-color: $darkgray;
             border-radius: 4px;
             margin: 0 auto 200px;
@@ -376,6 +376,10 @@
                         white-space: nowrap;
                         transition: background-color .25s;
                         cursor: pointer;
+                        @media (max-width: 700px) {
+                            font-size: 12px;
+                            padding: 0 20px;
+                          }
                         &:hover{
                             background-color: $silver;
                         }
@@ -417,6 +421,9 @@
     display: flex;
     gap: 10px;
     // align-items: center;
+    @media (max-width: 650px) {
+        display: block;
+      }
   
     .uploadbtn{
         margin: 3px 0 10px;
@@ -478,6 +485,13 @@
             color: $slategray;
             font-size: 14px;
             margin: 25px 0 0;
+            overflow: visible;
+            white-space: normal;
+            text-overflow: unset;
+            word-wrap: break-word;
+            @media (max-width: 650px) {
+                margin: 5px 0;
+              }
         }
 
     }
