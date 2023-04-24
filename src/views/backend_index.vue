@@ -309,7 +309,7 @@ export default {
       // .get('https://tibamef2e.com/tgd104/g1/accountOverview.php')
       .then(response => {
         this.spaceNew = response.data.length;
-        console.log(this.spaceNew);
+        // console.log(this.spaceNew);
 
       })
       .catch(error => {
@@ -354,14 +354,13 @@ export default {
 
 
 
+    //戶數計算
     axios
       .post('http://localhost/TGD104G1/public/API/family_count.php', {})
       .then(response => {
         this.familyData = response.data;
-        // this.countaccount()
-        this.webFamily = this.familyData.length + 1; //計算戶數數量
-
-        console.log(this.webFamily + "已註冊戶數");
+        this.webFamily= this.familyData.length+1
+ 
 
       })
       .catch(error => {

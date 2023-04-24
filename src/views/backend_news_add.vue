@@ -14,13 +14,13 @@
                         <h2>新增消息</h2>
                     </div>
                     <section>
-                        <label for="electionyear" class="f-label">
+                        <label for="electionyear" class="f-label" >
                             <h5>文章標題</h5>
                         </label>
                         <div class="row">
                             <div class="col-12">
                                 <!-- <input type="text" class="f-text" id="lastname" value="newsdata.TITLE"> -->
-                                <input type="text" class="f-text" id="lastname" v-model="newsdata.TITLE">
+                                <input type="text" class="f-text" id="lastname" v-model="title">
 
                                 <!-- <input type="text" class="f-text" id="lastname" v-model="title"> -->
                                 <!-- <input type="text" class="f-text" id="lastname" v-model="title"> -->
