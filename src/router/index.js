@@ -68,6 +68,7 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/chat_new.vue'),
     // props: (route) => ({ id: route.params.id || Math.floor(Math.random() * 1000) })
   },
+  
   {
     // 前台 討論區單篇文章
     path: '/chat_info/:Id',
@@ -88,6 +89,26 @@ const routes = [
     path: '/chat_info/:Id',
     name: 'chat_info',
     component: () => import(/* webpackChunkName: "about" */ '../views/chat_info.vue')
+  },
+  {
+    // 前台 修改文章（文字編輯器）
+    path: '/chat_update/:Id',
+    // path: '/chat_new/',
+    name: 'chat_update',
+    meta: {
+      requiresAuth: true // 添加一個 meta 屬性來標記需要登錄的頁面
+    },
+    component: () => import(/* webpackChunkName: "about" */ '../views/chat_update.vue'),
+    // props: (route) => ({ id: route.params.id || Math.floor(Math.random() * 1000) })
+  },
+  {
+    // 前台 討論區 修改文章預覽
+    path: '/chat_update/preview/:Id',
+    name: 'chat_update_preview',
+    meta: {
+      requiresAuth: true // 添加一個 meta 屬性來標記需要登錄的頁面
+    },
+    component: () => import(/* webpackChunkName: "about" */ '../views/chat_update_preview.vue')
   },
   {
     // 前台 活動總覽頁
