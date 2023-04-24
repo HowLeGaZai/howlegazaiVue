@@ -238,7 +238,7 @@ export default {
     //     console.log('123',imgData);
     //     const imagePath = `@/assets/img/${imgData}`;
     //     console.log(imagePath);
-    //     return require({imagePath: `\`${imagePath}\``});
+    //     return require(imagePath);
     //   }
     // },
   },
