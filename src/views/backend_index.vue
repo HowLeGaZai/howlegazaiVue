@@ -108,13 +108,9 @@
                       <h1>{{ home_num }}</h1>
                       <h2>大湖里人口數</h2>
                     </div>
-<<<<<<< HEAD
-                    <p class="positive">↑2%</p>
-=======
                     <p class="positive"
                       :class="{ fontred: populationPercentage < 0, fontgreen: populationPercentage > 0 }">
                       {{ populationPercentage * 100 + "%" }}</p>
->>>>>>> 785d1daf (add backend index news random)
                   </td>
 
                   <td class="area-number">
@@ -282,14 +278,6 @@ export default {
   //   // let beMenu = document.querySelectorAll("be-nav");
   //   // console.log(beMenu);
 
-<<<<<<< HEAD
-  // for(let i = 0; i < beMenu.length; i++){
-  //   beMenu[i].addEventListener("click",function(){
-  //     beMenuOn[i].classList.toggle('be-nav-off');
-  //   //   console.log(beMenu[i]);
-  //   })
-  // }
-=======
     //撈取活動
     axios
       .post('http://localhost/TGD104G1/public/API/activity.php', {})
@@ -337,7 +325,6 @@ export default {
 
 
 
->>>>>>> 785d1daf (add backend index news random)
 
     //人口數與戶數
     axios
