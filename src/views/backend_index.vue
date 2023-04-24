@@ -28,64 +28,23 @@
             <div class="recent-activities">
               <p>近期活動</p>
               <table class="activity-list">
-                <tr>
+                <tr v-for="(activity, index) in activityData" :key="index" v-show="index < activityNum">
                   <td class="activity-label">
-                    <div class="tag tag-pink">藝文</div>
+                    <div class="tag tag-pink">{{ activity.CATEGORY }}</div>
                   </td>
                   <td class="activity-name">
-                    大湖里新春書法體驗
+                    {{ activity.TITLE }}
                   </td>
                   <td class="activity-num">
-                    12人
+                    12人{{ }}
                   </td>
                   <td class="activity-date">
-                    2023/12/11
-                  </td>
-                </tr>
-                <tr>
-                  <td class="activity-label">
-                    <div class="tag tag-blue">活動</div>
-                  </td>
-                  <td class="activity-name">
-                    新春旅遊賞櫻趣
-                  </td>
-                  <td class="activity-num">
-                    24人
-                  </td>
-                  <td class="activity-date">
-                    2023/12/11
+                    {{ activity.START_DATE }}
                   </td>
                 </tr>
 
-                <tr>
-                  <td class="activity-label">
-                    <div class="tag tag-green">健康</div>
-                  </td>
-                  <td class="activity-name">
-                    銀髮健眠舒壓講座
-                  </td>
-                  <td class="activity-num">
-                    84人
-                  </td>
-                  <td class="activity-date">
-                    2023/12/11
-                  </td>
-                </tr>
 
-                <tr>
-                  <td class="activity-label">
-                    <div class="tag tag-green">里民服務</div>
-                  </td>
-                  <td class="activity-name">
-                    銀髮運動拉筋趣
-                  </td>
-                  <td class="activity-num">
-                    19人
-                  </td>
-                  <td class="activity-date">
-                    2023/12/11
-                  </td>
-                </tr>
+
 
 
 
@@ -102,13 +61,15 @@
             <p>待辦事項</p>
             <div class="displayflex">
               <router-link :to="{ name: 'backend_account_new' }">
-                <button type="button" class="btn-be-dash btn-color-green">
-                  <div class=" text-ali font-13">新申請<br>戶長帳號 (2)<i class="bi bi-arrow-right-circle-fill btn-i"></i></div>
+                <button type="button" class="btn-be-dash btn-color-green" :class="{ opacity_4: accountNew < 1 }">
+                  <div class=" text-ali font-13">新申請<br>戶長帳號({{ accountNew }})<i
+                      class="bi bi-arrow-right-circle-fill btn-i"></i>
+                  </div>
                 </button>
               </router-link>
               <router-link :to="{ name: 'backend_space_reservation' }">
                 <button type="button" class="btn-be-dash btn-color-green opacity-4">
-                  <div class=" text-ali font-13">待批准<br>空間預約 (0)</div>
+                  <div class=" text-ali font-13">待批准<br>空間預約 (0){{}}</div>
                 </button>
               </router-link>
               <router-link :to="{}">
@@ -148,7 +109,8 @@
                       <h1>{{ homeNum }}</h1>
                       <h2>大湖里人口數</h2>
                     </div>
-                    <p class="positive" :class="{ fontred: populationPercentage < 0, fontgreen: populationPercentage > 0 }">
+                    <p class="positive"
+                      :class="{ fontred: populationPercentage < 0, fontgreen: populationPercentage > 0 }">
                       {{ populationPercentage * 100 + "%" }}</p>
                   </td>
 
@@ -157,14 +119,14 @@
                       <h1>{{ webFamily }}</h1>
                       <h2>網站註冊戶數</h2>
                     </div>
-                    <p class="positive">↑6%</p>
+                    <!-- <p class="positive">↑6%</p> -->
                   </td>
                   <td class="area-number">
                     <div class="family-num">
                       <h1>{{ account }}</h1>
                       <h2>網站註冊人數</h2>
                     </div>
-                    <p class="negative">↓2%</p>
+                    <!-- <p class="negative">↓2%</p> -->
                   </td>
                 </tr>
 
@@ -229,6 +191,10 @@ export default {
 
   data() {
     return {
+      activityData: [],// 活動資訊
+      activityNum: 4,
+      accountNew: '', //待審核戶長
+
       villageData: [],
       population: '',
       populationPercentage: '', //人口計算成長率
@@ -237,6 +203,7 @@ export default {
 
 
       accountData: [],
+      familyData: [], //家庭資料
       webFamily: '', //網站戶數 
       account: '', //網站註冊數（且審核通過）T_STATUS＝1||2 && USER_STATUS =1
 
@@ -302,6 +269,38 @@ export default {
       }
     });
 
+    //撈取活動
+    axios
+      .post('http://localhost/TGD104G1/public/API/activity.php', {})
+      .then(response => {
+        this.activityData = response.data;
+        console.log(this.activityData);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+
+
+
+    //待審核戶長數
+    axios
+      .post('http://localhost/TGD104G1/public/API/accountNew.php', {})
+      .then(response => {
+        this.accountNew = response.data.length;
+        // if (this.accountNew = undefined) {
+        //   this.accountNew = 0
+        // }
+        // else {
+        //   this.accountNew = this.accountNew
+        // }
+        console.log(this.accountNew + '待審核戶長數')
+      })
+      .catch(error => {
+        console.log(error);
+      });
+
+
+
 
     //人口數與戶數
     axios
@@ -326,14 +325,33 @@ export default {
       .then(response => {
         this.accountData = response.data;
         // this.countaccount()
-        this.account= Object.keys(this.accountData);
-        
-        console.log(this.account);
+        this.account = this.accountData.length; //計算帳戶數量
+
+        console.log(this.account + "已註冊人口數");
 
       })
       .catch(error => {
         console.log(error);
       });
+
+
+
+    axios
+      .post('http://localhost/TGD104G1/public/API/family_count.php', {})
+      .then(response => {
+        this.familyData = response.data;
+        // this.countaccount()
+        this.webFamily = this.familyData.length + 1; //計算戶數數量
+
+        console.log(this.webFamily + "已註冊戶數");
+
+      })
+      .catch(error => {
+        console.log(error);
+      });
+
+
+
 
   },
 
