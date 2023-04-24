@@ -43,15 +43,6 @@
                   </td>
                 </tr>
 
-
-
-
-
-
-
-
-
-
               </table>
             </div>
           </div>
@@ -61,19 +52,17 @@
             <p>待辦事項</p>
             <div class="displayflex">
               <router-link :to="{ name: 'backend_account_new' }">
-                <button type="button" class="btn-be-dash btn-color-green" :class="{ opacity6:accountNew < 1 }">
+                <button type="button" class="btn-be-dash btn-color-green" :class="{ opacity6: accountNew < 1 }">
                   <div class=" text-ali font-13">新申請<br>戶長帳號({{ accountNew }})
-                  </div>
-                <button type="button" class="btn-be-dash btn-color-green" :class="{ opacity6:accountNew < 1 }">
-                  <div class=" text-ali font-13">新申請<br>戶長帳號({{ accountNew }})
+
+
                   </div>
                 </button>
               </router-link>
               <router-link :to="{ name: 'backend_space_reservation' }">
-                <button type="button" class="btn-be-dash btn-color-green" :class="{ opacity6:spaceNew < 1 }" >
+                <button type="button" class="btn-be-dash btn-color-green" :class="{ opacity6: spaceNew < 1 }">
                   <div class=" text-ali font-13">待批准<br>空間預約({{ spaceNew }})</div>
-                <button type="button" class="btn-be-dash btn-color-green" :class="{ opacity6:spaceNew < 1 }" >
-                  <div class=" text-ali font-13">待批准<br>空間預約({{ spaceNew }})</div>
+
                 </button>
               </router-link>
               <router-link :to="{}">
@@ -89,7 +78,7 @@
           <!------大湖里成員 dashboard------>
           <div class="member-account">
             <p>
-              大湖里成員統計
+              {{ town }}成員統計
             </p>
 
 
@@ -99,7 +88,7 @@
                   <td class="family">
                     <div class="family-num">
                       <h1>{{ population }}</h1>
-                      <h2>大湖里戶數</h2>
+                      <h2>{{ town }}戶數</h2>
                     </div>
                     <p class="positive" :class="{ fontred: homeNumPercentage < 0, fontgreen: homeNumPercentage > 0 }">
                       {{ homeNumPercentage * 100 + "%" }}</p>
@@ -110,8 +99,8 @@
 
                   <td class="area-number">
                     <div class="family-num">
-                      <h1>{{ home_num }}</h1>
-                      <h2>大湖里人口數</h2>
+                      <h1>{{ homeNum }}</h1>
+                      <h2>{{ town }}人口數</h2>
                     </div>
                     <p class="positive"
                       :class="{ fontred: populationPercentage < 0, fontgreen: populationPercentage > 0 }">
@@ -120,20 +109,23 @@
 
                   <td class="area-number">
                     <div class="family-num">
-                      <h1>147</h1>
+                      <h1>{{ webFamily }}</h1>
                       <h2>網站註冊戶數</h2>
                     </div>
-                    <!-- <p class="positive">↑6%</p> -->
-                    <!-- <p class="positive">↑6%</p> -->
                   </td>
+
                   <td class="area-number">
                     <div class="family-num">
-                      <h1>147</h1>
+                      <h1>{{ account }}</h1>
+
                       <h2>網站註冊人數</h2>
                     </div>
-                    <!-- <p class="negative">↓2%</p> -->
-                    <!-- <p class="negative">↓2%</p> -->
                   </td>
+
+
+
+
+
                 </tr>
 
 
@@ -197,15 +189,14 @@ export default {
 
   data() {
     return {
-      activityData: [],// 活動資訊
-      activityNum: 4,
-      accountNew: '', //待審核戶長
-      spaceNew: '', //待審核空間
+      webData:[],
+      town:'',
 
       activityData: [],// 活動資訊
       activityNum: 4,
       accountNew: '', //待審核戶長
       spaceNew: '', //待審核空間
+
 
       villageData: [],
       population: '',
@@ -237,16 +228,6 @@ export default {
       };
     },
 
-
-    addTagClass(category) {
-      return {
-        "tag-green": category === "藝文",
-        "tag-orange": category === "旅遊",
-        "tag-pink": category === "健康",
-        "tag-yellow": category === "其他",
-
-      };
-    },
 
     //取得大湖里人員統計
 
@@ -295,12 +276,23 @@ export default {
         $('.selectedD').html(`日期:&nbsp` + selected);
       }
     });
-   
-  //  ＝＝＝＝＝＝側欄選單的JS＝＝＝＝＝＝
-  // let beMenu = document.querySelectorAll(".be-menu");
-  //  let beMenuOn = document.querySelectorAll(".be-nav-on");
-  //   // let beMenu = document.querySelectorAll("be-nav");
-  //   // console.log(beMenu);
+
+
+    //撈取網站資料
+    axios
+      .post('http://localhost/TGD104G1/public/API/home.php',{})
+      .then(response => {
+        this.webData = response.data[response.data.length-1];
+        this.town = this.webData.TOWN;
+
+        // this.town = response.data[3]; //超怪的到底哪裡不行
+        // console.log(this.webData.TOWN);
+       
+      })
+      .catch(error => {
+        // console.log(error);
+      });
+
 
     //撈取活動
     axios
@@ -339,7 +331,7 @@ export default {
       // .get('https://tibamef2e.com/tgd104/g1/accountOverview.php')
       .then(response => {
         this.spaceNew = response.data.length;
-        console.log(this.spaceNew);
+        // console.log(this.spaceNew);
 
       })
       .catch(error => {
@@ -398,23 +390,6 @@ export default {
         console.log(error);
       });
 
-
-
-
-
-
-    //戶數計算
-    axios
-      .post('http://localhost/TGD104G1/public/API/family_count.php', {})
-      .then(response => {
-        this.familyData = response.data;
-        this.webFamily= this.familyData.length+1
- 
-
-      })
-      .catch(error => {
-        console.log(error);
-      });
 
 
 
