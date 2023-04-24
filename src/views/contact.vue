@@ -273,7 +273,7 @@ export default {
       this.electionyear = this.jsonData[this.jsonData.length-1].ELECTIONYEAR ;
       this.degree = this.jsonData[this.jsonData.length-1].DEGREE ;
       this.adress = this.jsonData[this.jsonData.length-1].ADDRESS ;
-      this.pic1 = this.jsonData[this.jsonData.length-1].PIC1 ;
+      this.pic1 = this.jsonData[this.jsonData.length-1].PORTRAIT ;
       this.gender = this.jsonData[this.jsonData.length-1].GENDER ;
 
     },

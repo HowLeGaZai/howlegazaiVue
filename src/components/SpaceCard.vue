@@ -96,40 +96,39 @@ export default {
             },
             methods: {
                 spaceInfo(index){
-                    // this.$router.push('/space_info');
-                    
+                    this.$router.push('/space_info')
                     // alert(index);
-                    // console.log(this.jsonData[index]);
-                    // console.log('教室的名稱是',this.jsonData[index][1]);
+                    console.log(this.jsonData[index]);
+                    console.log('教室的名稱是',this.jsonData[index][1]);
                     sessionStorage.setItem("space", this.jsonData[index][1]);
                     console.log("space", this.jsonData[index][1]);
                     console.log("spaceID", this.jsonData[index][0]);
-                    sessionStorage.setItem("spaceID", this.jsonData[index][0]);
+                    // sessionStorage.setItem("spaceID", this.jsonData[index][0]);
 
                     this.$router.push({ name: 'space_info', params: { Id: this.jsonData[index][0] } });
 
-                }
-            },
-            mounted() {
-                //axios
-                //axios.get('event.json').then(res => this.events = res.data) 
-                // axios.get('PHP/activity.json').then(res => this.events = res.data) 
-                // axios.get('PHP/activity.json').then((res) => {
-                //     console.log(res.data)
-                // })
-                axios
-                //  htdocs的環境下測試
-                    .get('http://localhost/TGD104G1/public/API/space.php')
-                        // .get('https://tibamef2e.com/tgd104/g1/accountOverview.php')
-                    .then(response => {
-                        this.jsonData = response.data;
-                        console.log(response.data);
-                    })
-                    .catch(error => {
-                        // console.log(error);
-                    });
+        }
+    },
+    mounted() {
+        //axios
+        //axios.get('event.json').then(res => this.events = res.data) 
+        // axios.get('PHP/activity.json').then(res => this.events = res.data) 
+        // axios.get('PHP/activity.json').then((res) => {
+        //     console.log(res.data)
+        // })
+        axios
+        //  htdocs的環境下測試
+            .get('http://localhost/TGD104G1/public/API/space.php')
+                // .get('https://tibamef2e.com/tgd104/g1/accountOverview.php')
+            .then(response => {
+                this.jsonData = response.data;
+                console.log(response.data);
+            })
+            .catch(error => {
+                // console.log(error);
+            });
 
 
-                },
+    },
 }
 </script>

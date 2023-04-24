@@ -248,7 +248,9 @@ export default {
       const formData2 = new FormData()
       formData2.append('account', this.account)
       
-      const response = await axios.post('http://localhost/TGD104G1/public/API/check_duplicate_account.php', formData2);
+      const response = await
+      
+      axios.post('http://localhost/TGD104G1/public/API/check_duplicate_account.php', formData2);
       const result = response.data;
       console.log(result);
       if (result === 'duplicate') {
@@ -279,7 +281,7 @@ export default {
       this.accountDuplicate =  false;
     },
      validatePassword() {
-      // 檢查帳號格式
+      // 檢查密碼格式
       const accountRegex = /^(?=.*[a-z])(?=.*\d)[a-z\d]{8,12}$/i; // 英文小寫+數字，8-12碼
       if (!accountRegex.test(this.password)) {
         this.passwordValid = false;

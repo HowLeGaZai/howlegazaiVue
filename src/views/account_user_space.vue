@@ -5,7 +5,7 @@
         <main>
         <section class="account-border">
             <div class="account">
-                <Accountsidebar :PORTRAIT="PORTRAIT"></Accountsidebar>
+                <Accountsidebar :localPORTRAIT="localPORTRAIT"></Accountsidebar>
                 <section class="account-content">
                     <h1 class="marginbottom30">空間預約紀錄</h1>
                   
@@ -31,6 +31,9 @@
                                 :CANCEL="lightboxData.CANCEL"
                                 :note="lightboxData.note"
                                 :btn="lightboxData.btn"
+                                :labelSelect="lightboxData.labelSelect"
+                                :pic="lightboxData.pic"
+                                :labelTextarea="lightboxData.labelTextarea"
                                 @updatedCANCEL="getCancel">
                       </lightBox>
                 </section>
@@ -57,14 +60,18 @@ export default {
             REV_END_TIME:'',
             STATUS:'',
             CANCEL:'',
+            localPORTRAIT:"",
             PORTRAIT:"",
             isLightBoxVisible: false,
 
             lightboxData: {
                 title: '取消原因',
+                pic:'',
+                labelSelect:'類別',
                 category: ['交通', '誤按', '不需要了', '其它'],
-                note: '請於預約日3日前取消，若超過日期需取消，請聯繫里辦',
+                labelTextarea:'事由',
                 CANCEL:'',
+                note: '請於預約日3日前取消，若超過日期需取消，請聯繫里辦',
                 btn: '同意取消',
             },
 
@@ -81,6 +88,9 @@ export default {
     },
 
     mounted(){
+
+        this.localPORTRAIT = localStorage.getItem("portrait");
+        
 
         const userId = this.getCookieValue("id");
         const url = "http://localhost/TGD104G1/public/API/account_space.php";

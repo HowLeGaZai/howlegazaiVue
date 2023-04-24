@@ -38,51 +38,17 @@
     <div class="chat_banner">
       <label class="f-label">討論區預覽圖（未上傳則為預設）</label>
       <PictureCropChatbanner @result-changed="onResultChanged"></PictureCropChatbanner>
+      <img :src="dataURLBack" v-if="dataURLBack" alt="" style="width: 20%">
     </div>
 
     <div class="confirm-btn">
-      <!-- <router-link to="/chat" custom v-slot="{ navigate }">
-                  <button class="btn-m btn-color-white" @click="navigate" role="link">取消</button>
-              </router-link>
-              <router-link to="/chat_info" custom v-slot="{ navigate }">
-                  <button class="btn-m btn-color-green" @click="navigate" role="link">發布</button>
-              </router-link> -->
-      <button type="button" class="btn-m btn-color-white" onclick="location.href='#/chat'">取消</button>
-      <!-- <button type="button" class="btn-m btn-color-green" onclick="location.href='#/chat_info'">發布</button> -->
-      <!-- <button type="button" class="btn-m btn-color-green" @click="gotoPreview">預覽</button> -->
-      <button type="button" class="btn-m btn-color-green" @click="gotoPreview()">預覽</button>
-        
+      <button type="button" class="btn-m btn-color-white" @click="cancle">取消</button>
+      <button type="button" class="btn-m btn-color-green" @click="gotoPreview">預覽</button>
     </div>
     
   </main>
   <Footer></Footer>
 </template>
-
-
-<!-- checkForm() {
-  // 取得表單元素
-  const form = document.querySelector('#my-form');
-
-  // 檢查必填欄位是否已經填寫
-  const requiredFields = form.querySelectorAll('[required]');
-  for (const field of requiredFields) {
-    if (!field.value) {
-      alert('請填寫必填欄位');
-      return false;
-    }
-  }
-
-  // 將表單資料儲存到 sessionStorage
-  for (const field of form.elements) {
-    if (field.name) {
-      sessionStorage.setItem(field.name, field.value);
-    }
-  }
-
-  // 提交表單
-  form.submit();
-} -->
-
 
 <script>
 import navbar from "./navbar.vue";
@@ -112,40 +78,53 @@ export default {
       type: "",
       chatid:"",
       dataURL:"",
+      dataURLBack:"",
     };
   },
   mounted() {
+      if(sessionStorage.getItem('form-title') !== null) {
+
+        this.title = sessionStorage.getItem('form-title');
+        this.type = sessionStorage.getItem('form-type');
+        this.tinymceContent = sessionStorage.getItem('form-tinymceContent');
+        this.dataURLBack = sessionStorage.getItem('form-PictureCropChatbanner');
     
-    
+      }
+
 
     // 將已儲存的表單資料填入 input / select 欄位
-    for (const el of document.querySelectorAll("[v-model-save]")) {
-      const key = `form-${el.className}`;
-      if (!sessionStorage[key]) {
-        sessionStorage[key] = el.value;
-      }
-      el.value = sessionStorage[key];
-      el.addEventListener("input", () => {
-        sessionStorage[key] = el.value;
-        this[el.className] = el.value;
-      });
-      el.addEventListener("SELECT", () => {
-        sessionStorage[key] = el.tagName === "SELECT" ? el.selectedOptions[0].value : el.value;
-        this[el.className] = el.tagName === "SELECT" ? el.selectedOptions[0].value : el.value;
-      });
-      el.addEventListener("change", () => {
-        sessionStorage[key] = el.value;
-        this[el.className] = el.value;
-      });
-  }
+  //   for (const el of document.querySelectorAll("[v-model-save]")) {
+  //     const key = `form-${el.className}`;
+  //     if (!sessionStorage[key]) {
+  //       sessionStorage[key] = el.value;
+  //     }
+  //     el.value = sessionStorage[key];
+  //     el.addEventListener("input", () => {
+  //       sessionStorage[key] = el.value;
+  //       this[el.className] = el.value;
+  //     });
+  //     el.addEventListener("SELECT", () => {
+  //       sessionStorage[key] = el.tagName === "SELECT" ? el.selectedOptions[0].value : el.value;
+  //       this[el.className] = el.tagName === "SELECT" ? el.selectedOptions[0].value : el.value;
+  //     });
+  //     el.addEventListener("change", () => {
+  //       sessionStorage[key] = el.value;
+  //       this[el.className] = el.value;
+  //     });
+  // }
 },
   methods: {
       onResultChanged(result) {
           this.dataURL = result.dataURL;
+          this.dataURLBack = "";
       },
       getpageid(){
         const router = useRouter();
         console.log(router);
+      },
+      cancle(){
+        this.$router.push({ name: 'chat'});
+        sessionStorage.clear();
       },
       
       gotoPreview() {
@@ -158,7 +137,7 @@ export default {
             const label = field.parentNode.querySelector('label');
             const asterisk = label.querySelector('.asterisk');
             if (!asterisk) {
-              label.insertAdjacentHTML('beforeend', '<span class="asterisk" style="color:red">*</span>');
+              label.insertAdjacentHTML('beforeend', '<span class="asterisk" style="color:red;"> <i class="bi bi-asterisk" style="font-size:12px;"></i></span>');
             }
             return false;
           }else {
@@ -173,7 +152,7 @@ export default {
             const label = field.parentNode.querySelector('label');
             const asterisk = label.querySelector('.asterisk');
             if (!asterisk) {
-              label.insertAdjacentHTML('beforeend', '<span class="asterisk" style="color:red">*</span>');
+              label.insertAdjacentHTML('beforeend', '<span class="asterisk" style="color:red;"> <i class="bi bi-asterisk" style="font-size:12px;"></i></span>');
             }
             return false;
             // input{outline:$red};
@@ -186,23 +165,6 @@ export default {
             }
           }
         }
-        // if (tinymceContent = ''){
-        //     const label = field.parentNode.querySelector('label');
-        //     const asterisk = label.querySelector('.asterisk');
-        //     if (!asterisk) {
-        //       label.insertAdjacentHTML('beforeend', '<span class="asterisk" style="color:red">*</span>');
-        //     }
-        //     return false;
-        //   }else {
-        //     const label = field.parentNode.querySelector('label');
-        //     const asterisk = label.querySelector('.asterisk');
-        //     if (asterisk) {
-        //     asterisk.remove();
-        //     }
-        //   }
-          
-        // }
-
       
       // 儲存表單資料至 localStorage
       sessionStorage.setItem('form-title', this.title);
@@ -211,38 +173,9 @@ export default {
       sessionStorage.setItem('form-PictureCropChatbanner', this.dataURL);
 
       // 導向預覽頁面
-      // this.$router.push('/chat_info/preview');
-      // const Id = 123;
-      // this.$router.push('/chat_info/preview');
-      // const Id = 123;
       const Id = this.$route.params.Id;
       this.$router.push({ name: 'chat_preview', params: { Id: Id } });
-      // 導向預覽頁面
-      // this.$router.push({ 
-      //   name: 'chat_preview', 
-      //   params: { 
-      //     Id: this.pathId // 將當前頁面的 id 值作為參數傳遞給下一個頁面
-      //   } 
-      // });
     },
-  
-      // previewChatinfo(){
-      //   // 使用 $router.push 將路由導向預覽頁面，並傳遞編輯器頁面的資料到預覽頁面
-      //   this.$router.push({
-      //     path: '/tinymcecontent',
-      //     query: {
-      //       content: this.tinymceContent
-      //   }
-      // })}
-
-    // handleButtonClick(){
-    //   const result = this.$refs.Tinymce.sendEditorValue();
-    //   this.editorHtml = result;
-    // },
-    // saveContent(){
-    //   const content = {
-    //     content: this.$refs.Tinymce.sendEditorValue().getContent()
-    //   }
     },
 
     watch: {
@@ -251,17 +184,5 @@ export default {
       this.result = tinymceContent;
     }
   },
-    // callChildMethod() {
-    //   this.$refs.Tinymce.logEditorValue();
-    //   console.log('news');
-    // },
-    // editorValueData(){
-    //   // console.log('editorValueData')
-    //   console.log('news');
-    //   function getdata(text){
-    //     console.log('getData');
-    //     this.text = text;
-    //   };
-      // console.log(editorValue)
     };
 </script>

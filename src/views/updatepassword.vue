@@ -7,7 +7,7 @@
             <div>
               <div class="txt_field">
                 <label>新密碼</label><span v-if="!validPassword" class="red">*8~12字元，需包含英文小寫和數字</span>
-                <input type="password" class="f-text label-left" placeholder="請輸入新密碼" v-model="newPassword"  @keyup="validatePwd">
+                <input type="password" class="f-text label-left" placeholder="請輸入新密碼" v-model="newPassword"  @keyup="handleKeyUp">
               </div>
               <div class="txt_field">
                 <label>確認新密碼<span v-if="!consistent" class="red"> *密碼不一致</span></label>
@@ -78,6 +78,10 @@ export default {
         // 密碼不一致，顯示錯誤提示
         this.consistent = false;
       }
+    },
+    handleKeyUp(){
+      this.validatePwd();
+      this.updatePassword();
     },
     updatePwd() {
       if (this.consistent && this.validPassword) {

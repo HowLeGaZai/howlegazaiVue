@@ -106,7 +106,7 @@
       <h1 class="title_space">討論區</h1>
       <div class="chat">
         <!-- 渲染 5 次-->
-        <ChatTopic v-for="i in 5" :key="i"></ChatTopic>
+        <ChatTopic></ChatTopic>
       </div>
       <div class="more-text">
         <router-link :to="{ name: 'chat' }">
@@ -201,6 +201,7 @@ export default {
       ],
       jsonData: [],
       jsonDataBanner: [],
+      jsonChat: [],
       city:'',
       district:'',
       town:'',
@@ -243,6 +244,15 @@ export default {
         this.PRICE = this.jsonData[this.jsonData.length-1].PRICE;
         this.START_DATE = this.jsonData[this.jsonData.length-1].START_DATE;
         this.TITLE = this.jsonData[this.jsonData.length-1].TITLE;
+    },
+    chat(){
+        this.ID = this.jsonData[this.jsonData.length-1].ID;
+        this.CATEGORY = this.jsonData[this.jsonData.length-1].CATEGORY;
+        this.TITLE = this.jsonData[this.jsonData.length-1].TITLE;
+        this.PIC = this.jsonData[this.jsonData.length-1].PIC;
+        this.CREATE_TIME = this.jsonData[this.jsonData.length-1].CREATE_TIME;
+        this.PORTRAIT = this.jsonData[this.jsonData.length-1].PORTRAIT;
+        this.NICKNAME = this.jsonData[this.jsonData.length-1].NICKNAME;
     },
    
   },
@@ -291,6 +301,21 @@ export default {
         .catch(error => {
             // console.log(error);
         });
+        // 討論區
+      // axios
+      //   .post('http://localhost/TGD104G1/public/API/chatlist.php',{})
+      //   .then(response => {
+      //     this.jsonChat = response.data;
+      //     this.chat();
+      //     // console.log(response.data)
+      //       // console.log(this.jsonDataBanner[this.jsonDataBanner.length-1].BANNER);
+            
+      //       // console.log(this.jsonData.length);
+      //       // console.log(this.jsonData);
+      //   })
+      //   .catch(error => {
+      //       // console.log(error);
+      //   });
 
         
   },
