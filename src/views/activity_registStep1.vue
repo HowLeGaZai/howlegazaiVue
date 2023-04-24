@@ -252,7 +252,7 @@ export default {
         async getActivityData() {
             await  axios
             //  htdocs的環境下測試
-            //.get('http://localhost/TGD104G1/public/API/activity.php')
+            //.get(`${process.env.VUE_APP_AJAX_URL}activity.php`)
             .get('https://tibamef2e.com/tgd104/g1/API/activity.php')
             .then(response => {
                 this.activityJsonData = response.data;
@@ -314,7 +314,7 @@ export default {
                 formData.append('USER_ID', this.USER_ID)  
 
                 axios
-                    //.post('http://localhost/TGD104G1/public/API/ECPay_ReturnURL.php', formData)
+                    //.post(`${process.env.VUE_APP_AJAX_URL}ECPay_ReturnURL.php`, formData)
                     .post('https://tibamef2e.com/tgd104/g1/API/ECPay_ReturnURL.php', formData)
                     .then(response => {
                         // this.jsonData = response.data;
@@ -351,7 +351,7 @@ export default {
         // 傳值給ECPay CreateOrder
         submitForm() {
 
-            //axios.post('http://localhost/TGD104G1/public/API/ECPay_CreateOrder.php', {
+            //axios.post(`${process.env.VUE_APP_AJAX_URL}ECPay_CreateOrder.php`, {
             axios.post('https://tibamef2e.com/tgd104/g1/API/ECPay_CreateOrder.php', {
                 MerchantTradeNo: this.MerchantTradeNo,
                 MerchantTradeDate: this.MerchantTradeDate,

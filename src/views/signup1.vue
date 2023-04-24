@@ -137,7 +137,7 @@ export default {
       const formData = new FormData()
       formData.append('address', this.inputValue);
       console.log(this.inputValue);
-      axios.post('http://localhost/TGD104G1/public/API/address_verification.php', formData)
+      axios.post(`${process.env.VUE_APP_AJAX_URL}address_verification.php`, formData)
         .then(response => {
           const result = response.data;
           console.log(result)
@@ -191,7 +191,7 @@ export default {
   },
   created() {
     axios
-      .post('http://localhost/TGD104G1/public/API/home.php', {})
+      .post(`${process.env.VUE_APP_AJAX_URL}home.php`, {})
       .then(response => {
         this.jsonData = response.data;
         // alert(response.data)

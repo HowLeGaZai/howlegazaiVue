@@ -309,7 +309,7 @@ export default {
   mounted() {
     //上半部資訊 axios
     axios
-        .post('http://localhost/TGD104G1/public/API/Connection.php',{})
+        .post(`${process.env.VUE_APP_AJAX_URL}Connection.php`,{})
         .then(response => {
             this.jsonData = response.data;
             // alert(response.data)
@@ -323,7 +323,7 @@ export default {
         });
     //中半部輪播 axios
         axios
-        .post('http://localhost/TGD104G1/public/API/feature.php',{})
+        .post(`${process.env.VUE_APP_AJAX_URL}feature.php`,{})
         .then(response => {
             this.jsonData = response.data;
             // alert(response.data)
@@ -338,7 +338,7 @@ export default {
 
     // 下半部輪播 axios     
         axios
-            .post('http://localhost/TGD104G1/public/API/QAdata.php',{})
+            .post(`${process.env.VUE_APP_AJAX_URL}QAdata.php`,{})
             .then(response => {
                 this.jsonData = response.data;
                 // alert(response.data)

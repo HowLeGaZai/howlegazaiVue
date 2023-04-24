@@ -183,7 +183,7 @@ export default {
       const formdata = new FormData()
       formdata.append('searchChat', this.searchChat)
       console.log(this.searchChat);
-      axios.post('http://localhost/TGD104G1/public/API/search_chat.php', formdata)
+      axios.post(`${process.env.VUE_APP_AJAX_URL}search_chat.php`, formdata)
         .then(response => {
           this.chatTopics = response.data;
           // console.log('123',response.data);

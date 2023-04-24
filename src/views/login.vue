@@ -75,7 +75,7 @@ export default {
         loginData.append('password', this.$refs.pwd.value)
 
         axios
-        .post('http://localhost/TGD104G1/public/API/login.php', loginData)
+        .post(`${process.env.VUE_APP_AJAX_URL}login.php`, loginData)
         .then((response) => {
           if (response.data === 'N') {
             alert('帳號或密碼錯誤');

@@ -250,7 +250,7 @@ export default {
       
       const response = await
       
-      axios.post('http://localhost/TGD104G1/public/API/check_duplicate_account.php', formData2);
+      axios.post(`${process.env.VUE_APP_AJAX_URL}check_duplicate_account.php`, formData2);
       const result = response.data;
       console.log(result);
       if (result === 'duplicate') {
@@ -359,7 +359,7 @@ export default {
       userformData.append('idBack', this.idBack)
 
       axios
-        .post('http://localhost/TGD104G1/public/API/signup.php', userformData)
+        .post(`${process.env.VUE_APP_AJAX_URL}signup.php`, userformData)
         .then(response => {
             // this.jsonData = response.data;
             console.log(response.data);

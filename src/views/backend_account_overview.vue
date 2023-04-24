@@ -299,8 +299,8 @@ export default {
       console.log(this.jsonData[index]);
       console.log('ID是' + this.jsonData[index][0]);
       axios
-        // .post('https://tibamef2e.com/tgd104/g1/accountOverview.php', {index:this.jsonData[index][0]})
-        .post('http://localhost/TGD104G1/public/API/manageAccount.php', { index: this.jsonData[index][0] })
+        // .post('https://tibamef2e.com/tgd104/g1/accountOverview.php`, {index:this.jsonData[index][0]})
+        .post(`${process.env.VUE_APP_AJAX_URL}manageAccount.php`, { index: this.jsonData[index][0] })
         .then(response => {
           // this.jsonData = response.data;
           console.log(response.data);
@@ -357,8 +357,8 @@ export default {
 
     axios
       //  htdocs的環境下測試
-      .get('http://localhost/TGD104G1/public/API/accountOverview.php')
-      // .get('https://tibamef2e.com/tgd104/g1/accountOverview.php')
+      .get(`${process.env.VUE_APP_AJAX_URL}accountOverview.php`)
+      // .get('https://tibamef2e.com/tgd104/g1/accountOverview.php`)
       .then(response => {
         this.jsonData = response.data;
         console.log(response.data);

@@ -161,8 +161,8 @@ export default {
 
       axios
       //  htdocs的環境下測試
-      .get('http://localhost/TGD104G1/public/API/backendChat.php')
-      // .get('https://tibamef2e.com/tgd104/g1/backendChat.php')
+      .get(`${process.env.VUE_APP_AJAX_URL}backendChat.php`)
+      // .get('https://tibamef2e.com/tgd104/g1/backendChat.php`)
       .then(response => {
         this.jsonData = response.data;
         console.log(response.data);
@@ -190,8 +190,8 @@ export default {
       updateData.append('onoff', this.jsonData[index][6])
 
       axios
-        // .post('https://tibamef2e.com/tgd104/g1/accountOverview.php', {index:this.jsonData[index][0]})
-        .post('http://localhost/TGD104G1/public/API/manageChat.php', updateData)
+        // .post('https://tibamef2e.com/tgd104/g1/accountOverview.php`, {index:this.jsonData[index][0]})
+        .post(`${process.env.VUE_APP_AJAX_URL}manageChat.php`, updateData)
         .then(response => {
           // this.jsonData = response.data;
           console.log(response.data);

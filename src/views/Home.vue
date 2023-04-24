@@ -258,8 +258,9 @@ export default {
   },
   mounted() {
     // 這裡是 縣市里
+    console.log(process.env);
      axios
-        .post('http://localhost/TGD104G1/public/API/home.php',{})
+        .post(`${process.env.VUE_APP_AJAX_URL}home.php`,{})
         .then(response => {
             this.jsonData = response.data;
             // alert(response.data)
@@ -274,7 +275,7 @@ export default {
 
     // Banner
       axios
-        .post('http://localhost/TGD104G1/public/API/homeBanner.php',{})
+        .post(`${process.env.VUE_APP_AJAX_URL}homeBanner.php`,{})
         .then(response => {
             this.jsonDataBanner = response.data;
             // alert(response.data)
@@ -289,7 +290,7 @@ export default {
 
       // 活動輪播
       axios
-        .post('http://localhost/TGD104G1/public/API/index_activity.php',{})
+        .post(`${process.env.VUE_APP_AJAX_URL}index_activity.php`,{})
         .then(response => {
           this.jsonData = response.data;
           this.banner1();
@@ -303,7 +304,7 @@ export default {
         });
         // 討論區
       // axios
-      //   .post('http://localhost/TGD104G1/public/API/chatlist.php',{})
+      //   .post(`${process.env.VUE_APP_AJAX_URL}chatlist.php`,{})
       //   .then(response => {
       //     this.jsonChat = response.data;
       //     this.chat();

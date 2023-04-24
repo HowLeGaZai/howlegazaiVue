@@ -273,7 +273,7 @@ export default {
             const formData2 = new FormData()
             formData2.append('account', this.account)
             
-            const response = await axios.post('http://localhost/TGD104G1/public/API/check_duplicate_account.php', formData2);
+            const response = await axios.post(`${process.env.VUE_APP_AJAX_URL}check_duplicate_account.php`, formData2);
             const result = response.data;
             console.log(result);
             if (result === 'duplicate') {
@@ -365,7 +365,7 @@ export default {
         const PHONE = this.PHONE;
         const PORTRAIT = this.dataURL;
 
-        const url = 'http://localhost/TGD104G1/public/API/updateAccount.php';
+        const url = `${process.env.VUE_APP_AJAX_URL}updateAccount.php`;
         const data = new FormData();
         data.append('user_id', userId);
         data.append('GENDER', GENDER);
@@ -376,7 +376,7 @@ export default {
         data.append('PHONE', this.PHONE);
         data.append('PORTRAIT', PORTRAIT);
 
-        axios.post('http://localhost/TGD104G1/public/API/updateAccount.php', data)
+        axios.post(`${process.env.VUE_APP_AJAX_URL}updateAccount.php`, data)
         .then(function (response) {
           console.log(response.data); // 輸出回應資料
           if (response.data.status === 'success') {

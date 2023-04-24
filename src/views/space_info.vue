@@ -285,8 +285,8 @@ export default {
     async getSpaceData() {
               await  axios
                 //  htdocs的環境下測試
-                    .get('http://localhost/TGD104G1/public/API/space.php')
-                        // .get('https://tibamef2e.com/tgd104/g1/accountOverview.php')
+                    .get(`${process.env.VUE_APP_AJAX_URL}space.php`)
+                        // .get('https://tibamef2e.com/tgd104/g1/accountOverview.php`)
                     .then(response => {
                         this.spaceJsonData = response.data;
                         console.log('abc',this.spaceJsonData);
@@ -367,7 +367,7 @@ export default {
 async getData(date) {
     await axios
           //  htdocs的環境下測試
-          .get('http://localhost/TGD104G1/public/API/spaceAfterOrder.php')
+          .get(`${process.env.VUE_APP_AJAX_URL}spaceAfterOrder.php`)
               
               .then(response => {
                   this.jsonData = response.data;

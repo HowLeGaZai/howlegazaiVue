@@ -185,7 +185,7 @@ export default {
   methods: {
     // 自動撈取最新消息
     getnews() {
-      axios.post('http://localhost/TGD104G1/public/API/backend_news_show.php')
+      axios.post(`${process.env.VUE_APP_AJAX_URL}backend_news_show.php`)
         .then(response => {
           this.newsData = response.data;
 
@@ -219,7 +219,7 @@ export default {
       // console.log(news, index, event);
       //  const 
 
-      axios.post('http://localhost/TGD104G1/public/API/manageNews.php',updateNews)
+      axios.post(`${process.env.VUE_APP_AJAX_URL}manageNews.php`,updateNews)
       .then(response => {
           // this.jsonData = response.data;
           console.log(response.data);

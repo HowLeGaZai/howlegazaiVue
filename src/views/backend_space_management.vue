@@ -322,8 +322,8 @@ export default {
 
 
     axios
-     .get('http://localhost/TGD104G1/public/API/backend_space_order.php')
-        // .get('https://tibamef2e.com/tgd104/g1/accountOverview.php')
+     .get(`${process.env.VUE_APP_AJAX_URL}backend_space_order.php`)
+        // .get('https://tibamef2e.com/tgd104/g1/accountOverview.php`)
         .then(response => {
             this.jsonData = response.data;
             console.log(response.data);

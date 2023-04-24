@@ -132,7 +132,7 @@ export default {
                 formData2.append('userId', this.userId)
                 const response = await
                 
-                axios.post('http://localhost/TGD104G1/public/API/account_check_pwd.php', formData2);
+                axios.post(`${process.env.VUE_APP_AJAX_URL}account_check_pwd.php`, formData2);
                 const result = response.data;
                 console.log(result);
                 if (result === 'notsame') {

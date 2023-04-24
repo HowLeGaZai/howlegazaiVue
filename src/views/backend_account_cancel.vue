@@ -191,8 +191,8 @@ export default {
     });
 
      axios
-        .get('http://localhost/TGD104G1/public/API/afterUpdateAccount.php')
-        // .get('https://tibamef2e.com/tgd104/g1/afterUpdateAccount.php')
+        .get(`${process.env.VUE_APP_AJAX_URL}afterUpdateAccount.php`)
+        // .get('https://tibamef2e.com/tgd104/g1/afterUpdateAccount.php`)
         .then(response => {
             this.jsonData = response.data;
             console.log(response.data);

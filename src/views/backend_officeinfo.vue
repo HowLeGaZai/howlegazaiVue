@@ -296,7 +296,7 @@ export default{
 
         let responseData;
 axios
-  .post('http://localhost/TGD104G1/public/API/officeinfo.php', formData)
+  .post(`${process.env.VUE_APP_AJAX_URL}officeinfo.php`, formData)
   .then(response => {
       responseData = response.data;
       console.log(responseData);
@@ -339,7 +339,7 @@ axios
       let responseData;
 
       axios
-        .post('http://localhost/TGD104G1/public/API/officeSwiper.php', formData)
+        .post(`${process.env.VUE_APP_AJAX_URL}officeSwiper.php`, formData)
         .then(response => {
             // this.jsonData = response.data;
             responseData = response.data;

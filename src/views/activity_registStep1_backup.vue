@@ -195,7 +195,7 @@ export default {
         async getActivityData() {
             await  axios
             //  htdocs的環境下測試
-            .get('http://localhost/TGD104G1/public/API/activity.php')
+            .get(`${process.env.VUE_APP_AJAX_URL}activity.php`)
             .then(response => {
                 this.activityJsonData = response.data;
                 console.log('abc',this.activityJsonData);

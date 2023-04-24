@@ -83,7 +83,7 @@ export default {
         b_loginData.append('password', this.$refs.pwd.value)
 
         axios
-        .post('http://localhost/TGD104G1/public/API/b_login.php', b_loginData)
+        .post(`${process.env.VUE_APP_AJAX_URL}b_login.php`, b_loginData)
         .then((response) => {
           if (response.data === 'N') {
             alert('帳號或密碼錯誤');

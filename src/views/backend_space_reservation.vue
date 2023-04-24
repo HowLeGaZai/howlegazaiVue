@@ -300,8 +300,8 @@ export default {
     }
 
     axios
-        .get('http://localhost/TGD104G1/public/API/backend_space_reservation.php')
-            // .get('https://tibamef2e.com/tgd104/g1/accountOverview.php')
+        .get(`${process.env.VUE_APP_AJAX_URL}backend_space_reservation.php`)
+            // .get('https://tibamef2e.com/tgd104/g1/accountOverview.php`)
             .then(response => {
                 this.jsonData = response.data;
                 console.log(response.data);
@@ -321,8 +321,8 @@ export default {
             formData.append('ID',this.jsonData[index].ID )
 
             axios
-            .post('http://localhost/TGD104G1/public/API/backend_space_reservation_confirm.php', formData)
-            // .get('https://tibamef2e.com/tgd104/g1/accountOverview.php')
+            .post(`${process.env.VUE_APP_AJAX_URL}backend_space_reservation_confirm.php`, formData)
+            // .get('https://tibamef2e.com/tgd104/g1/accountOverview.php`)
             .then(response => {
                 // console.log(response.data);
             })
@@ -338,8 +338,8 @@ export default {
             formData.append('ID',this.jsonData[index].ID )
 
             axios
-            .post('http://localhost/TGD104G1/public/API/backend_space_reservation_cancel.php', formData)
-            // .get('https://tibamef2e.com/tgd104/g1/accountOverview.php')
+            .post(`${process.env.VUE_APP_AJAX_URL}backend_space_reservation_cancel.php`, formData)
+            // .get('https://tibamef2e.com/tgd104/g1/accountOverview.php`)
             .then(response => {
                 // console.log(response.data);
             })
