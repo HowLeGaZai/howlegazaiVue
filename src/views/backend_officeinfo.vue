@@ -45,6 +45,12 @@
                             <label for="degree" class="f-label">學歷</label>
                             <input type="text" class="f-text" id="degree" placeholder="範例：台灣大學資工系" v-model="degree">
                         </div>
+                        <div class="col-12 col-ml-12 textareaV">
+                            <label for="autobiography" class="f-label">村里長簡介</label>
+                            <textarea name="" id="autobiography" cols="30" rows="5" class="f-text"
+                                    placeholder="村里長可以在這邊多多介紹自己喔" maxlength="200"
+                                    v-model="autobiography"></textarea>
+                        </div>
                     </div>
 
                     <h5>村里長照片</h5>
@@ -257,6 +263,7 @@ export default{
       secphone : '',
       email : '',
       address : '' ,
+      autobiography:'',
       
       title1 : '',
       title2 : '',
@@ -293,6 +300,7 @@ export default{
         formData.append('email', this.email)
         formData.append('address', this.address)
         formData.append('pic1', this.pic1)
+        formData.append('autobiography',this.autobiography)
 
         let responseData;
 axios
@@ -317,6 +325,7 @@ axios
       this.secphone;
       this.email;
       this.address;
+      this.autobiography;
       // 里長頭貼
       this.pic1;
       },
