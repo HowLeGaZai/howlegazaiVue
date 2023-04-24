@@ -19,7 +19,12 @@
                         </label>
                         <div class="row">
                             <div class="col-12">
-                                <input type="text" class="f-text" id="lastname" v-model="title">
+                                <!-- <input type="text" class="f-text" id="lastname" value="newsdata.TITLE"> -->
+                                <input type="text" class="f-text" id="lastname" v-model="newsdata.TITLE">
+
+                                <!-- <input type="text" class="f-text" id="lastname" v-model="title"> -->
+                                <!-- <input type="text" class="f-text" id="lastname" v-model="title"> -->
+
                             </div>
 
                             <div class="col-2">
@@ -44,7 +49,7 @@
                                     <h5 style="margin-bottom:5px">文章縮圖</h5>
                                 </label>
                                 <div>
-                                    <PictureCropChatbanner @pic="sendnewspic"></PictureCropChatbanner>
+                                    <PictureCropChatbanner @pic="sendnewspic" v-model="pic"></PictureCropChatbanner>
                                     <!-- <PictureCropChatbanner @result-changed="onResultChanged"></PictureCropChatbanner> -->
 
                                     <!-- <div class="uploading">
@@ -77,6 +82,8 @@
 
                             </div>
                         </div>
+
+
 
                         <button type="button" class="savebtn btn-10-s btn-color-green" @click="newsPreview()">預覽</button>
                     </section>
@@ -131,16 +138,44 @@ export default {
         backCalender,
         BackLeftNav
     },
-    created() {
-        // this.pathId = this.$route.params.Id;
+
+    
+    beforeMount() {
+
+        // const routerid = this.$route.params.Id;
+        // console.log(routerid);
+
+        // const searchid = new FormData();
+        // searchid.append('routerid', routerid);
+        // axios
+        //     .post('http://localhost/TGD104G1/public/API/check_duplicate_news.php', searchid)
+        //     .then(response => {
+        //         // this.$set(this.data,'saveNewsdata',this.newsdata)
+        //         this.newsdata = response.data[0];
+        //         console.log(this.newsdata);
+        //         console.log("routerid重複");
+        //     })
+        //     .catch(error => {
+        //         console.log(error);
+        //     });
+
+        // console.log(this.newsdata);
+    
+
     },
+
+
+    // this.pathId = this.$route.params.Id;
+
 
     data() {
         return {
             category: '',
             title: '',
-            // pic: '',
+            pic: '',
             content: '',
+            routerid: '',
+            newsdata: [],
 
         };
     },
@@ -151,7 +186,7 @@ export default {
         //     onResultChanged(result) {
         //       this.PdataURL = result.dataURL;
         //   },
-  
+
 
 
         newsPreview() {
@@ -164,16 +199,90 @@ export default {
             // 轉往預覽頁
             const Id = this.$route.params.Id;
             console.log(Id)
-            this.$router.push({name: 'news_info_preview', params: { Id: Id } });
+            this.$router.push({ name: 'news_info_preview', params: { Id: Id } });
 
 
         },
+
+        // checksavedNews(){
+        //     const routerid = this.$route.params.Id;
+        // console.log(routerid);
+
+        // const searchid = new FormData();
+        // searchid.append('routerid', routerid);
+        // axios
+        //     .post('http://localhost/TGD104G1/public/API/check_duplicate_news.php', searchid)
+        //     .then(response => {
+        //         // this.$set(this.data,'saveNewsdata',this.newsdata)
+        //         this.newsdata = response.data;
+        //         // console.log(this.newsdata);
+        //         console.log("routerid重複");
+
+        //     })
+        //     .catch(error => {
+        //         console.log(error);
+        //     });
+
         
+
+
+        //將撈取出的routerID塞進input value中
+
+        setNewsvalue() {
+            // console.log(this.newsdata)
+
+
+
+            if (this.newsdata == null) {
+                console.log('null')
+            // console.log(this.newsdata)
+
+            } else {
+                // console.log(this.newsdata.TITLE)
+                this.title = this.newsdata.TITLE;
+                this.category = this.newsdata.CATEGORY;
+                this.content = this.newsdata.CONTENT;
+                this.pic = this.newsdata.PIC;
+
+                // this.category = this.newsdata.CATEGORY;
+
+            }
+        }
+
+
+
 
 
     },
     mounted() {
+       
+        //進頁面前檢查是否有重複routerID
+        const routerid = this.$route.params.Id;
+        console.log(routerid);
 
+        const searchid = new FormData();
+        searchid.append('routerid', routerid);
+        axios
+            .post('http://localhost/TGD104G1/public/API/check_duplicate_news.php', searchid)
+            .then(response => {
+                // this.$set(this.data,'saveNewsdata',this.newsdata)
+                this.newsdata = response.data[0];
+                // console.log(this.newsdata);
+                console.log("routerid重複");
+                this.setNewsvalue();
+
+            })
+            .catch(error => {
+                console.log(error);
+            });
+            
+        
+        
+        // this.checksavedNews()
+          
+
+
+        
 
     },
 

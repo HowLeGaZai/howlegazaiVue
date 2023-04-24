@@ -3,7 +3,7 @@
       <label for="mail" class="f-label">
         <h4>回覆貼文</h4>
       </label>
-      <textarea name="" id="tarea" cols="30" rows="10" class="f-text" placeholder="回覆貼文" v-model="message" ></textarea>
+      <textarea name="" id="tarea" cols="30" rows="10" class="f-text" placeholder="回覆貼文" v-model.trim="message" ></textarea>
       <button type="button" class="btn-m btn-color-green" @click="sendComment">回覆</button>
     </div>
 </template>
@@ -26,8 +26,8 @@ export default {
     },
     methods:{
         sendComment(e){
-
-             const data = JSON.stringify({
+          if(!this.message == ''){
+            const data = JSON.stringify({
                 USER_ID:this.USER_ID,
                 PORTRAIT:this.PORTRAIT,
                 NICKNAME:this.NICKNAME,
@@ -59,6 +59,9 @@ export default {
             // console.log(this.message);
             this.message = ''
             this.$emit('commentAdded');
+
+          };
+          
         },
         getCookieValue(cookieName) {
         // 讀取指定名稱的 Cookie 值

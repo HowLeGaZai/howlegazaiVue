@@ -65,7 +65,7 @@
                     </td>
                     <td id="toggle">
                       <label class="switch">
-                        <input type="checkbox" :checked="chat[6] === 1" @click="onoff(index)">
+                        <input type="checkbox" :checked="parseInt(chat[6]) === 1" @click="onoff(index)">
                         <span class="slider"></span>
                       </label>
                     </td>
@@ -157,7 +157,7 @@ export default {
     }
  
   },
-  mounted() {
+  beforeMount() {
 
       axios
       //  htdocs的環境下測試
@@ -166,6 +166,7 @@ export default {
       .then(response => {
         this.jsonData = response.data;
         console.log(response.data);
+        console.log(typeof this.jsonData[0][6])
       })
       .catch(error => {
         // console.log(error);
@@ -174,14 +175,15 @@ export default {
   },
   methods:{
     chatInfo(index){
-      this.$router.push({ name: 'chat_info', params: { Id: this.jsonData[index][0] } });
+      // this.$router.push({ name: 'chat_info', params: { Id: this.filteredItems[index][0] } });
+      window.open(`/chat_info/${this.filteredItems[index][0]}`, '_blank');
     },
     onoff(index) {
       // console.log(index);
       console.log(this.jsonData[index]);
       console.log('ID是' + this.jsonData[index][0]);
-      this.jsonData[index][6] = this.jsonData[index][6] === 1 ? 0 : 1; // 切換 0 和 1
-      
+      // this.jsonData[index][6] = this.jsonData[index][6] == 1 ? 0 : 1; // 切換 0 和 1
+      this.jsonData[index][6] = parseInt(this.jsonData[index][6]) === 1 ? '0' : '1';
       console.log('狀態' + this.jsonData[index][6]);
 
     
@@ -199,8 +201,8 @@ export default {
         .catch(error => {
           console.log(error);
         });
-
-      location.reload();
+      // location.reload(); 
+      this.$router.go(0);
     }
   },
 

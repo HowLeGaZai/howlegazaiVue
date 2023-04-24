@@ -16,7 +16,7 @@
         <h4>{{chatarticle.NICKNAME}}</h4>
         <h4>{{getFormatDate(chatarticle.CREATE_TIME)}}</h4>
       </div>
-      <div class="tag tag-orange tag-mini">{{chatarticle.CATEGORY}}</div>
+      <div :class="['tag', 'tag-mini', addClass(chatarticle.CATEGORY)]">{{chatarticle.CATEGORY}}</div>
     </div>
     <div class="chat-article chat-article-new" v-html="chatarticle.CONTENT"></div>
 
@@ -64,9 +64,21 @@ export default {
       }
     },
     methods:{
+      addClass(category) {
+        return {
+          "tag-main": category === "所有話題",
+          "tag-pink": category === "美食討論",
+          "tag-orange": category === "二手交易",
+          "tag-blue": category === "里民閒聊",
+          "tag-sky": category === "團購討論",
+          "tag-green ": category === "我要抱怨",
+          "tag-yellow": category === "其他",
+        };
+      },
       addComment(data){
           // console.log(message);
           this.data = data;
+          this.$forceUpdate();
       },
       getFormatDate(val) {
         return formatDate(val);
@@ -78,6 +90,9 @@ export default {
           .post("http://localhost/TGD104G1/public/API/countcomment.php", formData)
           .then((response) => {
             this.countnum = response.data[0][0];
+            // location.reload();
+            this.$router.go(0); 
+            
           })
           .catch((error) => {
             console.error(error);

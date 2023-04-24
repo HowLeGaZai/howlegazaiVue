@@ -40,10 +40,17 @@
                         <div class="col-12 col-ml-2">
                             <label for="electionyear" class="f-label">選舉屆次</label>
                             <input type="number" class="f-text" id="electionyear" placeholder="範例：第21屆" v-model="electionyear">
+                            <input type="number" class="f-text" id="electionyear" placeholder="" v-model="electionyear">
                         </div>
                         <div class="col-12 col-ml-4">
                             <label for="degree" class="f-label">學歷</label>
                             <input type="text" class="f-text" id="degree" placeholder="範例：台灣大學資工系" v-model="degree">
+                        </div>
+                        <div class="col-12 col-ml-12 textareaV">
+                            <label for="autobiography" class="f-label">村里長簡介</label>
+                            <textarea name="" id="autobiography" cols="30" rows="5" class="f-text"
+                                    placeholder="村里長可以在這邊多多介紹自己喔 最多300個字" maxlength="300"
+                                    v-model="autobiography"></textarea>
                         </div>
                     </div>
 
@@ -257,6 +264,8 @@ export default{
       secphone : '',
       email : '',
       address : '' ,
+      autobiography:'',
+      
       
       title1 : '',
       title2 : '',
@@ -350,6 +359,7 @@ axios
         secphone :this.secphone,
         email : this.email,
         address :  this.address ,
+        autobiography : 'this.autobiography',
         pic1 : this.pic1,
       }));
       },

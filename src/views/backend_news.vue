@@ -22,11 +22,12 @@
                   <div class="marginright20">
                     <label for="selecte" class="f-label">類別</label>
                     <select name="" id="selecte" class="f-select" v-model="selectedCategory">
-                      <!-- 設一個v-modele= selectedCategory  -->
                       <option value="">-全部-</option>
                       <option value="公告">公告</option>
                       <option value="宣導">宣導</option>
-                      <option value="經費報告">經費報告</option>
+                      <option value="里民服務">里民服務</option>
+                      <option value="新聞分享">新聞分享</option>
+                      <option value="會議記錄">會議記錄</option>
                     </select>
                   </div>
                   <div>
@@ -66,26 +67,39 @@
                       <!-- <td>編輯</td>
                   <td>刪除</td> -->
                     </tr>
-                    <tr v-for="(news, index) in newsData" :key="index" v-show="index < num">
+                    <tr v-for="(news, index) in filteredItems" :key="index" v-show="index < num">
                       <td>{{ news.CATEGORY }}</td> <!-- 發布類別 -->
                       <td>{{ news.TITLE }}</td> <!-- 標題 -->
                       <td>{{ getFormatDate(news.CREATE_TIME) }}</td> <!-- 時間 -->
 
                       <!-- 置頂 -->
                       <td><label class="f-checkbox">
-                          <input type="checkbox" :checked="(news.TOP) === 1" @click="newsmanage(news, index, 'TOP')">
+                          <input type="checkbox" :checked="(news.TOP) == 1" @click="newsmanage(news, index, 'TOP')">
                           <span class="checkmark newscheck"></span>
                         </label></td>
                       <!-- 編輯 -->
-                      <td> <button type="button" class="btn-icon">
+
+                      <td> 
+                        <router-link :to="{ path: '/backend_news_add/' + this.newsData[index][1] }">
+                        <button type="button" class="btn-icon">
                           <i class="bi bi-pencil-square btn-font-color-green"></i>
-                        </button></td>
+                        </button>
+                      </router-link>
+                      </td>
 
                       <!-- 下架 -->
-                      <td> <button type="button" class="btn-icon">
+                      <td>
+                         <!-- <button type="button" class="btn-icon">
                           <i class="bi bi-x-circle-fill btn-font-color-green"
                             @click="newsmanage(news, index, 'STATUS')"></i>
-                        </button></td>
+                        </button> -->
+                        <label class="switch">
+                        <input type="checkbox" :checked="(news.STATUS) === 1" @click="newsmanage(news, index, 'STATUS')">
+                        <span class="slider"></span>
+                      </label>
+                      
+                      
+                      </td>
                     </tr>
                   </tbody>
 
@@ -165,6 +179,10 @@ export default {
       selectedDate: '',
     }
   },
+
+  //進頁面前檢查是否有存有routerid
+
+
   methods: {
     // 自動撈取最新消息
     getnews() {
@@ -183,7 +201,6 @@ export default {
     },
 
 
-
     newsmanage(news, index, active) {
 
       // console.log(this.newsData[index]);
@@ -200,8 +217,7 @@ export default {
       updateNews.append('status', result); //判斷送入0或1
       console.log(updateNews);
       // newsdata.append('title', this.title);
-      // console.log(news, index, event)
-      //  const 
+      // console.log(news, index, event);
 
       axios.post('http://localhost/TGD104G1/public/API/manageNews.php',updateNews)
       .then(response => {
@@ -217,23 +233,31 @@ export default {
 
         // location.reload();
 
-    }
+    },
+
+
+
   },
 
 
   computed: {
-    // filteredItems() {
-    //   let filteredItems = this.items;
-    //   if (this.selectedCategory) {
-    //     filteredItems = filteredItems.filter((item) => item.category === this.selectedCategory);
-    //   }
-    //   if (this.selectedDate === 'new') {
-    //     filteredItems = filteredItems.sort((a, b) => new Date(b.date) - new Date(a.date));
-    //   } else if (this.selectedDate === 'old') {
-    //     filteredItems = filteredItems.sort((a, b) => new Date(a.date) - new Date(b.date));
-    //   }
-    //   return filteredItems;
-    // },
+
+    filteredItems: function() {
+      let filteredNews = this.newsData;
+      // 類別篩選
+      if (this.selectedCategory) {
+        filteredNews = filteredNews.filter(newsData => {
+          return newsData.CATEGORY === this.selectedCategory;
+        });
+      }
+      // 日期排序
+      if (this.selectedDate === 'new') {
+        filteredNews = filteredNews.sort((a, b) => new Date(b.CREATE_TIME) - new Date(a.CREATE_TIME));
+      } else if (this.selectedDate === 'old') {
+        filteredNews = filteredNews.sort((a, b) => new Date(a.CREATE_TIME) - new Date(b.CREATE_TIME));
+      }
+      return filteredNews;
+    }
   },
   mounted() {
     this.getnews();
