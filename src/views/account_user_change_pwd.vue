@@ -202,15 +202,14 @@ export default {
                 
                 axios.post('http://localhost/TGD104G1/public/API/account_check_pwd.php', formData2);
                 const result = response.data;
-                console.log(result);
-                if (result === 'same' && oldpassword != "") {
+
+                console.log("進來此函式")
+                if (result === 'same') {
                     // 新密碼假裝有更新
                     alert('新密碼與舊密碼太過類似，請重新輸入');
                     this.newpassword = "";
                     this.newpasswordDouble = "";
-                } else if(result === 'same' && oldpassword === "") {
-                    alert('尚未輸入舊密碼');
-                }else{
+                } else{
                     // 新密碼真的有更新
                     this.newpasswordDouble = newpasswordDouble;
                 };
@@ -246,8 +245,8 @@ export default {
                 .post('http://localhost/TGD104G1/public/API/updatePassword.php', formData3)
                 .then(response => {
                     alert('修改密碼成功！請用新密碼重新登入');
-                    this.$router.push('./login');
-                    this.clearCookies();
+                    // this.$router.push('./login');
+                    // this.clearCookies();
                 })
                 .catch(error => {
                     console.log(error);
