@@ -30,7 +30,7 @@
               <table class="activity-list">
                 <tr v-for="(activity, index) in activityData" :key="index" v-show="index < activityNum">
                   <td class="activity-label">
-                    <div class="tag tag-pink">{{ activity.CATEGORY }}</div>
+                    <div :class="['tag', addTagClass(news.CATEGORY)]">{{ activity.CATEGORY }}</div>
                   </td>
                   <td class="activity-name">
                     {{ activity.TITLE }}
@@ -216,9 +216,50 @@ export default {
   },
 
 
-  method: {
+  methods: {
+
+    addTagClass(category) {
+      return {
+        "tag-main": category === "全部消息",
+        "tag-orange": category === "公告",
+        "tag-pink": category === "宣導",
+        "tag-yellow": category === "里民服務",
+        "tag-blue": category === "新聞分享",
+        "tag-green": category === "會議記錄",
+      };
+    },
+
     //取得大湖里人員統計
-    getvillage() {
+
+    countvillage() {
+      this.population = this.villageData[this.villageData.length - 1].POPULATION;
+      this.homeNum = this.villageData[this.villageData.length - 1].HOME_NUM;
+
+      //（最新 - 上次 /上次人口）＊100%
+      this.populationPercentage = ((this.villageData[this.villageData.length - 1].POPULATION
+        - this.villageData[this.villageData.length - 2].POPULATION)
+        / this.villageData[this.villageData.length - 2].POPULATION).toFixed(2);
+
+
+      this.homeNumPercentage = ((this.villageData[this.villageData.length - 1].HOME_NUM
+        - this.villageData[this.villageData.length - 2].HOME_NUM)
+        / this.villageData[this.villageData.length - 2].HOME_NUM).toFixed(2);
+
+      // console.log(this.homeNumPercentage + "百分比");
+      // console.log("最新人口數" + this.population);
+      // console.log("最新戶數" + this.homeNum);
+    },
+
+
+    // countaccount() {
+
+
+    // }
+
+
+    // webhp() {
+    //   this.population = this.jsonData[this.jsonData.length - 1].POPULATION;
+    //   this.home_num = this.jsonData[this.jsonData.length - 1].HOME_NUM;
 
     // },
 
