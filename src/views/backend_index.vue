@@ -30,14 +30,14 @@
               <table class="activity-list">
                 <tr v-for="(activity, index) in activityData" :key="index" v-show="index < activityNum">
                   <td class="activity-label">
-                    <div :class="['tag', addTagClass(news.CATEGORY)]">{{ activity.CATEGORY }}</div>
+                    <div :class="['tag', addTagClass(activity.CATEGORY)]">{{ activity.CATEGORY }}</div>
                   </td>
                   <td class="activity-name">
                     {{ activity.TITLE }}
                   </td>
-                  <td class="activity-num">
+                  <!-- <td class="activity-num">
                     12人{{ }}
-                  </td>
+                  </td> -->
                   <td class="activity-date">
                     {{ activity.START_DATE }}
                   </td>
@@ -194,6 +194,7 @@ export default {
       activityData: [],// 活動資訊
       activityNum: 4,
       accountNew: '', //待審核戶長
+      spaceNew:'', //待審核空間
 
       villageData: [],
       population: '',
@@ -216,12 +217,11 @@ export default {
 
     addTagClass(category) {
       return {
-        "tag-main": category === "全部消息",
-        "tag-orange": category === "公告",
-        "tag-pink": category === "宣導",
-        "tag-yellow": category === "里民服務",
-        "tag-blue": category === "新聞分享",
-        "tag-green": category === "會議記錄",
+        "tag-green": category === "藝文",
+        "tag-orange": category === "旅遊",
+        "tag-pink": category === "健康",
+        "tag-yellow": category === "其他",
+  
       };
     },
 
@@ -247,17 +247,10 @@ export default {
     },
 
 
-    // countaccount() {
+  
 
 
-    // }
-
-
-    // webhp() {
-    //   this.population = this.jsonData[this.jsonData.length - 1].POPULATION;
-    //   this.home_num = this.jsonData[this.jsonData.length - 1].HOME_NUM;
-
-    // },
+ 
 
   },
 
@@ -285,7 +278,7 @@ export default {
       .post('http://localhost/TGD104G1/public/API/activity.php', {})
       .then(response => {
         this.activityData = response.data;
-        console.log(this.activityData);
+        // console.log(this.activityData);
       })
       .catch(error => {
         console.log(error);
@@ -309,6 +302,21 @@ export default {
       .catch(error => {
         console.log(error);
       });
+
+
+    //待審核空間預約
+    axios
+        .get('http://localhost/TGD104G1/public/API/backend_space_reservation.php')
+            // .get('https://tibamef2e.com/tgd104/g1/accountOverview.php')
+            .then(response => {
+                this.spaceData = response.data;
+                console.log(this.spaceData);
+
+            })
+            .catch(error => {
+                // console.log(error);
+            });
+
 
 
 
