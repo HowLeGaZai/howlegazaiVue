@@ -83,6 +83,8 @@
                             </div>
                         </div>
 
+
+
                         <button type="button" class="savebtn btn-10-s btn-color-green" @click="newsPreview()">預覽</button>
                     </section>
                 </div>
@@ -137,7 +139,7 @@ export default {
         BackLeftNav
     },
 
-    //進頁面前檢查是否有routerID
+    
     beforeMount() {
 
         // const routerid = this.$route.params.Id;
@@ -224,10 +226,12 @@ export default {
         
 
 
+        //將撈取出的routerID塞進input value中
+
         setNewsvalue() {
             // console.log(this.newsdata)
 
-            // this.title = "軒哥記得import";
+
 
             if (this.newsdata == null) {
                 console.log('null')
@@ -252,7 +256,7 @@ export default {
     },
     mounted() {
        
-       
+        //進頁面前檢查是否有重複routerID
         const routerid = this.$route.params.Id;
         console.log(routerid);
 

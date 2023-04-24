@@ -147,7 +147,7 @@
                   style="width: 20px; height: 20px"
                   required
                   v-model="agree"
-                /><p>我已經詳閱並同意<a href="#/privacy" target="_black">隱私權保護政策</a></p>
+                /><p>我已經詳閱並同意<a href="/privacy" target="_black">隱私權保護政策</a></p>
               </div>
                <p v-if="!agree && formSubmitted" class="red">*請您詳細閱讀本服務隱私權保護政策</p>
               <!-- 包住兩個按鈕 -->

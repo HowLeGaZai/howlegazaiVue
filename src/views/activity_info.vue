@@ -182,7 +182,7 @@ export default {
         async getActivityData() {
             await  axios
             //  htdocs的環境下測試
-            .get('https://tibamef2e.com/tgd104/g1/API/activity.php')
+            .get('http://localhost/TGD104G1/public/API/activity.php')
             .then(response => {
                 this.activityJsonData = response.data;
                 console.log('abc',this.activityJsonData);

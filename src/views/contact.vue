@@ -51,8 +51,7 @@
             <li>學歷：<span>{{ degree }}</span></li>
           </ul>
           <div>
-            {{fullname}}，1912年3月4日出生於花蓮縣，{{fullname}}小時為棒球好手，曾為朴子少棒隊捕手。就讀朴子國小和東石國中，在畢業後，同時考取大湖理工大學資工系。雖然家人希望他從醫，但{{fullname}}看了《JavaScript》一書之後，希望成為排名第一的「邏輯」的碼農，期待學成返鄉後促成偏鄉數位轉型。
-            於大湖理工大學資畢業後，就繼續進修，獲得大湖理工大學都市規劃、企業管理雙碩士學位，並獲取大湖理工大學土地規劃與都市管理博士學位
+           {{autobiography}}
           </div>
         </div>
         <div class="image contact_pic_chief">
@@ -224,6 +223,7 @@ export default {
       adress : '',
       pic1 : '',
       gender : '',
+      autobiography : '',
 
       //特色輪播
       pic2 : '',
@@ -275,6 +275,7 @@ export default {
       this.adress = this.jsonData[this.jsonData.length-1].ADDRESS ;
       this.pic1 = this.jsonData[this.jsonData.length-1].PORTRAIT ;
       this.gender = this.jsonData[this.jsonData.length-1].GENDER ;
+      this.autobiography = this.jsonData[this.jsonData.length-1].AUTOBIOGRAPHY ;
 
     },
 

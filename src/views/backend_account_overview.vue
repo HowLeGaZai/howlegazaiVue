@@ -23,7 +23,7 @@
                     <option value="成員">成員</option>
                   </select>
                 </div>
-                <button type="button" class="btn-10-s btn-color-green">
+                <button type="button" class="btn-10-s btn-color-green" @click="downloadCSV">
                   <i class="bi bi-cloud-arrow-down-fill"></i>匯出資料
                 </button>
               </div>
@@ -310,6 +310,18 @@ export default {
         });
 
       location.reload();
+    },
+    downloadCSV() {
+      axios.get('http://localhost/TGD104G1/public/API/download_user.php')
+      .then(response => {
+        // 建立下載連結
+        const url = window.URL.createObjectURL(new Blob([response.data]));
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', '用戶資料.csv');
+        document.body.appendChild(link);
+        link.click();
+      });
     }
   },
   computed: {

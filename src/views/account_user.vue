@@ -24,13 +24,14 @@
                     id="sAccount"
                     placeholder="請輸入帳號"
                     required
+                    v-if="normalUser"
                     v-model="ACCOUNT"
                     ref="myaccount"
                     maxlength="12"
                     @blur="validateAccount"
                     @focus="cleanBadaccount"
                   />
-                  <!-- <h4 class="changelineheight">{{ ACCOUNT }}</h4> -->
+                  <h4 class="changelineheight" v-if="headHousehold">{{ ACCOUNT }}</h4>
                 </div>
                 
                 <div class="col-md-6 col-12">
@@ -72,15 +73,34 @@
               </div>
               <div class="row account_row">
                 <div class="col-md-6 col-12">
-                  <h4>姓名</h4>
-                  <!-- <input
-                    type="text"
-                    class="f-text nomargin changelineheight"
-                    id="FULL_NAME"
-                    v-model="FULL_NAME"
-                    placeholder="請輸入姓名" required
-                  /> -->
-                  <h4>{{ FULL_NAME }}</h4>
+                  
+                  <h4 v-if="headHousehold">{{ FULL_NAME }}</h4>
+
+                  <div class="row" v-if="normalUser">
+                    <div>
+                      <h4>姓氏</h4>
+                      <input
+                        type="text"
+                        class="f-text nomargin changelineheight"
+                        id="FULL_NAME"
+                        v-model="FULL_NAME"
+                        v-if="headHousehold"
+                        placeholder="請輸入姓名" required
+                      />
+                    </div>
+                    <div>
+                      <h4>名字</h4>
+                      <input
+                        type="text"
+                        class="f-text nomargin changelineheight"
+                        id="FULL_NAME"
+                        v-model="FULL_NAME"
+                        v-if="headHousehold"
+                        placeholder="請輸入姓名" required
+                      />
+                    </div>
+                  </div>
+
                 </div>
 
                 <div class="col-md-6 col-12 input2">
@@ -174,18 +194,25 @@ import { nextTick } from 'vue'
 export default {
   data() {
     return {
-      userId:"",
-      ADDRESS: "",
-      ACCOUNT:"",
-      FULL_NAME: "",
-      NICKNAME:"",
-      GENDER:"",
-      ID_NUMBER:"",
-      BIRTHDATE:"",
-      EMAIL:"",
-      PHONE:"",
-      PORTRAIT:"",
-      localPORTRAIT:"",
+      headHousehold:'false',
+      normalUser:'true',
+
+      userId:'',
+
+      ID:'',
+      ADDRESS: '',
+      ACCOUNT:'',
+      FULL_NAME: '',
+      NICKNAME:'',
+      GENDER:'',
+      ID_NUMBER:'',
+      BIRTHDATE:'',
+      EMAIL:'',
+      PHONE:'',
+      PORTRAIT:'',
+      UPDATER:'',
+
+      localPORTRAIT:'',
       maxBirthdate: this.getToday(),
       formData: {},
       jsonData: [],
@@ -242,7 +269,7 @@ export default {
       },
 
       accountInfo() {
-        this.userId = this.jsonData[this.jsonData.length - 1].ID;
+        this.ID = this.jsonData[this.jsonData.length - 1].ID;
         this.ADDRESS = this.jsonData[this.jsonData.length - 1].ADDRESS;
         this.ACCOUNT = this.jsonData[this.jsonData.length - 1].ACCOUNT;
         this.FULL_NAME = this.jsonData[this.jsonData.length - 1].FULL_NAME;
@@ -253,7 +280,16 @@ export default {
         this.EMAIL = this.jsonData[this.jsonData.length - 1].EMAIL;
         this.PHONE = this.jsonData[this.jsonData.length - 1].PHONE;
         this.PORTRAIT = this.jsonData[this.jsonData.length - 1].PORTRAIT;
-        // console.log(this.NICKNAME);
+        this.UPDATER = this.jsonData[this.jsonData.length - 1].UPDATER;
+        
+        // 判斷是否為成員
+        if (this.UPDATER != this.userId){
+          // 是成員
+
+        }else{
+          // 是戶長
+
+        }
       },
 
       async validateAccount() {
@@ -261,7 +297,7 @@ export default {
         const accountRegex = /^(?=.*[a-z])(?=.*\d)[a-z\d]{8,12}$/i; // 英數字混合帳號8~12位
         if (!accountRegex.test(this.account)) {
           this.accountValid = false;
-          // this.account ="";
+          // this.account ='';
           return;
         }
         await this.checkDuplicateAccount(this.account); 
@@ -280,7 +316,7 @@ export default {
               // 帳號重複
               this.accountDuplicate =  true; // 設定為 true
               this.badaccount = this.account;
-              this.account ="";
+              this.account ='';
               this.$refs.myaccount.blur()
             
             } else {
@@ -294,7 +330,7 @@ export default {
       },
 
       cleanBadaccount(){
-          this.badaccount = "";
+          this.badaccount = '';
           this.accountDuplicate =  false;
       },
 
@@ -390,15 +426,15 @@ export default {
           });
         });
 
-        // axios.post(url, data)
-        // .then(response => {
-        //   this.jsonData = response.data;
-        //   this.accountInfo();
-        //   // console.log(NICKNAME);
-        // })
-        // .catch(error => {
-        //   console.log(error);
-        // });
+        axios.post(url, data)
+        .then(response => {
+          this.jsonData = response.data;
+          this.accountInfo();
+          // console.log(NICKNAME);
+        })
+        .catch(error => {
+          console.log(error);
+        });
 
 
         
@@ -413,6 +449,14 @@ export default {
       //   const cookieNickname = document.cookie.replace(/(?:(?:^|.*;\s*)nickname\s*\=\s*([^;]*).*$)|^.*$/, "$1");
       //   console.log(cookieNickname)
       // },
+      // getCookie(id) {
+      //   const value = `; ${document.cookie}`;
+      //   const parts = value.split(`; ${id}=`);
+      //   if (parts.length === 2) return parts.pop().split(';').shift();
+
+      //   console.log(id);
+      // },
+
       getCookie(nickman) {
         const value = `; ${document.cookie}`;
         const parts = value.split(`; ${nickman}=`);
