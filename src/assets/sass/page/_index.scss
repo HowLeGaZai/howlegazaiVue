@@ -9,7 +9,7 @@
       margin-top: 0px;
     }
     @include breakpoint($grid-breakpoints, "md") {
-      margin-top: 30%;
+      margin-top: 10%;
     }
   }
 
@@ -67,7 +67,7 @@
           font-size: 30px;
           padding: 12px 0;
           @include breakpoint($grid-breakpoints, "ml") {
-            font-size: 22px;
+            font-size: 16px;
           }
           @include breakpoint($grid-breakpoints, "sm") {
             font-size: 20px;
@@ -179,9 +179,12 @@
   /* 活動輪播 */
   /* 隨機抓 9 個 */
   .home-event {
-    margin-bottom: 20%;
+    margin-bottom: 30%;
     @media screen and (max-width: 1100px) {
-      margin-bottom: 50%;
+      margin-bottom: 40%;
+    }
+    @media screen and (max-width: 400px) {
+      width: 100%;
     }
     .card{
       width: 360px;

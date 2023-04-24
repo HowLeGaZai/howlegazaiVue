@@ -39,7 +39,8 @@
                         </div>
                         <div class="col-12 col-ml-2">
                             <label for="electionyear" class="f-label">選舉屆次</label>
-                            <input type="text" class="f-text" id="electionyear" placeholder="範例：第21屆" v-model="electionyear">
+                            <input type="number" class="f-text" id="electionyear" placeholder="範例：第21屆" v-model="electionyear">
+                            <input type="number" class="f-text" id="electionyear" placeholder="" v-model="electionyear">
                         </div>
                         <div class="col-12 col-ml-4">
                             <label for="degree" class="f-label">學歷</label>
@@ -48,7 +49,7 @@
                         <div class="col-12 col-ml-12 textareaV">
                             <label for="autobiography" class="f-label">村里長簡介</label>
                             <textarea name="" id="autobiography" cols="30" rows="5" class="f-text"
-                                    placeholder="村里長可以在這邊多多介紹自己喔" maxlength="200"
+                                    placeholder="村里長可以在這邊多多介紹自己喔 最多300個字" maxlength="300"
                                     v-model="autobiography"></textarea>
                         </div>
                     </div>
@@ -265,6 +266,7 @@ export default{
       address : '' ,
       autobiography:'',
       
+      
       title1 : '',
       title2 : '',
       title3 : '',
@@ -284,6 +286,22 @@ export default{
   },
   components: {
       backendNavbar,Footer,PictureCrop,backCalender,BackLeftNav,
+      created() {
+    // 检查localStorage是否有存储的数据
+    if (localStorage.getItem('formData1')) {
+      const data = JSON.parse(localStorage.getItem('formData1'));
+      // 将数据设置为组件数据的值
+      this.firstname = data.firstname;
+      this.lastname = data.lastname;
+      this.gender = data.gender;
+      this.electionyear = data.electionyear;
+      this.mainphone = data.mainphone;
+      this.secphone = data.secphone;
+      this.email = data.email;
+      this.address = data.address;
+    }
+  },
+    
     },
     methods: {
       // 上面的按鈕
@@ -300,34 +318,50 @@ export default{
         formData.append('email', this.email)
         formData.append('address', this.address)
         formData.append('pic1', this.pic1)
-        formData.append('autobiography',this.autobiography)
 
-        let responseData;
+        // let responseData;
+       
+        var mainphone = document.getElementById("mainphone").value;
+        var secphone = document.getElementById("secphone").value;
+
+        // 驗證主要聯絡電話
+        if (!(/^09\d{8}$/.test(mainphone))) {
+        alert("主要聯絡電話格式錯誤，應為09開頭的10個數字");
+        return false;
+         }
+        // 驗證第二聯絡電話
+        if (secphone && !(/^09\d{8}$/.test(secphone))) {
+        alert("第二聯絡電話格式錯誤，應為09開頭的10個數字");
+        return false;
+          }
+
+  return true;
+
+ 
 axios
   .post('http://localhost/TGD104G1/public/API/officeinfo.php', formData)
   .then(response => {
       responseData = response.data;
       console.log(responseData);
+      alert("儲存成功")
   })
   .catch(error => {
       console.log(error);
   });
-        
-
-
-      this.firsrname;
-      this.lastname;
-      this.male;
-      this.female;
-      this.electionyear;
-      this.degree;
-      this.mainphone;
-      this.secphone;
-      this.email;
-      this.address;
-      this.autobiography;
-      // 里長頭貼
-      this.pic1;
+               // 這裡是可以儲存 基本資料
+      localStorage.setItem('formData1', JSON.stringify({
+        firstname: this.firstname,
+        lastname: this.lastname,
+        gender : this.gender,
+        electionyear : this.electionyear,
+        degree : this.degree,
+        mainphone : this.mainphone,
+        secphone :this.secphone,
+        email : this.email,
+        address :  this.address ,
+        autobiography : 'this.autobiography',
+        pic1 : this.pic1,
+      }));
       },
 
 
@@ -353,6 +387,7 @@ axios
             // this.jsonData = response.data;
             responseData = response.data;
             console.log(response.data);
+            alert("儲存成功")
         })
         .catch(error => {
             console.log(error);
@@ -400,46 +435,6 @@ axios
 
     
   }
- 
-//  const uploadButtons = document.querySelectorAll('input[type="file"]');
-    
-      
-//         uploadButtons.forEach(button => {
-//           button.addEventListener('change', event => {
-           
-//             const uploadGroup = button.closest('.uploading');
-    
-            
-//             const picArea = uploadGroup.querySelector('.pic-area-box');
-//             const picImg = picArea.querySelector('img');
-//             const picName = picArea.querySelector('span');
-    
-//             const file = event.target.files[0];
-    
-           
-//             if (file.type.startsWith('image/')) {
-//               const reader = new FileReader();
-    
-
-//               reader.onload = () => {
-//                 picImg.src = reader.result;
-//                 picName.textContent = file.name;
-    
-//                 picImg.style.width = '100%'
-//                 picImg.style.height = '100%'
-//                 // picImg.style.maxWidth = '300px'
-//                 picImg.style.maxHeight = '100px'
-//               }
-    
-//               reader.readAsDataURL(file);
-//             } else {
-           
-//               picImg.src = '';
-//               picName.textContent = file.name;
-//             }
-//           });
-//         });
-
 
 
   },

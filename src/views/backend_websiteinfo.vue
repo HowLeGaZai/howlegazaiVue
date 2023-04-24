@@ -113,6 +113,19 @@ export default {
   components: {
       backendNavbar,Footer,PictureCropbanner,backCalender,BackLeftNav,
     },
+    created() {
+    // 检查localStorage是否有存储的数据
+    if (localStorage.getItem('formData')) {
+      const data = JSON.parse(localStorage.getItem('formData'));
+      // 将数据设置为组件数据的值
+      this.city = data.city;
+      this.district = data.district;
+      this.village = data.village;
+      this.population = data.population;
+      this.home_num = data.home_num;
+    }
+  },
+    
     mounted() {
     
    let beMenu = document.querySelectorAll(".be-menu");
@@ -143,14 +156,20 @@ export default {
         .then(response => {
             // this.jsonData = response.data;
             console.log(response.data);
+            alert("儲存成功")
         })
         .catch(error => {
             console.log(error);
         });
 
-      this.city='';
-      this.district='';
-      this.village='';
+              // 這個是下次還可以看到 之前輸入的資料 用localStorage 先存起來
+      localStorage.setItem('formData', JSON.stringify({
+        city: this.city,
+        district: this.district,
+        village: this.village,
+        population: this.population,
+        home_num: this.home_num
+      }));
     },
     save2(){
         //這裡是 人口 戶籍 
@@ -163,18 +182,20 @@ export default {
         .then(response => {
             // this.jsonData = response.data;
             console.log(response.data);
+            alert("儲存成功")
         })
         .catch(error => {
             console.log(error);
         });
-
-      this.population = '' ;
-      this.home_num = '' ;
+          // 這裡是可以儲存好 人數 戶數
+      localStorage.setItem('formData', JSON.stringify({
+        population: this.population,
+        home_num: this.home_num,
+        city: this.city,
+        district: this.district,
+        village: this.village,
+      }));
     },
-    // onChangeFileUpload(){
-    //     this.file = this.$refs.file.files[0];
-    //     console.log(this.file);
-    // },
     save3(){
       
       // 這裡是首頁背景圖
@@ -183,12 +204,19 @@ export default {
       axios.post('http://localhost/TGD104G1/public/API/uploadBanner.php', formData)
         .then(response => {
           console.log(response.data)
+          alert("儲存成功")
         })
         .catch(error => {
           console.log(error)
         })
 
-
+        localStorage.setItem('formData', JSON.stringify({
+        population: this.population,
+        home_num: this.home_num,
+        city: this.city,
+        district: this.district,
+        village: this.village,
+      }));
     },
     sendpic(data){
         this.pic = data;
