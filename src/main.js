@@ -5,6 +5,7 @@ import App from './App.vue'
 import router from './router'
 import '@/assets/sass/style.scss'
 // import store from '/store.js'
+import { BootstrapIconsPlugin } from 'bootstrap-icons-vue'
 import axios from 'axios' 
 window.axios = axios;
 
