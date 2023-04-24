@@ -33,7 +33,7 @@
                                     required
                                     v-model="newpassword"
                                     maxlength="12"
-                                    @keyup="checkPassword"
+                                    @blur="checkPassword"
                                 ><i class="bi bi-eye-slash-fill" @click="openpwd"></i>
                             <!-- <input type="text" class="f-text nomargin" id="newpwd" v-model="newpwd" placeholder="8~12字元，需包含英文小寫和數字" > -->
                         </div>
