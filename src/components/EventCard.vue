@@ -19,7 +19,6 @@
         <!-- <div>
             <p>Loading...</p>
         </div> -->
-
 </template>
 
 <script>
