@@ -24,14 +24,14 @@
                     id="sAccount"
                     placeholder="請輸入帳號"
                     required
-                    v-if="headHousehold"
+                    v-if="normalUser"
                     v-model="ACCOUNT"
                     ref="myaccount"
                     maxlength="12"
                     @blur="validateAccount"
                     @focus="cleanBadaccount"
                   />
-                  <!-- <h4 class="changelineheight">{{ ACCOUNT }}</h4> -->
+                  <h4 class="changelineheight" v-if="headHousehold">{{ ACCOUNT }}</h4>
                 </div>
                 
                 <div class="col-md-6 col-12">
@@ -73,16 +73,34 @@
               </div>
               <div class="row account_row">
                 <div class="col-md-6 col-12">
-                  <h4>姓名</h4>
-                  <input
-                    type="text"
-                    class="f-text nomargin changelineheight"
-                    id="FULL_NAME"
-                    v-model="FULL_NAME"
-                    v-if="headHousehold"
-                    placeholder="請輸入姓名" required
-                  />
-                  <h4>{{ FULL_NAME }}</h4>
+                  
+                  <h4 v-if="headHousehold">{{ FULL_NAME }}</h4>
+
+                  <div class="row" v-if="normalUser">
+                    <div>
+                      <h4>姓氏</h4>
+                      <input
+                        type="text"
+                        class="f-text nomargin changelineheight"
+                        id="FULL_NAME"
+                        v-model="FULL_NAME"
+                        v-if="headHousehold"
+                        placeholder="請輸入姓名" required
+                      />
+                    </div>
+                    <div>
+                      <h4>名字</h4>
+                      <input
+                        type="text"
+                        class="f-text nomargin changelineheight"
+                        id="FULL_NAME"
+                        v-model="FULL_NAME"
+                        v-if="headHousehold"
+                        placeholder="請輸入姓名" required
+                      />
+                    </div>
+                  </div>
+
                 </div>
 
                 <div class="col-md-6 col-12 input2">
@@ -176,6 +194,9 @@ import { nextTick } from 'vue'
 export default {
   data() {
     return {
+      headHousehold:'false',
+      normalUser:'true',
+
       userId:'',
 
       ID:'',

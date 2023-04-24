@@ -507,3 +507,11 @@
     }
 
 }
+
+.textareaV{
+    display: flex;
+    flex-direction: column;
+    textarea{
+        width: 100%;
+    }
+}
