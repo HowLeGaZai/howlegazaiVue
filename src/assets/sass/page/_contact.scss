@@ -183,8 +183,8 @@
           &-label {
             display: flex;
             justify-content: space-between;
-            padding: 30px;
-            font-size: 32px;
+            padding: 20px;
+            font-size: 22px;
             cursor: pointer;
             text-align:left;
             @include breakpoint($grid-breakpoints, "md") {
@@ -211,7 +211,7 @@
             transition: all 0.35s;
             text-align: left;
             color: $gray;
-            font-size: 24px;
+            font-size: 20px;
             word-wrap: break-word;
             line-height: 1.5;
             @include breakpoint($grid-breakpoints, "md") {
@@ -231,7 +231,7 @@
 
       .open-item-content {
         max-height: 100vh;
-        padding: 30px 80px 30px 30px;
+        padding: 10px 80px 20px 30px;
         @include breakpoint($grid-breakpoints, "md") {
           padding: 30px;
         }
