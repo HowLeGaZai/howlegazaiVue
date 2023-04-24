@@ -876,3 +876,12 @@ max-height: 0px;
 transition: max-height 0.5s ease-out;
 overflow: hidden;
 }
+
+.colorBlack{
+  color: $black;
+  font-size: 12px;
+}
+
+.red-dot,.red{
+    color:$red;
+}

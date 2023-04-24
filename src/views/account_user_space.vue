@@ -89,9 +89,10 @@ export default {
 
     mounted(){
 
+        // 取 localhost 側欄大頭貼
         this.localPORTRAIT = localStorage.getItem("portrait");
         
-
+        // 傳 cookie.id、url php 網址、data 傳給 php
         const userId = this.getCookieValue("id");
         const url = "http://localhost/TGD104G1/public/API/account_space.php";
         const data = new FormData();
