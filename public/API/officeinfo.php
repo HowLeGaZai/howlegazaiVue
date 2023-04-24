@@ -5,7 +5,7 @@
 
 
     //建立SQL語法
-    $sql = "INSERT into group1.CONTACT_VILLAGE VALUES(DEFAULT,?,?,?,?,?,?,?,?,?)";
+    $sql = "INSERT into group1.CONTACT_VILLAGE VALUES(DEFAULT,?,?,?,?,?,?,?,?,?,?)";
     
 
     // $index = $data["index"];
@@ -19,6 +19,7 @@
     $email = $_POST['email'];
     $address = $_POST['address'];
     $pic1 = $_POST['pic1'];
+    $autobiography = $_POST['autobiography'];
  
     //執行
     $statement = $pdo -> prepare($sql);
@@ -33,6 +34,8 @@
     $statement->bindValue(7, $email);
     $statement->bindValue(8, $address);
     $statement->bindValue(9, $pic1);
+    $statement->bindValue(10, $autobiography);
+    
 
     $statement->execute();
     
