@@ -120,6 +120,9 @@ export default {
           // console.log(response.data);
           alert("最新消息發佈成功！")
           this.$router.push({name:'backend_news'})
+          
+          sessionStorage.clear();
+
 
         })
         .catch(error => {

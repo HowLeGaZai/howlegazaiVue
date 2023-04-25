@@ -267,7 +267,7 @@ export default {
 
                     this.newsdata = response.data[0];
 
-                    if (sessionStorage.getItem('form-title') !== null) {
+                    if (sessionStorage.getItem('news-title') !== null) {
                         this.title = sessionStorage.getItem("news-title");
                         this.category = sessionStorage.getItem("news-category");
                         this.content = sessionStorage.getItem("news-content");
