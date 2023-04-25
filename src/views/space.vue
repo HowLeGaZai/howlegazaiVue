@@ -1,54 +1,7 @@
 <template>
 <navbar></navbar>
     <main class="front-space">
-        <div class="smart-bar">
-            <div class="btn-member-block">
-                <button type="button" class="btn-member btn-color-gray" onclick="location.href='#/activity'">
-                    <i class="bi bi-calendar2-event-fill"></i>
-                </button>
-                <p class="btn-mem-p btn-font-color-gray">活動總覽</p>
-              </div>
-              
-              <div class="btn-member-block">
-                <button type="button" class="btn-member btn-color-gray ">
-                  <i class="bi bi-basket-fill"></i>
-                </button>
-                <p class="btn-mem-p btn-font-color-gray">團購</p>
-              </div>
-              
-              <div class="btn-member-block">
-                <button type="button" class="btn-member btn-color-green" onclick="location.href='#/space'">
-                  <i class="bi bi-door-open-fill"></i>
-                </button>
-                <p class="btn-mem-p btn-font-color-green">空間預約</p>
-              </div>
-              
-              
-              <div class="btn-member-block">
-                <button type="button" class="btn-member btn-color-gray ">
-                  <i class="bi bi-fire"></i>
-                </button>
-                <p class="btn-mem-p btn-font-color-gray">瓦斯表回報</p>
-              </div>
-              
-              <div class="btn-member-block">
-                <button type="button" class="btn-member btn-color-gray">
-                  
-                  <i class="bi bi-hammer"></i>
-                </button>
-                <p class="btn-mem-p btn-font-color-gray">維修通報</p>
-              </div>
-              
-              
-              <div class="btn-member-block">
-                <button type="button" class="btn-member btn-color-gray ">
-              
-                  <i class="bi bi-shield-fill-check"></i>
-                 
-                </button>
-                <p class="btn-mem-p btn-font-color-gray">守望相助</p>
-              </div>
-        </div>
+        <smartbar></smartbar>
         <h1 class="title_space">空間總覽</h1>
         <h4 class="second_title">擔心聚會的時候吹風淋雨嗎？ 我們聽到了</h4>
     <!--  舊的
@@ -212,12 +165,13 @@
 
 <script>
 import SpaceCard from '../components/SpaceCard.vue'
-import navbar from './navbar.vue';
-import Footer from './Footer.vue';
+import navbar from '../components/navbar.vue';
+import Footer from '../components/Footer.vue';
+import smartbar from '@/components/smartbar.vue';
 
 export default {
   components: {
-      navbar,Footer,SpaceCard,
+      navbar,Footer,SpaceCard,smartbar
     },
 }
 </script>

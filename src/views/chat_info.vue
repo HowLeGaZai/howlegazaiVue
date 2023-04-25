@@ -42,8 +42,8 @@
 
 <script>
 
-import navbar from './navbar.vue';
-import Footer from './Footer.vue';
+import navbar from '../components/navbar.vue';
+import Footer from '../components/Footer.vue';
 import ChatComment from './ChatComment.vue';
 import ChatCommentlist from './ChatCommentlist.vue';
 import { formatDate } from "../plugin/date";

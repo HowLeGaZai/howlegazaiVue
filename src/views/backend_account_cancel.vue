@@ -116,29 +116,16 @@
       </section>
     </main>
          <!------ 補這裡：不支援手機畫面 ------>
-         <div :class="bodyClass" class="nosupport">
-            <main>
-                <section class="noSupport">
-                    <a href="#">
-                        <div>     
-                            <img class="LiIcon" src="../assets/img/LiIcon.png" alt="">
-                            <h1>歹勢！後台目前不支援手機</h1>
-                            <img class="cat" src="../assets/img/Cat.png" alt="">
-                            <p>下班請休息，我們明天再忙！</p>
-                        </div>
-                    </a>
-                </section>
-            </main>
-         
-      </div>
+         <mobileNotSupport></mobileNotSupport>
     <!------ 補這裡：不支援手機畫面 ------>
   </div>
   <Footer></Footer>
 </template>
 
 <script>
-import backendNavbar from "./backendNavbar.vue";
-import Footer from "./Footer.vue";
+import backendNavbar from '@/components/backendNavbar.vue';
+import Footer from '@/components/Footer.vue';
+import mobileNotSupport from '@/components/mobileNotSupport.vue';
 
 // 測欄開合
 import $ from "jquery";
@@ -151,8 +138,11 @@ import BackLeftNav from '../components/BackLeftNav.vue';
 
 export default {
   components: {
-    backendNavbar,
-    Footer,backCalender,BackLeftNav
+      backendNavbar,
+      Footer,
+      backCalender,
+      BackLeftNav,
+      mobileNotSupport
   },
   data(){
       return {
@@ -161,34 +151,6 @@ export default {
               }
   },
   mounted() {
-    $("#resizable").resizable({});
-    $("#datepicker").datepicker({
-      monthNames: [
-        "一月",
-        "二月",
-        "三月",
-        "四月",
-        "五月",
-        "六月",
-        "七月",
-        "八月",
-        "九月",
-        "十月",
-        "十一月",
-        "十二月",
-      ],
-      dayNamesMin: ["週日", "週一", "週二", "週三", "週四", "週五", "週六"],
-      dateFormat: "yy/mm/dd",
-
-      onSelect: function () {
-        var selected = $(this).val();
-        $(".selectedD").html(`日期:&nbsp` + selected);
-        // console.log(selected);
-
-        // let dayNamesMin = $(this).datepicker( "option", "dayNamesMin" );
-        // console.log(dayNamesMin);
-      },
-    });
 
      axios
         .get('http://localhost/TGD104G1/public/API/afterUpdateAccount.php')
@@ -200,9 +162,6 @@ export default {
         .catch(error => {
             console.log(error);
         });
-
-
-
   },
 
   computed: {

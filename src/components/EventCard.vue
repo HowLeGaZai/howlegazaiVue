@@ -1,8 +1,8 @@
 <template>
         <div class="activity_content">            
             <div class="card" v-for='(activity,index) in jsonData' :key="index">
-                <!-- <img class="image event_pic" :src="jsonData.CONTENT_PIC" alt=""> -->
-                <img class="image event_pic" :src="require(`@/assets/img/${activity.CONTENT_PIC}`)" alt="">
+                <!-- <img class="image event_pic" :src="jsonData.BANNER" alt=""> -->
+                <img class="image event_pic" :src="activity.BANNER" alt="">
                 <div class="tag tag-pink card-tag">{{activity.CATEGORY}}</div>
                 <div class="card-line"></div>
                 <div class="">
@@ -11,17 +11,14 @@
                     <h5 class="card-date">活動日期：<span>{{activity.START_DATE}}</span></h5>
                     <h3 class="card-price">{{activity.PRICE}}元</h3>
                     <!-- <a class="card-link" href="#/activity_info"><h5> 活動詳情<i class="bi bi-arrow-right"></i></h5></a> -->
-                    <router-link to="/activity_info" custom v-slot="{ activity_info }">
-                        <a class="card-link" href="#/activity_info" @click="activity_info"><h5> 活動詳情<i class="bi bi-arrow-right"></i></h5></a>
-                        <!-- <button class="btn-m btn-color-green" @click="navigate" role="link">活動詳情</button> -->
-                    </router-link>
+                    <a class="card-link" @click="activityInfo(index)" role="link"><h5> 活動詳情<i class="bi bi-arrow-right"></i></h5></a>
+                    <!-- <button class="btn-m btn-color-green" @click="navigate" role="link">活動詳情</button> -->
                 </div>
             </div>
         </div>
         <!-- <div>
             <p>Loading...</p>
         </div> -->
-
 </template>
 
 <script>
@@ -45,7 +42,6 @@ export default {
     },
     mounted() {
         axios
-        // .get('https://tibamef2e.com/tgd104/g1/API/activity.php')
         .get('http://localhost/TGD104G1/public/API/activity.php')
         .then(response => {
             this.jsonData = response.data;

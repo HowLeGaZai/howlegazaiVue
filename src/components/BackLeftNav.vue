@@ -41,8 +41,7 @@
         <div class="be-nav-on"
           :class="{ ['be-nav-off']: $route.name !== 'backend_account_new' && $route.name !== 'backend_account_overview' && $route.name !== 'backend_account_cancel' }">
           <router-link :to="{ name: 'backend_account_new' }">
-            <button class="be-nav btn-font-color-gray"
-              :class="{ ['be-nav-active']: $route.name === 'backend_account_new' }">待審核清單</button>
+            <button class="be-nav " :class="{ ['be-nav-active']: $route.name === 'backend_account_new' }">待審核清單</button>
           </router-link>
           <router-link :to="{ name: 'backend_account_overview' }">
             <button class="be-nav" :class="{ ['be-nav-active']: $route.name === 'backend_account_overview' }">帳戶總列表</button>
@@ -88,20 +87,15 @@
         <div class="be-nav-on"
           :class="{ ['be-nav-off']: $route.name !== 'backend_space_list' && $route.name !== 'backend_space_management' && $route.name !== 'backend_space_reservation' }">
           <router-link :to="{ name: 'backend_space_list' }"
-            :class="{ ['be-nav-active']: $route.name === 'backend_space_list' }">
-            <button class="be-nav btn-font-color-gray">空間列表</button>
+            >
+            <button class="be-nav" :class="{ ['be-nav-active']: $route.name === 'backend_space_list' }">空間列表</button>
           </router-link>
-          <router-link :to="{ name: 'backend_space_management' }"
-            :class="{ ['be-nav-active']: $route.name === 'backend_space_management' }">
-            <button class="be-nav btn-font-color-gray">預約列表</button>
+          <router-link :to="{ name: 'backend_space_management' }">
+          <button class="be-nav" :class="{ ['be-nav-active']: $route.name === 'backend_space_management' }">預約列表</button>
           </router-link>
-          <router-link :to="{ name: 'backend_space_reservation' }"
-            :class="{ ['be-nav-active']: $route.name === 'backend_space_reservation' }">
-            <button class="be-nav btn-font-color-gray">待審核預約</button>
+          <router-link :to="{ name: 'backend_space_reservation' }">
+            <button class="be-nav" :class="{ ['be-nav-active']: $route.name === 'backend_space_reservation' }">待審核預約</button>
           </router-link>
-
-          <!-- <button class="be-nav btn-font-color-gray"  onclick="window.location.href='''">空間列表</button>
-                <button class="be-nav be-nav btn-font-color-gray"  onclick="window.location.href=''">預約管理</button> -->
         </div>
       </li>
         <li>
@@ -111,35 +105,35 @@
         </div>
       </li>
       <!-- 團購網管理 -->
-      <li>
+      <!-- <li>
         <div class="be-nav-unopen ">
           <div class="width-3 text-left">團購網管理</div>
           <i class="bi bi-caret-down-fill i-s opacity-0"></i>
-        </div>
+        </div> -->
         <!-- <a class="be-nav opacity-6 btn-color-darkgray be-menu" href="">
                 <div class="width-3 text-left">團購網管理</div>
                 <i class="bi bi-caret-down-fill i-s opacity-0"></i>
                 </a> -->
-        <div class="be-nav-on"></div>
-      </li>
+        <!-- <div class="be-nav-on"></div>
+      </li> -->
       <!-- 維修通報 -->
-      <li>
+      <!-- <li> -->
         <!-- <router-link :to="{ name: '' }" class="be-nav btn-color-unopened be-menu"> -->
-        <div class="be-nav-unopen ">
+        <!-- <div class="be-nav-unopen ">
 
           <div class="width-3 text-left">維修通報</div>
-          <i class="bi bi-caret-down-fill i-s opacity-0"></i>
+          <i class="bi bi-caret-down-fill i-s opacity-0"></i> -->
           <!-- </router-link> -->
-        </div>
-        <div class="be-nav-on"></div>
-      </li>
+        <!-- </div>
+        <div class="be-nav-on"></div> -->
+      <!-- </li> -->
       <!-- 守望相助 -->
-      <li>
+      <!-- <li> -->
 
-        <div class=" be-nav-unopen">
+        <!-- <div class=" be-nav-unopen">
           <div class="width-3 text-left">守望相助</div>
           <i class="bi bi-caret-down-fill i-s "></i>
-        </div>
+        </div> -->
         <!-- <div class="be-nav-on be-nav-off be-menu">
           <router-link :to="{ name: '' }">
             <button class="be-nav btn-font-color-green">守望隊管理</button>
@@ -148,15 +142,15 @@
             <button class="be-nav btn-font-color-gray">簽到列表</button>
           </router-link>
         </div> -->
-      </li>
+      <!-- </li> -->
       <!-- 瓦斯表數據 -->
-      <li>
+      <!-- <li>
         <div class=" be-nav-unopen ">
           <div class="width-3 text-left">瓦斯表數據</div>
           <i class="bi bi-caret-down-fill i-s opacity-0"></i>
         </div>
         <div class=""></div>
-      </li>
+      </li> -->
     </ul>
   </div>
 </template>

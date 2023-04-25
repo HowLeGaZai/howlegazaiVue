@@ -247,30 +247,17 @@
       </section>
     </main>
     <!------ 補這裡：不支援手機畫面 ------>
-    <div :class="bodyClass" class="nosupport">
-      <main>
-        <section class="noSupport">
-          <a href="#">
-            <div>
-              <img class="LiIcon" src="../assets/img/LiIcon.png" alt="" />
-              <h1>歹勢！後台目前不支援手機</h1>
-              <img class="cat" src="../assets/img/Cat.png" alt="" />
-              <p>下班請休息，我們明天再忙！</p>
-            </div>
-          </a>
-        </section>
-      </main>
-    </div>
+    <mobileNotSupport></mobileNotSupport>
     <!------ 補這裡：不支援手機畫面 ------>
   </div>
   <Footer></Footer>
 </template>
 
 <script>
-import backendNavbar from "./backendNavbar.vue";
+import backendNavbar from "../components/backendNavbar.vue";
 import backCalender from '../components/BackCalender.vue';
-
-import Footer from "./Footer.vue";
+import mobileNotSupport from '@/components/mobileNotSupport.vue';
+import Footer from "../components/Footer.vue";
 import axios from 'axios';
 import BackLeftNav from '../components/BackLeftNav.vue';
 
@@ -284,7 +271,7 @@ import "jquery-ui-dist/jquery-ui.min.css";
 export default {
   components: {
     backendNavbar,
-    Footer,backCalender,BackLeftNav
+    Footer,backCalender,BackLeftNav,mobileNotSupport
 
   },
   data() {

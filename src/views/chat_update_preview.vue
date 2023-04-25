@@ -4,7 +4,7 @@
       **** 此為預覽頁面，請記得點擊<a
         @click="publish"
         class="a-select"
-        >發布討論區文章</a
+        >儲存文章</a
       >完成刊登，或<a @click="goback">返回上一頁</a> ****
     </p>
   </div>
@@ -105,14 +105,14 @@ export default {
       chatform.append("content", this.tinymceContent);
       chatform.append("pic", this.PictureCropChatbanner);
       chatform.append("text", this.textContent);
-      chatform.append("userid", this.userid);
       chatform.append("routerid", this.routerid);
 
       axios
-        .post("http://localhost/TGD104G1/public/API/publishchat.php", chatform)
+        .post("http://localhost/TGD104G1/public/API/republishchat.php", chatform)
         .then((response) => {
           // this.jsonData = response.data;
           console.log(response.data);
+          console.log("yyyyyyyyyy");
           const Id = this.$route.params.Id;
           this.$router.push({ name: "chat_info", params: { Id: Id } });
           sessionStorage.clear();
@@ -125,7 +125,7 @@ export default {
     },
     goback(){
       const Id = this.$route.params.Id;
-      this.$router.push({ name: "chat_new", params: { Id: Id } });
+      this.$router.push({ name: "chat_update", params: { Id: Id } });
     },
   },
 

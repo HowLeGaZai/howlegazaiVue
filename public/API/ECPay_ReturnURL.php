@@ -47,27 +47,27 @@ if ( $_POST['RtnCode'] =='1' && $CheckMacValue == $_POST['CheckMacValue'] ){
     //建立SQL
     //$sql = "INSERT INTO member(Account, PWD, CreateDate) VALUES ('王小明', 'abc123', NOW())";
 
-    $sql = "INSERT INTO ACTIVITY_ORDER(ID, CREATE_TIME, ACTIVITY_ID, PAYMENT, USER_ID) VALUES (NOW(), NOW(), '1', '', '')";
+    $sql = "INSERT INTO ACTIVITY_ORDER (ID, CREATE_TIME, ACTIVITY_ID, PAYMENT, USER_ID) VALUES (DEFAULT, NOW(), '2', '2', '3')";
 
+    // //////
+    // $activityID = $_POST['activityID'];
+    // $payment = $_POST['spaceTimeStart'];
+    // $userID = $_POST['spaceTimeClose'];
 
-    // $sql = "INSERT into ACTIVITY_ORDER VALUES(DEFAULT,?,?,?,?,NOW(),'online',0)";
-
-    // $category= $_POST['category'];
-    // $title= $_POST['title'];
-    // $content= $_POST['content'];
-    // $userID= $_POST['pic'];
-
-
+    // $sql = "INSERT INTO ACTIVITY_ORDER VALUES(DEFAULT, NOW(), ?, ?, ?);";
     // $statement = $pdo -> prepare($sql);
-
-    // $statement->bindValue(1, $category);
-    // $statement->bindValue(2, $title);
-    // $statement->bindValue(3, $content);
-    // $statement->bindValue(4, $pic);
-
+    // $statement->bindValue(1 ,$activityID);
+    // $statement->bindValue(2 ,$type);
+    // $statement->bindValue(3 ,$capacity);
+    // $statement->bindValue(4 ,$spaceSize);
+    // $statement->bindValue(5 ,$note);
+    // $statement->bindValue(6 ,$manager);
+    // $statement->bindValue(7 ,$phone);
+    // $statement->bindValue(8 ,$spaceTimeStart);
+    // $statement->bindValue(9 ,$spaceTimeClose);
+    // $statement->bindValue(10 ,$address);
+    // $statement->bindValue(11 ,$pic);
     // $statement->execute();
-
-    // echo '成功建立最新消息';
 
 
 

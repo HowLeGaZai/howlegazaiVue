@@ -159,30 +159,17 @@
         <!-- 992以下顯示內容 -->
    
    
-        <div :class="bodyClass" class="nosupport">
-            <main>
-                <section class="noSupport">
-                    <a href="#">
-                        <div>     
-                            <img class="LiIcon" src="../assets/img/LiIcon.png" alt="">
-                            <h1>歹勢！後台目前不支援手機</h1>
-                            <img class="cat" src="../assets/img/Cat.png" alt="">
-                            <p>下班請休息，我們明天再忙！</p>
-                        </div>
-                    </a>
-                </section>
-            </main>
-         
-      </div>
+        <mobileNotSupport></mobileNotSupport>
    </div>
     <Footer></Footer>
 </template>
 
 <script>
-import backendNavbar from './backendNavbar.vue';
+import backendNavbar from '../components/backendNavbar.vue';
 import backCalender from '../components/BackCalender.vue';
 import BackLeftNav from '../components/BackLeftNav.vue';
-import Footer from './Footer.vue';
+import Footer from '../components/Footer.vue';
+import mobileNotSupport from '@/components/mobileNotSupport.vue';
 import PictureCrop from '../components/PictureCrop.vue';
 
 import axios from 'axios';
@@ -203,7 +190,8 @@ export default{
       address : '' ,
       autobiography:'',
       
-      
+      responseData:'',
+
       title1 : '',
       title2 : '',
       title3 : '',
@@ -222,7 +210,7 @@ export default{
     }
   },
   components: {
-      backendNavbar,Footer,PictureCrop,backCalender,BackLeftNav,
+      backendNavbar,Footer,PictureCrop,backCalender,BackLeftNav,mobileNotSupport,
     },
     methods: {
       // 上面的按鈕
@@ -247,8 +235,8 @@ export default{
 axios
   .post('http://localhost/TGD104G1/public/API/officeinfo.php', formData)
   .then(response => {
-      responseData = response.data;
-      console.log(responseData);
+      this.responseData = response.data;
+      console.log(this.responseData);
       alert("儲存成功")
   })
   .catch(error => {
@@ -270,6 +258,8 @@ webInfo(){
       this.pic1 = this.jsonData[this.jsonData.length-1].PORTRAIT ;
       this.gender = this.jsonData[this.jsonData.length-1].GENDER ;
       this.autobiography = this.jsonData[this.jsonData.length-1].AUTOBIOGRAPHY ;
+
+
 
     },
 

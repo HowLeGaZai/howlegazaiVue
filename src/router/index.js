@@ -58,7 +58,7 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/chat.vue')
   },
   {
-    // 前台 討論區發布消息（文字編輯器）
+    // 前台 討論區發布消息（文字編輯器）、編輯消息
     path: '/chat_new/:Id',
     // path: '/chat_new/',
     name: 'chat_new',
@@ -68,6 +68,7 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/chat_new.vue'),
     // props: (route) => ({ id: route.params.id || Math.floor(Math.random() * 1000) })
   },
+  
   {
     // 前台 討論區單篇文章
     path: '/chat_info/:Id',
@@ -88,6 +89,26 @@ const routes = [
     path: '/chat_info/:Id',
     name: 'chat_info',
     component: () => import(/* webpackChunkName: "about" */ '../views/chat_info.vue')
+  },
+  {
+    // 前台 修改文章（文字編輯器）
+    path: '/chat_update/:Id',
+    // path: '/chat_new/',
+    name: 'chat_update',
+    meta: {
+      requiresAuth: true // 添加一個 meta 屬性來標記需要登錄的頁面
+    },
+    component: () => import(/* webpackChunkName: "about" */ '../views/chat_update.vue'),
+    // props: (route) => ({ id: route.params.id || Math.floor(Math.random() * 1000) })
+  },
+  {
+    // 前台 討論區 修改文章預覽
+    path: '/chat_update/preview/:Id',
+    name: 'chat_update_preview',
+    meta: {
+      requiresAuth: true // 添加一個 meta 屬性來標記需要登錄的頁面
+    },
+    component: () => import(/* webpackChunkName: "about" */ '../views/chat_update_preview.vue')
   },
   {
     // 前台 活動總覽頁
@@ -333,7 +354,7 @@ const routes = [
   },
   {
     // 後台 活動管理 活動列表 參加名單
-    path: '/backend_activity_memberlist',
+    path: '/backend_activity_memberlist/:Id',
     name: 'backend_activity_memberlist',
     meta: {
       backrequiresAuth: true // 添加一個 meta 屬性來標記需要登錄的頁面
@@ -341,13 +362,22 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/backend_activity_memberlist.vue')
   },
   {
-    // 後台 活動管理 新增活動
-    path: '/backend_activity_input',
+    // 後台 活動管理 新增活動 or 編輯活動
+    path: '/backend_activity_input/:Id',
     name: 'backend_activity_input',
     meta: {
       backrequiresAuth: true // 添加一個 meta 屬性來標記需要登錄的頁面
     },
     component: () => import(/* webpackChunkName: "about" */ '../views/backend_activity_input.vue')
+  },
+  {
+    // 後台 活動管理 預覽頁
+    path: '/activity_info_preview/:Id',
+    name: 'activity_info_preview',
+    meta: {
+      backrequiresAuth: true // 添加一個 meta 屬性來標記需要登錄的頁面
+    },
+    component: () => import(/* webpackChunkName: "about" */ '../views/activity_info_preview.vue')
   },
   {
     // 後台 帳戶管理 帳戶總列表
@@ -423,7 +453,7 @@ const routes = [
     },
     component: () => import(/* webpackChunkName: "about" */ '../views/backend_news.vue')
   },
-  // 最新消息 (新增消息)
+  // 最新消息 (新增消息+編輯消息)
   {
     path: '/backend_news_add/:Id',
     name: 'backend_news_add',

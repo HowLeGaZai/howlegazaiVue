@@ -97,7 +97,7 @@
 
 <script>
 
-import navbar from './navbar.vue';
+import navbar from '../components/navbar.vue';
 
 export default {
   components: {

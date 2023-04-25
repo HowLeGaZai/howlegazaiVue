@@ -45,8 +45,8 @@
 
 <script>
 
-import navbar from './navbar.vue';
-import Footer from './Footer.vue';
+import navbar from '../components/navbar.vue';
+import Footer from '../components/Footer.vue';
 import { formatDate } from "../plugin/date";
 
 
@@ -102,7 +102,6 @@ export default {
     },
 
     publishNews() {
-
 
       const newsdata = new FormData();
       newsdata.append('routerid', this.routerid);

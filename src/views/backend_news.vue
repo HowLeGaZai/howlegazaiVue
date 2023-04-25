@@ -33,8 +33,8 @@
                   <div>
                     <label for="date" class="f-label">發布日期</label>
                     <select name="" id="date" class="f-select" v-model="selectedDate">
-                      <option value="">-選擇-</option>
-                      <option value="new">最新至最舊</option>
+                      <!-- <option value="">-選擇-</option> -->
+                      <option value="">最新至最舊</option>
                       <option value="old">最舊至最新 </option>
                     </select>
                   </div>
@@ -80,7 +80,7 @@
                       <!-- 編輯 -->
 
                       <td> 
-                        <router-link :to="{ path: '/backend_news_add/' + this.newsData[index][1] }">
+                        <router-link :to="{ path: '/backend_news_add/' + this.filteredItems[index][1] }">
                         <button type="button" class="btn-icon">
                           <i class="bi bi-pencil-square btn-font-color-green"></i>
                         </button>
@@ -106,15 +106,15 @@
                 </table>
 
               </div>
-              <ul class="btn-page-block">
+              <!-- <ul class="btn-page-block">
                 <li><button class="btn-page btn-color-white"><i class="bi bi-caret-left-fill"></i></button></li>
                 <li><button class="btn-page btn-color-white">1</button></li>
                 <li><button class="btn-page btn-color-green">2</button></li>
                 <li><button class="btn-page btn-color-white">3</button></li>
                 <li><button class="btn-page btn-color-white"><i class="bi bi-caret-right-fill"></i></button></li>
-              </ul>
+              </ul> -->
 
-              <!-- 頁碼還沒寫完 -->
+          
 
             </div>
 
@@ -132,21 +132,7 @@
 
     </main>
     <!------ 補這裡：不支援手機畫面 ------>
-    <div class="nosupport">
-      <main>
-        <section class="noSupport">
-          <a href="#">
-            <div>
-              <img class="LiIcon" src="../assets/img/LiIcon.png" alt="">
-              <h1>歹勢！後台目前不支援手機</h1>
-              <img class="cat" src="../assets/img/Cat.png" alt="">
-              <p>下班請休息，我們明天再忙！</p>
-            </div>
-          </a>
-        </section>
-      </main>
-
-    </div>
+    <mobileNotSupport></mobileNotSupport>
     <!------ 補這裡：不支援手機畫面 ------>
   </div>
 
@@ -157,18 +143,19 @@
 
 <script>
 
-import backendNavbar from './backendNavbar.vue';
+import backendNavbar from '../components/backendNavbar.vue';
 import backCalender from '../components/BackCalender.vue';
 import BackLeftNav from '../components/BackLeftNav.vue';
+import mobileNotSupport from '@/components/mobileNotSupport.vue';
+import Footer from '../components/Footer.vue';
 import { formatDate } from '../plugin/date';
 import $ from 'jquery';
 
 
-import Footer from './Footer.vue';
 
 export default {
   components: {
-    backendNavbar, Footer, backCalender, BackLeftNav
+    backendNavbar, Footer, backCalender, BackLeftNav,mobileNotSupport
   },
   data() {
     return {
@@ -205,14 +192,17 @@ export default {
 
       // console.log(this.newsData[index]);
       // console.log(this.newsData[index][0]); //object的ID
-      const result =this.newsData[index][active] = this.newsData[index][active] === 1 ? 0 : 1;
-
+      // const result =this.newsData[index][active] = this.newsData[index][active] === 1 ? 0 : 1;
+      const result =this.filteredItems[index][active] = this.filteredItems[index][active] === 1 ? 0 : 1;
+      
+      
       // console.log([event])
+
       // console.log(this.newsData[index][0])
       // console.log(this.newsData[index][event]);
 
       const updateNews = new FormData();
-      updateNews.append('newsid', this.newsData[index][0]); //object的ID
+      updateNews.append('newsid', filteredItems[index][0]); //object的ID
       updateNews.append('active', [active]); //object 觸發的事件
       updateNews.append('status', result); //判斷送入0或1
       console.log(updateNews);
@@ -251,7 +241,7 @@ export default {
         });
       }
       // 日期排序
-      if (this.selectedDate === 'new') {
+      if (this.selectedDate === '') {
         filteredNews = filteredNews.sort((a, b) => new Date(b.CREATE_TIME) - new Date(a.CREATE_TIME));
       } else if (this.selectedDate === 'old') {
         filteredNews = filteredNews.sort((a, b) => new Date(a.CREATE_TIME) - new Date(b.CREATE_TIME));

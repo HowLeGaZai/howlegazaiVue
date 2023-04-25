@@ -246,8 +246,55 @@
     .btn-member {
       background-color: darken($green, 3%);
     }
+    .unopened-smartbar{
+      background-color: $silver;
+
+        & +.btn-mem-p{
+          color:$lightdark;
+        }
+
+        &-p{
+          &:hover{
+            color:$lightdark;
+          }
+        }
+      }
     .btn-mem-p {
       color: darken($green, 3%);
+    }
+
+
+  }
+  // 未開放 button 
+  .unopened-smartbar{
+    background-color: $silver;
+    color:#c5c5c5;
+    border: 1px solid transparent;
+    box-shadow: 0px 1px 1px rgba(255, 255, 255, 0);
+
+    &:hover{
+      background-color: $silver;
+      color:$lightdark;
+
+      .btn-member {
+        background-color: $silver;
+      }
+      .btn-mem-p {
+        color:$lightdark;
+      }
+    }
+
+    &>.bi{
+      &:hover{
+        color:$lightdark;
+      }
+    }
+
+    &+p{
+      color:#c5c5c5;
+      &:hover{
+        color:$lightdark;
+      }
     }
   }
 
@@ -258,6 +305,23 @@
   @include btnSize(36px, 50%, auto, auto, 1rem, 1.6rem);
   i {
     font-size: 36px;
+  }
+}
+
+#unopened{
+  &:hover{
+    color:$lightdark;
+  }
+  
+  .unopened-smartbar{
+    .bi{
+      &:hover{
+        color:$lightdark;
+      }
+    }
+  }
+  :hover{
+
   }
 }
 
@@ -342,7 +406,6 @@
     color:$green;
     border: 1px solid $green;
     opacity: 1;
-
 }
 
 .be-nav-unopen{
@@ -558,6 +621,10 @@
 
 .opacity-6 {
   opacity: 0.6;
+}
+
+.opacity6 {
+  opacity: 0.6 !important;
 }
 
 .opacity-4 {

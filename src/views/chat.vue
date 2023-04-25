@@ -82,7 +82,8 @@
           <p>{{ chatTopic.TEXT }}</p>
         </section>
         <div class="image list_pic">
-          <img :src="chatTopic.PIC" alt="">
+           <img :src="chatTopic.PIC ? chatTopic.PIC :require(`@/assets/img/default.jpg`)" alt="">
+          <!-- <img :src="chatTopic.PIC" alt=""> -->
         </div>
       </section>
     </article>
@@ -97,9 +98,9 @@
 </template>
 
 <script>
-import ChatTopic from "../components/ChatTopic.vue";
-import navbar from "./navbar.vue";
-import Footer from "./Footer.vue";
+import ChatTopic from '@/components/ChatTopic.vue';
+import navbar from '@/components/navbar.vue';
+import Footer from "@/components/Footer.vue";
 
 import { formatDate } from "../plugin/date";
 import { v4 as uuidv4 } from 'uuid';

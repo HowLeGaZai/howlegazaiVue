@@ -7,7 +7,7 @@
           <div class="account">
               <Accountsidebar :localPORTRAIT="localPORTRAIT"></Accountsidebar>
             
-              <section class="account-content">
+              <section class="account-content account_user_info">
               <h1 class="marginbottom30">個人資訊</h1>
               <div class="account_row col-md-6 col-12">
                 <h4>地址</h4>
@@ -16,8 +16,10 @@
               
               <div class="row account_row">
                 <div class="col-md-6 col-12">
-                  <h4>帳號<span v-if="!account && formSubmitted" class="red-dot"><i class="bi bi-asterisk"></i></span><span v-if="!accountValid" class="red">*8~12字元，需包含英文小寫和數字</span>
-                    <span v-if="accountDuplicate" class="red">*{{this.badaccount}}帳號已被註冊</span></h4>
+                  <h4>帳號
+                    <span v-if="!formSubmitted" class="red-dot"><i class="bi bi-asterisk"></i></span>
+                    <span v-if="!accountValid" class="red">*8~12字元，需包含英文小寫和數字</span>
+                    <span v-if="accountDuplicate" class="red">帳號已被註冊</span></h4>
                   <input
                     type="text"
                     class="f-text nomargin changelineheight"
@@ -30,6 +32,7 @@
                     maxlength="12"
                     @blur="validateAccount"
                     @focus="cleanBadaccount"
+                    @keyup="fisttimeEdit"
                   />
                   <h4 class="changelineheight" v-if="headHousehold">{{ ACCOUNT }}</h4>
                 </div>
@@ -41,9 +44,10 @@
                       >男
                       <input
                         type="radio"
-                        name="singlechoice"
+                        name="GENDER"
                         v-model="GENDER"
-                        v-bind:value="'male'" disabled
+                        v-bind:value="'male'"
+                        :disabled="headHousehold === true || canEdit === false"
                       />
                       <span class="checkmark"></span>
                     </label>
@@ -51,9 +55,10 @@
                       >女
                       <input
                         type="radio"
-                        name="singlechoice"
+                        name="GENDER"
                         v-model="GENDER"
-                        v-bind:value="'female'" disabled
+                        v-bind:value="'female'"
+                        :disabled="headHousehold === true || canEdit === false"
                       />
                       <span class="checkmark"></span>
                     </label>
@@ -61,9 +66,10 @@
                       >不願回答
                       <input
                         type="radio"
-                        name="singlechoice"
+                        name="GENDER"
                         v-model="GENDER"
-                        v-bind:value="'noanswer'" disabled
+                        v-bind:value="'noanswer'"
+                        :disabled="headHousehold === true || canEdit === false"
                       />
                       <span class="checkmark"></span>
                     </label>
@@ -73,29 +79,27 @@
               </div>
               <div class="row account_row">
                 <div class="col-md-6 col-12">
-                  
+                  <h4 v-if="headHousehold">姓名</h4>
                   <h4 v-if="headHousehold">{{ FULL_NAME }}</h4>
 
                   <div class="row" v-if="normalUser">
-                    <div>
+                    <div class="col-md-6 col-12">
                       <h4>姓氏</h4>
                       <input
                         type="text"
                         class="f-text nomargin changelineheight"
                         id="FULL_NAME"
-                        v-model="FULL_NAME"
-                        v-if="headHousehold"
+                        v-model="FIRST_NAME"
                         placeholder="請輸入姓名" required
                       />
                     </div>
-                    <div>
+                    <div class="col-md-6 col-12">
                       <h4>名字</h4>
                       <input
                         type="text"
                         class="f-text nomargin changelineheight"
                         id="FULL_NAME"
-                        v-model="FULL_NAME"
-                        v-if="headHousehold"
+                        v-model="LAST_NAME"
                         placeholder="請輸入姓名" required
                       />
                     </div>
@@ -110,7 +114,7 @@
                     class="f-text nomargin"
                     id="nickname"
                     v-model="NICKNAME"
-                    placeholder="請輸入暱稱" required disabled
+                    placeholder="請輸入暱稱" required
                   />
                 </div>
               </div>
@@ -118,16 +122,16 @@
               <div class="row account_row">
 
                 <div class="col-md-6 col-12">
-                  <h4>身份證字號*<span v-if="!idNumValid" class="red">*請輸入正確身分證</span></h4>
-                  <!-- <h4>{{ ID_NUMBER }}</h4> -->
-                  <input type="text" class="f-text nomargin" id="name" v-model.trim="ID_NUMBER" @blur="validateIdNum" placeholder="請輸入身份證字號">
+                  <h4>身份證字號<span v-if="canEdit" class="colorBlack"> *非必填</span><span v-if="!idNumValid" class="red">*請輸入正確身分證</span></h4>
+                  <h4 v-if="headHousehold,!canEdit">{{ ID_NUMBER }}</h4>
+                  <input type="text" v-if="canEdit" class="f-text nomargin" id="name" v-model.trim="ID_NUMBER" @blur="validateIdNum" placeholder="請輸入身份證字號">
                 </div>
                 
                 <div class="col-md-6 col-12">
-                  <h4>出生 年/月/日</h4>
-                  <!-- <h4>{{ BIRTHDATE }}</h4> -->
+                  <h4>生日<span v-if="canEdit" class="colorBlack"> *非必填</span></h4>
+                  <h4 v-if="headHousehold,!canEdit">{{ BIRTHDATE }}</h4>
                   <!-- <input type="text" class="f-text nomargin" id="name" v-model="BIRTHDATE" placeholder="YYYY/MM/DD"> -->
-                  <input type="date" class="f-text nomargin" id="birthdate" required v-model="BIRTHDATE" :max="maxBirthdate"/>
+                  <input v-if="canEdit" type="date" class="f-text nomargin" id="birthdate" required v-model="BIRTHDATE" :max="maxBirthdate"/>
                 </div>
               </div>
 
@@ -184,7 +188,7 @@
 
 
 <script>
-import navbar from "./navbar.vue";
+import navbar from "../components/navbar.vue";
 import Accountsidebar from '@/components/Accountsidebar.vue';
 import axios from 'axios';
 import PortraitCrop from "../components/PortraitCrop.vue";
@@ -194,11 +198,15 @@ import { nextTick } from 'vue'
 export default {
   data() {
     return {
+      // 戶長/成員/可否編輯預設
       headHousehold:'false',
       normalUser:'true',
+      canEdit:'true',
 
+      // cookieid
       userId:'',
 
+      // USER
       ID:'',
       ADDRESS: '',
       ACCOUNT:'',
@@ -211,49 +219,47 @@ export default {
       PHONE:'',
       PORTRAIT:'',
       UPDATER:'',
-
-      localPORTRAIT:'',
-      maxBirthdate: this.getToday(),
-      formData: {},
+      FIRST_NAME:'',
+      LAST_NAME:'',
       jsonData: [],
 
-      formSubmitted: false,
+      // localhost 大頭貼
+      localPORTRAIT:'',
 
+      // 生日最大值
+      maxBirthdate: this.getToday(),
+
+      // 驗證欄位 -- 表單送出 / 帳號是否重複 / 帳號格式 / 身分證格式 / email 格式 / 電話格式
+      formSubmitted: true,
       accountDuplicate: false,
-
-      accountValid: true,
-      passwordValid: true,
-      idNumValid: true,
-      emailValid: true,
-      phoneValid: true,
+      accountValid: false,
+      idNumValid: false,
+      emailValid: false,
+      phoneValid: false,
     };
   },
 
   mounted() {
-    this.localPORTRAIT = localStorage.getItem("portrait");
 
-    const userId = this.getCookieValue("id");
-    // console.log(userId);
-    
-    const getUserData = () => {
-    const url = "http://localhost/TGD104G1/public/API/account_user.php";
-    const data = new FormData();
-    data.append('user_id', userId)
+        // localStorage 大頭貼傳值到側欄
+        this.localPORTRAIT = localStorage.getItem("portrait");
 
-    axios
-      .post(url, data)
-      .then((response) => {
-        this.jsonData = response.data;
-        this.accountInfo();
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-    };
-
-    getUserData();
-
-
+        // 抓出原始 USER 資料
+        const userId = this.getCookieValue("id");
+        const url = "http://localhost/TGD104G1/public/API/account_user.php";
+        const data = new FormData();
+        data.append('user_id', userId);
+        
+        axios
+            .post(url, data)
+            .then((response) => {
+              this.jsonData = response.data;
+              this.accountInfo();
+              this.signupUser();
+            })
+            .catch((error) => {
+                console.error(error);
+            });
   },
   methods: {
 
@@ -281,19 +287,41 @@ export default {
         this.PHONE = this.jsonData[this.jsonData.length - 1].PHONE;
         this.PORTRAIT = this.jsonData[this.jsonData.length - 1].PORTRAIT;
         this.UPDATER = this.jsonData[this.jsonData.length - 1].UPDATER;
-        
-        // 判斷是否為成員
-        if (this.UPDATER != this.userId){
-          // 是成員
-
-        }else{
-          // 是戶長
-
-        }
+        this.FIRST_NAME = this.jsonData[this.jsonData.length - 1].FIRST_NAME;
+        this.LAST_NAME = this.jsonData[this.jsonData.length - 1].LAST_NAME;
+        this.userId = this.getCookieValue("id");
       },
 
+      // 判斷註冊是否為非戶長
+      signupUser(){
+          
+          // 如果註冊人非戶長
+          if (this.UPDATER != this.userId){
+            
+            // 註冊非戶長且未更新過生日與身分證
+            this.headHousehold = false;
+            this.normalUser = true;
+
+  
+              // 註冊非戶長且已更新過生日與身分證
+              if(this.BIRTHDATE === null || this.ID_NUMBER === null){
+                this.canEdit = true;
+              }else{
+                this.canEdit = false;
+              };
+
+          // 如果註冊人為戶長
+          }else{
+            this.headHousehold = true;
+            this.normalUser = false;
+            this.canEdit = false;
+          }
+        },
+
+      // 驗證欄位
+
+      // 檢查帳號格式
       async validateAccount() {
-        // 檢查帳號格式
         const accountRegex = /^(?=.*[a-z])(?=.*\d)[a-z\d]{8,12}$/i; // 英數字混合帳號8~12位
         if (!accountRegex.test(this.account)) {
           this.accountValid = false;

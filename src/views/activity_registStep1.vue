@@ -62,8 +62,8 @@
           </table>
           
 
-        <!-- <form class="" id="idFormAioCheckOut" method="post" action="http://localhost/TGD104G1/public/API/ECPay_CreateOrder.php"> -->
-        <form class="" id="idFormAioCheckOut" method="post" action="https://tibamef2e.com/tgd104/g1/API/ECPay_CreateOrder.php">
+        <form class="" id="idFormAioCheckOut" method="post" action="http://localhost/TGD104G1/public/API/ECPay_CreateOrder.php">
+        <!-- <form class="" id="idFormAioCheckOut" method="post" action="https://tibamef2e.com/tgd104/g1/API/ECPay_CreateOrder.php"> -->
             <table class="green-table">
                 <thead>
                     <tr>
@@ -187,8 +187,8 @@
 
 <script>
 
-import navbar from './navbar.vue';
-import Footer from './Footer.vue';
+import navbar from '../components/navbar.vue';
+import Footer from '../components/Footer.vue';
 import axios from 'axios';
 
 export default {
@@ -252,8 +252,8 @@ export default {
         async getActivityData() {
             await  axios
             //  htdocs的環境下測試
-            //.get('http://localhost/TGD104G1/public/API/activity.php')
-            .get('https://tibamef2e.com/tgd104/g1/API/activity.php')
+            .get('http://localhost/TGD104G1/public/API/activity.php')
+            //.get('https://tibamef2e.com/tgd104/API/activity.php')
             .then(response => {
                 this.activityJsonData = response.data;
                 console.log('abc',this.activityJsonData);
@@ -314,8 +314,8 @@ export default {
                 formData.append('USER_ID', this.USER_ID)  
 
                 axios
-                    //.post('http://localhost/TGD104G1/public/API/ECPay_ReturnURL.php', formData)
-                    .post('https://tibamef2e.com/tgd104/g1/API/ECPay_ReturnURL.php', formData)
+                    .post('http://localhost/TGD104G1/public/API/ECPay_ReturnURL.php', formData)
+                    //.post('https://tibamef2e.com/tgd104/API/ECPay_ReturnURL.php', formData)
                     .then(response => {
                         // this.jsonData = response.data;
                         console.log(response.data);
@@ -351,8 +351,8 @@ export default {
         // 傳值給ECPay CreateOrder
         submitForm() {
 
-            //axios.post('http://localhost/TGD104G1/public/API/ECPay_CreateOrder.php', {
-            axios.post('https://tibamef2e.com/tgd104/g1/API/ECPay_CreateOrder.php', {
+            axios.post('http://localhost/TGD104G1/public/API/ECPay_CreateOrder.php', {
+            //axios.post('https://tibamef2e.com/tgd104/API/ECPay_CreateOrder.php', {
                 MerchantTradeNo: this.MerchantTradeNo,
                 MerchantTradeDate: this.MerchantTradeDate,
                 PaymentType: this.PaymentType,
