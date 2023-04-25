@@ -63,7 +63,7 @@
             
             <div class="image act-img">
                 <!-- <img src="../assets/img/e1_calligraphy.png" alt=""> -->
-                <img :src="activityData.CONTENT_PIC" alt="">
+                <img :src="activityData.BANNER" alt="">
             </div>
             <div class="infoText">
 
@@ -196,9 +196,9 @@ export default {
                         
 
             for(let i = 0; i < this.activityJsonData.length; i++){
-                // console.log(i,this.spaceJsonData[i]);
-                if(activity == this.activityJsonData[i][1]){
-                    // console.log('空間資料',this.spaceJsonData[i]);
+                
+                if(this.$route.params.Id == this.activityJsonData[i].ROUTERID){
+                    // console.log("渲染這筆資料");
                     this.activityData = this.activityJsonData[i];
                     console.log('活動資料',this.activityData);
                 }else{

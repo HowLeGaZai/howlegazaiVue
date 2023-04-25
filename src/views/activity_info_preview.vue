@@ -284,6 +284,8 @@ export default {
                 // console.log(error);
             });
 
+            this.$router.push('/backend_activity')
+
         },
 
         goback(){
