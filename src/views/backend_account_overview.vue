@@ -44,12 +44,15 @@
                       <td>{{ account[1] }}</td>
                       <td>{{ account[2] }}</td>
                       <td>{{ account[3] }}</td>
-                      <td>
+                      <!-- <td>
                         <div class="guard">
                           <i class="bi bi-tag"></i>
                           <span>{{ account[4] }}</span>
                           <i class="bi bi-x"></i>
                         </div>
+                      </td> -->
+                      <td>
+                        {{ account[4] }}
                       </td>
 
                       <td>

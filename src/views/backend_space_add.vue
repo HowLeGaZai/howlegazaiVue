@@ -23,7 +23,7 @@
                                     </div>
                                 </div>
 
-                                <div class="row">
+                                <!-- <div class="row">
                                     <div class="col-12">
                                         <label for="spaceName" class="f-label">開放時間</label>
                                         
@@ -63,7 +63,7 @@
 
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
 
                                 <!-- 時間 -->
                                 <div class="row bk_spaceTime">
