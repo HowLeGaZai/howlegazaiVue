@@ -74,7 +74,7 @@
 
                       <!-- 置頂 -->
                       <td><label class="f-checkbox">
-                          <input type="checkbox" :checked="(news.TOP) == 1" @click="newsmanage(news, index, 'TOP')">
+                          <input type="checkbox" :checked="parseInt(news.TOP) === 1" @click="newsmanage(news, index, 'TOP')">
                           <span class="checkmark newscheck"></span>
                         </label></td>
                       <!-- 編輯 -->
@@ -94,7 +94,7 @@
                             @click="newsmanage(news, index, 'STATUS')"></i>
                         </button> -->
                         <label class="switch">
-                        <input type="checkbox" :checked="(news.STATUS) === 1" @click="newsmanage(news, index, 'STATUS')">
+                        <input type="checkbox" :checked="parseInt(news.STATUS) === 1" @click="newsmanage(news, index, 'STATUS')">
                         <span class="slider"></span>
                       </label>
                       
@@ -164,6 +164,7 @@ export default {
       id: new Date().getTime(),// 設當前時間的字符串為ID
       selectedCategory: '',
       selectedDate: '',
+      
     }
   },
 
@@ -202,7 +203,7 @@ export default {
       // console.log(this.newsData[index][event]);
 
       const updateNews = new FormData();
-      updateNews.append('newsid', filteredItems[index][0]); //object的ID
+      updateNews.append('newsid', this.filteredItems[index][0]); //object的ID
       updateNews.append('active', [active]); //object 觸發的事件
       updateNews.append('status', result); //判斷送入0或1
       console.log(updateNews);

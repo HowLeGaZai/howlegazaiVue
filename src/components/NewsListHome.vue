@@ -1,5 +1,5 @@
 <template>
-  <tr v-for="newsHome in jsonData">
+  <tr v-for="newsHome in jsonNews">
     
   
     <td>
@@ -19,7 +19,7 @@ import axios from 'axios';
 export default {
   data() {
     return {
-      jsonData: [],
+      jsonNews: [],
     };
   },
   methods: {
@@ -44,7 +44,7 @@ export default {
     axios
       .post('http://localhost/TGD104G1/public/API/index_news.php',{})
       .then(response => {
-        this.jsonData = response.data;
+        this.jsonNews = response.data;
       })
       .catch(error => {
         console.log(error);

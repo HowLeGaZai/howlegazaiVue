@@ -36,9 +36,9 @@
                 </div>
               </div>
               <div class="displayflex margintop18">
-                  <button type="button" class="btn-10-s btn-color-green" @click="toNewactivity">
-                    <i class="bi bi-plus-lg"></i>新增活動
-                  </button>
+                <button type="button" class="btn-10-s btn-color-green" @click="toNewactivity">
+                  <i class="bi bi-plus-lg"></i>新增活動
+                </button>
 
               </div>
 
@@ -63,29 +63,31 @@
                     <td data-label="活動編號">{{ data.ID }}</td>
                     <td data-label="活動分類">{{ data.CATEGORY }}</td>
                     <td data-label="活動名稱">
-                            <router-link class="titlelink" :to="{ name: 'activity_info', params: { Id: data.ID } }">
-                                {{data.TITLE}}
-                            </router-link>
+                      <router-link class="titlelink" :to="{ name: 'activity_info', params: { Id: data.ID } }">
+                        {{ data.TITLE }}
+                      </router-link>
                     </td>
                     <td data-label="活動價格">{{ data.PRICE == 0 ? '免費' : data.PRICE + "元" }}</td>
                     <td data-label="報名數">{{ data.TOTAL_ATTEND_NUM }}</td>
-                    
+
                     <!-- 名單 -->
                     <td>
-                      <router-link class="titlelink" :to="{ name: 'backend_activity_memberlist', params: { Id: data.ID } }">
-                          <button type="button" class="btn-icon">
-                            <i class="bi bi-file-earmark-bar-graph btn-font-color-green"></i>
-                          </button>
+                      <router-link class="titlelink"
+                        :to="{ name: 'backend_activity_memberlist', params: { Id: data.ID } }">
+                        <button type="button" class="btn-icon">
+                          <i class="bi bi-file-earmark-bar-graph btn-font-color-green"></i>
+                        </button>
                       </router-link>
                     </td>
 
                     <!-- 置頂 -->
                     <td>
                       <label class="f-checkbox">
-                          <input type="checkbox">
-                          <span class="checkmark newscheck"></span>
-                        </label>
-                      </td>
+                        <input type="checkbox">
+                        <span class="checkmark newscheck" :checked="parseInt(data.TOP) == 1"
+                          @click="activityMange(datas, index, 'TOP')"></span>
+                      </label>
+                    </td>
 
                     <!-- 編輯 -->
                     <td>
@@ -96,7 +98,8 @@
 
                     <!-- 上下架 -->
                     <td><label class="switch">
-                        <input type="checkbox" checked>
+                        <input type="checkbox" :checked="parseInt(data.STATUS) == 1"
+                          @click="activityMange(datas, index, 'STATUS')">
                         <span class="slider"></span>
                       </label>
                     </td>
@@ -120,7 +123,7 @@
 
 
     </main>
-      <mobileNotSupport></mobileNotSupport>
+    <mobileNotSupport></mobileNotSupport>
   </div>
   <Footer></Footer>
 </template>
@@ -135,44 +138,74 @@ import mobileNotSupport from '@/components/mobileNotSupport.vue';
 export default {
   data() {
     return {
-      ID:'',
-      TITLE:'',
-      PRICE:'',
-      TOP:'',
-      STATUS:'',
-      CATEGORY:'',
-      ATTEND_NUM:'',
+      ID: '',
+      TITLE: '',
+      PRICE: '',
+      TOP: '',
+      STATUS: '',
+      CATEGORY: '',
+      ATTEND_NUM: '',
 
-      datas:[],
+      datas: [],
       id: new Date().getTime()
     };
   },
   components: {
-      backendNavbar,
-      Footer,
-      backCalender,
-      BackLeftNav,
-      mobileNotSupport
+    backendNavbar,
+    Footer,
+    backCalender,
+    BackLeftNav,
+    mobileNotSupport
   },
   mounted() {
 
-      // 撈取活動資料
-      axios
-        .get('http://localhost/TGD104G1/public/API/backend_activity.php')
-        .then(response => {
-            this.jsonData = response.data;
-            this.datas = this.jsonData
-        })
-        .catch(error => {
-            console.log(error);
-        });
-        
+    // 撈取活動資料
+    axios
+      .get('http://localhost/TGD104G1/public/API/backend_activity.php')
+      .then(response => {
+        this.jsonData = response.data;
+        this.datas = this.jsonData
+      })
+      .catch(error => {
+        console.log(error);
+      });
+
   },
   methods: {
-          
-      toNewactivity(){
-          this.$router.push({ path: '/backend_activity_input/' + this.id });
-      },
+
+    toNewactivity() {
+      this.$router.push({ name: "backend_activity_input", params: { Id: this.id } });
+    },
+
+    // 置頂與上下架的功能
+    activityMange(datas, index, active) {
+      //篩選資料變數出來的時候要把data改成該變數
+      // console.log(data, index, active)
+      const result = datas[index][active] = datas[index][active] === 1 ? 0 : 1;
+      
+      console.log(datas[index][active])
+
+      const updateActivity = new FormData();
+      updateActivity.append('activityid', datas[index][0]); //object的ID
+      updateActivity.append('active', [active]); //object 觸發的事件
+      updateActivity.append('status', result); //判斷送入0或1
+      console.log(updateActivity);
+
+      axios.post('http://localhost/TGD104G1/public/API/manageActivity.php', updateActivity)
+        .then(response => {
+          // this.jsonData = response.data;
+          console.log(response.data);
+          alert("修改成功！")
+
+
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
+
+
+
 
   },
 };

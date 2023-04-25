@@ -189,6 +189,7 @@ export default{
       email : '',
       address : '' ,
       autobiography:'',
+      fullname: '',
       
       responseData:'',
 
@@ -216,8 +217,8 @@ export default{
       // 上面的按鈕
       saveEO(){
         const formData = new FormData()
-        formData.append('firstname', this.lastname + this.firstname)
-        formData.append('lastname', this.lastname + this.lastname)
+        formData.append('firstname',this.firstname)
+        formData.append('lastname',this.lastname)
 
         formData.append('fullname', this.lastname + this.firstname)
         formData.append('gender', this.gender)
@@ -246,8 +247,9 @@ axios
 
 webInfo(){
       
-      this.firstname   = this.jsonData[this.jsonData.length-1].FIRSTNAME ;
-      this.lastname = this.jsonData[this.jsonData.length-1].LASTNAME ;
+      this.firstname   = this.jsonData[this.jsonData.length-1].FIRST_NAME ;
+      this.lastname = this.jsonData[this.jsonData.length-1].LAST_NAME ;
+
       this.fullname = this.jsonData[this.jsonData.length-1].FULLNAME ;
       this.email = this.jsonData[this.jsonData.length-1].EMAIL ;
       this.mainphone = this.jsonData[this.jsonData.length-1].MAINPHONE ;
@@ -355,8 +357,7 @@ webInfo(){
         .post('http://localhost/TGD104G1/public/API/feature.php',{})
         .then(response => {
             this.jsonData = response.data;
-            // alert(response.data)
-            // console.log(this.jsonData[this.jsonData.length-1].FULLNAME);
+            // console.log(this.jsonData[this.jsonData.length-1].ADDRESS);
             this.webSwiper();
             // console.log(this.jsonData.length);
             // console.log(this.jsonData);

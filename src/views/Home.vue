@@ -58,11 +58,11 @@
       >
         <!-- 渲染 9 次 swiper-slide -->
         <template v-for="i in 1" :key="i">
-          <swiper-slide v-for="eventCard in jsonData">
+          <swiper-slide v-for="eventCard in jsonAct">
             <div class="card">
               <a href="#">
                 <img
-                  :src="eventCard.BANNER"
+                  :src="eventCard.BANNER ? eventCard.BANNER :require(`@/assets/img/default.jpg`)"
                   alt=""
                   class="image event_pic"
                 />
@@ -76,8 +76,8 @@
                 <h5 class="card-date">
                   活動日期：<span>{{ eventCard.START_DATE }}</span>
                 </h5>
-                <h3 class="card-price">NT{{ eventCard.PRICE }}</h3>
-                <router-link class="card-link" :to="{ name: 'activity_info', params: { Id: eventCard.activityID }}">
+                <h3 class="card-price">{{ eventCard.PRICE == 0 ? '免費' : eventCard.PRICE + "元" }}</h3>
+                <router-link class="card-link" :to="{ name: 'activity_info', params: { Id: eventCard.ID }}">
                     <h5>活動詳情<i class="bi bi-arrow-right"></i></h5>
                 </router-link>
                 <!-- <a class="card-link" href="#"
@@ -195,18 +195,10 @@ export default {
     return {
       // isLoggedIn: false,
       // 這裡是活動輪播的data
-      eventCards: [
-        {
-          activityID:'',
-          Titlepic : '',
-          PRICE: '',
-          START_DATE: "",
-          TITLE: "",
-        },
-      ],
-      jsonData: [],
-      jsonDataBanner: [],
-      jsonChat: [],
+      jsonData: [],  //縣市里
+      jsonDataBanner: [],  // 首頁輪播圖
+      jsonChat: [], //討論區
+      jsonAct: [], // 活動
       city:'',
       district:'',
       town:'',
@@ -231,6 +223,8 @@ export default {
           return "tag-cyan";
       }
     },  
+    
+    // 縣市里
     webInfo(){
       
       this.city = this.jsonData[this.jsonData.length-1].CITY ;
@@ -239,40 +233,37 @@ export default {
       // console.log(this.city);
 
     },
+    // 輪播圖
     banner(){
         this.homeBanner = this.jsonDataBanner[this.jsonDataBanner.length-1].BANNER;
-        // console.log('123',this.jsonDataBanner);
-        // console.log('123', this.jsonDataBanner);
     },
+    //活動輪播
     activity(){
-        this.activityID = this.jsonData[this.jsonData.length-1].ID;
-        this.Titlepic = this.jsonData[this.jsonData.length-1].BANNER;
-        this.PRICE = this.jsonData[this.jsonData.length-1].PRICE;
-        this.START_DATE = this.jsonData[this.jsonData.length-1].START_DATE;
-        this.TITLE = this.jsonData[this.jsonData.length-1].TITLE;
+        this.activityID = this.jsonAct[this.jsonAct.length-1].ID;
+        this.Titlepic = this.jsonAct[this.jsonAct.length-1].BANNER;
+        this.PRICE = this.jsonAct[this.jsonAct.length-1].PRICE;
+        this.START_DATE = this.jsonAct[this.jsonAct.length-1].START_DATE;
+        this.TITLE = this.jsonAct[this.jsonAct.length-1].TITLE;
     },
+    // 討論區
     chat(){
-        this.ID = this.jsonData[this.jsonData.length-1].ID;
-        this.CATEGORY = this.jsonData[this.jsonData.length-1].CATEGORY;
-        this.TITLE = this.jsonData[this.jsonData.length-1].TITLE;
-        this.PIC = this.jsonData[this.jsonData.length-1].PIC;
-        this.CREATE_TIME = this.jsonData[this.jsonData.length-1].CREATE_TIME;
-        this.PORTRAIT = this.jsonData[this.jsonData.length-1].PORTRAIT;
-        this.NICKNAME = this.jsonData[this.jsonData.length-1].NICKNAME;
+        this.id = this.jsonChat[this.jsonChat.length-1].ID;
+        this.category = this.jsonChat[this.jsonChat.length-1].CATEGORY;
+        this.title = this.jsonChat[this.jsonChat.length-1].TITLE;
+        this.pic = this.jsonChat[this.jsonChat.length-1].PIC;
+        this.create_time = this.jsonChat[this.jsonChat.length-1].CREATE_TIME;
+        this.portrait = this.jsonChat[this.jsonChat.length-1].PORTRAIT;
+        this.nickname = this.jsonChat[this.jsonChat.length-1].NICKNAME;
     },
    
   },
   mounted() {
-    // 這裡是 縣市里
+    // 縣市里
      axios
         .post('http://localhost/TGD104G1/public/API/home.php',{})
         .then(response => {
             this.jsonData = response.data;
-            // alert(response.data)
-            // console.log(this.jsonData[this.jsonData.length-1].CITY);
             this.webInfo();
-            // console.log(this.jsonData.length);
-            // console.log(this.jsonData);
         })
         .catch(error => {
             // console.log(error);
@@ -283,45 +274,31 @@ export default {
         .post('http://localhost/TGD104G1/public/API/homeBanner.php',{})
         .then(response => {
             this.jsonDataBanner = response.data;
-            // alert(response.data)
-            // console.log(this.jsonDataBanner[this.jsonDataBanner.length-1].BANNER);
-            
-            // console.log(this.jsonData.length);
-            // console.log(this.jsonData);
         })
         .catch(error => {
             // console.log(error);
         });
 
-      // 活動輪播
+      // 活動
       axios
         .post('http://localhost/TGD104G1/public/API/index_activity.php',{})
         .then(response => {
-          this.jsonData = response.data;
+          this.jsonAct = response.data;
           this.activity();
-            // console.log(this.jsonDataBanner[this.jsonDataBanner.length-1].BANNER);
-            
-            // console.log(this.jsonData.length);
-            // console.log(this.jsonData);
         })
         .catch(error => {
             // console.log(error);
         });
         // 討論區
-      // axios
-      //   .post('http://localhost/TGD104G1/public/API/chatlist.php',{})
-      //   .then(response => {
-      //     this.jsonChat = response.data;
-      //     this.chat();
-      //     // console.log(response.data)
-      //       // console.log(this.jsonDataBanner[this.jsonDataBanner.length-1].BANNER);
-            
-      //       // console.log(this.jsonData.length);
-      //       // console.log(this.jsonData);
-      //   })
-      //   .catch(error => {
-      //       // console.log(error);
-      //   });
+      axios
+        .post('http://localhost/TGD104G1/public/API/chatlist.php',{})
+        .then(response => {
+          this.jsonChat = response.data;
+          this.chat();
+        })
+        .catch(error => {
+            // console.log(error);
+        });
 
         
   },

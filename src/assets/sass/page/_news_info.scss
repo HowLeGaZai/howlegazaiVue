@@ -192,6 +192,12 @@
       word-wrap: break-word;
       
     }
+    span{
+      overflow: visible;
+      white-space: normal;
+      text-overflow: unset;
+      word-wrap: break-word;
+    }
 
     @include breakpoint($grid-breakpoints, 'sm') {
       font-size: 18px;
