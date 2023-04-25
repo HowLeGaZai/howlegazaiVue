@@ -1,7 +1,7 @@
 <template>
   <div class="preview_toolbar">
     <p>
-      **** 此為預覽頁面，請記得點擊<a @click="publishNews" class="a-select">發布最新消息</a>完成刊登，或<a href="javascript:history.back()"
+      **** 此為預覽頁面，請記得點擊<a @click="publishNews" class="a-select">發布最新消息</a>完成刊登，或<a @click="goback"
         class="a-select">返回上一頁</a> ****
     </p>
   </div>
@@ -128,7 +128,12 @@ export default {
 
       
 
-    }
+    },
+
+    goback(){
+      const Id = this.$route.params.Id;
+      this.$router.push({ name: "backend_news_add", params: { Id: Id } });
+    },
 
   },
 
@@ -136,7 +141,6 @@ export default {
   mounted() {
 
     this.routerid = this.$route.params.Id;
-
 
     this.title = sessionStorage.getItem("news-title");
     this.category = sessionStorage.getItem("news-category");
