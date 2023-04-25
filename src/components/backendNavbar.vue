@@ -54,7 +54,7 @@ export default {
         this.villageData = response.data[response.data.length-1];
 
         this.town = this.villageData.TOWN;
-        console.log(this.town);
+        // console.log(this.town);
         // console.log(town);
       })
       .catch(error => {

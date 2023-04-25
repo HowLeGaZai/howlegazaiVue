@@ -91,7 +91,7 @@
                   <router-link :to="{name:'account_user_change_pwd'}">變更密碼</router-link>
                 </li>
                 <li>
-                  <a href="/" @click="clearCookies">登出</a>
+                  <a href="" @click="clearCookies">登出</a>
                 </li>
                 
               </ul>
@@ -156,7 +156,7 @@ export default {
         let name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
         document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/`;
       }
-      window.location.reload();
+      this.$router.push('/');
     },
     },
     mounted(){
