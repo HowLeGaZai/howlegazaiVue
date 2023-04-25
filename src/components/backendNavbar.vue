@@ -16,9 +16,9 @@
       <div class="admin-account">
         <p>里長好</p>
         <!-- 頭像 -->
-        <a href="#" class="userbtn">
-          <img src="../assets/img/admin_icon.png" alt="" class="user_pic">
-        </a>
+        <div class="image userbtn">
+            <img :src="portrait" alt="">
+        </div>
       </div>
     </nav>
   </header>
@@ -34,6 +34,7 @@ export default {
     return {
       villageData:[],
       town:'',
+      portrait:'',
 
 
 
@@ -60,6 +61,19 @@ export default {
       .catch(error => {
         // console.log(error);
       });
+
+      axios
+      .post('http://localhost/TGD104G1/public/API/Connection.php',{})
+      .then(response => {
+        this.portrait = response.data[response.data.length-1][11];
+
+        // console.log(this.town);
+        // console.log(town);
+      })
+      .catch(error => {
+        // console.log(error);
+      });
+
 
   },
 }
