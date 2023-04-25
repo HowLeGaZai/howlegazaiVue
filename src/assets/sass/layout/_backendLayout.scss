@@ -35,14 +35,26 @@
   display: flex;
   // vertical-align: middle;
   align-items: center;
+  
+ 
   p{
     font-size: 20px;
     margin-right: 20px;
   }
+  .image{
+    border: 1px solid #dcdcdc;
+    border-radius: 50%;
+    overflow: hidden;
+    text-align: center;
+    
+    
+  }
 
   .userbtn{
-    max-width: 60px;
-    max-height: 60px;
+    width: 60px;
+    height: 60px;
+
+  
   }
 }
 
