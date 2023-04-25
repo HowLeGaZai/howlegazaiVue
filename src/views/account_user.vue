@@ -11,7 +11,7 @@
               <h1 class="marginbottom30">個人資訊</h1>
               <div class="account_row col-md-6 col-12">
                 <h4>地址</h4>
-                <h4>{{ ADDRESS }}</h4>
+                <h4>{{ ADDRESS }}</h4> 
               </div>
               
               <div class="row account_row">
@@ -19,7 +19,7 @@
                   <h4>帳號
                     <span v-if="!formSubmitted" class="red-dot"><i class="bi bi-asterisk"></i></span>
                     <span v-if="!accountValid" class="red">*8~12字元，需包含英文小寫和數字</span>
-                    <span v-if="accountDuplicate" class="red">帳號已被註冊</span></h4>
+                    <span v-if="accountDuplicate" class="red">帳號已被註冊</span></h4> 
                   <input
                     type="text"
                     class="f-text nomargin changelineheight"
@@ -34,7 +34,7 @@
                     @focus="cleanBadaccount"
                     @keyup="fisttimeEdit"
                   />
-                  <h4 class="changelineheight" v-if="headHousehold">{{ ACCOUNT }}</h4>
+                  <h4 class="changelineheight" v-if="headHousehold">{{ ACCOUNT }}</h4> 
                 </div>
                 
                 <div class="col-md-6 col-12">
@@ -322,7 +322,7 @@ export default {
       // 尚未完成：表單驗證、表單儲存
       // 驗證欄位
 
-      // 檢查帳號格式
+      // 檢查帳號格式 要再確認是否完成
       async validateAccount() {
         const accountRegex = /^(?=.*[a-z])(?=.*\d)[a-z\d]{8,12}$/i; // 英數字混合帳號8~12位
         if (!accountRegex.test(this.account)) {
@@ -400,13 +400,14 @@ export default {
         }
       },
 
+      //要再確認- 不明功能 好像是要傳圖的
       onResultChanged(result) {
         // console.log(result.dataURL);
         this.dataURL = result.dataURL;
         // console.log(this.dataURL);
       },
 
-      //送出表單按鈕
+      //送出表單按鈕 -空值要再確認 
       submitForm() {
         this.formSubmitted = true;
         if (this.account === '' || this.password === '' || this.lastName === '' || this.firstName === '' ||
@@ -421,6 +422,7 @@ export default {
         console.log('表單提交成功');  
       },
 
+      //存到資料庫的欄位（要再確認成新版）
       saveInput() {
         const userId = this.getCookieValue("id");
         const GENDER = this.GENDER;
@@ -430,6 +432,8 @@ export default {
         const EMAIL = this.EMAIL;
         const PHONE = this.PHONE;
         const PORTRAIT = this.dataURL;
+
+        //再測測
 
         const url = 'http://localhost/TGD104G1/public/API/updateAccount.php';
         const data = new FormData();
@@ -451,11 +455,12 @@ export default {
             alert('儲存失敗'); // 顯示儲存失敗訊息
           };
           nextTick(() => {
-            this.mounted(); // 重新調用 mounted 函數
+            this.mounted(); // 重新調用 mounted 函數 --後來決定蟲load
             console.log("成功mounted")
           });
         });
 
+        //  這裡可能不用----
         axios.post(url, data)
         .then(response => {
           this.jsonData = response.data;
@@ -465,7 +470,7 @@ export default {
         .catch(error => {
           console.log(error);
         });
-
+      //  這裡可能不用---
 
         
         location.reload();
@@ -487,7 +492,7 @@ export default {
       //   console.log(id);
       // },
       
-
+        //抓cookie 覆蓋過去
       getCookie(nickman) {
         const value = `; ${document.cookie}`;
         const parts = value.split(`; ${nickman}=`);
@@ -496,11 +501,15 @@ export default {
         console.log(nickman)
       },
   },
-  watch: {
-    async getResult() {
-      this.dataURL = this.$refs.PortraitCrop.getResult(dataURL);
-    }
-  },
+
+  //可以先不用監測
+  // watch: {
+  //   async getResult() {
+  //     this.dataURL = this.$refs.PortraitCrop.getResult(dataURL);
+  //   }
+  // },
+
+
   computed: {},
   components: {
     navbar,
