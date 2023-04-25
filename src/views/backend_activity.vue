@@ -17,17 +17,17 @@
               <div class="displayflex textalignleft">
                 <div class="marginright20">
                   <label for="selecte" class="f-label">分類</label>
-                  <select name="" id="selecte" class="f-select">
-                    <option value="1">全部</option>
-                    <option value="2">旅遊</option>
-                    <option value="3">健康</option>
-                    <option value="4">藝文</option>
-                    <option value="5">其他</option>
+                  <select name="" id="selecte" class="f-select" v-model="selectedCategory">
+                    <option value="">-全部-</option>
+                    <option value="旅遊">旅遊</option>
+                    <option value="健康">健康</option>
+                    <option value="藝文">藝文</option>
+                    <option value="其他">其他</option>
                   </select>
                 </div>
                 <div>
                   <label for="selecte" class="f-label">上架狀態</label>
-                  <select name="" id="selecte" class="f-select">
+                  <select name="" id="selecte" class="f-select" v-model="selectedStatus">
                     <option value="1">全部</option>
                     <option value="2">上架中</option>
                     <option value="3">已下架 </option>
@@ -143,6 +143,8 @@ export default {
       CATEGORY:'',
       ATTEND_NUM:'',
 
+      selectedStatus: 1, // 選擇的上架狀態，預設為1（全部）
+      selectedCategory: '',
       datas:[],
       id: new Date().getTime()
     };
@@ -153,6 +155,15 @@ export default {
       backCalender,
       BackLeftNav,
       mobileNotSupport
+  },
+  computed : {
+    datas() {
+    if (!this.selectedCategory) {
+      return this.datas
+    }
+    return this.datas.filter(data => data.CATEGORY === this.selectedCategory)
+  },
+  
   },
   mounted() {
 
@@ -167,12 +178,17 @@ export default {
             console.log(error);
         });
         
+
+        
+        
   },
   methods: {
           
       toNewactivity(){
           this.$router.push({ name: "backend_activity_input", params: { Id: this.id } });
       },
+
+      
 
   },
 };
