@@ -51,8 +51,10 @@
           
                   <label for="activity-start" class="f-label activity-reg-1">活動舉辦時間</label>
                   <input type="date" class="f-text" id="activity-reg" placeholder="活動開始時間" v-model="activity_open">
+                  <input class="f-text" id="activity-reg" placeholder="活動開始時間 ex:08:00" v-model="activity_opentime">
                   <p>至</p>
                   <input type="date" class="f-text" id="activity-reg" placeholder="活動結束時間" v-model="activity_close">
+                  <input class="f-text" id="activity-reg" placeholder="活動結束時間 ex:19:00" v-model="activity_closetime">
                 </div>
 
               </div>
@@ -163,6 +165,8 @@ export default {
       nofee:false,
       content:'',
       pic:'',
+      activity_opentime:'',
+      activity_closetime:'',
     };
   },
 
@@ -170,7 +174,21 @@ export default {
 
   mounted() {
     
-    
+    if(sessionStorage.getItem('activity_name') !== null) {
+        this.activity_name = sessionStorage.getItem('activity_name');
+        this.category = sessionStorage.getItem('category');
+        this.regist_open = sessionStorage.getItem('regist_open');
+        this.regist_close = sessionStorage.getItem('regist_close');
+        this.activity_open = sessionStorage.getItem('activity_open');
+        this.activity_close = sessionStorage.getItem('activity_close');
+        this.activity_opentime = sessionStorage.getItem('activity_opentime');
+        this.activity_closetime = sessionStorage.getItem('activity_closetime');
+        this.activity_address = sessionStorage.getItem('activity_address');
+        this.max_ppl = sessionStorage.getItem('max_ppl');
+        this.content = sessionStorage.getItem('content');
+        this.pic = sessionStorage.getItem('pic');
+
+    }
 
     // var btnContainer = document.getElementById("selected");
     // var btns = btnContainer.getElementsByClassName("timeslot");
@@ -193,22 +211,33 @@ export default {
     },
 
     activityPreview(){
+      if(this.activity_name === '' || this.category === '' || this.regist_open === '' ||
+      this.regist_close === '' ||  this.activity_open === '' || this.activity_close === '' ||
+      this.activity_opentime === '' || this.activity_closetime === '' ||
+      this.activity_address === '' || this.max_ppl === '' ||  this.content === '' ||
+      this.pic === '' || (this.fee === '' && this.nofee != true )){
+          alert("請填寫所有欄位")
+      }else{
+
       sessionStorage.setItem('activity_name', this.activity_name);
       sessionStorage.setItem('category', this.category);
       sessionStorage.setItem('regist_open', this.regist_open);
       sessionStorage.setItem('regist_close', this.regist_close);
       sessionStorage.setItem('activity_open', this.activity_open);
       sessionStorage.setItem('activity_close', this.activity_close);
+      sessionStorage.setItem('activity_opentime', this.activity_opentime);
+      sessionStorage.setItem('activity_closetime', this.activity_closetime);
       sessionStorage.setItem('activity_address', this.activity_address);
       sessionStorage.setItem('max_ppl', this.max_ppl);
       sessionStorage.setItem('nofee', this.nofee);
       sessionStorage.setItem('fee', this.fee);
-      sessionStorage.setItem('fee', this.content);
+      sessionStorage.setItem('content', this.content);
       sessionStorage.setItem('pic', this.pic);
 
       const Id = this.$route.params.Id;
       console.log(Id)
-      this.$router.push({ name: 'news_info_preview', params: { Id: Id } });
+      this.$router.push({ name: 'activity_info_preview', params: { Id: Id } }); 
+      }   
     },
 
     handleChange(){
@@ -217,6 +246,9 @@ export default {
       }else{
       }
     }
+
+
+
   }
 
 

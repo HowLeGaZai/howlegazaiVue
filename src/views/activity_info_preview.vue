@@ -14,13 +14,13 @@
             <!-- <h1>活動資訊</h1>
              -->
             <div class="activity_typeAndTime">
-                <div class="tag tag-round tag-pink tag-btn tag-btn-selected">{{ activityData.CATEGORY }}</div>
-                <h4>發布日期：5小時前</h4>
+                <div class="tag tag-round tag-pink tag-btn tag-btn-selected">{{ category }}</div>
+                <!-- <h4>發布日期：5小時前</h4> -->
             </div>
         </div>
 
         <div class="info-article">
-            <h2>{{ activityData.TITLE }}</h2>
+            <h2>{{ activity_name}}</h2>
 
             <div class="userTag-2" id="">
                 <img src="../assets/img/user_pic2.png" alt="" class="userPic" />
@@ -31,22 +31,22 @@
             <table class="activityContent-2">
                 <tr class="actInfo-2">
                     <td>活動時間：</td>
-                    <td>{{ activityData.START_DATE }}  {{ activityData.START_TIME }}</td>
+                    <td>{{ activity_open }}  {{ activity_opentime }}</td>
                 </tr>
                 <tr class="actInfo-2">
                     <td>地點：</td>
-                    <td>{{ activityData.LOCATION }}</td>
+                    <td>{{ activity_address }}</td>
                 </tr>
                 <tr class="actInfo-2">
                     <td>報名人數限制：</td>
-                    <td>{{ activityData.MAX_PPL }}</td>
+                    <td>{{ max_ppl }}</td>
                 </tr>
                 <tr class="actInfo-2">
                     <td>報名截止時間：</td>
-                    <td>{{ activityData.REG_END }}</td>
+                    <td>{{ regist_close }}</td>
                 </tr>
                 <tr rowspan="2" class="actPrice-2">
-                    <td>{{ activityData.PRICE }} 元/人</td>
+                    <td>{{ fee }} 元/人</td>
                     <!-- <td>元/人</td> -->
                 </tr>
             </table>
@@ -67,11 +67,12 @@
             
             <div class="image act-img">
                 <!-- <img src="../assets/img/e1_calligraphy.png" alt=""> -->
-                <img :src="activityData.CONTENT_PIC" alt="">
+                <img :src="pic" alt="">
             </div>
             <div class="infoText">
 
-                <p class="infoText-p">{{ activityData.CONTENT }}</p>
+                <!-- <p class="infoText-p">{{ activityData.CONTENT }}</p> -->
+                <p class="infoText-p">{{ content }}</p>
 
             </div>
         </div>
@@ -103,7 +104,7 @@
 
                 <br><br>
                 <div class="activity_pop2">
-                    <h6>活動單價 NT$ {{ activityData.PRICE }} ，費用共計 NT$ {{ result }}</h6>
+                    <h6>活動單價 NT$ {{ fee }} ，費用共計 NT$ {{ result }}</h6>
                     <br><br>
                     <h6 style="color: red;">注意：若經查證後參加者非本里住民，將取消參加資格。</h6>
                     <br><br>
@@ -142,12 +143,28 @@ export default {
         data:[],
 
         inputValue: null,
+
+        activity_name:'',
+        category:'',
+        regist_open:'',
+        regist_close:'',
+        activity_open:'',
+        activity_close:'',
+        activity_address:'',
+        max_ppl:'',
+        fee:'',
+        content:'',
+        pic:'',
+        activity_opentime:'',
+        activity_closetime:'',
+
+        routerid:'',
         }
     },
     computed: {
         result() {
             if (this.inputValue !== null) {
-                return this.inputValue * this.activityData.PRICE
+                return this.inputValue * this.fee
             }
             return 0
         }
@@ -180,6 +197,26 @@ export default {
         btn_modal_close.addEventListener("click", function(){
             lightbox_el.classList.add("none");
         });
+
+        this.routerid = this.$route.params.Id;
+
+        this.activity_name = sessionStorage.getItem('activity_name');
+        this.category = sessionStorage.getItem('category');
+        this.regist_open = sessionStorage.getItem('regist_open');
+        this.regist_close = sessionStorage.getItem('regist_close');
+        this.activity_open = sessionStorage.getItem('activity_open');
+        this.activity_close = sessionStorage.getItem('activity_close');
+        this.activity_opentime = sessionStorage.getItem('activity_opentime');
+        this.activity_closetime = sessionStorage.getItem('activity_closetime');
+        this.activity_address = sessionStorage.getItem('activity_address');
+        this.max_ppl = sessionStorage.getItem('max_ppl');
+        if(sessionStorage.getItem('nofee') == true){
+            this.fee='免費';
+        }else{
+            this.fee = sessionStorage.getItem('fee');
+        }
+        this.content = sessionStorage.getItem('content');
+        this.pic = sessionStorage.getItem('pic');
         
     },    
     methods:{
@@ -217,6 +254,42 @@ export default {
             sessionStorage.setItem('inputValue', this.inputValue)
             sessionStorage.setItem('result', this.result)
         },
+
+        publish(){
+
+            const formData = new FormData()
+            formData.append('routerid', this.routerid)
+            formData.append('TITLE', this.activity_name)
+            formData.append('BANNER', this.pic)
+            formData.append('START_DATE', this.activity_open)
+            formData.append('START_TIME', this.activity_opentime)
+            formData.append('END_DATE', this.activity_close)
+            formData.append('END_TIME', this.activity_closetime)
+            formData.append('CATEGORY', this.category)
+            formData.append('LOCATION', this.activity_address)
+            formData.append('MAX_PPL', this.max_ppl)
+            formData.append('PRICE', this.fee)
+            formData.append('CONTENT', this.content)
+            formData.append('REG_START', this.regist_open )
+            formData.append('REG_END', this.regist_close )
+
+
+            axios
+            //  htdocs的環境下測試
+            .post('http://localhost/TGD104G1/public/API/activity_add.php',formData)
+            .then(response => {
+                
+            })
+            .catch(error => {
+                // console.log(error);
+            });
+
+        },
+
+        goback(){
+            const Id = this.$route.params.Id;
+            this.$router.push({ name: "backend_activity_input", params: { Id: Id } });
+        }
 
         
     },
