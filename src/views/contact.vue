@@ -30,7 +30,6 @@
           <h2>里辦地址</h2>
           <p>
             <a
-              href="https://www.google.com/search?q=花蓮縣國安鄉大湖里忠孝路12巷3號"
               target="_blank"
               >{{ adress }}</a
             >
