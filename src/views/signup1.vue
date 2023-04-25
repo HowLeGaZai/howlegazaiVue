@@ -76,8 +76,8 @@
 </template>
 
 <script>
-import navbar from "./navbar.vue";
-import Footer from "./Footer.vue";
+import navbar from "../components/navbar.vue";
+import Footer from "../components/Footer.vue";
 
 
 // import { ref } from 'vue';

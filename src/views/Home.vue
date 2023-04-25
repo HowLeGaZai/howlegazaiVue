@@ -166,10 +166,9 @@ import "swiper/css";
 import "swiper/css/navigation";
 
 // import required modules
-import axios from 'axios';
 import { Navigation } from "swiper";
-import navbar from "./navbar.vue";
-import Footer from "./Footer.vue";
+import navbar from '@/components/navbar.vue';
+import Footer from "@/components/Footer.vue";
 import NewsListHome from "../components/NewsListHome.vue";
 import ChatTopic from "@/components/ChatTopic.vue";
 // import axios from 'axios';

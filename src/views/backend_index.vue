@@ -148,21 +148,7 @@
 
     </main>
     <!------ 補這裡：不支援手機畫面 ------>
-    <div class="nosupport">
-      <main>
-        <section class="noSupport">
-          <a href="#">
-            <div>
-              <img class="LiIcon" src="../assets/img/LiIcon.png" alt="">
-              <h1>歹勢！後台目前不支援手機</h1>
-              <img class="cat" src="../assets/img/Cat.png" alt="">
-              <p>下班請休息，我們明天再忙！</p>
-            </div>
-          </a>
-        </section>
-      </main>
-
-    </div>
+    <mobileNotSupport></mobileNotSupport>
     <!------ 補這裡：不支援手機畫面 ------>
   </div>
   <Footer></Footer>
@@ -172,19 +158,20 @@
 
 <script>
 
-import backendNavbar from './backendNavbar.vue';
+import backendNavbar from '../components/backendNavbar.vue';
 import backCalender from '../components/BackCalender.vue';
 import BackLeftNav from '../components/BackLeftNav.vue';
+import mobileNotSupport from '@/components/mobileNotSupport.vue';
+import Footer from '../components/Footer.vue';
 import $ from 'jquery'
 import 'jquery-ui-dist/jquery-ui'
 import 'jquery-ui-dist/jquery-ui.min.css'
-import Footer from './Footer.vue';
 import { BIconMailbox } from 'bootstrap-icons-vue';
 
 
 export default {
   components: {
-    backendNavbar, Footer, backCalender, BackLeftNav
+    backendNavbar, Footer, backCalender, BackLeftNav,mobileNotSupport
   },
 
   data() {

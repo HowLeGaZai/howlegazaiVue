@@ -85,8 +85,8 @@
 
 <script>
 
-import navbar from './navbar.vue';
-import Footer from './Footer.vue';
+import navbar from '../components/navbar.vue';
+import Footer from '../components/Footer.vue';
 import NewsList from '../components/NewsList.vue';
 import { formatDate } from '../plugin/date';
 

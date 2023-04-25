@@ -9,8 +9,8 @@
 <script>
 
 import eventCard_Info from '../components/EventCard_Info.vue';
-import navbar from './navbar.vue';
-import Footer from './Footer.vue';
+import navbar from '../components/navbar.vue';
+import Footer from '../components/Footer.vue';
 
 export default {
 

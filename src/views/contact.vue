@@ -204,8 +204,8 @@
 
 <script>
 // import required modules
-import navbar from './navbar.vue';
-import Footer from './Footer.vue';
+import navbar from '@/components/navbar.vue';
+import Footer from "@/components/Footer.vue";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
 import "swiper/css/navigation";

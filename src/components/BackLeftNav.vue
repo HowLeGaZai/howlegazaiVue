@@ -41,8 +41,7 @@
         <div class="be-nav-on"
           :class="{ ['be-nav-off']: $route.name !== 'backend_account_new' && $route.name !== 'backend_account_overview' && $route.name !== 'backend_account_cancel' }">
           <router-link :to="{ name: 'backend_account_new' }">
-            <button class="be-nav btn-font-color-gray"
-              :class="{ ['be-nav-active']: $route.name === 'backend_account_new' }">待審核清單</button>
+            <button class="be-nav " :class="{ ['be-nav-active']: $route.name === 'backend_account_new' }">待審核清單</button>
           </router-link>
           <router-link :to="{ name: 'backend_account_overview' }">
             <button class="be-nav" :class="{ ['be-nav-active']: $route.name === 'backend_account_overview' }">帳戶總列表</button>
@@ -87,21 +86,15 @@
         </a>
         <div class="be-nav-on"
           :class="{ ['be-nav-off']: $route.name !== 'backend_space_list' && $route.name !== 'backend_space_management' && $route.name !== 'backend_space_reservation' }">
-          <router-link :to="{ name: 'backend_space_list' }"
-            :class="{ ['be-nav-active']: $route.name === 'backend_space_list' }">
-            <button class="be-nav btn-font-color-gray">空間列表</button>
+          <router-link :to="{ name: 'backend_space_list' }">
+            <button class="be-nav" :class="{ ['be-nav-active']: $route.name === 'backend_space_list'}">空間列表</button>
           </router-link>
-          <router-link :to="{ name: 'backend_space_management' }"
-            :class="{ ['be-nav-active']: $route.name === 'backend_space_management' }">
-            <button class="be-nav btn-font-color-gray">預約列表</button>
+          <router-link :to="{ name: 'backend_space_management' }">
+            <button class="be-nav" :class="{ ['be-nav-active']: $route.name === 'backend_space_management' }">預約列表</button>
           </router-link>
-          <router-link :to="{ name: 'backend_space_reservation' }"
-            :class="{ ['be-nav-active']: $route.name === 'backend_space_reservation' }">
-            <button class="be-nav btn-font-color-gray">待審核預約</button>
+          <router-link :to="{ name: 'backend_space_reservation' }">
+            <button class="be-nav" :class="{ ['be-nav-active']: $route.name === 'backend_space_reservation' }">待審核預約</button>
           </router-link>
-
-          <!-- <button class="be-nav btn-font-color-gray"  onclick="window.location.href='''">空間列表</button>
-                <button class="be-nav be-nav btn-font-color-gray"  onclick="window.location.href=''">預約管理</button> -->
         </div>
       </li>
         <li>
