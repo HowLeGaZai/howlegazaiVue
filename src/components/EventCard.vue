@@ -2,14 +2,15 @@
         <div class="activity_content">            
             <div class="card" v-for='(activity,index) in jsonData' :key="index">
                 <!-- <img class="image event_pic" :src="jsonData.BANNER" alt=""> -->
-                <img class="image event_pic" :src="activity.BANNER" alt="">
-                <div class="tag tag-pink card-tag">{{activity.CATEGORY}}</div>
+                <img class="image event_pic" :src="activity.BANNER ? activity.BANNER :require(`@/assets/img/default.jpg`)">
+                <div :class="['tag', 'card-tag','tag-round', addClass(activity.CATEGORY)]">{{ activity.CATEGORY }}</div>
+
                 <div class="card-line"></div>
                 <div class="">
                     <h3 class="card-title">{{activity.TITLE}}</h3>
 
                     <h5 class="card-date">活動日期：<span>{{activity.START_DATE}}</span></h5>
-                    <h3 class="card-price">{{activity.PRICE}}元</h3>
+                    <h3 class="card-price">{{ activity.PRICE == 0 ? '免費' : activity.PRICE + "元" }}</h3>
                     <!-- <a class="card-link" href="#/activity_info"><h5> 活動詳情<i class="bi bi-arrow-right"></i></h5></a> -->
                     <!-- <a class="card-link" @click="activityInfo(index)" role="link"><h5> 活動詳情<i class="bi bi-arrow-right"></i></h5></a> -->
                     <router-link class="card-link" :to="{ name: 'activity_info', params: { Id: activity.ID } }">
@@ -41,7 +42,15 @@ export default {
             console.log(this.jsonData[index]);
             console.log('活動的名稱是',this.jsonData[index][1]);
             sessionStorage.setItem("activity", this.jsonData[index][1]);
-        }
+        },
+          addClass(category) {
+            return {
+                "tag-pink": category === "藝文",
+                "tag-orange": category === "其他",
+                "tag-sky": category === "旅遊",
+                "tag-yellow ": category === "健康",
+      };
+    },
     },
     mounted() {
         axios

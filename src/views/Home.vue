@@ -62,7 +62,7 @@
             <div class="card">
               <a href="#">
                 <img
-                  :src="eventCard.BANNER"
+                  :src="eventCard.BANNER ? eventCard.BANNER :require(`@/assets/img/default.jpg`)"
                   alt=""
                   class="image event_pic"
                 />
@@ -76,7 +76,7 @@
                 <h5 class="card-date">
                   活動日期：<span>{{ eventCard.START_DATE }}</span>
                 </h5>
-                <h3 class="card-price">NT{{ eventCard.PRICE }}</h3>
+                <h3 class="card-price">{{ eventCard.PRICE == 0 ? '免費' : eventCard.PRICE + "元" }}</h3>
                 <router-link class="card-link" :to="{ name: 'activity_info', params: { Id: eventCard.ID }}">
                     <h5>活動詳情<i class="bi bi-arrow-right"></i></h5>
                 </router-link>
