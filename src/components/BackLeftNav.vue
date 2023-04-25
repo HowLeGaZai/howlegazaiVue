@@ -86,11 +86,12 @@
         </a>
         <div class="be-nav-on"
           :class="{ ['be-nav-off']: $route.name !== 'backend_space_list' && $route.name !== 'backend_space_management' && $route.name !== 'backend_space_reservation' }">
-          <router-link :to="{ name: 'backend_space_list' }">
-            <button class="be-nav" :class="{ ['be-nav-active']: $route.name === 'backend_space_list'}">空間列表</button>
+          <router-link :to="{ name: 'backend_space_list' }"
+            >
+            <button class="be-nav" :class="{ ['be-nav-active']: $route.name === 'backend_space_list' }">空間列表</button>
           </router-link>
           <router-link :to="{ name: 'backend_space_management' }">
-            <button class="be-nav" :class="{ ['be-nav-active']: $route.name === 'backend_space_management' }">預約列表</button>
+          <button class="be-nav" :class="{ ['be-nav-active']: $route.name === 'backend_space_management' }">預約列表</button>
           </router-link>
           <router-link :to="{ name: 'backend_space_reservation' }">
             <button class="be-nav" :class="{ ['be-nav-active']: $route.name === 'backend_space_reservation' }">待審核預約</button>

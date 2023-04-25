@@ -12,10 +12,11 @@
                         <div class="displayflex justifycontent">
 
                             <div class="displayflex textalignleft">
-                            
+
                             </div>
                             <div class="displayflex margintop18">
-                                <router-link :to="{name:'backend_space_add'}" type="button" class="btn-10-s btn-color-green marginright20 bk_addSpace">
+                                <router-link :to="{ name: 'backend_space_add' }" type="button"
+                                    class="btn-10-s btn-color-green marginright20 bk_addSpace">
                                     <i class="bi bi-plus-lg"></i> 新增空間
                                 </router-link>
                             </div>
@@ -26,37 +27,37 @@
 
                                 <tbody>
                                     <tr>
-                                    <td>空間編號</td>
-                                    <td>空間名稱</td>
-                                    <td>預約數</td>
-                                    <td>連結</td>
-                                    <td>編輯</td>
-                                    <td>刪除</td>
-                                    
+                                        <td>空間編號</td>
+                                        <td>空間名稱</td>
+                                        <td>預約數</td>
+                                        <td>連結</td>
+                                        <td>編輯</td>
+                                        <td>刪除</td>
+
                                     </tr>
-                                    <tr v-for="(space,index) in jsonData" :key="index">
-                                        <td>{{index+1}}</td>
-                                        <td>{{space.NAME}}</td>
-                                        <td>{{space.COUNT}}</td>
+                                    <tr v-for="(space, index) in jsonData" :key="index">
+                                        <td>{{ index + 1 }}</td>
+                                        <td>{{ space.NAME }}</td>
+                                        <td>{{ space.COUNT }}</td>
                                         <td>
                                             <!-- <button type="button" class="btn-icon" onclick="window.open('#/space_info', '_blank')"> -->
                                             <button type="button" class="btn-icon" @click="spaceInfo(index)">
-                                            <i class="bi bi-link-45deg btn-font-color-green"></i>
-                                        </button>
+                                                <i class="bi bi-link-45deg btn-font-color-green"></i>
+                                            </button>
                                         </td>
-                                        
+
                                         <td><button type="button" class="btn-icon">
-                                            <i class="bi bi-pencil-square btn-font-color-green"></i>
-                                        </button>
+                                                <i class="bi bi-pencil-square btn-font-color-green"></i>
+                                            </button>
                                         </td>
 
                                         <td><button type="button" class="btn-icon" @click="deleteSpace(space.ID)">
-                                            <i class="bi bi-x-circle-fill btn-font-color-green"></i>
+                                                <i class="bi bi-x-circle-fill btn-font-color-green"></i>
                                             </button>
                                         </td>
-                                    
+
                                     </tr>
-                                    
+
 
 
 
@@ -72,7 +73,8 @@
                             <li><button class="btn-page btn-color-green">1</button></li>
                             <li><button class="btn-page btn-color-white">2</button></li>
                             <li><button class="btn-page btn-color-white">3</button></li>
-                            <li><button class="btn-page btn-color-white"><i class="bi bi-caret-right-fill"></i></button></li>
+                            <li><button class="btn-page btn-color-white"><i class="bi bi-caret-right-fill"></i></button>
+                            </li>
                         </ul>
                     </div>
                 </section>
@@ -97,82 +99,71 @@ import 'jquery-ui-dist/jquery-ui'
 import 'jquery-ui-dist/jquery-ui.min.css'
 
 export default {
-    data(){
-        return{
-            jsonData:[],
-            orderData:[],
-            spaceID:'',
+    data() {
+        return {
+            jsonData: [],
+            orderData: [],
+            spaceID: '',
         };
     },
     components: {
       backendNavbar,Footer,backCalender,BackLeftNav,mobileNotSupport
     },
     mounted() {
-    $('#resizable').resizable({});
-    $('#datepicker').datepicker({
-        monthNames: [ "一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月" ],
-          dayNamesMin: [ "週日", "週一", "週二", "週三", "週四", "週五", "週六" ], 
-          dateFormat: "yy/mm/dd",
-          
-          onSelect: function(){
-            var selected = $(this).val();
-            $('.selectedD').html(`日期:&nbsp` + selected);
-            // console.log(selected);
+        $('#resizable').resizable({});
+        $('#datepicker').datepicker({
+            monthNames: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+            dayNamesMin: ["週日", "週一", "週二", "週三", "週四", "週五", "週六"],
+            dateFormat: "yy/mm/dd",
 
-            // let dayNamesMin = $(this).datepicker( "option", "dayNamesMin" );
-            // console.log(dayNamesMin);
-        }
-    });
-   let beMenu = document.querySelectorAll(".be-menu");
-   let beMenuOn = document.querySelectorAll(".be-nav-on");
-    // let beMenu = document.querySelectorAll("be-nav");
-    // console.log(beMenu);
+            onSelect: function () {
+                var selected = $(this).val();
+                $('.selectedD').html(`日期:&nbsp` + selected);
+                // console.log(selected);
 
-  for(let i = 0; i < beMenu.length; i++){
-    beMenu[i].addEventListener("click",function(){
-      beMenuOn[i].classList.toggle('be-nav-off');
-    //   console.log(beMenu[i]);
-    })
-  }
-
-
-    axios
-     .get('http://localhost/TGD104G1/public/API/backendSpace.php')
-        // .get('https://tibamef2e.com/tgd104/g1/accountOverview.php')
-        .then(response => {
-            this.jsonData = response.data;
-            console.log(response.data);
-            const newArr = this.jsonData.map(item => {
-                return{
-                    ID: item.ID,
-                    NAME: item.NAME,
-                    COUNT: item.COUNT === null ? 0 : item.COUNT,
-                }
-            });
-            console.log('new',newArr);
-            this.jsonData = newArr;
-
-            
-        })
-        .catch(error => {
-            // console.log(error);
+                // let dayNamesMin = $(this).datepicker( "option", "dayNamesMin" );
+                // console.log(dayNamesMin);
+            }
         });
 
 
+        axios
+            .get('http://localhost/TGD104G1/public/API/backendSpace.php')
+            // .get('https://tibamef2e.com/tgd104/g1/accountOverview.php')
+            .then(response => {
+                this.jsonData = response.data;
+                console.log(response.data);
+                const newArr = this.jsonData.map(item => {
+                    return {
+                        ID: item.ID,
+                        NAME: item.NAME,
+                        COUNT: item.COUNT === null ? 0 : item.COUNT,
+                    }
+                });
+                console.log('new', newArr);
+                this.jsonData = newArr;
 
-        
-    
-  },
-  methods:{
-        spaceInfo(index){
+
+            })
+            .catch(error => {
+                // console.log(error);
+            });
+
+
+
+
+
+    },
+    methods: {
+        spaceInfo(index) {
             console.log(index);
             console.log(this.jsonData[index]);
             sessionStorage.setItem("spaceID", this.jsonData[index].ID);
             sessionStorage.setItem("space", this.jsonData[index].NAME);
             this.$router.push({ name: 'space_info', params: { Id: this.jsonData[index].ID } });
         },
-        deleteSpace(spaceID){
-            
+        deleteSpace(spaceID) {
+
             const formData = new FormData()
             formData.append('spaceID', this.spaceID)
 
@@ -188,13 +179,13 @@ export default {
                 });
 
         }
-  },
-  computed:{
+    },
+    computed: {
 
-  }
- 
-  
+    }
 
-  
+
+
+
 }
 </script>

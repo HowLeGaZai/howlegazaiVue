@@ -4,15 +4,17 @@
         <main class="backpadding">
             <backCalender></backCalender>
             <section class="container-main">
+                <!------- 補這裡：後台側欄選單 ------->
                 <BackLeftNav></BackLeftNav>
+                <!------- 補這裡：後台側欄選單 ------->
                 <section class="section_right">
                     <!-- 空間總覽 -->
                     <div class="w90percentage accounttable bk-space-management">
-                    <h1>預約列表</h1>
-                    <div class="displayflex justifycontent">
+                        <h1>預約列表</h1>
+                        <div class="displayflex justifycontent">
 
-                        <div class="displayflex textalignleft">
-                        <!-- <div class="marginright20">
+                            <div class="displayflex textalignleft">
+                                <!-- <div class="marginright20">
                             <label for="selecte" class="f-label">分類</label>
                             <select name="" id="selecte" class="f-select">
                             <option value="1">全部</option>
@@ -22,7 +24,7 @@
                             <option value="5">其他</option>
                             </select>
                         </div> -->
-                        <!-- <div>
+                                <!-- <div>
                             <label for="selecte" class="f-label">上架狀態</label>
                             <select name="" id="selecte" class="f-select">
                             <option value="1">全部</option>
@@ -31,46 +33,47 @@
 
                             </select>
                         </div> -->
+                            </div>
+
+                        </div>
+                        <div class="">
+
+                            <table class=" back-table-2 bk-space-management-table">
+
+                                <tbody>
+                                    <tr>
+                                        <td>單號</td>
+                                        <td>預約人</td>
+                                        <td>申請人電話</td>
+                                        <td>預約空間</td>
+                                        <td>預約時段</td>
+                                        <td>用途</td>
+                                    </tr>
+                                    <tr v-for="(order, index) in jsonData" :key="index">
+                                        <td>001</td>
+                                        <td>{{ order.APPLY_NAME }}</td>
+                                        <td>{{ order.APPLY_PHONE }}</td>
+                                        <td>{{ order.NAME }}</td>
+                                        <td>{{ order.REV_DATE }} <br>{{ order.START_CLOSE_TIME }}</td>
+                                        <td>{{ order.PURPOSE }}</td>
+                                    </tr>
+
+                                </tbody>
+
+                            </table>
+
                         </div>
 
-                    </div>
-                    <div class="">
+                        <!-- 頁碼還沒寫完 -->
 
-                        <table class=" back-table-2 bk-space-management-table">
-
-                        <tbody>
-                            <tr>
-                                <td>單號</td>
-                                <td>預約人</td>
-                                <td>申請人電話</td>
-                                <td>預約空間</td>
-                                <td>預約時段</td>
-                                <td>用途</td>                            
-                            </tr>
-                            <tr v-for="(order,index) in jsonData" :key="index">
-                                <td>001</td>
-                                <td>{{order.APPLY_NAME}}</td>
-                                <td>{{order.APPLY_PHONE}}</td>
-                                <td>{{order.NAME}}</td>
-                                <td>{{order.REV_DATE}} <br>{{order.START_CLOSE_TIME}}</td>
-                                <td>{{order.PURPOSE}}</td>
-                            </tr>
-                            
-                        </tbody>
-
-                        </table>
-
-                    </div>
-
-                    <!-- 頁碼還沒寫完 -->
-
-                    <ul class="btn-page-block">
-                        <li><button class="btn-page btn-color-white"><i class="bi bi-caret-left-fill"></i></button></li>
-                        <li><button class="btn-page btn-color-green">1</button></li>
-                        <li><button class="btn-page btn-color-white">2</button></li>
-                        <li><button class="btn-page btn-color-white">3</button></li>
-                        <li><button class="btn-page btn-color-white"><i class="bi bi-caret-right-fill"></i></button></li>
-                    </ul>
+                        <ul class="btn-page-block">
+                            <li><button class="btn-page btn-color-white"><i class="bi bi-caret-left-fill"></i></button></li>
+                            <li><button class="btn-page btn-color-green">1</button></li>
+                            <li><button class="btn-page btn-color-white">2</button></li>
+                            <li><button class="btn-page btn-color-white">3</button></li>
+                            <li><button class="btn-page btn-color-white"><i class="bi bi-caret-right-fill"></i></button>
+                            </li>
+                        </ul>
 
                     </div>
 
@@ -101,9 +104,9 @@ export default {
   components: {
     backendNavbar,Footer,backCalender,BackLeftNav,mobileNotSupport
     },
-    data(){
-        return{
-          jsonData:[],  
+    data() {
+        return {
+            jsonData: [],
         };
     },
     mounted() {
