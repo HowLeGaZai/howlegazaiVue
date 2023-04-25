@@ -140,7 +140,6 @@ export default {
                 
               })
 
-
               const formData = new FormData()
               formData.append('ACCOUNT', this.account)
               formData.append('PASSWORD', this.newPassword)

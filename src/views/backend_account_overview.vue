@@ -44,12 +44,15 @@
                       <td>{{ account[1] }}</td>
                       <td>{{ account[2] }}</td>
                       <td>{{ account[3] }}</td>
-                      <td>
+                      <!-- <td>
                         <div class="guard">
                           <i class="bi bi-tag"></i>
                           <span>{{ account[4] }}</span>
                           <i class="bi bi-x"></i>
                         </div>
+                      </td> -->
+                      <td>
+                        {{ account[4] }}
                       </td>
 
                       <td>
@@ -227,7 +230,7 @@
               </div>
             </div>
             <!-- 頁碼 -->
-            <ul class="btn-page-block">
+            <!-- <ul class="btn-page-block">
               <li>
                 <button class="btn-page btn-color-white">
                   <i class="bi bi-caret-left-fill"></i>
@@ -241,7 +244,7 @@
                   <i class="bi bi-caret-right-fill"></i>
                 </button>
               </li>
-            </ul>
+            </ul> -->
           </div>
         </section>
       </section>

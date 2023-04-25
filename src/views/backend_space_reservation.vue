@@ -45,14 +45,14 @@
 
                         <!-- 頁碼還沒寫完 -->
 
-                        <ul class="btn-page-block">
+                        <!-- <ul class="btn-page-block">
                             <li><button class="btn-page btn-color-white"><i class="bi bi-caret-left-fill"></i></button></li>
                             <li><button class="btn-page btn-color-green">1</button></li>
                             <li><button class="btn-page btn-color-white">2</button></li>
                             <li><button class="btn-page btn-color-white">3</button></li>
                             <li><button class="btn-page btn-color-white"><i class="bi bi-caret-right-fill"></i></button>
                             </li>
-                        </ul>
+                        </ul> -->
 
                     </div>
 
@@ -140,7 +140,8 @@ export default {
                 .catch(error => {
                     // console.log(error);
                 });
-
+            
+            alert("審核不通過")
             location.reload();
         },
 
