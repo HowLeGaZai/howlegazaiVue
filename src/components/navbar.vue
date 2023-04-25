@@ -154,7 +154,7 @@ export default {
         let cookie = cookieArr[i];
         let eqPos = cookie.indexOf("=");
         let name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-        document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/`;
+        document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; domain=tibamef2e.com; path=/tgd104/g1/dist`;
       }
       this.$router.push('/');
     },
