@@ -100,19 +100,7 @@ export default {
   components: {
       backendNavbar,Footer,PictureCropbanner,backCalender,BackLeftNav,mobileNotSupport
     },
-    created() {
-    // 检查localStorage是否有存储的数据
-    if (localStorage.getItem('formData')) {
-      const data = JSON.parse(localStorage.getItem('formData'));
-      // 将数据设置为组件数据的值
-      this.city = data.city;
-      this.district = data.district;
-      this.village = data.village;
-      this.population = data.population;
-      this.home_num = data.home_num;
-    }
-  },
-    
+
     mounted() {
     
    let beMenu = document.querySelectorAll(".be-menu");
@@ -128,6 +116,7 @@ export default {
   }
 
   },
+  
   methods:{
     //建立一個fromdata 
     save1(){
@@ -149,14 +138,14 @@ export default {
             console.log(error);
         });
 
-              // 這個是下次還可以看到 之前輸入的資料 用localStorage 先存起來
-      localStorage.setItem('formData', JSON.stringify({
-        city: this.city,
-        district: this.district,
-        village: this.village,
-        population: this.population,
-        home_num: this.home_num
-      }));
+    },
+    webInfo(){
+      
+      this.city = this.jsonData[this.jsonData.length-1].CITY ;
+      this.district = this.jsonData[this.jsonData.length-1].DISTRICT ;
+      this.village = this.jsonData[this.jsonData.length-1].TOWN ;
+      console.log(this.city);
+
     },
     save2(){
         //這裡是 人口 戶籍 
@@ -164,6 +153,8 @@ export default {
       formData2.append('population', this.population)
       formData2.append('home_num', this.home_num)
 
+      
+      
       axios
         .post('http://localhost/TGD104G1/public/API/village.php', formData2)
         .then(response => {
@@ -174,15 +165,11 @@ export default {
         .catch(error => {
             console.log(error);
         });
-          // 這裡是可以儲存好 人數 戶數
-      localStorage.setItem('formData', JSON.stringify({
-        population: this.population,
-        home_num: this.home_num,
-        city: this.city,
-        district: this.district,
-        village: this.village,
-      }));
-    },
+ },
+ countvillage() {
+      this.population = this.villageData[this.villageData.length - 1].POPULATION;
+      this.home_num = this.villageData[this.villageData.length - 1].HOME_NUM;
+ },
     save3(){
       
       // 這裡是首頁背景圖
@@ -196,21 +183,46 @@ export default {
         .catch(error => {
           console.log(error)
         })
-
-        localStorage.setItem('formData', JSON.stringify({
-        population: this.population,
-        home_num: this.home_num,
-        city: this.city,
-        district: this.district,
-        village: this.village,
-      }));
     },
     sendpic(data){
         this.pic = data;
         
     }
   },
+  mounted(){
+   // 這裡是 縣市里
+   axios
+        .post('http://localhost/TGD104G1/public/API/home.php',{})
+        .then(response => {
+            this.jsonData = response.data;
+            // alert(response.data)
+            // console.log(this.jsonData[this.jsonData.length-1].CITY);
+            this.webInfo();
+            // console.log(this.jsonData.length);
+            // console.log(this.jsonData);
+        })
+        .catch(error => {
+            // console.log(error);
+        });
+
+        axios
+      .post('http://localhost/TGD104G1/public/API/people.php', {})
+      .then(response => {
+        this.villageData = response.data;
+        // alert(response.data)
+        // console.log(this.villageData[this.villageData.length-1].POPULATION);//最新人口數
+        // console.log(this.villageData[this.villageData.length-1].HOME_NUM);//最新戶數
+        //計算人口相關加總數
+        this.countvillage();
+
+      })
+      .catch(error => {
+        console.log(error);
+      });
  
+      },
+
+     
   
 
   

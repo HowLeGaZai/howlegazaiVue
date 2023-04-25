@@ -40,7 +40,7 @@
                         <div class="col-12 col-ml-2">
                             <label for="electionyear" class="f-label">選舉屆次</label>
                             <input type="number" class="f-text" id="electionyear" placeholder="範例：第21屆" v-model="electionyear">
-                            <input type="number" class="f-text" id="electionyear" placeholder="" v-model="electionyear">
+
                         </div>
                         <div class="col-12 col-ml-4">
                             <label for="degree" class="f-label">學歷</label>
@@ -57,25 +57,8 @@
                     <h5>村里長照片</h5>
                     <picture-crop @pic="sendpic1"></picture-crop>
 
-                    <!-- <div class="uploading">
-                        <label for="upload-file-1" class="uploadpic">
-                          <input type="file" id="upload-file-1" style="display:none">
-                          <div class="btn-10-s btn-color-green ">
-                            <i class="bi bi-arrow-bar-up"></i>上傳圖片
-                          </div>
-                        </label>
-                        <div class="pic-area">
-                          <div class="pic-area-box">
-                            <img src="" alt="">
-                            <span></span>
-                              <button class="trash"><i class="bi bi-trash3"></i></button>
-                          </div>
-                          <p>設計最佳建議：560 x 560 像素，且大小不得超過 100 KB 的圖檔</p>
-                      </div>
-                    </div> -->
-
                 </section>
-                <section>
+             <section>
                     <h5>里辦資訊</h5>
                     <div class="row">
                         <div class="col-12 col-ml-6">
@@ -110,22 +93,6 @@
                             <div class="uploading_2 col-12 col-ml-8">
                                 <h6 class="f-label">圖片</h6>
                                
-                                <!-- <div class="uploading upload_area">
-                                    <label for="upload-file-2" class="uploadpic">
-                                      <input type="file" id="upload-file-2" style="display:none">
-                                      <div class="btn-10-s btn-color-green ">
-                                        <i class="bi bi-arrow-bar-up"></i>上傳圖片
-                                      </div>
-                                    </label>
-                                    <div class="pic-area">
-                                      <div class="pic-area-box">
-                                        <img src="" alt="">
-                                        <span></span>
-                                          <button class="trash"><i class="bi bi-trash3"></i></button>
-                                      </div>
-                                      <p>設計最佳建議：560 x 560 像素，且大小不得超過 100 KB 的圖檔</p>
-                                  </div>
-                                </div> -->
                                <picture-crop @pic="sendpic2"></picture-crop>
                             </div>
                         </div> <br>
@@ -147,23 +114,7 @@
                             </div>
                             <div class="uploading_2 col-12 col-ml-8">
                                 <h6 class="f-label">圖片</h6>
-                           
-                                <!-- <div class="uploading upload_area">
-                                    <label for="upload-file-3" class="uploadpic">
-                                      <input type="file" id="upload-file-3" style="display:none">
-                                      <div class="btn-10-s btn-color-green ">
-                                        <i class="bi bi-arrow-bar-up"></i>上傳圖片
-                                      </div>
-                                    </label>
-                                    <div class="pic-area">
-                                      <div class="pic-area-box">
-                                        <img src="" alt="">
-                                        <span></span>
-                                          <button class="trash"><i class="bi bi-trash3"></i></button>
-                                      </div>
-                                      <p>設計最佳建議：560 x 560 像素，且大小不得超過 100 KB 的圖檔</p>
-                                  </div>
-                                </div> -->
+        
                                <picture-crop @pic="sendpic3"></picture-crop>
                             </div>
                         </div> <br>
@@ -184,22 +135,8 @@
                             </div>
                             <div class="uploading_2 col-12 col-ml-8">
                                 <h6 class="f-label">圖片</h6>
-                                <!-- <div class="uploading upload_area">
-                                    <label for="upload-file-4" class="uploadpic">
-                                      <input type="file" id="upload-file-4" style="display:none">
-                                      <div class="btn-10-s btn-color-green ">
-                                        <i class="bi bi-arrow-bar-up"></i>上傳圖片
-                                      </div>
-                                    </label>
-                                    <div class="pic-area">
-                                      <div class="pic-area-box">
-                                        <img src="" alt="">
-                                        <span></span>
-                                          <button class="trash"><i class="bi bi-trash3"></i></button>
-                                      </div>
-                                      <p>設計最佳建議：560 x 560 像素，且大小不得超過 100 KB 的圖檔</p>
-                                  </div>
-                                </div> -->
+                    
+
                                <picture-crop @pic="sendpic4"></picture-crop>
                             </div>
                         </div> <br>
@@ -274,31 +211,16 @@ export default{
   },
   components: {
       backendNavbar,Footer,PictureCrop,backCalender,BackLeftNav,mobileNotSupport,
-      created() {
-    // 检查localStorage是否有存储的数据
-    if (localStorage.getItem('formData1')) {
-      const data = JSON.parse(localStorage.getItem('formData1'));
-      // 将数据设置为组件数据的值
-      this.firstname = data.firstname;
-      this.lastname = data.lastname;
-      this.gender = data.gender;
-      this.electionyear = data.electionyear;
-      this.mainphone = data.mainphone;
-      this.secphone = data.secphone;
-      this.email = data.email;
-      this.address = data.address;
-    }
-  },
-    
     },
     methods: {
       // 上面的按鈕
       saveEO(){
         const formData = new FormData()
+        formData.append('firstname', this.lastname + this.firstname)
+        formData.append('lastname', this.lastname + this.lastname)
+
         formData.append('fullname', this.lastname + this.firstname)
-        // formData.append('lastname', this.lastname)
         formData.append('gender', this.gender)
-        // formData.append('female', this.female)
         formData.append('electionyear', this.electionyear)
         formData.append('degree', this.degree)
         formData.append('mainphone', this.mainphone)
@@ -306,24 +228,8 @@ export default{
         formData.append('email', this.email)
         formData.append('address', this.address)
         formData.append('pic1', this.pic1)
-
-        // let responseData;
-       
-        var mainphone = document.getElementById("mainphone").value;
-        var secphone = document.getElementById("secphone").value;
-
-        // 驗證主要聯絡電話
-        if (!(/^09\d{8}$/.test(mainphone))) {
-        alert("主要聯絡電話格式錯誤，應為09開頭的10個數字");
-        return false;
-         }
-        // 驗證第二聯絡電話
-        if (secphone && !(/^09\d{8}$/.test(secphone))) {
-        alert("第二聯絡電話格式錯誤，應為09開頭的10個數字");
-        return false;
-          }
-
-  // return true;
+        formData.append('autobiography', this.autobiography)
+// return true;
 
  
 axios
@@ -336,23 +242,26 @@ axios
   .catch(error => {
       console.log(error);
   });
-               // 這裡是可以儲存 基本資料
-      localStorage.setItem('formData1', JSON.stringify({
-        firstname: this.firstname,
-        lastname: this.lastname,
-        gender : this.gender,
-        electionyear : this.electionyear,
-        degree : this.degree,
-        mainphone : this.mainphone,
-        secphone :this.secphone,
-        email : this.email,
-        address :  this.address ,
-        autobiography : 'this.autobiography',
-        pic1 : this.pic1,
-      }));
+},
+
+webInfo(){
+      
+      this.firstname   = this.jsonData[this.jsonData.length-1].FIRSTNAME ;
+      this.lastname = this.jsonData[this.jsonData.length-1].LASTNAME ;
+      this.fullname = this.jsonData[this.jsonData.length-1].FULLNAME ;
+      this.email = this.jsonData[this.jsonData.length-1].EMAIL ;
+      this.mainphone = this.jsonData[this.jsonData.length-1].MAINPHONE ;
+      this.secphone = this.jsonData[this.jsonData.length-1].SECPHONE ;
+      this.electionyear = this.jsonData[this.jsonData.length-1].ELECTIONYEAR ;
+      this.degree = this.jsonData[this.jsonData.length-1].DEGREE ;
+      this.address = this.jsonData[this.jsonData.length-1].ADDRESS ;
+      this.pic1 = this.jsonData[this.jsonData.length-1].PORTRAIT ;
+      this.gender = this.jsonData[this.jsonData.length-1].GENDER ;
+      this.autobiography = this.jsonData[this.jsonData.length-1].AUTOBIOGRAPHY ;
 
 
-      },
+
+    },
 
 
       //最下面的按鈕
@@ -369,33 +278,35 @@ axios
       formData.append('pic3', this.pic3)
       formData.append('pic4', this.pic4)
 
-      let responseData;
-
       axios
         .post('http://localhost/TGD104G1/public/API/officeSwiper.php', formData)
         .then(response => {
             // this.jsonData = response.data;
+            
             responseData = response.data;
             console.log(response.data);
-            alert("儲存成功")
+          
         })
         .catch(error => {
             console.log(error);
+            
         });
-
-      this.title1;
-      this.title2;
-      this.title3;
-      this.content1;
-      this.content2;
-      this.content3;
-      this.content3;
-      this.pic2;
-      this.pic3;
-      this.pic4;
       
      
       },
+
+      webSwiper(){
+      this.title1 = this.jsonData[this.jsonData.length-1].FEATURE_TITLE_1 ;
+      console.log(this.title1)
+      this.title2 = this.jsonData[this.jsonData.length-1].FEATURE_TITLE_2 ;
+      this.title3 = this.jsonData[this.jsonData.length-1].FEATURE_TITLE_3 ;
+      this.content1 = this.jsonData[this.jsonData.length-1].FEATURE_CONTENT_1 ;
+      this.content2 = this.jsonData[this.jsonData.length-1].FEATURE_CONTENT_2 ;
+      this.content3 = this.jsonData[this.jsonData.length-1].FEATURE_CONTENT_3 ;
+      this.pic2 = this.jsonData[this.jsonData.length-1].PIC1 ;
+      this.pic3 = this.jsonData[this.jsonData.length-1].PIC2 ;
+      this.pic4 = this.jsonData[this.jsonData.length-1].PIC3 ;
+    },
 
       sendpic1(data){
         this.pic1 = data;
@@ -426,7 +337,33 @@ axios
     
   }
 
+  axios
+        .post('http://localhost/TGD104G1/public/API/Connection.php',{})
+        .then(response => {
+            this.jsonData = response.data;
+            // alert(response.data)
+            // console.log(this.jsonData[this.jsonData.length-1].FULLNAME);
+            this.webInfo();
+            // console.log(this.jsonData.length);
+            // console.log(this.jsonData);
+        })
+        .catch(error => {
+            // console.log(error);
+        });
 
+        axios
+        .post('http://localhost/TGD104G1/public/API/feature.php',{})
+        .then(response => {
+            this.jsonData = response.data;
+            // alert(response.data)
+            // console.log(this.jsonData[this.jsonData.length-1].FULLNAME);
+            this.webSwiper();
+            // console.log(this.jsonData.length);
+            // console.log(this.jsonData);
+        })
+        .catch(error => {
+            // console.log(error);
+        });
   },
  
   

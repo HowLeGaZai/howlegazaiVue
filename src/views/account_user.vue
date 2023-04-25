@@ -484,6 +484,7 @@ export default {
 
       //   console.log(id);
       // },
+      
 
       getCookie(nickman) {
         const value = `; ${document.cookie}`;
