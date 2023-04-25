@@ -188,7 +188,7 @@
 
 
 <script>
-import navbar from "./navbar.vue";
+import navbar from "../components/navbar.vue";
 import Accountsidebar from '@/components/Accountsidebar.vue';
 import axios from 'axios';
 import PortraitCrop from "../components/PortraitCrop.vue";
@@ -484,6 +484,7 @@ export default {
 
       //   console.log(id);
       // },
+      
 
       getCookie(nickman) {
         const value = `; ${document.cookie}`;

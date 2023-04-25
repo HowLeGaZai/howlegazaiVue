@@ -55,7 +55,7 @@
 <script>
 
 import $ from 'jquery'
-import navbar from './navbar.vue';
+import navbar from '../components/navbar.vue';
 import Accountsidebar from '@/components/Accountsidebar.vue';
 
 export default {

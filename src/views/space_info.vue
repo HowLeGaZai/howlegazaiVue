@@ -142,7 +142,7 @@ import { Swiper, SwiperSlide } from 'swiper/vue';
 
   import '../assets/css/style.css';
 
-  // import required modules
+  // import required../components/navbar.vue
   import { Navigation } from 'swiper';
 
 
@@ -151,8 +151,8 @@ import { Swiper, SwiperSlide } from 'swiper/vue';
 import $ from 'jquery'
 import 'jquery-ui-dist/jquery-ui'
 import 'jquery-ui-dist/jquery-ui.min.css'
-import navbar from './navbar.vue';
-import Footer from './Footer.vue';
+import navbar from '@/components/navbar.vue';
+import Footer from "@/components/Footer.vue";
 import axios from 'axios';
 
 export default {

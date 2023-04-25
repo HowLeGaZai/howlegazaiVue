@@ -98,9 +98,9 @@
 </template>
 
 <script>
-import ChatTopic from "../components/ChatTopic.vue";
-import navbar from "./navbar.vue";
-import Footer from "./Footer.vue";
+import ChatTopic from '@/components/ChatTopic.vue';
+import navbar from '@/components/navbar.vue';
+import Footer from "@/components/Footer.vue";
 
 import { formatDate } from "../plugin/date";
 import { v4 as uuidv4 } from 'uuid';

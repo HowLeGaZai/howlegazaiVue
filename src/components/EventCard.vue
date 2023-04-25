@@ -11,7 +11,10 @@
                     <h5 class="card-date">活動日期：<span>{{activity.START_DATE}}</span></h5>
                     <h3 class="card-price">{{activity.PRICE}}元</h3>
                     <!-- <a class="card-link" href="#/activity_info"><h5> 活動詳情<i class="bi bi-arrow-right"></i></h5></a> -->
-                    <a class="card-link" @click="activityInfo(index)" role="link"><h5> 活動詳情<i class="bi bi-arrow-right"></i></h5></a>
+                    <!-- <a class="card-link" @click="activityInfo(index)" role="link"><h5> 活動詳情<i class="bi bi-arrow-right"></i></h5></a> -->
+                    <router-link class="card-link" :to="{ name: 'activity_info', params: { Id: activity.ID } }">
+                        <h5> 活動詳情<i class="bi bi-arrow-right"></i></h5>
+                    </router-link>
                     <!-- <button class="btn-m btn-color-green" @click="navigate" role="link">活動詳情</button> -->
                 </div>
             </div>

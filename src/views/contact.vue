@@ -30,7 +30,6 @@
           <h2>里辦地址</h2>
           <p>
             <a
-              href="https://www.google.com/search?q=花蓮縣國安鄉大湖里忠孝路12巷3號"
               target="_blank"
               >{{ adress }}</a
             >
@@ -204,8 +203,8 @@
 
 <script>
 // import required modules
-import navbar from './navbar.vue';
-import Footer from './Footer.vue';
+import navbar from '@/components/navbar.vue';
+import Footer from "@/components/Footer.vue";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -337,7 +336,7 @@ export default {
             // console.log(error);
         });
 
-    // 下半部輪播 axios     
+    // 最後QA問答 axios     
         axios
             .post('http://localhost/TGD104G1/public/API/QAdata.php',{})
             .then(response => {

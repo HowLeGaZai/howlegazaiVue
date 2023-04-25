@@ -77,9 +77,12 @@
                   活動日期：<span>{{ eventCard.START_DATE }}</span>
                 </h5>
                 <h3 class="card-price">NT{{ eventCard.PRICE }}</h3>
-                <a class="card-link" href="#"
+                <router-link class="card-link" :to="{ name: 'activity_info', params: { Id: eventCard.activityID }}">
+                    <h5>活動詳情<i class="bi bi-arrow-right"></i></h5>
+                </router-link>
+                <!-- <a class="card-link" href="#"
                   ><h5>活動詳情<i class="bi bi-arrow-right"></i></h5
-                ></a>
+                ></a> -->
               </div>
             </div>
           </swiper-slide>
@@ -166,10 +169,9 @@ import "swiper/css";
 import "swiper/css/navigation";
 
 // import required modules
-import axios from 'axios';
 import { Navigation } from "swiper";
-import navbar from "./navbar.vue";
-import Footer from "./Footer.vue";
+import navbar from '@/components/navbar.vue';
+import Footer from "@/components/Footer.vue";
 import NewsListHome from "../components/NewsListHome.vue";
 import ChatTopic from "@/components/ChatTopic.vue";
 // import axios from 'axios';
@@ -195,6 +197,7 @@ export default {
       // 這裡是活動輪播的data
       eventCards: [
         {
+          activityID:'',
           Titlepic : '',
           PRICE: '',
           START_DATE: "",
@@ -228,12 +231,13 @@ export default {
           return "tag-cyan";
       }
     },  
+    
     webInfo(){
       
       this.city = this.jsonData[this.jsonData.length-1].CITY ;
       this.district = this.jsonData[this.jsonData.length-1].DISTRICT ;
       this.town = this.jsonData[this.jsonData.length-1].TOWN ;
-      console.log(this.city);
+      // console.log(this.city);
 
     },
     banner(){
@@ -241,7 +245,8 @@ export default {
         // console.log('123',this.jsonDataBanner);
         // console.log('123', this.jsonDataBanner);
     },
-    banner1(){
+    activity(){
+        this.activityID = this.jsonData[this.jsonData.length-1].ID;
         this.Titlepic = this.jsonData[this.jsonData.length-1].BANNER;
         this.PRICE = this.jsonData[this.jsonData.length-1].PRICE;
         this.START_DATE = this.jsonData[this.jsonData.length-1].START_DATE;
@@ -294,7 +299,7 @@ export default {
         .post('http://localhost/TGD104G1/public/API/index_activity.php',{})
         .then(response => {
           this.jsonData = response.data;
-          this.banner1();
+          this.activity();
             // console.log(this.jsonDataBanner[this.jsonDataBanner.length-1].BANNER);
             
             // console.log(this.jsonData.length);

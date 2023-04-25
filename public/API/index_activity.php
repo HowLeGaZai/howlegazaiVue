@@ -4,7 +4,7 @@ include("conn.php");
 
 //---------------------------------------------------
 
-$sql = "SELECT BANNER, PRICE, START_DATE, TITLE
+$sql = "SELECT BANNER, PRICE, START_DATE, TITLE, ID
         FROM ACTIVITY
         ORDER BY START_DATE DESC
         LIMIT 8;";

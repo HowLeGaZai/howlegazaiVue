@@ -45,7 +45,7 @@
 </template>
 
 <script>
-import navbar from './navbar.vue';
+import navbar from '../components/navbar.vue';
 import Accountsidebar from '@/components/Accountsidebar.vue';
 import lightBox from '../components/lightBox.vue';
 

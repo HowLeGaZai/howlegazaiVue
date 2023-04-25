@@ -68,7 +68,7 @@
                             </router-link>
                     </td>
                     <td data-label="活動價格">{{ data.PRICE == 0 ? '免費' : data.PRICE + "元" }}</td>
-                    <td data-label="報名數">{{ data.ATTEND_NUM }}</td>
+                    <td data-label="報名數">{{ data.TOTAL_ATTEND_NUM }}</td>
                     
                     <!-- 名單 -->
                     <td>
@@ -120,30 +120,17 @@
 
 
     </main>
-    <div :class="bodyClass" class="nosupport">
-            <main>
-                <section class="noSupport">
-                    <a href="#">
-                        <div>     
-                            <img class="LiIcon" src="../assets/img/LiIcon.png" alt="">
-                            <h1>歹勢！後台目前不支援手機</h1>
-                            <img class="cat" src="../assets/img/Cat.png" alt="">
-                            <p>下班請休息，我們明天再忙！</p>
-                        </div>
-                    </a>
-                </section>
-            </main>
-         
-      </div>
+      <mobileNotSupport></mobileNotSupport>
   </div>
   <Footer></Footer>
 </template>
 
 <script>
-import backendNavbar from './backendNavbar.vue';
-import Footer from './Footer.vue';
+import backendNavbar from '../components/backendNavbar.vue';
+import Footer from '../components/Footer.vue';
 import backCalender from '../components/BackCalender.vue';
 import BackLeftNav from '../components/BackLeftNav.vue';
+import mobileNotSupport from '@/components/mobileNotSupport.vue';
 
 export default {
   data() {
@@ -157,7 +144,6 @@ export default {
       ATTEND_NUM:'',
 
       datas:[],
-      attends:[],
       id: new Date().getTime()
     };
   },
@@ -166,47 +152,28 @@ export default {
       Footer,
       backCalender,
       BackLeftNav,
+      mobileNotSupport
   },
   mounted() {
 
-        // 同時載入兩隻 php
-        Promise.all([
-            axios.get('http://localhost/TGD104G1/public/API/activity.php'),
-            axios.get('http://localhost/TGD104G1/public/API/backend_activity.php')
-          ]).then((responses) => {
-            const activityData = responses[0].data;
-            const activityOrder = responses[1].data;
-            
-            // 合併兩個資料物件
-            const mergedData = activityData.map(function(activity) {
-              
-              const Order = activityOrder.find(function(order) {
-                return order.ACTIVITY_ID === activity.ID;
-              });
-              
-              const mergedActivity = Object.assign({}, activity);
-
-              if (Order) {
-                mergedActivity.ATTEND_NUM = Order.ATTEND_NUM;
-              } else {
-                mergedActivity.ATTEND_NUM = 0;
-              }
-              return mergedActivity;
-            });
-
-            // 在這裡處理合併後的資料
-            this.datas = mergedData;
-          }).catch((error) => {
-              console.error(error);
-          });
-        },
-
-        methods: {
+      // 撈取活動資料
+      axios
+        .get('http://localhost/TGD104G1/public/API/backend_activity.php')
+        .then(response => {
+            this.jsonData = response.data;
+            this.datas = this.jsonData
+        })
+        .catch(error => {
+            console.log(error);
+        });
+        
+  },
+  methods: {
           
-          toNewactivity(){
-              this.$router.push({ path: '/backend_activity_input/' + this.id });
-          },
+      toNewactivity(){
+          this.$router.push({ path: '/backend_activity_input/' + this.id });
+      },
 
-        },
-  };
+  },
+};
 </script>
