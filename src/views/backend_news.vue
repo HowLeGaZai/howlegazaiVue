@@ -80,7 +80,7 @@
                       <!-- 編輯 -->
 
                       <td> 
-                        <router-link :to="{ path: '/backend_news_add/' + this.newsData[index][1] }">
+                        <router-link :to="{ path: '/backend_news_add/' + this.filteredItems[index][1] }">
                         <button type="button" class="btn-icon">
                           <i class="bi bi-pencil-square btn-font-color-green"></i>
                         </button>
@@ -205,14 +205,17 @@ export default {
 
       // console.log(this.newsData[index]);
       // console.log(this.newsData[index][0]); //object的ID
-      const result =this.newsData[index][active] = this.newsData[index][active] === 1 ? 0 : 1;
-
+      // const result =this.newsData[index][active] = this.newsData[index][active] === 1 ? 0 : 1;
+      const result =this.filteredItems[index][active] = this.filteredItems[index][active] === 1 ? 0 : 1;
+      
+      
       // console.log([event])
+
       // console.log(this.newsData[index][0])
       // console.log(this.newsData[index][event]);
 
       const updateNews = new FormData();
-      updateNews.append('newsid', this.newsData[index][0]); //object的ID
+      updateNews.append('newsid', filteredItems[index][0]); //object的ID
       updateNews.append('active', [active]); //object 觸發的事件
       updateNews.append('status', result); //判斷送入0或1
       console.log(updateNews);
