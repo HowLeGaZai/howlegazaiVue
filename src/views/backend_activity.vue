@@ -157,44 +157,23 @@ export default {
   },
   mounted() {
 
-        // 同時載入兩隻 php
-        Promise.all([
-            axios.get('http://localhost/TGD104G1/public/API/activity.php'),
-            axios.get('http://localhost/TGD104G1/public/API/backend_activity.php')
-          ]).then((responses) => {
-            const activityData = responses[0].data;
-            const activityOrder = responses[1].data;
-            
-            // 合併兩個資料物件
-            const mergedData = activityData.map(function(activity) {
-              
-              const Order = activityOrder.find(function(order) {
-                return order.ACTIVITY_ID === activity.ID;
-              });
-              
-              const mergedActivity = Object.assign({}, activity);
-
-              if (Order) {
-                mergedActivity.ATTEND_NUM = Order.ATTEND_NUM;
-              } else {
-                mergedActivity.ATTEND_NUM = 0;
-              }
-              return mergedActivity;
-            });
-
-            // 在這裡處理合併後的資料
-            this.datas = mergedData;
-          }).catch((error) => {
-              console.error(error);
-          });
-        },
-
-        methods: {
+      axios
+        .get('http://localhost/TGD104G1/public/API/backend_activity.php')
+        .then(response => {
+            this.jsonData = response.data;
+            this.datas = this.jsonData
+        })
+        .catch(error => {
+            console.log(error);
+        });
+        
+  },
+  methods: {
           
-          toNewactivity(){
-              this.$router.push({ path: '/backend_activity_input/' + this.id });
-          },
+      toNewactivity(){
+          this.$router.push({ path: '/backend_activity_input/' + this.id });
+      },
 
-        },
-  };
+  },
+};
 </script>

@@ -151,34 +151,6 @@ export default {
               }
   },
   mounted() {
-    $("#resizable").resizable({});
-    $("#datepicker").datepicker({
-      monthNames: [
-        "一月",
-        "二月",
-        "三月",
-        "四月",
-        "五月",
-        "六月",
-        "七月",
-        "八月",
-        "九月",
-        "十月",
-        "十一月",
-        "十二月",
-      ],
-      dayNamesMin: ["週日", "週一", "週二", "週三", "週四", "週五", "週六"],
-      dateFormat: "yy/mm/dd",
-
-      onSelect: function () {
-        var selected = $(this).val();
-        $(".selectedD").html(`日期:&nbsp` + selected);
-        // console.log(selected);
-
-        // let dayNamesMin = $(this).datepicker( "option", "dayNamesMin" );
-        // console.log(dayNamesMin);
-      },
-    });
 
      axios
         .get('http://localhost/TGD104G1/public/API/afterUpdateAccount.php')
@@ -190,9 +162,6 @@ export default {
         .catch(error => {
             console.log(error);
         });
-
-
-
   },
 
   computed: {
