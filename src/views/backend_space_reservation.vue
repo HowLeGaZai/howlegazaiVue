@@ -140,7 +140,8 @@ export default {
                 .catch(error => {
                     // console.log(error);
                 });
-
+            
+            alert("審核不通過")
             location.reload();
         },
 

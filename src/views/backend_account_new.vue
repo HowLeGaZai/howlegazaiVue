@@ -333,7 +333,8 @@ export default {
           .catch(error => {
             console.log(error)
           })
-
+          
+      alert('審核成功');
       location.reload();
 
     },
@@ -350,8 +351,9 @@ export default {
           .catch(error => {
             console.log(error)
           })
-
-      location.reload();
+          
+    alert('審核不通過');
+    location.reload();
       
     },
     
