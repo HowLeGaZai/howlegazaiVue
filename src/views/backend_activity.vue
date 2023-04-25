@@ -25,7 +25,7 @@
                     <option value="其他">其他</option>
                   </select>
                 </div>
-                <div>
+                <!-- <div>
                   <label for="selecte" class="f-label">上架狀態</label>
                   <select name="" id="selecte" class="f-select" v-model="selectedStatus">
                     <option value="1">全部</option>
@@ -33,7 +33,7 @@
                     <option value="3">已下架 </option>
 
                   </select>
-                </div>
+                </div> -->
               </div>
               <div class="displayflex margintop18">
                 <button type="button" class="btn-10-s btn-color-green" @click="toNewactivity">
@@ -159,15 +159,16 @@ export default {
     BackLeftNav,
     mobileNotSupport
   },
-  computed : {
-    datas() {
-    if (!this.selectedCategory) {
-      return this.datas
-    }
-    return this.datas.filter(data => data.CATEGORY === this.selectedCategory)
-  },
-  
-  },
+
+  // 0425 篩選先註解 
+  // computed : {
+  //   datas() {
+  //   if (!this.selectedCategory) {
+  //     return this.datas
+  //   }
+  //   return this.datas.filter(data => data.CATEGORY === this.selectedCategory)
+  // },
+  // },
   mounted() {
 
     // 撈取活動資料

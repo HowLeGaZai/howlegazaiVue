@@ -76,13 +76,13 @@
 
             </div>
             <!-- 頁碼 -->
-            <ul class="btn-page-block">
+            <!-- <ul class="btn-page-block">
               <li><button class="btn-page btn-color-white"><i class="bi bi-caret-left-fill"></i></button></li>
               <li><button class="btn-page btn-color-white">1</button></li>
               <li><button class="btn-page btn-color-green">2</button></li>
               <li><button class="btn-page btn-color-white">3</button></li>
               <li><button class="btn-page btn-color-white"><i class="bi bi-caret-right-fill"></i></button></li>
-            </ul>
+            </ul> -->
 
 
           </div>
