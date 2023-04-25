@@ -27,7 +27,7 @@
         </thead>
         <tbody>
           <!-- 渲染 5 次 -->
-          <NewsListHome   v-for="i in 1" :key="i">
+          <NewsListHome v-for="i in 1" :key="i">
           {{ newsHomes.CATEGORY }}
         </NewsListHome>
         </tbody>

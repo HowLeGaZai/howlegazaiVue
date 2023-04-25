@@ -18,7 +18,7 @@
                         <div class=" content_row borderBottomLightgray" v-for="(data,index) in datas" :key="index">
                           <div class="displayflex">
                             <h4 class="fontsize20" >{{ data.START_DATE}}</h4>
-                            <h4 class="fontsize20 forSecondColumn"><router-link class="titlelink" :to="{ name: 'activity_info', params: { Id: ACTIVITY_ID } }">
+                            <h4 class="fontsize20 forSecondColumn"><router-link class="titlelink" :to="{ name: 'activity_info', params: { Id: data.ROUTERID } }">
                                 {{data.TITLE}}
                                 </router-link></h4>
                             <button type="button" class="btn-cir-s btn-color-white collapse collapseBtn">
