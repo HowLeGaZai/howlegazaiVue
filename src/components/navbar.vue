@@ -49,9 +49,9 @@
             <!-- 會員姓名 -->
             <p>歡迎 <span>{{nickName}}</span></p>
             <!-- 會員大頭貼 -->
-            <a href="#" class="userbtn tooltip" id="userBtn">
+            <router-link :to="{ name: 'account_user' }" class="userbtn tooltip" id="userBtn">
               <img :src="portrait" alt="" class="user_pic" />
-            </a>
+            </router-link>
             <div id="navMenu">
               <ul class="account-menu" id="accountMenu">
                 <li>
