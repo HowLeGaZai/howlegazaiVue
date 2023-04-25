@@ -59,7 +59,9 @@
                     <td>編輯</td>
                     <td>上架狀態</td>
                   </tr>
-                  <tr v-for="(data, index) in datas" :key="index">
+                  <!-- 用這裡的filteredsItem來做篩選 -->
+                  <!-- <tr v-for="(data,index)in filteredItem"> -->
+                  <tr v-for="(data, index) in filteredItems" :key="index"> 
                     <td data-label="活動編號">{{ data.ID }}</td>
                     <td data-label="活動分類">{{ data.CATEGORY }}</td>
                     <td data-label="活動名稱">
@@ -169,6 +171,26 @@ export default {
   //   return this.datas.filter(data => data.CATEGORY === this.selectedCategory)
   // },
   // },
+
+
+  computed:{
+    filteredItems: function(){
+      let filteredActivity = this.datas; 
+      if(this.selectedCategory === ''){
+        return this.datas;
+
+      }else{
+        return filteredActivity.filter(datas => {
+          return datas.CATEGORY === this.selectedCategory;
+        });
+      }
+
+      }
+
+
+    },
+
+  
   mounted() {
 
     // 撈取活動資料
@@ -186,7 +208,7 @@ export default {
         
         
   },
-  methods: {
+   methods: {
 
     toNewactivity() {
       this.$router.push({ name: "backend_activity_input", params: { Id: this.id } });
@@ -196,12 +218,12 @@ export default {
     activityMange(datas, index, active) {
       //篩選資料變數出來的時候要把data改成該變數
       // console.log(data, index, active)
-      const result = datas[index][active] = datas[index][active] === 1 ? 0 : 1;
+      const result = this.filteredItems[index][active] = this.filteredItems[index][active] === 1 ? 0 : 1;
       
       console.log(datas[index][active])
 
       const updateActivity = new FormData();
-      updateActivity.append('activityid', datas[index][0]); //object的ID
+      updateActivity.append('activityid',this.filteredItems[index][0]); //object的ID
       updateActivity.append('active', [active]); //object 觸發的事件
       updateActivity.append('status', result); //判斷送入0或1
       console.log(updateActivity);
