@@ -11,7 +11,7 @@
 
         <section class="section_right">
           <!-- 帳戶總覽 -->
-          <div class="w90percentage accounttable bk-account-overview maxheight">
+          <div class="w90percentage accounttable bk-account-overview">
             <div>
               <h1>帳戶總列表</h1>
               <div class="displayflex justifycontent">

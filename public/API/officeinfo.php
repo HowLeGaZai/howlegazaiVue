@@ -27,8 +27,8 @@
     $statement = $pdo -> prepare($sql);
 
     //給值
-    $statement->bindValue(1, $firstname);
-    $statement->bindValue(2, $lastname);
+    $statement->bindValue(1, $lastname);
+    $statement->bindValue(2, $firstname);
     $statement->bindValue(3, $fullname);
     $statement->bindValue(4, $gender);
     $statement->bindValue(5, $electionyear);

@@ -11,7 +11,7 @@
 
         <section class="section_right">
           <!-- 帳戶總覽 -->
-          <div class="w90percentage accounttable bk-account-cancel maxheight">
+          <div class="w90percentage accounttable bk-account-cancel">
             <div>
               <h1>已刪除帳戶</h1>
               <div class="displayflex justifycontent">
@@ -96,21 +96,21 @@
               </div>
             </div>
             <!-- 頁碼 -->
-            <!-- <ul class="btn-page-block">
-              <li>
-                <button class="btn-page btn-color-white">
-                  <i class="bi bi-caret-left-fill"></i>
-                </button>
-              </li>
-              <li><button class="btn-page btn-color-green">1</button></li>
-              <li><button class="btn-page btn-color-white">2</button></li>
-              <li><button class="btn-page btn-color-white">3</button></li>
-              <li>
-                <button class="btn-page btn-color-white">
-                  <i class="bi bi-caret-right-fill"></i>
-                </button>
-              </li>
-            </ul> -->
+              <!-- <ul class="btn-page-block">
+                <li>
+                  <button class="btn-page btn-color-white">
+                    <i class="bi bi-caret-left-fill"></i>
+                  </button>
+                </li>
+                <li><button class="btn-page btn-color-green">1</button></li>
+                <li><button class="btn-page btn-color-white">2</button></li>
+                <li><button class="btn-page btn-color-white">3</button></li>
+                <li>
+                  <button class="btn-page btn-color-white">
+                    <i class="bi bi-caret-right-fill"></i>
+                  </button>
+                </li>
+              </ul> -->
           </div>
         </section>
       </section>
