@@ -208,7 +208,7 @@
                 </table> -->
 
               <!-- 頁碼 -->
-              <ul class="btn-page-block">
+              <!-- <ul class="btn-page-block">
                 <li>
                   <button class="btn-page btn-color-white">
                     <i class="bi bi-caret-left-fill"></i>
@@ -222,7 +222,7 @@
                     <i class="bi bi-caret-right-fill"></i>
                   </button>
                 </li>
-              </ul>
+              </ul> -->
             </div>
           </div>
         </section>
