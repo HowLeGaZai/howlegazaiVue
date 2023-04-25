@@ -11,7 +11,7 @@
           <!-- 新增活動 -->
           <div class="bk-activity-add">
             <h1>新增活動</h1>
-            <div name="activity-add">
+            <div>
               <div class="activity-area1">
                 <label for="activity-name" class="f-label">活動名稱</label>
                 <input type="text" class="f-text" id="activity-name" placeholder="歡樂同樂摘櫻桃" v-model="activity_name">
@@ -32,8 +32,9 @@
                 <!-- 活動banner -->
                 <div class="activity-banner f-input-2">
                   <label for="activity-banner" class="f-label">活動首圖</label>
-                  <!-- <input type="file" class="f-file" id="activity-banner" placeholder="櫻桃活動宣傳圖.jpg" > -->
-                   <picture-crop @pic="sendpic"></picture-crop>
+                  <PictureCropActbanner @pic="sendnewspic" v-model="pic"></PictureCropActbanner>
+
+                  <!-- <input type="file" class="f-file" id="activity-banner" placeholder="櫻桃活動宣傳圖.jpg"> -->
                 </div>
               </div>
 
@@ -138,12 +139,14 @@ import backendNavbar from './backendNavbar.vue';
 import Footer from './Footer.vue';
 import backCalender from '../components/BackCalender.vue';
 import BackLeftNav from '../components/BackLeftNav.vue';
-import PictureCrop from '../components/PictureCrop.vue';
+import PictureCropActbanner from "@/components/PictureCropActbanner.vue";
+
+
 
 
 export default {
   components: {
-    backendNavbar, Footer,backCalender,BackLeftNav,PictureCrop,
+    backendNavbar, Footer,backCalender,BackLeftNav,PictureCropActbanner
 
   },
   data(){
@@ -162,6 +165,9 @@ export default {
       pic:'',
     };
   },
+
+ 
+
   mounted() {
     
     
@@ -182,7 +188,7 @@ export default {
 
   },
   methods:{
-    sendpic(data){
+    sendnewspic(data){
       this.pic = data;
     },
 

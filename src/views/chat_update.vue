@@ -1,0 +1,205 @@
+<template>
+  <navbar></navbar>
+  <main class="new-chat">
+    <h1 class="title_space">發起討論</h1>
+    <div class="row">
+      <div class="col-md-9 col-12">
+        <label for="name" class="f-label">討論標題</label>
+        <input
+          type="text"
+          class="f-text"
+          id="name"
+          placeholder="請輸入討論標題"
+          v-model="title"
+          v-model-save="title"
+          required
+        />
+      </div>
+      <div class="col-md-3 col-12">
+        <label for="chat-type" class="f-label">討論分類</label>
+        <select name="" id="chat-type" class="f-select" v-model="type"
+          v-model-save="type" required>
+          <option value="" disabled selected>-請選擇-</option>
+          <option value="美食討論">美食討論</option>
+          <option value="二手交易">二手交易</option>
+          <option value="里民閒聊">里民閒聊</option>
+          <option value="團購討論">團購討論</option>
+          <option value="我要抱怨">我要抱怨</option>
+          <option value="其他">其他</option>
+        </select>
+      </div>
+    </div>
+
+    <div id="container">
+      <label for="content" class="f-label">討論內容</label>
+      <Tinymce ref="Tinymce" v-model="tinymceContent" v-model-save="tinymceContent"></Tinymce>      
+    </div>
+
+    <div class="chat_banner">
+      <label class="f-label">討論區預覽圖（未上傳則為預設）</label>
+      <PictureCropChatbanner @result-changed="onResultChanged"></PictureCropChatbanner>
+      <img :src="dataURLBack" v-if="dataURLBack" alt="" style="width: 20%">
+    </div>
+
+    <div class="confirm-btn">
+      <button type="button" class="btn-m btn-color-white" @click="cancle">取消</button>
+      <button type="button" class="btn-m btn-color-green" @click="gotoPreview">預覽</button>
+    </div>
+    
+  </main>
+  <Footer></Footer>
+</template>
+
+<script>
+import navbar from "./navbar.vue";
+import Footer from "./Footer.vue";
+import PictureCropChatbanner from "@/components/PictureCropChatbanner.vue";
+import Tinymce from "@/components/Tinymce.vue";
+import { ref } from "vue";
+import { useRouter } from 'vue-router'
+
+
+export default {
+  created() {
+    this.pathId = this.$route.params.Id;
+  },
+  components: {
+    navbar,
+    Footer,
+    PictureCropChatbanner,
+    Tinymce,
+
+  },
+  data() {
+    return {
+      editorHtml: '',
+      tinymceContent:'',
+      title: "",
+      type: "",
+      chatid:"",
+      dataURL:"",
+      dataURLBack:"",
+      author:"",
+    };
+  },
+  mounted() {
+
+      const OldId = this.$route.params.Id;
+      const author = this.getCookieValue('id');
+      this.author = author;
+
+      const chatdata = new FormData();
+      chatdata.append('routeid', OldId);
+
+      axios
+        .post("http://localhost/TGD104G1/public/API/chatcontent.php", chatdata)
+        .then((response) => {
+           console.log(response.data[0][10]);
+          // const chatarticle = response.data;
+          if(this.author == response.data[0][10]){
+          this.editagain(response.data[0]);
+         
+          }else{
+            this.$router.push('/chat');
+          }
+          // console.log(this.chatarticle);
+        })
+        .catch((error) => {
+          // console.error(error);
+        });
+
+},
+  methods: {
+      getCookieValue(cookieName) {
+        // 讀取指定名稱的 Cookie 值
+        const cookieStr = decodeURIComponent(document.cookie);
+        const cookies = cookieStr.split('; ');
+        for (let i = 0; i < cookies.length; i++) {
+          const cookie = cookies[i].split('=');
+          if (cookie[0] === cookieName) {
+            return cookie[1] || null;
+          }
+        }
+        return null;
+      },
+
+      editagain(olddata){
+          console.log(olddata);
+          this.title = olddata[2];
+          this.type = olddata[1];
+          this.tinymceContent = olddata[3];
+          this.dataURLBack = olddata[5];
+      },
+
+      onResultChanged(result) {
+          this.dataURL = result.dataURL;
+          this.dataURLBack = "";
+      },
+      getpageid(){
+        const router = useRouter();
+        console.log(router);
+      },
+      cancle(){
+        this.$router.push({ name: 'account_user_chat'});
+        sessionStorage.clear();
+      },
+      
+      gotoPreview() {
+      
+      // 檢查必填欄位是否已經填寫
+      const requiredFields = document.querySelectorAll('[required]');
+      for (const field of requiredFields) {
+        if (field.tagName === 'SELECT' && field.selectedIndex === 0) {
+            field.style.outline = '1px solid $red';
+            const label = field.parentNode.querySelector('label');
+            const asterisk = label.querySelector('.asterisk');
+            if (!asterisk) {
+              label.insertAdjacentHTML('beforeend', '<span class="asterisk" style="color:red;"> <i class="bi bi-asterisk" style="font-size:12px;"></i></span>');
+            }
+            return false;
+          }else {
+            const label = field.parentNode.querySelector('label');
+            const asterisk = label.querySelector('.asterisk');
+            if (asterisk) {
+            asterisk.remove();
+            }
+          }
+          if (!field.value) {
+            field.style.outline = '1px solid $red';
+            const label = field.parentNode.querySelector('label');
+            const asterisk = label.querySelector('.asterisk');
+            if (!asterisk) {
+              label.insertAdjacentHTML('beforeend', '<span class="asterisk" style="color:red;"> <i class="bi bi-asterisk" style="font-size:12px;"></i></span>');
+            }
+            return false;
+            // input{outline:$red};
+            // required
+          }else {
+            const label = field.parentNode.querySelector('label');
+            const asterisk = label.querySelector('.asterisk');
+            if (asterisk) {
+            asterisk.remove();
+            }
+          }
+        }
+      
+      // 儲存表單資料至 localStorage
+      sessionStorage.setItem('form-title', this.title);
+      sessionStorage.setItem('form-type', this.type);
+      sessionStorage.setItem('form-tinymceContent', this.tinymceContent);
+      sessionStorage.setItem('form-PictureCropChatbanner', this.dataURL);
+
+      // 導向預覽頁面
+      const Id = this.$route.params.Id;
+      this.$router.push({ name: 'chat_update_preview', params: { Id: Id } });
+    },
+    },
+
+    watch: {
+      editorValue(newValue) {
+      this.result = this.$refs.Tinymce.updateEditorValue();
+      this.result = tinymceContent;
+    }
+  },
+    };
+</script>

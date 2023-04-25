@@ -36,11 +36,9 @@
                 </div>
               </div>
               <div class="displayflex margintop18">
-                <router-link :to="{name:'backend_activity_input'}">
-                  <button type="button" class="btn-10-s btn-color-green">
+                  <button type="button" class="btn-10-s btn-color-green" @click="toNewactivity">
                     <i class="bi bi-plus-lg"></i>新增活動
                   </button>
-                </router-link>
 
               </div>
 
@@ -56,132 +54,67 @@
                     <td>活動名稱</td>
                     <td>費用</td>
                     <td>報名數</td>
-                    <td>置頂</td>
                     <td>名單</td>
+                    <td>置頂</td>
                     <td>編輯</td>
                     <td>上架狀態</td>
                   </tr>
-                  <tr>
-                    <td>001</td>
-                    <td>藝文</td>
-                    <td>清明畫出漂亮書法</td>
-                    <td>免費</td>
-                    <td>14</td>
-                    <td><label class="f-checkbox">
-                      <input type="checkbox" name="multichoice" checked>
-                      <span class="checkmark"></span>
-                    </label></td>
-                    <td><button type="button" class="btn-icon" onclick="window.location.href='#/backend_activity_memberlist'">
-                      <i class="bi bi-file-earmark-bar-graph btn-font-color-green"></i>
-                    </button>
+                  <tr v-for="(data, index) in datas" :key="index">
+                    <td data-label="活動編號">{{ data.ID }}</td>
+                    <td data-label="活動分類">{{ data.CATEGORY }}</td>
+                    <td data-label="活動名稱">
+                            <router-link class="titlelink" :to="{ name: 'activity_info', params: { Id: data.ID } }">
+                                {{data.TITLE}}
+                            </router-link>
                     </td>
-                    <td><button type="button" class="btn-icon">
-                      <i class="bi bi-pencil-square btn-font-color-green"></i>
-                    </button>
+                    <td data-label="活動價格">{{ data.PRICE == 0 ? '免費' : data.PRICE + "元" }}</td>
+                    <td data-label="報名數">{{ data.ATTEND_NUM }}</td>
+                    
+                    <!-- 名單 -->
+                    <td>
+                      <router-link class="titlelink" :to="{ name: 'backend_activity_memberlist', params: { Id: data.ID } }">
+                          <button type="button" class="btn-icon">
+                            <i class="bi bi-file-earmark-bar-graph btn-font-color-green"></i>
+                          </button>
+                      </router-link>
                     </td>
-                    <td><label class="switch">
-                        <input type="checkbox" checked>
-                        <span class="slider"></span>
-                      </label>
-                    </td>
-                  </tr>
 
-                  <tr>
-                    <td>002</td>
-                    <td>課程</td>
-                    <td>DIY造龍舟教學</td>
-                    <td>NT$ 200</td>
-                    <td>14</td>
-                    <td><label class="f-checkbox">
-                      <input type="checkbox" name="multichoice" checked>
-                      <span class="checkmark"></span>
-                    </label></td>
-                    <td><button type="button" class="btn-icon">
-                      <i class="bi bi-file-earmark-bar-graph btn-font-color-green"></i>
-                    </button>
-                    </td>
-                      <td><button type="button" class="btn-icon">
+                    <!-- 置頂 -->
+                    <td>
+                      <label class="f-checkbox">
+                          <input type="checkbox">
+                          <span class="checkmark newscheck"></span>
+                        </label>
+                      </td>
+
+                    <!-- 編輯 -->
+                    <td>
+                      <button type="button" class="btn-icon">
                         <i class="bi bi-pencil-square btn-font-color-green"></i>
                       </button>
                     </td>
+
+                    <!-- 上下架 -->
                     <td><label class="switch">
                         <input type="checkbox" checked>
                         <span class="slider"></span>
                       </label>
                     </td>
+
                   </tr>
-
-                  <tr>
-                    <td>003</td>
-                    <td>課程</td>
-                    <td>教你包出美味肉粽</td>
-                    <td>NT$ 100</td>
-                    <td>14</td>
-                    <td><label class="f-checkbox">
-                      <input type="checkbox" name="multichoice">
-                      <span class="checkmark"></span>
-                    </label></td>
-                    <td><button type="button" class="btn-icon">
-                      <i class="bi bi-file-earmark-bar-graph btn-font-color-green"></i>
-                    </button>
-                    </td>
-                    <td><button type="button" class="btn-icon">
-                      <i class="bi bi-pencil-square btn-font-color-green"></i>
-                    </button>
-                    </td>
-                    <td><label class="switch">
-                        <input type="checkbox">
-                        <span class="slider"></span>
-                      </label>
-                    </td>
-              </tr>
-
-                  <tr>
-                    <td>004</td>
-                    <td>旅遊</td>
-                    <td>歡樂草莓採摘去</td>
-                    <td>免費</td>
-                    <td>14</td>
-                    <td><label class="f-checkbox">
-                      <input type="checkbox" name="multichoice">
-                      <span class="checkmark"></span>
-                    </label></td>
-                    <td><button type="button" class="btn-icon">
-                      <i class="bi bi-file-earmark-bar-graph btn-font-color-green"></i>
-                    </button>
-                    </td>
-                    <td><button type="button" class="btn-icon">
-                      <i class="bi bi-pencil-square btn-font-color-green"></i>
-                    </button>
-                    </td>
-                    <td><label class="switch">
-                        <input type="checkbox" checked>
-                        <span class="slider"></span>
-                      </label>
-                    </td>
-                  </tr>
-
-
-
-
                 </tbody>
-
               </table>
-
             </div>
             <!-- 頁碼 -->
-            <ul class="btn-page-block">
+            <!-- <ul class="btn-page-block">
               <li><button class="btn-page btn-color-white"><i class="bi bi-caret-left-fill"></i></button></li>
               <li><button class="btn-page btn-color-green">1</button></li>
               <li><button class="btn-page btn-color-white">2</button></li>
               <li><button class="btn-page btn-color-white">3</button></li>
               <li><button class="btn-page btn-color-white"><i class="bi bi-caret-right-fill"></i></button></li>
-            </ul>
+            </ul> -->
 
           </div>
-
-
-
         </section>
       </section>
 
@@ -207,29 +140,73 @@
 </template>
 
 <script>
-
 import backendNavbar from './backendNavbar.vue';
 import Footer from './Footer.vue';
-
 import backCalender from '../components/BackCalender.vue';
 import BackLeftNav from '../components/BackLeftNav.vue';
 
 export default {
+  data() {
+    return {
+      ID:'',
+      TITLE:'',
+      PRICE:'',
+      TOP:'',
+      STATUS:'',
+      CATEGORY:'',
+      ATTEND_NUM:'',
+
+      datas:[],
+      attends:[],
+      id: new Date().getTime()
+    };
+  },
   components: {
-    backendNavbar, Footer,backCalender,BackLeftNav
+      backendNavbar,
+      Footer,
+      backCalender,
+      BackLeftNav,
   },
   mounted() {
-    // ======nav的收合======
-  
 
+        // 同時載入兩隻 php
+        Promise.all([
+            axios.get('http://localhost/TGD104G1/public/API/activity.php'),
+            axios.get('http://localhost/TGD104G1/public/API/backend_activity.php')
+          ]).then((responses) => {
+            const activityData = responses[0].data;
+            const activityOrder = responses[1].data;
+            
+            // 合併兩個資料物件
+            const mergedData = activityData.map(function(activity) {
+              
+              const Order = activityOrder.find(function(order) {
+                return order.ACTIVITY_ID === activity.ID;
+              });
+              
+              const mergedActivity = Object.assign({}, activity);
 
+              if (Order) {
+                mergedActivity.ATTEND_NUM = Order.ATTEND_NUM;
+              } else {
+                mergedActivity.ATTEND_NUM = 0;
+              }
+              return mergedActivity;
+            });
 
+            // 在這裡處理合併後的資料
+            this.datas = mergedData;
+          }).catch((error) => {
+              console.error(error);
+          });
+        },
 
+        methods: {
+          
+          toNewactivity(){
+              this.$router.push({ path: '/backend_activity_input/' + this.id });
+          },
 
-  },
-
-
-
-
-}
+        },
+  };
 </script>

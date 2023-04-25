@@ -1,5 +1,5 @@
 <template>
-    <header class="backend-header">
+  <header class="backend-header">
     <nav class="main">
       <div class="leftnav">
         <!-- logo -->
@@ -8,7 +8,7 @@
         </a>
         <div class="midnav">
           <i class="bi bi-brightness-high"></i>
-          歡迎登入<div>大湖里</div>
+          歡迎登入<div>{{town}}</div>
         </div>
       </div>
 
@@ -24,3 +24,43 @@
   </header>
 </template>
 
+<script>
+
+
+export default {
+
+
+  data() {
+    return {
+      villageData:[],
+      town:'',
+
+
+
+    }
+  },
+
+  methods: {
+    
+  },
+
+
+ mounted() {
+
+    // 這裡是 縣市里
+    axios
+      .post('http://localhost/TGD104G1/public/API/home.php',{})
+      .then(response => {
+        this.villageData = response.data[response.data.length-1];
+
+        this.town = this.villageData.TOWN;
+        console.log(this.town);
+        // console.log(town);
+      })
+      .catch(error => {
+        // console.log(error);
+      });
+
+  },
+}
+</script>
