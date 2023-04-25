@@ -335,7 +335,7 @@ export default {
         return;
       }else {
         this.savedata();
-        alert('註冊成功，請登入')
+        alert('您的申請已送出，請等待註冊審核')
         this.$router.push('./login')
       }
       // 在這裡編寫提交表單的程式碼
