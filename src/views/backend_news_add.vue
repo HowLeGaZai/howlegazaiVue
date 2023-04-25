@@ -190,7 +190,6 @@ export default {
 
 
         newsPreview() {
-
             // 檢查必填欄位是否已經填寫
             // const requiredFields = document.querySelectorAll('[required]');
             // for (const field of requiredFields) {
@@ -266,55 +265,100 @@ export default {
 
         //將撈取出的routerID塞進input value中
 
-        setNewsvalue() {
-            // console.log(this.newsdata)
+        checksavedNews() {
+            //檢查是否有重複routerID
+            const routerid = this.$route.params.Id;
+            console.log(routerid);
+
+            const searchid = new FormData();
+            searchid.append('routerid', routerid);
+            axios
+                .post('http://localhost/TGD104G1/public/API/check_duplicate_news.php', searchid)
+                .then(response => {
+                    // this.$set(this.data,'saveNewsdata',this.newsdata)
+
+                    this.newsdata = response.data[0];
+
+                    if (sessionStorage.getItem('form-title') !== null) {
+                        this.title = sessionStorage.getItem("news-title");
+                        this.category = sessionStorage.getItem("news-category");
+                        this.content = sessionStorage.getItem("news-content");
+                        this.pic = sessionStorage.getItem("news-pic");
+
+                    } else {
+                        this.title = this.newsdata.TITLE;
+                        this.category = this.newsdata.CATEGORY;
+                        this.content = this.newsdata.CONTENT;
+                        this.pic = this.newsdata.PIC;
 
 
 
-            if (this.newsdata == null) {
-                console.log('null')
-                // console.log(this.newsdata)
 
-            } else {
-                // console.log(this.newsdata.TITLE)
-                this.title = this.newsdata.TITLE;
-                this.category = this.newsdata.CATEGORY;
-                this.content = this.newsdata.CONTENT;
-                this.pic = this.newsdata.PIC;
+                    }
+                    // console.log(this.newsdata);
+                    // console.log("routerid重複");
+                    // console.log(this.newsdata + "newsid");
 
-                // this.category = this.newsdata.CATEGORY;
+                    // this.setNewsvalue();
 
-            }
-        }
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+
+        },
+
+        // setNewsvalue() {
+        //     // console.log(this.newsdata)
+        //     if (this.newsdata == null) {
+        //         // console.log('null')
+        //         this.title = sessionStorage.getItem("news-title");
+        //         this.category = sessionStorage.getItem("news-category");
+        //         this.content = sessionStorage.getItem("news-content");
+        //         this.pic = sessionStorage.getItem("news-pic");
+
+        //         // console.log(this.newsdata)
+
+        //     } else {
+        //         // console.log(this.newsdata.TITLE)
+
+        //         // this.title = this.newsdata.TITLE;
+        //         // this.category = this.newsdata.CATEGORY;
+        //         // this.content = this.newsdata.CONTENT;
+        //         // this.pic = this.newsdata.PIC;
+
+        //         // this.category = this.newsdata.CATEGORY;
 
 
-
-
+        //     }
+        // }
 
     },
     mounted() {
 
+        this.checksavedNews()
+        // this.setNewsvalue()
+
+
         //進頁面前檢查是否有重複routerID
-        const routerid = this.$route.params.Id;
-        console.log(routerid);
+        // const routerid = this.$route.params.Id;
+        // console.log(routerid);
 
-        const searchid = new FormData();
-        searchid.append('routerid', routerid);
-        axios
-            .post('http://localhost/TGD104G1/public/API/check_duplicate_news.php', searchid)
-            .then(response => {
-                // this.$set(this.data,'saveNewsdata',this.newsdata)
-                this.newsdata = response.data[0];
-                // console.log(this.newsdata);
-                console.log("routerid重複");
-                this.setNewsvalue();
+        // const searchid = new FormData();
+        // searchid.append('routerid', routerid);
+        // axios
+        //     .post('http://localhost/TGD104G1/public/API/check_duplicate_news.php', searchid)
+        //     .then(response => {
+        //         // this.$set(this.data,'saveNewsdata',this.newsdata)
+        //         this.newsdata = response.data[0];
+        //         // console.log(this.newsdata);
+        //         console.log("routerid重複");
+        //         this.setNewsvalue();
 
-            })
-            .catch(error => {
-                console.log(error);
-            });
-
-
+        //     })
+        //     .catch(error => {
+        //         console.log(error);
+        //     });
 
         // this.checksavedNews()
 

@@ -2,8 +2,10 @@
   <navbar></navbar>
 
   <main class="news_info">
-    <button class="btn-prepage font-green" onclick="location.href='#/news'">
+    <router-link to="/news" custom v-slot="{ navigate }">
+    <button class="btn-prepage font-green" @click="navigate" role="link">
       <i class=" bi bi-caret-left-fill font-green"></i>返回【上一頁】</button>
+    </router-link>
     <div class="news_info_topic">
       <h1>{{ newsarticle.TITLE }}</h1>
       <div class="add_inf">
@@ -28,10 +30,10 @@
     </div>
 
 
-    <div class="news-btn-section">
+    <!-- <div class="news-btn-section">
       <button class="btn-news btn-color-white"><i class=" bi bi-caret-left-fill font-green"></i>上一則</button>
       <button class="btn-news btn-color-white">下一則<i class=" bi bi-caret-right-fill font-green"></i></button>
-    </div>
+    </div> -->
 
   </main>
   <Footer></Footer>
