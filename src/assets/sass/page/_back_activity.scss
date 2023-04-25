@@ -252,6 +252,11 @@
     background-color: $silver;
   }
 
-
+.titlelink{
+  color: $black;
+  &:hover{
+    color: $green;
+  }
+}
 
 }

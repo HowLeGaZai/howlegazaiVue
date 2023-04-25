@@ -68,7 +68,7 @@
                             </router-link>
                     </td>
                     <td data-label="活動價格">{{ data.PRICE == 0 ? '免費' : data.PRICE + "元" }}</td>
-                    <td data-label="報名數">{{ data.ATTEND_NUM }}</td>
+                    <td data-label="報名數">{{ data.TOTAL_ATTEND_NUM }}</td>
                     
                     <!-- 名單 -->
                     <td>
@@ -144,7 +144,6 @@ export default {
       ATTEND_NUM:'',
 
       datas:[],
-      attends:[],
       id: new Date().getTime()
     };
   },
@@ -157,6 +156,7 @@ export default {
   },
   mounted() {
 
+      // 撈取活動資料
       axios
         .get('http://localhost/TGD104G1/public/API/backend_activity.php')
         .then(response => {
