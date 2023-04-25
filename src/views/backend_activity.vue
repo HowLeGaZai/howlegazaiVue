@@ -84,8 +84,8 @@
                     <td>
                       <label class="f-checkbox">
                         <input type="checkbox">
-                        <span class="checkmark newscheck" :checked="parseInt(data.TOP) === 1"
-                          @click="activityMange(data, index, 'TOP')"></span>
+                        <span class="checkmark newscheck" :checked="parseInt(data.TOP) == 1"
+                          @click="activityMange(datas, index, 'TOP')"></span>
                       </label>
                     </td>
 
@@ -98,8 +98,8 @@
 
                     <!-- 上下架 -->
                     <td><label class="switch">
-                        <input type="checkbox" :checked="parseInt(data.TOP) === 1"
-                          @click="activityMange(data, index, 'STATUS')">
+                        <input type="checkbox" :checked="parseInt(data.STATUS) == 1"
+                          @click="activityMange(datas, index, 'STATUS')">
                         <span class="slider"></span>
                       </label>
                     </td>
@@ -178,14 +178,15 @@ export default {
     },
 
     // 置頂與上下架的功能
-    activityMange(data, index, active) {
+    activityMange(datas, index, active) {
       //篩選資料變數出來的時候要把data改成該變數
       // console.log(data, index, active)
-      const result = data[index][active] = data[index][active] === 1 ? 0 : 1;
+      const result = datas[index][active] = datas[index][active] === 1 ? 0 : 1;
       
-      // console.log(result)
+      console.log(datas[index][active])
+
       const updateActivity = new FormData();
-      updateActivity.append('activityid', data[index][0]); //object的ID
+      updateActivity.append('activityid', datas[index][0]); //object的ID
       updateActivity.append('active', [active]); //object 觸發的事件
       updateActivity.append('status', result); //判斷送入0或1
       console.log(updateActivity);
