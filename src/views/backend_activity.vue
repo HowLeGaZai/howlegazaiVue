@@ -171,7 +171,7 @@ export default {
   methods: {
           
       toNewactivity(){
-          this.$router.push({ path: '/backend_activity_input/' + this.id });
+          this.$router.push({ name: "backend_activity_input", params: { Id: this.id } });
       },
 
   },

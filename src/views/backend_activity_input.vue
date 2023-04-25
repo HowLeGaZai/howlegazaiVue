@@ -89,8 +89,8 @@
               <!-- 活動說明內文-->
               <div class="activity-cost">
                 <label for="activity-cost" class="f-label">活動詳細內容</label>
-                <tinymce></tinymce>
-                <!-- <textarea name="" id="" cols="30" rows="10" class="f-text" placeholder="這裡之後要改成文字編輯器"></textarea> -->
+                <!-- <tinymce></tinymce> -->
+                <textarea name="" id="" cols="30" rows="10" class="f-text" placeholder="這裡之後要改成文字編輯器" v-model="content"></textarea>
 
               </div>
 
@@ -128,7 +128,7 @@ import backendNavbar from '../components/backendNavbar.vue';
 import Footer from '../components/Footer.vue';
 import backCalender from '../components/BackCalender.vue';
 import BackLeftNav from '../components/BackLeftNav.vue';
-import tinymce from 'tinymce';
+// import tinymce from 'tinymce';
 import PictureCropActbanner from "@/components/PictureCropActbanner.vue";
 import mobileNotSupport from '@/components/mobileNotSupport.vue';
 
@@ -137,7 +137,7 @@ import mobileNotSupport from '@/components/mobileNotSupport.vue';
 
 export default {
   components: {
-    backendNavbar, Footer,backCalender,BackLeftNav,PictureCropActbanner,tinymce,mobileNotSupport
+    backendNavbar, Footer,backCalender,BackLeftNav,PictureCropActbanner,mobileNotSupport
 
   },
   data(){
