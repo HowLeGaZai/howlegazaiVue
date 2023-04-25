@@ -336,7 +336,7 @@ export default {
             // console.log(error);
         });
 
-    // 下半部輪播 axios     
+    // 最後QA問答 axios     
         axios
             .post('http://localhost/TGD104G1/public/API/QAdata.php',{})
             .then(response => {

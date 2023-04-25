@@ -172,18 +172,42 @@ export default {
 
       alert("儲存成功")
     },
+
+        // QA 問答
+    webQA(){
+      this.question1 = this.jsonData[this.jsonData.length-1].QUESTION_1 ;
+      this.question2 = this.jsonData[this.jsonData.length-1].QUESTION_2 ;
+      this.question3 = this.jsonData[this.jsonData.length-1].QUESTION_3 ;
+      this.question4 = this.jsonData[this.jsonData.length-1].QUESTION_4 ;
+      this.question5 = this.jsonData[this.jsonData.length-1].QUESTION_5 ;
+      this.answer1 = this.jsonData[this.jsonData.length-1].ANSWER_1 ;
+      this.answer2 = this.jsonData[this.jsonData.length-1].ANSWER_2 ;
+      this.answer3 = this.jsonData[this.jsonData.length-1].ANSWER_3 ;
+      this.answer4 = this.jsonData[this.jsonData.length-1].ANSWER_4 ;
+      this.answer5 = this.jsonData[this.jsonData.length-1].ANSWER_5 ;
+    },
+
   },
   components: {
     backendNavbar, Footer, backCalender, BackLeftNav,mobileNotSupport
   },
   mounted() {
+      // 最後QA問答 axios     
+      axios
+            .post('http://localhost/TGD104G1/public/API/QAdata.php',{})
+            .then(response => {
+                this.jsonData = response.data;
+                // alert(response.data)
+                // console.log(this.jsonData[this.jsonData.length-1].FULLNAME);
+                this.webQA();
+                // console.log(this.jsonData.length);
+                // console.log(this.jsonData);
+            })
+            .catch(error => {
+                // console.log(error);
+            });
+
     // ======nav的收合======
-
-
-
-
-
-
     var qabtn = document.getElementsByClassName("qabutton");
     var i;
 

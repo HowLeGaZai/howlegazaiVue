@@ -227,6 +227,7 @@ export default {
           return "tag-cyan";
       }
     },  
+    
     webInfo(){
       
       this.city = this.jsonData[this.jsonData.length-1].CITY ;
