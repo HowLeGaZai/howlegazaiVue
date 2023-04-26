@@ -48,9 +48,12 @@
           </div>
         </div>
       <div class="confirm-btn">
-         <router-link to="/space_reserve" custom v-slot="{ navigate }">
+         <!-- <router-link to="/space_reserve" custom v-slot="{ navigate }">
                           <button class="btn-m btn-color-gray" @click="navigate" role="link">返回上一步</button>
-            </router-link>
+            </router-link> -->
+            <!-- <router-link to="/space_reserve" custom v-slot="{ navigate }"> -->
+                          <button class="btn-m btn-color-gray" @click="navigate" >返回上一步</button>
+            <!-- </router-link> -->
              <!-- <router-link to="/space_reserve_confirm" custom v-slot="{ navigate }"> -->
                           <button class="btn-m btn-color-green" @click="navigate2" role="link">確認送出</button>
             <!-- </router-link> -->
@@ -110,8 +113,15 @@ export default {
                     });
     },
 
+    navigate(){
+
+            this.$router.push({ name: 'space_reserve', params: { Id: this.$route.params.Id } })
+    },
+
     navigate2(){
-            let spaceID = sessionStorage.getItem("spaceID");
+            let spaceID = sessionStorage.getItem("SPACE_ID");
+
+            console.log('ID', spaceID);
 
             this.start = sessionStorage.getItem('start');
             this.end = sessionStorage.getItem('end');

@@ -52,6 +52,7 @@
                         <td class="col-12">
                             <label for="inputState" class="f-label">稱謂</label>
                             <select id="inputState" class="f-select" v-model="inputState">
+                            <option selected value="">-請選擇-</option>
                             <option selected value="male">先生</option>
                             <option value="female">女士</option>
                             </select>
@@ -77,9 +78,10 @@
                 </tfoot>
         </table>
       <div class="confirm-btn">
-          <router-link to="/space_info" custom v-slot="{ navigate }">
+          <!-- <router-link to="/space_info" custom v-slot="{ navigate }">
                           <button class="btn-m btn-color-gray" @click="navigate" role="link">返回上一步</button>
-            </router-link>
+            </router-link> -->
+                          <button class="btn-m btn-color-gray" @click="navigate" >返回上一步</button>
              <!-- <router-link to="/space_reserve_check" custom v-slot="{ navigate }"> -->
             <button class="btn-m btn-color-green" @click="navigate2" >填寫完成，下一步</button>
             <!-- </router-link> -->
@@ -123,6 +125,17 @@ export default {
       navbar,Footer,
     },
     mounted(){
+        if(sessionStorage.getItem('APPLY_NAME') !== null) {
+            this.name = sessionStorage.getItem("APPLY_NAME");
+            this.phone = sessionStorage.getItem("APPLY_PHONE");
+            this.mail = sessionStorage.getItem("APPLY_MAIL");
+            this.apply = sessionStorage.getItem("PURPOSE");
+            this.isChecked = sessionStorage.getItem("isChecked");
+            this.inputState = sessionStorage.getItem("APPLY_TITLE");
+            
+        }else{
+
+        }
 
         //  sessionStorage.setItem("USER_ID", id);
 
@@ -139,6 +152,7 @@ export default {
         
          
     },
+
     methods:{
         async getSpaceData() {
               await  axios
@@ -169,20 +183,32 @@ export default {
 
     },
 
+        navigate(){
+            this.$router.push({ name: 'space_info', params: { Id: this.$route.params.Id } })
+        },
+
 
         navigate2(){
-            sessionStorage.setItem("APPLY_NAME", this.name);
-            sessionStorage.setItem("APPLY_TITLE", this.inputState);
-            sessionStorage.setItem("APPLY_PHONE", this.phone);
-            sessionStorage.setItem("APPLY_MAIL", this.mail);
-            sessionStorage.setItem("PURPOSE", this.apply);
+            // console.log('123',this.name);
+            if(!this.name || !this.inputState ||  !this.phone ||  !this.mail ||  !this.apply){
+                alert("有欄位尚未填寫完畢")
+            }else{
+                sessionStorage.setItem("APPLY_NAME", this.name);
+                sessionStorage.setItem("APPLY_TITLE", this.inputState);
+                sessionStorage.setItem("APPLY_PHONE", this.phone);
+                sessionStorage.setItem("APPLY_MAIL", this.mail);
+                sessionStorage.setItem("PURPOSE", this.apply);
+                sessionStorage.setItem("isChecked", this.isChecked);
 
-            this.$router.push({ name: 'space_reserve_check', params: { Id: this.$route.params.Id } })
+                this.$router.push({ name: 'space_reserve_check', params: { Id: this.$route.params.Id } })
+            }
+
+           
         },
 
         handleChange(){
 
-            if(this.isChecked){
+            if(this.isChecked == true){
 
                 const formData = new FormData()
                 formData.append('user_id',this.getCookieValue('id') )
@@ -201,7 +227,10 @@ export default {
                     console.log(error);
                     });
             }else{
-                
+                 this.name = '',
+                 this.phone = '',
+                 this.mail = '',
+                 this.inputState = '';
             }
         },
         getCookieValue(cookieName) {

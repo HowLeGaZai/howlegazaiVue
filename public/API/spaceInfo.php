@@ -4,10 +4,10 @@ include("conn.php");
 
 
 //建立SQL語法
-$sql = "INSERT into SPACE_ORDER VALUES(DEFAULT,?,'0',?,?,?,?,?,?,?,?,?)";
+$sql = "INSERT into SPACE_ORDER VALUES(DEFAULT,?,'0',?,?,?,?,?,?,?,?,?,NULL)";
 
 // $request_body = file_get_contents('php://input');
-// $data = json_decode($request_body, true);
+// $data = json_decode($request_body, true);,
 
 // $index = $data["index"];
 
