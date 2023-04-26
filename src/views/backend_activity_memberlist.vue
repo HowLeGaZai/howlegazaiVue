@@ -41,7 +41,7 @@
                 </tr>
 
                 <!-- 尚未完成：bug 無法渲染多筆訂單的多筆報名資料 -->
-                <tr v-for="(data, index) in datas[i]" :key="index[i]">
+                <tr v-for="(data, index) in arrayList" :key="index">
                   <td>{{ data.ID }}</td>
                   <td>{{ new Date(data.CREATE_TIME).toLocaleDateString() }}</td>
                   <td>{{ data.ATTEND_NAME }}</td>
@@ -82,6 +82,7 @@ export default {
       note:false,
       original:[],
       datas:[],
+      arrayList:[],
     };
   },
   mounted() {
@@ -109,6 +110,20 @@ export default {
               console.log(this.original.TITLE)
               this.datas = this.original.map(data => this.getAttend(data)).concat();
               this.TITLE = this.datas[0].TITLE;
+
+              console.log(this.datas);
+
+              const arrayList=[];
+              for(let i =0;i<this.datas.length;i++){
+                
+                for(let j=0;j<this.datas[i].length;j++){
+                    console.log('j',this.datas[i][j]);
+                    arrayList.push(this.datas[i][j]);
+                }
+              }
+
+              console.log('list',arrayList);
+              this.arrayList = arrayList;
               };
         })
         .catch(error => {
