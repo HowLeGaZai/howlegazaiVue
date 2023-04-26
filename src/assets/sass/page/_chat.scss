@@ -326,7 +326,7 @@
   text-align: left;
 
   .btn-prepage {
-
+    font-size: 16px;
     @include breakpoint($grid-breakpoints, 'md') {
       margin-left: 20px;
     }

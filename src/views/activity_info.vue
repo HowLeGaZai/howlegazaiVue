@@ -53,7 +53,7 @@
                     <input type="text" class="f-text" id="name" placeholder="">
                 </div> -->
                 <div class="confirm-btn"> 
-                    <button type="button" class="btn-m btn-color-green btn_regist">點我報名</button>
+                    <button type="button" class="btn-m btn-color-green btn_regist" @click="activityRegistInfo">點我報名</button>
                 </div>
             </div>
         </div>
@@ -72,6 +72,8 @@
             </div>
         </div>
     </main>
+    
+    <!-- 這個燈箱註解 info就撈不出來 沒時先找原因 先這樣擺著 -->
     <lightBox>
 
         <div id="lightbox" class="none">
@@ -104,7 +106,7 @@
                     <h6 style="color: red;">注意：若經查證後參加者非本里住民，將取消參加資格。</h6>
                     <br><br>
                 </div>
-                <button type="button" class="btn-m btn-color-green" @click="activityRegistInfo(index)">填寫報名資料</button>
+                <button type="button" class="btn-m btn-color-green">填寫報名資料</button>
                 <h6>活動取消須知：於活動開始前四日（含）取消，免費取消，
                     若於活動前二日，將退返報名費用之50%
                     若於活動前一日取消，將不予退費。</h6>
@@ -165,53 +167,60 @@ export default {
         this.getActivityData();
 
         //lightBox_activity的JS
-        let lightbox_el = document.getElementById("lightbox");
-        let btnRegist = document.querySelectorAll(".btn_regist")[0];
-        let btn_modal_close = document.getElementsByClassName("btn_modal_close")[0];
+        // let lightbox_el = document.getElementById("lightbox");
+        // let btnRegist = document.querySelectorAll(".btn_regist")[0];
+        // let btn_modal_close = document.getElementsByClassName("btn_modal_close")[0];
         
-        btnRegist.addEventListener("click",function(e){
-            lightbox_el.classList.remove("none");
-        });
+        // btnRegist.addEventListener("click",function(e){
+        //     lightbox_el.classList.remove("none");
+        // });
 
-        btn_modal_close.addEventListener("click", function(){
-            lightbox_el.classList.add("none");
-        });
+        // btn_modal_close.addEventListener("click", function(){
+        //     lightbox_el.classList.add("none");
+        // });
         
     },    
     methods:{
         async getActivityData() {
+            const actID = this.$route.params.Id;
+
+            const actdata = new FormData();
+            actdata.append('routeid', actID);
             await  axios
             //  htdocs的環境下測試
-            .get('http://localhost/TGD104G1/public/API/activity.php')
+            .post('http://localhost/TGD104G1/public/API/activityinfo.php', actdata)
             .then(response => {
-                this.activityJsonData = response.data;
-                console.log('abc',this.activityJsonData);
+                this.activityData = response.data[0];
+                // console.log('abc',this.activityJsonData);
             })
             .catch(error => {
                 // console.log(error);
             });
 
 
-            let activity = sessionStorage.getItem("activity");
+            // let activity = sessionStorage.getItem("activity");
                         
 
-            for(let i = 0; i < this.activityJsonData.length; i++){
+            // for(let i = 0; i < this.activityJsonData.length; i++){
                 
-                if(this.$route.params.Id == this.activityJsonData[i].ROUTERID){
-                    // console.log("渲染這筆資料");
-                    this.activityData = this.activityJsonData[i];
-                    console.log('活動資料',this.activityData);
-                }else{
+            //     if(this.$route.params.Id == this.activityJsonData[i].ROUTERID){
+            //         // console.log("渲染這筆資料");
+            //         this.activityData = this.activityJsonData[i];
+            //         console.log('活動資料',this.activityData);
+            //     }else{
 
-                }
-            }
+            //     }
+            // }
         },
 
-        activityRegistInfo(index){
-            this.$router.push('/activity_registStep1')
+        activityRegistInfo(){
+            const Id = this.$route.params.Id;
+            // console.log(Id);
+            this.$router.push({ name: "activity_registStep1", params: { Id: Id } });
+
             // alert(index);
-            sessionStorage.setItem('inputValue', this.inputValue)
-            sessionStorage.setItem('result', this.result)
+            
+            // sessionStorage.setItem('result', this.result)
         },
 
         

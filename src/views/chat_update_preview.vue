@@ -133,9 +133,7 @@ export default {
     this.title = sessionStorage.getItem("form-title");
     this.type = sessionStorage.getItem("form-type");
     this.tinymceContent = sessionStorage.getItem("form-tinymceContent");
-    this.PictureCropChatbanner = sessionStorage.getItem(
-      "form-PictureCropChatbanner"
-    );
+    this.PictureCropChatbanner = sessionStorage.getItem("form-PictureCropChatbanner");
 
     this.usernickname = this.getCookieValue("nickname");
     this.userid = this.getCookieValue("id");
