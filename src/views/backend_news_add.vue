@@ -150,24 +150,24 @@ export default {
         //   },
 
 
-
         newsPreview() {
             console.log(this.title);  //不可刪除
             // 檢查必填欄位是否已經填寫
-            if (this.title == '') {
+            if (this.title ==! '' ) {
               
-                alert("有欄位尚未填寫完畢");
-            } else {
                 // 將資料傳至sessionStorage
                 sessionStorage.setItem('news-title', this.title);
                 sessionStorage.setItem('news-category', this.category);
                 sessionStorage.setItem('news-content', this.content);
                 sessionStorage.setItem('news-pic', this.pic);
-
+                
                 // 轉往預覽頁
                 const Id = this.$route.params.Id;
                 console.log(Id)
                 this.$router.push({ name: 'news_info_preview', params: { Id: Id } });
+                
+            } else {
+                alert("有欄位尚未填寫完畢");
             }
 
 
