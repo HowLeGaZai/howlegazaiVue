@@ -156,7 +156,7 @@ export default {
             // 檢查必填欄位是否已經填寫
             if (this.title == '') {
               
-                alert("請填寫所有欄位");
+                alert("有欄位尚未填寫完畢");
             } else {
                 // 將資料傳至sessionStorage
                 sessionStorage.setItem('news-title', this.title);
