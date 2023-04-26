@@ -128,32 +128,6 @@ export default {
     },
 
 
-    beforeMount() {
-
-        // const routerid = this.$route.params.Id;
-        // console.log(routerid);
-
-        // const searchid = new FormData();
-        // searchid.append('routerid', routerid);
-        // axios
-        //     .post('http://localhost/TGD104G1/public/API/check_duplicate_news.php', searchid)
-        //     .then(response => {
-        //         // this.$set(this.data,'saveNewsdata',this.newsdata)
-        //         this.newsdata = response.data[0];
-        //         console.log(this.newsdata);
-        //         console.log("routerid重複");
-        //     })
-        //     .catch(error => {
-        //         console.log(error);
-        //     });
-
-        // console.log(this.newsdata);
-
-
-    },
-
-
-    // this.pathId = this.$route.params.Id;
 
 
     data() {
@@ -178,53 +152,25 @@ export default {
 
 
         newsPreview() {
+            console.log(this.title);  //不可刪除
             // 檢查必填欄位是否已經填寫
-            // const requiredFields = document.querySelectorAll('[required]');
-            // for (const field of requiredFields) {
-            //     if (field.tagName === 'SELECT' && field.selectedIndex === 0) {
-            //         field.style.outline = '1px solid $red';
-            //         const label = field.parentNode.querySelector('label');
-            //         const asterisk = label.querySelector('.asterisk');
-            //         if (!asterisk) {
-            //             label.insertAdjacentHTML('beforeend', '<span class="asterisk" style="color:red;"> <i class="bi bi-asterisk" style="font-size:12px;"></i></span>');
-            //         }
-            //         return false;
-            //     } else {
-            //         const label = field.parentNode.querySelector('label');
-            //         const asterisk = label.querySelector('.asterisk');
-            //         if (asterisk) {
-            //             asterisk.remove();
-            //         }
-            //     }
-            //     if (!field.value) {
-            //         field.style.outline = '1px solid $red';
-            //         const label = field.parentNode.querySelector('label');
-            //         const asterisk = label.querySelector('.asterisk');
-            //         if (!asterisk) {
-            //             label.insertAdjacentHTML('beforeend', '<span class="asterisk" style="color:red;"> <i class="bi bi-asterisk" style="font-size:12px;"></i></span>');
-            //         }
-            //         return false;
-            //         // input{outline:$red};
-            //         // required
-            //     } else {
-            //         const label = field.parentNode.querySelector('label');
-            //         const asterisk = label.querySelector('.asterisk');
-            //         if (asterisk) {
-            //             asterisk.remove();
-            //         }
-            //     }
-            // }
+            if (this.title == '') {
+              
+                alert("請填寫所有欄位");
+            } else {
+                // 將資料傳至sessionStorage
+                sessionStorage.setItem('news-title', this.title);
+                sessionStorage.setItem('news-category', this.category);
+                sessionStorage.setItem('news-content', this.content);
+                sessionStorage.setItem('news-pic', this.pic);
 
-            // 將資料傳至sessionStorage
-            sessionStorage.setItem('news-title', this.title);
-            sessionStorage.setItem('news-category', this.category);
-            sessionStorage.setItem('news-content', this.content);
-            sessionStorage.setItem('news-pic', this.pic);
+                // 轉往預覽頁
+                const Id = this.$route.params.Id;
+                console.log(Id)
+                this.$router.push({ name: 'news_info_preview', params: { Id: Id } });
+            }
 
-            // 轉往預覽頁
-            const Id = this.$route.params.Id;
-            console.log(Id)
-            this.$router.push({ name: 'news_info_preview', params: { Id: Id } });
+
 
 
         },
@@ -268,7 +214,11 @@ export default {
                     this.newsdata = response.data[0];
 
                     if (sessionStorage.getItem('news-title') !== null) {
-                        this.title = sessionStorage.getItem("news-title");
+                        // this.title = sessionStorage.getItem("news-title");
+                        // this.category = sessionStorage.getItem("news-category");
+                        // this.content = sessionStorage.getItem("news-content");
+                        // this.pic = "";
+                        // this.title = "sessionStorage.getItem("news-title")";
                         this.category = sessionStorage.getItem("news-category");
                         this.content = sessionStorage.getItem("news-content");
                         this.pic = sessionStorage.getItem("news-pic");

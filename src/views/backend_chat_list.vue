@@ -163,7 +163,11 @@ export default {
   methods:{
     chatInfo(index){
       // this.$router.push({ name: 'chat_info', params: { Id: this.filteredItems[index][0] } });
-      window.open(`/chat_info/${this.filteredItems[index][0]}`, '_blank');
+      // window.open(`/chat_info/${this.filteredItems[index][0]}`, '_blank');
+
+      const url = this.$router.resolve({ name: 'chat_info', params: { Id: this.filteredItems[index][0] } }).href;
+      window.open(url, '_blank');
+
     },
     onoff(index) {
       // console.log(index);

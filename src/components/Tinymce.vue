@@ -41,7 +41,9 @@ export default {
     toolbar: {
       type: [String, Array],
       default:
-        ' bold italic underline strikethrough | fontsizeselect | forecolor backcolor | alignleft aligncenter alignright alignjustify|bullist numlist |outdent indent blockquote | undo redo | axupimgs | table | image | emoticons | code | removeformat',
+        // ' bold italic underline strikethrough | fontsizeselect | forecolor backcolor | alignleft aligncenter alignright alignjustify|bullist numlist |outdent indent blockquote | undo redo | axupimgs | table | image | emoticons | code | removeformat',
+        ' bold italic underline strikethrough | fontsizeselect | forecolor backcolor | alignleft aligncenter alignright alignjustify|bullist numlist |outdent indent blockquote | undo redo | axupimgs | table | code | removeformat',
+
     },
   },
   emits: ['update:modelValue',],
