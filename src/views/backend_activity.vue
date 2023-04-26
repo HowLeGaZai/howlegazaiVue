@@ -93,7 +93,7 @@
 
                     <!-- 編輯 -->
                     <td>
-                      <button type="button" class="btn-icon">
+                      <button type="button" class="btn-icon" @click="edit(data.ROUTERID)">
                         <i class="bi bi-pencil-square btn-font-color-green"></i>
                       </button>
                     </td>
@@ -239,6 +239,12 @@ export default {
         .catch(error => {
           console.log(error);
         });
+    },
+
+    edit(ROUTERID){
+        // alert(ROUTERID);
+        sessionStorage.setItem('edit', ROUTERID);
+        this.$router.push({ name: "backend_activity_input", params: { Id: ROUTERID } });
     }
 
 
