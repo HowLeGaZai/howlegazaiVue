@@ -19,7 +19,7 @@
     $idBack = $_POST['idBack'];
     $birth = $_POST['birthdate'];
 
-
+    $password = password_hash($password, PASSWORD_BCRYPT);
     //執行
     $statement = $pdo -> prepare($sql);
 
