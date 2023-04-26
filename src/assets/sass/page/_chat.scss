@@ -49,6 +49,7 @@
             }
             @include breakpoint($grid-breakpoints, "sm") {
               margin-top: 2px;
+              order: 2;
 
             }
 
@@ -72,6 +73,10 @@
 
               @include breakpoint($grid-breakpoints, "sm") {
                 font-size: 1.1em;
+                width: 90px;
+                margin-right: 0px;
+
+                
               }
 
             }
@@ -87,19 +92,36 @@
 
             @include breakpoint($grid-breakpoints, "sm") {
               font-size: 14px;
-              margin-right: 5px;
+              margin-left: 5px;
+              margin-top: 5px;
+              order: 3;
+              text-align: left;
+
             }
           }
 
           .tag-mini {
             //
             margin-right: 20px;
+            @include breakpoint($grid-breakpoints, "md") {
+            margin-right: 10px;
+
+            }
+            @media screen and (max-width: 465px) {
+              width: 90px;
+            }
             @include breakpoint($grid-breakpoints, "sm") {
               height: 25px;
               line-height: 25px;
               font-size: 1.1em;
+              width: 90px;
               //
               margin-right: 20px;
+              order: 1;
+              @media screen and (max-width: 370px) {
+                width: 70px;
+                font-size: 1em;
+              }
 
             }
 
