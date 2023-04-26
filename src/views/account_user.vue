@@ -17,14 +17,14 @@
               <div class="row account_row">
                 <div class="col-md-6 col-12">
                   <h4>帳號
-                    <span v-if="!formSubmitted" class="red-dot"><i class="bi bi-asterisk"></i></span>
-                    <span v-if="!accountValid" class="red">*8~12字元，需包含英文小寫和數字</span>
+                    <!-- <span v-if="!formSubmitted" class="red-dot"><i class="bi bi-asterisk"></i></span> -->
+                    <span v-if="accountValid" class="red">*8~12字元，需包含英文小寫和數字</span>
                     <span v-if="accountDuplicate" class="red">帳號已被註冊</span></h4> 
                   <input
                     type="text"
                     class="f-text nomargin changelineheight"
                     id="sAccount"
-                    placeholder="請輸入帳號"
+                    placeholder="請輸入帳號，8~12字元"
                     required
                     v-if="normalUser"
                     v-model="ACCOUNT"
@@ -47,7 +47,7 @@
                         name="GENDER"
                         v-model="GENDER"
                         v-bind:value="'male'"
-                        :disabled="headHousehold === true || canEdit === false"
+                        :disabled="headHousehold == true || canEdit == false"
                       />
                       <span class="checkmark"></span>
                     </label>
@@ -58,7 +58,7 @@
                         name="GENDER"
                         v-model="GENDER"
                         v-bind:value="'female'"
-                        :disabled="headHousehold === true || canEdit === false"
+                        :disabled="headHousehold == true || canEdit == false"
                       />
                       <span class="checkmark"></span>
                     </label>
@@ -69,7 +69,7 @@
                         name="GENDER"
                         v-model="GENDER"
                         v-bind:value="'noanswer'"
-                        :disabled="headHousehold === true || canEdit === false"
+                        :disabled="headHousehold == true || canEdit == false"
                       />
                       <span class="checkmark"></span>
                     </label>
@@ -90,7 +90,7 @@
                         class="f-text nomargin changelineheight"
                         id="FULL_NAME"
                         v-model="FIRST_NAME"
-                        placeholder="請輸入姓名" required
+                        placeholder="" required
                       />
                     </div>
                     <div class="col-md-6 col-12">
@@ -100,7 +100,7 @@
                         class="f-text nomargin changelineheight"
                         id="FULL_NAME"
                         v-model="LAST_NAME"
-                        placeholder="請輸入姓名" required
+                        placeholder="" required
                       />
                     </div>
                   </div>
@@ -115,6 +115,7 @@
                     id="nickname"
                     v-model="NICKNAME"
                     placeholder="請輸入暱稱" required
+                    maxlength="7"
                   />
                 </div>
               </div>
@@ -122,9 +123,9 @@
               <div class="row account_row">
 
                 <div class="col-md-6 col-12">
-                  <h4>身份證字號<span v-if="canEdit" class="colorBlack"> *非必填</span><span v-if="!idNumValid" class="red">*請輸入正確身分證</span></h4>
+                  <h4>身份證字號<span v-if="canEdit" class="colorBlack"> *非必填</span><span v-if="idNumValid" class="red">*請輸入正確身分證</span></h4>
                   <h4 v-if="headHousehold,!canEdit">{{ ID_NUMBER }}</h4>
-                  <input type="text" v-if="canEdit" class="f-text nomargin" id="name" v-model.trim="ID_NUMBER" @blur="validateIdNum" placeholder="請輸入身份證字號">
+                  <input type="text" maxlength="10" v-if="canEdit" class="f-text nomargin" id="name" v-model.trim="ID_NUMBER" @blur="validateIdNum" placeholder="請輸入身份證字號">
                 </div>
                 
                 <div class="col-md-6 col-12">
@@ -157,6 +158,7 @@
                     v-model.trim="PHONE"
                     placeholder="請輸入聯絡電話" required
                     @blur="validatePhone"
+                    maxlength="10"
                   />
                 </div>
               </div>
@@ -230,12 +232,17 @@ export default {
       maxBirthdate: this.getToday(),
 
       // 驗證欄位 -- 表單送出 / 帳號是否重複 / 帳號格式 / 身分證格式 / email 格式 / 電話格式
-      formSubmitted: true,
+      formSubmitted: false,
       accountDuplicate: false,
-      accountValid: true,
-      idNumValid: true,
+      accountValid: false,
+      idNumValid: false,
       emailValid: true,
       phoneValid: true,
+
+      maxBirthdate: this.getToday(),
+
+      // 上傳大頭貼
+      dataURL:'',
     };
   },
 
@@ -322,41 +329,62 @@ export default {
       // 尚未完成：表單驗證、表單儲存
       // 驗證欄位
 
-      // 檢查帳號格式 要再確認是否完成
+      // 帳號驗證
       async validateAccount() {
-        const accountRegex = /^(?=.*[a-z])(?=.*\d)[a-z\d]{8,12}$/i; // 英數字混合帳號8~12位
-        if (!accountRegex.test(this.account)) {
-          this.accountValid = false;
-          // this.account ='';
-          return;
-        }
-        await this.checkDuplicateAccount(this.account); 
+      // 檢查帳號格式
+      const accountRegex = /^(?=.*[a-z])(?=.*\d)[a-z\d]{8,12}$/i; // 英數字混合帳號8~12位
+      if (!accountRegex.test(this.ACCOUNT)) {
+        console.log("帳號格式錯誤")
         this.accountValid = true;
-      },
+        // this.account ="";
+        return;
+      }
+      console.log("帳號格式正確");
+      await this.checkDuplicateAccount(this.ACCOUNT); 
+      this.accountValid = false;
+    },
 
-      async checkDuplicateAccount() {
-      try {
-            const formData2 = new FormData()
-            formData2.append('account', this.account)
-            
-            const response = await axios.post('http://localhost/TGD104G1/public/API/check_duplicate_account.php', formData2);
-            const result = response.data;
-            console.log(result);
-            if (result === 'duplicate') {
-              // 帳號重複
-              this.accountDuplicate =  true; // 設定為 true
-              this.badaccount = this.account;
-              this.account ='';
-              this.$refs.myaccount.blur()
-            
-            } else {
-              // 帳號未重複
-              this.accountDuplicate = false; // 設定為 false
-            }
+    async checkDuplicateAccount() {
+        try {
+          const formData2 = new FormData()
+          formData2.append('account', this.ACCOUNT)
+          
+          const response = await
+          
+          axios.post('http://localhost/TGD104G1/public/API/check_duplicate_account.php', formData2);
+          const result = response.data;
+          console.log(result);
+          if (result === 'duplicate') {
+            // 帳號重複
+            console.log("帳號重複");
+            this.accountDuplicate =  true; // 設定為 true
+            this.badaccount = this.ACCOUNT;
+            this.ACCOUNT ="";
+            this.$refs.myaccount.blur()
+          
+          } else {
+            // 帳號未重複
+            console.log("帳號未重複");
+            this.accountDuplicate = false; // 設定為 false
+          }
         } catch (error) {
           console.error(error);
           // 處理錯誤
         }
+      },
+      cleanBadaccount(){
+        this.badaccount = "";
+        this.accountDuplicate =  false;
+      },
+
+      // 身分證驗證
+      validateIdNum() {
+        const idNumRegex = /^[A-Z]{1}[1-2]{1}\d{8}$/; // 台灣身分證字號正規表達式
+        if (!idNumRegex.test(this.idNum)) {
+          this.idNumValid = true; // 身分證字號格式不符
+          return;
+        }
+        this.idNumValid = false; // 身分證字號格式正確
       },
 
       cleanBadaccount(){
@@ -364,7 +392,7 @@ export default {
           this.accountDuplicate =  false;
       },
 
-      // 驗證欄位
+      // 生日欄位最大值
       getToday() {
           const today = new Date()
           const yyyy = today.getFullYear()
@@ -373,15 +401,17 @@ export default {
           return `${yyyy}-${mm}-${dd}`
       },
 
+      // 身分證驗證
       validateIdNum() {
         const idNumRegex = /^[A-Z]{1}[1-2]{1}\d{8}$/; // 台灣身分證字號正規表達式
         if (!idNumRegex.test(this.idNum)) {
-          this.idNumValid = false; // 身分證字號格式不符，設定為 false
+          this.idNumValid = true; // 身分證字號格式不符，設定為 false
           return;
         }
-        this.idNumValid = true; // 身分證字號格式正確，設定為 true
+        this.idNumValid = false; // 身分證字號格式正確，設定為 true
       },
       
+      // email驗證
       validateEmail() {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(this.email)) {
@@ -391,6 +421,7 @@ export default {
         this.emailValid = true; 
       },
 
+      // 電話驗證
       validatePhone() {
         const phoneRegex = /^09\d{8}$/;
         if (!phoneRegex.test(this.phoneNum)) {
@@ -400,7 +431,7 @@ export default {
         }
       },
 
-      //要再確認- 不明功能 好像是要傳圖的
+      //大頭貼傳圖
       onResultChanged(result) {
         // console.log(result.dataURL);
         this.dataURL = result.dataURL;
@@ -413,8 +444,8 @@ export default {
         this.formSubmitted = true;
         //如果account password lastName firstName nickName idNum birth email phoneNum agree idFront idBack都沒有值
 
-        if (this.account === '' || this.password === '' || this.lastName === '' || this.firstName === '' ||
-        this.nickName === '' ||  this.idNum === '' || this.birth == null || this.email === '' || this.phoneNum === '' || this.agree == false || this.idFront === '' || this.idBack === '' || this.accountValid == false || this.passwordValid == false || this.idNumValid == false || this.emailValid == false || this.phoneValid == false  || this.accountDuplicate == true) {
+        if (this.ACCOUNT === '' || this.LAST_NAME === '' || this.FIRST_NAME === '' ||
+        this.nickName === '' || this.email === '' || this.phoneNum === '' || this.accountValid == true || this.idNumValid == false || this.emailValid == false || this.phoneValid == false  || this.accountDuplicate == true) {
           alert('請正確填寫必填欄位');
           // this.$router.push('./signup2')
           return;
@@ -422,7 +453,7 @@ export default {
           this.saveInput();
         }
         // 在這裡編寫提交表單的程式碼
-        console.log('表單提交成功');  
+        console.log('表單提交');  
       },
 
       //存到資料庫的欄位（要再確認成新版）
@@ -434,9 +465,11 @@ export default {
         const NICKNAME = this.NICKNAME;
         const EMAIL = this.EMAIL;
         const PHONE = this.PHONE;
-        const PORTRAIT = this.dataURL;
-
-        //再測測
+        const PIC = this.dataURL;
+        const ACCOUNT = this.ACCOUNT;
+        const FIRST_NAME = this.FIRST_NAME;
+        const LAST_NAME = this.LAST_NAME;
+        const UPDATER = this.getCookieValue("id");
 
         const url = 'http://localhost/TGD104G1/public/API/updateAccount.php';
         const data = new FormData();
@@ -447,68 +480,59 @@ export default {
         data.append('NICKNAME', this.NICKNAME);
         data.append('EMAIL', this.EMAIL);
         data.append('PHONE', this.PHONE);
-        data.append('PORTRAIT', PORTRAIT);
+        data.append('PORTRAIT', PIC);
+        data.append('ACCOUNT', ACCOUNT);
+        data.append('FIRST_NAME', FIRST_NAME);
+        data.append('LAST_NAME', LAST_NAME);
+        data.append('UPDATER', UPDATER);
+     
 
-        axios.post('http://localhost/TGD104G1/public/API/updateAccount.php', data)
+        axios.post(url, data)
         .then(function (response) {
           console.log(response.data); // 輸出回應資料
           if (response.data.status === 'success') {
-            alert(response.data.message); // 顯示儲存成功訊息
+            alert('儲存成功請重新登入'); // 顯示儲存成功訊息
+            this.clearCookies();
           } else {
             alert('儲存失敗'); // 顯示儲存失敗訊息
-          };
-          nextTick(() => {
-            this.mounted(); // 重新調用 mounted 函數 --後來決定蟲load
-            console.log("成功mounted")
-          });
+          }
         });
-
-        //  這裡可能不用----
-        axios.post(url, data)
-        .then(response => {
-          this.jsonData = response.data;
-          this.accountInfo();
-          // console.log(NICKNAME);
-        })
-        .catch(error => {
-          console.log(error);
-        });
-      //  這裡可能不用---
-
-        
-        // location.reload();
-      },
       
-      // updateNickname(newNickname) {
-      //   // 新的 nickname
-      //   document.cookie = "nickname=" + newNickname;
+      },
 
-      //   // 从cookie中讀取nickname值
-      //   const cookieNickname = document.cookie.replace(/(?:(?:^|.*;\s*)nickname\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-      //   console.log(cookieNickname)
-      // },
-      // getCookie(id) {
-      //   const value = `; ${document.cookie}`;
-      //   const parts = value.split(`; ${id}=`);
-      //   if (parts.length === 2) return parts.pop().split(';').shift();
+        // 登出功能清除 cookie
+        clearCookies() {
+          // 取得目前的 cookie 字串
+          localStorage.removeItem("portrait")
+          let cookies = document.cookie;
+          // 將 cookie 字串分割成每個 cookie
+          let cookieArr = cookies.split("; ");
+          // 迭代 cookieArr，將每個 cookie 都設置過期時間為過去的日期，使其被刪除
+          for (let i = 0; i < cookieArr.length; i++) {
+            let cookie = cookieArr[i];
+            let eqPos = cookie.indexOf("=");
+            let name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+            document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT`;
 
-      //   console.log(id);
-      // },
+          }
+          this.$router.push('/');
+        },
       
         //抓cookie 覆蓋過去
-      getCookie(nickman) {
-        const value = `; ${document.cookie}`;
-        const parts = value.split(`; ${nickman}=`);
-        if (parts.length === 2) return parts.pop().split(';').shift();
+      // getCookie(nickman) {
+      //   const value = `; ${document.cookie}`;
+      //   const parts = value.split(`; ${nickman}=`);
+      //   if (parts.length === 2) return parts.pop().split(';').shift();
 
-        console.log(nickman)
-      },
+      //   console.log(nickman)
+      // },
   },
 
-  //可以先不用監測
+  // 監測大頭貼照片上傳
   // watch: {
   //   async getResult() {
   //     this.dataURL = this.$refs.PortraitCrop.getResult(dataURL);
+    
   //   }
   // },
 
