@@ -65,7 +65,7 @@
                     <td data-label="活動編號">{{ data.ID }}</td>
                     <td data-label="活動分類">{{ data.CATEGORY }}</td>
                     <td data-label="活動名稱">
-                      <router-link class="titlelink" :to="{ name: 'activity_info', params: { Id: data.ID } }">
+                      <router-link class="titlelink" :to="{ name: 'activity_info', params: { Id: data.ROUTERID } }">
                         {{ data.TITLE }}
                       </router-link>
                     </td>
