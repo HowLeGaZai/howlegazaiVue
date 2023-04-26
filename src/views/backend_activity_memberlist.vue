@@ -15,12 +15,12 @@
               <button class="btn-prepage font-green">
                 <i class=" bi bi-caret-left-fill font-green"></i>返回【活動總覽】</button>
             </router-link>
-            <h1>{{Title}}<span v-if="note">目前無人報名喔</span></h1>
+            <h1>{{Title}}<span v-if="note">目前無人報名喔！</span></h1>
             <div class="displayflex">
               <div class="displayflex margintop18">
-                <button type="button" class="btn-10-s btn-color-green">
+                <!-- <button type="button" class="btn-10-s btn-color-green">
                   <i class="bi bi-cloud-arrow-down-fill"></i> 匯出資料
-                </button>
+                </button> -->
 
               </div>
 
