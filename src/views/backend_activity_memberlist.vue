@@ -45,8 +45,8 @@
                   <td>{{ data.ID }}</td>
                   <td>{{ new Date(data.CREATE_TIME).toLocaleDateString() }}</td>
                   <td>{{ data.ATTEND_NAME }}</td>
-                  <td>{{ data.ATTEND_MAIL }}</td>
                   <td>{{ data.ATTEND_PHONE }}</td>
+                  <td>{{ data.ATTEND_MAIL }}</td>
                 </tr>
               </tbody>
             </table>
@@ -117,8 +117,12 @@ export default {
               for(let i =0;i<this.datas.length;i++){
                 
                 for(let j=0;j<this.datas[i].length;j++){
-                    console.log('j',this.datas[i][j]);
-                    arrayList.push(this.datas[i][j]);
+                    // console.log('j',this.datas[i][j]);
+                    // console.log('123',this.datas[i][j].ATTEND_NAME);
+                    if(this.datas[i][j].ATTEND_NAME){
+                        arrayList.push(this.datas[i][j]);
+                    }
+                   
                 }
               }
 
@@ -134,10 +138,10 @@ export default {
   methods:{
 
     getAttend(data) {
-      const ATTEND_NAME = data.ATTEND_NAME.slice(1, -1).split(",");
-      const ATTEND_GENDER = data.ATTEND_GENDER.slice(1, -1).split(",");
-      const ATTEND_MAIL = data.ATTEND_MAIL.slice(1, -1).split(",");
-      const ATTEND_PHONE = data.ATTEND_PHONE.slice(1, -1).split(",");
+      const ATTEND_NAME = data.ATTEND_NAME.split(",");
+      const ATTEND_GENDER = data.ATTEND_GENDER.split(",");
+      const ATTEND_MAIL = data.ATTEND_MAIL.split(",");
+      const ATTEND_PHONE = data.ATTEND_PHONE.split(",");
       const ID = data.ID;
       const TITLE = data.TITLE;
       const CREATE_TIME = data.CREATE_TIME;

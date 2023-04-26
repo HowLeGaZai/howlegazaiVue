@@ -88,10 +88,15 @@ export default {
             let login_account = response.data[0][6]; 
             let login_nickname = response.data[0][11]; 
             let login_pic = response.data[0][4]; 
+
+            let login_userlevel = response.data[0][12]; 
+
             document.cookie="id=" + login_id;
             document.cookie="name=" + login_name;
             document.cookie="account=" + login_account;
             document.cookie="nickname=" + login_nickname;
+            document.cookie="userlevel=" + login_userlevel; //潤新增的身份權限判斷cookie
+
             // document.cookie="portrait=" + login_pic;
             localStorage.setItem("portrait", login_pic);
           }

@@ -209,6 +209,10 @@
     .backBtn {
         width: 100%;
         text-align: center;
+        margin: 60px 0 30px;
+        &>button{
+            margin: 0 10px;
+        }
         
     }
 }

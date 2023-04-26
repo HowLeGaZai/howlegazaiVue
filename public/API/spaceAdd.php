@@ -9,6 +9,7 @@ $city = $_POST['city'];
 $district = $_POST['district'];
 $village = $_POST['village'];
 $address = $_POST['address'];
+$address = $city.$district.$village.$address;
 $type = $_POST['type'];
 $spaceSize = $_POST['spaceSize'];
 $capacity = $_POST['capacity'];

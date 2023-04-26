@@ -63,7 +63,7 @@
                       <td>發布日期</td>
                       <td>置頂</td>
                       <td>編輯</td>
-                      <td>下架</td>
+                      <td>上架</td>
                       <!-- <td>編輯</td>
                   <td>刪除</td> -->
                     </tr>
@@ -194,7 +194,7 @@ export default {
       // console.log(this.newsData[index]);
       // console.log(this.newsData[index][0]); //object的ID
       // const result =this.newsData[index][active] = this.newsData[index][active] === 1 ? 0 : 1;
-      const result =this.filteredItems[index][active] = this.filteredItems[index][active] === 1 ? 0 : 1;
+      const result =this.filteredItems[index][active] = this.filteredItems[index][active] === 1 ? '0' : '1';
       
       
       // console.log([event])
