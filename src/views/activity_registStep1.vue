@@ -398,6 +398,10 @@ sendAttend() {
         .then(response => {
             // this.jsonData = response.data;
             console.log(response.data);
+            // this.$router.push('')
+            const Id = this.$route.params.Id;
+            this.$router.push({ name: "activity_registStep3", params: { Id: Id } });
+
         })
         .catch(error => {
             // console.log(error);
