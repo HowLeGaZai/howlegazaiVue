@@ -39,8 +39,11 @@
                               <button type="button" class="btn-icon"><i class="bi bi-pencil-square btn-font-color-green"></i></button>
                               <button type="button" class="btn-icon"><i class="bi bi-x-circle-fill btn-font-color-green"></i></button>
                             </td> -->
-                            <td data-label="刪除">
-                                <button type="button" class="btn-icon"><i class="bi bi-x-circle-fill btn-font-color-green"></i></button></td>
+
+
+                            <!-- 先把刪除隱藏 -->
+                            <!-- <td data-label="刪除">
+                                <button type="button" class="btn-icon"><i class="bi bi-x-circle-fill btn-font-color-green"></i></button></td> -->
                         </tr>
                     
                       </table>  
@@ -82,7 +85,9 @@ export default {
                 booleenforShow:true,
 
                 datasTrs:[
-                    'No.', '姓名', '帳號', '電子信箱', '刪除'
+                    'No.', '姓名', '帳號', '電子信箱'
+                    // , '刪除'
+                    // 先把刪除隱藏
                 ],
 
                 // datas:[

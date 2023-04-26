@@ -123,7 +123,7 @@ const routes = [
   // },
   {
     // 前台 活動報名 步驟一、報名資訊填寫
-    path: '/activity_registStep1',
+    path: '/activity_registStep1/:Id',
     name: 'activity_registStep1',
     meta: {
       requiresAuth: true // 添加一個 meta 屬性來標記需要登錄的頁面
@@ -132,7 +132,7 @@ const routes = [
   },
   {
     // 前台 活動報名 步驟三、感謝報名
-    path: '/activity_registStep3',
+    path: '/activity_registStep3/:Id',
     name: 'activity_registStep3',
     meta: {
       requiresAuth: true // 添加一個 meta 屬性來標記需要登錄的頁面

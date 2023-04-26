@@ -45,6 +45,7 @@ export default {
         },
           addClass(category) {
             return {
+                
                 "tag-pink": category === "藝文",
                 "tag-orange": category === "其他",
                 "tag-sky": category === "旅遊",
