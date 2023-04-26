@@ -232,10 +232,10 @@ export default {
       // 驗證欄位 -- 表單送出 / 帳號是否重複 / 帳號格式 / 身分證格式 / email 格式 / 電話格式
       formSubmitted: true,
       accountDuplicate: false,
-      accountValid: false,
-      idNumValid: false,
-      emailValid: false,
-      phoneValid: false,
+      accountValid: true,
+      idNumValid: true,
+      emailValid: true,
+      phoneValid: true,
     };
   },
 
@@ -300,7 +300,7 @@ export default {
             
             // 註冊非戶長且未更新過生日與身分證
             this.headHousehold = false;
-            this.normalUser = true;
+            this.normalUser = true; 
 
   
               // 註冊非戶長且已更新過生日與身分證
@@ -408,8 +408,11 @@ export default {
       },
 
       //送出表單按鈕 -空值要再確認 
+     
       submitForm() {
         this.formSubmitted = true;
+        //如果account password lastName firstName nickName idNum birth email phoneNum agree idFront idBack都沒有值
+
         if (this.account === '' || this.password === '' || this.lastName === '' || this.firstName === '' ||
         this.nickName === '' ||  this.idNum === '' || this.birth == null || this.email === '' || this.phoneNum === '' || this.agree == false || this.idFront === '' || this.idBack === '' || this.accountValid == false || this.passwordValid == false || this.idNumValid == false || this.emailValid == false || this.phoneValid == false  || this.accountDuplicate == true) {
           alert('請正確填寫必填欄位');
@@ -473,7 +476,7 @@ export default {
       //  這裡可能不用---
 
         
-        location.reload();
+        // location.reload();
       },
       
       // updateNickname(newNickname) {
