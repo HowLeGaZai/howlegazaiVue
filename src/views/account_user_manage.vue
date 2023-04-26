@@ -122,7 +122,7 @@ export default {
             this.jsonData.push(dataNew);
 
 
-            console.log(toggleShow);
+            // console.log(toggleShow);
 
             this.showChild = toggleShow;
         },
@@ -165,7 +165,7 @@ export default {
         this.localPORTRAIT = localStorage.getItem("portrait");
         this.USER_ID = this.getCookieValue('id');
         this.USER_LEVEL = this.getCookieValue('userlevel');
-        console.log(this.USER_LEVEL);
+        // console.log(this.USER_LEVEL);
 
         // console.log(this.USER_ID);
 
@@ -176,7 +176,7 @@ export default {
 
             .then(response => {
                 this.jsonData = response.data;
-                console.log(response.data);
+                // console.log(response.data);
 
             })
             .catch(error => {
