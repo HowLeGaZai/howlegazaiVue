@@ -7,31 +7,31 @@
             <h4>與里長 鬥陣氣頭</h4>
         </div>
 
-        <div class="searchTool row">
+        <!-- <div class="searchTool row">
             <div class="col-6 col-md-3 activity-toolbar">
                 <label for="activity-dday" class="f-label">截止日期</label>
                 <input type="date" class="f-text" id="activity-dday" style:="background-color:white" value="">
             </div>
-            <div class="col-6 col-md-3 activity-toolbar">
+             <div class="col-6 col-md-3 activity-toolbar">
                 <label for="activity-price" class="f-label">價格</label>
-                <!-- <input type="text" class="f-text" id="activity-price" placeholder="全部"> -->
+                <input type="text" class="f-text" id="activity-price" placeholder="全部">
                 <select name="" id="activity-price" class="f-select">
                 <option value="1">免費</option>
                 <option value="2">1000以下</option>
                 <option value="3">2000以下</option>
                 <option value="4">5000以下</option>
             </select>
-            </div>    
+            </div> 
             
             <div class="col-12 col-md-6 ac-search-bar">
                 <div class="search">
                     <input type="" class="f-text f-round" placeholder="&#xF52A;" style="font-family:bootstrap-icons"/>
                     <button type="button" class="btn-m btn-color-green">搜尋</button>
                 </div>
-                <!-- <input type="" class="f-text f-round tag-round" placeholder="&#xF52A" style="font-family:bootstrap-icons">
-                <button class="btn-s btn-color-green ">搜尋</button> -->
+                <input type="" class="f-text f-round tag-round" placeholder="&#xF52A" style="font-family:bootstrap-icons">
+                <button class="btn-s btn-color-green ">搜尋</button>
             </div> 
-        </div>
+        </div> -->
 
         <!-- 分類 -->
         <div class="desktop-filter">
@@ -44,10 +44,11 @@
         <div class="mobile-filter">
             <label for="chattype" class="f-label">分類</label>
             <select name="" id="chattype" class="f-select">
-                <option value="1">旅遊</option>
-                <option value="2">健康</option>
-                <option value="3">藝文</option>
-                <option value="4">其他</option>
+                <option value="">全部活動</option>
+                <option value="旅遊">旅遊</option>
+                <option value="健康">健康</option>
+                <option value="藝文">藝文</option>
+                <option value="其他">其他</option>
             </select>
         </div>
 
