@@ -4,6 +4,7 @@
     <main class="activity_info">
         <div class="info_topic">
             <h1>感謝報名</h1>
+            <!-- activity TITLE-->
             <h2>電影旅遊講座《北印度 PK 南印度》用電影神遊印度</h2>
         </div>
 
@@ -33,23 +34,29 @@
                 </tr>
             </thead>
             <tbody>
+                <!-- activity order ID-->
                 <tr class="row">
                     <td class="col-md-3 col-sm-4 col-12">報名序號</td>
                     <td class="col-md-9 col-sm-8 col-12">QQ952712</td>
                 </tr>
                 <tr class="row">
+                    <!-- activity CONTENT-->
                     <td class="col-md-3 col-sm-4 col-12">活動名稱</td>
                     <td class="col-md-9 col-sm-8 col-12">這是看電影的活動</td>
                 </tr>
                 <tr class="row">
+                     <!-- activity LOCATION-->
                     <td class="col-md-3 col-sm-4 col-12">活動地點</td>
                     <td class="col-md-9 col-sm-8 col-12">信義里活動中心</td>
                 </tr>
                 <tr class="row">
                     <td class="col-md-3 col-sm-4 col-12">訂購人</td>
                     <td class="col-md-9 col-sm-8 col-12">
+                        <!-- attend detail ATTEND NAME -->
                         <p>姓名：<span>李上巴</span></p>
+                        <!-- attend detail ATTEND PHONE -->
                         <p>聯絡電話：<span>0912-345-678</span></p>
+                        <!-- attend detail ATTEND MAIL-->
                         <p>信箱：<span>zxc140zxc140@gmail.com</span></p>
                     </td>
                 </tr>

@@ -15,12 +15,12 @@
               <button class="btn-prepage font-green">
                 <i class=" bi bi-caret-left-fill font-green"></i>返回【活動總覽】</button>
             </router-link>
-            <h1>{{Title}}<span v-if="note">目前無人報名喔</span></h1>
+            <h1>{{Title}}<span v-if="note">目前無人報名喔！</span></h1>
             <div class="displayflex">
               <div class="displayflex margintop18">
-                <button type="button" class="btn-10-s btn-color-green">
+                <!-- <button type="button" class="btn-10-s btn-color-green">
                   <i class="bi bi-cloud-arrow-down-fill"></i> 匯出資料
-                </button>
+                </button> -->
 
               </div>
 
@@ -41,7 +41,7 @@
                 </tr>
 
                 <!-- 尚未完成：bug 無法渲染多筆訂單的多筆報名資料 -->
-                <tr v-for="(data, index) in datas[i]" :key="index[i]">
+                <tr v-for="(data, index) in arrayList" :key="index">
                   <td>{{ data.ID }}</td>
                   <td>{{ new Date(data.CREATE_TIME).toLocaleDateString() }}</td>
                   <td>{{ data.ATTEND_NAME }}</td>
@@ -82,6 +82,7 @@ export default {
       note:false,
       original:[],
       datas:[],
+      arrayList:[],
     };
   },
   mounted() {
@@ -109,6 +110,20 @@ export default {
               console.log(this.original.TITLE)
               this.datas = this.original.map(data => this.getAttend(data)).concat();
               this.TITLE = this.datas[0].TITLE;
+
+              console.log(this.datas);
+
+              const arrayList=[];
+              for(let i =0;i<this.datas.length;i++){
+                
+                for(let j=0;j<this.datas[i].length;j++){
+                    console.log('j',this.datas[i][j]);
+                    arrayList.push(this.datas[i][j]);
+                }
+              }
+
+              console.log('list',arrayList);
+              this.arrayList = arrayList;
               };
         })
         .catch(error => {

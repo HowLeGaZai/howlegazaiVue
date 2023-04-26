@@ -210,8 +210,8 @@ export default {
         this.activity_closetime = sessionStorage.getItem('activity_closetime');
         this.activity_address = sessionStorage.getItem('activity_address');
         this.max_ppl = sessionStorage.getItem('max_ppl');
-        if(sessionStorage.getItem('nofee') == true){
-            this.fee='免費';
+        if(sessionStorage.getItem('nofee') == 'true'){
+            this.fee= 0;
         }else{
             this.fee = sessionStorage.getItem('fee');
         }
@@ -257,6 +257,37 @@ export default {
 
         publish(){
 
+         if(sessionStorage.getItem('edit') == this.$route.params.Id){
+
+            const formData = new FormData()
+            formData.append('routerid', this.routerid)
+            formData.append('TITLE', this.activity_name)
+            formData.append('BANNER', this.pic)
+            formData.append('START_DATE', this.activity_open)
+            formData.append('START_TIME', this.activity_opentime)
+            formData.append('END_DATE', this.activity_close)
+            formData.append('END_TIME', this.activity_closetime)
+            formData.append('CATEGORY', this.category)
+            formData.append('LOCATION', this.activity_address)
+            formData.append('MAX_PPL', this.max_ppl)
+            formData.append('PRICE', this.fee)
+            formData.append('CONTENT', this.content)
+            formData.append('REG_START', this.regist_open )
+            formData.append('REG_END', this.regist_close )
+
+            axios
+            //  htdocs的環境下測試
+            .post('http://localhost/TGD104G1/public/API/republishactivity.php',formData)
+            .then(response => {
+                
+            })
+            .catch(error => {
+                // console.log(error);
+            });
+
+            this.$router.push('/backend_activity')
+
+         }else{
             const formData = new FormData()
             formData.append('routerid', this.routerid)
             formData.append('TITLE', this.activity_name)
@@ -285,6 +316,10 @@ export default {
             });
 
             this.$router.push('/backend_activity')
+
+         }    
+
+            
 
         },
 

@@ -156,12 +156,46 @@ export default {
       pic:'',
       activity_opentime:'',
       activity_closetime:'',
+
+      activityData:[],
     };
   },
 
  
 
   mounted() {
+
+    if(sessionStorage.getItem('edit') == this.$route.params.Id){
+      // alert("編輯");
+      const actdata = new FormData();
+      actdata.append('routeid', this.$route.params.Id);
+      axios
+                .post('http://localhost/TGD104G1/public/API/activityinfo.php', actdata)
+                // .post('https://tibamef2e.com/tgd104/g1/webinfo.php', formData)
+                .then(response => {
+                    // this.jsonData = response.data;
+                    this.activityData = response.data;
+                    console.log(this.activityData[0]);
+                    this.activity_name = this.activityData[0].TITLE;
+                    this.category = this.activityData[0].CATEGORY;
+                    this.regist_open = this.activityData[0].REG_START;
+                    this.regist_close = this.activityData[0].REG_END;
+                    this.activity_open = this.activityData[0].START_DATE;
+                    this.activity_opentime = this.formatTime(this.activityData[0].START_TIME);
+                    this.activity_close = this.activityData[0].END_DATE;
+                    this.activity_closetime = this.formatTime(this.activityData[0].END_TIME);
+                    this.pic = this.activityData[0].BANNER;
+                    this.activity_address = this.activityData[0].LOCATION;
+                    this.max_ppl = this.activityData[0].MAX_PPL;
+                    this.fee = this.activityData[0].PRICE;
+                    this.content = this.activityData[0].CONTENT;
+                    
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+    }
+
     
     if(sessionStorage.getItem('activity_name') !== null) {
         this.activity_name = sessionStorage.getItem('activity_name');
@@ -199,34 +233,47 @@ export default {
       this.pic = data;
     },
 
+    formatTime(timeString) {
+          const [hour, minute] = timeString.split(":");
+          return `${hour}:${minute}`;
+    },
+
     activityPreview(){
-      if(this.activity_name === '' || this.category === '' || this.regist_open === '' ||
-      this.regist_close === '' ||  this.activity_open === '' || this.activity_close === '' ||
-      this.activity_opentime === '' || this.activity_closetime === '' ||
-      this.activity_address === '' || this.max_ppl === '' ||  this.content === '' ||
-      this.pic === '' || (this.fee === '' && this.nofee != true )){
-          alert("請填寫所有欄位")
-      }else{
 
-      sessionStorage.setItem('activity_name', this.activity_name);
-      sessionStorage.setItem('category', this.category);
-      sessionStorage.setItem('regist_open', this.regist_open);
-      sessionStorage.setItem('regist_close', this.regist_close);
-      sessionStorage.setItem('activity_open', this.activity_open);
-      sessionStorage.setItem('activity_close', this.activity_close);
-      sessionStorage.setItem('activity_opentime', this.activity_opentime);
-      sessionStorage.setItem('activity_closetime', this.activity_closetime);
-      sessionStorage.setItem('activity_address', this.activity_address);
-      sessionStorage.setItem('max_ppl', this.max_ppl);
-      sessionStorage.setItem('nofee', this.nofee);
-      sessionStorage.setItem('fee', this.fee);
-      sessionStorage.setItem('content', this.content);
-      sessionStorage.setItem('pic', this.pic);
 
-      const Id = this.$route.params.Id;
-      console.log(Id)
-      this.$router.push({ name: 'activity_info_preview', params: { Id: Id } }); 
-      }   
+            
+            if(this.activity_name === '' || this.category === '' || this.regist_open === '' ||
+            this.regist_close === '' ||  this.activity_open === '' || this.activity_close === '' ||
+            this.activity_opentime === '' || this.activity_closetime === '' ||
+            this.activity_address === '' || this.max_ppl === '' ||  this.content === '' ||
+            this.pic === '' || (this.fee === '' && this.nofee != true )){
+                alert("請填寫所有欄位")
+            }else{
+
+            sessionStorage.setItem('activity_name', this.activity_name);
+            sessionStorage.setItem('category', this.category);
+            sessionStorage.setItem('regist_open', this.regist_open);
+            sessionStorage.setItem('regist_close', this.regist_close);
+            sessionStorage.setItem('activity_open', this.activity_open);
+            sessionStorage.setItem('activity_close', this.activity_close);
+            sessionStorage.setItem('activity_opentime', this.activity_opentime);
+            sessionStorage.setItem('activity_closetime', this.activity_closetime);
+            sessionStorage.setItem('activity_address', this.activity_address);
+            sessionStorage.setItem('max_ppl', this.max_ppl);
+            sessionStorage.setItem('nofee', this.nofee);
+            sessionStorage.setItem('fee', this.fee);
+            sessionStorage.setItem('content', this.content);
+            sessionStorage.setItem('pic', this.pic);
+
+            const Id = this.$route.params.Id;
+            console.log(Id)
+            this.$router.push({ name: 'activity_info_preview', params: { Id: Id } }); 
+            }   
+
+
+
+
+
     },
 
     handleChange(){
