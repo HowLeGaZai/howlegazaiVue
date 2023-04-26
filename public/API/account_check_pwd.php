@@ -28,6 +28,8 @@ $statement->execute();
 //抓出全部且依照順序封裝成一個二維陣列
 $data = $statement->fetchAll();
 
+// if ($data && password_verify($OLDPASSWORD, $data['PASSWORD'])) {
+
 if ($data[0]['PASSWORD'] !== $OLDPASSWORD) {
     // 密碼不一致
     echo "notsame";
