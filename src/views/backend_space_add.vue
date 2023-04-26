@@ -226,22 +226,26 @@
                 },
                 methods:{
                     send(){
-                    const formData = new FormData()
-                    formData.append('spaceName', this.spaceName)
-                    formData.append('spaceTimeStart', this.spaceTimeStart)
-                    formData.append('spaceTimeClose', this.spaceTimeClose)
-                    formData.append('city', this.city)
-                    formData.append('district', this.district)
-                    formData.append('village', this.village)
-                    formData.append('address', this.address)
-                    formData.append('type', this.type)
-                    formData.append('spaceSize', this.spaceSize)
-                    formData.append('capacity', this.capacity)
-                    formData.append('manager', this.manager)
-                    formData.append('phone', this.phone)
-                    formData.append('secondPhone', this.secondPhone)
-                    formData.append('note', this.note)
-                    formData.append('pic', this.pic)
+
+                    if(!this.spaceName || !this.spaceTimeStart ||  !this.spaceTimeClose ||  !this.city ||  !this.district ||!this.village || !this.address || !this.type || !this.spaceSize || !this.capacity || !this.manager || !this.phone || !this.secondPhone || !this.note || !this.pic){
+                        alert("有欄位尚未填寫完畢")
+                    }else{
+                        const formData = new FormData()
+                        formData.append('spaceName', this.spaceName)
+                        formData.append('spaceTimeStart', this.spaceTimeStart)
+                        formData.append('spaceTimeClose', this.spaceTimeClose)
+                        formData.append('city', this.city)
+                        formData.append('district', this.district)
+                        formData.append('village', this.village)
+                        formData.append('address', this.address)
+                        formData.append('type', this.type)
+                        formData.append('spaceSize', this.spaceSize)
+                        formData.append('capacity', this.capacity)
+                        formData.append('manager', this.manager)
+                        formData.append('phone', this.phone)
+                        formData.append('secondPhone', this.secondPhone)
+                        formData.append('note', this.note)
+                        formData.append('pic', this.pic)
 
                         axios
                             .post('http://localhost/TGD104G1/public/API/spaceAdd.php', formData)
@@ -257,6 +261,11 @@
                         // this.city='';
                         // this.district='';
                         // this.village='';
+
+                        alert("新增空間成功");
+                    }
+                    
+                    
                     },
             sendpic(data){
                 this.pic = data;

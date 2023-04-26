@@ -95,7 +95,7 @@
     
             <h3><i class="bi bi-dot"></i>預約須知<i class="bi bi-dot"></i></h3>
             <ul>
-                <li><i class="bi bi-dot"></i>{{spaces.REMARK}}</li>
+                <li><i class="bi bi-dot"></i>{{spaceData.REMARK}}</li>
                 <!-- <li><i class="bi bi-dot"></i>預約送出後，須待里辦公室審核預約申請，申請進度請至個人帳戶>預約空間紀錄查看。</li>
                 <li><i class="bi bi-dot"></i>年節期間另行公告開放時間、若遇天災則視直轄單位宣布是否達停班停課標準。</li>
                 <li><i class="bi bi-dot"></i>其他如公司行號、學校、機關團體預約或長期借用，請洽里辦公室。</li> -->

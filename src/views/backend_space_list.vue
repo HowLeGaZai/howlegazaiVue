@@ -31,7 +31,7 @@
                                         <td>空間名稱</td>
                                         <td>預約數</td>
                                         <td>連結</td>
-                                        <td>編輯</td>
+                                        <!-- <td>編輯</td> -->
                                         <td>刪除</td>
 
                                     </tr>
@@ -46,10 +46,10 @@
                                             </button>
                                         </td>
 
-                                        <td><button type="button" class="btn-icon">
+                                        <!-- <td><button type="button" class="btn-icon">
                                                 <i class="bi bi-pencil-square btn-font-color-green"></i>
                                             </button>
-                                        </td>
+                                        </td> -->
 
                                         <td><button type="button" class="btn-icon" @click="deleteSpace(space.ID)">
                                                 <i class="bi bi-x-circle-fill btn-font-color-green"></i>
@@ -165,7 +165,7 @@ export default {
         deleteSpace(spaceID) {
 
             const formData = new FormData()
-            formData.append('spaceID', this.spaceID)
+            formData.append('spaceID', spaceID)
 
             axios
                 .post('http://localhost/TGD104G1/public/API/updateSpace.php', formData)
