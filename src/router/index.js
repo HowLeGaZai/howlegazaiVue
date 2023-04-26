@@ -123,7 +123,7 @@ const routes = [
   // },
   {
     // 前台 活動報名 步驟一、報名資訊填寫
-    path: '/activity_registStep1',
+    path: '/activity_registStep1/:Id',
     name: 'activity_registStep1',
     meta: {
       requiresAuth: true // 添加一個 meta 屬性來標記需要登錄的頁面
@@ -132,7 +132,7 @@ const routes = [
   },
   {
     // 前台 活動報名 步驟三、感謝報名
-    path: '/activity_registStep3',
+    path: '/activity_registStep3/:Id',
     name: 'activity_registStep3',
     meta: {
       requiresAuth: true // 添加一個 meta 屬性來標記需要登錄的頁面
@@ -167,18 +167,27 @@ const routes = [
     // 前台 空間預約總覽 步驟二、確認預約
     path: '/space_reserve_check/:Id',
     name: 'space_reserve_check',
+    meta: {
+      requiresAuth: true // 添加一個 meta 屬性來標記需要登錄的頁面
+    },
     component: () => import(/* webpackChunkName: "about" */ '../views/space_reserve_check.vue')
   },
   {
     // 前台 空間預約總覽 步驟三、預約成功
     path: '/space_reserve_confirm',
     name: 'space_reserve_confirm',
+    meta: {
+      requiresAuth: true // 添加一個 meta 屬性來標記需要登錄的頁面
+    },
     component: () => import(/* webpackChunkName: "about" */ '../views/space_reserve_confirm.vue')
   },
   {
     // 前台 空間預約總覽 步驟一、填寫預約單
     path: '/space_reserve/:Id',
     name: 'space_reserve',
+    meta: {
+      requiresAuth: true // 添加一個 meta 屬性來標記需要登錄的頁面
+    },
     component: () => import(/* webpackChunkName: "about" */ '../views/space_reserve.vue')
   },
   {

@@ -41,13 +41,13 @@
                   <tr class="row">
                       <td class="col-6">
                           <div class="image event_pic">
-                              <img src="../assets/img/e1_calligraphy.png" alt="">
+                              <img :src="activityData.BANNER" alt="">
                           </div>
                           <span>{{ activityData.TITLE }}</span>
                       </td>
                       <td class="col-2">NT$ {{ activityData.PRICE }}</td>
                       <td class="col-2">
-                          <input class="f-text" type="number" id="register_num2" v-model="inputValue" @input="multiplyInput">人
+                          <input class="f-text" type="number" id="register_num2" v-model="inputValue" min="1" max="3" @input="multiplyInput">人
                           <!-- <button class="btnUp"><i class="bi bi-caret-up-fill"></i></button> -->
                           <!-- <button class="btnDown"><i class="bi bi-caret-down-fill"></i></button> -->
                       </td>
@@ -62,7 +62,7 @@
           </table>
           
 
-        <form class="" id="idFormAioCheckOut" method="post" action="http://localhost/TGD104G1/public/API/ECPay_CreateOrder.php">
+        <form class="" id="idFormAioCheckOut">
         <!-- <form class="" id="idFormAioCheckOut" method="post" action="https://tibamef2e.com/tgd104/g1/API/ECPay_CreateOrder.php"> -->
             <table class="green-table">
                 <thead>
@@ -70,7 +70,7 @@
                         <th colspan="4">報名人資料 （報名人資料將作為聯繫代表人）</th>
                     </tr>
                 </thead>
-                <tbody>      
+                     <tbody>      
                     <tr class="row left">
                         <td>
                             <h4>參加人1</h4>
@@ -106,12 +106,40 @@
                         </td>
                     </tr>    
                 </tbody>
-                <tbody>
+                <tbody v-for="n in inputValue -1" :key="n">      
                     <tr class="row left">
+                        <td>
+                            <h4>參加人{{n+1}}</h4>
+                        </td>
+                    </tr>
+                    <tr class="row">
+                        <td class="col-md-2">
+                            <label for="name" class="f-label">姓名</label>
+                            <input type="text" class="f-text" id="name" value="">
+                        </td>
+                        <td class="col-md-2">
+                            <label for="inputState" class="f-label">稱謂</label>
+                            <select id="inputState" class="f-select">
+                                <option selected>先生</option>
+                                <option>女士</option>
+                            </select>
+                        </td>
+                        <td class="col-md-4">
+                            <label for="phone" class="f-label">電話</label>
+                            <input type="text" class="f-text" id="phone" value="">
+                        </td>
+                        <td class="col-md-4">
+                            <label for="mail" class="f-label"> Email</label>
+                            <input type="email" class="f-text" id="mail" value="">
+                        </td>
+                    </tr>    
+                </tbody>
+                <tbody>
+                    <!-- <tr class="row left">
                         <td>
                             <button class="btn-10-m btn-color-greenborder"><i class="bi bi-plus"></i>新增參加人</button>
                         </td>
-                    </tr>
+                    </tr> -->
                     <tr class="row right">
                         <td>報名單價:NT$ <span>{{ activityData.PRICE }}</span></td>
                     </tr>
@@ -141,7 +169,7 @@
 
             
             <!-- ECPay Start-->
-            <div style="display: none;">
+            <!-- <div style="display: none;">
                 <label>
                     編號 (MerchantTradeNo):不可重複使用。英數字大小寫混合
                     <input type="text" name="MerchantTradeNo" :value="time" class="form-control"/>
@@ -172,7 +200,7 @@
                     <input type="text" name="ChoosePayment" value="Credit"/>
                     Credit:信用卡及 AndroidPay AndroidPay: AndroidPay  WebATM:網路 ATM ATM:自動櫃員機 CVS:超商代碼 BARCODE:超商條碼 ALL:不指定
                 </label>
-            </div>
+            </div> -->
             <!-- ECPay End -->
 
         </form>
@@ -195,10 +223,10 @@ export default {
 
     data () {
         return {
-            activityJsonData:[],
+            // activityJsonData:[],
             activityData:[],
             jsonData:[],
-            inputValue: '',
+            inputValue: 1,
             result: '',
             data:[],
 
@@ -250,48 +278,52 @@ export default {
     },  
     methods:{
         async getActivityData() {
+            
+            const actID = this.$route.params.Id;
+
+            const actdata = new FormData();
+            actdata.append('routeid', actID);
             await  axios
             //  htdocs的環境下測試
-            .get('http://localhost/TGD104G1/public/API/activity.php')
-            //.get('https://tibamef2e.com/tgd104/API/activity.php')
+            .post('http://localhost/TGD104G1/public/API/activityinfo.php', actdata)
             .then(response => {
-                this.activityJsonData = response.data;
-                console.log('abc',this.activityJsonData);
+                this.activityData = response.data[0];
+                // console.log('abc',this.activityJsonData);
             })
             .catch(error => {
                 // console.log(error);
             });
 
 
-            let activity = sessionStorage.getItem("activity");
+            // let activity = sessionStorage.getItem("activity");
                         
 
-            for(let i = 0; i < this.activityJsonData.length; i++){
-                // console.log(i,this.spaceJsonData[i]);
-                if(activity == this.activityJsonData[i][1]){
-                    // console.log('空間資料',this.spaceJsonData[i]);
-                    this.activityData = this.activityJsonData[i];
-                    console.log('活動資料',this.activityData);
+            // for(let i = 0; i < this.activityJsonData.length; i++){
+            //     // console.log(i,this.spaceJsonData[i]);
+            //     if(activity == this.activityJsonData[i][1]){
+            //         // console.log('空間資料',this.spaceJsonData[i]);
+            //         this.activityData = this.activityJsonData[i];
+            //         console.log('活動資料',this.activityData);
 
 
-                    // 從sessionStorage中取得inputValue和result的值
-            const inputValue = sessionStorage.getItem('inputValue')
-            console.log(inputValue);
-            const sessionResult = sessionStorage.getItem('result')
+            //         // 從sessionStorage中取得inputValue和result的值
+            // const inputValue = sessionStorage.getItem('inputValue')
+            // console.log(inputValue);
+            // const sessionResult = sessionStorage.getItem('result')
             
 
-            // 將取得的值設定到data中
-            if (inputValue !== null) {
-                this.inputValue = inputValue
-            }
-            if (sessionResult !== null) {
-                this.sessionResult = sessionResult
-            }
+            // // 將取得的值設定到data中
+            // if (inputValue !== null) {
+            //     this.inputValue = inputValue
+            // }
+            // if (sessionResult !== null) {
+            //     this.sessionResult = sessionResult
+            // }
 
-                }else{
+            //     }else{
 
-                }
-            }
+            //     }
+            // }
         },
 
         // 傳值給 ECPay
