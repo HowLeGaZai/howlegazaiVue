@@ -490,11 +490,12 @@ async getData(date) {
 
     },
         navigate2(){
-            sessionStorage.setItem("APPLY_NAME", this.name);
+            // sessionStorage.setItem("APPLY_NAME", this.name);
             sessionStorage.setItem("APPLY_TITLE", this.inputState);
             sessionStorage.setItem("APPLY_PHONE", this.phone);
             sessionStorage.setItem("APPLY_MAIL", this.mail);
             sessionStorage.setItem("PURPOSE", this.apply);
+            sessionStorage.setItem("SPACE_ID", this.$route.params.Id);
 
             this.$router.push({ name: 'space_reserve', params: { Id: this.$route.params.Id } })
         },
