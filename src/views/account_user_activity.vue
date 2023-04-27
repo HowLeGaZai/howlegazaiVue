@@ -34,7 +34,7 @@
                             <h4>參加人數 : {{ getAttendeeCount(data) }} 位</h4>
 
                             <div class="attendDetail2">
-                              <div class="attendMember" v-for="attendee in getAttend(data)" :key="attendee.i">
+                              <div class="attendMember" v-for="(attendee, index)  in getAttend(data)" :key="attendee.i">
                                 <h4>參加人({{ index + 1 }}) : {{ attendee.ATTEND_NAME }}</h4>
                                 <h4>聯絡電話 : {{ attendee.ATTEND_PHONE }}</h4>
                                 <h4>電子信箱 : {{ attendee.ATTEND_MAIL }}</h4>
@@ -142,11 +142,14 @@ export default {
       },
 
       getAttend(data) {
-        const ATTEND_NAME = data.ATTEND_NAME.slice(1, -1).split(",");
-        const ATTEND_MAIL = data.ATTEND_MAIL.slice(1, -1).split(",");
-        const ATTEND_PHONE = data.ATTEND_PHONE.slice(1, -1).split(",");
+        const ATTEND_NAME = data.ATTEND_NAME.split(",");
+        console.log(ATTEND_NAME)
+        const ATTEND_MAIL = data.ATTEND_MAIL.split(",");
+        const ATTEND_PHONE = data.ATTEND_PHONE.split(",");
 
-        return ATTEND_NAME.map((name, i) => {
+        return ATTEND_NAME
+        .filter(name => name !== "") // 過濾掉空值
+        .map((name, i) => {
           return {
             ATTEND_NAME: ATTEND_NAME[i],
             ATTEND_MAIL: ATTEND_MAIL[i],
@@ -156,7 +159,7 @@ export default {
       },
 
       getAttendeeCount(data) {
-        const ATTEND_NAME = data.ATTEND_NAME.slice(1, -1).split(",");
+        const ATTEND_NAME = data.ATTEND_NAME.split(",").filter(name => name.trim() !== "");
         return ATTEND_NAME.length;
       },
 

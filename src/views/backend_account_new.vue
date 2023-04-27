@@ -15,14 +15,14 @@
           <div class="w90percentage accounttable">
             <h1>待審核清單</h1>
 
-            <div class="displayflex maxheight">
+            <div class="displayflex">
               <!-- div 製作 table -->
               <section class="bk-account-new-s">
                 <ul class="row">
                   <li class="row-head col-sm-12 col-sm-1">待審核</li>
                   <li class="row-head col-sm-12 col-sm-1">編號</li>
-                  <li class="row-head col-sm-12 col-sm-1">姓名</li>
-                  <li class="row-head col-sm-12 col-sm-4">帳號</li>
+                  <li class="row-head col-sm-12 col-sm-2">姓名</li>
+                  <li class="row-head col-sm-12 col-sm-3">帳號</li>
                   <li class="row-head col-sm-12 col-sm-4">地址</li>
                   <li class="row-head col-sm-12 col-sm-1">展開</li>
                 </ul>
@@ -35,8 +35,8 @@
                       <i class="bi bi-check" @click="confirm(index)"> </i><i class="bi bi-x" @click="cancel(index)"></i>
                     </li>
                     <li class="col-sm-12 col-sm-1">001</li>
-                    <li class="col-sm-12 col-sm-1">{{accountNew.FULL_NAME}}</li>
-                    <li class="col-sm-12 col-sm-4">{{accountNew.ACCOUNT}}</li>
+                    <li class="col-sm-12 col-sm-2">{{accountNew.FULL_NAME}}</li>
+                    <li class="col-sm-12 col-sm-3">{{accountNew.ACCOUNT}}</li>
                     <li class="col-sm-12 col-sm-4">{{accountNew.ADDRESS}}</li>
                     <li class="col-sm-12 col-sm-1">
                       <i class="bi bi-caret-down-fill openBtn" id="openBtn" @click="info(index)"></i>

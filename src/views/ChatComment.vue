@@ -33,7 +33,6 @@ export default {
                 NICKNAME:this.NICKNAME,
                 CREATE_TIME:this.CREATE_TIME,
                 CONTENT:this.message,
-
               })
            
             const formData = new FormData()

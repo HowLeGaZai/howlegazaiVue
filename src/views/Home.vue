@@ -124,14 +124,13 @@
     <!-- 智慧里民 -->
     <section class="home-smartChief">
       <h1 class="title_space">智慧里民</h1>
-
       <section>
         <div class="left">
           <div class="">
-            <a class="btn-s btn-color-green" href="#/activity">活動報名</a>
+            <router-link :to="{ name: 'activity' }" class="btn-s btn-color-green" >活動報名</router-link>
           </div>
           <div>
-            <a class="btn-s btn-color-green" href="#/space">空間預約</a>
+            <router-link :to="{ name: 'space' }" class="btn-s btn-color-green">空間預約</router-link>
           </div>
           <div>
             <a class="btn-s btn-color-green unopened">維修通報</a>
@@ -141,7 +140,8 @@
           <div class="orbit">
             <div class="planet"></div>
           </div>
-          <router-link :to="{ name: 'chat' }"><div class="smart_center">  里民服務</div></router-link>
+          <a href=""><div class="smart_center">里民服務</div></a>
+          <!-- <router-link :to="{ name: 'chat' }"><div class="smart_center">里民服務</div></router-link> -->
         </div>
         <div class="right">
           <div>

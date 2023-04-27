@@ -195,6 +195,9 @@ export default{
     ready() {
       console.log('Cropper is ready.')
     },
+      sendData(){
+      this.$emit('pic',this.result.dataURL)
+    },
   },
   // watch: {
   //     portraitcropPic(newValue) {

@@ -14,7 +14,7 @@
             <div>
               <div class="activity-area1">
                 <label for="activity-name" class="f-label">活動名稱</label>
-                <input type="text" class="f-text" id="activity-name" placeholder="歡樂同樂摘櫻桃" v-model="activity_name">
+                <input type="text" class="f-text" id="activity-name" placeholder="活動名稱" v-model="activity_name">
               </div>
               <!-- 分類下拉選單&活動banner-->
               <div class="activity-area2 input-grid-2">
@@ -63,7 +63,7 @@
               <div class="activity-area4">
                 <div class="activity-located">
                   <label for="activity-located" class="f-label">活動地點</label>
-                  <input type="text" class="f-text" id="activity-located" placeholder="花蓮市內湖鄉大湖里態勢路124號" v-model="activity_address">
+                  <input type="text" class="f-text" id="activity-located" placeholder="地址" v-model="activity_address">
                 </div>
               </div>
 
@@ -71,14 +71,14 @@
               <!-- 活動人數上限-->
               <div class="activity-membermax">
                 <label for="activity-membermax" class="f-label">活動人數上限</label>
-                <input type="number" class="f-text" id="activity-membermax" placeholder="100" v-model="max_ppl">
+                <input type="number" class="f-text" id="activity-membermax" placeholder="ex:50人" v-model="max_ppl">
               </div>
 
               <!-- 活動費用-->
               <div class="activity-cost">
                 <label for="activity-cost" class="f-label">活動費用</label>
                 <div class="activity-cost-block">
-                  <input type="number" class="f-text" id="activity-cost" placeholder="3,400" v-model="fee" :disabled="nofee" >
+                  <input type="number" class="f-text" id="activity-cost" placeholder="金額" v-model="fee" :disabled="nofee" >
                   <label class="f-checkbox free-cost">免收取費用
                     <input type="checkbox" name="multichoice" v-model="nofee" @change="handleChange">
                     <span class="checkmark"></span>
@@ -90,7 +90,7 @@
               <div class="activity-cost">
                 <label for="activity-cost" class="f-label">活動詳細內容</label>
                 <!-- <tinymce></tinymce> -->
-                <textarea name="" id="" cols="30" rows="10" class="f-text" placeholder="請輸入活動詳細內容" v-model="content"></textarea>
+                <textarea name="" id="" cols="30" rows="10" class="f-text" placeholder="活動詳細內容..." v-model="content"></textarea>
 
               </div>
 

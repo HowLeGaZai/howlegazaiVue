@@ -109,7 +109,8 @@
                 height: 50px;
                 margin-right: 10px;
                 @include breakpoint($grid-breakpoints, 'sm') {
-                    width: 30px;
+                height: 30px;
+                width: 30px;
                 }
             }
             h6{
