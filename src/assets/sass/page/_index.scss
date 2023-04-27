@@ -118,6 +118,9 @@
         th {
           font-size: 24px;
           padding-bottom: 25px;
+          @media screen and (max-width:452px) {
+              font-size: 18px;
+          }
           @include breakpoint($grid-breakpoints, "sm") {
             font-size: 20px;
           }

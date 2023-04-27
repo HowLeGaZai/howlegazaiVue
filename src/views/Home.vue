@@ -128,10 +128,10 @@
       <section>
         <div class="left">
           <div class="">
-            <a class="btn-s btn-color-green" href="#/activity">活動報名</a>
+            <a class="btn-s btn-color-green" href="/activity">活動報名</a>
           </div>
           <div>
-            <a class="btn-s btn-color-green" href="#/space">空間預約</a>
+            <a class="btn-s btn-color-green" href="/space">空間預約</a>
           </div>
           <div>
             <a class="btn-s btn-color-green unopened">維修通報</a>
