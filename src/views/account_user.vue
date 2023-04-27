@@ -174,7 +174,7 @@
 
               <div class="account-row textalignright">
                 <!-- <button type="button" class="btn-m btn-color-green"> -->
-                  <button type="button" class="btn-m btn-color-green" @click="saveInput">
+                  <button type="button" class="btn-m btn-color-green" @click="submitForm">
                   儲存
                 </button>
               </div>
@@ -232,7 +232,7 @@ export default {
       maxBirthdate: this.getToday(),
 
       // 驗證欄位 -- 表單送出 / 帳號是否重複 / 帳號格式 / 身分證格式 / email 格式 / 電話格式
-      formSubmitted: false,
+      // formSubmitted: false,
       accountDuplicate: false,
       accountValid: false,
       idNumValid: false,
@@ -413,10 +413,10 @@ export default {
       validateIdNum() {
         const idNumRegex = /^[A-Z]{1}[1-2]{1}\d{8}$/; // 台灣身分證字號正規表達式
         if (!idNumRegex.test(this.idNum)) {
-          this.idNumValid = true; // 身分證字號格式不符，設定為 false
+          this.idNumValid = true; // 身分證字號格式不符，設定為 true
           return;
         }
-        this.idNumValid = false; // 身分證字號格式正確，設定為 true
+        this.idNumValid = false; // 身分證字號格式正確，設定為 false
       },
       
       // email驗證
@@ -443,21 +443,20 @@ export default {
       onResultChanged(result) {
         // console.log(result.dataURL);
         this.dataURL = result.dataURL;
-        console.log(this.dataURL);
       },
 
       //送出表單按鈕 -空值要再確認 
      
       submitForm() {
-        this.formSubmitted = true;
         //如果account password lastName firstName nickName idNum birth email phoneNum agree idFront idBack都沒有值
+        if (this.ACCOUNT === '' || this.LAST_NAME === '' || this.FIRST_NAME === '' || this.NICKNAME === '' || this.EMAIL === '' || this.PHONE === '' || this.accountValid === true || this.idNumValid === true || this.emailValid == false || this.phoneValid == false  || this.accountDuplicate == true) {
+          alert('請填寫必填欄位');
 
-        if (this.ACCOUNT === '' || this.LAST_NAME === '' || this.FIRST_NAME === '' ||
-        this.NICKNAME === '' || this.EMAIL === '' || this.PHONE === '' || this.accountValid == true || this.idNumValid == false || this.emailValid == false || this.phoneValid == false  || this.accountDuplicate == true) {
-          alert('請正確填寫必填欄位');
+          console.log('儲存失敗');  
           // this.$router.push('./signup2')
           return;
         }else {
+          console.log('儲存成功');  
           this.saveInput();
         }
         // 在這裡編寫提交表單的程式碼
@@ -466,6 +465,14 @@ export default {
 
       //存到資料庫的欄位
       saveInput() {
+
+        if (this.dataURL === ''){
+          this.dataURL === this.PORTRAIT;
+        }else{
+          this.dataURL === this.dataURL;
+        };
+
+
         const self= this;
         const userId = this.getCookieValue("id");
         const GENDER = this.GENDER;
