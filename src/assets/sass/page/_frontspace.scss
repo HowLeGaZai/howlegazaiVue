@@ -121,6 +121,12 @@
                 @include breakpoint($grid-breakpoints, 'sm') {
                     margin: 0 auto;
                 }
+                iframe{
+                    @include breakpoint($grid-breakpoints, 'sm') {
+                        width: 90vw;
+                        
+                    }
+                }
             }
         }
         .address{
@@ -225,8 +231,11 @@
         height: 50px;
         right: 100px;
         top: 0;
+        @media screen and (max-width: 850px){
+           right:50px;
+        }
         @include breakpoint($grid-breakpoints, 'sm') {
-            right: 70px;
+            right: 30px;
         }
     }
         
@@ -236,8 +245,11 @@
         height: 50px;
         left: 100px;
         top: 0;
+        @media screen and (max-width: 850px){
+            left:50px;
+        }
         @include breakpoint($grid-breakpoints, 'sm') {
-            left: 70px;
+            left:30px;
         }
     }
     
