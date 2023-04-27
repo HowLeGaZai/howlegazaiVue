@@ -281,6 +281,14 @@ export default {
         return null;
       },
 
+      // 抓 cookie nickname
+      getCookie(nickman) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${nickman}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+
+      },
+
       accountInfo() {
         this.ID = this.jsonData[this.jsonData.length - 1].ID;
         this.ADDRESS = this.jsonData[this.jsonData.length - 1].ADDRESS;
@@ -445,7 +453,7 @@ export default {
         //如果account password lastName firstName nickName idNum birth email phoneNum agree idFront idBack都沒有值
 
         if (this.ACCOUNT === '' || this.LAST_NAME === '' || this.FIRST_NAME === '' ||
-        this.nickName === '' || this.email === '' || this.phoneNum === '' || this.accountValid == true || this.idNumValid == false || this.emailValid == false || this.phoneValid == false  || this.accountDuplicate == true) {
+        this.NICKNAME === '' || this.EMAIL === '' || this.PHONE === '' || this.accountValid == true || this.idNumValid == false || this.emailValid == false || this.phoneValid == false  || this.accountDuplicate == true) {
           alert('請正確填寫必填欄位');
           // this.$router.push('./signup2')
           return;
@@ -492,40 +500,25 @@ export default {
           console.log(response.data); // 輸出回應資料
           if (response.data.status === 'success') {
             alert('儲存成功請重新登入'); // 顯示儲存成功訊息
-            this.clearCookies();
+
+            // 覆蓋 cookie nickname
+            // document.cookie = "nickname=" + this.NICKNAME;
+
+            // 覆蓋 localhost Portrait
+            if ( this.dataURL != ''){
+              console.log("up");
+              localStorage.setItem("portrait", this.dataURL);
+            }else{
+              console.log("down");
+              localStorage.setItem("portrait", this.localPORTRAIT);
+            }
           } else {
             alert('儲存失敗'); // 顯示儲存失敗訊息
           }
+          location.reload();
         });
       
       },
-
-        // 登出功能清除 cookie
-        clearCookies() {
-          // 取得目前的 cookie 字串
-          localStorage.removeItem("portrait")
-          let cookies = document.cookie;
-          // 將 cookie 字串分割成每個 cookie
-          let cookieArr = cookies.split("; ");
-          // 迭代 cookieArr，將每個 cookie 都設置過期時間為過去的日期，使其被刪除
-          for (let i = 0; i < cookieArr.length; i++) {
-            let cookie = cookieArr[i];
-            let eqPos = cookie.indexOf("=");
-            let name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-            document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT`;
-
-          }
-          this.$router.push('/');
-        },
-      
-        //抓cookie 覆蓋過去
-      // getCookie(nickman) {
-      //   const value = `; ${document.cookie}`;
-      //   const parts = value.split(`; ${nickman}=`);
-      //   if (parts.length === 2) return parts.pop().split(';').shift();
-
-      //   console.log(nickman)
-      // },
   },
 
   // 監測大頭貼照片上傳
