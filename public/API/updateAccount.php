@@ -9,9 +9,15 @@ $GENDER = $_POST['GENDER'];
 $NICKNAME = $_POST['NICKNAME'];
 $ID_NUMBER = $_POST['ID_NUMBER'];
 $BIRTHDATE = $_POST['BIRTHDATE'];
+$PORTRAIT = $_POST['PORTRAIT'];
 $PHONE = $_POST['PHONE'];
 $EMAIL = $_POST['EMAIL'];
-$PORTRAIT = $_POST['PORTRAIT'];
+$ACCOUNT = $_POST['ACCOUNT'];
+$FIRST_NAME = $_POST['FIRST_NAME'];
+$LAST_NAME = $_POST['LAST_NAME'];
+$UPDATER = $_POST['UPDATER'];
+$FULL_NAME = $FIRST_NAME.$LAST_NAME;
+
 
 // Update user data
 $userData = array();
@@ -43,9 +49,26 @@ if (!is_null($EMAIL)) {
 if (!is_null($PORTRAIT)) {
     $userData['PORTRAIT'] = $PORTRAIT;
 }
+
+if (!is_null($ACCOUNT)) {
+    $userData['ACCOUNT'] = $ACCOUNT;
+}
+
+if (!is_null($FIRST_NAME)) {
+    $userData['FIRST_NAME'] = $FIRST_NAME;
+}
+
+if (!is_null($LAST_NAME)) {
+    $userData['LAST_NAME'] = $LAST_NAME;
+}
+
+if (!is_null($FULL_NAME)) {
+    $userData['FULL_NAME'] = $FULL_NAME;
+}
+
   
 // Update user data in database
-$sql = "UPDATE USER SET GENDER = ?, ID_NUMBER = ?, BIRTHDATE = ?, NICKNAME = ?, PHONE = ?, EMAIL = ?, PORTRAIT = ? WHERE ID = ?";
+$sql = "UPDATE USER SET GENDER = ?, ID_NUMBER = ?, BIRTHDATE = ?, NICKNAME = ?, PHONE = ?, EMAIL = ?, PORTRAIT = ? ,ACCOUNT = ?, FIRST_NAME =? ,LAST_NAME =?,FULL_NAME =? WHERE ID = ?";
 $statement = $pdo->prepare($sql);
 $statement->bindValue(1, $userData['GENDER'] ?? null);
 $statement->bindValue(2, $userData['ID_NUMBER'] ?? null);
@@ -54,7 +77,11 @@ $statement->bindValue(4, $userData['NICKNAME'] ?? null);
 $statement->bindValue(5, $userData['PHONE'] ?? null);
 $statement->bindValue(6, $userData['EMAIL'] ?? null);
 $statement->bindValue(7, $userData['PORTRAIT'] ?? null);
-$statement->bindValue(8, $user_id);
+$statement->bindValue(8, $userData['ACCOUNT'] ?? null);
+$statement->bindValue(9, $userData['FIRST_NAME'] ?? null);
+$statement->bindValue(10, $userData['LAST_NAME'] ?? null);
+$statement->bindValue(11, $userData['FULL_NAME'] ?? null);
+$statement->bindValue(12, $userData['user_id'] ?? null);
 $statement->execute();
 
 // 建立回應資料
