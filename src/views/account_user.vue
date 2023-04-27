@@ -443,7 +443,7 @@ export default {
       onResultChanged(result) {
         // console.log(result.dataURL);
         this.dataURL = result.dataURL;
-        // console.log(this.dataURL);
+        console.log(this.dataURL);
       },
 
       //送出表單按鈕 -空值要再確認 
@@ -464,7 +464,7 @@ export default {
         console.log('表單提交');  
       },
 
-      //存到資料庫的欄位（要再確認成新版）
+      //存到資料庫的欄位
       saveInput() {
         const userId = this.getCookieValue("id");
         const GENDER = this.GENDER;
@@ -505,13 +505,13 @@ export default {
             // document.cookie = "nickname=" + this.NICKNAME;
 
             // 覆蓋 localhost Portrait
-            if ( this.dataURL != ''){
-              console.log("up");
-              localStorage.setItem("portrait", this.dataURL);
-            }else{
-              console.log("down");
-              localStorage.setItem("portrait", this.localPORTRAIT);
-            }
+            // if ( this.dataURL != ''){
+            //   console.log("up");
+            //   localStorage.setItem("portrait", this.dataURL);
+            // }else{
+            //   console.log("down");
+            //   localStorage.setItem("portrait", this.localPORTRAIT);
+            // }
           } else {
             alert('儲存失敗'); // 顯示儲存失敗訊息
           }

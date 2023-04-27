@@ -54,6 +54,9 @@ if (!is_null($PORTRAIT)) {
     $userData['PORTRAIT'] = $PORTRAIT;
 }
 
+echo $userData['PORTRAIT'];
+
+
 if (!is_null($ACCOUNT)) {
     $userData['ACCOUNT'] = $ACCOUNT;
 }

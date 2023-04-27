@@ -5,7 +5,8 @@
     <td>
       <div :class="['tag', addTagClass(newsHome.CATEGORY)]">{{ newsHome.CATEGORY }}
       </div>
-      <router-link :to="{ name: 'news_info', params: { Id: newsHome.ROUTER_ID }}" > <span>{{new Date(newsHome.CREATE_TIME).toLocaleDateString()}}</span>
+      <span>{{new Date(newsHome.CREATE_TIME).toLocaleDateString()}}</span>
+      <router-link :to="{ name: 'news_info', params: { Id: newsHome.ROUTER_ID }}" >
       {{ newsHome.TITLE }}  </router-link>
     </td>
     <td>{{new Date(newsHome.CREATE_TIME).toLocaleDateString()}}</td>
