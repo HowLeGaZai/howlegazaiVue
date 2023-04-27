@@ -466,6 +466,7 @@ export default {
 
       //存到資料庫的欄位（要再確認成新版）
       saveInput() {
+        const self= this;
         const userId = this.getCookieValue("id");
         const GENDER = this.GENDER;
         const ID_NUMBER = this.ID_NUMBER;
@@ -496,28 +497,34 @@ export default {
      
 
         axios.post(url, data)
+        
         .then(function (response) {
           console.log(response.data); // 輸出回應資料
           if (response.data.status === 'success') {
-            alert('儲存成功請重新登入'); // 顯示儲存成功訊息
-
+            alert('儲存成功'); // 顯示儲存成功訊息
+            self.updateportrait();
             // 覆蓋 cookie nickname
             // document.cookie = "nickname=" + this.NICKNAME;
 
             // 覆蓋 localhost Portrait
-            if ( this.dataURL != ''){
-              console.log("up");
-              localStorage.setItem("portrait", this.dataURL);
-            }else{
-              console.log("down");
-              localStorage.setItem("portrait", this.localPORTRAIT);
-            }
+            // if ( this.dataURL != ''){
+            //   console.log("up");
+            //   localStorage.setItem("portrait", this.dataURL);
+            // }else{
+            //   console.log("down");
+            //   localStorage.setItem("portrait", this.localPORTRAIT);
+            // }
           } else {
             alert('儲存失敗'); // 顯示儲存失敗訊息
           }
           location.reload();
         });
       
+      },
+
+      updateportrait(){
+        document.cookie = "nickname=" + this.NICKNAME;
+        localStorage.setItem("portrait", this.dataURL);
       },
   },
 
