@@ -50,7 +50,7 @@
             <p>歡迎 <span>{{nickName}}</span></p>
             <!-- 會員大頭貼 -->
             <router-link :to="{ name: 'account_user' }" class="userbtn tooltip" id="userBtn">
-              <img :src="portrait" alt="" class="user_pic" />
+                 <img :src="portrait != ''? portrait :require(`@/assets/img/user_pic.png`)" alt="" class="user_pic" />
             </router-link>
             <div id="navMenu">
               <ul class="account-menu" id="accountMenu">
@@ -62,7 +62,8 @@
                   <p><span>{{nickName}}</span></p>
                   <!-- 會員大頭貼 -->
                   <a href="" class="userbtn">
-                    <img :src="portrait" alt="" class="user_pic" />
+                    <img :src="portrait != ''? portrait :require(`@/assets/img/user_pic.png`)" alt="" class="user_pic" />
+                    
                   </a>
                 </li>
                 <li><router-link :to="{name:'account_user'}" :class="{active: $route.name === 'account_user'}">個人資訊</router-link></li>

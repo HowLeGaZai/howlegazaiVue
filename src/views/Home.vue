@@ -77,7 +77,7 @@
                   活動日期：<span>{{ eventCard.START_DATE }}</span>
                 </h5>
                 <h3 class="card-price">{{ eventCard.PRICE == 0 ? '免費' : eventCard.PRICE + "元" }}</h3>
-                <router-link class="card-link" :to="{ name: 'activity_info', params: { Id: eventCard.ID }}">
+                <router-link class="card-link" :to="{ name: 'activity_info', params: { Id: eventCard.ROUTERID } }"> 
                     <h5>活動詳情<i class="bi bi-arrow-right"></i></h5>
                 </router-link>
                 <!-- <a class="card-link" href="#"
