@@ -4,7 +4,7 @@
       **** 此為預覽頁面，請記得點擊<a
         @click="publish"
         class="a-select"
-        >發布討論區文章</a
+        >發布活動</a
       >完成刊登，或<a @click="goback">返回上一頁</a> ****
     </p>
   </div>

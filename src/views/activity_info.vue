@@ -10,7 +10,8 @@
             <!-- <h1>活動資訊</h1>
              -->
             <div class="activity_typeAndTime">
-                <div class="tag tag-round tag-pink tag-btn tag-btn-selected">{{ activityData.CATEGORY }}</div>
+    
+            <div :class="['tag', 'tag-btn','tag-round','tag-btn-selected',addClass(activityData.CATEGORY )]">{{ activityData.CATEGORY }}</div>
                 <h4>發布日期：5小時前</h4>
             </div>
         </div>
@@ -19,8 +20,10 @@
             <h2>{{ activityData.TITLE }}</h2>
 
             <div class="userTag-2" id="">
-                <img src="../assets/img/user_pic2.png" alt="" class="userPic" />
-                <h6>里長伯</h6>
+                <div class="userbtn">
+                    <img :src="publisherpic" alt="" class="user_pic" />
+                </div>
+                <h6>{{fullname}} 里長</h6>
             </div>
             
             <!-- img的容器設定為原大小的95% -->
@@ -137,6 +140,9 @@ export default {
         activityData:[],
         jsonData:[],
 
+        publisherData:'',
+        fullname:'',
+        publisherpic:'',
         data:[],
 
         inputValue: null,
@@ -191,6 +197,7 @@ export default {
             .post('http://localhost/TGD104G1/public/API/activityinfo.php', actdata)
             .then(response => {
                 this.activityData = response.data[0];
+                this.getPublisher();
                 // console.log('abc',this.activityJsonData);
             })
             .catch(error => {
@@ -212,6 +219,23 @@ export default {
             //     }
             // }
         },
+        getPublisher() {
+
+            axios
+            .post('http://localhost/TGD104G1/public/API/Connection.php')
+            .then(response => {
+                this.publisherData = response.data;
+                this.webInfo();
+
+            })
+            .catch(error => {
+            });
+        },
+         webInfo(){
+      
+            this.fullname = this.publisherData[this.publisherData.length-1].FULLNAME ;
+            this.publisherpic = this.publisherData[this.publisherData.length-1].PORTRAIT ;
+        },
 
         activityRegistInfo(){
             const Id = this.$route.params.Id;
@@ -221,6 +245,15 @@ export default {
             // alert(index);
             
             // sessionStorage.setItem('result', this.result)
+        },
+         addClass(category) {
+            return {
+                "tag-main": category === "全部活動",
+                "tag-sky": category === "旅遊",
+                "tag-yellow": category === "健康",
+                "tag-pink": category === "藝文",
+                "tag-orange": category === "其他",
+            };
         },
 
         
