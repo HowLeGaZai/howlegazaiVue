@@ -91,7 +91,7 @@
                       <h2>{{ town }}戶數</h2>
                     </div>
                     <p class="positive" :class="{ fontred: homeNumPercentage < 0, fontgreen: homeNumPercentage > 0 }">
-                      {{ homeNumPercentage * 100 + "%" }}</p>
+                      {{ homeNumPercentage  + "%" }}</p>
                   </td>
                   <!-- <td>
                   <h1>2000</h1>
@@ -104,7 +104,7 @@
                     </div>
                     <p class="positive"
                       :class="{ fontred: populationPercentage < 0, fontgreen: populationPercentage > 0 }">
-                      {{ populationPercentage * 100 + "%" }}</p>
+                      {{ populationPercentage + "%" }}</p>
                   </td>
 
                   <td class="area-number">
@@ -186,9 +186,9 @@ export default {
 
 
       villageData: [],
-      population: '',
+      population: '',//人口數
       populationPercentage: '', //人口計算成長率
-      homeNum: '',
+      homeNum: '', // 戶數
       homeNumPercentage: '',//戶數計算成長率
 
 
@@ -227,12 +227,22 @@ export default {
         - this.villageData[this.villageData.length - 2].POPULATION)
         / this.villageData[this.villageData.length - 2].POPULATION).toFixed(2);
 
+        this.populationPercentage = this.populationPercentage * 100;
+        this.populationPercentage = this.populationPercentage .toFixed(2);
 
+        console.log(this.populationPercentage + "百分比");
+
+
+      //取
       this.homeNumPercentage = ((this.villageData[this.villageData.length - 1].HOME_NUM
         - this.villageData[this.villageData.length - 2].HOME_NUM)
-        / this.villageData[this.villageData.length - 2].HOME_NUM).toFixed(2);
+        / this.villageData[this.villageData.length - 2].HOME_NUM);
+        
+        this.homeNumPercentage = this.homeNumPercentage * 100;
+        this.homeNumPercentage = this.homeNumPercentage.toFixed(2);
 
-      // console.log(this.homeNumPercentage + "百分比");
+        console.log(this.homeNumPercentage + "戶數百分比");
+
       // console.log("最新人口數" + this.population);
       // console.log("最新戶數" + this.homeNum);
     },
@@ -272,7 +282,7 @@ export default {
         this.webData = response.data[response.data.length-1];
         this.town = this.webData.TOWN;
 
-        // this.town = response.data[3]; //超怪的到底哪裡不行
+        // this.town = response.data[3]; 
         // console.log(this.webData.TOWN);
        
       })

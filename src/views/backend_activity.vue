@@ -86,7 +86,7 @@
                     <td>
                       <label class="f-checkbox">
                         <input type="checkbox">
-                        <span class="checkmark newscheck" :checked="parseInt(data.TOP) == 1"
+                        <span class="checkmark newscheck" :checked="parseInt(data.TOP) === 1"
                           @click="activityMange(datas, index, 'TOP')"></span>
                       </label>
                     </td>
@@ -100,7 +100,7 @@
 
                     <!-- 上下架 -->
                     <td><label class="switch">
-                        <input type="checkbox" :checked="parseInt(data.STATUS) == 1"
+                        <input type="checkbox" :checked="parseInt(data.STATUS) === 1"
                           @click="activityMange(datas, index, 'STATUS')">
                         <span class="slider"></span>
                       </label>
@@ -218,7 +218,7 @@ export default {
     activityMange(datas, index, active) {
       //篩選資料變數出來的時候要把data改成該變數
       // console.log(data, index, active)
-      const result = this.filteredItems[index][active] = this.filteredItems[index][active] === 1 ? 0 : 1;
+      const result = this.filteredItems[index][active] =parseInt(this.filteredItems[index][active]) === 1 ? 0 : 1;
       
       console.log(datas[index][active])
 

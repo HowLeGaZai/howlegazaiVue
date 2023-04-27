@@ -103,17 +103,8 @@ export default {
 
     mounted() {
     
-   let beMenu = document.querySelectorAll(".be-menu");
-   let beMenuOn = document.querySelectorAll(".be-nav-on");
-  // let beMenu = document.querySelectorAll("be-nav");
-  // console.log(beMenu);
-
-  for(let i = 0; i < beMenu.length; i++){
-    beMenu[i].addEventListener("click",function(){
-      beMenuOn[i].classList.toggle('be-nav-off');
-    //   console.log(beMenu[i]);
-    })
-  }
+   
+  
 
   },
   

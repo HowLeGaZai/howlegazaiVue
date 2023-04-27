@@ -3,9 +3,9 @@
     <nav class="main">
       <div class="leftnav">
         <!-- logo -->
-        <a class="brand" href="/backend_index">
+        <router-link  class="brand" :to="{ name: 'backend_index' }">
           <img src="../assets/img/logo_backend.svg" alt="" />
-        </a>
+        </router-link>
         <div class="midnav">
           <i class="bi bi-brightness-high"></i>
           歡迎登入<div>{{town}}</div>

@@ -90,7 +90,7 @@
               <div class="activity-cost">
                 <label for="activity-cost" class="f-label">活動詳細內容</label>
                 <!-- <tinymce></tinymce> -->
-                <textarea name="" id="" cols="30" rows="10" class="f-text" placeholder="這裡之後要改成文字編輯器" v-model="content"></textarea>
+                <textarea name="" id="" cols="30" rows="10" class="f-text" placeholder="請輸入活動詳細內容" v-model="content"></textarea>
 
               </div>
 
