@@ -161,20 +161,24 @@ export default {
     },
 
     // 判斷 right nav 開啟或直接進入
-    showNav() {
+    showNav(e) {
       let accountMenu = document.getElementById("accountMenu");
       let userBtn = document.getElementById("userBtn");
 
       if (window.innerWidth > 1400) {
         this.$router.push("account_user");
       } else {
-        accountMenu.classList.add("accountshow");
+       //關掉a連結的預設行為
+       accountMenu.classList.add("accountshow");
+       e.preventDefault();
+
       }
     },
 
 
     },
     mounted(){
+      
       const cookieValue = this.getCookieValue('account');
       const uusername = this.getCookieValue('name');
       const unickname = this.getCookieValue('nickname');

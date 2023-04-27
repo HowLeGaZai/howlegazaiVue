@@ -4,11 +4,7 @@ include("conn.php");
 
 
 //建立SQL語法
-<<<<<<< HEAD
-$sql = "INSERT into VILLAGE VALUES(DEFAUT,?,?)";
-=======
 $sql = "INSERT into VILLAGE VALUES(DEFAULT,?,?)";
->>>>>>> dev
 
 // $request_body = file_get_contents('php://input');
 // $data = json_decode($request_body, true);
