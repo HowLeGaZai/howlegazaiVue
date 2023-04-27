@@ -15,7 +15,7 @@
           <div class="w90percentage accounttable">
             <h1>待審核清單</h1>
 
-            <div class="displayflex maxheight">
+            <div class="displayflex">
               <!-- div 製作 table -->
               <section class="bk-account-new-s">
                 <ul class="row">

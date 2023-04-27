@@ -70,6 +70,9 @@
                   padding: 10px 0px 10px 0px;
                   justify-content: start;
                 }
+                &:nth-child(3){
+                  min-width: 200px;
+                }
             }
             &:first-child {
                 border-top: 0px solid $lightgray;
