@@ -30,6 +30,8 @@ if (!is_null($ID_NUMBER)) {
     $userData['ID_NUMBER'] = $ID_NUMBER;
 }
 
+// echo $userData['ID_NUMBER'];
+
 if (!is_null($BIRTHDATE)) {
     $userData['BIRTHDATE'] = $BIRTHDATE;
 }
@@ -37,6 +39,8 @@ if (!is_null($BIRTHDATE)) {
 if (!is_null($NICKNAME)) {
     $userData['NICKNAME'] = $NICKNAME;
 }
+
+// echo $userData['NICKNAME'];
 
 if (!is_null($PHONE)) {
     $userData['PHONE'] = $PHONE;
@@ -68,7 +72,20 @@ if (!is_null($FULL_NAME)) {
 
   
 // Update user data in database
-$sql = "UPDATE USER SET GENDER = ?, ID_NUMBER = ?, BIRTHDATE = ?, NICKNAME = ?, PHONE = ?, EMAIL = ?, PORTRAIT = ? ,ACCOUNT = ?, FIRST_NAME =? ,LAST_NAME =?,FULL_NAME =? WHERE ID = ?";
+$sql = "UPDATE USER SET 
+                        GENDER = ?, 
+                        ID_NUMBER = ?, 
+                        BIRTHDATE = ?,
+                        NICKNAME = ?, 
+                        PHONE = ?, 
+                        EMAIL = ?, 
+                        PORTRAIT = ? ,
+                        ACCOUNT = ?, 
+                        FIRST_NAME =? ,
+                        LAST_NAME =?,
+                        FULL_NAME =? 
+                        WHERE ID = ?";
+
 $statement = $pdo->prepare($sql);
 $statement->bindValue(1, $userData['GENDER'] ?? null);
 $statement->bindValue(2, $userData['ID_NUMBER'] ?? null);
@@ -81,7 +98,7 @@ $statement->bindValue(8, $userData['ACCOUNT'] ?? null);
 $statement->bindValue(9, $userData['FIRST_NAME'] ?? null);
 $statement->bindValue(10, $userData['LAST_NAME'] ?? null);
 $statement->bindValue(11, $userData['FULL_NAME'] ?? null);
-$statement->bindValue(12, $userData['user_id'] ?? null);
+$statement->bindValue(12, $user_id);
 $statement->execute();
 
 // 建立回應資料
