@@ -175,7 +175,7 @@
 
     #datepicker{
         min-height: 400px;
-        width: 85%;
+        width: 100%;
         @media screen and (max-width: 850px){
             margin: 0 auto;
         }
@@ -189,7 +189,7 @@
     }
     
     .ui-widget-content {
-        width: 85%;
+        width: 100%;
         min-height: 400px;
         background-color: transparent;
         border: none;
@@ -327,8 +327,19 @@
         border-radius: 10px;
         font-weight: normal;
     }
+
+    .ui-state-disabled, .ui-widget-content .ui-state-disabled, .ui-widget-header .ui-state-disabled {
+        opacity: .35;
+        background-image: none;
+        font-size: 1.6em;
+        font-family: "jfopen";
+        line-height: 40px;
+        text-align: center;
     
-   
+    }
+    .ui-state-default{
+        text-align: center;
+    }
     
     .selected{
         &>h5{
