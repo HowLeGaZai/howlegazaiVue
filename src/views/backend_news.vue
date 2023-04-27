@@ -194,7 +194,7 @@ export default {
       // console.log(this.newsData[index]);
       // console.log(this.newsData[index][0]); //object的ID
       // const result =this.newsData[index][active] = this.newsData[index][active] === 1 ? 0 : 1;
-      const result =this.filteredItems[index][active] = this.filteredItems[index][active] === 1 ? '0' : '1';
+      const result =this.filteredItems[index][active] = parseInt(this.filteredItems[index][active]) === 1 ? '0' : '1';
       
       
       // console.log([event])
