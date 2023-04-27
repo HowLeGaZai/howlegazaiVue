@@ -2,7 +2,7 @@
     include("conn.php");
 
     //建立SQL語法
-    $sql = "INSERT into USER VALUES(DEFAULT,?,?,?,'/src/assets/img/user_pic.png',?,?,?,?,?,?,?,1,DEFAULT,?,?,DEFAULT,NOW(),?, DEFAULT,?,DEFAULT,DEFAULT,DEFAULT)";
+    $sql = "INSERT into USER VALUES(DEFAULT,?,?,?,'',?,?,?,?,?,?,?,1,DEFAULT,?,?,DEFAULT,NOW(),?, DEFAULT,?,DEFAULT,DEFAULT,DEFAULT)";
 
     $firstName = $_POST['firstName'];
     $lastName = $_POST['lastName'];
