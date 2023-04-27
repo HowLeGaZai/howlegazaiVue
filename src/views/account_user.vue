@@ -174,7 +174,7 @@
 
               <div class="account-row textalignright">
                 <!-- <button type="button" class="btn-m btn-color-green"> -->
-                  <button type="button" class="btn-m btn-color-green" @click="saveInput">
+                  <button type="button" class="btn-m btn-color-green" @click="submitForm">
                   儲存
                 </button>
               </div>
@@ -232,7 +232,7 @@ export default {
       maxBirthdate: this.getToday(),
 
       // 驗證欄位 -- 表單送出 / 帳號是否重複 / 帳號格式 / 身分證格式 / email 格式 / 電話格式
-      formSubmitted: false,
+      // formSubmitted: false,
       accountDuplicate: false,
       accountValid: false,
       idNumValid: false,
@@ -279,6 +279,14 @@ export default {
           }
         }
         return null;
+      },
+
+      // 抓 cookie nickname
+      getCookie(nickman) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${nickman}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+
       },
 
       accountInfo() {
@@ -405,10 +413,10 @@ export default {
       validateIdNum() {
         const idNumRegex = /^[A-Z]{1}[1-2]{1}\d{8}$/; // 台灣身分證字號正規表達式
         if (!idNumRegex.test(this.idNum)) {
-          this.idNumValid = true; // 身分證字號格式不符，設定為 false
+          this.idNumValid = true; // 身分證字號格式不符，設定為 true
           return;
         }
-        this.idNumValid = false; // 身分證字號格式正確，設定為 true
+        this.idNumValid = false; // 身分證字號格式正確，設定為 false
       },
       
       // email驗證
@@ -435,29 +443,35 @@ export default {
       onResultChanged(result) {
         // console.log(result.dataURL);
         this.dataURL = result.dataURL;
-        // console.log(this.dataURL);
       },
 
       //送出表單按鈕 -空值要再確認 
      
       submitForm() {
-        this.formSubmitted = true;
         //如果account password lastName firstName nickName idNum birth email phoneNum agree idFront idBack都沒有值
+        if (this.ACCOUNT === '' || this.LAST_NAME === '' || this.FIRST_NAME === '' || this.NICKNAME === '' || this.EMAIL === '' || this.PHONE === '' || this.accountValid === true || this.idNumValid === true || this.emailValid == false || this.phoneValid == false  || this.accountDuplicate == true) {
+          alert('請填寫必填欄位');
 
-        if (this.ACCOUNT === '' || this.LAST_NAME === '' || this.FIRST_NAME === '' ||
-        this.nickName === '' || this.email === '' || this.phoneNum === '' || this.accountValid == true || this.idNumValid == false || this.emailValid == false || this.phoneValid == false  || this.accountDuplicate == true) {
-          alert('請正確填寫必填欄位');
+          console.log('儲存失敗');  
           // this.$router.push('./signup2')
           return;
         }else {
+          console.log('儲存成功');  
           this.saveInput();
         }
         // 在這裡編寫提交表單的程式碼
         console.log('表單提交');  
       },
 
-      //存到資料庫的欄位（要再確認成新版）
+      //存到資料庫的欄位
       saveInput() {
+
+        if (!this.dataURL){
+          this.dataURL = this.PORTRAIT;
+        }
+
+
+        const self= this;
         const userId = this.getCookieValue("id");
         const GENDER = this.GENDER;
         const ID_NUMBER = this.ID_NUMBER;
@@ -488,44 +502,35 @@ export default {
      
 
         axios.post(url, data)
+        
         .then(function (response) {
           console.log(response.data); // 輸出回應資料
           if (response.data.status === 'success') {
-            alert('儲存成功請重新登入'); // 顯示儲存成功訊息
-            this.clearCookies();
+            alert('儲存成功'); // 顯示儲存成功訊息
+            self.updateportrait();
+            // 覆蓋 cookie nickname
+            // document.cookie = "nickname=" + this.NICKNAME;
+
+            // 覆蓋 localhost Portrait
+            // if ( this.dataURL != ''){
+            //   console.log("up");
+            //   localStorage.setItem("portrait", this.dataURL);
+            // }else{
+            //   console.log("down");
+            //   localStorage.setItem("portrait", this.localPORTRAIT);
+            // }
           } else {
             alert('儲存失敗'); // 顯示儲存失敗訊息
           }
+          location.reload();
         });
       
       },
 
-        // 登出功能清除 cookie
-        clearCookies() {
-          // 取得目前的 cookie 字串
-          localStorage.removeItem("portrait")
-          let cookies = document.cookie;
-          // 將 cookie 字串分割成每個 cookie
-          let cookieArr = cookies.split("; ");
-          // 迭代 cookieArr，將每個 cookie 都設置過期時間為過去的日期，使其被刪除
-          for (let i = 0; i < cookieArr.length; i++) {
-            let cookie = cookieArr[i];
-            let eqPos = cookie.indexOf("=");
-            let name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-            document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT`;
-
-          }
-          this.$router.push('/');
-        },
-      
-        //抓cookie 覆蓋過去
-      // getCookie(nickman) {
-      //   const value = `; ${document.cookie}`;
-      //   const parts = value.split(`; ${nickman}=`);
-      //   if (parts.length === 2) return parts.pop().split(';').shift();
-
-      //   console.log(nickman)
-      // },
+      updateportrait(){
+        document.cookie = "nickname=" + this.NICKNAME;
+        localStorage.setItem("portrait", this.dataURL);
+      },
   },
 
   // 監測大頭貼照片上傳

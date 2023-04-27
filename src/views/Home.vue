@@ -128,10 +128,17 @@
       <section>
         <div class="left">
           <div class="">
+<<<<<<< HEAD
             <a class="btn-s btn-color-green" href="/activity">活動報名</a>
           </div>
           <div>
             <a class="btn-s btn-color-green" href="/space">空間預約</a>
+=======
+            <router-link :to="{ name: 'activity' }" class="btn-s btn-color-green" >活動報名</router-link>
+          </div>
+          <div>
+            <router-link :to="{ name: 'space' }" class="btn-s btn-color-green">空間預約</router-link>
+>>>>>>> f1ba6b5b367e9af4958c2ef83c1fea9c6c17e7ab
           </div>
           <div>
             <a class="btn-s btn-color-green unopened">維修通報</a>
@@ -141,7 +148,7 @@
           <div class="orbit">
             <div class="planet"></div>
           </div>
-          <router-link :to="{ name: 'chat' }"><div class="smart_center">  里民服務</div></router-link>
+          <a><div class="smart_center">  里民服務</div></a>
         </div>
         <div class="right">
           <div>
