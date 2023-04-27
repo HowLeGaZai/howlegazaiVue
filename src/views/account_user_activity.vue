@@ -142,9 +142,12 @@ export default {
       },
 
       getAttend(data) {
-        const ATTEND_NAME = data.ATTEND_NAME.slice(1, -1).split(",");
-        const ATTEND_MAIL = data.ATTEND_MAIL.slice(1, -1).split(",");
-        const ATTEND_PHONE = data.ATTEND_PHONE.slice(1, -1).split(",");
+        // const ATTEND_NAME = data.ATTEND_NAME.slice(1, -1).split(",");
+        // const ATTEND_MAIL = data.ATTEND_MAIL.slice(1, -1).split(",");
+        // const ATTEND_PHONE = data.ATTEND_PHONE.slice(1, -1).split(",");
+        const ATTEND_NAME = data.ATTEND_NAME.split(",");
+        const ATTEND_MAIL = data.ATTEND_MAIL.split(",");
+        const ATTEND_PHONE = data.ATTEND_PHONE.split(",");
 
         return ATTEND_NAME.map((name, i) => {
           return {
@@ -156,7 +159,7 @@ export default {
       },
 
       getAttendeeCount(data) {
-        const ATTEND_NAME = data.ATTEND_NAME.slice(1, -1).split(",");
+        const ATTEND_NAME = data.ATTEND_NAME.split(",");
         return ATTEND_NAME.length;
       },
 
