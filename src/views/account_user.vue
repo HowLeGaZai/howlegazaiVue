@@ -466,11 +466,9 @@ export default {
       //存到資料庫的欄位
       saveInput() {
 
-        if (this.dataURL === ''){
-          this.dataURL === this.PORTRAIT;
-        }else{
-          this.dataURL === this.dataURL;
-        };
+        if (!this.dataURL){
+          this.dataURL = this.PORTRAIT;
+        }
 
 
         const self= this;
