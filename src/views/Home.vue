@@ -124,7 +124,6 @@
     <!-- 智慧里民 -->
     <section class="home-smartChief">
       <h1 class="title_space">智慧里民</h1>
-
       <section>
         <div class="left">
           <div class="">
@@ -141,7 +140,8 @@
           <div class="orbit">
             <div class="planet"></div>
           </div>
-          <a><div class="smart_center">  里民服務</div></a>
+          <a href=""><div class="smart_center">里民服務</div></a>
+          <!-- <router-link :to="{ name: 'chat' }"><div class="smart_center">里民服務</div></router-link> -->
         </div>
         <div class="right">
           <div>
