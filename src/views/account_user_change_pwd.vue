@@ -246,7 +246,7 @@ export default {
                 .then(response => {
                     alert('修改密碼成功！請用新密碼重新登入');
                     // this.$router.push('./login');
-                    // this.clearCookies();
+                    this.clearCookies();
                 })
                 .catch(error => {
                     console.log(error);

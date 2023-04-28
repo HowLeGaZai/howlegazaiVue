@@ -49,7 +49,7 @@
             <!-- 會員姓名 -->
             <p>歡迎 <span>{{nickName}}</span></p>
             <!-- 會員大頭貼 -->
-            <a href="" class="userbtn tooltip" id="userBtn" @click="showNav">
+            <a class="userbtn tooltip" id="userBtn" @click="showNav">
                  <img :src="portrait != ''? portrait :require(`@/assets/img/user_pic.png`)" alt="" class="user_pic" />
             </a>
             <div id="navMenu">
@@ -166,16 +166,17 @@ export default {
       let userBtn = document.getElementById("userBtn");
 
       if (window.innerWidth > 1400) {
-        console.log(">1400")
-        this.$router.push("account_user");
+        // console.log(">1400")
+        this.$router.push({ name: 'account_user' });
       } else {
-       //關掉a連結的預設行為
-       e.preventDefault();
+        //關掉a連結的預設行為
+        e.preventDefault();
        accountMenu.classList.add("accountshow");
 
       }
     },
-     closeNav(e) {
+     
+    closeNav(e) {
       let accountMenu = document.getElementById("accountMenu");
 
        accountMenu.classList.remove("accountshow");
@@ -233,41 +234,6 @@ export default {
       dropList.classList.toggle("show");
       dropBtn.classList.toggle("onoff");
     };
-
-
-
-
   },
-
-  // updated(){
-  
-    // let userBtn = document.getElementById("userBtn");
-  
-    // let accountMenu = document.getElementById("accountMenu");
-    // let menuClose = document.getElementById("menuClose");
-
-    //   userBtn.onclick = function (e) {  
-    //     accountMenu.classList.add("accountshow");
-    //     if (window.innerWidth > 1400) {
-    //       userBtn.href = "/account_user"; // 修改 href 屬性值為 #  <-----還沒改
-    //     }else{
-    //       e.preventDefault();
-    //     }
-    //   };
-
-    // menuClose.onclick = function () {
-    //   accountMenu.classList.remove("accountshow");
-    // };
-
-    // 該頁面時 nav 文字為綠色
-    // let navLinks = document.querySelectorAll('.a-black');
-
-    // navLinks.forEach(link => {
-    //   link.addEventListener('click', function() {
-    //     navLinks.forEach(link => link.classList.remove('active'));
-    //     this.classList.add('active');
-    //   });
-    // });
-  // },
 }
 </script>

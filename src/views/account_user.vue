@@ -388,7 +388,7 @@ export default {
       // 身分證驗證
       validateIdNum() {
         const idNumRegex = /^[A-Z]{1}[1-2]{1}\d{8}$/; // 台灣身分證字號正規表達式
-        if (!idNumRegex.test(this.idNum)) {
+        if (!idNumRegex.test(this.ID_NUMBER)) {
           this.idNumValid = true; // 身分證字號格式不符
           return;
         }
@@ -408,21 +408,11 @@ export default {
           const dd = String(today.getDate()).padStart(2, '0')
           return `${yyyy}-${mm}-${dd}`
       },
-
-      // 身分證驗證
-      validateIdNum() {
-        const idNumRegex = /^[A-Z]{1}[1-2]{1}\d{8}$/; // 台灣身分證字號正規表達式
-        if (!idNumRegex.test(this.idNum)) {
-          this.idNumValid = true; // 身分證字號格式不符，設定為 true
-          return;
-        }
-        this.idNumValid = false; // 身分證字號格式正確，設定為 false
-      },
       
       // email驗證
       validateEmail() {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(this.email)) {
+        if (!emailRegex.test(this.EMAIL)) {
           this.emailValid = false;
           return;
         }
@@ -432,7 +422,7 @@ export default {
       // 電話驗證
       validatePhone() {
         const phoneRegex = /^09\d{8}$/;
-        if (!phoneRegex.test(this.phoneNum)) {
+        if (!phoneRegex.test(this.PHONE)) {
           this.phoneValid = false;
         } else {
           this.phoneValid = true;
