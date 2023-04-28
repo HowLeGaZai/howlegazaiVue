@@ -22,7 +22,7 @@
                                 <router-link class="titlelink" :to="{ name: 'space_info', params: { Id: data.SPACE_ID } }">
                                     <button type="button" class="btn-icon"><i class="bi bi-link-45deg btn-font-color-green"></i></button>
                                 </router-link></td>
-                            <td data-label="取消"><button type="button" class="btn-m btn-color-green btn_cancel" @click="showLightBox(index)" v-if=" data[2] == 1 || data[2] == 0">取消</button></td>
+                            <td data-label=""><button type="button" class="btn-m btn-color-green btn_cancel" @click="showLightBox(index)" v-if=" data[2] == 1 || data[2] == 0">取消</button></td>
                         </tr>
                     
                       </table>  

@@ -322,6 +322,34 @@ td:nth-child(3){
     text-align: center;
   }
 }
+td:nth-child(3){
+  @media screen and (max-width: 1050px) {
+    text-align: right;
+  }
+}
+
+td:nth-child(4){
+  @media screen and (max-width: 1050px) {
+    // display: block;
+    display: flex;
+    justify-content: center;
+    // display: block;
+  }
+  .btn-icon:nth-child(2){
+    display:none;
+    @media screen and (max-width: 1050px) {
+      display: block;
+    }
+  }
+
+}
+
+td:nth-child(5){
+  @media screen and (max-width: 1050px) {
+    display:none;
+  }
+
+}
 }
 }
 

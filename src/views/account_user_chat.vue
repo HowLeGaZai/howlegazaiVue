@@ -22,7 +22,10 @@
                             <td data-label="">
                                 <router-link :to="{ name: 'chat_update', params: { Id: data.ID } }" v-if="data.STATUS == 1">
                                     <button type="button" class="btn-icon"><i class="bi bi-pencil-square btn-font-color-green"></i></button>
+                                    
+                                    <!-- <button type="button" class="btn-icon"><i class="bi bi-pencil-square btn-font-color-green"></i></button> -->
                                 </router-link>
+                                <button @click="articleDel" type="button" class="btn-icon" v-if="data.STATUS != -1"><i class="bi bi-x-circle-fill btn-font-color-green"></i></button>
                             </td>
                             <td data-label="永久下架">
                                 <button @click="articleDel" type="button" class="btn-icon" v-if="data.STATUS != -1"><i class="bi bi-x-circle-fill btn-font-color-green"></i></button>
