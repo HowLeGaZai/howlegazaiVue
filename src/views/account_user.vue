@@ -548,6 +548,7 @@ export default {
     PortraitCrop,
     Accountsidebar,
   },
+  emits: ['result-changed'],
 };
 </script>
 

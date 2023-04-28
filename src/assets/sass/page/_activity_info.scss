@@ -85,10 +85,10 @@
            
         // ????
         @include breakpoint($grid-breakpoints, 'md') {
-            margin: 30px 20px;
+            margin: 30px 10px;
         }
         @include breakpoint($grid-breakpoints, 'sm') {
-            margin: 30px 10px;
+            margin: 30px 5px;
         }
 
         .userTag-2 {
