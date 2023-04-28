@@ -1,10 +1,12 @@
 <?php
 
 include("conn.php");
-//如果傳進來的$routerid傳進sql比對後是空值，就會執行update的語法
+//如果傳進來的$routerid傳進sql比對後是空值，就會執行update的語法，如果非空值，就會執行insert的語法
 
 
-// $sql = "INSERT into NEWS VALUES(DEFAULT,?,?,?,?,?,?,NOW(),1,0)";
+
+
+$sql = "INSERT into NEWS VALUES(DEFAULT,?,?,?,?,?,?,NOW(),1,0)";
 
 
 $routerid = $_POST['routerid'];
