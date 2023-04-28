@@ -5,7 +5,7 @@
 
 
     //建立SQL語法
-    $sql = "INSERT into group1.FEATURE VALUES (DEFAULT,?,?,?,?,?,?,?,?,?)";
+    $sql = "INSERT into FEATURE VALUES (DEFAULT,?,?,?,?,?,?,?,?,?)";
     
     $title1 = $_POST['title1'];
     $content1 = $_POST['content1'];

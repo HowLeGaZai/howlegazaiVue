@@ -5,7 +5,7 @@
 
 
     //建立SQL語法
-    $sql = "INSERT into group1.QA VALUES(DEFAULT,?,?,?,?,?,?,?,?,?,?)";
+    $sql = "INSERT into QA VALUES(DEFAULT,?,?,?,?,?,?,?,?,?,?)";
     
     // $request_body = file_get_contents('php://input');
     // $data = json_decode($request_body, true);

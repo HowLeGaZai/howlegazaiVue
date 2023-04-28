@@ -5,7 +5,7 @@
 
 
     //建立SQL語法
-    $sql = "INSERT into group1.CONTACT_VILLAGE VALUES(DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?)";
+    $sql = "INSERT into CONTACT_VILLAGE VALUES(DEFAULT,?,?,?,?,?,?,?,?,?,?,?,?)";
     
 
     // $index = $data["index"];
