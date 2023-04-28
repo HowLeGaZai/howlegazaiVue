@@ -55,7 +55,7 @@
             <div id="navMenu">
               <ul class="account-menu" id="accountMenu">
                 <li>
-                  <i class="bi bi-x-lg close" id="menuClose"></i>
+                  <i class="bi bi-x-lg close" id="menuClose" @click="closeNav"></i>
                 </li>
                 <li class="user">
                   <!-- 會員姓名 -->
@@ -166,13 +166,21 @@ export default {
       let userBtn = document.getElementById("userBtn");
 
       if (window.innerWidth > 1400) {
+        console.log(">1400")
         this.$router.push("account_user");
       } else {
        //關掉a連結的預設行為
-       accountMenu.classList.add("accountshow");
        e.preventDefault();
+       accountMenu.classList.add("accountshow");
 
       }
+    },
+     closeNav(e) {
+      let accountMenu = document.getElementById("accountMenu");
+
+       accountMenu.classList.remove("accountshow");
+       e.preventDefault();
+
     },
 
 

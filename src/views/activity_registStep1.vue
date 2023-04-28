@@ -24,6 +24,7 @@
     </div>
 
     <div class="info-article">
+
       <table class="green-table">
         <thead>
           <tr>
@@ -68,7 +69,7 @@
         </tfoot>
       </table>
 
-      <div class="">
+      <!-- <div class=""> -->
         <!-- <form class="" id="idFormAioCheckOut" method="post" action="https://tibamef2e.com/tgd104/g1/API/ECPay_CreateOrder.php"> -->
         <table class="green-table">
           <thead>
@@ -146,6 +147,7 @@
               </td>
             </tr>
           </tbody>
+
           <tbody>
             <!-- <tr class="row left">
                         <td>
@@ -170,10 +172,8 @@
             </tr>
 
             <tr class="row right">
-              <td>
-                <p class="alert">
+              <td class="alert">
                   注意：若經查證後參加者非本里住民，將取消參加資格。
-                </p>
               </td>
             </tr>
             <tr class="row right">
@@ -226,10 +226,10 @@
                 </label>
             </div> -->
         <!-- ECPay End -->
-      </div>
+    </div>
 
       <!-- img的容器設定為原大小的95% -->
-    </div>
+    <!-- </div> -->
   </main>
   <Footer></Footer>
 </template>
