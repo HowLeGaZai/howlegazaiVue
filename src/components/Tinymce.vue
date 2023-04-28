@@ -59,6 +59,7 @@ export default {
         height: 500,
         menubar: false,
         content_css: false,
+        convert_urls:false, // 相對路徑
         statusbar: false,
         mobile: {
           menubar: true,
