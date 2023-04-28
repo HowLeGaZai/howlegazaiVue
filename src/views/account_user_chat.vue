@@ -14,12 +14,12 @@
                             <th v-for="datasTr in datasTrs" >{{datasTr}}</th>
                         </tr>
                         <tr v-for="(data,index) in datas" :key="index">
-                            <td data-label="CREATE_TIME">{{ formatDate(data.CREATE_TIME) }}</td>
-                            <td data-label="STATUS">{{ data.STATUS == 1 ? '已上架' : '已下架' }}</td>
+                            <td data-label="發布日期">{{ formatDate(data.CREATE_TIME) }}</td>
+                            <td data-label="狀態">{{ data.STATUS == 1 ? '已上架' : '已下架' }}</td>
                             <td data-label="TITLE:"><router-link class="titlelink" :to="{ name: 'chat_info', params: { Id: data.ID } }">
                                 {{data.TITLE}}
                                 </router-link></td>
-                            <td data-label="編輯">
+                            <td data-label="">
                                 <router-link :to="{ name: 'chat_update', params: { Id: data.ID } }" v-if="data.STATUS == 1">
                                     <button type="button" class="btn-icon"><i class="bi bi-pencil-square btn-font-color-green"></i></button>
                                 </router-link>
