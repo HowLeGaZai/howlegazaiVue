@@ -10,7 +10,7 @@
           <div class="popup_l">
             <!-- <button type="button" class="btn-cir-s btn-color-green"><i class="bi bi-caret-left-fill i-s"></i></button> -->
             <br>
-            <h3 class="">預約單號 : 001</h3>
+            <h3 class="">預約單號 : 00{{spaceIndex}}</h3>
             <br>
             <div class="popup_l_s">
               <div class="popup-pad">
@@ -86,6 +86,8 @@ export default {
         phone:'',
         mail:'',
         apply:'',
+
+        spaceIndex:'',
       }
   },
   components: {
@@ -165,6 +167,16 @@ export default {
     
   },
   mounted(){
+        axios
+        .post('http://localhost/TGD104G1/public/API/spaceIndex.php' )
+        .then(response => {
+          this.spaceIndex = response.data[0].ID + 1;
+          console.log('123',response.data);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+
         this.getSpaceData();
         this.onlydate = sessionStorage.getItem('onlydate');
         this.date = sessionStorage.getItem('date');
@@ -178,6 +190,9 @@ export default {
         this.phone = sessionStorage.getItem("APPLY_PHONE");
         this.mail = sessionStorage.getItem("APPLY_MAIL");
         this.apply = sessionStorage.getItem("PURPOSE");
+
+        
+         
 
     },
 }

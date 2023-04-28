@@ -40,7 +40,7 @@
                       <td>刪除</td>
                     </tr>
                     <tr v-for="(account, index) in filteredItems" :key="index">
-                      <td>{{ account[0] }}</td>
+                      <td>{{ index + 1 }}</td>
                       <td>{{ account[1] }}</td>
                       <td>{{ account[2] }}</td>
                       <td>{{ account[3] }}</td>
