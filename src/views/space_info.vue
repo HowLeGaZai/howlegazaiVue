@@ -285,81 +285,82 @@ export default {
   methods:{
     async getSpaceData() {
               await  axios
-                //  htdocs的環境下測試
+
                     .get('http://localhost/TGD104G1/public/API/space.php')
-                        // .get('https://tibamef2e.com/tgd104/g1/accountOverview.php')
+
                     .then(response => {
                         this.spaceJsonData = response.data;
                         console.log('abc',this.spaceJsonData);
                     })
                     .catch(error => {
-                        // console.log(error);
+
                     });
 
 
-                    console.log(this.$route);
+
                     
                     
                     for(let i=0;i<this.spaceJsonData.length;i++){
-                      // console.log(i,this.spaceJsonData[i]);
+
                       if(this.$route.params.Id == this.spaceJsonData[i][0]){
-                        // console.log('ID',this.spaceJsonData[i][0]);
-                        // console.log('空間資料',this.spaceJsonData[i]);
+
                         this.spaceData = this.spaceJsonData[i];
+
+                        const timeArray = this.spaceData.OPEN_TIME.split(':');
+                        this.spaceData.OPEN_TIME = timeArray[0] + ':' + timeArray[1];
+
+                        const timeArray_CLOSE_TIME = this.spaceData.CLOSE_TIME.split(':');
+                        this.spaceData.CLOSE_TIME = timeArray_CLOSE_TIME[0] + ':' + timeArray_CLOSE_TIME[1];
+                        
                         this.OPEN_TIME = this.spaceJsonData[i].OPEN_TIME;
                         this.CLOSE_TIME = this.spaceJsonData[i].CLOSE_TIME;
-                        console.log('空間資料',this.spaceData);
                       }else{
 
                       }
                     }
 
-                    // alert(`${this.OPEN_TIME}-${this.CLOSE_TIME}`)
+
                     return `${this.OPEN_TIME}-${this.CLOSE_TIME}`
 
     },
   async showData(){
     
-    // console.log('abc',this.jsonData);
+
     const OPEN_CLOSE_TIME = await this.getSpaceData();
     
     const space_timeRange =  OPEN_CLOSE_TIME;
     
-    // console.log(timeRange);
+
     const [startTime, endTime] = space_timeRange.split('-')
-    // console.log(startHour);
-    // console.log(endHour);
+
 
     let startHour  = startTime.split(':')[0].trim();
     let endHour = endTime.split(':')[0].trim();
-    // console.log(startHour);
+
     const dataList= [];
     const dataList_about =[];
     for (let h = Number(startHour); h <= Number(endHour); h++) {
-      // console.log(h);
+
       const time = `${h}:00-${h}:59` // 產生時間範圍字串，例如 '8:00-8:59'
       if(h<10){
-        const time_about = `0${h}:00:00-0${h}:59:00`;
+        const time_about = `0${h}:00-0${h}:59`;
         const value_about = 'btn-m btn-color-white timeslot';
         dataList_about.push({ time_about,value_about});
       }else{
-        const time_about = `${h}:00:00-${h}:59:00`;
+        const time_about = `${h}:00-${h}:59`;
         const value_about = 'btn-m btn-color-white timeslot';
         dataList_about.push({ time_about,value_about});
       }
 
 
 
-      // console.log('dataList_about',dataList_about);
-      // console.log(time);
+
       const value ='btn-m btn-color-white timeslot'
       dataList.push({ time,value });
       
     }
-// dataList_about.push(time_about);
-    // console.log('調整格式',dataList_about);
 
-    console.log('確定預約的',this.jsonData);
+
     this.data = dataList_about;
 
 
@@ -367,84 +368,66 @@ export default {
 
 async getData(date) {
     await axios
-          //  htdocs的環境下測試
           .get('http://localhost/TGD104G1/public/API/spaceAfterOrder.php')
               
               .then(response => {
                   this.jsonData = response.data;
-                  
-                  console.log('OrderDate',response.data);
               })
               .catch(error => {
-                  // console.log(error);
+
               });
-    // console.log('abc',this.jsonData);
-    // alert(date);
-    console.log('選擇的日期是',date);
+
 
     const OPEN_CLOSE_TIME = await this.getSpaceData();
     
     const space_timeRange =  OPEN_CLOSE_TIME;
-    // console.log(timeRange);
+
     const [startTime, endTime] = space_timeRange.split('-')
-    // console.log(startHour);
-    // console.log(endHour);
+
 
     let startHour  = startTime.split(':')[0].trim();
     let endHour = endTime.split(':')[0].trim();
-    // console.log(startHour);
+
     const dataList= [];
     const dataList_about =[];
     for (let h = Number(startHour); h <= Number(endHour); h++) {
-      // console.log(h);
+
       const time = `${h}:00-${h}:59` // 產生時間範圍字串，例如 '8:00-8:59'
       if(h<10){
-        const time_about = `0${h}:00:00-0${h}:59:00`;
+        const time_about = `0${h}:00-0${h}:59`;
         const value_about = 'btn-m btn-color-white timeslot';
         dataList_about.push({ time_about,value_about});
       }else{
-        const time_about = `${h}:00:00-${h}:59:00`;
+        const time_about = `${h}:00-${h}:59`;
         const value_about = 'btn-m btn-color-white timeslot';
         dataList_about.push({ time_about,value_about});
       }
       
-      // console.log(time);
+
       const value ='btn-m btn-color-white timeslot'
       dataList.push({ time,value });
       
     }
-// dataList_about.push(time_about);
-    // console.log('調整格式',dataList_about);
 
-    console.log('確定預約的',this.jsonData);
     
 
     const formattedDate = date.replace(/\//g, '-');
 
     
 
-    // alert(formattedDate);
+
     
   let spaceID = sessionStorage.getItem("spaceID");
 
     for(let i=0;i<this.jsonData.length;i++){
+        this.jsonData[i][1] = this.jsonData[i][1].substring(0,5) + '-' + this.jsonData[i][1].substring(9,14);
         
         if(formattedDate == this.jsonData[i][0] ){
-            //加入日期判斷
-              // console.log(i,this.jsonData[i][1]);
-              
-             
-              
+    
                 for(let j =0; j<dataList_about.length;j++){
-                  // console.log('spaceID',spaceID);
-                  // console.log(j,dataList_about[j].time_about)
-                  // console.log('abcdefg',this.jsonData[i][1]);
-                  // console.log('aaa',dataList_about[j].time_about);
-                  // console.log('abcdefg',this.jsonData[i][2]);
                   if(this.jsonData[i][1] == dataList_about[j].time_about && this.$route.params.Id == this.jsonData[i][2]){
-                       
                       dataList_about[j].value_about = 'btn-m btn-color-white timeslot btn-color-gray';
-                      // console.log(dataList_about[j].value_about);
+
                   }else{
 
                   }
@@ -457,7 +440,7 @@ async getData(date) {
 
 
 
-    console.log('dataList',dataList);
+
     this.data = dataList_about;
 
 
@@ -499,6 +482,11 @@ async getData(date) {
             sessionStorage.setItem("SPACE_ID", this.$route.params.Id);
 
             this.$router.push({ name: 'space_reserve', params: { Id: this.$route.params.Id } })
+        },
+
+        formatTime(timeString) {
+            const [hour, minute] = timeString.split(":");
+            return `${hour}:${minute}`;
         },
 
 
