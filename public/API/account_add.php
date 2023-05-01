@@ -3,7 +3,7 @@
 include("conn.php");
 
 //建立SQL語法
-$sql = "INSERT into USER VALUES(DEFAULT,?,?,?,'http://localhost/TGD104G1/src/assets/img/user_pic.png',NULL,?,?,NULL,?,?,?,2,DEFAULT,NULL,NULL,1,NOW(),NULL, ?,NULL,DEFAULT,DEFAULT,?)";
+$sql = "INSERT into USER VALUES(DEFAULT,?,?,?,'',NULL,?,?,NULL,?,?,?,2,DEFAULT,NULL,NULL,1,NOW(),NULL, ?,NULL,DEFAULT,DEFAULT,?)";
 
 $FIRST_NAME = $_POST['FIRST_NAME'];
 $LAST_NAME = $_POST['LAST_NAME'];
@@ -15,7 +15,7 @@ $ADDRESS = $_POST['ADDRESS'];
 $FAMILY_ID = $_POST['FAMILY_ID'];
 $NICKNAME = $FULL_NAME;
 
-
+$PASSWORD = password_hash($PASSWORD, PASSWORD_BCRYPT);
 
 //執行
 $statement = $pdo -> prepare($sql);
