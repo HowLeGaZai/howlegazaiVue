@@ -8,13 +8,13 @@ const routes = [
   
   {
     // 前台 首頁
-    path: '/',
+    path: '/howlegazai',
     name: 'home',
     component: Home
   },
   {
     // 前台 歡迎頁、前後台入口頁
-    path: '/welcome',
+    path: '/',
     name: 'welcome',
     component: () => import(/* webpackChunkName: "about" */ '../views/welcome.vue')
   },
