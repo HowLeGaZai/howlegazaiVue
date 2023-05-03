@@ -48,6 +48,7 @@
 import navbar from '../components/navbar.vue';
 import Footer from '../components/Footer.vue';
 import { formatDate } from "../plugin/date";
+import axios from 'axios';
 
 
 export default {
@@ -58,6 +59,7 @@ export default {
   data() {
     return {
       newsdata: [],
+      searchData: [],
       newsID: '',
 
       // createTime: Date().getTime(),
@@ -66,7 +68,7 @@ export default {
       pic: '',
       content: '',
       routerid: '',
-      adminid:'1',
+      adminid: '1',
       // fullname:'',
 
 
@@ -76,14 +78,7 @@ export default {
   },
 
 
-  beforeMount() {
-    // this.newsID = this.$route.params.Id;
-    // console.log('123',this.$route.params.Id);
 
-    // const newsdata = new FormData();
-    // newsdata.append('routeid', this.$route.params.Id);
-
-  },
 
   methods: {
     getFormatDate(val) {
@@ -100,28 +95,63 @@ export default {
         "tag-green": category === "會議記錄",
       }
     },
-
     publishNews() {
-
-      const newsdata = new FormData();
-      newsdata.append('routerid', this.routerid);
-      newsdata.append('category', this.category);
-      newsdata.append('title', this.title);
-      newsdata.append('adminid', this.adminid);
-
-      newsdata.append('content', this.content);
-      newsdata.append('pic', this.pic);
-      console.log(newsdata);
+      const routerid = this.$route.params.Id;
+      // console.log(routerid);
+      const searchid = new FormData();
+      searchid.append('routerid', routerid);
 
       axios
-        .post('http://localhost/TGD104G1/public/API/newsAdd.php', newsdata)
+        .post('http://localhost/TGD104G1/public/API/check_duplicate_news.php', searchid)
         .then(response => {
-          // this.jsonData = response.data;
-          // console.log(response.data);
-          alert("最新消息發佈成功！")
-          this.$router.push({name:'backend_news'})
-          
-          sessionStorage.clear();
+          this.searchData = response.data;
+          // console.log(this.searchData);
+
+          if (this.searchData !== "not_duplicate") {
+            // console.log('資料庫有這筆');
+            const formData= new FormData();
+            formData.append('routerid', this.routerid);
+            formData.append('title', this.title);
+            formData.append('category', this.category);
+            formData.append('content', this.content);
+            formData.append('pic', this.pic);
+            axios
+            .post('http://localhost/TGD104G1/public/API/newsEdit.php',formData)
+            .then(response => {
+              alert("編輯成功");
+              console.log(this.searchData);
+                
+            })
+            .catch(error => {
+                console.log(error);
+            });
+
+            this.$router.push('/backend_news');
+
+
+          } else { 
+            //check後routerid後資料庫有資料，
+
+            const formData= new FormData();
+            formData.append('routerid', this.routerid);
+            formData.append('title', this.title);
+            formData.append('category', this.category);
+            formData.append('content', this.content);
+            formData.append('pic', this.pic);
+            formData.append('adminid', this.adminid);
+            axios
+            .post('http://localhost/TGD104G1/public/API/newsAdd.php',formData)
+            .then(response => {
+              alert("新增成功");
+
+            })
+            .catch(error => {
+                console.log(error);
+            });
+
+            this.$router.push('/backend_news');
+
+          }
 
 
         })
@@ -129,11 +159,10 @@ export default {
           console.log(error);
         });
 
-      
 
     },
 
-    goback(){
+    goback() {
       const Id = this.$route.params.Id;
       this.$router.push({ name: "backend_news_add", params: { Id: Id } });
     },
@@ -149,7 +178,7 @@ export default {
     this.category = sessionStorage.getItem("news-category");
     this.content = sessionStorage.getItem("news-content");
     this.pic = sessionStorage.getItem("news-pic");
-    
+
 
     // this.admin_id = this.getCookieValue("id"); //里長資料cookie
     // this.admin_portrait = this.getCookieValue("portrait"); //里長頭像cookie

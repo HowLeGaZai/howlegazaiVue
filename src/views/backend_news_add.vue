@@ -151,29 +151,25 @@ export default {
 
 
         newsPreview() {
-            console.log(this.title);  //不可刪除
             // 檢查必填欄位是否已經填寫
             //檢查this.title或this.category或this.content是否為空值
             // if (this.title !== '' && this.category !== '' && this.content !== '') 
-            if (this.title !== '' || this.category !== '' || this.content !== '' || this.pic !== '') {
-                
+            if (this.title == '' ||this.category == '' || this.content == '' || this.pic == ''||this.title == undefined ||this.category == undefined || this.content == undefined) {
+    
+                alert("有欄位未填寫完成")
 
+            } else {
+                // console.log("寫完了");
                 // 將資料傳至sessionStorage
                 sessionStorage.setItem('news-title', this.title);
                 sessionStorage.setItem('news-category', this.category);
                 sessionStorage.setItem('news-content', this.content);
-                
                 sessionStorage.setItem('news-pic', this.pic);
-
-
 
                 // 轉往預覽頁
                 const Id = this.$route.params.Id;
                 console.log(Id)
                 this.$router.push({ name: 'news_info_preview', params: { Id: Id } });
-
-            } else {
-                alert("有欄位尚未填寫完畢");
             }
 
 
@@ -215,9 +211,9 @@ export default {
             axios
                 .post('http://localhost/TGD104G1/public/API/check_duplicate_news.php', searchid)
                 .then(response => {
-                    // this.$set(this.data,'saveNewsdata',this.newsdata)
-
+                
                     this.newsdata = response.data[0];
+                    console.log(this.newsdata);
 
                     if (sessionStorage.getItem('news-title') !== null) {
                         this.title = sessionStorage.getItem("news-title");
@@ -248,59 +244,14 @@ export default {
 
         },
 
-        // setNewsvalue() {
-        //     // console.log(this.newsdata)
-        //     if (this.newsdata == null) {
-        //         // console.log('null')
-        //         this.title = sessionStorage.getItem("news-title");
-        //         this.category = sessionStorage.getItem("news-category");
-        //         this.content = sessionStorage.getItem("news-content");
-        //         this.pic = sessionStorage.getItem("news-pic");
-
-        //         // console.log(this.newsdata)
-
-        //     } else {
-        //         // console.log(this.newsdata.TITLE)
-
-        //         // this.title = this.newsdata.TITLE;
-        //         // this.category = this.newsdata.CATEGORY;
-        //         // this.content = this.newsdata.CONTENT;
-        //         // this.pic = this.newsdata.PIC;
-
-        //         // this.category = this.newsdata.CATEGORY;
-
-
-        //     }
-        // }
 
     },
     mounted() {
 
-        this.checksavedNews()
-        // this.setNewsvalue()
+        this.checksavedNews();
+    
 
 
-        //進頁面前檢查是否有重複routerID
-        // const routerid = this.$route.params.Id;
-        // console.log(routerid);
-
-        // const searchid = new FormData();
-        // searchid.append('routerid', routerid);
-        // axios
-        //     .post('http://localhost/TGD104G1/public/API/check_duplicate_news.php', searchid)
-        //     .then(response => {
-        //         // this.$set(this.data,'saveNewsdata',this.newsdata)
-        //         this.newsdata = response.data[0];
-        //         // console.log(this.newsdata);
-        //         console.log("routerid重複");
-        //         this.setNewsvalue();
-
-        //     })
-        //     .catch(error => {
-        //         console.log(error);
-        //     });
-
-        // this.checksavedNews()
 
 
 

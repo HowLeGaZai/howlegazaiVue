@@ -13,18 +13,20 @@ $routerid = $_POST['routerid'];
  $statement->bindValue(1, $routerid);
  $statement->execute();
  $data = $statement->fetchAll();
-
+ 
  // 檢查查詢結果
  if(COUNT($data) > 0){
-    // routerid重複
-    //  echo $data;
-
-     echo json_encode($data);
-
+     // routerid重複
+     //  echo $data;
+     // $data= "duplicate";
+    echo json_encode($data);
+    // echo "duplicate";
  } else {
      // routerid未重複
-    
-     echo "not_duplicate";
+    $data= "not_duplicate";
+    echo json_encode($data);
+
+    //  echo "not_duplicate";
  }
  
 
