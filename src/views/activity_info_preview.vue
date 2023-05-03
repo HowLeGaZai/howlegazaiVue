@@ -23,7 +23,7 @@
             <h2>{{ activity_name}}</h2>
 
             <div class="userTag-2" id="">
-                <img src="../assets/img/user_pic2.png" alt="" class="userPic" />
+                <img src="../assets/img/user_pic2.png" alt="" class="user_pic" />
                 <h6>里長伯</h6>
             </div>
             

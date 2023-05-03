@@ -115,7 +115,9 @@
             }
             h6{
                 font-size: 1.4em;
+                
                 color: $gray;
+                width:120px;
                 @include breakpoint($grid-breakpoints, 'sm') {
                     font-size: 1.1em;
 
