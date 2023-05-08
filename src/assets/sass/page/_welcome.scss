@@ -8,11 +8,20 @@
     }
   }
 }
+
+.frontback{
+  min-height: calc(100vh - 496px);
+  position: relative;
+}
 .welcome {
   max-height: 100vh;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   gap: 10px;
   @include breakpoint($grid-breakpoints, "md") {
     flex-direction: column;

@@ -8,7 +8,7 @@
                 </a>
             </nav>
         </header>
-         <main>
+         <main class="frontback">
             <section class="welcome">
                 <router-link :to="{name:'home'}">
                     <div>
