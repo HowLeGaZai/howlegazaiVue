@@ -229,11 +229,45 @@ export default {
       mainMenu.classList.remove("menushow");
     };
 
-    dropBtn.onclick = function (e) {
-      e.stopPropagation();
-      dropList.classList.toggle("show");
-      dropBtn.classList.toggle("onoff");
-    };
+    const isMobile = window.matchMedia("(max-width: 992px)").matches;
+
+    if (isMobile) {
+      dropBtn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        dropList.classList.toggle("show");
+        dropBtn.classList.toggle("onoff");
+      });
+    } else {
+      
+      let hovering = false;
+
+      dropBtn.onmouseenter = function (e) {
+        e.stopPropagation();
+        dropList.classList.add("show");
+        dropBtn.classList.add("onoff");
+      };
+
+      dropBtn.onmouseleave = function (e) {
+        e.stopPropagation();
+        setTimeout(function() {
+          if (!hovering) {
+            dropList.classList.remove("show");
+            dropBtn.classList.remove("onoff");
+          }
+        }, 150);
+      };
+
+      dropList.onmouseenter = function() {
+        hovering = true;
+      };
+
+      dropList.onmouseleave = function() {
+        hovering = false;
+        dropList.classList.remove("show");
+        dropBtn.classList.remove("onoff");
+      };
+
+      }
   },
 }
 </script>
