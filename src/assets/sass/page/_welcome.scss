@@ -10,7 +10,8 @@
 }
 
 .frontback{
-  min-height: calc(100vh - 496px);
+  height: calc(100vh - 496px);
+  min-height:500px;
   position: relative;
 }
 .welcome {
