@@ -1,5 +1,5 @@
 <template>
-  <backendNavbar></backendNavbar>
+  <backendNavbar @webInfo="getWebinfo"></backendNavbar>
 
   <div class="body-sec">
     <main class="backpadding">
@@ -78,7 +78,7 @@
           <!------大湖里成員 dashboard------>
           <div class="member-account">
             <p>
-              {{ town }}成員統計
+              {{ dataTOWN }}成員統計
             </p>
 
 
@@ -88,7 +88,7 @@
                   <td class="family">
                     <div class="family-num">
                       <h1>{{ population }}</h1>
-                      <h2>{{ town }}戶數</h2>
+                      <h2>{{ dataTOWN }}戶數</h2>
                     </div>
                     <p class="positive" :class="{ fontred: homeNumPercentage < 0, fontgreen: homeNumPercentage > 0 }">
                       {{ homeNumPercentage  + "%" }}</p>
@@ -100,7 +100,7 @@
                   <td class="area-number">
                     <div class="family-num">
                       <h1>{{ homeNum }}</h1>
-                      <h2>{{ town }}人口數</h2>
+                      <h2>{{ dataTOWN }}人口數</h2>
                     </div>
                     <p class="positive"
                       :class="{ fontred: populationPercentage < 0, fontgreen: populationPercentage > 0 }">
@@ -198,12 +198,22 @@ export default {
       webFamily: '', //網站戶數 
       account: '', //網站註冊數（且審核通過）T_STATUS＝1||2 && USER_STATUS =1
 
-
+      dataCity:'',
+      dataTOWN:'',
     }
   },
 
 
   methods: {
+
+
+    // 從 navbar 取得里名
+    getWebinfo(webInfo) {
+      this.dataCity = webInfo.dataCity;
+      this.dataTOWN = webInfo.dataTOWN;
+    },
+
+
 
     addTagClass(category) {
       return {
@@ -230,7 +240,7 @@ export default {
         this.populationPercentage = this.populationPercentage * 100;
         this.populationPercentage = this.populationPercentage .toFixed(2);
 
-        console.log(this.populationPercentage + "百分比");
+        // console.log(this.populationPercentage + "百分比");
 
 
       //取
@@ -241,7 +251,7 @@ export default {
         this.homeNumPercentage = this.homeNumPercentage * 100;
         this.homeNumPercentage = this.homeNumPercentage.toFixed(2);
 
-        console.log(this.homeNumPercentage + "戶數百分比");
+        // console.log(this.homeNumPercentage + "戶數百分比");
 
       // console.log("最新人口數" + this.population);
       // console.log("最新戶數" + this.homeNum);
@@ -252,6 +262,7 @@ export default {
 
 
 
+    // },
 
   },
 
@@ -260,7 +271,6 @@ export default {
 
 
   mounted() {
-
 
     $('#resizable').resizable({});
     $('#datepicker').datepicker({
@@ -386,10 +396,6 @@ export default {
       .catch(error => {
         console.log(error);
       });
-
-
-
-
 
   },
 
