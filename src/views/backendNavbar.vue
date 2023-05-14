@@ -7,7 +7,7 @@
           <img src="../assets/img/logo_backend.svg" alt="" />
         </a>
         <div class="midnav">
-           <!-- 天氣 -->
+           <!-- 天氣 emoji -->
            <!-- 雨、晴、陰 -->
            <i class="bi" :class="{
               'bi-cloud-drizzle': Weather.includes('雨'),
