@@ -1,4 +1,5 @@
 <template>
+  <!-- 接里名 -->
   <backendNavbar @webInfo="getWebinfo"></backendNavbar>
 
   <div class="body-sec">
