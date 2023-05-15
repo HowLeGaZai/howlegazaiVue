@@ -1,5 +1,4 @@
 <template>
-  <!-- 接里名 -->
   <backendNavbar @webInfo="getWebinfo"></backendNavbar>
 
   <div class="body-sec">
@@ -169,6 +168,7 @@ export default {
   components: {
     backendNavbar, Footer, backCalender, BackLeftNav,mobileNotSupport
   },
+
   data() {
     return {
       webData:[],
@@ -188,7 +188,7 @@ export default {
       accountData: [],
       familyData: [], //家庭資料
       familyData: [], //家庭資料
-      webFamily: '', //網站戶數
+      webFamily: '', //網站戶數 
       account: '', //網站註冊數（且審核通過）T_STATUS＝1||2 && USER_STATUS =1
 
       dataCity:'',
@@ -202,7 +202,7 @@ export default {
       this.dataCity = webInfo.dataCity;
       this.dataTOWN = webInfo.dataTOWN;
     },
-
+    
     addTagClass(category) {
       return {
         "tag-green": category === "藝文",
@@ -211,9 +211,8 @@ export default {
         "tag-yellow": category === "其他",
       };
     },
-
-    //取得大湖里人員統計
     
+    //取得大湖里人員統計
     countvillage() {
       this.population = this.villageData[this.villageData.length - 1].POPULATION;
       this.homeNum = this.villageData[this.villageData.length - 1].HOME_NUM;
@@ -225,6 +224,7 @@ export default {
         this.populationPercentage = this.populationPercentage * 100;
         this.populationPercentage = this.populationPercentage .toFixed(2);
         // console.log(this.populationPercentage + "百分比");
+      
       
       //取
       this.homeNumPercentage = ((this.villageData[this.villageData.length - 1].HOME_NUM
@@ -241,7 +241,6 @@ export default {
 
   mounted() {
 
-
     $('#resizable').resizable({});
     $('#datepicker').datepicker({
       monthNames: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
@@ -252,7 +251,6 @@ export default {
         $('.selectedD').html(`日期:&nbsp` + selected);
       }
     });
-
 
     //撈取網站資料
     axios
@@ -268,7 +266,6 @@ export default {
         // console.log(error);
       });
 
-
     //撈取活動
     axios
       .post('http://localhost/TGD104G1/public/API/activity.php', {})
@@ -279,7 +276,6 @@ export default {
       .catch(error => {
         console.log(error);
       });
-
 
     //待審核戶長數
     axios
@@ -298,7 +294,6 @@ export default {
         console.log(error);
       });
 
-
     //待審核空間預約
     axios
       .get('http://localhost/TGD104G1/public/API/backend_space_reservation.php')
@@ -310,7 +305,6 @@ export default {
       .catch(error => {
         // console.log(error);
       });
-
 
     //人口數與戶數
     axios
@@ -326,7 +320,6 @@ export default {
       .catch(error => {
         console.log(error);
       });
-
 
     //網站戶數與註冊數
     axios
