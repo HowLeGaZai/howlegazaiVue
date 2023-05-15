@@ -15,9 +15,6 @@
         <!------- 補這裡：後台側欄選單 ------->
         <BackLeftNav></BackLeftNav>
         <!------- 補這裡：後台側欄選單 ------->
-
-
-
         <section class="section_right">
           <!--近期活動總覽＆日曆 -->
           <div class="date-overview">
@@ -157,7 +154,6 @@
 </template>
 
 <script>
-
 import backendNavbar from '../components/backendNavbar.vue';
 import backCalender from '../components/BackCalender.vue';
 import BackLeftNav from '../components/BackLeftNav.vue';
@@ -168,12 +164,10 @@ import 'jquery-ui-dist/jquery-ui'
 import 'jquery-ui-dist/jquery-ui.min.css'
 import { BIconMailbox } from 'bootstrap-icons-vue';
 
-
 export default {
   components: {
     backendNavbar, Footer, backCalender, BackLeftNav,mobileNotSupport
   },
-
   data() {
     return {
       webData:[],
@@ -184,36 +178,29 @@ export default {
       accountNew: '', //待審核戶長
       spaceNew: '', //待審核空間
 
-
       villageData: [],
       population: '',//人口數
       populationPercentage: '', //人口計算成長率
       homeNum: '', // 戶數
       homeNumPercentage: '',//戶數計算成長率
 
-
       accountData: [],
       familyData: [], //家庭資料
       familyData: [], //家庭資料
-      webFamily: '', //網站戶數 
+      webFamily: '', //網站戶數
       account: '', //網站註冊數（且審核通過）T_STATUS＝1||2 && USER_STATUS =1
 
       dataCity:'',
       dataTOWN:'',
     }
   },
-
-
   methods: {
-
-
+    
     // 從 navbar 取得里名
     getWebinfo(webInfo) {
       this.dataCity = webInfo.dataCity;
       this.dataTOWN = webInfo.dataTOWN;
     },
-
-
 
     addTagClass(category) {
       return {
@@ -221,28 +208,23 @@ export default {
         "tag-orange": category === "旅遊",
         "tag-pink": category === "健康",
         "tag-yellow": category === "其他",
-
       };
     },
 
-
     //取得大湖里人員統計
-
+    
     countvillage() {
       this.population = this.villageData[this.villageData.length - 1].POPULATION;
       this.homeNum = this.villageData[this.villageData.length - 1].HOME_NUM;
-
+      
       //（最新 - 上次 /上次人口）＊100%
       this.populationPercentage = ((this.villageData[this.villageData.length - 1].POPULATION
         - this.villageData[this.villageData.length - 2].POPULATION)
         / this.villageData[this.villageData.length - 2].POPULATION).toFixed(2);
-
         this.populationPercentage = this.populationPercentage * 100;
         this.populationPercentage = this.populationPercentage .toFixed(2);
-
         // console.log(this.populationPercentage + "百分比");
-
-
+      
       //取
       this.homeNumPercentage = ((this.villageData[this.villageData.length - 1].HOME_NUM
         - this.villageData[this.villageData.length - 2].HOME_NUM)
@@ -250,34 +232,20 @@ export default {
         
         this.homeNumPercentage = this.homeNumPercentage * 100;
         this.homeNumPercentage = this.homeNumPercentage.toFixed(2);
-
         // console.log(this.homeNumPercentage + "戶數百分比");
-
       // console.log("最新人口數" + this.population);
       // console.log("最新戶數" + this.homeNum);
     },
-
-
-
-
-
-
-    // },
-
   },
 
-
-
-
-
   mounted() {
+
 
     $('#resizable').resizable({});
     $('#datepicker').datepicker({
       monthNames: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
       dayNamesMin: ["週日", "週一", "週二", "週三", "週四", "週五", "週六"],
       dateFormat: "yy/mm/dd",
-
       onSelect: function () {
         var selected = $(this).val();
         $('.selectedD').html(`日期:&nbsp` + selected);
@@ -291,7 +259,6 @@ export default {
       .then(response => {
         this.webData = response.data[response.data.length-1];
         this.town = this.webData.TOWN;
-
         // this.town = response.data[3]; 
         // console.log(this.webData.TOWN);
        
@@ -311,7 +278,6 @@ export default {
       .catch(error => {
         console.log(error);
       });
-
 
 
     //待審核戶長數
@@ -339,14 +305,10 @@ export default {
       .then(response => {
         this.spaceNew = response.data.length;
         // console.log(this.spaceNew);
-
       })
       .catch(error => {
         // console.log(error);
       });
-
-
-
 
 
     //人口數與戶數
@@ -359,7 +321,6 @@ export default {
         // console.log(this.villageData[this.villageData.length-1].HOME_NUM);//最新戶數
         //計算人口相關加總數
         this.countvillage();
-
       })
       .catch(error => {
         console.log(error);
@@ -373,15 +334,11 @@ export default {
         this.accountData = response.data;
         // this.countaccount()
         this.account = this.accountData.length; //計算帳戶數量
-
         console.log(this.account + "已註冊人口數");
-
       })
       .catch(error => {
         console.log(error);
       });
-
-
 
     axios
       .post('http://localhost/TGD104G1/public/API/family_count.php', {})
@@ -389,18 +346,11 @@ export default {
         this.familyData = response.data;
         // this.countaccount()
         this.webFamily = this.familyData.length + 1; //計算戶數數量
-
         console.log(this.webFamily + "已註冊戶數");
-
       })
       .catch(error => {
         console.log(error);
       });
-
   },
-
-
-
-
 }
 </script>
