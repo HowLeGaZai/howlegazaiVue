@@ -69,7 +69,9 @@
             <h5 class="post_d">{{ getFormatDate(chatTopic.CREATE_TIME) }}</h5>
             <div class="poster">
               <div class="image user_pic">
-                <img :src="chatTopic.PORTRAIT" alt="">
+                <!-- <img :src="chatTopic.PORTRAIT" alt=""> -->
+                <img :src="chatTopic.PORTRAIT!= ''? chatTopic.PORTRAIT :require(`@/assets/img/user_pic.png`)" alt="" class="user_pic" />
+                
                 <!-- <img :src="require('@/assets/img/user_pic.png')" alt=""> -->
               </div>
               <h5 class="poster_name">{{ chatTopic.NICKNAME }}</h5>

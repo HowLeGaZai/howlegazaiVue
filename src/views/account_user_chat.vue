@@ -29,7 +29,11 @@
                                 <button @click="articleDel" type="button" class="btn-icon" v-if="data.STATUS != -1"><i class="bi bi-x-circle-fill btn-font-color-green"></i></button>
                             </td>
                         </tr>
-                      </table>  
+                      </table>
+
+                      <div class="nodata">
+                        <p v-if="datas.length == 0">您還沒發佈過貼文喔！</p>
+                      </div>
                 </section>
             </div>
         </section>

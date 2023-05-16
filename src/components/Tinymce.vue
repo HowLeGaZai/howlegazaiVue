@@ -41,8 +41,8 @@ export default {
     toolbar: {
       type: [String, Array],
       default:
-        // ' bold italic underline strikethrough | fontsizeselect | forecolor backcolor | alignleft aligncenter alignright alignjustify|bullist numlist |outdent indent blockquote | undo redo | axupimgs | table | image | emoticons | code | removeformat',
-        ' bold italic underline strikethrough | fontsizeselect | forecolor backcolor | alignleft aligncenter alignright alignjustify|bullist numlist |outdent indent blockquote | undo redo | axupimgs | table | code | removeformat',
+        ' bold italic underline strikethrough | fontsizeselect | forecolor backcolor | alignleft aligncenter alignright alignjustify|bullist numlist |outdent indent blockquote | undo redo | axupimgs | table | image | emoticons | code | removeformat',
+        //' bold italic underline strikethrough | fontsizeselect | forecolor backcolor | alignleft aligncenter alignright alignjustify|bullist numlist |outdent indent blockquote | undo redo | axupimgs | table | code | removeformat',
 
     },
   },
@@ -59,7 +59,8 @@ export default {
         height: 500,
         menubar: false,
         content_css: false,
-        convert_urls:false, // 相對路徑
+        convert_urls:false, // 絕對路徑
+        relative_urls : false,
         statusbar: false,
         mobile: {
           menubar: true,
@@ -71,7 +72,7 @@ export default {
         toolbar: this.toolbar,
         quickbars_insert_toolbar: false,
         branding: false,
-        // images_upload_url: '/TGD104G1/dist/API/tinymce_uploadimg.php',
+        // images_upload_url: 'http://localhost/TGD104G1/public/API/tinymce_uploadimg.php',
         images_upload_url: 'http://localhost/TGD104G1/dist/API/tinymce_uploadimg.php',
         // images_upload_url: 'https://tibamef2e.com/tgd104/g1/tinymce_uploadimg.php',
         images_upload_base_path: '@/assets/img/',

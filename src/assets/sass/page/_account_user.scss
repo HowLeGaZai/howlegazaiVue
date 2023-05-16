@@ -2,6 +2,7 @@
   .account_row{
         text-align: left;
         margin-bottom: 35px;
+        margin-left: -10px;
         h4{
             margin-bottom: 15px;
             @include breakpoint($grid-breakpoints, "md") {
@@ -410,6 +411,7 @@ tr{
 th:first-child{
   text-align: left;
   padding-left: 25px;
+  width: 200px;
   
 }
 th:nth-child(2){
@@ -912,4 +914,13 @@ overflow: hidden;
 
 .red-dot,.red{
     color:$red;
+}
+
+.nodata{
+  width: 100%;
+  text-align: center;
+  padding: 25px;
+  p{
+    font-size: 18px;
+  }
 }

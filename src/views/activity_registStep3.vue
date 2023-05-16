@@ -98,7 +98,7 @@
              <button type="button" class="btn-m btn-color-white" @click="navigate" role="link">返回活動列表</button>
         </router-link>
         <router-link to="/account_user_activity" custom v-slot="{ navigate }">
-             <button type="button" class="btn-m btn-color-green" @click="navigate" role="link">查看我的活動</button>
+             <button type="button" class="btn-m btn-color-green" @click="navigate" role="link">查看我的報名紀錄</button>
         </router-link>
         </div>
            

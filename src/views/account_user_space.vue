@@ -26,6 +26,11 @@
                         </tr>
                     
                       </table>  
+
+                        <div class="nodata">
+                            <p v-if="datas.length == 0">目前沒有預約資訊喔！</p>
+                        </div>
+
                       <lightBox :title="lightboxData.title"
                                 :category="lightboxData.category"
                                 :CANCEL="lightboxData.CANCEL"

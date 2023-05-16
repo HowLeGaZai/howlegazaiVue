@@ -52,8 +52,11 @@
         </div>
        
       <div class="confirm-btn">
-        <router-link to="/" custom v-slot="{ navigate }">
+        <!-- <router-link to="/" custom v-slot="{ navigate }">
                 <button class="btn-m btn-color-green" @click="navigate" role="link">返回首頁</button>
+        </router-link> -->
+        <router-link to="/account_user_space" custom v-slot="{ navigate }">
+                <button class="btn-m btn-color-green" @click="navigate" role="link">查看我的預約紀錄</button>
         </router-link>
         <!-- <button type="button" class="btn-m btn-color-green" onclick="location.href='/'">返回首頁</button> -->
       </div>

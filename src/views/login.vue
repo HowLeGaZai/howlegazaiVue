@@ -81,7 +81,7 @@ export default {
             alert('帳號或密碼錯誤');
           } else {
             alert('登入成功');
-            this.$router.back(-2);
+            this.$router.back(-1);
             // this.jsonData = response.data;
             let login_id = response.data[0][0]; 
             let login_name = response.data[0][3]; 

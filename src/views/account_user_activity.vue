@@ -44,7 +44,11 @@
 
                         </div>
                       </div>
+                      <div class="nodata">
+                          <p v-if="datas.length == 0">您尚未報名過活動喔！</p>
+                      </div>
                 </section>
+
             </div>
         </section>
     </main>
