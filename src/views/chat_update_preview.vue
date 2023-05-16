@@ -14,7 +14,9 @@
       <h1>{{ title }}</h1>
       <div class="add_inf">
         <div class="userbtn" id="">
-          <img :src="portrait" class="user_pic" />
+          <!-- <img :src="portrait" class="user_pic" /> -->
+          <img :src="portrait != ''? portrait :require(`@/assets/img/user_pic.png`)" alt="" class="user_pic" />
+
         </div>
         <h4>{{usernickname}}</h4>
         <h4>發布日期：5小時前</h4>

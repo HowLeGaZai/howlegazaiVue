@@ -129,6 +129,7 @@ export default {
           this.type = olddata[1];
           this.tinymceContent = olddata[3];
           this.dataURLBack = olddata[5];
+          this.dataURL = olddata[5];
       },
 
       onResultChanged(result) {

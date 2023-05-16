@@ -85,9 +85,9 @@
               <div class="row">
                 <div class="input-box col-sm-12 col-sm-4">
                   <label class="details">身分證字號<span v-if="!idNum && formSubmitted" class="red-dot"><i class="bi bi-asterisk"></i></span></label>
-                  <span v-if="!idNumValid" class="red">*請輸入正確身分證</span>
+        
                   <input type="text" class="f-text" id="sID" placeholder="" maxlength="10" minlength="10" required v-model.trim="idNum" @blur="validateIdNum"/>
-                 
+                   <span v-if="!idNumValid" class="red">*請輸入正確身分證字號</span>
                 </div>
                 <div class="input-box col-sm-12 col-sm-4">
                   <label class="details">出生年/月/日<span v-if="!birth && formSubmitted" class="red-dot"><i class="bi bi-asterisk"></i></span></label>
