@@ -52,13 +52,13 @@ export default {
      this.userID = sessionStorage.getItem('userID'); 
      this.allow = sessionStorage.getItem('forget'); 
      if(!this.userID || !this.allow){
-        this.$router.push('/');
+        this.$router.push('/howlegazai');
      }
   },
   methods: {
     cancel() {
       // 取消修改密碼
-      this.$router.push('/');
+      this.$router.push('/howlegazai');
     },
     validatePwd() {
       // 檢查密碼格式
@@ -98,7 +98,7 @@ export default {
             alert('修改密碼成功！請用新密碼登入');
             // 導回首頁
             sessionStorage.clear();
-            this.$router.push('/');
+            this.$router.push('/howlegazai');
           })
           .catch(error => {
             console.log(error);
