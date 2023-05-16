@@ -915,3 +915,12 @@ overflow: hidden;
 .red-dot,.red{
     color:$red;
 }
+
+.nodata{
+  width: 100%;
+  text-align: center;
+  padding: 25px;
+  p{
+    font-size: 18px;
+  }
+}

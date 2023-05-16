@@ -52,6 +52,10 @@
 
                             </table>
 
+                            <div class="nodata">
+                                 <p v-if="jsonData.length == 0">您還沒新增成員喔！</p>
+                            </div>
+
                             <button class="btn-m btn-color-green marginbottom20" v-if="USER_LEVEL == 1" @click="showChild = !showChild">新增</button>
 
                             <add-member v-if="showChild" :show="booleenforShow"
