@@ -84,6 +84,9 @@ export default {
           this.$forceUpdate();
       },
       getFormatDate(val) {
+        if(!val){
+          return "";
+        }
         return formatDate(val);
       },
       refreshCount() {
