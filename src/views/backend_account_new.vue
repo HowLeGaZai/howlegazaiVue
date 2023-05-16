@@ -15,7 +15,7 @@
           <div class="w90percentage accounttable">
             <h1>待審核清單</h1>
 
-            <div class="displayflex">
+            <div>
               <!-- div 製作 table -->
               <section class="bk-account-new-s">
                 <ul class="row">
@@ -47,14 +47,14 @@
                       <li class="col-sm-12 col-sm-2">出生年月日</li>
                       <li class="col-sm-12 col-sm-1">性別</li>
                       <li class="col-sm-12 col-sm-2">暱稱</li>
-                      <li class="col-sm-12 col-sm-4">email</li>
+                      <li class="col-sm-12 col-sm-3">email</li>
                       <li class="col-sm-12 col-sm-3">電話號碼</li>
                     </ul>
                     <ul class="row">
                       <li class="col-sm-12 col-sm-2">{{accountNew.BIRTHDATE}}</li>
                       <li class="col-sm-12 col-sm-1">{{accountNew.GENDER}}</li>
                       <li class="col-sm-12 col-sm-2">{{accountNew.NICKNAME}}</li>
-                      <li class="col-sm-12 col-sm-4">{{accountNew.EMAIL}}</li>
+                      <li class="col-sm-12 col-sm-3">{{accountNew.EMAIL}}</li>
                       <li class="col-sm-12 col-sm-3">{{accountNew.PHONE}}</li>
                     </ul>
                     <div>
