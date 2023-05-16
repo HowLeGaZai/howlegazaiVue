@@ -106,7 +106,7 @@ export default {
       // 比對時間段內天氣敘述
       getParameterName(){
         // console.log(this.jsonData.records.location[0].weatherElement[0].time);
-        this.currentTime = "2023-05-15 18:00:00"
+        // this.currentTime = "2023-05-15 18:00:00"
         
         // 篩選出在現在時間範圍內的資料
         const weatherData = this.jsonData.records.location[0].weatherElement[0].time.filter(time => {
