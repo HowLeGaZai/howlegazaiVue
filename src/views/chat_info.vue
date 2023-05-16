@@ -11,7 +11,10 @@
       <h1>{{chatarticle.TITLE}}</h1>
       <div class="add_inf">
         <div class="userbtn" id="">
-          <img :src="chatarticle.PORTRAIT" alt="" class="user_pic" />
+          <!-- <img :src="chatarticle.PORTRAIT" alt="" class="user_pic" /> -->
+          <img :src="chatarticle.PORTRAIT != ''? chatarticle.PORTRAIT :require(`@/assets/img/user_pic.png`)" alt="" class="user_pic" />
+
+
         </div>
         <h4>{{chatarticle.NICKNAME}}</h4>
         <h4>{{getFormatDate(chatarticle.CREATE_TIME)}}</h4>

@@ -2,7 +2,9 @@
         <section class="account-menu-pc">
               <h1>帳戶專區</h1>
               <div class="image user_pic">
-                <img :src="localPORTRAIT" alt="" />
+                <!-- <img :src="localPORTRAIT" alt="" /> -->
+                <img :src="localPORTRAIT != ''? localPORTRAIT :require(`@/assets/img/user_pic.png`)" alt="" />
+                
               </div>
               <ul>
                 <li>
