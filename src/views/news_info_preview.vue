@@ -120,6 +120,7 @@ export default {
             .then(response => {
               alert("編輯成功");
               console.log(this.searchData);
+              sessionStorage.clear();
                 
             })
             .catch(error => {
@@ -143,6 +144,7 @@ export default {
             .post('http://localhost/TGD104G1/public/API/newsAdd.php',formData)
             .then(response => {
               alert("新增成功");
+              sessionStorage.clear();
 
             })
             .catch(error => {
