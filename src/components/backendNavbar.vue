@@ -11,7 +11,7 @@
            <!-- 雨、晴、陰 -->
            <i class="bi" :class="{
               'bi-cloud-drizzle': Weather.includes('雨'),
-              'bi-clouds': Weather.includes('陰') && !Weather.includes('雨'),
+              'bi-clouds': Weather.includes('陰') && !Weather.includes('雨') || Weather.includes('雲'),
               'bi-sun': Weather.includes('晴') && !Weather.includes('雨') && !Weather.includes('陰')
             }"></i>
           歡迎登入<div>{{dataTOWN}}</div>
