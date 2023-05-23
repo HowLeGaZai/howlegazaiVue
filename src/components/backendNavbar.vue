@@ -3,9 +3,12 @@
     <nav class="main">
       <div class="leftnav">
         <!-- logo -->
-        <a class="brand" href="/backend_index">
+        <router-link :to="{name:'backend_index'}" class="brand">
+        <div class="brand">
+        <!-- <a class="brand" href="/backend_index"> -->
           <img src="../assets/img/logo_backend.svg" alt="" />
-        </a>
+        </div>
+      </router-link>
         <div class="midnav">
            <!-- 天氣 -->
            <!-- 雨、晴、陰 -->

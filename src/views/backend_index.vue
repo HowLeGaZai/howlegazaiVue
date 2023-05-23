@@ -266,9 +266,9 @@ export default {
         // console.log(error);
       });
 
-    //撈取活動
+    //撈取活動(撈取所有活動最新前五筆，並按活動開始時間順序最新依序排列)
     axios
-      .post('http://localhost/TGD104G1/public/API/activity.php', {})
+      .post('http://localhost/TGD104G1/public/API/activity_backendindex.php', {})
       .then(response => {
         this.activityData = response.data;
         // console.log(this.activityData);
